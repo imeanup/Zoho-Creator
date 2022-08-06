@@ -1,0 +1,2464 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 23:25:13
+ * Version      : 1.0
+ */
+ application "Bug Tracker"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+	section Home
+	{
+		icon = "ui-1-home-52"
+				 page Home 
+	 	 { 
+ 	 	 displayname = "Home" 
+
+ 	 	 icon = "design-code" 
+	 	 Content="<zml \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dsp id='Home1'>\n\t<![CDATA[htmlpage Home1()\ncontent\n&lt;%{\n\t%&gt;\n&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;\n\t\t\t&lt;link rel=&quot;stylesheet&quot; href=&quot;https:\/\/maxcdn.bootstrapcdn.com\/bootstrap\/3.3.7\/css\/bootstrap.min.css&quot; integrity=&quot;sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz\/K68vbdEjh4u&quot; crossorigin=&quot;anonymous&quot;&gt;\n\t\t\t\n\t\t\t&lt;!-- Optional theme --&gt;\n\t\t\t&lt;link rel=&quot;stylesheet&quot; href=&quot;https:\/\/maxcdn.bootstrapcdn.com\/bootstrap\/3.3.7\/css\/bootstrap-theme.min.css&quot; integrity=&quot;sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl\/Sp&quot; crossorigin=&quot;anonymous&quot;&gt;\n\t\t\t  \n\t\t\t&lt;!-- Latest compiled and minified JavaScript --&gt;\n\t\t\t&lt;script src=&quot;https:\/\/maxcdn.bootstrapcdn.com\/bootstrap\/3.3.7\/js\/bootstrap.min.js&quot; integrity=&quot;sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;\/script&gt;\n\t\t\t  &lt;link href=&quot;https:\/\/fonts.googleapis.com\/css?family=Maven+Pro&quot; rel=&quot;stylesheet&quot;&gt;\n&lt;%\n\tif(zoho.loginuserid == zoho.adminuserid)\n\t{\n\t\tif(Add_User[Email == zoho.adminuserid].count() == 0)\n\t\t{\n\t\t\tinsert into Add_User\n\t\t\t[\n\t\t\t\tAdded_User=zoho.loginuser\n\t\t\t\tName1.first_name=&quot;Admin&quot;\n\t\t\t\tName1.last_name=&quot;User&quot;\n\t\t\t\tEmail=zoho.adminuserid\n\t\t\t\tCan_Assign_Bug=true\n\t\t\t]\n\t\t}\n\t}\n\telse if(Add_User[Email != zoho.adminuserid].count() == 0)\n\t{\n\t\topenUrl(&quot;#Form:Add_User&quot;,&quot;popup window&quot;);\n\t}\n\tstatuscolorMap = {&quot;New&quot;:&quot;#fb8a8a&quot;,&quot;Open&quot;:&quot;#629de0&quot;,&quot;Fixed&quot;:&quot;#16a765&quot;,&quot;Reopened&quot;:&quot;#7fb3e0&quot;,&quot;Rejected&quot;:&quot;#fa573c&quot;,&quot;Not Reproducible&quot;:&quot;#ffad46&quot;,&quot;Not Fixing Now&quot;:&quot;#e64c4c&quot;,&quot;Review\/Testing&quot;:&quot;#86bab6&quot;};\n\tnew = 0;\n\topen = 0;\n\tfixed = 0;\n\treopened = 0;\n\trejected = 0;\n\tnotReproducible = 0;\n\tnotFixingNow = 0;\n\treviewTesting = 0;\n\tnew = New_Bug[ID != 0 &amp;&amp; Status == &quot;New&quot;].count();\n\tuserRecID = Add_User[Email == zoho.loginuserid].ID;\n\tif(zoho.loginuserid != zoho.adminuserid)\n\t{\n\t\tuser = &quot;User&quot;;\n\t\tbugs = New_Bug[Assignees1 == userRecID || Reporter == userRecID].ID.getAll();\n\t\topen = New_Bug[Assignees1 == userRecID || Reporter == userRecID &amp;&amp; Status == &quot;Open&quot;].count();\n\t\tfixed = New_Bug[Assignees1 == userRecID || Reporter == userRecID &amp;&amp; Status == &quot;Fixed&quot;].count();\n\t\treopened = New_Bug[Assignees1 == userRecID || Reporter == userRecID &amp;&amp; Status == &quot;Reopened&quot;].count();\n\t\trejected = New_Bug[Assignees1 == userRecID || Reporter == userRecID &amp;&amp; Status == &quot;Rejected&quot;].count();\n\t\tnotReproducible = New_Bug[Assignees1 == userRecID || Reporter == userRecID &amp;&amp; Status == &quot;Not Reproducible&quot;].count();\n\t\tnotFixingNow = New_Bug[Assignees1 == userRecID || Reporter == userRecID &amp;&amp; Status == &quot;Not Fixing Now&quot;].count();\n\t\treviewTesting = New_Bug[Assignees1 == userRecID || Reporter == userRecID &amp;&amp; Status == &quot;Review\/Testing&quot;].count();\n\t\tproductsList = New_Bug[Assignees1 == userRecID || Reporter == userRecID].Products.getAll().distinct();\n\t}\n\telse\n\t{\n\t\tuser = &quot;Admin&quot;;\n\t\tbugs = New_Bug[ID != 0].ID.getAll();\n\t\topen = New_Bug[ID != 0 &amp;&amp; Status == &quot;Open&quot;].count();\n\t\tfixed = New_Bug[ID != 0 &amp;&amp; Status == &quot;Fixed&quot;].count();\n\t\treopened = New_Bug[ID != 0 &amp;&amp; Status == &quot;Reopened&quot;].count();\n\t\trejected = New_Bug[ID != 0 &amp;&amp; Status == &quot;Rejected&quot;].count();\n\t\tnotReproducible = New_Bug[ID != 0 &amp;&amp; Status == &quot;Not Reproducible&quot;].count();\n\t\tnotFixingNow = New_Bug[ID != 0 &amp;&amp; Status == &quot;Not Fixing Now&quot;].count();\n\t\treviewTesting = New_Bug[ID != 0 &amp;&amp; Status == &quot;Review\/Testing&quot;].count();\n\t\tproductsList = New_Bug[ID != 0].Products.getAll().distinct();\n\t}\n\t%&gt;\n&lt;style&gt;\n\t\t\t      .popupbox-overlay{\n\t\t\t\t  pointer-events:none;\n\t\t\t  }\n\t\t\t    .popupbox-wrapper{\n\t\t\t\t  pointer-events:none;\n\t\t\t  }\n\t\t\t.popupbox{\n\t\t\t\t  pointer-events:all;\n\t\t\t  }\n\t\t\t  .main{\n\t\t\t  max-width:1120px;\n\t\t\t  }\n\t\t\t  \n\t\t\t  .topbar_dropdown#zc-app-dropdown a{  height:100%;  }\n\t\t\t  #zc-component&gt;div{\n\t\t\t  height:100%;\n\t\t\t  }\n\t\t\t  .content-header {\n\t\t\t    border: none;\n\t\t\t    background-image: none;\n\t\t\t    border-top-left-radius: 0px;\n\t\t\t    border-top-right-radius: 0px;\n\t\t\t    margin-bottom: 40px;\n\t\t\t    background: #797979;\n\t\t\t}\n\t\t\t.content-header div{\n\t\t\t  font-size: 25px;\n\t\t\t  color: white;\n\t\t\t    font-family: &apos;Maven Pro&apos;, sans-serif;\n\t\t\t  }\n\t\t\t.page-header {\n\t\t\t    border-bottom: 1px solid #afafaf;\n\t\t\t    padding-bottom: 6px;\n\t\t\t    margin: 7px 10px 4px 10px;\n\t\t\t}\n\t\t\t  .small, small {\n\t\t\t    color: #d0d0d0;\n\t\t\t}\n\t\t\t  .count-box{\n\t\t\t  display: inline-flex;\n\t\t\t  justify-content: center;\n\t\t\t  align-items: center;\n\t\t\t  min-height: 70px;\n\t\t\t  color:white;\n\t\t\t  width:25%;\n\t\t\t  float: left;\n\t\t\t  font-family: &apos;Maven Pro&apos;, sans-serif;\n\t\t\t  }\n\t\t\t  \n\t\t\t  @@media only screen and (max-width:768px) {\n\t\t\t  \/* only size &apos;xs&apos; and below *\/\n\t\t\t  .searchResults {\n\t\t\t    height: 100%;\n\t\t\t  }\n\t\t\t}\n\t\t\t  \n\t\t\t  .num-count{\n\t\t\t      text-align: center;\n\t\t\t    font-size: 20px;\n\t\t\t  font-weight:bold;\n\t\t\t  font-family: &apos;Maven Pro&apos;, sans-serif;\n\t\t\t  \t}\n\t\t\t\t.count-text{\n\t\t\t      font-size: 13px;\n\t\t\t  font-family: &apos;Maven Pro&apos;, sans-serif;\n\t\t\t  }\n\t\t\t  .bugRepEmbed html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, input{\n\t\t\t    font-family: &apos;Maven Pro&apos;, sans-serif;\n\t\t\t  }\n\t\t\t  .mt20{\n\t\t\t  margin-top:20px;\n\t\t\t  }\n\t\t\t  .bb0{\n\t\t\t  border-bottom:none !important;\n\t\t\t  }\n\t\t\t  .bt0{\n\t\t\t   border-top:none !important;\n\t\t\t  }\n\t\t\t  .pt10{\n\t\t\t  padding-top:10px !important;\n\t\t\t  }\n\t\t\t  .pb10{\n\t\t\t  padding-bottom:10px !important;\n\t\t\t  }\n\t\t\t  .pl30{\n\t\t\t  padding-left:30px !important;\n\t\t\t  }\n\t\t\t  .bbdot{\n\t\t\t   border-bottom:1px dashed #e5e5e5 !important;\n\t\t\t  }\n\t\t\t  .zbsubminmax {\n\t\t\t  font-family: &apos;Maven Pro&apos;, sans-serif;\n\t\t\t    min-width: 20px;\n\t\t\t    max-width: 350px;\n\t\t\t}\n\t\t\t.txtOverflow {\n\t\t\t    text-overflow: ellipsis;\n\t\t\t}\n\t\t\t.oflowh {\n\t\t\t    overflow: hidden;\n\t\t\t}\n\t\t\t.bugID{\n\t\t\t  font-family: &apos;Maven Pro&apos;, sans-serif;\n\t\t\t  width:20px;\n\t\t\t  } \n\t\t\t  .bugOwner{\n\t\t\t  font-family: &apos;Maven Pro&apos;, sans-serif;\n\t\t\t    min-width: 60px;\n\t\t\t    max-width: 80px;\n\t\t\t    overflow: hidden;\n\t\t\t  } \n\t\t\t  .bugCreateDate{\n\t\t\t  font-family: &apos;Maven Pro&apos;, sans-serif;\n\t\t\t      min-width: 20px;\n\t\t\t    max-width: 65px;\n\t\t\t  } \n\t\t\t  .bugStatus{\n\t\t\t  font-family: &apos;Maven Pro&apos;, sans-serif;\n\t\t\t  min-width: 30px;\n\t\t\t    max-width: 70px;\n\t\t\t    word-wrap: break-word;\n\t\t\t  } \n\t\t\t  .bugDueDate{\n\t\t\t  font-family: &apos;Maven Pro&apos;, sans-serif;\n\t\t\t      min-width: 20px;\n\t\t\t    max-width: 65px;\n\t\t\t  }\n\t\t\t.bugtitle {\n\t\t\t  font-family: &apos;Maven Pro&apos;, sans-serif;\n\t\t\t    color: #2C7BD0;\n\t\t\t    line-height: 16px;\n\t\t\t    font-size: 14px;\n\t\t\t    font-weight: normal;\n\t\t\t      transition: all .2s ease-in-out;\n\t\t\t}\n\t\t\t.bugtitle:hover{\n\t\t\t    text-decoration: none;\n\t\t\t  transform: scale(1.1);\n\t\t\t}\n\t\t\t\n\t\t\t.breakWord {\n\t\t\t    word-wrap: break-word;\n\t\t\t}\n\t\t\t.nwrp {\n\t\t\t    white-space: nowrap;\n\t\t\t}\n\t\t\t.status-link{\n\t\t\t  font-size: 13px;\n\t\t\t    padding: 1px 5px 2px 3px;\n\t\t\t    white-space: nowrap;\n\t\t\t    overflow: hidden;\n\t\t\t   \/\/ width: 70px;\n\t\t\t    float: left;\n\t\t\t    text-align: center;\n\t\t\t background: #629de0;\n\t\t\t    color: white;\n\t\t\t    border-radius: 3px;\n\t\t\t      font-size: 12px;\n\t\t\t  }\n\t\t\t  .no_record_wrapper:hover{\n\t\t\t      background-color: transparent !important;\n\t\t\t  }\n\t\t\t  .hvrBgTrans:hover{\n\t\t\t  background-color: transparent !important;\n\t\t\t  }\n\t\t\t  .no_record_subtext{\n\t\t\t  text-align: center;\n\t\t\t  padding-top: 7% !important;\n\t\t\t  font-size: 22px;\n\t\t\t  margin-bottom: 25px;\n\t\t\t  }\n\t\t\t  .no_record_addButton{\n\t\t\t  text-align: center;\n\t\t\t  margin-bottom: 25px;\n\t\t\t  border-top: none important;\n\t\t\t  }\n\t\t\t  \n\t\t\t  .no_record_addButton a:hover{\n\t\t\t    text-decoration: none;\n\t\t\t}\n\t\t\t  \n\t\t\t  #zohoreportel{\n\t\t\t  height:100% !important;\n\t\t\t  position:absolute;\n\t\t\t  overflow:hidden;\n\t\t\t  }\n\t\t\t  .view-outer-wrapper{\n\t\t\t  border: none !important;\n\t\t\t  font-family: &apos;Maven Pro&apos;, sans-serif;\n\t\t\t  }\n\t\t\t  &lt;\/style&gt;\n\t\t\t\n\t\t\t  &lt;div class=&quot;container-fluid main&quot; style=&quot;&quot;&gt;\n\t\t\t  \n\t\t\t  \n\t\t\t  &lt;div class=&quot;row&quot;&gt;\n\t\t\t    &lt;div class=&quot;col-md-3 count-box&quot; style=&quot;background: #88ace4;&quot;&gt;\n\t\t\t  &lt;div&gt;\n\t\t\t  &lt;div class=&quot;num-count&quot;&gt;\n\t\t\t  &lt;%=new%&gt;\n\t\t\t  &lt;\/div&gt;\n\t\t\t  &lt;div class=&quot;count-text&quot;&gt;\n\t\t\t  New\n\t\t\t  &lt;\/div&gt;\n\t\t\t  &lt;\/div&gt;\n\t\t\t  &lt;\/div&gt;\n\t\t\t    &lt;div class=&quot;col-md-3 count-box&quot; style=&quot;background: #ea9d9d;&quot;&gt;\n\t\t\t  &lt;div&gt;\n\t\t\t  &lt;div class=&quot;num-count&quot;&gt;\n\t\t\t  &lt;%=open%&gt;\n\t\t\t  &lt;\/div&gt;\n\t\t\t  &lt;div class=&quot;count-text&quot;&gt;\n\t\t\t  Open\n\t\t\t  &lt;\/div&gt;\n\t\t\t  &lt;\/div&gt;\n\t\t\t  &lt;\/div&gt;\n\t\t\t    &lt;div class=&quot;col-md-3 count-box&quot; style=&quot;background: #b2d27c;&quot;&gt;\n\t\t\t  &lt;div&gt;\n\t\t\t  &lt;div class=&quot;num-count&quot;&gt;\n\t\t\t    &lt;%=fixed%&gt;\n\t\t\t  &lt;\/div&gt;\n\t\t\t  &lt;div class=&quot;count-text&quot;&gt;\n\t\t\t  Fixed\n\t\t\t  &lt;\/div&gt;\n\t\t\t  &lt;\/div&gt;\n\t\t\t  &lt;\/div&gt;\n\t\t\t\n\t\t\n\t\t\t    &lt;div class=&quot;col-md-3 count-box&quot; style=&quot;background: #f5c486;&quot;&gt;\n\t\t\t  &lt;div&gt;\n\t\t\t  &lt;div class=&quot;num-count&quot;&gt;\n\t\t\t  &lt;%=reviewTesting%&gt;\n\t\t\t  &lt;\/div&gt;\n\t\t\t  &lt;div class=&quot;count-text&quot;&gt;\n\t\t\tReview\/Testing\n\t\t\t  &lt;\/div&gt;\n\t\t\t   &lt;\/div&gt;\n\t\t\t  &lt;\/div&gt;\n\t\t\t  &lt;\/div&gt;\n\t\t\t  \n\t\t\t  &lt;div class=&quot;row&quot; style=&quot;margin-top: 20px;overflow: hidden; border-bottom: 1px dashed #e0e0e0;&quot;&gt;\n\t\t\t&lt;div class=&quot;col-md-6&quot; style=&quot;border-right: 1px dashed #e0e0e0;&quot;&gt;\n\t\t\t  &lt;p style=&quot;margin: 5px -15px;border: 1px solid #e0e0e0;border-radius: 3px;background: transparent;color: #757575;text-align:center;font-family: &apos;Maven Pro&apos;, sans-serif;&quot;&gt;Monthy Bug Count&lt;\/p&gt;\n\t\t\t      &lt;div style=&quot;height:550px;width:100%&quot; zc_mobileView=&apos;inline&apos; elName=&apos;zc-component&apos; reportLinkName=&apos;Every_Month_Bug_Count_Total&apos; params=&apos;zc_Header=false&apos;&gt;&lt;\/div&gt;            \n\t\t\t\n\t\t\t\n\t\t\t         \n\t\t\t  &lt;\/div&gt;\n\t\t\t  &lt;div class=&quot;col-md-6&quot;&gt;\n\t\t\t    &lt;p style=&quot;margin: 5px -15px;border: 1px solid #e0e0e0;border-radius: 3px;background: transparent;color: #757575;text-align:center;font-family: &apos;Maven Pro&apos;, sans-serif;&quot;&gt;Milestones Bugs Chart&lt;\/p&gt;\n\t\t\t      &lt;div style=&quot;height:550px;width:100%&quot; zc_mobileView=&apos;inline&apos; elName=&apos;zc-component&apos; reportLinkName=&apos;Milestone_Bugs_Charts&apos; params=&apos;zc_Header=false&apos;&gt;&lt;\/div&gt;   \n\t\t\t  &lt;\/div&gt;\n\t\t\t&lt;\/div&gt;\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t  &lt;\/div&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+	}
+	section Bugs
+	{
+		icon = "design-bug"
+		form New_Bug
+		{
+			displayname = "Submit Bug"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Bug_ID
+			(
+    			type = text
+				displayname = "Bug - ID"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Bug_Title
+			(
+    			type = text
+				displayname = "Bug Title"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Products
+			(
+				type = picklist
+				displayname = "Milestone"
+				values  = Add_Miletone.ID
+    			displayformat = [Product_Name]
+				allow new entries = true
+				[
+					displayname = "Add New Milestone"
+				]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Notes
+			(
+    			type = textarea
+				displayname = "Description"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Steps_To_Reproduce
+			(
+    			type = textarea
+				displayname = "Steps To Reproduce"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Module_If_any
+			(
+    			type = text
+				displayname = "Build (If any)"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Deadline
+			(
+    			type = date
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Priority
+			(
+				type = radiobuttons
+				values = {"High", "Medium", "Low"}
+				layout = 3
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Status
+			(
+				type = picklist
+				values = {"New", "Fixed", "Reopened", "Rejected", "Open", "Not Reproducible", "Not Fixing Now", "Review/Testing"}
+				initial value = "New"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Reporter
+			(
+				type = picklist
+				values  = Add_User.ID
+    			displayformat = [Name1.first_name + " - " + Name1.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Assignees1
+			(
+				type = list
+				displayname = "Assignees"
+				values  = Add_User.ID
+    			displayformat = [Name1.first_name + " - " + Name1.last_name]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Auto_Number
+			(
+    			type = autonumber
+				displayname = "Auto Number"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Screenshot
+			(
+    			type = image
+				source  = public_url,file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Comments
+			(
+				type = grid
+				values  = Comments.ID
+    			bidirectional = Submitted_Bug_Rec_ID
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Comment
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have adminEmail
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Submitted_Date
+			(
+    			type = date
+				displayname = "Submitted Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		print template
+			{
+				Bug_Summary
+				{
+						displayname = "Bug Summary"
+						content = {"layout":"1","pageNumberOption":"null","orientation":"null","isFooterEnabled":false,"mainLayout":[{"elements":[{"type":"text","element":{"Fields":[{"Label_Name":"Bug_Title"}],"content":"<div><h1 style=\"text-align: center;\"><b><span><span>${Bug_Title}&nbsp;<\/span><\/span><\/b><\/h1><\/div>"}},{"type":"columns","element":{"split":"50,50","id":"elem_15aefbca8681","elemStyle":"","collayouts":[{"colElements":[{"type":"text","element":{"Fields":[{"Label_Name":"Status"}],"content":"<div><p><span><span>${Status}<\/span><\/span><\/p><\/div>"}}]},{"colElements":[{"type":"text","element":{"Fields":[{"Label_Name":"Bug_ID"}],"content":"<div><p><span style=\"background-color: rgb(255,255,255);\">${Bug_ID}<\/span><\/p><\/div>"}}]}]}}],"id":1}],"resize":"default","templateStyle":"text-align: left; width: 100%; margin: 0 auto;","isHeaderEnabled":false}
+				}
+			}
+		}
+		kanban New_Bug_Report
+		{
+			displayName = "All Bugs"
+			print template = Bug_Summary
+			show all rows from New_Bug    
+			(
+				Products as "Milestone"
+				custom action "Assign"
+				(
+	  			workflow = Assign
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Assign"
+				success message = "Assigned Successfully.!"
+				condition = (Status == "New")
+				)
+				Steps_To_Reproduce as "Steps To Reproduce"
+				custom action "Change Status"
+				(
+	  			workflow = Change_Status
+				show action in view header = true
+				column header = "Change Status"
+				success message = "Status Changed.!"
+				)
+				Priority
+				custom action "Add Comment"
+				(
+	  			workflow = Add_Comment
+				show action in view header = true
+				column header = "Add Comment"
+				success message = ""
+				)
+				Notes as "Description"
+				custom action "View Comments"
+				(
+	  			workflow = View_Comments
+				show action in view header = true
+				column header = "View Comments"
+				success message = ""
+				)
+				Module_If_any as "Build (If any)"
+				Bug_Title as "Bug Title"
+				Bug_ID as "Bug - ID"
+				Deadline
+				Status
+				Reporter as "Reported By"
+				(
+					view = All_User
+				)
+				Assignees1 as "Assignees"
+				Screenshot
+				Submitted_Date as "Submitted Date"
+			)
+			filters
+			(
+				Priority
+				Products
+				Assignees1
+			)
+			group by
+			(
+				Products ascending
+			)
+			sort by
+			(
+				Submitted_Date descending
+			)
+			options
+			(
+	 			display field = Status
+				record count  = enable
+	 		)
+			conditional formatting
+			(
+				"Priority"
+				{
+				condition = (Priority == "High")
+				fields = [Priority]
+				format = "color:#ffffff;background-color:#a64f4f;"
+				}
+				"Medium Pririty"
+				{
+				condition = (Priority == "Medium")
+				fields = [Priority]
+				format = "color:#ffffff;background-color:#4974bf;"
+				}
+				"Low Priority"
+				{
+				condition = (Priority == "Low")
+				fields = [Priority]
+				format = "color:#ffffff;background-color:#4fa17c;"
+				}
+				"Description Formating"
+				{
+				fields = [Notes]
+				format = "color:#9c9c9c;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Bug_Title as "Bug Title"
+							Notes as "Description"
+							Bug_ID as "Bug - ID"
+							Priority
+							Deadline
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+								"Assign"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Bug_ID as "Bug - ID"
+							Bug_Title as "Bug Title"
+							Priority
+							Products as "Milestone"
+							Notes as "Description"
+							Steps_To_Reproduce as "Steps To Reproduce"
+							Screenshot
+							Deadline
+							Status
+							Module_If_any as "Build (If any)"
+							Reporter as "Reported By"
+							Assignees1 as "Assignees"
+							Submitted_Date as "Submitted Date"
+				"Assign"
+				"Change Status"
+				"Add Comment"
+				"View Comments"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+			 			"Assign"
+			 			"Change Status"
+			 			"Add Comment"
+			 			"View Comments"
+    	 			)
+    			)
+			)
+		}
+		list My_Reported_Bugs
+		{
+			displayName = "My Reported Bugs"
+			show all rows from New_Bug  [Reporter.Email == zoho.loginuserid]  
+			(
+				Bug_ID as "Bug - ID"
+				Bug_Title as "Bug Title"
+				Products as "Milestone"
+				Module_If_any as "Build (If any)"
+				Steps_To_Reproduce as "Steps To Reproduce"
+				Priority
+				Status
+				Screenshot
+				Notes
+				Assignees1 as "Assignees"
+				Deadline
+				custom action "Change Status"
+				(
+	  			workflow = Change_Status1
+				column header = "Change Status"
+				success message = "Status Changed.!"
+				)
+				custom action "Add Comment"
+				(
+	  			workflow = Add_Comment1
+				column header = "Add Comment"
+				success message = ""
+				)
+				custom action "View Comments"
+				(
+	  			workflow = View_Comments1
+				column header = "View Comments"
+				success message = ""
+				)
+			)
+			group by
+			(
+				Products ascending
+			)
+			options
+			(
+				icon = "ui-2-grid-49"
+	 		)
+			conditional formatting
+			(
+				"Priroty"
+				{
+				fields = [Priority]
+				format = "font-weight:bold;color:#ffffff;background-color:#ff3d3d;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Bug_ID as "Bug - ID"
+							Bug_Title as "Bug Title"
+							Products as "Milestone"
+							Module_If_any as "Build (If any)"
+							Steps_To_Reproduce as "Steps To Reproduce"
+							Priority
+							Status
+							Screenshot
+							Notes
+							Assignees1 as "Assignees"
+							Deadline
+				"Change Status"
+				"Add Comment"
+				"View Comments"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Bug_ID as "Bug - ID"
+							Bug_Title as "Bug Title"
+							Products as "Milestone"
+							Module_If_any as "Build (If any)"
+							Steps_To_Reproduce as "Steps To Reproduce"
+							Priority
+							Status
+							Screenshot
+							Notes
+							Assignees1 as "Assignees"
+							Deadline
+				"Change Status"
+				"Add Comment"
+				"View Comments"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Returned_for_Review_Testing
+		{
+			displayName = "Returned for Review/ Testing"
+			show all rows from New_Bug  [Status == "Review/Testing" && Reporter.Email == zoho.loginuserid]  
+			(
+				Bug_ID as "Bug - ID"
+				Bug_Title as "Bug Title"
+				Products as "Milestone"
+				Module_If_any as "Build (If any)"
+				Steps_To_Reproduce as "Steps To Reproduce"
+				Priority
+				Status
+				Screenshot
+				Notes
+				Deadline
+				custom action "Change Status"
+				(
+	  			workflow = Change_Status2
+				column header = "Change Status"
+				success message = "Status Changed.!"
+				)
+				Assignees1 as "Assignees"
+				custom action "Add Comment"
+				(
+	  			workflow = Add_Comment2
+				column header = "Add Comment"
+				success message = ""
+				)
+				custom action "View Comments"
+				(
+	  			workflow = View_Comments2
+				column header = "View Comments"
+				success message = ""
+				)
+			)
+			group by
+			(
+				Products ascending
+			)
+			options
+			(
+				icon = "ui-1-database"
+	 		)
+			conditional formatting
+			(
+				"Priority"
+				{
+				fields = [Priority]
+				format = "font-weight:bold;color:#ffffff;background-color:#ff3d3d;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Bug_ID as "Bug - ID"
+							Bug_Title as "Bug Title"
+							Products as "Milestone"
+							Module_If_any as "Build (If any)"
+							Steps_To_Reproduce as "Steps To Reproduce"
+							Priority
+							Status
+							Screenshot
+							Notes
+							Deadline
+				"Change Status"
+							Assignees1 as "Assignees"
+				"Add Comment"
+				"View Comments"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Bug_ID as "Bug - ID"
+							Bug_Title as "Bug Title"
+							Products as "Milestone"
+							Module_If_any as "Build (If any)"
+							Steps_To_Reproduce as "Steps To Reproduce"
+							Priority
+							Status
+							Screenshot
+							Notes
+							Deadline
+				"Change Status"
+							Assignees1 as "Assignees"
+				"Add Comment"
+				"View Comments"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		summary My_Bugs
+		{
+			displayName = "My Bugs"
+			show all rows from New_Bug  [Assignees1.Email == zoho.loginuserid]  
+			(
+				Bug_ID as "Bug - ID"
+				Bug_Title as "Bug Title"
+				Products as "Milestone"
+				Module_If_any as "Build (If any)"
+				Priority
+				Steps_To_Reproduce as "Steps To Reproduce"
+				Status
+				Reporter
+				custom action "Change Status"
+				(
+	  			workflow = Change_Status3
+				column header = "Change Status"
+				success message = "Status Changed.!"
+				)
+				Deadline
+				Screenshot
+				Notes
+				custom action "Add Comment"
+				(
+	  			workflow = Add_Comment3
+				column header = "Add Comment"
+				success message = ""
+				)
+				custom action "View Comments"
+				(
+	  			workflow = View_Comments3
+				column header = "View Comments"
+				success message = ""
+				)
+			)
+			filters
+			(
+				Status
+			)
+			group by
+			(
+				Products ascending
+			)
+			sort by
+			(
+				Deadline ascending
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 2
+				icon = "users-single-03"
+			)
+			conditional formatting
+			(
+				"Priority"
+				{
+				fields = [Priority]
+				format = "font-weight:bold;color:#ffffff;background-color:#ff3d3d;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Bug_ID as "Bug - ID"
+							Bug_Title as "Bug Title"
+							Products as "Milestone"
+							Module_If_any as "Build (If any)"
+							Priority
+							Steps_To_Reproduce as "Steps To Reproduce"
+							Status
+							Reporter
+				"Change Status"
+							Deadline
+							Screenshot
+							Notes
+				"Add Comment"
+				"View Comments"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Bug_ID as "Bug - ID"
+							Bug_Title as "Bug Title"
+							Products as "Milestone"
+							Module_If_any as "Build (If any)"
+							Priority
+							Steps_To_Reproduce as "Steps To Reproduce"
+							Status
+							Reporter
+				"Change Status"
+							Deadline
+							Screenshot
+							Notes
+				"Add Comment"
+				"View Comments"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Hidden
+	{
+		hide = true
+		icon = "ui-2-menu-bold"
+		form Select_Assignees
+		{
+			displayname = "Select Assignees"
+			store data in zc = false
+			success message = "Data Added Successfully!"
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have New_Bug_RecID
+			(
+    			type = text
+				displayname = "New Bug RecID"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Select_Assignees1
+			(
+				type = list
+				displayname = "Select Assignees"
+				values  = Add_User.ID
+    			displayformat = [Name1.first_name + " " + Name1.last_name]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				Assign
+				(
+   					type = button
+   					displayname = "Assign"
+				)
+			}
+		}
+		form Comments
+		{
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Comment
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Submitted_Bug_Rec_ID
+			(
+				type = picklist
+				values  = New_Bug.ID
+    			bidirectional = Comments
+    			displayformat = [ID]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			User
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Commenter
+			(
+				type = picklist
+				values  = Add_User.ID
+    			displayformat = [Name1.first_name + " " + Name1.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+				 page Comment_View(id) 
+	 	 { 
+ 	 	 displayname = "Comment View" 
+
+ 	 	 icon = "files-dev" 
+
+ 	 	 hide =  true
+	 	 Content="<zml \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dsp id='Comment_View1'>\n\t<![CDATA[htmlpage Comment_View1(id)\ncontent\n&lt;%{\n\t%&gt;\n&lt;link href=&quot;https:\/\/fonts.googleapis.com\/css?family=Arimo&quot; rel=&quot;stylesheet&quot;&gt;\n\t\t\t    &lt;link href=&quot;https:\/\/fonts.googleapis.com\/css?family=Maven+Pro&quot; rel=&quot;stylesheet&quot;&gt;\n\t\t\t  &lt;style&gt;\n\t\t\t     \n\t\t\t\n\t\t\t.detailBox {\n\t\t\t    width:320px;\n\t\t\t    border:1px solid #bbb;\n\t\t\t    margin:50px;\n\t\t\t  \n\t\t\t}\n\t\t\t.titleBox {\n\t\t\t    background-color:#fdfdfd;\n\t\t\t    padding:10px;\n\t\t\t      font-weight: 900;\n\t\t\t}\n\t\t\t.titleBox label{\n\t\t\t  color:#444;\n\t\t\t  margin:0;\n\t\t\t  display:inline-block;\n\t\t\t}\n\t\t\t\n\t\t\t\n\t\t\t.commentBox {\n\t\t\t      border-top: 1px dotted #bbb;\n\t\t\t    padding:10px;\n\t\t\t  text-align: center;\n\t\t\t}\n\t\t\t\n\t\t\t.BugDescription {\n\t\t\t    margin-top:10px 0;\n\t\t\t  font-family: &apos;Arimo&apos;, sans-serif;\n\t\t\t}\n\t\t\t.commentList {\n\t\t\t    padding:0;\n\t\t\t    list-style:none;\n\t\t\t    overflow:auto;\n\t\t\t}\n\t\t\t.commentList li {\n\t\t\t    margin:0;\n\t\t\t    margin-top:10px;\n\t\t\t}\n\t\t\t.commentList li &gt; div {\n\t\t\t    display:table-cell;\n\t\t\t  font-size: 12px;\n\t\t\t}\n\t\t\t.commenterImage {\n\t\t\t    margin-right:15px;\n\t\t\t    height:100%;\n\t\t\t    float:left;\n\t\t\t      margin-top: 3px;\n\t\t\t}\n\t\t\t.commentText p {\n\t\t\t   font-family: &apos;Maven Pro&apos;, sans-serif;\n\t\t\t    margin:0;\n\t\t\t}\n\t\t\t.sub-text {\n\t\t\t    color:#aaa;\n\t\t\t    font-family:verdana;\n\t\t\t    font-size:10px;\n\t\t\t}\n\t\t\t.actionBox {\n\t\t\t    border-top:1px dotted #bbb;\n\t\t\t    padding:10px;\n\t\t\t}\n\t\t\t  &lt;\/style&gt;\n\t\t\t&lt;div class=&quot;detailBox&quot;&gt;\n\t\t\t  &lt;div class=&quot;titleBox&quot;&gt;\n\t\t\t      &lt;label&gt;Comment Box&lt;\/label&gt;\n\t\t\t    &lt;\/div&gt;\n\t\t\t  \n\t\t\t      &lt;div class=&quot;commentBox&quot;&gt;\n&lt;%\n\tbugRec = New_Bug[ID == id.toLong()];\n\t%&gt;\n&lt;p class=&quot;BugDescription&quot;&gt;&lt;%=bugRec.Bug_Title%&gt;.&lt;\/p&gt;\n\t\t\t    &lt;\/div&gt;\n\t\t\t    &lt;div class=&quot;actionBox&quot;&gt;\n\t\t\t        \n\t\t\t  &lt;ul class=&quot;commentList&quot;&gt;\n&lt;%\n\tif(Comments[Submitted_Bug_Rec_ID == id.toLong()].count() != 0)\n\t{\n\t\tfor each  rec in Comments[Submitted_Bug_Rec_ID == id.toLong()]\n\t\t{\n\t\t\tif(rec.Commenter != null)\n\t\t\t{\n\t\t\t\tuser = rec.User;\n\t\t\t\tuserName = rec.Commenter.Name1;\n\t\t\t}\n\t\t\telse if(rec.Commenter == null)\n\t\t\t{\n\t\t\t\tuser = &quot;Admin&quot;;\n\t\t\t\tuserName = &quot;Admin&quot;;\n\t\t\t}\n\t\t\t%&gt;\n&lt;li&gt;\n\t\t\t      &lt;div class=&quot;commenterImage&quot;&gt;\n\t\t\t  &lt;div&gt;&lt;%=userName%&gt;&lt;\/div&gt;\n\t\t\t  &lt;div style=&quot;font-size: 69%;color: #b1afaf;&quot;&gt;&lt;%=user%&gt;&lt;\/div&gt;\n\t\t\t                &lt;\/div&gt;\n\t\t\t                &lt;div class=&quot;commentText&quot;&gt;\n\t\t\t                    &lt;p class=&quot;&quot;&gt;&lt;%=rec.Comment%&gt;.&lt;\/p&gt; \n\t\t\t  \t\t\t\t\t&lt;span class=&quot;date sub-text&quot;&gt;on &lt;%=rec.Added_Time.toDate()%&gt;&lt;\/span&gt;\n\t\t\t\n\t\t\t                &lt;\/div&gt;\n\t\t\t            &lt;\/li&gt;\n&lt;%\n\t\t}\n\t}\n\telse\n\t{\n\t\t%&gt;\n&lt;li style=&quot;text-align:center;&quot;&gt;No Comments Yet.!&lt;\/li&gt;\n&lt;%\n\t}\n\t%&gt;\n&lt;\/ul&gt;\n\t\t\t  \n\t\t\t  \n\t\t\t  \n\t\t\t    &lt;\/div&gt;\n\t\t\t&lt;\/div&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+		form Change_Status_PopUp
+		{
+			displayname = "Change Status PopUp"
+			store data in zc = false
+			success message = "Data Added Successfully!"
+			field alignment = left
+					hide = true
+			Bug_RecID
+			(
+    			type = text
+				displayname = "Bug RecID"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Status
+			(
+				type = radiobuttons
+				values = {"New", "Fixed", "Reopened", "Rejected", "Open", "Not Reproducible", "Not Fixing Now", "Review/Testing"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Comment
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				Change
+				(
+   					type = button
+   					displayname = "Change"
+				)
+			}
+		}
+		form Add_User
+		{
+			displayname = "Add User"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Name1
+			(
+    			type = name
+				displayname = "Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Can_Assign_Bug
+			(
+    			type = checkbox
+				displayname = "Can Assign Bug?"
+				initial value = false
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Comments_Report
+		{
+			displayName = "Comments Report"
+   			hide = true
+			show all rows from Comments    
+			(
+				Comment
+				Submitted_Bug_Rec_ID
+				Commenter
+				User
+			)
+			options
+			(
+				icon = "ui-1-database"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Comment
+							Submitted_Bug_Rec_ID
+							Commenter
+							User
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Comment
+							Submitted_Bug_Rec_ID
+							Commenter
+							User
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		pivotchart Milestone_Bugs_Charts
+		{ 
+			displayname = "Milestone Bugs Charts"
+			based on Autoview_1490015013600_New_Bug
+					hide = true
+							icon = "ui-3-chart-bars"				show all rows from New_Bug
+				(
+ 					Reporter  as "Reporter1"
+ 					adminEmail 
+ 					Bug_Title  as "Bug Title"
+ 					Status 
+ 					Added_Time  as "Added Time"
+ 					Submitted_Date  as "Submitted Date"
+ 					Priority 
+ 					Module_If_any  as "Module (If any)"
+ 					Bug_ID  as "Bug - ID"
+ 					Products  as "Product"
+ 					Deadline 
+ 					Auto_Number  as "Auto Number"
+				)
+		}
+		pivotchart Every_Month_Bug_Count_Total
+		{ 
+			displayname = "Monthly Bug Count"
+			based on Autoview_1490015013600_New_Bug
+					hide = true
+							icon = "ui-3-chart-bars"				show all rows from New_Bug
+				(
+ 					Reporter  as "Reporter1"
+ 					adminEmail 
+ 					Bug_Title  as "Bug Title"
+ 					Status 
+ 					Added_Time  as "Added Time"
+ 					Submitted_Date  as "Submitted Date"
+ 					Priority 
+ 					Module_If_any  as "Module (If any)"
+ 					Bug_ID  as "Bug - ID"
+ 					Products  as "Product"
+ 					Deadline 
+ 					Auto_Number  as "Auto Number"
+				)
+		}
+	}
+	section Products
+	{
+		hide = true
+		icon = "ui-2-menu-bold"
+		form Add_Miletone
+		{
+			displayname = "Add Miletone"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Product_Name
+			(
+    			type = text
+				displayname = "Name"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Milestones
+	{
+		icon = "sport-flag-finish"
+		list All_Milestones
+		{
+			displayName = "Milestones"
+			show all rows from Add_Miletone    
+			(
+				Product_Name as "Milestone"
+				Description
+			)
+			options
+			(
+				icon = "ui-2-grid-49"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Product_Name as "Milestone"
+							Description
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Product_Name as "Milestone"
+							Description
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Users
+	{
+		icon = "users-multiple-11"
+		list All_User
+		{
+			displayName = "All User"
+			show all rows from Add_User    
+			(
+				Email
+				Can_Assign_Bug as "Can Assign Bug?"
+				Name1  as "Name"
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name1 as "Name"
+							Email
+							Can_Assign_Bug as "Can Assign Bug?"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Email
+							Can_Assign_Bug as "Can Assign Bug?"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section My_Reported_Bugs
+	{
+		displayname= "My Reported Bugs"
+		icon = "ui-2-menu-bold"
+	}
+	section Returned_for_Review_Testing
+	{
+		displayname= "Returned for Review/ Testing"
+		icon = "ui-2-menu-bold"
+	}
+	section Add_User
+	{
+		displayname= "Add User"
+	}
+	functions
+	{
+ 			void changeStatus(int id)
+			{
+				openUrl("#Form:Change_Status_PopUp?Bug_RecID=" + id,"popup window");
+			}
+ 			void openSelectAssigneeForm(int id)
+			{
+				openUrl("#Form:Select_Assignees?New_Bug_RecID=" + id,"popup window");
+			}
+ 			void addComment(int id)
+			{
+				openUrl("#Form:Comments?Submitted_Bug_Rec_ID=" + id,"popup window");
+			}
+ 			void viewComments(int id)
+			{
+				openUrl("#Page:Comment_View?id=" + id,"popup window");
+			}
+ 			void assign(int id, list assigneesList)
+			{
+				rec = New_Bug[ID == input.id];
+				rec.Assignees1=assigneesList;
+				rec.Status="Open";
+				assigneesEmail = Add_User[ID in input.assigneesList].Email.getAll();
+				sendmail
+				[
+					from :zoho.adminuserid
+					to :assigneesEmail.toString()
+					subject :"New Bug Assigned."
+					message :("Hello, <br><br>New bug has been assigned to you, which is reported by&nbsp;" + rec.Reporter.Name1) + " on " + rec.Added_Time.toDate() + ".<div><br></div><div>Please fix it before " + rec.Deadline.toDate() + "</div><div><br></div><div>Thank You.</div>"
+				]
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Change_Actions as "Change"
+			{
+				type =  form
+				form = Change_Status_PopUp
+				button = Change
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						rec = New_Bug[ID == input.Bug_RecID.toLong()];
+										rec.Status=input.Status;
+										rec.Comment=input.Comment;
+										userRec = Add_User[Email == zoho.loginuserid];
+										if(rec.Assignees1 == userRec.ID)
+										{
+											user = "Assignee";
+										}
+										else if(rec.Reporter == userRec.ID)
+										{
+											user = "Reporter";
+										}
+										insert into Comments
+										[
+											Added_User=zoho.loginuser
+											Submitted_Bug_Rec_ID=input.Bug_RecID.toLong()
+											Comment=input.Comment
+											Commenter=userRec.ID
+											User=user
+										]
+										if(input.Status == "Reopened")
+										{
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :rec.Assignees1.Email.toString()
+												subject :"Bug Reopened"
+												message :"An bug has been reopened after testing, please fix it."
+											]
+										}
+										else if(input.Status == "Fixed")
+										{
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :rec.Reporter.Email.toString(),zoho.adminuserid
+												subject :"Bug Fixed"
+												message :"An bug has been Fixed."
+											]
+										}
+										else if(input.Status == "Open")
+										{
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :rec.Reporter.Email.toString()
+												subject :"Bug Assigned"
+												message :"An bug has been Assigned to you.<div><br></div><div>Please fix it and update.</div>"
+											]
+										}
+										else if(input.Status == "Rejected")
+										{
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :rec.Reporter.Email.toString()
+												subject :"Bug Rejected"
+												message :"An bug has been Rejected."
+											]
+										}
+										else if(input.Status == "Not Reproducible")
+										{
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :rec.Reporter.Email.toString()
+												subject :"Bug Not Reproducible"
+												message :"An bug has been marked as Not Reproducible."
+											]
+										}
+										else if(input.Status == "Not Fixing Now")
+										{
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :rec.Reporter.Email.toString()
+												subject :"Bug Not Fixing Now"
+												message :"An bug has been marked as Not Fixing Now."
+											]
+										}
+										else if(input.Status == "Review/Testing")
+										{
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :rec.Reporter.Email.toString()
+												subject :"Bug Sent for Review"
+												message :"An bug has been sent back for Reviewing/Testing."
+											]
+										}
+										openUrl("#Script:page.reload ","same window");
+					)
+					}
+				}
+			}
+			Assign1 as "Assign"
+			{
+				type =  form
+				form = Select_Assignees
+				button = Assign
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						thisapp.assign(input.New_Bug_RecID.toLong(),input.Select_Assignees1);
+										openUrl("#Script:page.reload ","same window");
+					)
+					}
+				}
+			}
+			Run_Scripts_While_Adding_4 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Change_Status_PopUp
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Bug_RecID;
+										rec = New_Bug[ID == input.Bug_RecID.toLong()];
+										input.Status = rec.Status;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_5 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Comments
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Submitted_Bug_Rec_ID;
+										hide Commenter;
+										hide User;
+										bugRec = New_Bug[ID == input.Submitted_Bug_Rec_ID];
+										userRec = Add_User[Email == zoho.loginuserid];
+										if(zoho.loginuserid != zoho.adminuserid)
+										{
+											if(bugRec.Assignees1 == userRec.ID)
+											{
+												input.Commenter = userRec.ID;
+												input.User = "Assignee";
+											}
+											else if(bugRec.Reporter == userRec.ID)
+											{
+												input.Commenter = userRec.ID;
+												input.User = "Reporter";
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_6 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Comments
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											openUrl("#Script:page.reload ","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_7 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_User
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											var = thisapp.permissions.assignUserInProfile(input.Email,"Staff");
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Email
+											subject :"Welcome to bug tracker."
+											message :("Hi " + input.Name1) + ",<br><br>Welcome to bug tracker.<br><br>You are added here as a user.<br><br>You can start accessing this app <a href='https://app.zohocreator.com" + zoho.appuri + "#Home'>here</a>"
+										]
+										openUrl("#Script:page.reload ","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_8 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = New_Bug
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Status;
+										hide Assignees1;
+										hide Comment;
+										hide Reporter;
+										hide adminEmail;
+										hide Bug_ID;
+										input.adminEmail = zoho.adminuserid;
+										input.Reporter = Add_User[Email == zoho.loginuserid].ID;
+										hide Comments;
+										if(Add_User[Email == zoho.loginuserid].Can_Assign_Bug)
+										{
+											show Assignees1;
+										}
+										else
+										{
+											hide Assignees1;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_9 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = New_Bug
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											/* input.Assignees = (Assignee[Email == zoho.adminuserid].ID).getall();
+																												input.Reporter=Assignee[Email==zoho.adminuserid].ID.getall(); */
+										if(Assignees1.size() != 0)
+										{
+											input.Status = "Open";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_10 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = New_Bug
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											sendmail
+										[
+											from :zoho.loginuserid
+											to :zoho.adminuserid
+											subject :"New Bug added.!"
+											message :"New Bug has been added by " + zoho.loginuser + ". <br><br>Please check and assign it to responsible person."
+										]
+										if(Assignees1.size() != 0)
+										{
+											emails = Add_User[ID in input.Assignees1].Email.getAll();
+											for each  email in emails
+											{
+												sendmail
+												[
+													from :zoho.loginuserid
+													to :email
+													subject :"New Bug added.!"
+													message :"New Bug has been added by " + zoho.loginuser + ". <br><br>Please check and assign it to responsible person."
+												]
+											}
+										}
+										input.Bug_ID = "Bug-" + input.Auto_Number;
+						)
+					}
+	}
+
+			}
+			Hiding_Field_While_Adding1 as "Hiding Field While Adding a Record"
+			{
+				type =  form
+				form = Select_Assignees
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide New_Bug_RecID;
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin1 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_User
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.permissions.deleteUser(input.Email);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing2 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = New_Bug
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Status;
+										hide Assignees1;
+										hide Comment;
+										hide Reporter;
+										hide adminEmail;
+										hide Bug_ID;
+										//input.Reporter = Add_User[Email == zoho.loginuserid].ID;
+										hide Comments;
+										show Notes;
+										if(Add_User[Email == zoho.loginuserid].Can_Assign_Bug)
+										{
+											show Assignees1;
+										}
+										else
+										{
+											hide Assignees1;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing3 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Comments
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Submitted_Bug_Rec_ID;
+										hide Commenter;
+										hide User;
+						)
+					}
+	}
+
+			}
+			Run_Script_While_Editing_1 as "Run Script - While Editing a Record"
+			{
+				type =  form
+				form = Add_User
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Email != old.Email)
+										{
+											thisapp.permissions.deleteUser(old.Email);
+											var = thisapp.permissions.assignUserInProfile(input.Email,"Staff");
+										}
+						)
+					}
+	}
+
+			}
+		}
+		schedule
+		{
+			Deadline_Reminder as "Deadline_Reminder"
+			{
+				type =  schedule
+				form = New_Bug
+				start = before 1 days from Deadline at "10:30:00"
+				time zone = "Asia/Kolkata"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						if(input.Status != "Fixed")
+										{
+											assigneesEmails = Add_User[ID in input.Assignees1].Email.getAll();
+											for each  assgign in assigneesEmails
+											{
+												assigneesName = Add_User[Email == assgign && ID in input.Assignees1].Name1;
+												sendmail
+												[
+													from :zoho.adminuserid
+													to :assgign.toString()
+													subject :"Bug Deadline Reminder"
+													message :("Hi " + assigneesName) + "<br><br>Deadline for bug-ID" + input.Bug_ID + " is tomorrow. This is gentle reminder, please fix it."
+												]
+											}
+										}
+					)
+					}
+				}
+			}
+		}
+		functions
+		{
+			Add_Comment1 as "Add Comment"
+			{
+				type =  functions
+				form = New_Bug
+				on start
+				{
+					actions 
+					{
+					addComment(ID);
+					}
+				}
+			}
+			Add_Comment2 as "Add Comment"
+			{
+				type =  functions
+				form = New_Bug
+				on start
+				{
+					actions 
+					{
+					addComment(ID);
+					}
+				}
+			}
+			Change_Status3 as "Change Status"
+			{
+				type =  functions
+				form = New_Bug
+				on start
+				{
+					actions 
+					{
+					changeStatus(ID);
+					}
+				}
+			}
+			Add_Comment as "Add Comment"
+			{
+				type =  functions
+				form = New_Bug
+				on start
+				{
+					actions 
+					{
+					addComment(ID);
+					}
+				}
+			}
+			Change_Status2 as "Change Status"
+			{
+				type =  functions
+				form = New_Bug
+				on start
+				{
+					actions 
+					{
+					changeStatus(ID);
+					}
+				}
+			}
+			Add_Comment3 as "Add Comment"
+			{
+				type =  functions
+				form = New_Bug
+				on start
+				{
+					actions 
+					{
+					addComment(ID);
+					}
+				}
+			}
+			Change_Status1 as "Change Status"
+			{
+				type =  functions
+				form = New_Bug
+				on start
+				{
+					actions 
+					{
+					changeStatus(ID);
+					}
+				}
+			}
+			Change_Status as "Change Status"
+			{
+				type =  functions
+				form = New_Bug
+				on start
+				{
+					actions 
+					{
+					changeStatus(ID);
+					}
+				}
+			}
+			View_Comments as "View Comments"
+			{
+				type =  functions
+				form = New_Bug
+				on start
+				{
+					actions 
+					{
+					viewComments(ID);
+					}
+				}
+			}
+			View_Comments1 as "View Comments"
+			{
+				type =  functions
+				form = New_Bug
+				on start
+				{
+					actions 
+					{
+					viewComments(ID);
+					}
+				}
+			}
+			Assign as "Assign"
+			{
+				type =  functions
+				form = New_Bug
+				on start
+				{
+					actions 
+					{
+					openSelectAssigneeForm(ID);
+					}
+				}
+			}
+			View_Comments3 as "View Comments"
+			{
+				type =  functions
+				form = New_Bug
+				on start
+				{
+					actions 
+					{
+					viewComments(ID);
+					}
+				}
+			}
+			View_Comments2 as "View Comments"
+			{
+				type =  functions
+				form = New_Bug
+				on start
+				{
+					actions 
+					{
+					viewComments(ID);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"User"
+			{
+				name = "User"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:true}
+				description = "This profile only have add and view permission.\n"
+			}
+			"Member"
+			{
+				name = "Member"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:true}
+				description = "This profile will not have administrative permissions.\n"
+			}
+			"Staff"
+			{
+				name = "Staff"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "Staff Profile\n"
+				ModulePermissions
+				{
+					Select_Assignees
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							New_Bug_RecID{visibility:true,readonly:false}
+							Select_Assignees1{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Change_Status_PopUp
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Comment{visibility:true,readonly:false}
+							Bug_RecID{visibility:true,readonly:false}
+						}
+					}
+					Add_Miletone
+					{
+						ReportPermissions
+						{
+							All_Milestones={"View"}
+						}
+						FieldPermissions
+						{
+							Product_Name{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Comments
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							Comments_Report={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Submitted_Bug_Rec_ID{visibility:true,readonly:false}
+							Comment{visibility:true,readonly:false}
+							Commenter{visibility:true,readonly:false}
+							User{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_User
+					{
+						FieldPermissions
+						{
+							Can_Assign_Bug{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Name1{visibility:true,readonly:false}
+						}
+					}
+					New_Bug
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							My_Reported_Bugs={"View"}
+							My_Bugs={"View"}
+							New_Bug_Report={"View"}
+							Returned_for_Review_Testing={"View"}
+							Milestone_Bugs_Charts={"View"}
+							Every_Month_Bug_Count_Total={"View"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Comment{visibility:true,readonly:false}
+							Products{visibility:true,readonly:false}
+							Bug_ID{visibility:true,readonly:false}
+							Priority{visibility:true,readonly:false}
+							Comments{visibility:true,readonly:false}
+							Deadline{visibility:true,readonly:false}
+							Reporter{visibility:true,readonly:false}
+							Module_If_any{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Auto_Number{visibility:true,readonly:false}
+							Bug_Title{visibility:true,readonly:false}
+							Steps_To_Reproduce{visibility:true,readonly:false}
+							Assignees1{visibility:true,readonly:false}
+							Submitted_Date{visibility:true,readonly:false}
+							Screenshot{visibility:true,readonly:false}
+							Notes{visibility:true,readonly:false}
+							adminEmail{visibility:true,readonly:false}
+						}
+					}
+					Home
+					{
+						enabled = tab
+					}
+					Comment_View
+					{
+						enabled = tab
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users.\n"
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 2
+		new theme color = 1
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-non-profit1"
+    	icon theme = "yellow"
+		icons style = solid
+	}
+
+	translation
+{
+"{\"de\":{\"FormField.Select_Assignees.Modified_User\":\" Geänderter Benutzer \",\"ReportField.My_Reported_Bugs.Priority\":\" Priorität \",\"FormField.New_Bug.Products\":\" Meilenstein \",\"CustomAction.Returned_for_Review_Testing.Add_Comment2\":\" Einen Kommentar hinzufügen \",\"ReportField.Returned_for_Review_Testing.Products\":\" Meilenstein \",\"Languages List.zh-TW\":\" Chinesische Tradition \",\"FormField.Comments.User\":\" Benutzer \",\"Languages List.ja\":\" japanisch \",\"ReportField.Returned_for_Review_Testing.Status\":\" Status \",\"ReportField.My_Bugs.Reporter\":\" Reporter \",\"FormButton.New_Bug.reset\":\" Zurücksetzen \",\"FormField.New_Bug.Steps_To_Reproduce\":\" Schritte zum Reproduzieren \",\"FormButton.Add_User.update\":\" Aktualisieren \",\"ReportField.My_Bugs.Module_If_any\":\" Build (falls vorhanden) \",\"ReportField.New_Bug_Report.Notes\":\" Beschreibung \",\"FormField.Add_User.suffix\":\" Suffix \",\"Languages List.ku\":\" kurdisch \",\"ReportField.Returned_for_Review_Testing.Module_If_any\":\" Build (falls vorhanden) \",\"ReportField.My_Bugs.Deadline\":\" Frist \",\"FormField.Add_Miletone.Product_Name\":\" Name \",\"ReportField.Returned_for_Review_Testing.Priority\":\" Priorität \",\"Languages List.km\":\" Khmer \",\"FormField.Add_User.ID\":\" ICH WÜRDE \",\"Languages List.ko\":\" Koreanisch \",\"Languages List.kn\":\" Kannada \",\"ReportField.My_Bugs.Bug_Title\":\" Fehlertitel \",\"Languages List.ka\":\" georgisch \",\"FormButton.New_Bug.update\":\" Aktualisieren \",\"FormField.New_Bug.ID\":\" ICH WÜRDE \",\"Languages List.hu\":\" ungarisch \",\"Languages List.yi\":\" Jiddisch \",\"FormField.Select_Assignees.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Change_Status_PopUp.Modified_Time\":\" Geänderte Zeit \",\"Languages List.hy\":\" Armenisch \",\"FormField.Add_User.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Report.My_Bugs\":\" Meine Wanzen \",\"FormField.Change_Status_PopUp.ID\":\" ICH WÜRDE \",\"Languages List.hr\":\" kroatisch \",\"FormField.Add_Miletone.Modified_User\":\" Geänderter Benutzer \",\"FormButton.Add_User.reset\":\" Zurücksetzen \",\"Languages List.hi\":\" Hindi \",\"Report.Comments_Report\":\" Kommentare Bericht \",\"Languages List.zh\":\" Chinesisch \",\"Languages List.iw\":\" hebräisch \",\"FormField.Add_Miletone.Section\":\" Sektion \",\"CustomAction.New_Bug_Report.Add_Comment\":\" Einen Kommentar hinzufügen \",\"ReportField.Comments_Report.Commenter\":\" Kommentator \",\"Section.Products\":\" Produkte \",\"FormField.Comments.Submitted_Bug_Rec_ID\":\" Submitted_Bug_Rec_ID \",\"ReportField.My_Bugs.Steps_To_Reproduce\":\" Schritte zum Reproduzieren \",\"Languages List.is\":\" isländisch \",\"Languages List.it\":\" Italienisch \",\"FormField.Add_Miletone.ID\":\" ICH WÜRDE \",\"FormField.Add_Miletone.Added_Time\":\" Zeit hinzugefügt \",\"Page.Comment_View\":\" Kommentaransicht \",\"FormButton.Change_Status_PopUp.Change\":\" Veränderung \",\"CustomAction.New_Bug_Report.Assign\":\" Zuordnen \",\"ReportField.My_Bugs.Screenshot\":\" Bildschirmfoto \",\"Report.All_Milestones\":\" Meilensteine \",\"FormButton.Comments.cancel\":\" Stornieren \",\"FormField.Add_User.Added_User\":\" Benutzer hinzugefügt \",\"CompositeSubFields.Add_User.Name1.prefix\":\" Präfix \",\"FormField.Comments.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"PicklistOption.New_Bug.Status.1\":\" Neu \",\"PicklistOption.New_Bug.Status.2\":\" Fest \",\"PicklistOption.New_Bug.Status.3\":\" Wieder geöffnet \",\"PicklistOption.New_Bug.Status.4\":\" Abgelehnt \",\"FormField.Add_User.Name1\":\" Name \",\"PicklistOption.New_Bug.Status.5\":\" Öffnen \",\"FormButton.Add_Miletone.cancel\":\" Stornieren \",\"PicklistOption.New_Bug.Status.6\":\" Nicht reproduzierbar \",\"PicklistOption.New_Bug.Status.7\":\" Nicht jetzt reparieren \",\"PicklistOption.New_Bug.Status.8\":\" Überprüfung / Testen \",\"Languages List.nl\":\" Niederländisch \",\"FormButton.New_Bug.cancel\":\" Stornieren \",\"Languages List.no\":\" norwegisch \",\"CustomAction.New_Bug_Report.View_Comments\":\" Kommentare ansehen \",\"FormButton.Select_Assignees.Assign\":\" Zuordnen \",\"FormField.Change_Status_PopUp.Status\":\" Status \",\"ReportField.Returned_for_Review_Testing.Steps_To_Reproduce\":\" Schritte zum Reproduzieren \",\"FormField.Change_Status_PopUp.Bug_RecID\":\" Fehler RecID \",\"FormField.Add_User.Record_Status\":\" Aufnahmestatus \",\"FormField.Change_Status_PopUp.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Select_Assignees.Select_Assignees1\":\" Wählen Sie Beauftragte aus \",\"FormField.Add_User.last_name\":\" Familienname, Nachname \",\"FormField.Add_User.Email\":\" Email \",\"FormField.Add_User.prefix\":\" Präfix \",\"FormField.New_Bug.Modified_Time\":\" Geänderte Zeit \",\"ReportField.My_Reported_Bugs.Steps_To_Reproduce\":\" Schritte zum Reproduzieren \",\"FormField.Change_Status_PopUp.Record_Status\":\" Aufnahmestatus \",\"FormField.Add_User.Modified_Time\":\" Geänderte Zeit \",\"FormButton.Add_Miletone.submit\":\" einreichen \",\"ReportField.All_User.Email\":\" Email \",\"FormButton.Comments.submit\":\" einreichen \",\"FormButton.Comments.update\":\" Aktualisieren \",\"FormField.New_Bug.Added_User\":\" Benutzer hinzugefügt \",\"Languages List.lt\":\" litauisch \",\"FormField.Add_Miletone.Record_Status\":\" Aufnahmestatus \",\"FormField.New_Bug.Notes\":\" Beschreibung \",\"Languages List.lv\":\" lettisch \",\"FormField.Select_Assignees.New_Bug_RecID\":\" Neuer Bug RecID \",\"FormField.Comments.Modified_User\":\" Geänderter Benutzer \",\"ReportField.New_Bug_Report.Reporter\":\" Berichtet von \",\"ReportField.New_Bug_Report.Assignees1\":\" Beauftragte \",\"Languages List.lo\":\" Laothian \",\"Languages List.la\":\" Latein \",\"Report.Milestone_Bugs_Charts\":\" Meilenstein Bugs Charts \",\"ReportField.My_Bugs.Priority\":\" Priorität \",\"FormField.New_Bug.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"ReportField.New_Bug_Report.Module_If_any\":\" Build (falls vorhanden) \",\"ReportField.My_Reported_Bugs.Products\":\" Meilenstein \",\"Languages List.ms\":\" malaiisch \",\"FormField.New_Bug.Assignees1\":\" Beauftragte \",\"FormButton.New_Bug.submit\":\" einreichen \",\"Languages List.mr\":\" Marathi \",\"App.bug-tracker\":\"Fehler Tracker \",\"FormField.Comments.ID\":\" ICH WÜRDE \",\"FormField.New_Bug.Comment\":\" Kommentar \",\"Form.Comments\":\" Bemerkungen \",\"Languages List.mt\":\" maltesisch \",\"FormField.Comments.Added_Time\":\" Zeit hinzugefügt \",\"Report.New_Bug_Report\":\" Alle Fehler \",\"Languages List.mk\":\" mazedonisch \",\"Section.Add_User\":\" Benutzer hinzufügen \",\"ReportField.New_Bug_Report.Products\":\" Meilenstein \",\"Report.My_Reported_Bugs\":\" Meine gemeldeten Bugs \",\"FormField.New_Bug.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"Section.My_Reported_Bugs\":\" Meine gemeldeten Bugs \",\"PicklistOption.Change_Status_PopUp.Status.3\":\" Wieder geöffnet \",\"PicklistOption.Change_Status_PopUp.Status.2\":\" Fest \",\"PicklistOption.Change_Status_PopUp.Status.5\":\" Öffnen \",\"PicklistOption.Change_Status_PopUp.Status.4\":\" Abgelehnt \",\"ReportField.Returned_for_Review_Testing.Bug_Title\":\" Fehlertitel \",\"PicklistOption.Change_Status_PopUp.Status.7\":\" Nicht jetzt reparieren \",\"CompositeSubFields.Add_User.Name1.last_name\":\" Familienname, Nachname \",\"PicklistOption.Change_Status_PopUp.Status.6\":\" Nicht reproduzierbar \",\"FormField.Select_Assignees.Modified_Time\":\" Geänderte Zeit \",\"ReportField.All_Milestones.Description\":\" Beschreibung \",\"PicklistOption.Change_Status_PopUp.Status.8\":\" Überprüfung / Testen \",\"ReportField.Comments_Report.User\":\" Benutzer \",\"ReportField.Returned_for_Review_Testing.Deadline\":\" Frist \",\"Languages List.bg\":\" bulgarisch \",\"FormField.New_Bug.Submitted_Date\":\" Übermitteltes Datum \",\"FormField.New_Bug.adminEmail\":\" adminEmail \",\"Languages List.bn\":\" Bengali \",\"CompositeSubFields.Add_User.Name1.suffix\":\" Suffix \",\"Languages List.ro\":\" rumänisch \",\"ReportField.All_User.first_name\":\" Name \",\"Languages List.be\":\" Belarussisch \",\"Languages List.ru\":\" Russisch \",\"Languages List.az\":\" Aserbaidschanisch \",\"PicklistOption.Change_Status_PopUp.Status.1\":\" Neu \",\"CustomAction.My_Reported_Bugs.Add_Comment1\":\" Einen Kommentar hinzufügen \",\"PicklistOption.Add_User.prefix.3\":\" Frau. \",\"Languages List.ta\":\" Tamilisch \",\"PicklistOption.Add_User.prefix.1\":\" Herr. \",\"Languages List.cs\":\" Tschechisch \",\"PicklistOption.Add_User.prefix.2\":\" Frau. \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" Thai \",\"FormField.Add_Miletone.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Comments.Comment\":\" Kommentar \",\"FormField.Add_User.first_name\":\" Vorname \",\"Languages List.sq\":\" albanisch \",\"Languages List.ca\":\" katalanisch \",\"Section.Users\":\" Benutzer \",\"FormField.Comments.Commenter\":\" Kommentator \",\"FormField.New_Bug.Reporter\":\" Reporter \",\"Languages List.sw\":\" Swahili \",\"ReportField.New_Bug_Report.Status\":\" Status \",\"Languages List.sv\":\" Schwedisch \",\"FormField.Select_Assignees.Record_Status\":\" Aufnahmestatus \",\"CustomAction.My_Bugs.Add_Comment3\":\" Einen Kommentar hinzufügen \",\"FormField.New_Bug.Bug_Title\":\" Fehlertitel \",\"CustomAction.My_Bugs.View_Comments3\":\" Kommentare ansehen \",\"Languages List.sk\":\" slowakisch \",\"FormField.Add_User.Section\":\" Sektion \",\"FormField.Add_User.Can_Assign_Bug\":\" Kann Bug zuordnen? \",\"ReportField.Returned_for_Review_Testing.Assignees1\":\" Beauftragte \",\"Languages List.sl\":\" Slowenisch \",\"Section.Home\":\" Zuhause \",\"FormButton.Add_Miletone.reset\":\" Zurücksetzen \",\"CustomAction.My_Bugs.Change_Status3\":\" Status ändern \",\"ReportField.Comments_Report.Comment\":\" Kommentar \",\"FormField.Change_Status_PopUp.Modified_User\":\" Geänderter Benutzer \",\"Form.New_Bug\":\" Fehler melden \",\"ReportField.All_Milestones.Product_Name\":\" Meilenstein \",\"FormField.Select_Assignees.Section\":\" Sektion \",\"FormField.Add_Miletone.Modified_Time\":\" Geänderte Zeit \",\"Section.Returned_for_Review_Testing\":\" Zum Review / Testing zurückgegeben \",\"ReportField.New_Bug_Report.Bug_ID\":\" Fehler - ID \",\"ReportField.My_Reported_Bugs.Bug_Title\":\" Fehlertitel \",\"CompositeSubFields.Add_User.Name1.first_name\":\" Vorname \",\"FormField.New_Bug.Auto_Number\":\" Auto Nummer \",\"ReportField.All_User.Can_Assign_Bug\":\" Kann Bug zuordnen? \",\"FormButton.Add_Miletone.update\":\" Aktualisieren \",\"Languages List.pt\":\" Portugiesisch \",\"Form.Change_Status_PopUp\":\" Status PopUp ändern \",\"CustomAction.My_Reported_Bugs.Change_Status1\":\" Status ändern \",\"Languages List.pl\":\" Polieren \",\"FormField.New_Bug.Record_Status\":\" Aufnahmestatus \",\"ReportField.My_Reported_Bugs.Status\":\" Status \",\"Languages List.ar\":\" Arabisch \",\"Languages List.af\":\" Afrikaans \",\"FormButton.Add_User.submit\":\" einreichen \",\"FormButton.Add_User.cancel\":\" Stornieren \",\"FormField.Add_Miletone.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Miletone.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"ReportField.My_Bugs.Products\":\" Meilenstein \",\"ReportField.My_Reported_Bugs.Notes\":\" Anmerkungen \",\"ReportField.My_Reported_Bugs.Module_If_any\":\" Build (falls vorhanden) \",\"ReportField.My_Reported_Bugs.Assignees1\":\" Beauftragte \",\"Page.Home\":\" Zuhause \",\"ReportField.New_Bug_Report.Screenshot\":\" Bildschirmfoto \",\"FormField.Change_Status_PopUp.Comment\":\" Kommentar \",\"FormField.Add_User.Added_Time\":\" Zeit hinzugefügt \",\"Languages List.fr\":\" Französisch \",\"ReportField.New_Bug_Report.Priority\":\" Priorität \",\"ReportField.Comments_Report.Submitted_Bug_Rec_ID\":\" Submitted_Bug_Rec_ID \",\"Languages List.fi\":\" Finnese \",\"ReportField.New_Bug_Report.Bug_Title\":\" Fehlertitel \",\"Languages List.fa\":\" persisch \",\"ReportField.Returned_for_Review_Testing.Notes\":\" Anmerkungen \",\"Languages List.gu\":\" Gujarati \",\"FormButton.Comments.reset\":\" Zurücksetzen \",\"ReportField.New_Bug_Report.Submitted_Date\":\" Übermitteltes Datum \",\"Report.Every_Month_Bug_Count_Total\":\" Monatliche Fehleranzahl \",\"Languages List.gl\":\" galizisch \",\"FormField.New_Bug.Screenshot\":\" Bildschirmfoto \",\"CustomAction.New_Bug_Report.Change_Status\":\" Status ändern \",\"CustomAction.My_Reported_Bugs.View_Comments1\":\" Kommentare ansehen \",\"FormField.Change_Status_PopUp.Added_Time\":\" Zeit hinzugefügt \",\"FormField.New_Bug.Modified_User\":\" Geänderter Benutzer \",\"FormField.Select_Assignees.Added_Time\":\" Zeit hinzugefügt \",\"FormField.New_Bug.Section\":\" Sektion \",\"ReportField.My_Reported_Bugs.Bug_ID\":\" Fehler - ID \",\"Languages List.ga\":\" irisch \",\"FormField.Add_Miletone.Description\":\" Beschreibung \",\"ReportField.My_Reported_Bugs.Screenshot\":\" Bildschirmfoto \",\"Section.Hidden\":\" Versteckt \",\"FormField.Add_User.Modified_User\":\" Geänderter Benutzer \",\"Section.Milestones\":\" Meilensteine \",\"ReportField.My_Bugs.Notes\":\" Anmerkungen \",\"ReportField.My_Reported_Bugs.Deadline\":\" Frist \",\"Report.All_User\":\" Alle Benutzer \",\"FormField.New_Bug.Added_Time\":\" Zeit hinzugefügt \",\"Form.Add_Miletone\":\" Füge Miletone hinzu \",\"Languages List.tr\":\" Türkisch \",\"FormField.Add_User.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"Languages List.da\":\" dänisch \",\"FormField.New_Bug.Module_If_any\":\" Build (falls vorhanden) \",\"FormField.New_Bug.Bug_ID\":\" Fehler - ID \",\"CustomAction.Returned_for_Review_Testing.Change_Status2\":\" Status ändern \",\"FormField.New_Bug.Deadline\":\" Frist \",\"Form.Add_User\":\" Benutzer hinzufügen \",\"FormField.New_Bug.Comments\":\" Bemerkungen \",\"ReportField.My_Bugs.Bug_ID\":\" Fehler - ID \",\"Languages List.de\":\" Deutsche \",\"ReportField.New_Bug_Report.Deadline\":\" Frist \",\"Languages List.cy\":\" Walisisch \",\"Languages List.tl\":\" Filipino \",\"FormField.Comments.Section\":\" Sektion \",\"Section.Bugs\":\" Wanzen \",\"Languages List.es\":\" Spanisch \",\"Languages List.eu\":\" baskisch \",\"ReportField.Returned_for_Review_Testing.Screenshot\":\" Bildschirmfoto \",\"Languages List.et\":\" estnisch \",\"ReportField.New_Bug_Report.Steps_To_Reproduce\":\" Schritte zum Reproduzieren \",\"ReportField.My_Bugs.Status\":\" Status \",\"Languages List.vi\":\" Vietnamesisch \",\"PicklistOption.New_Bug.Priority.3\":\" Niedrig \",\"FormField.Comments.Modified_Time\":\" Geänderte Zeit \",\"Report.Returned_for_Review_Testing\":\" Zum Review / Testing zurückgegeben \",\"Languages List.el\":\" griechisch \",\"FormField.Comments.Record_Status\":\" Aufnahmestatus \",\"Languages List.eo\":\" Esperanto \",\"Languages List.en\":\" Englisch \",\"PicklistOption.New_Bug.Priority.1\":\" Hoch \",\"CustomAction.Returned_for_Review_Testing.View_Comments2\":\" Kommentare ansehen \",\"FormField.Comments.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Comments.Added_User\":\" Benutzer hinzugefügt \",\"PicklistOption.New_Bug.Priority.2\":\" Mittel \",\"Languages List.ur\":\" Urdu \",\"FormField.New_Bug.Priority\":\" Priorität \",\"FormField.New_Bug.Status\":\" Status \",\"FormField.Select_Assignees.ID\":\" ICH WÜRDE \",\"Form.Select_Assignees\":\" Wählen Sie Beauftragte aus \",\"ReportField.Returned_for_Review_Testing.Bug_ID\":\" Fehler - ID \"},\"fr\":{\"FormField.Select_Assignees.Modified_User\":\" Utilisateur modifié \",\"ReportField.My_Reported_Bugs.Priority\":\" Priorité \",\"FormField.New_Bug.Products\":\" Étape importante \",\"CustomAction.Returned_for_Review_Testing.Add_Comment2\":\" Ajouter un commentaire \",\"ReportField.Returned_for_Review_Testing.Products\":\" Étape importante \",\"Languages List.zh-TW\":\" Chinois traditionnel \",\"FormField.Comments.User\":\" Utilisateur \",\"Languages List.ja\":\" Japonais \",\"ReportField.Returned_for_Review_Testing.Status\":\" Statut \",\"ReportField.My_Bugs.Reporter\":\" Journaliste \",\"FormButton.New_Bug.reset\":\" Réinitialiser \",\"FormField.New_Bug.Steps_To_Reproduce\":\" Étapes à reproduire \",\"FormButton.Add_User.update\":\" Mettre à jour \",\"ReportField.My_Bugs.Module_If_any\":\" Construire (le cas échéant) \",\"ReportField.New_Bug_Report.Notes\":\" La description \",\"FormField.Add_User.suffix\":\" Suffixe \",\"Languages List.ku\":\" kurde \",\"ReportField.Returned_for_Review_Testing.Module_If_any\":\" Construire (le cas échéant) \",\"ReportField.My_Bugs.Deadline\":\" Date limite \",\"FormField.Add_Miletone.Product_Name\":\" prénom \",\"ReportField.Returned_for_Review_Testing.Priority\":\" Priorité \",\"Languages List.km\":\" Khmer \",\"FormField.Add_User.ID\":\" ID \",\"Languages List.ko\":\" coréen \",\"Languages List.kn\":\" Kannada \",\"ReportField.My_Bugs.Bug_Title\":\" Titre du bug \",\"Languages List.ka\":\" géorgien \",\"FormButton.New_Bug.update\":\" Mettre à jour \",\"FormField.New_Bug.ID\":\" ID \",\"Languages List.hu\":\" hongrois \",\"Languages List.yi\":\" yiddish \",\"FormField.Select_Assignees.Added_User\":\" Utilisateur ajouté \",\"FormField.Change_Status_PopUp.Modified_Time\":\" Heure modifiée \",\"Languages List.hy\":\" arménien \",\"FormField.Add_User.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Report.My_Bugs\":\" Mes bugs \",\"FormField.Change_Status_PopUp.ID\":\" ID \",\"Languages List.hr\":\" croate \",\"FormField.Add_Miletone.Modified_User\":\" Utilisateur modifié \",\"FormButton.Add_User.reset\":\" Réinitialiser \",\"Languages List.hi\":\" hindi \",\"Report.Comments_Report\":\" Rapport de commentaires \",\"Languages List.zh\":\" chinois \",\"Languages List.iw\":\" hébreu \",\"FormField.Add_Miletone.Section\":\" Section \",\"CustomAction.New_Bug_Report.Add_Comment\":\" Ajouter un commentaire \",\"ReportField.Comments_Report.Commenter\":\" Commenter \",\"Section.Products\":\" Des produits \",\"FormField.Comments.Submitted_Bug_Rec_ID\":\" Soumis_Bug_Rec_ID \",\"ReportField.My_Bugs.Steps_To_Reproduce\":\" Étapes à reproduire \",\"Languages List.is\":\" islandais \",\"Languages List.it\":\" italien \",\"FormField.Add_Miletone.ID\":\" ID \",\"FormField.Add_Miletone.Added_Time\":\" Temps ajouté \",\"Page.Comment_View\":\" Voir les commentaires \",\"FormButton.Change_Status_PopUp.Change\":\" Changement \",\"CustomAction.New_Bug_Report.Assign\":\" Attribuer \",\"ReportField.My_Bugs.Screenshot\":\" Capture d'écran \",\"Report.All_Milestones\":\" Les étapes \",\"FormButton.Comments.cancel\":\" Annuler \",\"FormField.Add_User.Added_User\":\" Utilisateur ajouté \",\"CompositeSubFields.Add_User.Name1.prefix\":\" Préfixe \",\"FormField.Comments.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"PicklistOption.New_Bug.Status.1\":\" Nouveau \",\"PicklistOption.New_Bug.Status.2\":\" Fixé \",\"PicklistOption.New_Bug.Status.3\":\" Rouvert \",\"PicklistOption.New_Bug.Status.4\":\" Rejeté \",\"FormField.Add_User.Name1\":\" prénom \",\"PicklistOption.New_Bug.Status.5\":\" Ouvrir \",\"FormButton.Add_Miletone.cancel\":\" Annuler \",\"PicklistOption.New_Bug.Status.6\":\" Non reproduisible \",\"PicklistOption.New_Bug.Status.7\":\" Ne pas réparer maintenant \",\"PicklistOption.New_Bug.Status.8\":\" Examen / test \",\"Languages List.nl\":\" néerlandais \",\"FormButton.New_Bug.cancel\":\" Annuler \",\"Languages List.no\":\" norvégien \",\"CustomAction.New_Bug_Report.View_Comments\":\" Voir les commentaires \",\"FormButton.Select_Assignees.Assign\":\" Attribuer \",\"FormField.Change_Status_PopUp.Status\":\" Statut \",\"ReportField.Returned_for_Review_Testing.Steps_To_Reproduce\":\" Étapes à reproduire \",\"FormField.Change_Status_PopUp.Bug_RecID\":\" Bug RecID \",\"FormField.Add_User.Record_Status\":\" Statut d'enregistrement \",\"FormField.Change_Status_PopUp.Added_User\":\" Utilisateur ajouté \",\"FormField.Select_Assignees.Select_Assignees1\":\" Sélectionnez les destinataires \",\"FormField.Add_User.last_name\":\" Nom de famille \",\"FormField.Add_User.Email\":\" Email \",\"FormField.Add_User.prefix\":\" Préfixe \",\"FormField.New_Bug.Modified_Time\":\" Heure modifiée \",\"ReportField.My_Reported_Bugs.Steps_To_Reproduce\":\" Étapes à reproduire \",\"FormField.Change_Status_PopUp.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_User.Modified_Time\":\" Heure modifiée \",\"FormButton.Add_Miletone.submit\":\" Soumettre \",\"ReportField.All_User.Email\":\" Email \",\"FormButton.Comments.submit\":\" Soumettre \",\"FormButton.Comments.update\":\" Mettre à jour \",\"FormField.New_Bug.Added_User\":\" Utilisateur ajouté \",\"Languages List.lt\":\" lituanien \",\"FormField.Add_Miletone.Record_Status\":\" Statut d'enregistrement \",\"FormField.New_Bug.Notes\":\" La description \",\"Languages List.lv\":\" letton \",\"FormField.Select_Assignees.New_Bug_RecID\":\" Nouveau Bug RecID \",\"FormField.Comments.Modified_User\":\" Utilisateur modifié \",\"ReportField.New_Bug_Report.Reporter\":\" Rapporté par \",\"ReportField.New_Bug_Report.Assignees1\":\" Cessionnaires \",\"Languages List.lo\":\" Laothian \",\"Languages List.la\":\" Latin \",\"Report.Milestone_Bugs_Charts\":\" Graphiques de bugs de Milestone \",\"ReportField.My_Bugs.Priority\":\" Priorité \",\"FormField.New_Bug.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"ReportField.New_Bug_Report.Module_If_any\":\" Construire (le cas échéant) \",\"ReportField.My_Reported_Bugs.Products\":\" Étape importante \",\"Languages List.ms\":\" malais \",\"FormField.New_Bug.Assignees1\":\" Cessionnaires \",\"FormButton.New_Bug.submit\":\" Soumettre \",\"Languages List.mr\":\" Marathi \",\"App.bug-tracker\":\"Bug Tracker \",\"FormField.Comments.ID\":\" ID \",\"FormField.New_Bug.Comment\":\" Commentaire \",\"Form.Comments\":\" commentaires \",\"Languages List.mt\":\" maltais \",\"FormField.Comments.Added_Time\":\" Temps ajouté \",\"Report.New_Bug_Report\":\" Tous les bugs \",\"Languages List.mk\":\" Macédonien \",\"Section.Add_User\":\" Ajouter un utilisateur \",\"ReportField.New_Bug_Report.Products\":\" Étape importante \",\"Report.My_Reported_Bugs\":\" Mes bogues signalés \",\"FormField.New_Bug.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"Section.My_Reported_Bugs\":\" Mes bogues signalés \",\"PicklistOption.Change_Status_PopUp.Status.3\":\" Rouvert \",\"PicklistOption.Change_Status_PopUp.Status.2\":\" Fixé \",\"PicklistOption.Change_Status_PopUp.Status.5\":\" Ouvrir \",\"PicklistOption.Change_Status_PopUp.Status.4\":\" Rejeté \",\"ReportField.Returned_for_Review_Testing.Bug_Title\":\" Titre du bug \",\"PicklistOption.Change_Status_PopUp.Status.7\":\" Ne pas réparer maintenant \",\"CompositeSubFields.Add_User.Name1.last_name\":\" Nom de famille \",\"PicklistOption.Change_Status_PopUp.Status.6\":\" Non reproduisible \",\"FormField.Select_Assignees.Modified_Time\":\" Heure modifiée \",\"ReportField.All_Milestones.Description\":\" La description \",\"PicklistOption.Change_Status_PopUp.Status.8\":\" Examen / test \",\"ReportField.Comments_Report.User\":\" Utilisateur \",\"ReportField.Returned_for_Review_Testing.Deadline\":\" Date limite \",\"Languages List.bg\":\" bulgare \",\"FormField.New_Bug.Submitted_Date\":\" Date proposée \",\"FormField.New_Bug.adminEmail\":\" adminEmail \",\"Languages List.bn\":\" bengali \",\"CompositeSubFields.Add_User.Name1.suffix\":\" Suffixe \",\"Languages List.ro\":\" roumain \",\"ReportField.All_User.first_name\":\" prénom \",\"Languages List.be\":\" Biélorusse \",\"Languages List.ru\":\" russe \",\"Languages List.az\":\" azerbaïdjanais \",\"PicklistOption.Change_Status_PopUp.Status.1\":\" Nouveau \",\"CustomAction.My_Reported_Bugs.Add_Comment1\":\" Ajouter un commentaire \",\"PicklistOption.Add_User.prefix.3\":\" Mme. \",\"Languages List.ta\":\" Tamil \",\"PicklistOption.Add_User.prefix.1\":\" M. \",\"Languages List.cs\":\" tchèque \",\"PicklistOption.Add_User.prefix.2\":\" Madame. \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" thaïlandais \",\"FormField.Add_Miletone.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Comments.Comment\":\" Commentaire \",\"FormField.Add_User.first_name\":\" Prénom \",\"Languages List.sq\":\" albanais \",\"Languages List.ca\":\" catalan \",\"Section.Users\":\" Utilisateurs \",\"FormField.Comments.Commenter\":\" Commenter \",\"FormField.New_Bug.Reporter\":\" Journaliste \",\"Languages List.sw\":\" Swahili \",\"ReportField.New_Bug_Report.Status\":\" Statut \",\"Languages List.sv\":\" suédois \",\"FormField.Select_Assignees.Record_Status\":\" Statut d'enregistrement \",\"CustomAction.My_Bugs.Add_Comment3\":\" Ajouter un commentaire \",\"FormField.New_Bug.Bug_Title\":\" Titre du bug \",\"CustomAction.My_Bugs.View_Comments3\":\" Voir les commentaires \",\"Languages List.sk\":\" slovaque \",\"FormField.Add_User.Section\":\" Section \",\"FormField.Add_User.Can_Assign_Bug\":\" Peut assigner un bug? \",\"ReportField.Returned_for_Review_Testing.Assignees1\":\" Cessionnaires \",\"Languages List.sl\":\" slovène \",\"Section.Home\":\" Accueil \",\"FormButton.Add_Miletone.reset\":\" Réinitialiser \",\"CustomAction.My_Bugs.Change_Status3\":\" Changer le statut \",\"ReportField.Comments_Report.Comment\":\" Commentaire \",\"FormField.Change_Status_PopUp.Modified_User\":\" Utilisateur modifié \",\"Form.New_Bug\":\" Envoyer un Bug \",\"ReportField.All_Milestones.Product_Name\":\" Étape importante \",\"FormField.Select_Assignees.Section\":\" Section \",\"FormField.Add_Miletone.Modified_Time\":\" Heure modifiée \",\"Section.Returned_for_Review_Testing\":\" Retourné pour examen / test \",\"ReportField.New_Bug_Report.Bug_ID\":\" Bug - ID \",\"ReportField.My_Reported_Bugs.Bug_Title\":\" Titre du bug \",\"CompositeSubFields.Add_User.Name1.first_name\":\" Prénom \",\"FormField.New_Bug.Auto_Number\":\" Numéro automatique \",\"ReportField.All_User.Can_Assign_Bug\":\" Peut assigner un bug? \",\"FormButton.Add_Miletone.update\":\" Mettre à jour \",\"Languages List.pt\":\" Portugais \",\"Form.Change_Status_PopUp\":\" Changer le statut PopUp \",\"CustomAction.My_Reported_Bugs.Change_Status1\":\" Changer le statut \",\"Languages List.pl\":\" polonais \",\"FormField.New_Bug.Record_Status\":\" Statut d'enregistrement \",\"ReportField.My_Reported_Bugs.Status\":\" Statut \",\"Languages List.ar\":\" arabe \",\"Languages List.af\":\" afrikaans \",\"FormButton.Add_User.submit\":\" Soumettre \",\"FormButton.Add_User.cancel\":\" Annuler \",\"FormField.Add_Miletone.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Miletone.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"ReportField.My_Bugs.Products\":\" Étape importante \",\"ReportField.My_Reported_Bugs.Notes\":\" Remarques \",\"ReportField.My_Reported_Bugs.Module_If_any\":\" Construire (le cas échéant) \",\"ReportField.My_Reported_Bugs.Assignees1\":\" Cessionnaires \",\"Page.Home\":\" Accueil \",\"ReportField.New_Bug_Report.Screenshot\":\" Capture d'écran \",\"FormField.Change_Status_PopUp.Comment\":\" Commentaire \",\"FormField.Add_User.Added_Time\":\" Temps ajouté \",\"Languages List.fr\":\" français \",\"ReportField.New_Bug_Report.Priority\":\" Priorité \",\"ReportField.Comments_Report.Submitted_Bug_Rec_ID\":\" Soumis_Bug_Rec_ID \",\"Languages List.fi\":\" Finnois \",\"ReportField.New_Bug_Report.Bug_Title\":\" Titre du bug \",\"Languages List.fa\":\" persan \",\"ReportField.Returned_for_Review_Testing.Notes\":\" Remarques \",\"Languages List.gu\":\" Gujarati \",\"FormButton.Comments.reset\":\" Réinitialiser \",\"ReportField.New_Bug_Report.Submitted_Date\":\" Date proposée \",\"Report.Every_Month_Bug_Count_Total\":\" Nombre de bugs mensuel \",\"Languages List.gl\":\" Galicien \",\"FormField.New_Bug.Screenshot\":\" Capture d'écran \",\"CustomAction.New_Bug_Report.Change_Status\":\" Changer le statut \",\"CustomAction.My_Reported_Bugs.View_Comments1\":\" Voir les commentaires \",\"FormField.Change_Status_PopUp.Added_Time\":\" Temps ajouté \",\"FormField.New_Bug.Modified_User\":\" Utilisateur modifié \",\"FormField.Select_Assignees.Added_Time\":\" Temps ajouté \",\"FormField.New_Bug.Section\":\" Section \",\"ReportField.My_Reported_Bugs.Bug_ID\":\" Bug - ID \",\"Languages List.ga\":\" irlandais \",\"FormField.Add_Miletone.Description\":\" La description \",\"ReportField.My_Reported_Bugs.Screenshot\":\" Capture d'écran \",\"Section.Hidden\":\" Caché \",\"FormField.Add_User.Modified_User\":\" Utilisateur modifié \",\"Section.Milestones\":\" Les étapes \",\"ReportField.My_Bugs.Notes\":\" Remarques \",\"ReportField.My_Reported_Bugs.Deadline\":\" Date limite \",\"Report.All_User\":\" Tous les utilisateurs \",\"FormField.New_Bug.Added_Time\":\" Temps ajouté \",\"Form.Add_Miletone\":\" Ajouter Miletone \",\"Languages List.tr\":\" turc \",\"FormField.Add_User.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"Languages List.da\":\" danois \",\"FormField.New_Bug.Module_If_any\":\" Construire (le cas échéant) \",\"FormField.New_Bug.Bug_ID\":\" Bug - ID \",\"CustomAction.Returned_for_Review_Testing.Change_Status2\":\" Changer le statut \",\"FormField.New_Bug.Deadline\":\" Date limite \",\"Form.Add_User\":\" Ajouter un utilisateur \",\"FormField.New_Bug.Comments\":\" commentaires \",\"ReportField.My_Bugs.Bug_ID\":\" Bug - ID \",\"Languages List.de\":\" allemand \",\"ReportField.New_Bug_Report.Deadline\":\" Date limite \",\"Languages List.cy\":\" gallois \",\"Languages List.tl\":\" Philippin \",\"FormField.Comments.Section\":\" Section \",\"Section.Bugs\":\" Bogues \",\"Languages List.es\":\" Espanol \",\"Languages List.eu\":\" basque \",\"ReportField.Returned_for_Review_Testing.Screenshot\":\" Capture d'écran \",\"Languages List.et\":\" estonien \",\"ReportField.New_Bug_Report.Steps_To_Reproduce\":\" Étapes à reproduire \",\"ReportField.My_Bugs.Status\":\" Statut \",\"Languages List.vi\":\" vietnamien \",\"PicklistOption.New_Bug.Priority.3\":\" Faible \",\"FormField.Comments.Modified_Time\":\" Heure modifiée \",\"Report.Returned_for_Review_Testing\":\" Retourné pour examen / test \",\"Languages List.el\":\" grec \",\"FormField.Comments.Record_Status\":\" Statut d'enregistrement \",\"Languages List.eo\":\" espéranto \",\"Languages List.en\":\" Anglais \",\"PicklistOption.New_Bug.Priority.1\":\" Haute \",\"CustomAction.Returned_for_Review_Testing.View_Comments2\":\" Voir les commentaires \",\"FormField.Comments.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Comments.Added_User\":\" Utilisateur ajouté \",\"PicklistOption.New_Bug.Priority.2\":\" Moyen \",\"Languages List.ur\":\" Urdu \",\"FormField.New_Bug.Priority\":\" Priorité \",\"FormField.New_Bug.Status\":\" Statut \",\"FormField.Select_Assignees.ID\":\" ID \",\"Form.Select_Assignees\":\" Sélectionnez les destinataires \",\"ReportField.Returned_for_Review_Testing.Bug_ID\":\" Bug - ID \"}}"
+}
+	reports configuration
+	{
+	
+		Version = 1251000165802293
+		Key     = "tZTBDrjby8PP94mNPDU5yt9K18FpAJ9D3FVGaBYBC9uPrMu0Kj7g0yp5u9Oeb5NKnB4ffQMAHtVTFPBZxZE15jOdYy5VSbFKeZAT"
+	}
+}

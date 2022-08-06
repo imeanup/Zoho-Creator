@@ -1,0 +1,5080 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 23:25:59
+ * Version      : 1.0
+ */
+ application "Inventory Management"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+	section Hidden
+	{
+		hide = true
+		icon = "ui-2-menu-bold"
+		form Add_Firm
+		{
+			displayname = "Add Firm"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Firm_Name
+			(
+    			type = text
+				displayname = "Firm Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Firm_Email_ID
+			(
+    			type = email
+				displayname = "Firm Email ID"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Warehouse_Details
+			(
+				type = grid
+				displayname = "Warehouse Details"
+				values  = Add_Warehouse.ID
+    			bidirectional = Firm_Name
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		properties
+		{
+			total entries
+			{
+				allowed count = 1
+			}
+		}
+		}
+		form Add_Stock
+		{
+			displayname = "Add Stock"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Product_Name
+			(
+				type = picklist
+				displayname = "Product Name"
+				values  = Add_Products.ID
+    			bidirectional = Add_Stocks_subform
+    			displayformat = [Product_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Purchased_Date
+			(
+    			type = date
+				displayname = "Purchased Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Warehouse_Code
+			(
+				type = picklist
+				displayname = "Warehouse Code"
+				values  = Add_Warehouse.ID
+    			displayformat = [Warehouse_Code]
+				allow new entries = true
+				[
+					displayname = "Add Warehouse"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Purchased_Qty
+			(
+				type = number
+				displayname = "Purchased Qty"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Instock
+			(
+				type = number
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Sales_Qty
+			(
+				type = number
+				displayname = "Sales Qty"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Availability
+			(
+				type = picklist
+				values = {"Instock", "Out of stock"}
+				initial value = "Instock"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Return_Product
+		{
+			displayname = "Return Product"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Sales_ID
+			(
+				type = picklist
+				displayname = "Sales ID"
+				values  = Add_Sales.ID
+    			bidirectional = Return_Products_Details
+    			displayformat = [ID]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Product_Name
+			(
+				type = picklist
+				displayname = "Product Name"
+				values  = Add_Products.ID
+    			displayformat = [Product_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Warehouse_Code
+			(
+				type = picklist
+				displayname = "Warehouse Code"
+				values  = Add_Warehouse.ID
+    			displayformat = [Warehouse_Code]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Returned_On
+			(
+    			type = date
+				displayname = "Returned On"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Qty_Returned
+			(
+				type = number
+				displayname = "Qty. Returned"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Quantity_Added_to_Stock
+			(
+				type = number
+				displayname = "Quantity Added to Stock"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Reason
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Warehouse
+		{
+			displayname = "Add Warehouse"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Firm_Name
+			(
+				type = picklist
+				displayname = "Firm Name"
+				values  = Add_Firm.ID
+    			bidirectional = Warehouse_Details
+    			displayformat = [Firm_Name]
+				allow new entries = true
+				[
+					displayname = "Add Firm"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Warehouse_Code
+			(
+    			type = text
+				displayname = "Warehouse Code"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Warehouse_Name
+			(
+    			type = text
+				displayname = "Warehouse Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Warehouse_Address
+			(
+    			type = address
+				displayname = "Warehouse Address"
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Warehouse_Incharge
+			(
+				type = picklist
+				displayname = "Warehouse Incharge"
+				values  = Add_Staffs[Warehouse_Code.ID is null].ID
+    			bidirectional = Warehouse_Code
+    			displayformat = [" " + Name.first_name + " " + Name.last_name]
+				allow new entries = true
+				[
+					displayname = "Add New Staff"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		summary Firm_Details
+		{
+			displayName = "Firm Details"
+   			hide = true
+			show all rows from Add_Firm    
+			(
+				Firm_Name as "Firm Name"
+				Firm_Email_ID as "Firm Email ID"
+				Warehouse_Details.Warehouse_Code as "Warehouse Details"
+				(
+					view = All_Warehouses
+				)
+			)
+			options
+			(
+				display rows = 1
+				display records per row = 2
+				icon = "business-building"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Firm_Name as "Firm Name"
+							Firm_Email_ID as "Firm Email ID"
+							Warehouse_Details.Warehouse_Code as "Warehouse Details"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Firm_Name as "Firm Name"
+							Firm_Email_ID as "Firm Email ID"
+							Warehouse_Details.Warehouse_Code as "Warehouse Details"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Charts
+	{
+		hide = true
+		icon = "ui-2-menu-bold"
+		pivotchart Weekly_Sales
+		{ 
+			displayname = "Weekly Sales"
+			based on Autoview_1490251871175_Add_Sales
+					hide = true
+							icon = "ui-3-chart-bars"				show all rows from Add_Sales
+				(
+ 					Sales_Date  as "Sales Date"
+ 					Warehouse_Code  as "Warehouse Code"
+ 					Product_Name  as "Product Name"
+ 					Quantity 
+				)
+		}
+		pivotchart Monthly_Sales
+		{ 
+			displayname = "Monthly Sales"
+			based on Autoview_1490251871175_Add_Sales
+					hide = true
+							icon = "health-pulse-chart"				show all rows from Add_Sales
+				(
+ 					Sales_Date  as "Sales Date"
+ 					Warehouse_Code  as "Warehouse Code"
+ 					Product_Name  as "Product Name"
+ 					Quantity 
+				)
+		}
+		pivotchart Stock_Report
+		{ 
+			displayname = "Stock Report"
+			based on Autoview_1490252221473_Add_Stock
+					hide = true
+							icon = "ui-3-chart-bars"				show all rows from Add_Stock
+				(
+ 					Instock 
+ 					Warehouse_Code  as "Warehouse Code"
+ 					Availability 
+ 					Product_Name  as "Product Name"
+ 					Purchased_Qty  as "Purchased Qty"
+ 					Purchased_Date  as "Purchased Date"
+ 					Sales_Qty  as "Sales Qty"
+				)
+		}
+	}
+	section Dashboard
+	{
+		icon = "ui-1-dashboard-half"
+				 page Dashboard 
+	 	 { 
+ 	 	 displayname = "Dashboard" 
+
+ 	 	 icon = "" 
+	 	 Content="<zml \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"25%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '50%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'left'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Sales_Details'\n   \t\t target = 'same-window'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t vAlign = 'left'\n\n>\n\t<image    \t\t color = 'rgba(255, 255, 255, 0.88)'\n   \t\t bgColor = '#A07E2F'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'zc-li-outline business-chart-bar-33'\n   \t\t size = '3'\n   \t\t marginRight = '7px'\n   \t\t cornerRadius = '26px'\n\n\/>\n<\/pc>\n<\/pr>\n<\/pc><pc    \t\t width = '50%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'right'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Sales_Details'\n   \t\t target = 'same-window'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t hAlign = 'right'\n   \t\t vAlign = 'center'\n\n>\n\t<pr \n>\n\t<pc    \t\t hAlign = 'right'\n\n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Sales.Quantity.sum'\n   \t\t criteria = '(((Sales_Date is today)))'\n   \t\t size = '8'\n   \t\t color = '#A07E2F'\n   \t\t bold = 'true'\n   \t\t textAlign = 'left'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc    \t\t hAlign = 'right'\n\n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Today Sales'\n   \t\t size = '3'\n   \t\t color = '#888888'\n   \t\t textAlign = 'left'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"24%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '50%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'left'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Purchase_Details'\n   \t\t target = 'same-window'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t vAlign = 'left'\n\n>\n\t<image    \t\t color = 'rgba(255, 255, 255, 0.88)'\n   \t\t bgColor = '#426C4B'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'shopping-cart-modern zc-li-outline'\n   \t\t size = '3'\n   \t\t marginRight = '7px'\n   \t\t cornerRadius = '26px'\n\n\/>\n<\/pc>\n<\/pr>\n<\/pc><pc    \t\t width = '50%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'right'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Purchase_Details'\n   \t\t target = 'same-window'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t hAlign = 'right'\n   \t\t vAlign = 'center'\n\n>\n\t<pr \n>\n\t<pc    \t\t hAlign = 'right'\n\n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Purchase_Order.Purchased_Qty.sum'\n   \t\t criteria = '(((Purchased_Date is today)))'\n   \t\t size = '8'\n   \t\t color = '#68BD89'\n   \t\t bold = 'true'\n   \t\t textAlign = 'left'\n   \t\t displayType = 'actual'\n   \t\t thousandsSeperator = ','\n   \t\t decimalSeperator = '.'\n   \t\t numberScale = 'none'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc    \t\t hAlign = 'right'\n\n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Today Purchase'\n   \t\t size = '3'\n   \t\t color = '#888888'\n   \t\t textAlign = 'left'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"27%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '50%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'left'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Return_Product_Details'\n   \t\t target = 'same-window'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t vAlign = 'left'\n\n>\n\t<image    \t\t color = 'rgba(255, 255, 255, 0.88)'\n   \t\t bgColor = '#1E4770'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'zc-li-outline arrows-4-reply'\n   \t\t size = '3'\n   \t\t marginRight = '7px'\n   \t\t cornerRadius = '26px'\n\n\/>\n<\/pc>\n<\/pr>\n<\/pc><pc    \t\t width = '50%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'right'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Return_Product_Details'\n   \t\t target = 'same-window'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t hAlign = 'right'\n   \t\t vAlign = 'center'\n\n>\n\t<pr \n>\n\t<pc    \t\t hAlign = 'right'\n\n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Return_Product.Qty_Returned.sum'\n   \t\t criteria = '(((Returned_On is today)))'\n   \t\t size = '8'\n   \t\t color = '#57A9FB'\n   \t\t bold = 'true'\n   \t\t textAlign = 'left'\n   \t\t displayType = 'actual'\n   \t\t thousandsSeperator = ','\n   \t\t decimalSeperator = '.'\n   \t\t numberScale = 'none'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc    \t\t hAlign = 'right'\n\n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Today Returns'\n   \t\t size = '3'\n   \t\t color = '#888888'\n   \t\t textAlign = 'left'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"24%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '50%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'left'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Product_Details'\n   \t\t target = 'same-window'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t vAlign = 'left'\n\n>\n\t<image    \t\t color = 'rgba(255, 255, 255, 0.88)'\n   \t\t bgColor = '#721212'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'design-app zc-li-outline'\n   \t\t size = '3'\n   \t\t marginRight = '7px'\n   \t\t cornerRadius = '26px'\n\n\/>\n<\/pc>\n<\/pr>\n<\/pc><pc    \t\t width = '50%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'right'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Product_Details'\n   \t\t target = 'same-window'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t hAlign = 'right'\n   \t\t vAlign = 'center'\n\n>\n\t<pr \n>\n\t<pc    \t\t hAlign = 'right'\n\n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Products.ID.count'\n   \t\t size = '8'\n   \t\t color = '#FD6666'\n   \t\t bold = 'true'\n   \t\t textAlign = 'left'\n   \t\t displayType = 'actual'\n   \t\t thousandsSeperator = ','\n   \t\t decimalSeperator = '.'\n   \t\t numberScale = 'none'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc    \t\t hAlign = 'right'\n\n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Total Products'\n   \t\t size = '3'\n   \t\t color = '#888888'\n   \t\t textAlign = 'left'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Stock_Report'\n   \t\t heightType = 'undefined'\n   \t\t heightValue = 'undefined'\n   \t\t iszreport = 'undefined'\n\n\/>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"50%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Weekly_Sales'\n   \t\t heightType = 'undefined'\n   \t\t heightValue = 'undefined'\n   \t\t iszreport = 'undefined'\n\n\/>\n<\/column><column\n   \t\t width=\"50%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Monthly_Sales'\n   \t\t heightType = 'undefined'\n   \t\t heightValue = 'undefined'\n   \t\t iszreport = 'undefined'\n\n\/>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dsp id='html_snippet'>\n\t<![CDATA[htmlpage html_snippet()\ncontent\n&lt;%{\n\tgetadmindetails = Add_Firm[ID != 0];\n\tif(getadmindetails.count() == 0)\n\t{\n\t\topenUrl(&quot;#Form:Add_Firm&quot;,&quot;popup window&quot;);\n\t}\n\t%&gt;\n&lt;style&gt;\n #zohoreportel{\n\t\t\t\t\t\t  height:300px !important;\n\t\t\t\t\t\t  }\n.divEmbedContainer{\n\theight:400px !important;\n}\n&lt;\/style&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+	}
+	section Firm
+	{
+		icon = "business-building"
+		list All_Warehouses
+		{
+			displayName = "All Warehouses"
+			show all rows from Add_Warehouse    
+			(
+				Firm_Name as "Firm Name"
+				Warehouse_Code as "Warehouse Code"
+				Warehouse_Name as "Warehouse Name"
+				Warehouse_Address  as "Warehouse Address"
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+			)
+			group by
+			(
+				Firm_Name ascending
+			)
+			options
+			(
+				icon = "business-building"
+	 		)
+			custom actions
+			(
+				"Edit Firm"
+				(
+	  			workflow = Edit_Firm
+				show action in edit record menu = true
+				)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Firm_Name as "Firm Name"
+							Warehouse_Code as "Warehouse Code"
+							Warehouse_Name as "Warehouse Name"
+							Warehouse_Address as "Warehouse Address"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit  as "Edit Warehouse"   	   
+								"Edit Firm"
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit  as "Edit Warehouse"   	   
+								"Edit Firm"
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Firm_Name as "Firm Name"
+							Warehouse_Code as "Warehouse Code"
+							Warehouse_Name as "Warehouse Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Products
+	{
+		icon = "design-app"
+		form Add_Products
+		{
+			displayname = "Add Products"
+			success message = "Product Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Firm_Name
+			(
+				type = picklist
+				displayname = "Firm Name"
+				values  = Add_Firm.ID
+    			displayformat = [Firm_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Product_Name
+			(
+    			type = text
+				displayname = "Product Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Product_Code
+			(
+    			type = text
+				displayname = "Product Code"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Threshold_Value
+			(
+				type = number
+				displayname = "Threshold Value"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Product_Description
+			(
+    			type = textarea
+				displayname = "Product Description"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Add_Stocks_subform
+			(
+				type = grid
+				displayname = "Add Stocks"
+				values  = Add_Stock.ID
+    			bidirectional = Product_Name
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Product_Details
+		{
+			displayName = "Product Details"
+			show all rows from Add_Products    
+			(
+				Firm_Name as "Firm Name"
+				Product_Name as "Product Name"
+				Product_Code as "Product Code"
+				Product_Description as "Product Description"
+			)
+			options
+			(
+				icon = "shopping-box-3d-67"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Product_Name as "Product Name"
+							Product_Code as "Product Code"
+							Product_Description as "Product Description"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Delete 
+    		 			Duplicate 
+    	 			)
+							record
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Firm_Name as "Firm Name"
+							Product_Name as "Product Name"
+							Product_Code as "Product Code"
+							Product_Description as "Product Description"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Add Stocks"
+		     			related field =  Add_Stocks_subform
+						fields
+						(
+							Purchased_Date as "Purchased Date"
+							Warehouse_Code as "Warehouse Code"
+							Purchased_Qty as "Purchased Qty"
+							Instock
+							Sales_Qty as "Sales Qty"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Stocks
+	{
+		icon = "shopping-stock"
+		form Add_Stock_stateless
+		{
+			displayname = "Add Stock"
+			store data in zc = false
+			success message = ""
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Product_Name
+			(
+				type = picklist
+				displayname = "Product Name"
+				values  = Add_Products.ID
+    			displayformat = [Product_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Purchased_Date
+			(
+    			type = date
+				displayname = "Purchased Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Warehouse_Code
+			(
+				type = picklist
+				displayname = "Warehouse Code"
+				values  = Add_Warehouse.ID
+    			displayformat = [Warehouse_Code]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Purchased_Qty
+			(
+				type = number
+				displayname = "Purchased Qty"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Instock
+			(
+				type = number
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Sales_Qty
+			(
+				type = number
+				displayname = "Sales Qty"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Availability
+			(
+				type = picklist
+				values = {"Instock", "Out of stock"}
+				initial value = "Instock"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				Submit
+				(
+   					type = submit
+   					displayname = "Submit"
+				)
+				Reset
+				(
+   					type = reset
+   					displayname = "Reset"
+				)
+			}
+		}
+		list Stock_Details
+		{
+			displayName = "Stock Details"
+			show all rows from Add_Stock    
+			(
+				Sales_Qty as "Sales Qty"
+				Purchased_Qty as "Purchased Quantity"
+				custom action "Add Sales"
+				(
+	  			workflow = Add_Sales
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Add Sales"
+				success message = ""
+				condition = (Availability != "Out of stock")
+				)
+				Purchased_Date as "Purchased Date"
+				Instock
+				Availability
+				Warehouse_Code as "Warehouse Code"
+				Product_Name as "Product Name"
+			)
+			group by
+			(
+				Warehouse_Code ascending
+			)
+			sort by
+			(
+				Product_Name ascending
+			)
+			options
+			(
+				icon = "shopping-cart-modern-in"
+	 		)
+			conditional formatting
+			(
+				"Out of stock"
+				{
+				condition = (Availability == "Out of stock")
+				fields = [Sales_Qty, Purchased_Qty, Purchased_Date, Instock, Availability, Warehouse_Code, Product_Name]
+				format = "color:#969696;background-color:#ffffff;"
+				}
+				"Available Stocks"
+				{
+				condition = (Availability == "Instock")
+				fields = [Availability]
+				format = "color:#19bc9f;background-color:#ffffff;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Warehouse_Code as "Warehouse Code"
+							Product_Name as "Product Name"
+							Instock
+							Sales_Qty as "Sales Qty"
+							Purchased_Qty as "Purchased Quantity"
+							Availability
+				"Add Sales"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Warehouse_Code as "Warehouse Code"
+							Product_Name as "Product Name"
+							Purchased_Date as "Purchased Date"
+							Instock
+							Sales_Qty as "Sales Qty"
+							Purchased_Qty as "Purchased Quantity"
+							Availability
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Add Sales"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Stock_Outflow
+	{
+		displayname= "Stock Outflow"
+		icon = "business-chart-bar-33"
+		form Add_Sales
+		{
+			displayname = "Add Sales"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Product_Name
+			(
+				type = picklist
+				displayname = "Product Name"
+				values  = Add_Products.ID
+    			displayformat = [Product_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Warehouse_Code
+			(
+				type = picklist
+				displayname = "Warehouse Code"
+				values  = Add_Warehouse.ID
+    			displayformat = [Warehouse_Code]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Sales_Date
+			(
+    			type = date
+				displayname = "Sales Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Quantity
+			(
+				type = number
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Sales_summary
+			(
+    			type = textarea
+				displayname = "Sales summary"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Return_Products_Details
+			(
+				type = list
+				displayname = "Return Details"
+				values  = Return_Product.ID
+    			bidirectional = Sales_ID
+    			displayformat = [Returned_On]
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Sales_Details
+		{
+			displayName = "Sales Details"
+			show all rows from Add_Sales    
+			(
+				custom action "Return"
+				(
+	  			workflow = Return_Product
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Return"
+				success message = ""
+				condition = (Quantity != 0)
+				)
+				Product_Name as "Product Name"
+				Warehouse_Code as "Warehouse Code"
+				Sales_Date as "Sales Date"
+				Quantity
+				Sales_summary as "Sales summary"
+				Return_Products_Details as "Return Details"
+			)
+			options
+			(
+				icon = "business-chart-bar-33"
+	 		)
+			conditional formatting
+			(
+				"Canel Sale"
+				{
+				condition = (Quantity == 0)
+				fields = [Product_Name, Warehouse_Code, Sales_Date, Quantity, Sales_summary]
+				format = "text-decoration:line-through;color:#3ab4e0;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Product_Name as "Product Name"
+							Warehouse_Code as "Warehouse Code"
+							Sales_Date as "Sales Date"
+							Quantity
+							Sales_summary as "Sales summary"
+							Return_Products_Details as "Return Details"
+				"Return"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Product_Name as "Product Name"
+							Warehouse_Code as "Warehouse Code"
+							Sales_Date as "Sales Date"
+							Quantity
+							Sales_summary as "Sales summary"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Return Details"
+		     			related field =  Return_Products_Details
+						fields
+						(
+							Product_Name as "Product Name"
+							Warehouse_Code as "Warehouse Code"
+							Returned_On as "Returned On"
+							Qty_Returned as "Qty. Returned"
+							Reason
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Return"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Return_Product_Details
+		{
+			displayName = "Return Product Details"
+			show all rows from Return_Product    
+			(
+				Sales_ID.Sales_Date as "Sales Date"
+				Returned_On as "Returned On"
+				Reason
+				Qty_Returned as "Qty. Returned"
+				Sales_ID as "Sales ID"
+				(
+					view = Sales_Details
+				)
+				Product_Name as "Product Name"
+				Warehouse_Code as "Warehouse Code"
+				Quantity_Added_to_Stock as "Quantity Added to Stock"
+				custom action "Return to Stock"
+				(
+	  			workflow = Return_to_Stock
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Return to Stock"
+				)
+			)
+			options
+			(
+				icon = "arrows-4-reply"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Sales_ID.Sales_Date as "Sales Date"
+							Product_Name as "Product Name"
+							Warehouse_Code as "Warehouse Code"
+							Returned_On as "Returned On"
+							Reason
+							Qty_Returned as "Qty. Returned"
+							Quantity_Added_to_Stock as "Quantity Added to Stock"
+				"Return to Stock"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+								"Return to Stock"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+								"Return to Stock"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Warehouse_Code as "Warehouse Code"
+							Warehouse_Code as "Warehouse Code"
+							Returned_On as "Returned On"
+							Reason
+							Qty_Returned as "Qty. Returned"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Sales Details"
+		     			related field =  Sales_ID
+						fields
+						(
+							Warehouse_Code as "Warehouse Code"
+							Sales_Date as "Sales Date"
+							Quantity
+							Sales_summary as "Sales summary"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Stock_Inflow
+	{
+		displayname= "Stock Inflow"
+		icon = "shopping-cart-modern"
+		form Purchase_Order
+		{
+			displayname = "Purchase Order"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Product_Name
+			(
+				type = picklist
+				displayname = "Product Name"
+				values  = Add_Products.ID
+    			displayformat = [Product_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Purchased_Date
+			(
+    			type = date
+				displayname = "Purchased Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Warehouse_Code
+			(
+				type = picklist
+				displayname = "Warehouse Code"
+				values  = Add_Warehouse.ID
+    			displayformat = [Warehouse_Code]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Purchased_Qty
+			(
+				type = number
+				displayname = "Purchased Qty"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Instock
+			(
+				type = number
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Sales_Qty
+			(
+				type = number
+				displayname = "Sales Qty"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Purchase_Details
+		{
+			displayName = "Purchase Details"
+			show all rows from Purchase_Order    
+			(
+				Purchased_Date as "Purchased Date"
+				Product_Name as "Product Name"
+				Warehouse_Code as "Warehouse Code"
+				Purchased_Qty as "Purchased Qty"
+				Sales_Qty as "Sales Qty"
+				Instock
+			)
+			group by
+			(
+				Warehouse_Code ascending
+			)
+			sort by
+			(
+				Product_Name ascending
+			)
+			options
+			(
+				icon = "business-money-bag"
+	 		)
+			conditional formatting
+			(
+				"Instock = 0"
+				{
+				condition = (Instock == 0)
+				fields = [Purchased_Date, Product_Name, Warehouse_Code, Purchased_Qty, Sales_Qty, Instock]
+				format = "text-decoration:line-through;color:#4e9c76;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Purchased_Date as "Purchased Date"
+							Product_Name as "Product Name"
+							Warehouse_Code as "Warehouse Code"
+							Purchased_Qty as "Purchased Qty"
+							Sales_Qty as "Sales Qty"
+							Instock
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Purchased_Date as "Purchased Date"
+							Product_Name as "Product Name"
+							Warehouse_Code as "Warehouse Code"
+							Purchased_Qty as "Purchased Qty"
+							Sales_Qty as "Sales Qty"
+							Instock
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Staffs
+	{
+		icon = "users-multiple-11"
+		form Add_Staffs
+		{
+			displayname = "Add Staffs"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Warehouse_Code
+			(
+				type = picklist
+				displayname = "Warehouse Code"
+				values  = Add_Warehouse.ID
+    			bidirectional = Warehouse_Incharge
+    			displayformat = [Warehouse_Code]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-2-a-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		custom Staffs_Details
+		{
+			displayName = "Staffs Details"
+			show all rows from Add_Staffs    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Email
+				Phone_Number as "Phone Number"
+				Warehouse_Code as "Warehouse Code"
+				Warehouse_Code.Warehouse_Address  as "Warehouse Address"
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	 			)
+			)
+			options
+			(
+				icon = "users-circle-08"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Warehouse_Code.Warehouse_Address as "Warehouse Address"
+							Warehouse_Code as "Warehouse Code"
+							Phone_Number as "Phone Number"
+							Email
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Email
+							Warehouse_Code as "Warehouse Code"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section page
+	{
+		displayname= "Return to Stock"
+		form Return_to_Stock
+		{
+			displayname = "Return to Stock"
+			store data in zc = false
+			success message = ""
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Returned_On
+			(
+				type = picklist
+				displayname = "Returned On"
+				values  = Return_Product.ID
+    			displayformat = [Returned_On]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Quanity
+			(
+				type = number
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				Return_field
+				(
+   					type = submit
+   					displayname = "Return"
+				)
+			}
+		}
+	}
+	functions
+	{
+ 			void customActions.AddSales(Add_Stock addStockObj)
+			{
+				openUrl("#Form:Add_Sales?Product_Name=" + addStockObj.Product_Name + "&Warehouse_Code=" + addStockObj.Warehouse_Code,"popup window");
+			}
+ 			map Util.pageDate()
+			{
+				monthmap = {"1":"Jan","2":"Feb","3":"Mar","4":"Apr","5":"May","6":"Jun","7":"Jul","8":"Aug","9":"Sep","10":"Oct","11":"Nov","12":"Dec"};
+				day = zoho.currentdate.getDay();
+				month = zoho.currentdate.getMonth();
+				mm = monthmap.get(month.toString());
+				retmap = Map();
+				retmap.put("day",day);
+				retmap.put("mon",mm);
+				return retmap;
+			}
+ 			void customActions.returnSales(int recID)
+			{
+				openUrl("#Form:Return_Product?Sales_ID=" + recID,"popup window");
+			}
+ 			int Pages.getProduct()
+			{
+				getProduct = Add_Products[ID != 0];
+				return getProduct.count();
+			}
+ 			void Util.deleteSales(Add_Sales salesObj, int salesQuantity)
+			{
+				getStockDetails = Add_Stock[Warehouse_Code == salesObj.Warehouse_Code && Product_Name == salesObj.Product_Name];
+				if(input.salesQuantity == null)
+				{
+					salesQuantity = salesObj.Quantity;
+				}
+				returnSales = Return_Product[Sales_ID == salesObj.ID];
+				if(returnSales.count() != 0)
+				{
+					remainingInstock = salesQuantity - returnSales.sum(Quantity_Added_to_Stock);
+					remainingSalesQty = salesQuantity - returnSales.sum(Qty_Returned);
+				}
+				else
+				{
+					remainingInstock = salesQuantity;
+					remainingSalesQty = salesQuantity;
+				}
+				getStockDetails.Instock=getStockDetails.Instock + remainingInstock;
+				getStockDetails.Sales_Qty=getStockDetails.Sales_Qty - remainingSalesQty;
+				if(getStockDetails.Availability == "Out of stock")
+				{
+					getStockDetails.Availability="Instock";
+				}
+				//to update in purchase order also
+				getPurchaseDetails = Purchase_Order[Product_Name == salesObj.Product_Name && Warehouse_Code == salesObj.Warehouse_Code].ID.getAll();
+				if(input.salesQuantity == null)
+				{
+					balcount = salesObj.Quantity;
+				}
+				else
+				{
+					balcount = salesQuantity;
+				}
+				for each  eachrec in getPurchaseDetails
+				{
+					eachPurchaseDetails = Purchase_Order[ID == eachrec];
+					if(balcount > 0)
+					{
+						old_saleqty_value = eachPurchaseDetails.Sales_Qty;
+						eachPurchaseDetails.Sales_Qty=eachPurchaseDetails.Sales_Qty - balcount;
+						if(eachPurchaseDetails.Sales_Qty < 0)
+						{
+							eachPurchaseDetails.Sales_Qty=0;
+							val = old_saleqty_value;
+							bal_count = salesObj.Quantity - old_saleqty_value;
+						}
+						else
+						{
+							val = balcount;
+							bal_count = 0;
+						}
+						eachPurchaseDetails.Instock=eachPurchaseDetails.Instock + val;
+					}
+				}
+				//to update in sales Details
+				if(salesObj.Quantity >= input.salesQuantity)
+				{
+					salesObj.Quantity=salesObj.Quantity - salesQuantity;
+				}
+			}
+ 			int Pages.getTodaySales()
+			{
+				getSales = Add_Sales[ID != 0 && Sales_Date == zoho.currentdate].sum(Quantity);
+				getSales = ifnull(getSales,0);
+				return getSales;
+			}
+ 			int Pages.getTodayPurchase()
+			{
+				getPurchase = Purchase_Order[ID != 0 && Purchased_Date == zoho.currentdate].sum(Purchased_Qty);
+				getPurchase = ifnull(getPurchase,0);
+				return getPurchase;
+			}
+ 			int Pages.getTodayReturns()
+			{
+				getReturns = Return_Product[ID != 0 && Returned_On in today].sum(Qty_Returned);
+				getReturns = ifnull(getReturns,0);
+				return getReturns;
+			}
+ 			void Util.returnToStock(Return_Product returnRecObj)
+			{
+				getCurrentStock = Add_Stock[Product_Name == returnRecObj.Product_Name && Warehouse_Code == returnRecObj.Warehouse_Code];
+				getCurrentStock.Availability=if(getCurrentStock.Availability == "Out of stock","Instock",getCurrentStock.Availability);
+				getCurrentStock.Instock=getCurrentStock.Instock + returnRecObj.Qty_Returned;
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Run_Scripts_On_Button_Cli as "Run Scripts - On Button Click"
+			{
+				type =  form
+				form = Return_to_Stock
+				button = Return_field
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						getReturnDetails = Return_Product[ID == input.Returned_On];
+										qtyTobeReturn = ifnull(input.Quanity,0) + ifnull(getReturnDetails.Quantity_Added_to_Stock,0);
+										if(input.Quanity != null && qtyTobeReturn > getReturnDetails.Qty_Returned)
+										{
+											alert "Entered Quantity mismatches with the the Quanity Returned!";
+										}
+										else
+										{
+											getStockInWarehouse = Add_Stock[Warehouse_Code == getReturnDetails.Warehouse_Code && Product_Name == getReturnDetails.Product_Name];
+											getStockInWarehouse.Instock=getStockInWarehouse.Instock + input.Quanity;
+											getStockInWarehouse.Availability="Instock";
+											getReturnDetails.Quantity_Added_to_Stock=ifnull(getReturnDetails.Quantity_Added_to_Stock,0) + input.Quanity;
+										}
+										openUrl("#Script:page.refresh","same window");
+					)
+					}
+				}
+			}
+			Run_Scripts_On_Button_Cli1 as "Run Scripts - On Button Click"
+			{
+				type =  form
+				form = Add_Stock_stateless
+				button = Submit
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						if(input.Purchased_Date <= zoho.currentdate)
+										{
+											getProductDetails = Add_Stock[Product_Name == input.Product_Name && Warehouse_Code == input.Warehouse_Code];
+											insert into Purchase_Order
+											[
+												Warehouse_Code=input.Warehouse_Code
+												Purchased_Qty=input.Purchased_Qty
+												Product_Name=input.Product_Name
+												Purchased_Date=input.Purchased_Date
+												Added_User=zoho.loginuser
+												Sales_Qty=input.Sales_Qty
+												Instock=input.Instock
+											]
+											if(getProductDetails.count() != 0)
+											{
+												getProductDetails.Purchased_Qty=getProductDetails.Purchased_Qty + input.Purchased_Qty;
+												getProductDetails.Instock=getProductDetails.Instock + input.Instock;
+												getProductDetails.Availability="Instock";
+											}
+											else
+											{
+												insert into Add_Stock
+												[
+													Added_User=zoho.loginuser
+													Product_Name=input.Product_Name
+													Purchased_Date=input.Purchased_Date
+													Warehouse_Code=input.Warehouse_Code
+													Purchased_Qty=input.Purchased_Qty
+													Instock=input.Instock
+													Sales_Qty=input.Sales_Qty
+													Availability=input.Availability
+												]
+											}
+											openUrl("#Report:Stock_Details","same window");
+										}
+										else
+										{
+											alert "Future Dates are not allowed";
+										}
+					)
+					}
+				}
+			}
+			Run_Scripts_While_Adding_10 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Firm
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Warehouse_Details.Firm_Name;
+										input.Firm_Email_ID = zoho.adminuserid;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_11 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Firm
+				record event = on add
+
+	on add row of Warehouse_Details
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											temp = List();
+										AllUsers = (Add_Staffs[ID != 0].ID sort by Name asc).getAll();
+										for each  eachRec in Warehouse_Details
+										{
+											AllUsers.removeElement(eachRec.Warehouse_Incharge);
+										}
+										row.Warehouse_Incharge:ui.add(AllUsers);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing6 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Firm
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											disable Firm_Email_ID;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin4 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_Firm
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											delete from Add_Firm[ID != 0];
+										delete from Add_Warehouse[ID != 0];
+										delete from Add_Stock[ID != 0];
+										delete from Purchase_Order[ID != 0];
+										delete from Add_Sales[ID != 0];
+										delete from Add_Products[ID != 0];
+										delete from Return_Product[ID != 0];
+										delete from Add_Staffs[ID != 0];
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_12 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Stock
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Purchased_Date > zoho.currentdate)
+										{
+											alert "Future Dates are not allowed ";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_13 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Stock
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											insert into Purchase_Order
+										[
+											Added_User=zoho.loginuser
+											Instock=input.Instock
+											Product_Name=input.Product_Name
+											Purchased_Date=input.Purchased_Date
+											Purchased_Qty=input.Purchased_Qty
+											Sales_Qty=input.Sales_Qty
+											Warehouse_Code=input.Warehouse_Code
+										]
+										getRec = Add_Stock[Product_Name == input.Product_Name && Warehouse_Code == input.Warehouse_Code] sort by Added_Time asc;
+										if(getRec.count() > 1)
+										{
+											getRec.Instock=getRec.Instock + input.Instock;
+											getRec.Purchased_Date=input.Purchased_Date;
+											getRec.Purchased_Qty=getRec.Purchased_Qty + input.Purchased_Qty;
+											getRec.Availability="Instock";
+											delete from Add_Stock[ID == input.ID];
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing7 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Stock
+				record event = on edit
+
+	field rules
+	{
+					actions 
+					{
+						disable Availability,Product_Name,Purchased_Qty,Warehouse_Code,Purchased_Date,Instock,Sales_Qty;
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing8 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Stock
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											total = input.Sales_Qty + input.Instock;
+										if(input.Purchased_Qty != total)
+										{
+											alert "Sales Quantity and Instock doesn't tally with the Total Purchased Quantity";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always4 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Stock
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Availability,Instock,Sales_Qty;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always5 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Stock
+				record event = on add or edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Purchased_Date = zoho.currentdate;
+										input.Sales_Qty = 0;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always6 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Stock
+				record event = on add or edit
+
+	on user input of Purchased_Qty
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Instock = input.Purchased_Qty;
+										input.Sales_Qty = 0;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_14 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Return_Product
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide Quantity_Added_to_Stock;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_15 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Return_Product
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Sales_ID != null)
+										{
+											getSalesObj = Add_Sales[ID == input.Sales_ID];
+											getReturnObj = Return_Product[Sales_ID == input.Sales_ID].sum(Qty_Returned);
+											qtySales = if(Return_Product[Sales_ID == input.Sales_ID].count() != 0,getSalesObj.Quantity - getReturnObj,getSalesObj.Quantity);
+											input.Product_Name = getSalesObj.Product_Name;
+											input.Warehouse_Code = getSalesObj.Warehouse_Code;
+											input.Returned_On = zoho.currentdate;
+											disable Warehouse_Code;
+											disable Product_Name;
+											disable Sales_ID;
+											input.Qty_Returned = qtySales;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_16 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Return_Product
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											getSalesID = Add_Sales[ID == input.Sales_ID];
+										getReturns = Return_Product[Sales_ID == input.Sales_ID].sum(Qty_Returned);
+										salesQty = if(getReturns != 0,getSalesID.Quantity - getReturns,getSalesID.Quantity);
+										getTotalSales = Add_Sales[Warehouse_Code == input.Warehouse_Code && Product_Name == input.Product_Name].sum(Quantity);
+										getTotalReturns = Return_Product[Warehouse_Code == input.Warehouse_Code && Product_Name == input.Product_Name].sum(Qty_Returned);
+										if(salesQty >= input.Qty_Returned)
+										{
+											stockDetails = Add_Stock[Product_Name == input.Product_Name && Warehouse_Code == input.Warehouse_Code];
+											returned_Qty = getTotalReturns + input.Qty_Returned;
+											stockDetails.Sales_Qty=getTotalSales - returned_Qty;
+										}
+										else
+										{
+											alert "Please check with the quantity you purchase and the quantity you Return";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_17 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Return_Product
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											openUrl("#Report:Return_Product_Details","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always7 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Return_Product
+				record event = on add or edit
+
+	field rules
+	{
+					actions  (Quantity_Added_to_Stock is not null)
+					{
+						show Quantity_Added_to_Stock;
+						disable Quantity_Added_to_Stock;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always8 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Return_Product
+				record event = on add or edit
+
+	on user input of Qty_Returned
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											getSalesID = Add_Sales[ID == input.Sales_ID];
+										getReturnObj = Return_Product[Sales_ID == input.Sales_ID].sum(Qty_Returned);
+										salesQty = if(getReturnObj != 0,getSalesID.Quantity - getReturnObj,getSalesID.Quantity);
+										if(salesQty < input.Qty_Returned)
+										{
+											alert "Quantity you entered is greater than the qty. you purchased ";
+										}
+										else if(input.Qty_Returned <= 0)
+										{
+											alert "Please enter minimum valid quantity";
+											input.Qty_Returned = 1;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_18 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Warehouse
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											firmDetails = Add_Firm[ID != 0];
+										if(firmDetails.count() == 0)
+										{
+											enable Firm_Name;
+										}
+										else
+										{
+											disable Firm_Name;
+											input.Firm_Name = firmDetails.ID;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_19 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Products
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Add_Stocks_subform.Product_Name;
+										hide Add_Stocks_subform.Sales_Qty;
+										hide Add_Stocks_subform.Availability;
+										hide Add_Stocks_subform.Instock;
+										getFirm = Add_Firm[ID != 0];
+										input.Firm_Name = getFirm.ID;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_20 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Products
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											for each  eachrow in input.Add_Stocks_subform
+										{
+											eachrow.Product_Name=input.ID;
+											insert into Purchase_Order
+											[
+												Warehouse_Code=eachrow.Warehouse_Code
+												Product_Name=input.ID
+												Purchased_Qty=eachrow.Purchased_Qty
+												Purchased_Date=eachrow.Purchased_Date
+												Added_User=zoho.loginuser
+												Instock=eachrow.Instock
+												Sales_Qty=eachrow.Sales_Qty
+											]
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_21 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Products
+				record event = on add
+
+	on user input of Add_Stocks_subform.Purchased_Date
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(row.Purchased_Date > zoho.currentdate)
+										{
+											row.Purchased_Date=null;
+											alert "Future Dates are not Allowed";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing9 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Products
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Add_Stocks_subform;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always9 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Products
+				record event = on add or edit
+
+	on user input of Add_Stocks_subform.Purchased_Qty
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(row.Purchased_Qty != null)
+										{
+											row.Instock=row.Purchased_Qty;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always10 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Products
+				record event = on add or edit
+
+	on user input of Add_Stocks_subform.Warehouse_Code
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											count = 0;
+										for each  eachrec in Add_Stocks_subform
+										{
+											if(row.Warehouse_Code == eachrec.Warehouse_Code)
+											{
+												count = count + 1;
+											}
+										}
+										if(count > 1)
+										{
+											alert "Sorry, you can not enter same warhouse code more than once here, if you want to add ... please kindly add in Add Stocks Form";
+											row.Warehouse_Code=null;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always11 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Products
+				record event = on add or edit
+
+	on add row of Add_Stocks_subform
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											row.Purchased_Date=zoho.currentdate;
+										temp = List:Int();
+										for each  eachrec in Add_Stocks_subform
+										{
+											if(eachrec.Warehouse_Code != null)
+											{
+												temp.add(eachrec.Warehouse_Code);
+											}
+										}
+										warehousecodeList = Add_Warehouse[ID != 0].ID.getAll();
+										warehousecodeList.removeall(temp.distinct());
+										row.Warehouse_Code:ui.add(warehousecodeList);
+										row.Sales_Qty=0;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_22 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Stock_stateless
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Purchased_Date = zoho.currentdate;
+										hide Sales_Qty;
+										hide Availability;
+										input.Sales_Qty = 0;
+										hide Instock;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_23 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Stock_stateless
+				record event = on add
+
+	on user input of Purchased_Qty
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Instock = input.Purchased_Qty;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_24 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Sales
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Sales_Date = zoho.currentdate;
+										hide Return_Products_Details;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_25 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Sales
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											getStockDetails = Add_Stock[Product_Name == input.Product_Name && Warehouse_Code == input.Warehouse_Code];
+										if(getStockDetails.count() != 0)
+										{
+											if(getStockDetails.Instock < input.Quantity)
+											{
+												alert "Please Enter Quantity less than " + getStockDetails.Instock;
+												cancel submit;
+											}
+											else if(getStockDetails.Instock == input.Quantity)
+											{
+												getStockDetails.Instock=getStockDetails.Instock - input.Quantity;
+												getStockDetails.Sales_Qty=getStockDetails.Sales_Qty + input.Quantity;
+												getStockDetails.Availability="Out of stock";
+											}
+											else
+											{
+												getStockDetails.Instock=getStockDetails.Instock - input.Quantity;
+												getStockDetails.Sales_Qty=getStockDetails.Sales_Qty + input.Quantity;
+											}
+										}
+										getpurchaseOrderRec = Purchase_Order[Product_Name == input.Product_Name && Warehouse_Code == input.Warehouse_Code].ID.getAll();
+										if(getpurchaseOrderRec.size() != 0)
+										{
+											bal_count = input.Quantity;
+											for each  eachPurchaseRec in getpurchaseOrderRec
+											{
+												getEachRec = Purchase_Order[ID == eachPurchaseRec];
+												if(getEachRec.Instock >= bal_count)
+												{
+													getEachRec.Instock=getEachRec.Instock - bal_count;
+													getEachRec.Sales_Qty=getEachRec.Sales_Qty + bal_count;
+													bal_count = 0;
+												}
+												else
+												{
+													bal_count = bal_count - getEachRec.Instock;
+													getEachRec.Sales_Qty=getEachRec.Sales_Qty + getEachRec.Instock;
+													getEachRec.Instock=0;
+												}
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_26 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Sales
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Product_Name != null && input.Warehouse_Code != null)
+										{
+											getStockDetails = Add_Stock[Warehouse_Code == input.Warehouse_Code && Product_Name == input.Product_Name];
+											if(getStockDetails.Instock <= input.Product_Name.Threshold_Value)
+											{
+												sendmail
+												[
+													from :zoho.adminuserid
+													to :zoho.adminuserid
+													subject :"Low Quantity Alert"
+													message :"Dear Admin, <br><div> The Product <b>" + input.Product_Name.Product_Name + "</b> from the Warehouse <b>" + input.Warehouse_Code.Warehouse_Name + " - " + input.Warehouse_Code.Warehouse_Code + "</b> reached it's threshold limit. It's time to restock the product. </div>"
+												]
+											}
+										}
+										getSales = Add_Sales[ID != 0];
+										if(getSales.count() <= 1)
+										{
+											openUrl("#Report:Sales_Details","same window");
+										}
+										else
+										{
+											openUrl("#Report:Stock_Details","same window");
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing10 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Sales
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Return_Products_Details;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin5 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_Sales
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											getSalesDetails = Add_Sales[ID == input.ID];
+										thisapp.Util.deleteSales(getSalesDetails,getSalesDetails.Quantity);
+										delete from Return_Product[Sales_ID == input.ID];
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_27 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Purchase_Order
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Purchased_Date = zoho.currentdate;
+										hide Instock;
+										hide Sales_Qty;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_28 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Purchase_Order
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Sales_Qty = 0;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_29 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Purchase_Order
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											getstocksDetails = Add_Stock[Product_Name == input.Product_Name && Warehouse_Code == input.Warehouse_Code];
+										if(getstocksDetails.count() == 0)
+										{
+											stockVar = insert into Add_Stock
+										[
+											Product_Name=input.Product_Name
+											Purchased_Qty=input.Purchased_Qty
+											Warehouse_Code=input.Warehouse_Code
+											Purchased_Date=input.Purchased_Date
+											Added_User=zoho.loginuser
+											Sales_Qty=0
+											Instock=input.Purchased_Qty
+											Availability="Instock"
+										];
+										}
+										else
+										{
+											getstocksDetails.Instock=getstocksDetails.Instock + input.Purchased_Qty;
+											getstocksDetails.Purchased_Qty=getstocksDetails.Purchased_Qty + input.Purchased_Qty;
+											if(getstocksDetails.Availability == "Out of stock")
+											{
+												getstocksDetails.Availability="Instock";
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing11 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Purchase_Order
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Instock;
+										hide Sales_Qty;
+										disable Warehouse_Code;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing12 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Purchase_Order
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(old.Purchased_Qty > input.Purchased_Qty)
+										{
+											differncePurchase = old.Purchased_Qty - input.Purchased_Qty;
+											getStockDetails = Add_Stock[Product_Name == input.Product_Name && Warehouse_Code == input.Warehouse_Code];
+											getStockDetails.Instock=getStockDetails.Instock - differncePurchase;
+											getStockDetails.Purchased_Qty=getStockDetails.Purchased_Qty - differncePurchase;
+											if(getStockDetails.Instock == 0)
+											{
+												getStockDetails.Availability="Out of stock";
+											}
+											else
+											{
+												getStockDetails.Availability="Instock";
+											}
+										}
+										else
+										{
+											differncePurchase = input.Purchased_Qty - old.Purchased_Qty;
+											getStockDetails = Add_Stock[Product_Name == input.Product_Name && Warehouse_Code == input.Warehouse_Code];
+											getStockDetails.Instock=getStockDetails.Instock + differncePurchase;
+											getStockDetails.Purchased_Qty=getStockDetails.Purchased_Qty + differncePurchase;
+											if(getStockDetails.Instock == 0)
+											{
+												getStockDetails.Availability="Out of stock";
+											}
+											else
+											{
+												getStockDetails.Availability="Instock";
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_while_Deletin1 as "Run Scripts - while Deleting a Record"
+			{
+				type =  form
+				form = Purchase_Order
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											getStockDetails = Add_Stock[Product_Name == input.Product_Name && Warehouse_Code == input.Warehouse_Code];
+										if(getStockDetails.Instock < input.Instock)
+										{
+											alert "Sorry! The Quantity you want to remove is not available in the stock.";
+											cancel delete;
+										}
+										else
+										{
+											if(input.Sales_Qty > 0)
+											{
+												alert "Purchased orders can be deleted only when sales are not done";
+												cancel delete;
+											}
+											else
+											{
+												getStockDetails.Instock=getStockDetails.Instock - input.Purchased_Qty;
+												getStockDetails.Purchased_Qty=getStockDetails.Purchased_Qty - input.Purchased_Qty;
+												if(getStockDetails.Instock == 0)
+												{
+													getStockDetails.Availability="Out of stock";
+												}
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always12 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Purchase_Order
+				record event = on add or edit
+
+	on user input of Purchased_Qty
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Instock = input.Purchased_Qty;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_30 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Staffs
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.permissions.assignUserInProfile(input.Email,"Staff");
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Email
+											subject :"Invitation to access '" + zoho.appname + "' "
+											message :"<div style='width:100%;display:inline-block;box-sizing:border-box;border:1px solid #ddd;'><div style='padding:2%;text-align:center;'>You've been invited to use an application built on Zoho Creator by \"" + zoho.adminuserid + "\".</div><div style='background: #efefef; padding: 20.0px;margin: 20.0px 0 10.0px;text-align:center;'><h2>" + zoho.appname.toUpperCase() + "</h2><div style='margin: 20.0px 0 10.0px;'><a style='padding:10px;background-color: rgb(62,149,205);text-decoration: none;color: rgb(255,255,255);font-size: 14.0px;' href='https://creator.zoho.com" + zoho.appuri + "' target='_blank'> Go to application </a></div></div></div>"
+										]
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing13 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Staffs
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Email != old.Email)
+										{
+											thisapp.permissions.assignUserInProfile(input.Email,"Staff");
+											thisapp.permissions.deleteuser(old.Email);
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :input.Email
+												subject :"Invitation to access '" + zoho.appname + "' "
+												message :"<div style='width:100%;display:inline-block;box-sizing:border-box;border:1px solid #ddd;'><div style='padding:2%;text-align:center;'>You've been invited to use an application built on Zoho Creator by \"" + zoho.adminuserid + "\".</div><div style='background: #efefef; padding: 20.0px;margin: 20.0px 0 10.0px;text-align:center;'><h2>" + zoho.appname.toUpperCase() + "</h2><div style='margin: 20.0px 0 10.0px;'><a style='padding:10px;background-color: rgb(62,149,205);text-decoration: none;color: rgb(255,255,255);font-size: 14.0px;' href='https://creator.zoho.com" + zoho.appuri + "' target='_blank'> Go to application </a></div></div></div>"
+											]
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin6 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_Staffs
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.permissions.deleteuser(input.Email);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_31 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Return_to_Stock
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						disable Returned_On;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_32 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Return_to_Stock
+				record event = on add
+
+	on user input of Quanity
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											getReturnDetails = Return_Product[ID == input.Returned_On];
+										if(input.Quanity != null && input.Quanity > getReturnDetails.Qty_Returned)
+										{
+											alert "Entered Quanity mismatches with the the Quanity Returned!";
+										}
+						)
+					}
+	}
+
+			}
+			Walkthrough_Step_3 as "Walkthrough - Step 1"
+			{
+				type =  form
+				form = Add_Firm
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											openUrl("#Form:Add_Products","same window");
+						)
+					}
+	}
+
+			}
+			Walkthrough_Step_4 as "Walkthrough - Step 2"
+			{
+				type =  form
+				form = Add_Products
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											getProds = Add_Products[ID != 0];
+										if(getProds.count() <= 1)
+										{
+											openUrl("#Report:Stock_Details","same window");
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin7 as "Run Scripts While Deleting a Record"
+			{
+				type =  form
+				form = Return_Product
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											stock_rec = Add_Stock[Product_Name == input.Product_Name && Warehouse_Code == input.Warehouse_Code];
+										stock_rec.Sales_Qty=stock_rec.Sales_Qty + input.Qty_Returned;
+										if(input.Quantity_Added_to_Stock != null)
+										{
+											stock_rec.Instock=stock_rec.Instock - input.Quantity_Added_to_Stock;
+										}
+						)
+					}
+	}
+
+			}
+		}
+		functions
+		{
+			Add_Sales as "Add Sales"
+			{
+				type =  functions
+				form = Add_Stock
+				on start
+				{
+					actions 
+					{
+					customActions.AddSales(Add_Stock);
+					}
+				}
+			}
+			Return_Product as "Return Product"
+			{
+				type =  functions
+				form = Add_Sales
+				on start
+				{
+					actions 
+					{
+					customActions.returnSales(ID);
+					}
+				}
+			}
+			Return_to_Stock as "Return to Stock"
+			{
+				type =  functions
+				form = Return_Product
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						openUrl("#Form:Return_to_Stock?Returned_On=" + input.ID,"popup window");
+					)
+					}
+				}
+			}
+			Edit_Firm as "Edit Firm"
+			{
+				type =  functions
+				form = Add_Warehouse
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						getFirmID = Add_Firm[ID != 0];
+										openUrl(zoho.appuri + "#Form:Add_Firm?recLinkID=" + getFirmID.ID + "&viewLinkName=Firm_Details","popup window");
+					)
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Staff"
+			{
+				name = "Staff"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "This profile will have access to all components in an application.\n"
+				ModulePermissions
+				{
+					Add_Firm
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Firm_Details={"View"}
+						}
+						FieldPermissions
+						{
+							Firm_Name{visibility:true,readonly:false}
+							Firm_Email_ID{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Warehouse_Details{visibility:true,readonly:false}
+						}
+					}
+					Add_Stock
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Stock_Details={"View","Edit"}
+							Stock_Report={"View","Edit"}
+						}
+						FieldPermissions
+						{
+							Availability{visibility:true,readonly:false}
+							Purchased_Date{visibility:true,readonly:false}
+							Instock{visibility:true,readonly:false}
+							Product_Name{visibility:true,readonly:false}
+							Purchased_Qty{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Warehouse_Code{visibility:true,readonly:false}
+							Sales_Qty{visibility:true,readonly:false}
+						}
+					}
+					Return_Product
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Return_Product_Details={"View","Edit"}
+						}
+						FieldPermissions
+						{
+							Sales_ID{visibility:true,readonly:false}
+							Quantity_Added_to_Stock{visibility:false,readonly:false}
+							Qty_Returned{visibility:true,readonly:false}
+							Product_Name{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Warehouse_Code{visibility:true,readonly:false}
+							Reason{visibility:true,readonly:false}
+							Returned_On{visibility:true,readonly:false}
+						}
+					}
+					Return_to_Stock
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Section{visibility:true,readonly:false}
+							Quanity{visibility:true,readonly:false}
+							Returned_On{visibility:true,readonly:false}
+						}
+					}
+					Add_Warehouse
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							All_Warehouses={"View","Edit"}
+						}
+						FieldPermissions
+						{
+							Warehouse_Address{visibility:false,readonly:false}
+							Warehouse_Incharge{visibility:false,readonly:false}
+							Firm_Name{visibility:true,readonly:false}
+							Warehouse_Name{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Warehouse_Code{visibility:true,readonly:false}
+						}
+					}
+					Add_Staffs
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Staffs_Details={"View"}
+						}
+						FieldPermissions
+						{
+							Phone_Number{visibility:false,readonly:false}
+							Email{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Warehouse_Code{visibility:true,readonly:false}
+							Name{visibility:false,readonly:false}
+						}
+					}
+					Purchase_Order
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Purchase_Details={"View","Edit"}
+						}
+						FieldPermissions
+						{
+							Purchased_Date{visibility:true,readonly:false}
+							Instock{visibility:true,readonly:false}
+							Product_Name{visibility:true,readonly:false}
+							Purchased_Qty{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Warehouse_Code{visibility:true,readonly:false}
+							Sales_Qty{visibility:true,readonly:false}
+						}
+					}
+					Add_Stock_stateless
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Availability{visibility:true,readonly:false}
+							Purchased_Date{visibility:true,readonly:false}
+							Instock{visibility:true,readonly:false}
+							Product_Name{visibility:true,readonly:false}
+							Purchased_Qty{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Warehouse_Code{visibility:true,readonly:false}
+							Sales_Qty{visibility:true,readonly:false}
+						}
+					}
+					Add_Products
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Product_Details={"View","Edit"}
+						}
+						FieldPermissions
+						{
+							Product_Description{visibility:true,readonly:false}
+							Product_Code{visibility:true,readonly:false}
+							Add_Stocks_subform{visibility:true,readonly:false}
+							Firm_Name{visibility:true,readonly:false}
+							Threshold_Value{visibility:false,readonly:false}
+							Product_Name{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Add_Sales
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Sales_Details={"View","Edit"}
+							Weekly_Sales={"View"}
+							Monthly_Sales={"View"}
+						}
+						FieldPermissions
+						{
+							Sales_summary{visibility:true,readonly:false}
+							Product_Name{visibility:true,readonly:false}
+							Quantity{visibility:true,readonly:false}
+							Return_Products_Details{visibility:true,readonly:false}
+							Sales_Date{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Warehouse_Code{visibility:true,readonly:false}
+						}
+					}
+					Dashboard
+					{
+						enabled = tab
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users.\n\n"
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 3
+		new theme color = 2
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-operation-4"
+    	icon theme = "blue"
+		icons style = outline
+	}
+
+	phone
+	{
+		section  Hidden
+		{
+			hide = true
+			form  Add_Firm
+			{
+				layout = left
+				hide = true
+			}
+			form  Add_Stock
+			{
+				layout = left
+				hide = true
+			}
+			form  Return_Product
+			{
+				layout = left
+				hide = true
+			}
+			form  Add_Warehouse
+			{
+				layout = left
+				hide = true
+			}
+			summary Firm_Details
+			{
+				hide = true
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Firm_Name as "Firm Name"
+								Firm_Email_ID as "Firm Email ID"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Firm_Name as "Firm Name"
+								Firm_Email_ID as "Firm Email ID"
+								Warehouse_Details.Warehouse_Code as "Warehouse Details"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Charts
+		{
+			hide = true
+			pivotchart Weekly_Sales
+			{
+				hide = true
+			}
+			pivotchart Monthly_Sales
+			{
+				hide = true
+			}
+			pivotchart Stock_Report
+			{
+				hide = true
+			}
+		}
+		section  Dashboard
+		{
+			page Dashboard
+			{
+			}
+		}
+		section  Firm
+		{
+			list All_Warehouses
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Warehouse_Name as "Warehouse Name"
+								Warehouse_Code as "Warehouse Code"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Print   	   
+										Delete   	   
+										Duplicate   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Firm_Name as "Firm Name"
+								Warehouse_Code as "Warehouse Code"
+								Warehouse_Name as "Warehouse Name"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Print 
+    		 				Delete 
+    		 				Duplicate 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Products
+		{
+			form  Add_Products
+			{
+				layout = left
+			}
+			list Product_Details
+			{
+				icon = "design-bullet-list-67"
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Product_Name as "Product Name"
+								Product_Description as "Product Description"
+								Product_Code as "Product Code"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Firm_Name as "Firm Name"
+								Product_Name as "Product Name"
+								Product_Code as "Product Code"
+								Product_Description as "Product Description"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Stocks
+		{
+			form  Add_Stock_stateless
+			{
+				layout = left
+			}
+			list Stock_Details
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Warehouse_Code as "Warehouse Code"
+								Product_Name as "Product Name"
+								Instock
+								Availability
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Print   	   
+										Delete   	   
+										Duplicate   	   
+										"Add Sales"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Add Sales"
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Add Sales"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Warehouse_Code as "Warehouse Code"
+								Product_Name as "Product Name"
+								Purchased_Date as "Purchased Date"
+								Instock
+								Sales_Qty as "Sales Qty"
+								Purchased_Qty as "Purchased Quantity"
+								Availability
+				"Add Sales"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Add Sales"
+    		 				Edit 
+    		 				Delete 
+    		 				Duplicate 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Stock_Outflow
+		{
+			displayname= "Stock Outfow"
+			form  Add_Sales
+			{
+				layout = left
+			}
+			list Sales_Details
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Product_Name as "Product Name"
+								Sales_summary as "Sales summary"
+								Warehouse_Code as "Warehouse Code"
+								Sales_Date as "Sales Date"
+								Quantity
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+										"Return"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Edit   	   
+										"Return"
+										Delete   	   
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Return"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Product_Name as "Product Name"
+								Warehouse_Code as "Warehouse Code"
+								Sales_Date as "Sales Date"
+								Quantity
+								Sales_summary as "Sales summary"
+								Return_Products_Details as "Return Details"
+				"Return"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+			 				"Return"
+    		 				Delete 
+    		 				Duplicate 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			list Return_Product_Details
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Sales_ID as "Sales ID"
+								Reason
+								Product_Name as "Product Name"
+								Warehouse_Code as "Warehouse Code"
+								Returned_On as "Returned On"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										"Return to Stock"
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Return to Stock"
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Return to Stock"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Sales_ID as "Sales ID"
+								Product_Name as "Product Name"
+								Warehouse_Code as "Warehouse Code"
+								Returned_On as "Returned On"
+								Reason
+								Qty_Returned as "Qty. Returned"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Print 
+			 				"Return to Stock"
+    		 				Delete 
+    		 				Duplicate 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Stock_Inflow
+		{
+			displayname= "Stock Inflow"
+			form  Purchase_Order
+			{
+				layout = left
+			}
+			list Purchase_Details
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Purchased_Date as "Purchased Date"
+								Product_Name as "Product Name"
+								Warehouse_Code as "Warehouse Code"
+								Purchased_Qty as "Purchased Qty"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+										Print   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Purchased_Date as "Purchased Date"
+								Product_Name as "Product Name"
+								Warehouse_Code as "Warehouse Code"
+								Purchased_Qty as "Purchased Qty"
+								Sales_Qty as "Sales Qty"
+								Instock
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Print 
+    		 				Delete 
+    		 				Duplicate 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Staffs
+		{
+			form  Add_Staffs
+			{
+				layout = left
+			}
+			custom Staffs_Details
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Warehouse_Code.Warehouse_Address as "Warehouse Address"
+								Warehouse_Code as "Warehouse Code"
+								Phone_Number as "Phone Number"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Print   	   
+										Delete   	   
+										Duplicate   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Email
+								Warehouse_Code as "Warehouse Code"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Print 
+    		 				Delete 
+    		 				Duplicate 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  page
+		{
+			displayname= "Return to Stock"
+			form  Return_to_Stock
+			{
+				layout = left
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = blue
+        	layout = onecolumncard
+		 	icons style = outline
+		}
+	}
+	tablet
+	{
+		section  Hidden
+		{
+			hide = true
+			form  Add_Firm
+			{
+				layout = left
+				hide = true
+			}
+			form  Add_Stock
+			{
+				layout = left
+				hide = true
+			}
+			form  Return_Product
+			{
+				layout = left
+				hide = true
+			}
+			form  Add_Warehouse
+			{
+				layout = left
+				hide = true
+			}
+			summary Firm_Details
+			{
+				hide = true
+			}
+		}
+		section  Charts
+		{
+			hide = true
+			pivotchart Weekly_Sales
+			{
+				hide = true
+			}
+			pivotchart Monthly_Sales
+			{
+				hide = true
+			}
+			pivotchart Stock_Report
+			{
+				hide = true
+			}
+		}
+		section  Dashboard
+		{
+			page Dashboard
+			{
+			}
+		}
+		section  Firm
+		{
+			list All_Warehouses
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Warehouse_Name as "Warehouse Name"
+								Warehouse_Code as "Warehouse Code"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Print   	   
+										Delete   	   
+										Duplicate   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Firm_Name as "Firm Name"
+								Warehouse_Code as "Warehouse Code"
+								Warehouse_Name as "Warehouse Name"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Print 
+    		 				Delete 
+    		 				Duplicate 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Products
+		{
+			form  Add_Products
+			{
+				layout = left
+			}
+			list Product_Details
+			{
+				icon = "design-bullet-list-67"
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Product_Name as "Product Name"
+								Product_Description as "Product Description"
+								Product_Code as "Product Code"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Firm_Name as "Firm Name"
+								Product_Name as "Product Name"
+								Product_Code as "Product Code"
+								Product_Description as "Product Description"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Stocks
+		{
+			form  Add_Stock_stateless
+			{
+				layout = left
+			}
+			list Stock_Details
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Warehouse_Code as "Warehouse Code"
+								Product_Name as "Product Name"
+								Instock
+								Availability
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Print   	   
+										Delete   	   
+										Duplicate   	   
+										"Add Sales"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Add Sales"
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Add Sales"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Warehouse_Code as "Warehouse Code"
+								Product_Name as "Product Name"
+								Purchased_Date as "Purchased Date"
+								Instock
+								Sales_Qty as "Sales Qty"
+								Purchased_Qty as "Purchased Quantity"
+								Availability
+				"Add Sales"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Add Sales"
+    		 				Edit 
+    		 				Delete 
+    		 				Duplicate 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Stock_Outflow
+		{
+			displayname= "Stock Outfow"
+			form  Add_Sales
+			{
+				layout = left
+			}
+			list Sales_Details
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Product_Name as "Product Name"
+								Sales_summary as "Sales summary"
+								Warehouse_Code as "Warehouse Code"
+								Sales_Date as "Sales Date"
+								Quantity
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+										"Return"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Edit   	   
+										"Return"
+										Delete   	   
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Return"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Product_Name as "Product Name"
+								Warehouse_Code as "Warehouse Code"
+								Sales_Date as "Sales Date"
+								Quantity
+								Sales_summary as "Sales summary"
+								Return_Products_Details as "Return Details"
+				"Return"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+			 				"Return"
+    		 				Delete 
+    		 				Duplicate 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			list Return_Product_Details
+			{
+			}
+		}
+		section  Stock_Inflow
+		{
+			displayname= "Stock Inflow"
+			form  Purchase_Order
+			{
+				layout = left
+			}
+			list Purchase_Details
+			{
+			}
+		}
+		section  Staffs
+		{
+			form  Add_Staffs
+			{
+				layout = left
+			}
+			custom Staffs_Details
+			{
+			}
+		}
+		section  page
+		{
+			displayname= "Return to Stock"
+			form  Return_to_Stock
+			{
+				layout = left
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = blue
+        	layout = onecolumncard
+		 	icons style = outline
+		}
+	}
+	translation
+{
+"{\"Language_Settings\" : {\"LANGAGUE_WITH_LOGIN\":\"user\"},\"de\":{\"FormButton.Add_Sales.cancel\":\" Stornieren \",\"FormField.Add_Stock.Product_Name\":\" Produktname \",\"FormField.Add_Products.Product_Code\":\" Produktcode \",\"FormField.Add_Stock_stateless.Warehouse_Code\":\" Lagercode \",\"FormButton.Return_Product.submit\":\" einreichen \",\"ReportField.Product_Details.Product_Name\":\" Produktname \",\"Form.Return_Product\":\" Produkt zurücksenden \",\"FormField.Return_Product.Returned_On\":\" Angeschaltet \",\"FormField.Return_Product.Record_Status\":\" Aufnahmestatus \",\"FormButton.Add_Products.cancel\":\" Stornieren \",\"Languages List.zh-TW\":\" Chinesische Tradition \",\"Languages List.ja\":\" japanisch \",\"FormField.Return_Product.Qty_Returned\":\" Menge Ist zurückgekommen \",\"ReportField.Purchase_Details.Sales_Qty\":\" Verkaufsmenge \",\"FormField.Purchase_Order.Purchased_Date\":\" Gekauftes Datum \",\"FormField.Add_Firm.Warehouse_Details\":\" Lagerdetails \",\"FormField.Add_Products.Added_User\":\" Benutzer hinzugefügt \",\"FormButton.Add_Warehouse.update\":\" Aktualisieren \",\"FormField.Add_Stock.Modified_User\":\" Geänderter Benutzer \",\"FormField.Add_Warehouse.Record_Status\":\" Aufnahmestatus \",\"Languages List.ku\":\" kurdisch \",\"Section.Firm\":\" Feste \",\"FormField.Add_Warehouse.Modified_Time\":\" Geänderte Zeit \",\"Report.Stock_Report\":\" Bestandsbericht \",\"Languages List.km\":\" Khmer \",\"Languages List.ko\":\" Koreanisch \",\"Languages List.kn\":\" Kannada \",\"FormButton.Purchase_Order.cancel\":\" Stornieren \",\"Languages List.ka\":\" georgisch \",\"FormField.Purchase_Order.Modified_User\":\" Geänderter Benutzer \",\"Report.Monthly_Sales\":\" Monatsumsatz \",\"FormField.Add_Staffs.suffix\":\" Suffix \",\"ReportField.Sales_Details.Return_Products_Details\":\" Rücksendeinformationen \",\"CompositeSubFields.Add_Staffs.Name.first_name\":\" Vorname \",\"Languages List.hu\":\" ungarisch \",\"Languages List.yi\":\" Jiddisch \",\"FormButton.Add_Sales.reset\":\" Zurücksetzen \",\"Languages List.hy\":\" Armenisch \",\"FormButton.Return_Product.reset\":\" Zurücksetzen \",\"FormButton.Add_Firm.cancel\":\" Stornieren \",\"Form.Add_Staffs\":\" Mitarbeiter hinzufügen \",\"Languages List.hr\":\" kroatisch \",\"FormField.Add_Staffs.Name\":\" Name \",\"FormField.Add_Firm.ID\":\" ICH WÜRDE \",\"FormField.Add_Warehouse.ID\":\" ICH WÜRDE \",\"Languages List.hi\":\" Hindi \",\"Report.Staffs_Details\":\" Mitarbeiter Details \",\"FormField.Return_Product.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"ReportField.All_Warehouses.address_line_12\":\" Lageradresse \",\"FormField.Return_to_Stock.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Return_Product.Added_User\":\" Benutzer hinzugefügt \",\"Languages List.zh\":\" Chinesisch \",\"Languages List.iw\":\" hebräisch \",\"Form.Add_Stock\":\"Stock hinzufügen\",\"Report.Weekly_Sales\":\" Wöchentliche Verkäufe \",\"FormField.Return_to_Stock.Modified_Time\":\" Geänderte Zeit \",\"Form.Add_Sales\":\" Fügen Sie Verkäufe hinzu \",\"FormButton.Add_Staffs.update\":\" Aktualisieren \",\"FormField.Add_Firm.Record_Status\":\" Aufnahmestatus \",\"Section.Products\":\" Produkte \",\"FormField.Return_to_Stock.Section\":\" Sektion \",\"Languages List.is\":\" isländisch \",\"FormField.Add_Sales.Modified_User\":\" Geänderter Benutzer \",\"Languages List.it\":\" Italienisch \",\"FormField.Add_Stock_stateless.Sales_Qty\":\" Verkaufsmenge \",\"FormField.Add_Staffs.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Stock.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Add_Stock_stateless.ID\":\" ICH WÜRDE \",\"ReportField.Purchase_Details.Purchased_Qty\":\" Gekaufte Menge \",\"FormField.Purchase_Order.Sales_Qty\":\" Verkaufsmenge \",\"FormField.Purchase_Order.Instock\":\" Auf Lager \",\"CustomAction.Sales_Details.Return_Product\":\" Rückkehr \",\"Form.Add_Firm\":\" Firma hinzufügen \",\"FormField.Add_Products.Threshold_Value\":\"Schwellwert\",\"FormField.Add_Products.Modified_User\":\" Geänderter Benutzer \",\"FormField.Add_Staffs.Record_Status\":\" Aufnahmestatus \",\"FormField.Add_Staffs.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Add_Firm.Modified_User\":\" Geänderter Benutzer \",\"FormButton.Add_Firm.update\":\" Aktualisieren \",\"FormField.Add_Stock_stateless.Modified_User\":\" Geänderter Benutzer \",\"FormField.Add_Stock_stateless.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"ReportField.Product_Details.Product_Code\":\" Produktcode \",\"FormField.Add_Sales.Product_Name\":\" Produktname \",\"FormButton.Add_Products.reset\":\" Zurücksetzen \",\"Languages List.nl\":\" Niederländisch \",\"FormButton.Add_Staffs.reset\":\" Zurücksetzen \",\"Languages List.no\":\" norwegisch \",\"FormField.Add_Warehouse.Section\":\" Sektion \",\"FormField.Add_Sales.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Add_Stock_stateless.Purchased_Date\":\" Gekauftes Datum \",\"ReportField.All_Warehouses.Firm_Name\":\" Firmenname \",\"ReportField.Return_Product_Details.Quantity_Added_to_Stock\":\"Zu Lagerbestand hinzugefügte Menge\",\"FormButton.Add_Staffs.cancel\":\" Stornieren \",\"Form.Add_Products\":\" Produkte hinzufügen \",\"FormField.Purchase_Order.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Add_Staffs.Modified_User\":\" Geänderter Benutzer \",\"FormField.Add_Staffs.Phone_Number\":\" Telefonnummer \",\"FormField.Return_Product.Reason\":\" Grund \",\"Report.Purchase_Details\":\" Einzelheiten zum Kauf \",\"FormField.Add_Sales.Sales_Date\":\" Verkaufsdatum \",\"ReportField.Return_Product_Details.Product_Name\":\" Produktname \",\"FormField.Add_Sales.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Return_Product.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"ReportField.Stock_Details.Instock\":\" Auf Lager \",\"FormField.Return_to_Stock.Record_Status\":\" Aufnahmestatus \",\"ReportField.All_Warehouses.Warehouse_Code\":\" Lagercode \",\"Section.Dashboard\":\" Instrumententafel \",\"FormField.Add_Firm.Section\":\"Sektion\",\"Form.Add_Warehouse\":\" Lager hinzufügen \",\"FormButton.Add_Products.update\":\" Aktualisieren \",\"ReportField.Stock_Details.Sales_Qty\":\" Verkaufsmenge \",\"ReportField.Purchase_Details.Warehouse_Code\":\" Lagercode \",\"FormButton.Add_Sales.submit\":\" einreichen \",\"FormField.Add_Products.Product_Description\":\" Produktbeschreibung \",\"FormField.Return_to_Stock.Returned_On\":\" Angeschaltet \",\"FormField.Add_Staffs.last_name\":\" Familienname, Nachname \",\"Languages List.lt\":\" litauisch \",\"FormField.Add_Sales.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Stock.Purchased_Date\":\" Gekauftes Datum \",\"FormField.Add_Warehouse.Firm_Name\":\" Firmenname \",\"Languages List.lv\":\" lettisch \",\"Report.Firm_Details\":\" Feste Details \",\"CompositeSubFields.Add_Warehouse.Warehouse_Address.state_province2\":\" Staat / Provinz \",\"FormField.Add_Products.Section\":\" Sektion \",\"FormField.Add_Warehouse.Added_Time\":\" Zeit hinzugefügt \",\"ReportField.Staffs_Details.first_name\":\" Name \",\"Languages List.lo\":\" Laothian \",\"Languages List.la\":\" Latein \",\"FormField.Return_to_Stock.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Stock.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Purchase_Order.Purchased_Qty\":\" Gekaufte Menge \",\"FormField.Return_Product.Modified_Time\":\" Geänderte Zeit \",\"CustomAction.Return_Product_Details.Return_to_Stock\":\" Benutzerdefinierter Aktions-Workflow \",\"FormField.Add_Sales.Return_Products_Details\":\" Rücksendeinformationen \",\"ReportField.Firm_Details.Firm_Email_ID\":\" Firmen-E-Mail-ID \",\"ReportField.Return_Product_Details.Warehouse_Code\":\" Lagercode \",\"Languages List.ms\":\" malaiisch \",\"FormField.Add_Firm.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"Languages List.mr\":\" Marathi \",\"FormField.Return_Product.Warehouse_Code\":\" Lagercode \",\"Languages List.mt\":\" maltesisch \",\"FormField.Add_Stock_stateless.Added_User\":\" Benutzer hinzugefügt \",\"ReportField.Sales_Details.Product_Name\":\" Produktname \",\"Languages List.mk\":\" mazedonisch \",\"FormField.Return_Product.Product_Name\":\" Produktname \",\"Form.Purchase_Order\":\" Bestellung \",\"FormField.Purchase_Order.Warehouse_Code\":\" Lagercode \",\"Section.Staffs\":\" Mitarbeiter \",\"FormField.Add_Firm.Added_Time\":\" Zeit hinzugefügt \",\"ReportField.Sales_Details.Warehouse_Code\":\" Lagercode \",\"PicklistOption.Add_Warehouse.country2.1\":\" Wahl 1 \",\"ReportField.Product_Details.Firm_Name\":\" Firmenname \",\"PicklistOption.Add_Warehouse.country2.2\":\" Wahl 2 \",\"FormField.Add_Sales.Quantity\":\" Menge \",\"ReportField.Return_Product_Details.Qty_Returned\":\" Menge Ist zurückgekommen \",\"FormField.Return_Product.Sales_ID\":\" Verkaufs-ID \",\"Report.Product_Details\":\" Produktdetails \",\"FormField.Add_Staffs.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Languages List.bg\":\" bulgarisch \",\"FormButton.Add_Firm.submit\":\" einreichen \",\"FormField.Add_Warehouse.Warehouse_Code\":\" Lagercode \",\"FormField.Add_Firm.Firm_Name\":\" Firmenname \",\"FormField.Return_Product.Section\":\"Sektion\",\"Languages List.bn\":\" Bengali \",\"Languages List.ro\":\" rumänisch \",\"FormField.Purchase_Order.Record_Status\":\" Aufnahmestatus \",\"Languages List.be\":\" Belarussisch \",\"Languages List.ru\":\" Russisch \",\"ReportField.Sales_Details.Sales_Date\":\" Verkaufsdatum \",\"FormField.Add_Products.Added_Time\":\" Zeit hinzugefügt \",\"CompositeSubFields.Add_Warehouse.Warehouse_Address.address_line_12\":\" Anschrift Zeile 1 \",\"Languages List.az\":\" Aserbaidschanisch \",\"FormField.Add_Stock_stateless.Instock\":\" Auf Lager \",\"FormField.Add_Products.Firm_Name\":\" Firmenname \",\"Languages List.ta\":\" Tamilisch \",\"ReportField.All_Warehouses.Warehouse_Name\":\" Lagername \",\"Languages List.cs\":\" Tschechisch \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" Thai \",\"FormField.Add_Stock.Warehouse_Code\":\" Lagercode \",\"Section.Stock_Inflow\":\" Lagerzufluss \",\"FormField.Add_Warehouse.Modified_User\":\" Geänderter Benutzer \",\"FormField.Add_Stock.Modified_Time\":\" Geänderte Zeit \",\"ReportField.Purchase_Details.Purchased_Date\":\" Gekauftes Datum \",\"FormButton.Return_Product.cancel\":\" Stornieren \",\"ReportField.Return_Product_Details.Sales_ID\":\" Verkaufs-ID \",\"Languages List.sq\":\" albanisch \",\"Languages List.ca\":\" katalanisch \",\"FormField.Add_Staffs.ID\":\" ICH WÜRDE \",\"Report.Stock_Details\":\" Lager Details \",\"Languages List.sw\":\" Swahili \",\"FormField.Add_Firm.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormButton.Add_Sales.update\":\" Aktualisieren \",\"Languages List.sv\":\" Schwedisch \",\"FormField.Add_Stock_stateless.Purchased_Qty\":\" Gekaufte Menge \",\"CompositeSubFields.Add_Warehouse.Warehouse_Address.address_line_22\":\" Adresszeile 2 \",\"FormField.Add_Products.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"Languages List.sk\":\" slowakisch \",\"FormField.Purchase_Order.Modified_Time\":\" Geänderte Zeit \",\"Languages List.sl\":\" Slowenisch \",\"FormField.Add_Warehouse.state_province2\":\" Staat / Provinz \",\"FormField.Add_Stock.Instock\":\" Auf Lager \",\"ReportField.Staffs_Details.Warehouse_Code\":\" Lageradresse \",\"FormButton.Purchase_Order.submit\":\" einreichen \",\"FormField.Add_Sales.Record_Status\":\" Aufnahmestatus \",\"App.inventory-management\":\"Bestandsverwaltung \",\"FormField.Add_Warehouse.district_city2\":\" Stadtteil \",\"ReportField.Purchase_Details.Product_Name\":\" Produktname \",\"FormButton.Add_Stock.update\":\" Aktualisieren \",\"FormButton.Add_Products.submit\":\" einreichen \",\"FormField.Add_Products.Record_Status\":\" Aufnahmestatus \",\"FormField.Return_to_Stock.Quanity\":\" Quanität \",\"Languages List.pt\":\" Portugiesisch \",\"ReportField.Sales_Details.Sales_summary\":\" Verkaufszusammenfassung \",\"FormField.Add_Staffs.Email\":\" Email \",\"FormButton.Purchase_Order.reset\":\" Zurücksetzen \",\"ReportField.Firm_Details.Firm_Name\":\" Firmenname \",\"FormField.Return_Product.Added_Time\":\" Zeit hinzugefügt \",\"FormButton.Add_Warehouse.cancel\":\" Stornieren \",\"Languages List.pl\":\" Polieren \",\"FormButton.Add_Staffs.submit\":\" einreichen \",\"FormField.Add_Products.Modified_Time\":\" Geänderte Zeit \",\"FormField.Return_to_Stock.Modified_User\":\" Geänderter Benutzer \",\"CompositeSubFields.Add_Staffs.Name.prefix\":\" Präfix \",\"CustomAction.Stock_Details.Add_Sales\":\" Fügen Sie Verkäufe hinzu \",\"ReportField.Stock_Details.Purchased_Date\":\" Gekauftes Datum \",\"Languages List.ar\":\" Arabisch \",\"ReportField.Stock_Details.Purchased_Qty\":\" Gekaufte Menge \",\"Languages List.af\":\" Afrikaans \",\"FormField.Purchase_Order.ID\":\" ICH WÜRDE \",\"CompositeSubFields.Add_Staffs.Name.suffix\":\" Suffix \",\"FormField.Add_Sales.Modified_Time\":\" Geänderte Zeit \",\"FormField.Add_Staffs.first_name\":\" Vorname \",\"FormField.Add_Staffs.Added_Time\":\" Zeit hinzugefügt \",\"FormButton.Purchase_Order.update\":\" Aktualisieren \",\"FormField.Add_Products.Product_Name\":\" Produktname \",\"CompositeSubFields.Add_Warehouse.Warehouse_Address.district_city2\":\" Stadtteil \",\"Report.All_Warehouses\":\" Alle Lagerhäuser \",\"FormField.Add_Stock.Sales_Qty\":\" Verkaufsmenge \",\"ReportField.Purchase_Details.Instock\":\" Auf Lager \",\"FormButton.Add_Firm.reset\":\" Zurücksetzen \",\"FormField.Return_to_Stock.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"ReportField.Return_Product_Details.Returned_On\":\" Angeschaltet \",\"FormField.Add_Sales.Sales_summary\":\" Verkaufszusammenfassung \",\"FormField.Add_Stock.Purchased_Qty\":\" Gekaufte Menge \",\"FormField.Purchase_Order.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Return_to_Stock.ID\":\" ICH WÜRDE \",\"CompositeSubFields.Add_Warehouse.Warehouse_Address.postal_Code2\":\" Postleitzahl \",\"FormField.Return_Product.ID\":\" ICH WÜRDE \",\"PicklistOption.Add_Stock_stateless.Availability.2\":\" Ausverkauft \",\"FormButton.Add_Warehouse.reset\":\" Zurücksetzen \",\"FormField.Add_Stock_stateless.Product_Name\":\" Produktname \",\"PicklistOption.Add_Stock_stateless.Availability.1\":\" Auf Lager \",\"Languages List.fr\":\" Französisch \",\"FormField.Add_Firm.Modified_Time\":\" Geänderte Zeit \",\"FormButton.Add_Warehouse.submit\":\" einreichen \",\"Section.Stocks\":\" Bestände \",\"FormField.Add_Firm.Firm_Email_ID\":\" Firmen-E-Mail-ID \",\"ReportField.Firm_Details.Warehouse_Details.Warehouse_Code\":\" Lagerdetails \",\"FormField.Add_Sales.Section\":\" Sektion \",\"Languages List.fi\":\" Finnese \",\"FormField.Add_Warehouse.Warehouse_Address\":\" Lageradresse \",\"FormField.Add_Stock_stateless.Record_Status\":\" Aufnahmestatus \",\"ReportField.Return_Product_Details.Reason\":\" Grund \",\"FormButton.Return_Product.update\":\" Aktualisieren \",\"FormButton.Add_Stock.cancel\":\" Stornieren \",\"FormField.Add_Warehouse.country2\":\" Land \",\"FormField.Purchase_Order.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Add_Staffs.Warehouse_Code\":\" Lagercode \",\"Languages List.fa\":\" persisch \",\"FormField.Add_Staffs.Modified_Time\":\" Geänderte Zeit \",\"Languages List.gu\":\" Gujarati \",\"FormField.Add_Warehouse.address_line_12\":\" Anschrift Zeile 1 \",\"FormField.Add_Warehouse.Warehouse_Name\":\" Lagername \",\"FormField.Purchase_Order.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Sales.Warehouse_Code\":\" Lagercode \",\"FormButton.Add_Stock_stateless.Submit\":\" einreichen \",\"Languages List.gl\":\" galizisch \",\"Section.Charts\":\" Diagramme \",\"FormField.Add_Staffs.Section\":\" Sektion \",\"ReportField.Staffs_Details.Email\":\" Email \",\"Form.Return_to_Stock\":\" Zurück zum Lager \",\"PicklistOption.Add_Staffs.prefix.1\":\" Herr. \",\"FormField.Add_Staffs.prefix\":\" Präfix \",\"PicklistOption.Add_Staffs.prefix.2\":\" Frau. \",\"PicklistOption.Add_Staffs.prefix.3\":\" Frau. \",\"FormField.Add_Products.Add_Stocks_subform\":\" Fügen Sie Aktien hinzu \",\"FormField.Add_Warehouse.latitude2\":\" Breite \",\"FormField.Add_Stock_stateless.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"ReportField.Stock_Details.Availability\":\" Verfügbarkeit \",\"Languages List.ga\":\" irisch \",\"FormField.Add_Warehouse.address_line_22\":\" Adresszeile 2 \",\"FormButton.Add_Stock.reset\":\" Zurücksetzen \",\"Section.Hidden\":\" Versteckt \",\"FormField.Add_Stock_stateless.Availability\":\" Verfügbarkeit \",\"FormField.Return_to_Stock.Added_Time\":\" Zeit hinzugefügt \",\"Section.page\":\" Zurück zum Lager \",\"ReportField.Stock_Details.Product_Name\":\" Produktname \",\"Form.Add_Stock_stateless\":\" Stock hinzufügen \",\"ReportField.Stock_Details.Warehouse_Code\":\" Lagercode \",\"FormField.Add_Sales.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Add_Stock.ID\":\" ICH WÜRDE \",\"Languages List.tr\":\" Türkisch \",\"Languages List.da\":\" dänisch \",\"FormButton.Add_Stock.submit\":\" einreichen \",\"Languages List.de\":\" Deutsche \",\"FormField.Add_Stock.Section\":\"Sektion\",\"FormField.Add_Warehouse.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"Report.Sales_Details\":\" Verkaufsdetails \",\"FormField.Add_Warehouse.Added_User\":\" Benutzer hinzugefügt \",\"PicklistOption.Add_Stock.Availability.2\":\" Ausverkauft \",\"Languages List.cy\":\" Walisisch \",\"PicklistOption.Add_Stock.Availability.1\":\" Auf Lager \",\"FormField.Add_Warehouse.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Languages List.tl\":\" Filipino \",\"FormField.Add_Stock.Availability\":\" Verfügbarkeit \",\"FormButton.Add_Stock_stateless.Reset\":\" Zurücksetzen \",\"CompositeSubFields.Add_Warehouse.Warehouse_Address.country2\":\" Land \",\"Section.Stock_Outflow\":\" Lager-Outfow \",\"Languages List.es\":\" Spanisch \",\"ReportField.Sales_Details.Quantity\":\" Menge \",\"ReportField.Product_Details.Product_Description\":\" Produktbeschreibung \",\"Languages List.eu\":\" baskisch \",\"Languages List.et\":\" estnisch \",\"CompositeSubFields.Add_Staffs.Name.last_name\":\" Familienname, Nachname \",\"Languages List.vi\":\" Vietnamesisch \",\"FormField.Add_Products.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormButton.Return_to_Stock.Return_field\":\" Rückkehr \",\"Languages List.el\":\" griechisch \",\"Languages List.eo\":\" Esperanto \",\"FormField.Add_Stock.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Purchase_Order.Product_Name\":\" Produktname \",\"Languages List.en\":\" Englisch \",\"Report.Return_Product_Details\":\" Produktdaten zurücksenden \",\"FormField.Add_Stock_stateless.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Return_Product.Quantity_Added_to_Stock\":\"Zu Lagerbestand hinzugefügte Menge\",\"Languages List.ur\":\" Urdu \",\"FormField.Add_Stock.Record_Status\":\" Aufnahmestatus \",\"ReportField.Staffs_Details.Phone_Number\":\" Telefonnummer \",\"FormField.Add_Stock.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Add_Warehouse.postal_Code2\":\" Postleitzahl \",\"FormField.Add_Firm.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Return_Product.Modified_User\":\" Geänderter Benutzer \",\"FormField.Add_Products.ID\":\" ICH WÜRDE \",\"FormField.Add_Sales.ID\":\" ICH WÜRDE \",\"FormField.Add_Stock_stateless.Modified_Time\":\" Geänderte Zeit \",\"FormField.Add_Warehouse.longitude2\":\" Längengrad \"},\"fr\":{\"FormButton.Add_Sales.cancel\":\" Annuler \",\"FormField.Add_Stock.Product_Name\":\" Nom du produit \",\"FormField.Add_Products.Product_Code\":\" Code produit \",\"FormField.Add_Stock_stateless.Warehouse_Code\":\" Code d'entrepôt \",\"FormButton.Return_Product.submit\":\" Soumettre \",\"ReportField.Product_Details.Product_Name\":\" Nom du produit \",\"Form.Return_Product\":\" Retourner le produit \",\"FormField.Return_Product.Returned_On\":\" Retourné sur \",\"FormField.Return_Product.Record_Status\":\" Statut d'enregistrement \",\"FormButton.Add_Products.cancel\":\" Annuler \",\"Languages List.zh-TW\":\" Chinois traditionnel \",\"Languages List.ja\":\" Japonais \",\"FormField.Return_Product.Qty_Returned\":\" Qté Revenu \",\"ReportField.Purchase_Details.Sales_Qty\":\" Quantité de vente \",\"FormField.Purchase_Order.Purchased_Date\":\" Date d'achat \",\"FormField.Add_Firm.Warehouse_Details\":\" Détails de l'entrepôt \",\"FormField.Add_Products.Added_User\":\" Utilisateur ajouté \",\"FormButton.Add_Warehouse.update\":\" Mettre à jour \",\"FormField.Add_Stock.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Warehouse.Record_Status\":\" Statut d'enregistrement \",\"Languages List.ku\":\" kurde \",\"Section.Firm\":\" Raffermir \",\"FormField.Add_Warehouse.Modified_Time\":\" Heure modifiée \",\"Report.Stock_Report\":\" Rapport de stock \",\"Languages List.km\":\" Khmer \",\"Languages List.ko\":\" coréen \",\"Languages List.kn\":\" Kannada \",\"FormButton.Purchase_Order.cancel\":\" Annuler \",\"Languages List.ka\":\" géorgien \",\"FormField.Purchase_Order.Modified_User\":\" Utilisateur modifié \",\"Report.Monthly_Sales\":\" Ventes mensuelles \",\"FormField.Add_Staffs.suffix\":\" Suffixe \",\"ReportField.Sales_Details.Return_Products_Details\":\" Retour Détails \",\"CompositeSubFields.Add_Staffs.Name.first_name\":\" Prénom \",\"Languages List.hu\":\" hongrois \",\"Languages List.yi\":\" yiddish \",\"FormButton.Add_Sales.reset\":\" Réinitialiser \",\"Languages List.hy\":\" arménien \",\"FormButton.Return_Product.reset\":\" Réinitialiser \",\"FormButton.Add_Firm.cancel\":\" Annuler \",\"Form.Add_Staffs\":\" Ajouter des équipes \",\"Languages List.hr\":\" croate \",\"FormField.Add_Staffs.Name\":\" prénom \",\"FormField.Add_Firm.ID\":\" ID \",\"FormField.Add_Warehouse.ID\":\" ID \",\"Languages List.hi\":\" hindi \",\"Report.Staffs_Details\":\" Détails du personnel \",\"FormField.Return_Product.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"ReportField.All_Warehouses.address_line_12\":\" Adresse de l'entrepôt \",\"FormField.Return_to_Stock.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Return_Product.Added_User\":\" Utilisateur ajouté \",\"Languages List.zh\":\" chinois \",\"Languages List.iw\":\" hébreu \",\"Form.Add_Stock\":\"Ajouter un stock\",\"Report.Weekly_Sales\":\" Ventes hebdomadaires \",\"FormField.Return_to_Stock.Modified_Time\":\" Heure modifiée \",\"Form.Add_Sales\":\" Ajouter des ventes \",\"FormButton.Add_Staffs.update\":\" Mettre à jour \",\"FormField.Add_Firm.Record_Status\":\" Statut d'enregistrement \",\"Section.Products\":\" Des produits \",\"FormField.Return_to_Stock.Section\":\" Section \",\"Languages List.is\":\" islandais \",\"FormField.Add_Sales.Modified_User\":\" Utilisateur modifié \",\"Languages List.it\":\" italien \",\"FormField.Add_Stock_stateless.Sales_Qty\":\" Quantité de vente \",\"FormField.Add_Staffs.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Stock.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Add_Stock_stateless.ID\":\" ID \",\"ReportField.Purchase_Details.Purchased_Qty\":\" Quantité achetée \",\"FormField.Purchase_Order.Sales_Qty\":\" Quantité de vente \",\"FormField.Purchase_Order.Instock\":\" En stock \",\"CustomAction.Sales_Details.Return_Product\":\" Revenir \",\"Form.Add_Firm\":\" Ajouter une entreprise \",\"FormField.Add_Products.Threshold_Value\":\"Valeur de seuil\",\"FormField.Add_Products.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Staffs.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_Staffs.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Add_Firm.Modified_User\":\" Utilisateur modifié \",\"FormButton.Add_Firm.update\":\" Mettre à jour \",\"FormField.Add_Stock_stateless.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Stock_stateless.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"ReportField.Product_Details.Product_Code\":\" Code produit \",\"FormField.Add_Sales.Product_Name\":\" Nom du produit \",\"FormButton.Add_Products.reset\":\" Réinitialiser \",\"Languages List.nl\":\" néerlandais \",\"FormButton.Add_Staffs.reset\":\" Réinitialiser \",\"Languages List.no\":\" norvégien \",\"FormField.Add_Warehouse.Section\":\" Section \",\"FormField.Add_Sales.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Add_Stock_stateless.Purchased_Date\":\" Date d'achat \",\"ReportField.All_Warehouses.Firm_Name\":\" Nom de l'entreprise \",\"ReportField.Return_Product_Details.Quantity_Added_to_Stock\":\"Quantité ajoutée au stock\",\"FormButton.Add_Staffs.cancel\":\" Annuler \",\"Form.Add_Products\":\" Ajouter des produits \",\"FormField.Purchase_Order.Added_Time\":\" Temps ajouté \",\"FormField.Add_Staffs.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Staffs.Phone_Number\":\" Numéro de téléphone \",\"FormField.Return_Product.Reason\":\" Raison \",\"Report.Purchase_Details\":\" Les détails d'achat \",\"FormField.Add_Sales.Sales_Date\":\" Date de vente \",\"ReportField.Return_Product_Details.Product_Name\":\" Nom du produit \",\"FormField.Add_Sales.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Return_Product.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"ReportField.Stock_Details.Instock\":\" En stock \",\"FormField.Return_to_Stock.Record_Status\":\" Statut d'enregistrement \",\"ReportField.All_Warehouses.Warehouse_Code\":\" Code d'entrepôt \",\"Section.Dashboard\":\" Tableau de bord \",\"FormField.Add_Firm.Section\":\"Section\",\"Form.Add_Warehouse\":\" Ajouter un entrepôt \",\"FormButton.Add_Products.update\":\" Mettre à jour \",\"ReportField.Stock_Details.Sales_Qty\":\" Quantité de vente \",\"ReportField.Purchase_Details.Warehouse_Code\":\" Code d'entrepôt \",\"FormButton.Add_Sales.submit\":\" Soumettre \",\"FormField.Add_Products.Product_Description\":\" Description du produit \",\"FormField.Return_to_Stock.Returned_On\":\" Retourné sur \",\"FormField.Add_Staffs.last_name\":\" Nom de famille \",\"Languages List.lt\":\" lituanien \",\"FormField.Add_Sales.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Stock.Purchased_Date\":\" Date d'achat \",\"FormField.Add_Warehouse.Firm_Name\":\" Nom de l'entreprise \",\"Languages List.lv\":\" letton \",\"Report.Firm_Details\":\" Détails de l'entreprise \",\"CompositeSubFields.Add_Warehouse.Warehouse_Address.state_province2\":\" Etat / Province \",\"FormField.Add_Products.Section\":\" Section \",\"FormField.Add_Warehouse.Added_Time\":\" Temps ajouté \",\"ReportField.Staffs_Details.first_name\":\" prénom \",\"Languages List.lo\":\" Laothian \",\"Languages List.la\":\" Latin \",\"FormField.Return_to_Stock.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Stock.Added_User\":\" Utilisateur ajouté \",\"FormField.Purchase_Order.Purchased_Qty\":\" Quantité achetée \",\"FormField.Return_Product.Modified_Time\":\" Heure modifiée \",\"CustomAction.Return_Product_Details.Return_to_Stock\":\" Workflow d'action personnalisé \",\"FormField.Add_Sales.Return_Products_Details\":\" Retour Détails \",\"ReportField.Firm_Details.Firm_Email_ID\":\" ID de courrier électronique ferme \",\"ReportField.Return_Product_Details.Warehouse_Code\":\" Code d'entrepôt \",\"Languages List.ms\":\" malais \",\"FormField.Add_Firm.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"Languages List.mr\":\" Marathi \",\"FormField.Return_Product.Warehouse_Code\":\" Code d'entrepôt \",\"Languages List.mt\":\" maltais \",\"FormField.Add_Stock_stateless.Added_User\":\" Utilisateur ajouté \",\"ReportField.Sales_Details.Product_Name\":\" Nom du produit \",\"Languages List.mk\":\" Macédonien \",\"FormField.Return_Product.Product_Name\":\" Nom du produit \",\"Form.Purchase_Order\":\" Bon de commande \",\"FormField.Purchase_Order.Warehouse_Code\":\" Code d'entrepôt \",\"Section.Staffs\":\" Staffs \",\"FormField.Add_Firm.Added_Time\":\" Temps ajouté \",\"ReportField.Sales_Details.Warehouse_Code\":\" Code d'entrepôt \",\"PicklistOption.Add_Warehouse.country2.1\":\" Choix 1 \",\"ReportField.Product_Details.Firm_Name\":\" Nom de l'entreprise \",\"PicklistOption.Add_Warehouse.country2.2\":\" Choix 2 \",\"FormField.Add_Sales.Quantity\":\" Quantité \",\"ReportField.Return_Product_Details.Qty_Returned\":\" Qté Revenu \",\"FormField.Return_Product.Sales_ID\":\" Identifiant de vente \",\"Report.Product_Details\":\" détails du produit \",\"FormField.Add_Staffs.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Languages List.bg\":\" bulgare \",\"FormButton.Add_Firm.submit\":\" Soumettre \",\"FormField.Add_Warehouse.Warehouse_Code\":\" Code d'entrepôt \",\"FormField.Add_Firm.Firm_Name\":\" Nom de l'entreprise \",\"FormField.Return_Product.Section\":\"Section\",\"Languages List.bn\":\" bengali \",\"Languages List.ro\":\" roumain \",\"FormField.Purchase_Order.Record_Status\":\" Statut d'enregistrement \",\"Languages List.be\":\" Biélorusse \",\"Languages List.ru\":\" russe \",\"ReportField.Sales_Details.Sales_Date\":\" Date de vente \",\"FormField.Add_Products.Added_Time\":\" Temps ajouté \",\"CompositeSubFields.Add_Warehouse.Warehouse_Address.address_line_12\":\" Adresse 1 \",\"Languages List.az\":\" azerbaïdjanais \",\"FormField.Add_Stock_stateless.Instock\":\" En stock \",\"FormField.Add_Products.Firm_Name\":\" Nom de l'entreprise \",\"Languages List.ta\":\" Tamil \",\"ReportField.All_Warehouses.Warehouse_Name\":\" Nom de l'entrepôt \",\"Languages List.cs\":\" tchèque \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" thaïlandais \",\"FormField.Add_Stock.Warehouse_Code\":\" Code d'entrepôt \",\"Section.Stock_Inflow\":\" Stock Inflow \",\"FormField.Add_Warehouse.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Stock.Modified_Time\":\" Heure modifiée \",\"ReportField.Purchase_Details.Purchased_Date\":\" Date d'achat \",\"FormButton.Return_Product.cancel\":\" Annuler \",\"ReportField.Return_Product_Details.Sales_ID\":\" Identifiant de vente \",\"Languages List.sq\":\" albanais \",\"Languages List.ca\":\" catalan \",\"FormField.Add_Staffs.ID\":\" ID \",\"Report.Stock_Details\":\" Détails du stock \",\"Languages List.sw\":\" Swahili \",\"FormField.Add_Firm.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormButton.Add_Sales.update\":\" Mettre à jour \",\"Languages List.sv\":\" suédois \",\"FormField.Add_Stock_stateless.Purchased_Qty\":\" Quantité achetée \",\"CompositeSubFields.Add_Warehouse.Warehouse_Address.address_line_22\":\" Adresse Ligne 2 \",\"FormField.Add_Products.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"Languages List.sk\":\" slovaque \",\"FormField.Purchase_Order.Modified_Time\":\" Heure modifiée \",\"Languages List.sl\":\" slovène \",\"FormField.Add_Warehouse.state_province2\":\" Etat / Province \",\"FormField.Add_Stock.Instock\":\" En stock \",\"ReportField.Staffs_Details.Warehouse_Code\":\" Adresse de l'entrepôt \",\"FormButton.Purchase_Order.submit\":\" Soumettre \",\"FormField.Add_Sales.Record_Status\":\" Statut d'enregistrement \",\"App.inventory-management\":\"Gestion de l'inventaire \",\"FormField.Add_Warehouse.district_city2\":\" District de la ville \",\"ReportField.Purchase_Details.Product_Name\":\" Nom du produit \",\"FormButton.Add_Stock.update\":\" Mettre à jour \",\"FormButton.Add_Products.submit\":\" Soumettre \",\"FormField.Add_Products.Record_Status\":\" Statut d'enregistrement \",\"FormField.Return_to_Stock.Quanity\":\" Quanity \",\"Languages List.pt\":\" Portugais \",\"ReportField.Sales_Details.Sales_summary\":\" Résumé des ventes \",\"FormField.Add_Staffs.Email\":\" Email \",\"FormButton.Purchase_Order.reset\":\" Réinitialiser \",\"ReportField.Firm_Details.Firm_Name\":\" Nom de l'entreprise \",\"FormField.Return_Product.Added_Time\":\" Temps ajouté \",\"FormButton.Add_Warehouse.cancel\":\" Annuler \",\"Languages List.pl\":\" polonais \",\"FormButton.Add_Staffs.submit\":\" Soumettre \",\"FormField.Add_Products.Modified_Time\":\" Heure modifiée \",\"FormField.Return_to_Stock.Modified_User\":\" Utilisateur modifié \",\"CompositeSubFields.Add_Staffs.Name.prefix\":\" Préfixe \",\"CustomAction.Stock_Details.Add_Sales\":\" Ajouter des ventes \",\"ReportField.Stock_Details.Purchased_Date\":\" Date d'achat \",\"Languages List.ar\":\" arabe \",\"ReportField.Stock_Details.Purchased_Qty\":\" Quantité achetée \",\"Languages List.af\":\" afrikaans \",\"FormField.Purchase_Order.ID\":\" ID \",\"CompositeSubFields.Add_Staffs.Name.suffix\":\" Suffixe \",\"FormField.Add_Sales.Modified_Time\":\" Heure modifiée \",\"FormField.Add_Staffs.first_name\":\" Prénom \",\"FormField.Add_Staffs.Added_Time\":\" Temps ajouté \",\"FormButton.Purchase_Order.update\":\" Mettre à jour \",\"FormField.Add_Products.Product_Name\":\" Nom du produit \",\"CompositeSubFields.Add_Warehouse.Warehouse_Address.district_city2\":\" District de la ville \",\"Report.All_Warehouses\":\" Tous les entrepôts \",\"FormField.Add_Stock.Sales_Qty\":\" Quantité de vente \",\"ReportField.Purchase_Details.Instock\":\" En stock \",\"FormButton.Add_Firm.reset\":\" Réinitialiser \",\"FormField.Return_to_Stock.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"ReportField.Return_Product_Details.Returned_On\":\" Retourné sur \",\"FormField.Add_Sales.Sales_summary\":\" Résumé des ventes \",\"FormField.Add_Stock.Purchased_Qty\":\" Quantité achetée \",\"FormField.Purchase_Order.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Return_to_Stock.ID\":\" ID \",\"CompositeSubFields.Add_Warehouse.Warehouse_Address.postal_Code2\":\" code postal \",\"FormField.Return_Product.ID\":\" ID \",\"PicklistOption.Add_Stock_stateless.Availability.2\":\" En rupture de stock \",\"FormButton.Add_Warehouse.reset\":\" Réinitialiser \",\"FormField.Add_Stock_stateless.Product_Name\":\" Nom du produit \",\"PicklistOption.Add_Stock_stateless.Availability.1\":\" En stock \",\"Languages List.fr\":\" français \",\"FormField.Add_Firm.Modified_Time\":\" Heure modifiée \",\"FormButton.Add_Warehouse.submit\":\" Soumettre \",\"Section.Stocks\":\" Stocks \",\"FormField.Add_Firm.Firm_Email_ID\":\" ID de courrier électronique ferme \",\"ReportField.Firm_Details.Warehouse_Details.Warehouse_Code\":\" Détails de l'entrepôt \",\"FormField.Add_Sales.Section\":\" Section \",\"Languages List.fi\":\" Finnois \",\"FormField.Add_Warehouse.Warehouse_Address\":\" Adresse de l'entrepôt \",\"FormField.Add_Stock_stateless.Record_Status\":\" Statut d'enregistrement \",\"ReportField.Return_Product_Details.Reason\":\" Raison \",\"FormButton.Return_Product.update\":\" Mettre à jour \",\"FormButton.Add_Stock.cancel\":\" Annuler \",\"FormField.Add_Warehouse.country2\":\" Pays \",\"FormField.Purchase_Order.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Add_Staffs.Warehouse_Code\":\" Code d'entrepôt \",\"Languages List.fa\":\" persan \",\"FormField.Add_Staffs.Modified_Time\":\" Heure modifiée \",\"Languages List.gu\":\" Gujarati \",\"FormField.Add_Warehouse.address_line_12\":\" Adresse 1 \",\"FormField.Add_Warehouse.Warehouse_Name\":\" Nom de l'entrepôt \",\"FormField.Purchase_Order.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Sales.Warehouse_Code\":\" Code d'entrepôt \",\"FormButton.Add_Stock_stateless.Submit\":\" Soumettre \",\"Languages List.gl\":\" Galicien \",\"Section.Charts\":\" Graphiques \",\"FormField.Add_Staffs.Section\":\" Section \",\"ReportField.Staffs_Details.Email\":\" Email \",\"Form.Return_to_Stock\":\" Retourner au stock \",\"PicklistOption.Add_Staffs.prefix.1\":\" M. \",\"FormField.Add_Staffs.prefix\":\" Préfixe \",\"PicklistOption.Add_Staffs.prefix.2\":\" Madame. \",\"PicklistOption.Add_Staffs.prefix.3\":\" Mme. \",\"FormField.Add_Products.Add_Stocks_subform\":\" Ajouter des stocks \",\"FormField.Add_Warehouse.latitude2\":\" latitude \",\"FormField.Add_Stock_stateless.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"ReportField.Stock_Details.Availability\":\" Disponibilité \",\"Languages List.ga\":\" irlandais \",\"FormField.Add_Warehouse.address_line_22\":\" Adresse Ligne 2 \",\"FormButton.Add_Stock.reset\":\" Réinitialiser \",\"Section.Hidden\":\" Caché \",\"FormField.Add_Stock_stateless.Availability\":\" Disponibilité \",\"FormField.Return_to_Stock.Added_Time\":\" Temps ajouté \",\"Section.page\":\" Retourner au stock \",\"ReportField.Stock_Details.Product_Name\":\" Nom du produit \",\"Form.Add_Stock_stateless\":\" Ajouter un stock \",\"ReportField.Stock_Details.Warehouse_Code\":\" Code d'entrepôt \",\"FormField.Add_Sales.Added_Time\":\" Temps ajouté \",\"FormField.Add_Stock.ID\":\" ID \",\"Languages List.tr\":\" turc \",\"Languages List.da\":\" danois \",\"FormButton.Add_Stock.submit\":\" Soumettre \",\"Languages List.de\":\" allemand \",\"FormField.Add_Stock.Section\":\"Section\",\"FormField.Add_Warehouse.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"Report.Sales_Details\":\" Détails des ventes \",\"FormField.Add_Warehouse.Added_User\":\" Utilisateur ajouté \",\"PicklistOption.Add_Stock.Availability.2\":\" En rupture de stock \",\"Languages List.cy\":\" gallois \",\"PicklistOption.Add_Stock.Availability.1\":\" En stock \",\"FormField.Add_Warehouse.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Languages List.tl\":\" Philippin \",\"FormField.Add_Stock.Availability\":\" Disponibilité \",\"FormButton.Add_Stock_stateless.Reset\":\" Réinitialiser \",\"CompositeSubFields.Add_Warehouse.Warehouse_Address.country2\":\" Pays \",\"Section.Stock_Outflow\":\" Stock Outfow \",\"Languages List.es\":\" Espanol \",\"ReportField.Sales_Details.Quantity\":\" Quantité \",\"ReportField.Product_Details.Product_Description\":\" Description du produit \",\"Languages List.eu\":\" basque \",\"Languages List.et\":\" estonien \",\"CompositeSubFields.Add_Staffs.Name.last_name\":\" Nom de famille \",\"Languages List.vi\":\" vietnamien \",\"FormField.Add_Products.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormButton.Return_to_Stock.Return_field\":\" Revenir \",\"Languages List.el\":\" grec \",\"Languages List.eo\":\" espéranto \",\"FormField.Add_Stock.Added_Time\":\" Temps ajouté \",\"FormField.Purchase_Order.Product_Name\":\" Nom du produit \",\"Languages List.en\":\" Anglais \",\"Report.Return_Product_Details\":\" Retour Détails du produit \",\"FormField.Add_Stock_stateless.Added_Time\":\" Temps ajouté \",\"FormField.Return_Product.Quantity_Added_to_Stock\":\"Quantité ajoutée au stock\",\"Languages List.ur\":\" Urdu \",\"FormField.Add_Stock.Record_Status\":\" Statut d'enregistrement \",\"ReportField.Staffs_Details.Phone_Number\":\" Numéro de téléphone \",\"FormField.Add_Stock.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Add_Warehouse.postal_Code2\":\" code postal \",\"FormField.Add_Firm.Added_User\":\" Utilisateur ajouté \",\"FormField.Return_Product.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Products.ID\":\" ID \",\"FormField.Add_Sales.ID\":\" ID \",\"FormField.Add_Stock_stateless.Modified_Time\":\" Heure modifiée \",\"FormField.Add_Warehouse.longitude2\":\" longitude \"}}"
+}
+	reports configuration
+	{
+	
+		Version = 1251000165802301
+		Key     = "RVKzHz6Rj03VTbjVFnyS0tKSF4nvfJV7KPOEGCF0AbWZyspGbj7yBRKTD44SeBeFxSUVGjVC4bRRQRfFRumrbg40rV54jTVyXDEO"
+	}
+}

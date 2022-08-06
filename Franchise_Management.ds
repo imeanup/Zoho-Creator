@@ -1,0 +1,4557 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 07-May-2020 01:44:19
+ * Version      : 1.0
+ */
+ application "Franchise Management"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+	section Dashboard
+	{
+		icon = "ui-1-dashboard-half"
+				 page Dashboard_Mobile 
+	 	 { 
+ 	 	 displayname = "Dashboard" 
+
+ 	 	 icon = "ui-1-dashboard-half" 
+
+ 	 	 hide =  true
+	 	 Content="<zml \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"25%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '30%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'left'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t vAlign = 'left'\n\n>\n\t<image    \t\t color = '#F29756'\n   \t\t bgColor = '#FFFFFF'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'zc-li-solid shopping-cart-modern'\n   \t\t size = '3'\n   \t\t marginRight = '7px'\n   \t\t cornerRadius = '0px'\n\n\/>\n<\/pc>\n<\/pr>\n<\/pc><pc    \t\t width = '70%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t hAlign = 'center'\n   \t\t vAlign = 'center'\n\n>\n\t<pr \n>\n\t<pc    \t\t hAlign = 'right'\n\n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Product.ID.count'\n   \t\t criteria = '(((Available_Stocks &lt;= 0)))'\n   \t\t size = '8'\n   \t\t color = '#F29756'\n   \t\t bold = 'true'\n   \t\t textAlign = 'left'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc    \t\t hAlign = 'right'\n\n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Out Of Stock'\n   \t\t size = '3'\n   \t\t color = '#000000'\n   \t\t textAlign = 'left'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"26%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '30%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'left'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t vAlign = 'left'\n\n>\n\t<image    \t\t color = '#5EB1EC'\n   \t\t bgColor = '#FFFFFF'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'zc-li-solid ui-2-hourglass'\n   \t\t size = '3'\n   \t\t marginRight = '7px'\n   \t\t cornerRadius = '0px'\n\n\/>\n<\/pc>\n<\/pr>\n<\/pc><pc    \t\t width = '70%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t hAlign = 'center'\n   \t\t vAlign = 'center'\n\n>\n\t<pr \n>\n\t<pc    \t\t hAlign = 'right'\n\n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Purchase_Order.ID.count'\n   \t\t criteria = '(((Status == &quot;Pending&quot;)))'\n   \t\t size = '8'\n   \t\t color = '#5EB1EC'\n   \t\t bold = 'true'\n   \t\t textAlign = 'left'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc    \t\t hAlign = 'right'\n\n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Pending Orders'\n   \t\t size = '3'\n   \t\t color = '#000000'\n   \t\t textAlign = 'left'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"25%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '30%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'left'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t vAlign = 'left'\n\n>\n\t<image    \t\t color = '#3AC5C7'\n   \t\t bgColor = '#FFFFFF'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'zc-li-solid business-hierarchy-53'\n   \t\t size = '3'\n   \t\t marginRight = '7px'\n   \t\t cornerRadius = '0px'\n\n\/>\n<\/pc>\n<\/pr>\n<\/pc><pc    \t\t width = '70%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t hAlign = 'center'\n   \t\t vAlign = 'center'\n\n>\n\t<pr \n>\n\t<pc    \t\t hAlign = 'right'\n\n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.New_Store.ID.count'\n   \t\t size = '8'\n   \t\t color = '#3AC5C7'\n   \t\t bold = 'true'\n   \t\t textAlign = 'left'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc    \t\t hAlign = 'right'\n\n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Number Of Stores'\n   \t\t size = '3'\n   \t\t color = '#000000'\n   \t\t textAlign = 'left'\n   \t\t decimalPlaces = '2'\n   \t\t thousandsSeperator = ','\n   \t\t decimalSeperator = '.'\n   \t\t numberScale = 'none'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"24%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '30%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'left'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t vAlign = 'left'\n\n>\n\t<image    \t\t color = '#B4A2DB'\n   \t\t bgColor = '#FFFFFF'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'zc-li-solid users-multiple-11'\n   \t\t size = '3'\n   \t\t marginRight = '7px'\n   \t\t cornerRadius = '0px'\n\n\/>\n<\/pc>\n<\/pr>\n<\/pc><pc    \t\t width = '70%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t hAlign = 'center'\n   \t\t vAlign = 'center'\n\n>\n\t<pr \n>\n\t<pc    \t\t hAlign = 'right'\n\n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Franchisee.ID.count'\n   \t\t size = '8'\n   \t\t color = '#B4A2DB'\n   \t\t bold = 'true'\n   \t\t textAlign = 'left'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc    \t\t hAlign = 'right'\n\n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Number Of Franchisees'\n   \t\t size = '3'\n   \t\t color = '#000000'\n   \t\t textAlign = 'left'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dspZml id='zml_snippet'>\n\t<![CDATA[htmlpage zml_snippet()\ncontent\n&lt;%{\n\tif(New_Store[ID != 0].count() == 0)\n\t{\n\t\topenUrl(&quot;#Form:New_Store&quot;,&quot;same window&quot;);\n\t}\n\t%&gt;\n&lt;panel&gt;\n      &lt;pr height=&apos;50px&apos; width=&apos;fill&apos;&gt;\n        &lt;pc width=&apos;100%&apos; bgColor=&apos;#ffffff&apos; hAlign=&apos;left&apos; vAlign=&apos;middle&apos;&gt;\n          &lt;pr height=&apos;auto&apos; width=&apos;auto&apos;&gt;\n            &lt;pc&gt;\n              &lt;text type=&apos;Text&apos; value=&apos;Quick Links&apos; size=&apos;3&apos; color=&apos;#2D2D2D&apos; marginLeft=&apos;20px&apos; marginRight=&apos;20px&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n            &lt;\/pc&gt;\n          &lt;\/pr&gt;\n        &lt;\/pc&gt;\n\t\t&lt;\/pr&gt;\n\t\t&lt;pr width=&apos;fill&apos;&gt;\n        &lt;pc width=&apos;100%&apos; bgColor=&apos;#FAFAFA&apos; padding=&apos;1px&apos;&gt;\n          &lt;pr height=&apos;auto&apos; width=&apos;auto&apos;&gt;\n            &lt;pc&gt; &lt;\/pc&gt;\n          &lt;\/pr&gt;\n        &lt;\/pc&gt;\n      &lt;\/pr&gt;\n\t  &lt;pr width=&apos;fill&apos;&gt;\n       \t &lt;pc width=&apos;100%&apos; bgColor=&apos;#FFFFFF&apos; paddingLeft=&apos;5px&apos; marginTop=&apos;7px&apos; hAlign=&apos;left&apos; vAlign=&apos;middle&apos;&gt;\n        \t  &lt;pr height=&apos;auto&apos; width=&apos;100%&apos;&gt;\n            \t&lt;pc&gt;\n              \t\t&lt;image color=&apos;#3590e1&apos; bgColor=&apos;#FFFFFF&apos; width=&apos;40px&apos; height=&apos;40px&apos; imageType=&apos;icon&apos; value=&apos;zc-li-solid ui-3-link&apos; iconsize=&apos;1&apos; unicodeValue=&apos;ee05&apos; \/&gt; \n\t\t\t    &lt;\/pc&gt;\n            \t&lt;pc&gt;\n\t              &lt;text type=&apos;Text&apos; value=&apos;Add New Store&apos; size=&apos;2&apos; color=&apos;#3590e1&apos; textAlign=&apos;left&apos; displayType=&apos;actual&apos; action=&apos;Form&apos; componentLinkName=&apos;New_Store&apos; target=&apos;same-window&apos;&gt; &lt;\/text&gt;\n    \t        &lt;\/pc&gt;\n          \t&lt;\/pr&gt;\n\t\t&lt;\/pc&gt;\n\t\t&lt;\/pr&gt;\n\t\t&lt;pr width=&apos;fill&apos;&gt;\n       \t &lt;pc width=&apos;100%&apos; bgColor=&apos;#FFFFFF&apos; paddingLeft=&apos;5px&apos; marginTop=&apos;7px&apos; hAlign=&apos;left&apos; vAlign=&apos;middle&apos;&gt;\n        \t  &lt;pr height=&apos;auto&apos; width=&apos;100%&apos;&gt;\n\t\t\t    &lt;pc&gt;\n              \t\t&lt;image color=&apos;#3590e1&apos; bgColor=&apos;#FFFFFF&apos; width=&apos;40px&apos; height=&apos;40px&apos; imageType=&apos;icon&apos; value=&apos;zc-li-solid ui-3-link&apos; iconsize=&apos;1&apos; unicodeValue=&apos;ee05&apos; \/&gt; \n\t\t\t    &lt;\/pc&gt;\n            \t&lt;pc&gt;\n\t              &lt;text type=&apos;Text&apos; value=&apos;Add Product&apos; size=&apos;2&apos; color=&apos;#3590e1&apos; textAlign=&apos;left&apos; displayType=&apos;actual&apos; action=&apos;Form&apos; componentLinkName=&apos;Add_Product&apos; target=&apos;same-window&apos;&gt; &lt;\/text&gt;\n    \t        &lt;\/pc&gt;\n          \t&lt;\/pr&gt;\n\t\t&lt;\/pc&gt;\n\t\t&lt;\/pr&gt;\n\t\t&lt;pr width=&apos;fill&apos;&gt;\n       \t &lt;pc width=&apos;100%&apos; bgColor=&apos;#FFFFFF&apos; paddingLeft=&apos;5px&apos; marginTop=&apos;7px&apos; hAlign=&apos;left&apos; vAlign=&apos;middle&apos;&gt;\n        \t  &lt;pr height=&apos;auto&apos; width=&apos;100%&apos;&gt;\n            \t&lt;pc&gt;\n              \t\t&lt;image color=&apos;#3590e1&apos; bgColor=&apos;#FFFFFF&apos; width=&apos;40px&apos; height=&apos;40px&apos; imageType=&apos;icon&apos; value=&apos;zc-li-solid ui-3-link&apos; iconsize=&apos;1&apos; unicodeValue=&apos;ee05&apos; \/&gt; \n\t\t\t    &lt;\/pc&gt;\n            \t&lt;pc&gt;\n\t              &lt;text type=&apos;Text&apos; value=&apos;Add Franchisee&apos; size=&apos;2&apos; color=&apos;#3590e1&apos; textAlign=&apos;left&apos; displayType=&apos;actual&apos; action=&apos;Form&apos; componentLinkName=&apos;Add_Franchisee&apos; target=&apos;same-window&apos;&gt; &lt;\/text&gt;\n    \t        &lt;\/pc&gt;\n          \t&lt;\/pr&gt;\n\t\t&lt;\/pc&gt;\n\t\t&lt;\/pr&gt;\n\t\t&lt;pr width=&apos;fill&apos;&gt;\n       \t &lt;pc width=&apos;100%&apos; bgColor=&apos;#FFFFFF&apos; paddingLeft=&apos;5px&apos; marginTop=&apos;7px&apos; hAlign=&apos;left&apos; vAlign=&apos;middle&apos;&gt;\n        \t  &lt;pr height=&apos;auto&apos; width=&apos;100%&apos;&gt;\n            \t&lt;pc&gt;\n              \t\t&lt;image color=&apos;#3590e1&apos; bgColor=&apos;#FFFFFF&apos; width=&apos;40px&apos; height=&apos;40px&apos; imageType=&apos;icon&apos; value=&apos;zc-li-solid ui-3-link&apos; iconsize=&apos;1&apos; unicodeValue=&apos;ee05&apos; \/&gt; \n\t\t\t    &lt;\/pc&gt;\n            \t&lt;pc&gt;\n\t              &lt;text type=&apos;Text&apos; value=&apos;Pending Orders&apos; size=&apos;2&apos; color=&apos;#3590e1&apos; textAlign=&apos;left&apos; displayType=&apos;actual&apos; action=&apos;Report&apos; componentLinkName=&apos;Pending_Orders&apos; target=&apos;same-window&apos;&gt; &lt;\/text&gt;\n    \t        &lt;\/pc&gt;\n          \t&lt;\/pr&gt;\n\t\t&lt;\/pc&gt;\n\t\t&lt;\/pr&gt;\n\t\t&lt;pr width=&apos;fill&apos;&gt;\n       \t &lt;pc width=&apos;100%&apos; bgColor=&apos;#FFFFFF&apos; paddingLeft=&apos;5px&apos; marginTop=&apos;7px&apos; hAlign=&apos;left&apos; vAlign=&apos;middle&apos;&gt;\n        \t  &lt;pr height=&apos;auto&apos; width=&apos;100%&apos;&gt;\n            \t&lt;pc&gt;\n              \t\t&lt;image color=&apos;#3590e1&apos; bgColor=&apos;#FFFFFF&apos; width=&apos;40px&apos; height=&apos;40px&apos; imageType=&apos;icon&apos; value=&apos;zc-li-solid ui-3-link&apos; iconsize=&apos;1&apos; unicodeValue=&apos;ee05&apos; \/&gt;  \n\t\t\t    &lt;\/pc&gt;\n            \t&lt;pc&gt;\n\t              &lt;text type=&apos;Text&apos; value=&apos;New Purchase Orders&apos; size=&apos;2&apos; color=&apos;#3590e1&apos; textAlign=&apos;left&apos; displayType=&apos;actual&apos; action=&apos;Form&apos; componentLinkName=&apos;Purchase_Order&apos; target=&apos;same-window&apos;&gt; &lt;\/text&gt;\n    \t        &lt;\/pc&gt;\n          \t&lt;\/pr&gt;\n\t\t&lt;\/pc&gt;\n\t\t&lt;\/pr&gt;\n\t\t\n\t\t\n\t\t\n&lt;\/panel&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dspZml>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Monthly_Orders'\n   \t\t heightType = 'auto'\n   \t\t heightValue = '700'\n   \t\t iszreport = 'true'\n   \t\t title = 'Monthly Orders'\n\n\/>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Weekly_Orders'\n   \t\t heightType = 'auto'\n   \t\t heightValue = '700'\n   \t\t iszreport = 'true'\n   \t\t title = 'Weekly Orders'\n\n\/>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Orders_By_Region'\n   \t\t heightType = 'auto'\n   \t\t heightValue = '700'\n   \t\t iszreport = 'true'\n   \t\t title = 'Orders By Region'\n\n\/>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+				 page Dashboard 
+	 	 { 
+ 	 	 displayname = "Dashboard" 
+
+ 	 	 icon = "ui-1-dashboard-half" 
+	 	 Content="<zml \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dsp id='Dashboard1'>\n\t<![CDATA[htmlpage Dashboard1()\ncontent\n&lt;%{\n\toutOfStockCount = Add_Product[Available_Stocks &lt;= 0].count();\n\tpendingOrdersCount = Purchase_Order[Status == &quot;Pending&quot;].count();\n\tstoresCount = New_Store[ID != 0].count();\n\tfranchiseesCount = Add_Franchisee[ID != 0].count();\n\t%&gt;\n&lt;style&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  .containerClass{background-color:#f4f4f4;}\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  .rowClass1{height:250px;margin-bottom: 3px;}\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  .rowClass2{height:400px;background-color:white;margin: 3px 0;}\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  .rowClass3{height:400px;margin-top: 3px 0;}\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  #zohoreportel{height:320px !important;}\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  .embdDiv{height:calc(100% - 50px) !important;}\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  .view-outer-wrapper{border:none;}\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  .headerStyle{\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  \theight: 35px;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    padding-top: 14px;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    padding-left: 8px;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    text-overflow: ellipsis;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    white-space: nowrap;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    overflow: hidden;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    font-size: 17px;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    color: #65666D;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    border-bottom: 0.5px solid #f4f4f4;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t.widget_box_Style{\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t \t width:calc(50% - 1.5px);\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  \t height:calc(50% - 1.5px);\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  \t box-sizing:border-box;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  \t color: #65666D;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  \t background:white;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t position:relative;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t   }\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t   .cross_tag{\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    position: relative;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    float:left;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    width: 0;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    border-left: 60px solid #efefef;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    border-right: 60px solid transparent;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    border-top: 60px solid #efefef;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    border-bottom: 60px solid transparent;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  .cross_tag span{\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    position: absolute;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    font-size: 30px;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    left: -40px;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    top: -40px;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  \tcolor:white;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    box-sizing: border-box;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  .widget_box_text{\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  float:right;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  width:calc(100% - 120px);\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  text-align: center;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    padding: 10px 0;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    height: 100%;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    box-sizing: border-box;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t    line-height: 15px;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  .widgetNumber\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  {\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  font-size:30px !important;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  text-indent: -100px;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  margin: 24px 0 10px 0 !important;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  .widgetTitle\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  {\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  font-size:18px !important;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  text-indent: -100px;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  .quickLinkList{\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  padding:10px;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t      font-size: 15px;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;\/style&gt;\n&lt;%\n\tif(New_Store[ID != 0].count() == 0)\n\t{\n\t\topenUrl(&quot;#Form:New_Store&quot;,&quot;same window&quot;);\n\t}\n\t%&gt;\n&lt;div class=&quot;containerClass&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;div class=&quot;rowClass1&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;div style=&quot;height:100%;background-color:#f4f4f4;width:calc(70% - 1.5px);float:left;&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;div class=&quot;widget_box_Style&quot; style=&quot;margin-right:1.5px;margin-bottom:1.5px;float:left;&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t \t\t&lt;div class=&quot;cross_tag&quot; style=&quot;border-left: 60px solid #f29756;border-top: 60px solid #f29756;&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;span class=&quot;fa fa-shopping-cart&quot;&gt;&lt;span&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t   &lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;div class=&quot;widget_box_text&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;p class=&quot;widgetNumber&quot; &gt;&lt;a href=&quot;#Report:Products?Available_Stocks=0&amp;&amp;Available_Stocks_op=22&quot; style=&quot;color:#f29756;&quot; target=&quot;_blank&quot;&gt;&lt;%=outOfStockCount%&gt;&lt;\/a&gt;&lt;\/p&gt; \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;p class=&quot;widgetTitle&quot;&gt;Out Of Stock&lt;\/p&gt; \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  \t  &lt;\/div&gt; &lt;!end of widget_box_Style div--&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;div class=&quot;widget_box_Style&quot; style=&quot;margin-left:1.5px;margin-bottom:1.5px;float:right;&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t \t\t&lt;div class=&quot;cross_tag&quot; style=&quot;border-left: 60px solid #5eb1ec;border-top: 60px solid #5eb1ec;&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;span class=&quot;fa fa-hourglass-half&quot;&gt;&lt;span&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t   &lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;div class=&quot;widget_box_text&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;p class=&quot;widgetNumber&quot; &gt;&lt;a href=&quot;#Report:Pending_Orders&quot; style=&quot;color:#5eb1ec;&quot; target=&quot;_blank&quot;&gt;&lt;%=pendingOrdersCount%&gt;&lt;\/a&gt;&lt;\/p&gt; \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;p class=&quot;widgetTitle&quot;&gt;Pending Orders&lt;\/p&gt; \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  \t  &lt;\/div&gt; &lt;!end of widget_box_Style div--&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;div style=&quot;clear:both;&quot;&gt;&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;div class=&quot;widget_box_Style&quot; style=&quot;margin-right:1.5px;margin-top:1.5px;float:left;&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t \t\t&lt;div class=&quot;cross_tag&quot; style=&quot;border-left: 60px solid #3ac5c7;border-top: 60px solid #3ac5c7;&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;span class=&quot;fa fa-sitemap&quot;&gt;&lt;span&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t   &lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;div class=&quot;widget_box_text&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;p class=&quot;widgetNumber&quot; &gt;&lt;a href=&quot;#Report:Store_Details&quot; style=&quot;color:#3ac5c7;&quot; target=&quot;_blank&quot;&gt;&lt;%=storesCount%&gt;&lt;\/a&gt;&lt;\/p&gt; \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;p class=&quot;widgetTitle&quot;&gt;Number Of Stores&lt;\/p&gt; \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  \t  &lt;\/div&gt; &lt;!end of widget_box_Style div--&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;div class=&quot;widget_box_Style&quot; style=&quot;margin-left:1.5px;margin-top:1.5px;float:right;&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t \t\t&lt;div class=&quot;cross_tag&quot; style=&quot;border-left: 60px solid #b4a2db;border-top: 60px solid #b4a2db;&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;span class=&quot;fa fa-users&quot;&gt;&lt;span&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t   &lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;div class=&quot;widget_box_text&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;p class=&quot;widgetNumber&quot; &gt;&lt;a href=&quot;#Report:Franchisee_Details&quot; style=&quot;color:#b4a2db;&quot; target=&quot;_blank&quot;&gt;&lt;%=franchiseesCount%&gt;&lt;\/a&gt;&lt;\/p&gt; \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;p class=&quot;widgetTitle&quot;&gt;Number Of Franchisees&lt;\/p&gt; \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  \t &lt;\/div&gt; &lt;!end of widget_box_Style div--&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;div style=&quot;height:100%;background-color:white;width:calc(30% - 1.5px);float:right;&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;div class=&quot;headerStyle&quot;&gt;Quick Links&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;ul style=&quot;list-style:none;padding-left: 12px;margin:0;&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;li class=&quot;quickLinkList&quot; &gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;a href=&quot;#Form:New_Store&quot; target=&quot;_blank&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;span class=&quot;fa fa-link&quot;&gt;&lt;\/span&gt;&lt;span style=&quot;padding-left: 10px;&quot;&gt;Add New Store&lt;\/span&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;\/a&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;\/li&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;li class=&quot;quickLinkList&quot; &gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;a href=&quot;#Form:Add_Product&quot; target=&quot;_blank&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;span class=&quot;fa fa-link&quot;&gt;&lt;\/span&gt;&lt;span style=&quot;padding-left: 10px;&quot;&gt;Add Product&lt;\/span&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;\/a&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;\/li&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;li class=&quot;quickLinkList&quot; &gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;a href=&quot;#Form:Add_Franchisee&quot; target=&quot;_blank&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;span class=&quot;fa fa-link&quot;&gt;&lt;\/span&gt;&lt;span style=&quot;padding-left: 10px;&quot;&gt;Add Franchisee&lt;\/span&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;\/a&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;\/li&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;li class=&quot;quickLinkList&quot; &gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;a href=&quot;#Report:Pending_Orders&quot; target=&quot;_blank&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;span class=&quot;fa fa-link&quot;&gt;&lt;\/span&gt;&lt;span style=&quot;padding-left: 10px;&quot;&gt;Pending Orders&lt;\/span&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;\/a&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;\/li&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;li class=&quot;quickLinkList&quot; &gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;a href=&quot;#Form:Purchase_Order&quot; target=&quot;_blank&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;span class=&quot;fa fa-link&quot;&gt;&lt;\/span&gt;&lt;span style=&quot;padding-left: 10px;&quot;&gt;New Purchase Orders&lt;\/span&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;\/a&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;\/li&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;\/ul&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;div class=&quot;rowClass2&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  \t&lt;div class=&quot;headerStyle&quot;&gt;Monthly Orders&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  \t&lt;div  class=&quot;embdDiv&quot; elName=&apos;zc-component&apos; viewLinkName=&apos;Monthly_Orders&apos; params=&apos;zc_Header=false&apos;&gt;Loading View...&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;div class=&quot;rowClass3&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  \t&lt;div style=&quot;height:100%;background-color:white;width:calc(50% - 1.5px);float:left;&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  \t\t&lt;div class=&quot;headerStyle&quot;&gt;Weekly Orders&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  \t\t&lt;div  class=&quot;embdDiv&quot; elName=&apos;zc-component&apos; viewLinkName=&apos;Weekly_Orders&apos; params=&apos;zc_Header=false&apos;&gt;Loading View...&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  \t&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  \t&lt;div style=&quot;height:100%;background-color:white;width:calc(50% - 1.5px);float:right;&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  \t\t&lt;div class=&quot;headerStyle&quot;&gt;Orders By Region&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  \t\t&lt;div  class=&quot;embdDiv&quot; elName=&apos;zc-component&apos; viewLinkName=&apos;Orders_By_Region&apos; params=&apos;zc_Header=false&apos;&gt;Loading View...&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  \t&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t  &lt;\/div&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+	}
+	section Stores
+	{
+		icon = "business-hierarchy-53"
+		form New_Store
+		{
+			displayname = "New Store"
+			success message = "New Branch Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Company
+			(
+				type = picklist
+				values  = Add_Company_Details.ID
+    			displayformat = [Company_Name]
+				allow new entries = true
+				[
+					displayname = "Add Company Details"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Store_ID
+			(
+    			type = autonumber
+				displayname = "Store ID"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Store_Name
+			(
+    			type = text
+				displayname = "Store Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Franchisee
+			(
+				type = picklist
+				values  = Add_Franchisee.ID
+    			displayformat = [Franchisee_ID + " - " + Name.first_name + " " + Name.last_name]
+				allow new entries = true
+				[
+					displayname = "Add New Franchisee"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Region
+			(
+				type = picklist
+				values  = Add_Region.ID
+    			displayformat = [Region]
+				allow new entries = true
+				[
+					displayname = "Add New Region"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Store_Timings
+			(
+				type = grid
+				displayname = "Store Timings"
+				defaultrow = 5
+				maxrow = 7
+	    
+				must have Days
+				(
+					type = picklist
+					values = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"}
+					width = medium
+				)
+				must have From_Timing
+				(
+					type = picklist
+					displayname = "From"
+					values = {"12:00 AM", "12:15 AM", "12:30 AM", "12:45 AM", "01:00 AM", "01:15 AM", "01:30 AM", "01:45 AM", "02:00 AM", "02:15 AM", "02:30 AM", "02:45 AM", "03:00 AM", "03:15 AM", "03:30 AM", "03:45 AM", "04:00 AM", "04:15 AM", "04:30 AM", "04:45 AM", "05:00 AM", "05:15 AM", "05:30 AM", "05:45 AM", "06:00 AM", "06:15 AM", "06:30 AM", "06:45 AM", "07:00 AM", "07:15 AM", "07:30 AM", "07:45 AM", "08:00 AM", "08:15 AM", "08:30 AM", "08:45 AM", "09:00 AM", "09:15 AM", "09:30 AM", "09:45 AM", "10:00 AM", "10:15 AM", "10:30 AM", "10:45 AM", "11:00 AM", "11:15 AM", "11:30 AM", "11:45 AM", "12:00 PM", "12:15 PM", "12:30 PM", "12:45 PM", "01:00 PM", "01:15 PM", "01:30 PM", "01:45 PM", "02:00 PM", "02:15 PM", "02:30 PM", "02:45 PM", "03:00 PM", "03:15 PM", "03:30 PM", "03:45 PM", "04:00 PM", "04:15 PM", "04:30 PM", "04:45 PM", "05:00 PM", "05:15 PM", "05:30 PM", "05:45 PM", "06:00 PM", "06:15 PM", "06:30 PM", "06:45 PM", "07:00 PM", "07:15 PM", "07:30 PM", "07:45 PM", "08:00 PM", "08:15 PM", "08:30 PM", "08:45 PM", "09:00 PM", "09:15 PM", "09:30 PM", "09:45 PM", "10:00 PM", "10:15 PM", "10:30 PM", "10:45 PM", "11:00 PM", "11:15 PM", "11:30 PM", "11:45 PM"}
+					width = medium
+				)
+				must have To_Timing
+				(
+					type = picklist
+					displayname = "To"
+					values = {"12:00 AM", "12:15 AM", "12:30 AM", "12:45 AM", "01:00 AM", "01:15 AM", "01:30 AM", "01:45 AM", "02:00 AM", "02:15 AM", "02:30 AM", "02:45 AM", "03:00 AM", "03:15 AM", "03:30 AM", "03:45 AM", "04:00 AM", "04:15 AM", "04:30 AM", "04:45 AM", "05:00 AM", "05:15 AM", "05:30 AM", "05:45 AM", "06:00 AM", "06:15 AM", "06:30 AM", "06:45 AM", "07:00 AM", "07:15 AM", "07:30 AM", "07:45 AM", "08:00 AM", "08:15 AM", "08:30 AM", "08:45 AM", "09:00 AM", "09:15 AM", "09:30 AM", "09:45 AM", "10:00 AM", "10:15 AM", "10:30 AM", "10:45 AM", "11:00 AM", "11:15 AM", "11:30 AM", "11:45 AM", "12:00 PM", "12:15 PM", "12:30 PM", "12:45 PM", "01:00 PM", "01:15 PM", "01:30 PM", "01:45 PM", "02:00 PM", "02:15 PM", "02:30 PM", "02:45 PM", "03:00 PM", "03:15 PM", "03:30 PM", "03:45 PM", "04:00 PM", "04:15 PM", "04:30 PM", "04:45 PM", "05:00 PM", "05:15 PM", "05:30 PM", "05:45 PM", "06:00 PM", "06:15 PM", "06:30 PM", "06:45 PM", "07:00 PM", "07:15 PM", "07:30 PM", "07:45 PM", "08:00 PM", "08:15 PM", "08:30 PM", "08:45 PM", "09:00 PM", "09:15 PM", "09:30 PM", "09:45 PM", "10:00 PM", "10:15 PM", "10:30 PM", "10:45 PM", "11:00 PM", "11:15 PM", "11:30 PM", "11:45 PM"}
+					width = medium
+				)
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = "<span style=\"color: rgb(78, 94, 122); font-size: large\">Store Contact Details</span>"
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have unique Email
+			(
+    			type = email
+    			description
+    			[
+    				type = tooltip
+    			 	message = "Application will be shared to this email"
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Address1
+			(
+    			type = address
+				displayname = "Address"
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Store_Details
+		{
+			displayName = "Store Details"
+			show all rows from New_Store    
+			(
+				Store_Timings.From_Timing as "Store Timings.From_Timing"
+				Store_Timings.To_Timing as "Store Timings.To_Timing"
+				Company
+				Email
+				Region
+				Franchisee
+				Store_Name as "Store Name"
+				Store_ID as "Store ID"
+				Phone_Number as "Phone"
+				Address1  as "Address"
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+			)
+			options
+			(
+				icon = "food-store"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Store_ID as "Store ID"
+							Company
+							Store_Name as "Store Name"
+							Franchisee
+							Region
+							Email
+							Phone_Number as "Phone"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Store_ID as "Store ID"
+							Company
+							Store_Name as "Store Name"
+							Franchisee
+							Region
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Store Contacts"
+						fields
+						(
+							Email
+							Phone_Number as "Phone"
+							Address1 as "Address"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Store Timings"
+		     			related field =  Store_Timings
+						fields
+						(
+							Days
+							From_Timing as "From"
+							To_Timing as "To"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Products
+	{
+		icon = "design-app"
+		list Products
+		{
+			displayName = "Products"
+			show all rows from Add_Product    
+			(
+				Product_Category as "Product Category"
+				Product_Name as "Product Name"
+				Product_Code as "Product Code"
+				Description
+				Unit_Price as "Unit Price"
+				Available_Stocks as "Available Stocks"
+				Company
+			)
+			group by
+			(
+				Product_Category ascending
+			)
+			options
+			(
+				icon = "shopping-box-3d-50"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Company
+							Product_Category as "Product Category"
+							Product_Name as "Product Name"
+							Product_Code as "Product Code"
+							Description
+							Unit_Price as "Unit Price"
+							Available_Stocks as "Available Stocks"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Company
+							Product_Category as "Product Category"
+							Product_Name as "Product Name"
+							Product_Code as "Product Code"
+							Description
+							Unit_Price as "Unit Price"
+							Available_Stocks as "Available Stocks"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Purchase
+	{
+		icon = "shopping-cart-modern"
+		form Purchase_Order
+		{
+			displayname = "Purchase Order"
+			success message = "Purchase order has been  successfully"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Purchase_ID
+			(
+    			type = autonumber
+				displayname = "Purchase ID"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have PO_Date
+			(
+    			type = date
+				displayname = "PO Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Store
+			(
+				type = picklist
+				values  = New_Store.ID
+    			displayformat = [Store_ID + " - " + Store_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Products
+			(
+				type = grid
+	    
+				must have Category
+				(
+					type = picklist
+					values  = Add_Product_Category.ID
+    				displayformat = [Category]
+					sortorder = ascending
+					width = medium
+				)
+				must have Product
+				(
+					type = picklist
+					values  = Add_Product.ID
+    				displayformat = [Product_Code]
+					sortorder = ascending
+					width = medium
+				)
+				must have Quantity
+				(
+					type = number
+					initial value = 1
+					width = medium
+				)
+				Unit_Price
+				(
+					displayname = "Unit Price"
+					type = USD
+					initial value = 0.00
+					width = medium
+				)
+				Total
+				(
+					type = USD
+					initial value = 0.00
+					width = medium
+				)
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Sub_Total
+			(
+				displayname = "Sub Total"
+				type = USD
+				initial value = 0.00
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Tax
+			(
+    			type = percentage
+				initial value = 0%
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Net_Total
+			(
+				displayname = "Net Total"
+				type = USD
+				initial value = 0.00
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status
+			(
+				type = picklist
+				values = {"Pending", "Delivered", "Declined"}
+				initial value = "Pending"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status_Updated_On
+			(
+    			type = date
+				displayname = "Status Updated On"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Comments
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		print template
+			{
+				Purchase_Details
+				{
+						displayname = "Purchase Details"
+						content = {"layout":"1","pageNumberOption":null,"orientation":"null","isFooterEnabled":false,"mainLayout":[{"elements":[{"type":"text","element":{"id":"elem_15e0e598b74","fields":[],"content":"<div><div style=\"border-bottom: 1px solid rgb(237, 237, 237); font-size: 18px; color: rgb(156, 146, 146); margin: 0 15px 15px; padding: 15px 0\">Purchase Order<\/div><\/div>"}},{"type":"columns","element":{"split":"50,50","id":"elem_15e0e5a51341","elemStyle":"margin-bottom:15px;","collayouts":[{"colElements":[{"type":"text","element":{"Fields":[{"Label_Name":"Store"}],"content":"<div style=\"\"><div style=\"font-size: 14px; padding: 0 15px\">   <span><span>  <span>Store&nbsp;<\/span><\/span>Name : ${Store}<\/span> <\/div><\/div>"}}]},{"colElements":[{"type":"text","element":{"Fields":[{"Label_Name":"PO_Date"}],"content":"<div><div style=\"font-size: 14px; padding: 0 15px\">    <span>Purchase Date : ${PO_Date}<\/span>  <\/div><\/div>"}},{"type":"text","element":{"Fields":[{"Label_Name":"Purchase_ID"}],"content":"<div><div style=\"font-size: 14px; padding: 0 15px\">      <span>Purchase ID : ${Purchase_ID}<\/span>  <\/div><\/div>"}}]}]}},{"id":"elem_1503912468361","type":"lookupfields","element":{"valueStyle":"width: 50%;text-align:center;","valueTextStyle":"","fieldLayoutType":"1","related_Form":"ZC_SUBFORM_712","labelText":"Products","wrapperStyle":"padding:0 15px;","labelStyle":"width: 50%; display: none;","Label_Name":"Products","refFields":[{"valueStyle":"    height:35px    ","fieldLayoutType":"2","labelText":"Category","labelStyle":"    width: 20%;    ","Label_Name":"Category"},{"valueStyle":"    height:35px    ","fieldLayoutType":"2","labelText":"Product","labelStyle":"    width: 20%;    ","Label_Name":"Product"},{"valueStyle":"    height:35px    ","fieldLayoutType":"2","labelText":"Quantity","labelStyle":"    width: 20%;    ","Label_Name":"Quantity"},{"valueStyle":"    height:35px    ","fieldLayoutType":"2","labelText":"Unit Price","labelStyle":"    width: 20%;    ","Label_Name":"Unit_Price"},{"valueStyle":"    height:35px;/* border:1px solid #ededed; */    ","fieldLayoutType":"2","labelText":"Total","labelStyle":"    width: 20%;    ","Label_Name":"Total"}],"labelTextStyle":""}},{"type":"columns","element":{"split":"100","id":"elem_15e0e84964a1","elemStyle":"padding:0 15px;","collayouts":[{"colElements":[{"type":"text","element":{"Fields":[{"Label_Name":"Sub_Total"}],"content":"<div style=\"\"><div style=\"text-align: right; font-size: 14px\">   <table style=\"width: 100%; height: 35px\">     <tbody>       <tr>         <th style=\"text-align: right; width: 20%; color: black; font-size: 13px; float: right; height: 100%; padding-right: 15px\"> Sub Total<\/th>         <td style=\"padding: 5px; width: 20%; text-align: center\">           <span>${Sub_Total}<\/span>         <\/td>       <\/tr>     <\/tbody>   <\/table> <\/div><\/div>"}},{"type":"text","element":{"Fields":[{"Label_Name":"Tax"}],"content":"<div style=\"\"><div style=\"text-align: right; font-size: 14px\">   <table style=\"width: 100%; height: 35px\">     <tbody>       <tr>         <th style=\"text-align: right; width: 20%; color: black; font-size: 13px; float: right; height: 100%; padding-right: 15px\"> Tax<\/th>         <td style=\"padding: 5px; width: 20%; text-align: center\">           <span><\/span>           <span>             <span>${Tax}<\/span>           <\/span>         <\/td>       <\/tr>     <\/tbody>   <\/table> <\/div><\/div>"}},{"type":"text","element":{"Fields":[{"Label_Name":"Net_Total"}],"content":"<div style=\"\"><div style=\"font-size: 14px\">   <table style=\"width: 100%; height: 35px\">     <tbody>       <tr>         <th style=\"text-align: right; width: 20%; color: black; font-size: 13px; float: right; height: 100%; padding-right: 15px\"> Net Total<\/th>         <td style=\"padding: 5px; width: 20%; text-align: center\">           <span><\/span><span><span>${Net_Total}<\/span><\/span><\/td>       <\/tr>     <\/tbody>   <\/table> <\/div><\/div>"}},{"type":"text","element":{"id":"elem_15e0eabd4d4","fields":[],"content":"<div style=\"\"><div style=\"border-top: 1px solid rgb(237, 237, 237)\"><br /><\/div><\/div>"}}]}]}}],"id":1}],"resize":"default","templateStyle":"text-align: left; width: 100%; margin: 0 auto;","isHeaderEnabled":false}
+				}
+			}
+		}
+		list My_Purchases
+		{
+			displayName = "My Purchases"
+			template = Purchase_Details
+			print template = Purchase_Details
+			show all rows from Purchase_Order  [Store.Email == zoho.loginuserid]  
+			(
+				Status
+				Status_Updated_On as "Updated On"
+				Comments
+				Tax
+				Sub_Total as "Sub Total"
+				Purchase_ID as "Purchase ID"
+				Net_Total as "Net Total"
+				Store
+				PO_Date as "PO Date"
+			)
+			group by
+			(
+				Status ascending
+			)
+			options
+			(
+				icon = "shopping-mobile-cart"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Purchase_ID as "Purchase ID"
+							PO_Date as "PO Date"
+							Store
+							Net_Total as "Net Total"
+							Status
+							Status_Updated_On as "Updated On"
+							Comments
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Purchase_ID as "Purchase ID"
+							PO_Date as "PO Date"
+							Store
+							Net_Total as "Net Total"
+							Status
+							Status_Updated_On as "Updated On"
+							Comments
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Products"
+		     			related field =  Products[Store.Email == zoho.loginuserid]
+						fields
+						(
+							Category
+							Product
+							Quantity
+							Unit_Price as "Unit Price"
+							Total
+						)
+					)
+					datablock4
+					(
+			 			layout type = -2
+		     			title = "Title"
+						fields
+						(
+							Sub_Total as "Sub Total"
+							Tax
+							Net_Total as "Net Total"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Pending_Orders
+		{
+			displayName = "Pending Orders"
+			template = Purchase_Details
+			print template = Purchase_Details
+			show all rows from Purchase_Order  [Status == "Pending"]  
+			(
+				custom action "Status Update"
+				(
+	  			workflow = Status_Update
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Status Update"
+				success message = ""
+				)
+				Status
+				Comments
+				Status_Updated_On as "Status Updated On"
+				PO_Date as "PO Date"
+				Store
+				Net_Total as "Net Total"
+				Purchase_ID as "Purchase ID"
+				Sub_Total as "Sub Total"
+				Tax
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+				"Status Update"
+							Purchase_ID as "Purchase ID"
+							PO_Date as "PO Date"
+							Store
+							Net_Total as "Net Total"
+							Status
+							Status_Updated_On as "Status Updated On"
+							Comments
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+								"Status Update"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+								"Status Update"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Purchase_ID as "Purchase ID"
+							PO_Date as "PO Date"
+							Store
+							Status
+							Status_Updated_On as "Status Updated On"
+							Comments
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Products"
+		     			related field =  Products[Status == "Pending"]
+						fields
+						(
+							Category
+							Product
+							Quantity
+							Unit_Price as "Unit Price"
+							Total
+						)
+					)
+					datablock4
+					(
+			 			layout type = -2
+		     			title = "Title"
+						fields
+						(
+							Sub_Total as "Sub Total"
+							Tax
+							Net_Total as "Net Total"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Status Update"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Delivered_Orders
+		{
+			displayName = "Delivered Orders"
+			template = Purchase_Details
+			print template = Purchase_Details
+			show all rows from Purchase_Order  [Status == "Delivered"]  
+			(
+				Status
+				Status_Updated_On as "Status Updated On"
+				Comments
+				Tax
+				Sub_Total as "Sub Total"
+				Purchase_ID as "Purchase ID"
+				Net_Total as "Net Total"
+				Store
+				PO_Date as "PO Date"
+			)
+			options
+			(
+				icon = "shopping-delivery-fast"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Purchase_ID as "Purchase ID"
+							PO_Date as "PO Date"
+							Store
+							Net_Total as "Net Total"
+							Status
+							Status_Updated_On as "Status Updated On"
+							Comments
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Purchase_ID as "Purchase ID"
+							PO_Date as "PO Date"
+							Store
+							Status
+							Status_Updated_On as "Status Updated On"
+							Comments
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Products"
+		     			related field =  Products[Status == "Delivered"]
+						fields
+						(
+							Category
+							Product
+							Quantity
+							Unit_Price as "Unit Price"
+							Total
+						)
+					)
+					datablock4
+					(
+			 			layout type = -2
+		     			title = "Title"
+						fields
+						(
+							Sub_Total as "Sub Total"
+							Tax
+							Net_Total as "Net Total"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Purchase_Orders
+		{
+			displayName = "All Purchase Orders"
+			template = Purchase_Details
+			print template = Purchase_Details
+			show all rows from Purchase_Order    
+			(
+				Status
+				Status_Updated_On as "Status Updated On"
+				Comments
+				Tax
+				Sub_Total as "Sub Total"
+				Purchase_ID as "Purchase ID"
+				Net_Total as "Net Total"
+				Store
+				PO_Date as "PO Date"
+			)
+			group by
+			(
+				Status ascending
+			)
+			options
+			(
+				icon = "tech-2-l-check"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Purchase_ID as "Purchase ID"
+							PO_Date as "PO Date"
+							Store
+							Net_Total as "Net Total"
+							Status
+							Status_Updated_On as "Status Updated On"
+							Comments
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Purchase_ID as "Purchase ID"
+							PO_Date as "PO Date"
+							Store
+							Status
+							Status_Updated_On as "Status Updated On"
+							Comments
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Products"
+		     			related field =  Products
+						fields
+						(
+							Category
+							Product
+							Quantity
+							Unit_Price as "Unit Price"
+							Total
+						)
+					)
+					datablock4
+					(
+			 			layout type = -2
+		     			title = "Title"
+						fields
+						(
+							Sub_Total as "Sub Total"
+							Tax
+							Net_Total as "Net Total"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Franchisees
+	{
+		icon = "users-2-family"
+		form Add_Franchisee
+		{
+			displayname = "Add Franchisee"
+			success message = "New Franchisee Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Franchisee_ID
+			(
+    			type = autonumber
+				displayname = "Franchisee ID"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Franchisee_Details
+		{
+			displayName = "Franchisee Details"
+			show all rows from Add_Franchisee    
+			(
+				Franchisee_ID as "Franchisee ID"
+				Email
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Phone_Number as "Phone"
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+			)
+			options
+			(
+				icon = "users-2-contacts-44"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Franchisee_ID as "Franchisee ID"
+							Name
+							Email
+							Phone_Number as "Phone"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Franchisee_ID as "Franchisee ID"
+							Name
+							Email
+							Phone_Number as "Phone"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Settings
+	{
+		icon = "ui-1-settings-gear-63"
+		summary Company_Details
+		{
+			displayName = "Company Details"
+			show all rows from Add_Company_Details    
+			(
+				Company_Name as "Company Name"
+				Logo
+				Website
+				Email
+				Franchisor_Name  as "Franchisor Name"
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Phone_Number as "Phone"
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+			)
+			options
+			(
+				display rows = 1
+				display records per row = 2
+				icon = "business-building"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Company_Name as "Company Name"
+							Logo
+							Website
+							Franchisor_Name as "Franchisor Name"
+							Email
+							Phone_Number as "Phone"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Company_Name as "Company Name"
+							Logo
+							Website
+							Franchisor_Name as "Franchisor Name"
+							Email
+							Phone_Number as "Phone"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Product_Categories
+		{
+			displayName = "Product Categories"
+			show all rows from Add_Product_Category    
+			(
+				Category
+			)
+			options
+			(
+				icon = "business-hierarchy-56"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Category
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Category
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Products"
+		     			related field =  Add_Product.Product_Category
+						fields
+						(
+							Company
+							Product_Name as "Product Name"
+							Product_Code as "Product Code"
+							Description
+							Unit_Price as "Unit Price"
+							Available_Stocks as "Available Stocks"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Regions
+		{
+			displayName = "Regions"
+			show all rows from Add_Region    
+			(
+				Region
+			)
+			options
+			(
+				icon = "location-pins"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Region
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Region
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Stores"
+		     			related field =  New_Store.Region
+						fields
+						(
+							Company
+							Store_ID as "Store ID"
+							Store_Name as "Store Name"
+							Franchisee
+							Email
+							Phone_Number as "Phone"
+							Address1 as "Address"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Hidden
+	{
+		hide = true
+		icon = "ui-2-menu-bold"
+		form Add_Company_Details
+		{
+			displayname = "Add Company Details"
+			success message = "Company Details Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Franchisor_Name
+			(
+    			type = name
+				displayname = "Franchisor Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Company_Name
+			(
+    			type = text
+				displayname = "Company Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Logo
+			(
+    			type = image
+				source  = file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Website
+			(
+    			type = url
+				enable  linkname
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			must have Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone"
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		properties
+		{
+			total entries
+			{
+				allowed count = 1
+			}
+		}
+		}
+		form Add_Product_Category
+		{
+			displayname = "Add Product Category"
+			success message = "Product Category Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Category
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Region
+		{
+			displayname = "Add Region"
+			success message = "Region Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Region
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Product
+		{
+			displayname = "Add Product"
+			success message = "Product Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Company
+			(
+				type = picklist
+				values  = Add_Company_Details.ID
+    			displayformat = [Company_Name]
+				allow new entries = true
+				[
+					displayname = "Add Company Details"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Product_Category
+			(
+				type = picklist
+				displayname = "Product Category"
+				values  = Add_Product_Category.ID
+    			displayformat = [Category]
+				allow new entries = true
+				[
+					displayname = "Add New Category"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Product_Name
+			(
+    			type = text
+				displayname = "Product Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Product_Code
+			(
+    			type = text
+				displayname = "Product Code"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Unit_Price
+			(
+				displayname = "Unit Price"
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Available_Stocks
+			(
+				type = number
+				displayname = "Available Stocks"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Status_Update
+		{
+			displayname = "Status Update"
+			store data in zc = false
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Purchase_ID
+			(
+				type = picklist
+				displayname = "Purchase ID"
+				values  = Purchase_Order.ID
+    			displayformat = [Purchase_ID]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			errorText
+			(
+    			type = plaintext
+				value = "<font color=\"#ff0000\">Requested product quantity is not available.</font>"
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Status
+			(
+				type = picklist
+				values = {"Delivered", "Declined"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Remarks
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				Update
+				(
+   					type = button
+   					displayname = "Update"
+				)
+			}
+		}
+		pivotchart Monthly_Orders
+		{ 
+			displayname = "Monthly Orders"
+			based on Autoview_1503383481980_Purchase_Order
+					hide = true
+							icon = "health-pulse-chart"				show all rows from Purchase_Order
+				(
+ 					Status_Updated_On  as "Status Updated On"
+ 					Status 
+ 					Store.Region  as "Region"
+ 					Store 
+ 					Purchase_ID  as "Purchase ID"
+ 					PO_Date  as "PO Date"
+ 					Tax 
+ 					Sub_Total  as "Sub Total"
+ 					Net_Total  as "Net Total"
+				)
+		}
+		pivotchart Orders_By_Region
+		{ 
+			displayname = "Orders By Region"
+			based on Autoview_1503383481980_Purchase_Order
+					hide = true
+							icon = "business-chart-pie-36"				show all rows from Purchase_Order
+				(
+ 					Status_Updated_On  as "Status Updated On"
+ 					Status 
+ 					Store.Region  as "Region"
+ 					Store 
+ 					Purchase_ID  as "Purchase ID"
+ 					PO_Date  as "PO Date"
+ 					Tax 
+ 					Sub_Total  as "Sub Total"
+ 					Net_Total  as "Net Total"
+				)
+		}
+		pivotchart Weekly_Orders
+		{ 
+			displayname = "Weekly Orders"
+			based on Autoview_1503383481980_Purchase_Order
+					hide = true
+							icon = "ui-3-chart-bars"				show all rows from Purchase_Order
+				(
+ 					Status_Updated_On  as "Status Updated On"
+ 					Status 
+ 					Store.Region  as "Region"
+ 					Store 
+ 					Purchase_ID  as "Purchase ID"
+ 					PO_Date  as "PO Date"
+ 					Tax 
+ 					Sub_Total  as "Sub Total"
+ 					Net_Total  as "Net Total"
+				)
+		}
+	}
+	functions
+	{
+ 			void CustomAction.statusUpdate(int recID)
+			{
+				openUrl("#Form:Status_Update?Purchase_ID=" + recID,"popup window");
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Run_Scripts_On_Click_of_U as "Run Scripts - On Click of 'Update' Button"
+			{
+				type =  form
+				form = Status_Update
+				button = Update
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						purchaseDetails = Purchase_Order[ID == input.Purchase_ID];
+										if(input.Status == "Delivered")
+										{
+											//Checking the product availablity
+											stockAvailable = true;
+											for each  eachRequestedProduct in purchaseDetails.Products
+											{
+												productDetails = Add_Product[ID = eachRequestedProduct.Product];
+												if(productDetails.Available_Stocks < eachRequestedProduct.Quantity)
+												{
+													stockAvailable = false;
+												}
+											}
+											if(stockAvailable)
+											{
+												//Updating the purchase order status here
+												purchaseDetails.Status=input.Status;
+												purchaseDetails.Status_Updated_On=zoho.currentdate;
+												purchaseDetails.Comments=input.Remarks;
+												//Updating the stock availability
+												for each  eachRequestedProduct in purchaseDetails.Products
+												{
+													productDetails = Add_Product[ID = eachRequestedProduct.Product];
+													productDetails.Available_Stocks=productDetails.Available_Stocks - eachRequestedProduct.Quantity;
+												}
+												openUrl("#Script:page.refresh","same window");
+											}
+											else
+											{
+												alert "Requested product quantity is not available.";
+											}
+										}
+										else if(input.Status == "Declined")
+										{
+											//Updating the purchase order status here
+											purchaseDetails.Status=input.Status;
+											purchaseDetails.Status_Updated_On=zoho.currentdate;
+											purchaseDetails.Comments=input.Remarks;
+											openUrl("#Script:page.refresh","same window");
+										}
+					)
+					}
+				}
+			}
+			Run_Scripts_On_Always4 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Company_Details
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						disable Email;
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing3 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Product
+				record event = on edit
+
+	field rules
+	{
+					actions 
+					{
+						disable Company;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_5 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Purchase_Order
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											disable Products.Unit_Price;
+										disable Products.Total;
+										input.PO_Date = zoho.currentdate;
+										input.Status_Updated_On = zoho.currentdate;
+										if(zoho.adminuserid != zoho.loginuserid)
+										{
+											//Pre-filling the 'Branch' field with login user branch details
+											input.Store = New_Store[Email == zoho.loginuserid].ID;
+											disable Store;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_6 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Purchase_Order
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Notification to admin regarding new purchase order
+										sendmail
+										[
+											from :zoho.loginuserid
+											to :zoho.adminuserid
+											subject :"[" + input.Purchase_ID + "] New Purchase Order"
+											message :"Hi,<div><br></div><div>New purchase order[Purchase ID: " + input.Purchase_ID + "] has been received from&nbsp;" + input.Store.Store_ID + "-" + input.Store.Store_Name + ".</div><div><br></div><div>Please <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "#Report:Pending_Orders\"" + " target=\"_blank\">click here</a> view the request details.</div>"
+										]
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing4 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Purchase_Order
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											disable Products.Unit_Price;
+										disable Products.Total;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin2 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_Company_Details
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											alert "Sorry deletion is not possible for admin record";
+										cancel delete;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always5 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = New_Store
+				record event = on add or edit
+
+	on user input of Store_Timings.Days
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Validating the day existence
+										if(row.Days != null)
+										{
+											dayExistence = 0;
+											for each  eachrow in Store_Timings
+											{
+												if(eachrow.Days == row.Days)
+												{
+													dayExistence = dayExistence + 1;
+												}
+											}
+											if(dayExistence > 1)
+											{
+												alert "Please check your selection, day already exist.";
+												row.Days=null;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always6 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = New_Store
+				record event = on add or edit
+
+	on user input of Store_Timings.From_Timing
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Validating the time range
+										if(row.From_Timing != null && row.To_Timing != null)
+										{
+											fromTimeAlpha = row.From_Timing.getAlpha();
+											toTimeAlpha = row.To_Timing.getAlpha();
+											if(fromTimeAlpha == "PM" && toTimeAlpha == "AM")
+											{
+												alert "Please Enter Valid Working Hours";
+												row.From_Timing=null;
+											}
+											else if(fromTimeAlpha == toTimeAlpha)
+											{
+												getFromNumbers = row.From_Timing.replaceAll("12","00").getAlphaNumeric().removeAllAlpha().toLong();
+												getToNumbers = row.To_Timing.replaceAll("12","00").getAlphaNumeric().removeAllAlpha().toLong();
+												if(getFromNumbers >= getToNumbers)
+												{
+													alert "Please Enter Valid Working Hours";
+													row.From_Timing=null;
+												}
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always7 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = New_Store
+				record event = on add or edit
+
+	on user input of Company
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Company != null)
+										{
+											disable Company;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always8 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = New_Store
+				record event = on add or edit
+
+	on user input of Store_Timings.To_Timing
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Validating the time range
+										if(row.From_Timing != null && row.To_Timing != null)
+										{
+											fromTimeAlpha = row.From_Timing.getAlpha();
+											toTimeAlpha = row.To_Timing.getAlpha();
+											if(fromTimeAlpha == "PM" && toTimeAlpha == "AM")
+											{
+												alert "Please Enter Valid Working Hours";
+												row.To_Timing=null;
+											}
+											else if(fromTimeAlpha == toTimeAlpha)
+											{
+												getFromNumbers = row.From_Timing.replaceAll("12","00").getAlphaNumeric().removeAllAlpha().toLong();
+												getToNumbers = row.To_Timing.replaceAll("12","00").getAlphaNumeric().removeAllAlpha().toLong();
+												if(getFromNumbers >= getToNumbers)
+												{
+													alert "Please Enter Valid Working Hours";
+													row.To_Timing=null;
+												}
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always9 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = New_Store
+				record event = on add or edit
+
+	on add row of Store_Timings
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											weekDays = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+										for each  eachrow in Store_Timings
+										{
+											weekDays.removeelement(eachrow.Days);
+										}
+										row.Days:ui.add(weekDays);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_7 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Company_Details
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Email = zoho.adminuserid;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_8 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Product
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Disabling the company field once the comapany details are added
+										companyDetails = Add_Company_Details[ID != 0];
+										if(companyDetails.count() > 0)
+										{
+											input.Company = companyDetails.ID;
+											disable Company;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_9 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Status_Update
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide errorText;
+						disable Purchase_ID;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_10 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Status_Update
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Checking the product availablity
+										stockNotAvailable = false;
+										purchaseDetails = Purchase_Order[ID == input.Purchase_ID];
+										for each  eachRequestedProduct in purchaseDetails.Products
+										{
+											productDetails = Add_Product[ID = eachRequestedProduct.Product];
+											if(productDetails.Available_Stocks < eachRequestedProduct.Quantity)
+											{
+												stockNotAvailable = true;
+											}
+										}
+										if(stockNotAvailable)
+										{
+											show errorText;
+											input.Status:ui.add("Declined");
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_11 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = New_Store
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Pre-filling the values in "Store Timing" subform
+										weekDays = {"Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"};
+										counter = 0;
+										for each  eachrow in Store_Timings
+										{
+											eachrow.Days=weekDays.get(counter);
+											eachrow.From_Timing="09:00 AM";
+											eachrow.To_Timing="05:00 PM";
+											counter = counter + 1;
+										}
+										//Disabling the company field once the comapany details are added
+										companyDetails = Add_Company_Details[ID != 0];
+										if(companyDetails.count() > 0)
+										{
+											input.Company = companyDetails.ID;
+											disable Company;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_12 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = New_Store
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Share the application with respective branch email
+										thisapp.permissions.assignUserInProfile(input.Email,"Branch Admin");
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Email
+											subject :input.Company.Franchisor_Name + " invited to access " + zoho.appname
+											message :"<div style=\"padding:3%;width:85%;margin:auto;background:white;border:2px solid #efefef; text-align:center;\"><div style=\"font-size:24px\">" + input.Company.Company_Name + "</div><div style=\"padding:7px;\">You've been invited to use an application built on Zoho Creator by " + zoho.adminuserid + ".</div><br><div style=\"border:1px solid #eee;background:#efefef;text-align:center;font-size:16px;padding:25px;\">" + zoho.appname + "<br><div style=\"margin:5%;\"><a style=\"background-color: rgb(62,149,205);padding: 10.0px;text-decoration: none;color: rgb(255,255,255);font-size: 14.0px;\" href=\"" + "https://app.zohocreator.com" + zoho.appuri + "\"" + " target=\"_blank\"> Go to application </a></div></div></div>"
+										]
+										//Redirecting to "Add Product" form if there is no product
+										productDetails = Add_Product[ID != 0];
+										if(productDetails.count() == 0)
+										{
+											openUrl("#Report:Products","same window");
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin3 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = New_Store
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Unshare the application if we delete the branch
+										thisapp.permissions.deleteuser(input.Email);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing5 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = New_Store
+				record event = on edit
+
+	field rules
+	{
+					actions 
+					{
+						disable Company;
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing6 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = New_Store
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Share the application with respective branch email and unshare the old privileges if the branch email id change
+										if(old.Email != input.Email)
+										{
+											thisapp.permissions.deleteuser(old.Email);
+											thisapp.permissions.assignUserInProfile(input.Email,"Branch Admin");
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always10 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Purchase_Order
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Status,Status_Updated_On,Comments;
+						disable Sub_Total,Net_Total,PO_Date;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always11 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Purchase_Order
+				record event = on add or edit
+
+	on user input of Products.Category
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(row.Category != null)
+										{
+											//Dynamically adding products of selected category
+											row.Product:ui.add(Add_Product[Product_Category == row.Category].ID.getAll());
+											row.Unit_Price=0.0;
+											input.Sub_Total = input.Sub_Total - row.Total;
+											row.Total=0.0;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always12 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Purchase_Order
+				record event = on add or edit
+
+	on user input of Products.Unit_Price
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(row.Quantity != null && row.Unit_Price != null)
+										{
+											row.Total=row.Quantity * row.Unit_Price;
+										}
+										else
+										{
+											row.Total=0.0;
+										}
+										input.Sub_Total = 0.0;
+										//calculating each product cost and updating in "Sub Total" field
+										for each  eachRow in Products
+										{
+											input.Sub_Total = input.Sub_Total + eachRow.Total;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always13 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Purchase_Order
+				record event = on add or edit
+
+	on user input of Sub_Total
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Tax != null && input.Sub_Total != null)
+										{
+											taxAmnt = input.Sub_Total * input.Tax / 100;
+											input.Net_Total = input.Sub_Total + taxAmnt;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always14 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Purchase_Order
+				record event = on add or edit
+
+	on user input of Products.Quantity
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(row.Quantity != null && row.Unit_Price != null)
+										{
+											row.Total=row.Quantity * row.Unit_Price;
+										}
+										else
+										{
+											row.Total=0.0;
+										}
+										input.Sub_Total = 0.0;
+										//calculating each product cost and updating in "Sub Total" field
+										for each  eachRow in Products
+										{
+											input.Sub_Total = input.Sub_Total + eachRow.Total;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always15 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Purchase_Order
+				record event = on add or edit
+
+	on user input of Tax
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Tax != null && input.Sub_Total != null)
+										{
+											taxAmnt = input.Sub_Total * input.Tax / 100;
+											input.Net_Total = input.Sub_Total + taxAmnt;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always16 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Purchase_Order
+				record event = on add or edit
+
+	on user input of Products.Product
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(row.Product != null)
+										{
+											//Validating the product existence
+											productExistence = 0;
+											for each  eachRow in Products
+											{
+												if(eachRow.Product == row.Product)
+												{
+													productExistence = productExistence + 1;
+												}
+											}
+											if(productExistence > 1)
+											{
+												alert "Please check your selection, product already exist.";
+												row.Product=null;
+												row.Unit_Price=0.0;
+												input.Sub_Total = input.Sub_Total - row.Total;
+												row.Total=0.0;
+											}
+											else
+											{
+												productDetails = Add_Product[ID == row.Product];
+												if(row.Category == null)
+												{
+													row.Category=productDetails.Product_Category;
+												}
+												row.Unit_Price=productDetails.Unit_Price;
+												if(row.Quantity != null && row.Unit_Price != null)
+												{
+													row.Total=row.Quantity * row.Unit_Price;
+												}
+												else
+												{
+													row.Total=0.0;
+												}
+												input.Sub_Total = 0.0;
+												//calculating each product cost and updating in "Sub Total" field
+												for each  eachProduct in Products
+												{
+													input.Sub_Total = input.Sub_Total + eachProduct.Total;
+												}
+											}
+										}
+										else
+										{
+											row.Unit_Price=0.0;
+											input.Sub_Total = input.Sub_Total - row.Total;
+											row.Total=0.0;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always17 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Purchase_Order
+				record event = on add or edit
+
+	on delete row of Products
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Sub_Total = input.Sub_Total - row.Total;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always18 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Product
+				record event = on add or edit
+
+	on user input of Company
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Company != null)
+										{
+											disable Company;
+										}
+						)
+					}
+	}
+
+			}
+		}
+		functions
+		{
+			Status_Update as "Status Update"
+			{
+				type =  functions
+				form = Purchase_Order
+				on start
+				{
+					actions 
+					{
+					CustomAction.statusUpdate(ID);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Branch Admin"
+			{
+				name = "Branch Admin"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "This profile will have branch admin permissions.\n"
+				ModulePermissions
+				{
+					Add_Region
+					{
+						FieldPermissions
+						{
+							Region{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Add_Product
+					{
+						enabled= Viewall,Export 
+						ReportPermissions
+						{
+							Products={"View"}
+						}
+						FieldPermissions
+						{
+							Product_Category{visibility:true,readonly:false}
+							Company{visibility:true,readonly:false}
+							Product_Code{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Product_Name{visibility:true,readonly:false}
+							Available_Stocks{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Unit_Price{visibility:true,readonly:false}
+						}
+					}
+					Add_Company_Details
+					{
+						FieldPermissions
+						{
+							Email{visibility:true,readonly:false}
+							Address{visibility:false,readonly:false}
+							Franchisor_Name{visibility:false,readonly:false}
+							Website{visibility:true,readonly:false}
+							Company_Name{visibility:true,readonly:false}
+							Phone_Number{visibility:false,readonly:false}
+							Section{visibility:false,readonly:false}
+							Logo{visibility:true,readonly:false}
+						}
+					}
+					Add_Product_Category
+					{
+						FieldPermissions
+						{
+							Section{visibility:false,readonly:false}
+							Category{visibility:true,readonly:false}
+						}
+					}
+					New_Store
+					{
+						FieldPermissions
+						{
+							Franchisee{visibility:true,readonly:false}
+							Company{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							plain{visibility:true,readonly:false}
+							Region{visibility:true,readonly:false}
+							Store_Name{visibility:true,readonly:false}
+							Store_Timings{visibility:true,readonly:false}
+							Phone_Number{visibility:false,readonly:false}
+							Address1{visibility:false,readonly:false}
+							Section{visibility:false,readonly:false}
+							Store_ID{visibility:true,readonly:false}
+						}
+					}
+					Purchase_Order
+					{
+						enabled= Create,Viewall,Export,Tab 
+						ReportPermissions
+						{
+							My_Purchases={"View"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Purchase_ID{visibility:true,readonly:false}
+							Net_Total{visibility:true,readonly:false}
+							Status_Updated_On{visibility:true,readonly:false}
+							PO_Date{visibility:true,readonly:false}
+							Products{visibility:true,readonly:false}
+							Comments{visibility:true,readonly:false}
+							Store{visibility:true,readonly:false}
+							Sub_Total{visibility:true,readonly:false}
+							Tax{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Status_Update
+					{
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Purchase_ID{visibility:true,readonly:false}
+							errorText{visibility:true,readonly:false}
+							Remarks{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Add_Franchisee
+					{
+						FieldPermissions
+						{
+							Franchisee_ID{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Address{visibility:false,readonly:false}
+							Phone_Number{visibility:false,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:false,readonly:false}
+						}
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users."
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 3
+		new theme color = 2
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-sales-and-supp1"
+    	icon theme = "yellow"
+		icons style = solid
+	}
+
+	phone
+	{
+		section  Dashboard
+		{
+			page Dashboard
+			{
+				hide = true
+			}
+			page Dashboard_Mobile
+			{
+				icon = "design-mobile-design"
+			}
+		}
+		section  Stores
+		{
+			form  New_Store
+			{
+				layout = left
+			}
+			list Store_Details
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Email
+								Phone_Number as "Phone"
+								Store_ID as "Store ID"
+								Company
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Store_ID as "Store ID"
+								Company
+								Store_Name as "Store Name"
+								Franchisee
+								Region
+							)
+						)
+						datablock2
+						(
+			 				layout type = -2
+		     				title = "Store Contacts"
+							fields
+							(
+								Email
+								Phone_Number as "Phone"
+								Address1 as "Address"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Products
+		{
+			list Products
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Company
+								Description
+								Product_Name as "Product Name"
+								Product_Code as "Product Code"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Company
+								Product_Category as "Product Category"
+								Product_Name as "Product Name"
+								Product_Code as "Product Code"
+								Description
+								Unit_Price as "Unit Price"
+								Available_Stocks as "Available Stocks"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Purchase
+		{
+			form  Purchase_Order
+			{
+				layout = left
+			}
+			list My_Purchases
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Comments
+								Purchase_ID as "Purchase ID"
+								PO_Date as "PO Date"
+								Store
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Purchase_ID as "Purchase ID"
+								PO_Date as "PO Date"
+								Store
+								Status
+								Status_Updated_On as "Updated On"
+								Comments
+							)
+						)
+						datablock4
+						(
+			 				layout type = -2
+		     				title = "Title"
+							fields
+							(
+								Sub_Total as "Sub Total"
+								Tax
+								Net_Total as "Net Total"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Pending_Orders
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Comments
+								Purchase_ID as "Purchase ID"
+								PO_Date as "PO Date"
+								Store
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Status Update"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Purchase_ID as "Purchase ID"
+								PO_Date as "PO Date"
+								Store
+								Status
+								Status_Updated_On as "Status Updated On"
+								Comments
+							)
+						)
+						datablock4
+						(
+			 				layout type = -2
+		     				title = "Title"
+							fields
+							(
+								Sub_Total as "Sub Total"
+								Tax
+								Net_Total as "Net Total"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Status Update"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Delivered_Orders
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Comments
+								Purchase_ID as "Purchase ID"
+								PO_Date as "PO Date"
+								Store
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Purchase_ID as "Purchase ID"
+								PO_Date as "PO Date"
+								Store
+								Status
+								Status_Updated_On as "Status Updated On"
+								Comments
+							)
+						)
+						datablock4
+						(
+			 				layout type = -2
+		     				title = "Title"
+							fields
+							(
+								Sub_Total as "Sub Total"
+								Tax
+								Net_Total as "Net Total"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list All_Purchase_Orders
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Comments
+								Purchase_ID as "Purchase ID"
+								PO_Date as "PO Date"
+								Store
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Purchase_ID as "Purchase ID"
+								PO_Date as "PO Date"
+								Store
+								Status
+								Status_Updated_On as "Status Updated On"
+								Comments
+							)
+						)
+						datablock4
+						(
+			 				layout type = -2
+		     				title = "Title"
+							fields
+							(
+								Sub_Total as "Sub Total"
+								Tax
+								Net_Total as "Net Total"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Franchisees
+		{
+			form  Add_Franchisee
+			{
+				layout = left
+			}
+			list Franchisee_Details
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Franchisee_ID as "Franchisee ID"
+								Address
+								Email
+								Phone_Number as "Phone"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Franchisee_ID as "Franchisee ID"
+								Name
+								Email
+								Phone_Number as "Phone"
+								Address
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Settings
+		{
+			summary Company_Details
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 6
+						datablock1
+						(
+			 				layout type = 19
+		     				title = "Overview"
+							fields
+							(
+								Logo
+								Company_Name as "Company Name"
+								Email
+								Phone_Number as "Phone"
+								Website
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Delete   	   
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Company_Name as "Company Name"
+								Logo
+								Website
+								Franchisor_Name as "Franchisor Name"
+								Email
+								Phone_Number as "Phone"
+								Address
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Product_Categories
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Category
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Category
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Regions
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Region
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Delete   	   
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Region
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Hidden
+		{
+			hide = true
+			form  Add_Company_Details
+			{
+				layout = left
+				hide = true
+			}
+			form  Add_Product_Category
+			{
+				layout = auto
+				hide = true
+			}
+			form  Add_Region
+			{
+				layout = auto
+				hide = true
+			}
+			form  Add_Product
+			{
+				layout = left
+				hide = true
+			}
+			form  Status_Update
+			{
+				layout = left
+				hide = true
+			}
+			pivotchart Monthly_Orders
+			{
+				hide = true
+			}
+			pivotchart Orders_By_Region
+			{
+				hide = true
+			}
+			pivotchart Weekly_Orders
+			{
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = yellow
+        	layout = slidingpane
+		 	icons style = outline
+		}
+	}
+	tablet
+	{
+		section  Dashboard
+		{
+			page Dashboard
+			{
+				hide = true
+			}
+			page Dashboard_Mobile
+			{
+				icon = "design-mobile-design"
+			}
+		}
+		section  Stores
+		{
+			form  New_Store
+			{
+				layout = left
+			}
+			list Store_Details
+			{
+			}
+		}
+		section  Products
+		{
+			list Products
+			{
+			}
+		}
+		section  Purchase
+		{
+			form  Purchase_Order
+			{
+				layout = left
+			}
+			list My_Purchases
+			{
+			}
+			list Pending_Orders
+			{
+			}
+			list Delivered_Orders
+			{
+			}
+			list All_Purchase_Orders
+			{
+			}
+		}
+		section  Franchisees
+		{
+			form  Add_Franchisee
+			{
+				layout = left
+			}
+			list Franchisee_Details
+			{
+			}
+		}
+		section  Settings
+		{
+			summary Company_Details
+			{
+			}
+			list Product_Categories
+			{
+			}
+			list Regions
+			{
+			}
+		}
+		section  Hidden
+		{
+			hide = true
+			form  Add_Company_Details
+			{
+				layout = left
+				hide = true
+			}
+			form  Add_Product_Category
+			{
+				layout = auto
+				hide = true
+			}
+			form  Add_Region
+			{
+				layout = auto
+				hide = true
+			}
+			form  Add_Product
+			{
+				layout = left
+				hide = true
+			}
+			form  Status_Update
+			{
+				layout = left
+				hide = true
+			}
+			pivotchart Monthly_Orders
+			{
+				hide = true
+			}
+			pivotchart Orders_By_Region
+			{
+				hide = true
+			}
+			pivotchart Weekly_Orders
+			{
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = yellow
+        	layout = slidingpane
+		 	icons style = outline
+		}
+	}
+	translation
+{
+"{\"de\":{\"FormButton.New_Store.update\":\" Aktualisieren \",\"FormField.Purchase_Order.Store\":\" Geschäft \",\"ReportField.Pending_Orders.Status\":\" Status \",\"FormField.New_Store.Email\":\" Email \",\"FormField.Status_Update.Section\":\"Sektion\",\"FormButton.Add_Franchisee.reset\":\" Zurücksetzen \",\"FormField.Status_Update.Purchase_ID\":\" Kauf-ID \",\"FormField.Add_Company_Details.ID\":\" ICH WÜRDE \",\"FormButton.Add_Product_Category.update\":\" Aktualisieren \",\"FormField.Purchase_Order.Status_Updated_On\":\" Status aktualisiert am \",\"Languages List.zh-TW\":\" Chinesische Tradition \",\"FormField.Add_Region.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"Report.Weekly_Orders\":\" Wöchentliche Bestellungen \",\"FormField.New_Store.Modified_Time\":\" Geänderte Zeit \",\"Languages List.ja\":\" japanisch \",\"FormField.New_Store.Company\":\" Unternehmen \",\"ReportField.Company_Details.Website\":\" Webseite \",\"FormField.Add_Company_Details.Website\":\" Webseite \",\"ReportField.All_Purchase_Orders.Store\":\" Geschäft \",\"FormButton.Add_Product_Category.reset\":\" Zurücksetzen \",\"Page.Dashboard\":\" Instrumententafel \",\"FormField.Add_Product.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Add_Product_Category.ID\":\" ICH WÜRDE \",\"FormField.New_Store.Store_ID\":\" Geschäfts-ID \",\"ReportField.Delivered_Orders.Status\":\" Status \",\"FormField.Add_Product_Category.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Product.Available_Stocks\":\" Verfügbare Bestände \",\"Languages List.ku\":\" kurdisch \",\"ReportField.My_Purchases.Comments\":\" Bemerkungen \",\"FormField.Add_Product.Product_Code\":\" Produktcode \",\"FormField.New_Store.Record_Status\":\" Aufnahmestatus \",\"FormField.Status_Update.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormButton.Add_Franchisee.update\":\" Aktualisieren \",\"ReportField.Delivered_Orders.Purchase_ID\":\" Kauf-ID \",\"Languages List.km\":\" Khmer \",\"Languages List.ko\":\" Koreanisch \",\"FormField.Add_Product.Modified_Time\":\" Geänderte Zeit \",\"Languages List.kn\":\" Kannada \",\"FormButton.Purchase_Order.cancel\":\" Stornieren \",\"Languages List.ka\":\" georgisch \",\"FormField.Purchase_Order.Modified_User\":\" Geänderter Benutzer \",\"FormField.Add_Product_Category.Modified_User\":\" Geänderter Benutzer \",\"Form.Add_Franchisee\":\" Franchisenehmer hinzufügen \",\"Languages List.hu\":\" ungarisch \",\"Languages List.yi\":\" Jiddisch \",\"Languages List.hy\":\" Armenisch \",\"FormField.Add_Company_Details.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Add_Product.Company\":\" Unternehmen \",\"ReportField.Products.Unit_Price\":\" Einzelpreis \",\"Languages List.hr\":\" kroatisch \",\"FormButton.Add_Region.cancel\":\" Stornieren \",\"App.franchise-management\":\"Franchise-Management \",\"FormField.Purchase_Order.Products.Category\":\" Kategorie \",\"Languages List.hi\":\" Hindi \",\"Form.Add_Product\":\" Produkt hinzufügen \",\"FormField.New_Store.Region\":\" Region \",\"ReportField.Store_Details.Store_ID\":\" Geschäfts-ID \",\"FormField.New_Store.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"ReportField.My_Purchases.Net_Total\":\" Netto Summe \",\"Languages List.zh\":\" Chinesisch \",\"Languages List.iw\":\" hebräisch \",\"FormField.Add_Product.Added_User\":\" Benutzer hinzugefügt \",\"FormField.New_Store.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Add_Product_Category.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"ReportField.Store_Details.Email\":\" Email \",\"FormField.Add_Franchisee.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Add_Franchisee.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Add_Product.Product_Category\":\" Produktkategorie \",\"Section.Products\":\" Produkte \",\"Languages List.is\":\" isländisch \",\"Form.Add_Region\":\" Region hinzufügen \",\"Languages List.it\":\" Italienisch \",\"FormButton.Add_Company_Details.reset\":\" Zurücksetzen \",\"FormField.Add_Franchisee.ID\":\" ICH WÜRDE \",\"FormButton.New_Store.submit\":\" einreichen \",\"FormField.Purchase_Order.Products.Product\":\" Produkt \",\"ReportField.Product_Categories.Category\":\" Kategorie \",\"Report.Regions\":\" Regionen \",\"ReportField.Pending_Orders.Comments\":\" Bemerkungen \",\"Section.Purchase\":\" Kauf \",\"FormField.Status_Update.Modified_User\":\" Geänderter Benutzer \",\"Languages List.nl\":\" Niederländisch \",\"ReportField.Delivered_Orders.Net_Total\":\" Netto Summe \",\"FormField.New_Store.Store_Timings\":\" Zeitpläne speichern \",\"FormField.Add_Company_Details.Modified_User\":\" Geänderter Benutzer \",\"Languages List.no\":\" norwegisch \",\"PicklistOption.Status_Update.Status.2\":\" Abgelehnt \",\"FormButton.Add_Product.reset\":\" Zurücksetzen \",\"PicklistOption.Status_Update.Status.1\":\" Geliefert \",\"ReportField.Store_Details.Store_Timings.From_Timing\":\" Store Timings.From_Timing \",\"ReportField.Delivered_Orders.Status_Updated_On\":\" Aktualisiert am \",\"FormField.Add_Region.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Add_Region.Modified_User\":\" Geänderter Benutzer \",\"FormField.Purchase_Order.Added_Time\":\" Zeit hinzugefügt \",\"ReportField.Store_Details.Franchisee\":\" Franchisenehmer \",\"ReportField.Products.Product_Code\":\" Produktcode \",\"FormField.Add_Franchisee.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Add_Product_Category.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"ReportField.All_Purchase_Orders.Status\":\" Status \",\"ReportField.All_Purchase_Orders.Comments\":\" Bemerkungen \",\"FormField.Add_Region.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Purchase_Order.Products\":\" Produkte \",\"ReportField.My_Purchases.Status\":\" Status \",\"FormButton.Add_Region.update\":\" Aktualisieren \",\"ReportField.Pending_Orders.Status_Updated_On\":\" Aktualisiert am \",\"Section.Dashboard\":\" Instrumententafel \",\"FormField.Purchase_Order.Products.Unit_Price\":\" Einzelpreis \",\"ReportField.Store_Details.Store_Name\":\" Speichername \",\"ReportField.Pending_Orders.PO_Date\":\" Bestelldatum \",\"FormField.Purchase_Order.Products.Total\":\" Gesamt \",\"FormField.Status_Update.Added_User\":\" Benutzer hinzugefügt \",\"Languages List.lt\":\" litauisch \",\"Languages List.lv\":\" lettisch \",\"Form.Add_Company_Details\":\" Firmendetails hinzufügen \",\"FormField.New_Store.ID\":\" ICH WÜRDE \",\"FormButton.Add_Region.reset\":\" Zurücksetzen \",\"FormField.New_Store.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Purchase_Order.Comments\":\" Bemerkungen \",\"FormField.Add_Franchisee.Modified_User\":\" Geänderter Benutzer \",\"Languages List.lo\":\" Laothian \",\"ReportField.All_Purchase_Orders.Status_Updated_On\":\" Aktualisiert am \",\"Languages List.la\":\" Latein \",\"FormField.Purchase_Order.Net_Total\":\" Netto Summe \",\"ReportField.Company_Details.Email\":\" Email \",\"FormField.Add_Product_Category.Category\":\" Kategorie \",\"Languages List.ms\":\" malaiisch \",\"Languages List.mr\":\" Marathi \",\"Languages List.mt\":\" maltesisch \",\"Report.Company_Details\":\" Firmendetails \",\"Report.Orders_By_Region\":\" Bestellungen nach Region \",\"Languages List.mk\":\" mazedonisch \",\"ReportField.My_Purchases.Status_Updated_On\":\" Aktualisiert am \",\"Form.Purchase_Order\":\" Bestellung \",\"FormField.Add_Product.ID\":\" ICH WÜRDE \",\"FormField.Add_Company_Details.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Purchase_Order.Tax\":\" MwSt \",\"FormField.Add_Product_Category.Record_Status\":\" Aufnahmestatus \",\"Report.Product_Categories\":\" Produktkategorien \",\"FormField.Purchase_Order.Status\":\" Status \",\"ReportField.Regions.Region\":\" Region \",\"Form.New_Store\":\" Neues Geschäft \",\"FormField.Purchase_Order.Sub_Total\":\" Untersumme \",\"Section.Stores\":\" Shops \",\"Languages List.bg\":\" bulgarisch \",\"FormField.Add_Company_Details.Company_Name\":\" Name der Firma \",\"FormButton.Status_Update.Update\":\" Aktualisieren \",\"FormButton.New_Store.reset\":\" Zurücksetzen \",\"FormButton.Add_Region.submit\":\" einreichen \",\"FormField.New_Store.Store_Timings.From_Timing\":\" Von \",\"Languages List.bn\":\" Bengali \",\"Languages List.ro\":\" rumänisch \",\"FormField.Purchase_Order.Record_Status\":\" Aufnahmestatus \",\"Languages List.be\":\" Belarussisch \",\"Languages List.ru\":\" Russisch \",\"FormField.New_Store.Store_Timings.To_Timing\":\" Zu \",\"FormField.New_Store.Modified_User\":\" Geänderter Benutzer \",\"ReportField.Products.Description\":\" Beschreibung \",\"Languages List.az\":\" Aserbaidschanisch \",\"Languages List.ta\":\" Tamilisch \",\"FormField.Add_Company_Details.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"Languages List.cs\":\" Tschechisch \",\"Section.Franchisees\":\" Franchisenehmer \",\"FormButton.Add_Product.cancel\":\" Stornieren \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" Thai \",\"FormField.Add_Franchisee.Franchisee_ID\":\" Franchise-ID \",\"FormField.Purchase_Order.Purchase_ID\":\" Kauf-ID \",\"ReportField.Store_Details.Store_Timings.To_Timing\":\" Store Timings.To_Timing \",\"FormField.Add_Product_Category.Added_Time\":\" Zeit hinzugefügt \",\"ReportField.My_Purchases.PO_Date\":\" Bestelldatum \",\"FormField.Status_Update.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Languages List.sq\":\" albanisch \",\"Languages List.ca\":\" katalanisch \",\"ReportField.Company_Details.Company_Name\":\" Name der Firma \",\"FormField.Add_Product.Modified_User\":\" Geänderter Benutzer \",\"FormField.Add_Product_Category.Modified_Time\":\" Geänderte Zeit \",\"FormField.Add_Product.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Languages List.sw\":\" Swahili \",\"ReportField.All_Purchase_Orders.Purchase_ID\":\" Kauf-ID \",\"Languages List.sv\":\" Schwedisch \",\"Languages List.sk\":\" slowakisch \",\"FormField.Add_Franchisee.Email\":\" Email \",\"FormField.Purchase_Order.Modified_Time\":\" Geänderte Zeit \",\"Languages List.sl\":\" Slowenisch \",\"FormField.Add_Region.ID\":\" ICH WÜRDE \",\"FormButton.Purchase_Order.submit\":\" einreichen \",\"FormField.New_Store.Franchisee\":\" Franchisenehmer \",\"CustomAction.Pending_Orders.Status_Update\":\" Status-Update \",\"Report.Products\":\" Produkte \",\"Report.Monthly_Orders\":\" Monatliche Bestellungen \",\"FormField.Add_Region.Region\":\" Region \",\"Languages List.pt\":\" Portugiesisch \",\"Report.Franchisee_Details\":\" Franchisenehmer Details \",\"FormButton.Purchase_Order.reset\":\" Zurücksetzen \",\"FormField.Add_Product.Added_Time\":\" Zeit hinzugefügt \",\"Languages List.pl\":\" Polieren \",\"ReportField.Delivered_Orders.PO_Date\":\" Bestelldatum \",\"FormField.New_Store.Store_Timings.Days\":\" Tage \",\"Languages List.ar\":\" Arabisch \",\"Languages List.af\":\" Afrikaans \",\"FormField.Purchase_Order.ID\":\" ICH WÜRDE \",\"FormField.Add_Franchisee.Added_User\":\" Benutzer hinzugefügt \",\"Section.Settings\":\" die Einstellungen \",\"FormButton.Purchase_Order.update\":\" Aktualisieren \",\"FormField.Purchase_Order.Products.Quantity\":\" Menge \",\"ReportField.Delivered_Orders.Comments\":\" Bemerkungen \",\"FormButton.New_Store.cancel\":\" Stornieren \",\"ReportField.My_Purchases.Purchase_ID\":\" Kauf-ID \",\"ReportField.All_Purchase_Orders.Net_Total\":\" Netto Summe \",\"FormButton.Add_Product_Category.cancel\":\" Stornieren \",\"FormField.New_Store.Store_Name\":\" Speichername \",\"FormButton.Add_Product_Category.submit\":\" einreichen \",\"FormField.Add_Product.Unit_Price\":\" Einzelpreis \",\"FormField.New_Store.Added_User\":\" Benutzer hinzugefügt \",\"ReportField.Products.Product_Name\":\" Produktname \",\"FormField.Purchase_Order.PO_Date\":\" Bestelldatum \",\"FormField.Status_Update.ID\":\" ICH WÜRDE \",\"ReportField.Pending_Orders.Purchase_ID\":\" Kauf-ID \",\"FormField.Purchase_Order.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Form.Add_Product_Category\":\" Produktkategorie hinzufügen \",\"FormField.Status_Update.Modified_Time\":\" Geänderte Zeit \",\"Languages List.fr\":\" Französisch \",\"PicklistOption.Purchase_Order.Status.1\":\" steht aus \",\"PicklistOption.Purchase_Order.Status.2\":\" Geliefert \",\"PicklistOption.Purchase_Order.Status.3\":\" Abgelehnt \",\"FormField.Status_Update.Remarks\":\" Bemerkungen \",\"FormField.Status_Update.Record_Status\":\" Aufnahmestatus \",\"Languages List.fi\":\" Finnese \",\"FormField.Add_Company_Details.Modified_Time\":\" Geänderte Zeit \",\"FormField.Add_Region.Modified_Time\":\" Geänderte Zeit \",\"FormField.Purchase_Order.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"Languages List.fa\":\" persisch \",\"Languages List.gu\":\" Gujarati \",\"ReportField.Pending_Orders.Store\":\" Geschäft \",\"FormButton.Add_Product.submit\":\" einreichen \",\"FormField.Purchase_Order.Added_User\":\" Benutzer hinzugefügt \",\"ReportField.Products.Available_Stocks\":\" Verfügbare Bestände \",\"ReportField.Delivered_Orders.Store\":\" Geschäft \",\"Languages List.gl\":\" galizisch \",\"FormField.Add_Company_Details.Record_Status\":\" Aufnahmestatus \",\"FormField.Add_Company_Details.Logo\":\" Logo \",\"FormField.Add_Region.Record_Status\":\" Aufnahmestatus \",\"Report.Store_Details\":\" Laden Details \",\"FormField.Add_Region.Added_Time\":\" Zeit hinzugefügt \",\"Languages List.ga\":\" irisch \",\"Section.Hidden\":\" Versteckt \",\"FormField.Status_Update.Added_Time\":\" Zeit hinzugefügt \",\"Report.Delivered_Orders\":\" Gelieferte Bestellungen \",\"ReportField.Store_Details.Region\":\" Region \",\"Languages List.tr\":\" Türkisch \",\"Languages List.da\":\" dänisch \",\"Languages List.de\":\" Deutsche \",\"FormField.Add_Franchisee.Modified_Time\":\" Geänderte Zeit \",\"Languages List.cy\":\" Walisisch \",\"ReportField.Company_Details.Logo\":\" Logo \",\"Languages List.tl\":\" Filipino \",\"Form.Status_Update\":\" Status-Update \",\"ReportField.Franchisee_Details.Email\":\" Email \",\"Languages List.es\":\" Spanisch \",\"FormButton.Add_Company_Details.submit\":\" einreichen \",\"Languages List.eu\":\" baskisch \",\"Languages List.et\":\" estnisch \",\"FormButton.Add_Company_Details.cancel\":\" Stornieren \",\"Languages List.vi\":\" Vietnamesisch \",\"FormButton.Add_Franchisee.cancel\":\" Stornieren \",\"ReportField.Products.Product_Category\":\" Produktkategorie \",\"Report.Pending_Orders\":\" Ausstehende Bestellungen \",\"FormField.Add_Product.Record_Status\":\" Aufnahmestatus \",\"FormField.Add_Product.Description\":\" Beschreibung \",\"Languages List.el\":\" griechisch \",\"FormButton.Add_Company_Details.update\":\" Aktualisieren \",\"FormButton.Add_Franchisee.submit\":\" einreichen \",\"FormButton.Add_Product.update\":\" Aktualisieren \",\"ReportField.Pending_Orders.Net_Total\":\" Netto Summe \",\"Languages List.eo\":\" Esperanto \",\"Languages List.en\":\" Englisch \",\"Report.All_Purchase_Orders\":\" Alle Bestellungen \",\"Languages List.ur\":\" Urdu \",\"FormField.Add_Product.Product_Name\":\" Produktname \",\"FormField.Status_Update.Status\":\" Status \",\"ReportField.Franchisee_Details.Franchisee_ID\":\" Franchise-ID \",\"FormField.Add_Company_Details.Email\":\" Email \",\"Report.My_Purchases\":\" Meine Einkäufe \",\"ReportField.All_Purchase_Orders.PO_Date\":\" Bestelldatum \",\"FormField.Add_Franchisee.Record_Status\":\" Aufnahmestatus \",\"ReportField.My_Purchases.Store\":\" Geschäft \",\"FormField.Add_Company_Details.Added_User\":\" Benutzer hinzugefügt \"},\"fr\":{\"FormButton.New_Store.update\":\" Mettre à jour \",\"FormField.Purchase_Order.Store\":\" le magasin \",\"ReportField.Pending_Orders.Status\":\" Statut \",\"FormField.New_Store.Email\":\" Email \",\"FormField.Status_Update.Section\":\"Section\",\"FormButton.Add_Franchisee.reset\":\" Réinitialiser \",\"FormField.Status_Update.Purchase_ID\":\" Identifiant d'achat \",\"FormField.Add_Company_Details.ID\":\" ID \",\"FormButton.Add_Product_Category.update\":\" Mettre à jour \",\"FormField.Purchase_Order.Status_Updated_On\":\" Statut mis à jour le \",\"Languages List.zh-TW\":\" Chinois traditionnel \",\"FormField.Add_Region.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"Report.Weekly_Orders\":\" Commandes hebdomadaires \",\"FormField.New_Store.Modified_Time\":\" Heure modifiée \",\"Languages List.ja\":\" Japonais \",\"FormField.New_Store.Company\":\" Compagnie \",\"ReportField.Company_Details.Website\":\" Site Internet \",\"FormField.Add_Company_Details.Website\":\" Site Internet \",\"ReportField.All_Purchase_Orders.Store\":\" le magasin \",\"FormButton.Add_Product_Category.reset\":\" Réinitialiser \",\"Page.Dashboard\":\" Tableau de bord \",\"FormField.Add_Product.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Add_Product_Category.ID\":\" ID \",\"FormField.New_Store.Store_ID\":\" ID du magasin \",\"ReportField.Delivered_Orders.Status\":\" Statut \",\"FormField.Add_Product_Category.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Product.Available_Stocks\":\" Stocks disponibles \",\"Languages List.ku\":\" kurde \",\"ReportField.My_Purchases.Comments\":\" commentaires \",\"FormField.Add_Product.Product_Code\":\" Code produit \",\"FormField.New_Store.Record_Status\":\" Statut d'enregistrement \",\"FormField.Status_Update.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormButton.Add_Franchisee.update\":\" Mettre à jour \",\"ReportField.Delivered_Orders.Purchase_ID\":\" Identifiant d'achat \",\"Languages List.km\":\" Khmer \",\"Languages List.ko\":\" coréen \",\"FormField.Add_Product.Modified_Time\":\" Heure modifiée \",\"Languages List.kn\":\" Kannada \",\"FormButton.Purchase_Order.cancel\":\" Annuler \",\"Languages List.ka\":\" géorgien \",\"FormField.Purchase_Order.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Product_Category.Modified_User\":\" Utilisateur modifié \",\"Form.Add_Franchisee\":\" Ajouter un franchisé \",\"Languages List.hu\":\" hongrois \",\"Languages List.yi\":\" yiddish \",\"Languages List.hy\":\" arménien \",\"FormField.Add_Company_Details.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Add_Product.Company\":\" Compagnie \",\"ReportField.Products.Unit_Price\":\" Prix ​​unitaire \",\"Languages List.hr\":\" croate \",\"FormButton.Add_Region.cancel\":\" Annuler \",\"App.franchise-management\":\"Gestion des franchises \",\"FormField.Purchase_Order.Products.Category\":\" Catégorie \",\"Languages List.hi\":\" hindi \",\"Form.Add_Product\":\" Ajouter un produit \",\"FormField.New_Store.Region\":\" Région \",\"ReportField.Store_Details.Store_ID\":\" ID du magasin \",\"FormField.New_Store.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"ReportField.My_Purchases.Net_Total\":\" Total net \",\"Languages List.zh\":\" chinois \",\"Languages List.iw\":\" hébreu \",\"FormField.Add_Product.Added_User\":\" Utilisateur ajouté \",\"FormField.New_Store.Added_Time\":\" Temps ajouté \",\"FormField.Add_Product_Category.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"ReportField.Store_Details.Email\":\" Email \",\"FormField.Add_Franchisee.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Add_Franchisee.Added_Time\":\" Temps ajouté \",\"FormField.Add_Product.Product_Category\":\" catégorie de produit \",\"Section.Products\":\" Des produits \",\"Languages List.is\":\" islandais \",\"Form.Add_Region\":\" Ajouter une région \",\"Languages List.it\":\" italien \",\"FormButton.Add_Company_Details.reset\":\" Réinitialiser \",\"FormField.Add_Franchisee.ID\":\" ID \",\"FormButton.New_Store.submit\":\" Soumettre \",\"FormField.Purchase_Order.Products.Product\":\" Produit \",\"ReportField.Product_Categories.Category\":\" Catégorie \",\"Report.Regions\":\" Les régions \",\"ReportField.Pending_Orders.Comments\":\" commentaires \",\"Section.Purchase\":\" achat \",\"FormField.Status_Update.Modified_User\":\" Utilisateur modifié \",\"Languages List.nl\":\" néerlandais \",\"ReportField.Delivered_Orders.Net_Total\":\" Total net \",\"FormField.New_Store.Store_Timings\":\" Moment de magasin \",\"FormField.Add_Company_Details.Modified_User\":\" Utilisateur modifié \",\"Languages List.no\":\" norvégien \",\"PicklistOption.Status_Update.Status.2\":\" Diminué \",\"FormButton.Add_Product.reset\":\" Réinitialiser \",\"PicklistOption.Status_Update.Status.1\":\" Livré \",\"ReportField.Store_Details.Store_Timings.From_Timing\":\" Store Timings.From_Timing \",\"ReportField.Delivered_Orders.Status_Updated_On\":\" Mis à jour le \",\"FormField.Add_Region.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Add_Region.Modified_User\":\" Utilisateur modifié \",\"FormField.Purchase_Order.Added_Time\":\" Temps ajouté \",\"ReportField.Store_Details.Franchisee\":\" Franchisé \",\"ReportField.Products.Product_Code\":\" Code produit \",\"FormField.Add_Franchisee.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Add_Product_Category.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"ReportField.All_Purchase_Orders.Status\":\" Statut \",\"ReportField.All_Purchase_Orders.Comments\":\" commentaires \",\"FormField.Add_Region.Added_User\":\" Utilisateur ajouté \",\"FormField.Purchase_Order.Products\":\" Des produits \",\"ReportField.My_Purchases.Status\":\" Statut \",\"FormButton.Add_Region.update\":\" Mettre à jour \",\"ReportField.Pending_Orders.Status_Updated_On\":\" Mis à jour le \",\"Section.Dashboard\":\" Tableau de bord \",\"FormField.Purchase_Order.Products.Unit_Price\":\" Prix ​​unitaire \",\"ReportField.Store_Details.Store_Name\":\" Nom du magasin \",\"ReportField.Pending_Orders.PO_Date\":\" PO Date \",\"FormField.Purchase_Order.Products.Total\":\" Total \",\"FormField.Status_Update.Added_User\":\" Utilisateur ajouté \",\"Languages List.lt\":\" lituanien \",\"Languages List.lv\":\" letton \",\"Form.Add_Company_Details\":\" Ajouter les détails de l'entreprise \",\"FormField.New_Store.ID\":\" ID \",\"FormButton.Add_Region.reset\":\" Réinitialiser \",\"FormField.New_Store.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Purchase_Order.Comments\":\" commentaires \",\"FormField.Add_Franchisee.Modified_User\":\" Utilisateur modifié \",\"Languages List.lo\":\" Laothian \",\"ReportField.All_Purchase_Orders.Status_Updated_On\":\" Mis à jour le \",\"Languages List.la\":\" Latin \",\"FormField.Purchase_Order.Net_Total\":\" Total net \",\"ReportField.Company_Details.Email\":\" Email \",\"FormField.Add_Product_Category.Category\":\" Catégorie \",\"Languages List.ms\":\" malais \",\"Languages List.mr\":\" Marathi \",\"Languages List.mt\":\" maltais \",\"Report.Company_Details\":\" Détails de la société \",\"Report.Orders_By_Region\":\" Commandes par région \",\"Languages List.mk\":\" Macédonien \",\"ReportField.My_Purchases.Status_Updated_On\":\" Mis à jour le \",\"Form.Purchase_Order\":\" Bon de commande \",\"FormField.Add_Product.ID\":\" ID \",\"FormField.Add_Company_Details.Added_Time\":\" Temps ajouté \",\"FormField.Purchase_Order.Tax\":\" Impôt \",\"FormField.Add_Product_Category.Record_Status\":\" Statut d'enregistrement \",\"Report.Product_Categories\":\" catégories de produits \",\"FormField.Purchase_Order.Status\":\" Statut \",\"ReportField.Regions.Region\":\" Région \",\"Form.New_Store\":\" Nouveau magasin \",\"FormField.Purchase_Order.Sub_Total\":\" Sous total \",\"Section.Stores\":\" Magasins \",\"Languages List.bg\":\" bulgare \",\"FormField.Add_Company_Details.Company_Name\":\" Nom de la compagnie \",\"FormButton.Status_Update.Update\":\" Mettre à jour \",\"FormButton.New_Store.reset\":\" Réinitialiser \",\"FormButton.Add_Region.submit\":\" Soumettre \",\"FormField.New_Store.Store_Timings.From_Timing\":\" De \",\"Languages List.bn\":\" bengali \",\"Languages List.ro\":\" roumain \",\"FormField.Purchase_Order.Record_Status\":\" Statut d'enregistrement \",\"Languages List.be\":\" Biélorusse \",\"Languages List.ru\":\" russe \",\"FormField.New_Store.Store_Timings.To_Timing\":\" À \",\"FormField.New_Store.Modified_User\":\" Utilisateur modifié \",\"ReportField.Products.Description\":\" La description \",\"Languages List.az\":\" azerbaïdjanais \",\"Languages List.ta\":\" Tamil \",\"FormField.Add_Company_Details.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"Languages List.cs\":\" tchèque \",\"Section.Franchisees\":\" Franchisés \",\"FormButton.Add_Product.cancel\":\" Annuler \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" thaïlandais \",\"FormField.Add_Franchisee.Franchisee_ID\":\" ID de franchisé \",\"FormField.Purchase_Order.Purchase_ID\":\" Identifiant d'achat \",\"ReportField.Store_Details.Store_Timings.To_Timing\":\" Stockez les Timings.To_Timing \",\"FormField.Add_Product_Category.Added_Time\":\" Temps ajouté \",\"ReportField.My_Purchases.PO_Date\":\" PO Date \",\"FormField.Status_Update.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Languages List.sq\":\" albanais \",\"Languages List.ca\":\" catalan \",\"ReportField.Company_Details.Company_Name\":\" Nom de la compagnie \",\"FormField.Add_Product.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Product_Category.Modified_Time\":\" Heure modifiée \",\"FormField.Add_Product.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Languages List.sw\":\" Swahili \",\"ReportField.All_Purchase_Orders.Purchase_ID\":\" Identifiant d'achat \",\"Languages List.sv\":\" suédois \",\"Languages List.sk\":\" slovaque \",\"FormField.Add_Franchisee.Email\":\" Email \",\"FormField.Purchase_Order.Modified_Time\":\" Heure modifiée \",\"Languages List.sl\":\" slovène \",\"FormField.Add_Region.ID\":\" ID \",\"FormButton.Purchase_Order.submit\":\" Soumettre \",\"FormField.New_Store.Franchisee\":\" Franchisé \",\"CustomAction.Pending_Orders.Status_Update\":\" Mise à jour du statut \",\"Report.Products\":\" Des produits \",\"Report.Monthly_Orders\":\" Commandes mensuelles \",\"FormField.Add_Region.Region\":\" Région \",\"Languages List.pt\":\" Portugais \",\"Report.Franchisee_Details\":\" Franchisé Détails \",\"FormButton.Purchase_Order.reset\":\" Réinitialiser \",\"FormField.Add_Product.Added_Time\":\" Temps ajouté \",\"Languages List.pl\":\" polonais \",\"ReportField.Delivered_Orders.PO_Date\":\" PO Date \",\"FormField.New_Store.Store_Timings.Days\":\" Journées \",\"Languages List.ar\":\" arabe \",\"Languages List.af\":\" afrikaans \",\"FormField.Purchase_Order.ID\":\" ID \",\"FormField.Add_Franchisee.Added_User\":\" Utilisateur ajouté \",\"Section.Settings\":\" Paramètres \",\"FormButton.Purchase_Order.update\":\" Mettre à jour \",\"FormField.Purchase_Order.Products.Quantity\":\" Quantité \",\"ReportField.Delivered_Orders.Comments\":\" commentaires \",\"FormButton.New_Store.cancel\":\" Annuler \",\"ReportField.My_Purchases.Purchase_ID\":\" Identifiant d'achat \",\"ReportField.All_Purchase_Orders.Net_Total\":\" Total net \",\"FormButton.Add_Product_Category.cancel\":\" Annuler \",\"FormField.New_Store.Store_Name\":\" Nom du magasin \",\"FormButton.Add_Product_Category.submit\":\" Soumettre \",\"FormField.Add_Product.Unit_Price\":\" Prix ​​unitaire \",\"FormField.New_Store.Added_User\":\" Utilisateur ajouté \",\"ReportField.Products.Product_Name\":\" Nom du produit \",\"FormField.Purchase_Order.PO_Date\":\" PO Date \",\"FormField.Status_Update.ID\":\" ID \",\"ReportField.Pending_Orders.Purchase_ID\":\" Identifiant d'achat \",\"FormField.Purchase_Order.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Form.Add_Product_Category\":\" Ajouter une catégorie de produit \",\"FormField.Status_Update.Modified_Time\":\" Heure modifiée \",\"Languages List.fr\":\" français \",\"PicklistOption.Purchase_Order.Status.1\":\" en attendant \",\"PicklistOption.Purchase_Order.Status.2\":\" Livré \",\"PicklistOption.Purchase_Order.Status.3\":\" Diminué \",\"FormField.Status_Update.Remarks\":\" Remarques \",\"FormField.Status_Update.Record_Status\":\" Statut d'enregistrement \",\"Languages List.fi\":\" Finnois \",\"FormField.Add_Company_Details.Modified_Time\":\" Heure modifiée \",\"FormField.Add_Region.Modified_Time\":\" Heure modifiée \",\"FormField.Purchase_Order.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"Languages List.fa\":\" persan \",\"Languages List.gu\":\" Gujarati \",\"ReportField.Pending_Orders.Store\":\" le magasin \",\"FormButton.Add_Product.submit\":\" Soumettre \",\"FormField.Purchase_Order.Added_User\":\" Utilisateur ajouté \",\"ReportField.Products.Available_Stocks\":\" Stocks disponibles \",\"ReportField.Delivered_Orders.Store\":\" le magasin \",\"Languages List.gl\":\" Galicien \",\"FormField.Add_Company_Details.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_Company_Details.Logo\":\" Logo \",\"FormField.Add_Region.Record_Status\":\" Statut d'enregistrement \",\"Report.Store_Details\":\" Détails du magasin \",\"FormField.Add_Region.Added_Time\":\" Temps ajouté \",\"Languages List.ga\":\" irlandais \",\"Section.Hidden\":\" Caché \",\"FormField.Status_Update.Added_Time\":\" Temps ajouté \",\"Report.Delivered_Orders\":\" Commandes livrées \",\"ReportField.Store_Details.Region\":\" Région \",\"Languages List.tr\":\" turc \",\"Languages List.da\":\" danois \",\"Languages List.de\":\" allemand \",\"FormField.Add_Franchisee.Modified_Time\":\" Heure modifiée \",\"Languages List.cy\":\" gallois \",\"ReportField.Company_Details.Logo\":\" Logo \",\"Languages List.tl\":\" Philippin \",\"Form.Status_Update\":\" Mise à jour du statut \",\"ReportField.Franchisee_Details.Email\":\" Email \",\"Languages List.es\":\" Espanol \",\"FormButton.Add_Company_Details.submit\":\" Soumettre \",\"Languages List.eu\":\" basque \",\"Languages List.et\":\" estonien \",\"FormButton.Add_Company_Details.cancel\":\" Annuler \",\"Languages List.vi\":\" vietnamien \",\"FormButton.Add_Franchisee.cancel\":\" Annuler \",\"ReportField.Products.Product_Category\":\" catégorie de produit \",\"Report.Pending_Orders\":\" Les ordres en attente \",\"FormField.Add_Product.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_Product.Description\":\" La description \",\"Languages List.el\":\" grec \",\"FormButton.Add_Company_Details.update\":\" Mettre à jour \",\"FormButton.Add_Franchisee.submit\":\" Soumettre \",\"FormButton.Add_Product.update\":\" Mettre à jour \",\"ReportField.Pending_Orders.Net_Total\":\" Total net \",\"Languages List.eo\":\" espéranto \",\"Languages List.en\":\" Anglais \",\"Report.All_Purchase_Orders\":\" Toutes les commandes d'achat \",\"Languages List.ur\":\" Urdu \",\"FormField.Add_Product.Product_Name\":\" Nom du produit \",\"FormField.Status_Update.Status\":\" Statut \",\"ReportField.Franchisee_Details.Franchisee_ID\":\" ID de franchisé \",\"FormField.Add_Company_Details.Email\":\" Email \",\"Report.My_Purchases\":\" Mes achats \",\"ReportField.All_Purchase_Orders.PO_Date\":\" PO Date \",\"FormField.Add_Franchisee.Record_Status\":\" Statut d'enregistrement \",\"ReportField.My_Purchases.Store\":\" le magasin \",\"FormField.Add_Company_Details.Added_User\":\" Utilisateur ajouté \"}}"
+}
+}

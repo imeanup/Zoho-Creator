@@ -1,0 +1,2014 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 23:12:00
+ * Version      : 1.0
+ */
+ application "Visitor Management"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+	section Staff
+	{
+		displayname= "Employees"
+		icon = "users-multiple-11"
+		form Staff
+		{
+			displayname = "New Employee"
+			success message = "Staff Details Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Mobile
+			(
+    			type = phonenumber
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Department
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Job_Title
+			(
+    			type = text
+				displayname = "Job Title"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Work_Location
+			(
+    			type = text
+				displayname = "Work Location"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-2-a-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Company_Staff_List
+		{
+			displayName = "Company Employee List"
+			show all rows from Staff    
+			(
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Mobile
+				Work_Location as "Work Location"
+				Email
+				Job_Title as "Job Title"
+				Department
+			)
+			options
+			(
+				icon = "users-multiple-11"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Address
+							Email
+							Department
+							Job_Title as "Job Title"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Personal Details"
+						fields
+						(
+							Name
+							Email
+							Mobile
+							Address
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Work Details"
+						fields
+						(
+							Department
+							Job_Title as "Job Title"
+							Work_Location as "Work Location"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Visitor
+	{
+		displayname= "Visitors"
+		icon = "users-single-02"
+		form Visitor
+		{
+			displayname = "New Visitor"
+			success message = "Visitor Details Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Person_To_Meet
+			(
+				type = picklist
+				displayname = "Person To Meet"
+				values  = Staff.ID
+    			displayformat = [Name.first_name + " " + Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Purpose
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have IN_Date_Time
+			(
+    			type = datetime
+				displayname = "Date and time of visit"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Mobile
+			(
+    			type = phonenumber
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Blacklist
+			(
+    			type = checkbox
+				initial value = false
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Picture
+			(
+    			type = image
+				source  = public_url,file
+				aspect ratio = original
+				camera = primary
+				preview duration = 0
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = 140px
+			)
+			Signature
+			(
+    			type = signature
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-2-a-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list All_Visitors
+		{
+			displayName = "All Visitors"
+			show all rows from Visitor    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				IN_Date_Time as "Date and time of visit"
+				Purpose
+				Person_To_Meet as "Person To Meet"
+				Signature
+				Mobile
+				Email
+				Picture
+			)
+			filters
+			(
+				Person_To_Meet
+			)
+			options
+			(
+				icon = "users-multiple-11"
+	 		)
+			custom actions
+			(
+				"Blacklist"
+				(
+	  			workflow = Blacklist
+				show action in view header = true
+				show action in edit record menu = true
+				)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 10
+					datablock1
+					(
+			 			layout type = 34
+		     			title = "Overview"
+						fields
+						(
+							Name
+							IN_Date_Time as "Date and time of visit"
+							Person_To_Meet as "Person To Meet"
+							Picture
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+								"Blacklist"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+								"Blacklist"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 27
+		     			title = "Visitor's Overview"
+						fields
+						(
+							Name
+							Email
+							Mobile
+							Email
+							Mobile
+							Address
+							Address
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Visit Details"
+						fields
+						(
+							Purpose
+							IN_Date_Time as "Date and time of visit"
+							Signature
+						)
+					)
+					datablock4
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field =  Person_To_Meet
+						fields
+						(
+							Name
+							Email
+							Mobile
+							Department
+							Job_Title as "Job Title"
+							Work_Location as "Work Location"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+			 			"Blacklist"
+    	 			)
+    			)
+			)
+		}
+		list My_Visitors
+		{
+			displayName = "My Visitors"
+			show all rows from Visitor  [Person_To_Meet.Email == zoho.loginuserid]  
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Signature
+				Mobile
+				Email
+				IN_Date_Time as "Date and time of visit"
+				Person_To_Meet as "Person To Meet"
+				Purpose
+				Picture
+			)
+			options
+			(
+				icon = "users-single-03"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 3
+					datablock1
+					(
+			 			layout type = 7
+		     			title = "Overview"
+						fields
+						(
+							Picture
+							Name
+							IN_Date_Time as "Date and time of visit"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Visitor's Overview"
+						fields
+						(
+							Picture
+							Name
+							Email
+							Mobile
+							Mobile
+							Purpose
+							Address
+							Person_To_Meet as "Person To Meet"
+							Address
+							IN_Date_Time as "Date and time of visit"
+							Signature
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		calendar Visitor_Calendar
+		{
+			displayName = "Visitor Calendar"
+			show all rows from Visitor    
+			(
+				Added_Time as "Added Time"
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Picture
+				Email
+				Purpose
+				Mobile
+				Signature
+				IN_Date_Time as "Date and time of visit"
+				Blacklist
+				Person_To_Meet as "Person To Meet"
+			)
+			filters
+			(
+				Person_To_Meet
+			)
+			options
+			(
+				display type = month
+				week start day = sunday
+				display field = Name
+				start date = IN_Date_Time
+				default date 
+				(
+	    			day   = Today
+	    			month = Currentmonth
+	    			year  = Currentyear
+				)
+				icon = "ui-1-calendar-60"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 6
+					datablock1
+					(
+			 			layout type = 23
+		     			title = "Overview"
+						fields
+						(
+							Picture
+							Name
+							Purpose
+							Person_To_Meet as "Person To Meet"
+							IN_Date_Time as "Date and time of visit"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock3
+					(
+			 			layout type = 27
+		     			title = "Visitor's Overview"
+						fields
+						(
+							Picture
+							Name
+							Address
+							Email
+							Mobile
+						)
+					)
+					datablock4
+					(
+			 			layout type = -2
+		     			title = "Visit Details"
+						fields
+						(
+							Purpose
+							IN_Date_Time as "Date and time of visit"
+							Signature
+						)
+					)
+					datablock5
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field =  Person_To_Meet
+						fields
+						(
+							Name
+							Email
+							Mobile
+							Department
+							Job_Title as "Job Title"
+							Work_Location as "Work Location"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		pivotchart Staff_Visitor_Chart
+		{ 
+			displayname = "Employee's Visitor Chart"
+			based on Autoview_1464244715123_Visitor
+							icon = "ui-3-chart-bars"				show all rows from Visitor
+				(
+ 					Blacklist 
+ 					Person_To_Meet  as "Person To Meet"
+ 					Name.suffix  as "Name.Suffix"
+ 					Address.longitude2  as "Address.longitude"
+ 					Signature 
+ 					Name.last_name  as "Name.Last Name"
+ 					IN_Date_Time  as "Date and time of visit"
+ 					Name.prefix  as "Name.Prefix"
+ 					Name.first_name  as "Name"
+ 					Address.postal_Code2  as "Address.Postal Code"
+ 					Address.address_line_12  as "Address"
+ 					Email 
+ 					Address.state_province2  as "Address.State / Province"
+ 					Address.address_line_22  as "Address.Address Line 2"
+ 					Address.latitude2  as "Address.latitude"
+ 					Address.district_city2  as "Address.City / District"
+ 					Mobile  as "Mobile1"
+ 					Address.country2  as "Address.Country"
+				)
+		}
+		list Blacklisted_Visitors
+		{
+			displayName = "Blacklisted Visitors"
+			show all rows from Visitor    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Blacklist
+				Picture
+				Mobile
+				Email
+				Person_To_Meet as "Person To Meet"
+				IN_Date_Time as "Date and time of visit"
+				Purpose
+				Signature
+			)
+			options
+			(
+				icon = "users-2-a-delete"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 10
+					datablock1
+					(
+			 			layout type = 34
+		     			title = "Overview"
+						fields
+						(
+							Name
+							IN_Date_Time as "Date and time of visit"
+							Person_To_Meet as "Person To Meet"
+							Picture
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 19
+		     			title = "Visitor's Overview"
+						fields
+						(
+							Name
+							Email
+							Mobile
+							Email
+							Mobile
+							Address
+							Address
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Visit Details"
+						fields
+						(
+							Purpose
+							IN_Date_Time as "Date and time of visit"
+							Signature
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field =  Person_To_Meet
+						fields
+						(
+							Name
+							Email
+							Mobile
+							Department
+							Job_Title as "Job Title"
+							Work_Location as "Work Location"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section New_Visit_Requests
+	{
+		displayname= "Visit requests for web"
+		icon = "users-multiple-19"
+		form New_Visit_Request
+		{
+			displayname = "New Visit Request"
+			success message = "New Visit Request Added Successfully"
+			field alignment = left
+			feature property = 32
+			Section1
+			(
+				type = section
+				displayname = "Section"
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status
+			(
+				type = radiobuttons
+				values = {"Pending", "Confirmed"}
+				initial value = "Pending"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Person_To_Meet
+			(
+				type = picklist
+				displayname = "Person To Meet"
+				values  = Staff.ID
+    			displayformat = [" " + Name.first_name + " " + Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Purpose
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Date_and_time_of_visit
+			(
+    			type = datetime
+				displayname = "Date and time of visit"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Mobile
+			(
+    			type = phonenumber
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		kanban All_Visit_Requests
+		{
+			displayName = "All Visit Requests"
+			show all rows from New_Visit_Request    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Date_and_time_of_visit as "Date and time of visit"
+				Purpose
+				Person_To_Meet as "Person To Meet"
+				Status
+				Email
+				Mobile
+			)
+			options
+			(
+	 			display field = Status
+	 		)
+			custom actions
+			(
+				"Confirm"
+				(
+	  			workflow = Confirm1
+				show action in edit record menu = true
+				condition = (Status == "Pending")
+				)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Date_and_time_of_visit as "Date and time of visit"
+							Person_To_Meet as "Person To Meet"
+							Email
+							Mobile
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Confirm"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Visitor Details"
+						fields
+						(
+							Name
+							Email
+							Mobile
+							Purpose
+							Date_and_time_of_visit as "Date and time of visit"
+							Mobile
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field =  Person_To_Meet
+						fields
+						(
+							Name
+							Email
+							Mobile
+							Department
+							Job_Title as "Job Title"
+							Work_Location as "Work Location"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Pending_Visit_Requests
+		{
+			displayName = "My Pending Visit Requests"
+			show all rows from New_Visit_Request  [Status == "Pending" && Person_To_Meet.Email == zoho.loginuserid]  
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Status
+				Email
+				Purpose
+				Date_and_time_of_visit as "Date and time of visit"
+				Mobile
+			)
+			custom actions
+			(
+				"Confirm"
+				(
+	  			workflow = Confirm
+				show action in edit record menu = true
+				)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Purpose
+							Date_and_time_of_visit as "Date and time of visit"
+							Email
+							Mobile
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Confirm"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+								"Confirm"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email
+							Purpose
+							Date_and_time_of_visit as "Date and time of visit"
+							Mobile
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Confirmed_Visit_Requests
+		{
+			displayName = "My Confirmed Visit Requests"
+			show all rows from New_Visit_Request  [Status == "Confirmed" && Person_To_Meet.Email == zoho.loginuserid]  
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Status
+				Email
+				Purpose
+				Date_and_time_of_visit as "Date and time of visit"
+				Mobile
+			)
+			options
+			(
+				icon = "ui-1-check-small"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Purpose
+							Date_and_time_of_visit as "Date and time of visit"
+							Email
+							Mobile
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email
+							Purpose
+							Date_and_time_of_visit as "Date and time of visit"
+							Mobile
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	functions
+	{
+ 			void confirmVisitRequest(int id)
+			{
+				visitRequestRec = New_Visit_Request[ID == input.id];
+				visitRequestRec.Status="Confirmed";
+				sendmail
+				[
+					from :zoho.adminuserid
+					to :visitRequestRec.Email
+					subject :"Visit Request Confirmed!"
+					message :((("Hi&nbsp;" + visitRequestRec.Name) + ",<div><br></div><div>This is to inform you that your visit request has been confirmed. Below are the visit request details which we have in record right now.</div><div><br></div><div>Name: " + visitRequestRec.Name) + "<br></div><div>Email: " + visitRequestRec.Email + "</div><div>Purpose: " + visitRequestRec.Purpose + "</div><div>Person to meet: " + visitRequestRec.Person_To_Meet.Name) + "</div><div><div>Status: " + visitRequestRec.Status + "</div></div><div>Date and time of visit: " + visitRequestRec.Date_and_time_of_visit + "</div><div><br></div><div>Thank You</div>"
+				]
+			}
+ 			void blacklistVisitor(int id)
+			{
+				visitorRec = Visitor[ID == input.id];
+				visitorRec.Blacklist=true;
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Visit_date_time_check_scr1 as "Visit date time check script"
+			{
+				type =  form
+				form = New_Visit_Request
+				record event = on add or edit
+
+	on user input of Date_and_time_of_visit
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Date_and_time_of_visit < zoho.currenttime.subMinutes(20))
+										{
+											input.Date_and_time_of_visit = null;
+											alert "Please enter valid date and time value.";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin1 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Staff
+				record event = on delete
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Unsharing 'Forms' and 'Reports' with employee
+										thisapp.permissions.deleteUser(input.Email);
+						)
+					}
+	}
+
+			}
+			Visit_request_notificatio as "Visit request notification"
+			{
+				type =  form
+				form = New_Visit_Request
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Status;
+						)
+					}
+	}
+
+			}
+			Visit_request_notificatio2 as "Visit request notification"
+			{
+				type =  form
+				form = New_Visit_Request
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						sendmail
+						(
+							from : "zoho.adminuserid"
+							to : "zoho.adminuserid"
+							subject : "New Visitor Request"
+							message : "Hello Admin,<br><br>A new visit request has been raised."
+						)
+						custom deluge script
+						(
+											sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Person_To_Meet.Email
+											subject :"New visit request submitted.!"
+											message :(("Hi " + input.Person_To_Meet.Name) + ",<div><br></div><div>The following visit has been requested. Please accept or reject the visit request.<br><br>Name: " + input.Name) + "<br>Mobile: " + input.Mobile + "</div><div>Date and time of visit:&nbsp;" + input.Date_and_time_of_visit + "</div><div><br></div><div><a target=\"_blank\" href='https://creator.zoho.com" + zoho.appuri + "#Report:My_Pending_Visit_Requests?ID=" + input.ID + "'>Accept or reject appointment</a><br></div><div><br></div><div>Thank You</div>"
+										]
+						)
+					}
+	}
+
+			}
+			Disable_field_script1 as "Disable field script"
+			{
+				type =  form
+				form = New_Visit_Request
+				record event = on edit
+
+	field rules
+	{
+					actions 
+					{
+						disable Person_To_Meet,Name,Mobile,Email,Purpose;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_2 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Visitor
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.IN_Date_Time = zoho.currenttime;
+										disable IN_Date_Time;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_3 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Visitor
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Person_To_Meet.Email
+											subject :"Visitor waiting for you!"
+											message :(((("Hi " + input.Person_To_Meet.Name) + ",<div><br></div><div>Visitor " + input.Name) + " is waiting for you at reception. You can find visitor's details below. Please check and confirm your action.<br><br><b>Name:</b> " + input.Name) + "<br><b>Mobile:</b> " + input.Mobile + "<br><b>Address:</b> " + input.Address) + "</div><div><br></div><div>Thank You</div>"
+										]
+						)
+					}
+	}
+
+			}
+			Hiding_Blacklist_Field1 as "Hiding Blacklist Field"
+			{
+				type =  form
+				form = Visitor
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Blacklist;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_4 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Staff
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Staff[ID != 0].count() == 0)
+										{
+											insert into Staff
+											[
+												Email=zoho.adminuserid
+												Name.first_name="Admin"
+												Name.last_name="User"
+												Job_Title="Admin"
+												Added_User=zoho.loginuser
+											]
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_5 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Staff
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											var = thisapp.permissions.assignUserInProfile(input.Email,"Employee");
+										//share report("My_Visitors",input.Email);
+										//share report("My_Confirmed_Visit_Requests",input.Email);
+										//share report("My_Pending_Visit_Requests",input.Email);
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Email
+											subject :"Invitation to access Visitor Management application.!"
+											message :("Dear&nbsp;" + input.Name) + ",<div><br></div><div>Welcome, you have been invited to use Visitor Management application click the link and check it out.</div><div><br></div><div>Application Link : http://creator.zoho.com/" + zoho.adminuser + "/" + zoho.appname + "/#</div><div><br></div><div>Thank You</div>"
+										]
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing1 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Staff
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//If email has been changed for the employee then unsharing 'Forms' and 'Reports' with old email and sharing with new email
+										if(input.Email != old.Email)
+										{
+											thisapp.permissions.deleteUser(old.Email);
+											var = thisapp.permissions.assignUserInProfile(input.Email,"Employee");
+										}
+						)
+					}
+	}
+
+			}
+		}
+		functions
+		{
+			Confirm1 as "Confirm"
+			{
+				type =  functions
+				form = New_Visit_Request
+				on start
+				{
+					actions 
+					{
+					confirmVisitRequest(ID);
+					}
+				}
+			}
+			Confirm as "Confirm"
+			{
+				type =  functions
+				form = New_Visit_Request
+				on start
+				{
+					actions 
+					{
+					confirmVisitRequest(ID);
+					}
+				}
+			}
+			Blacklist as "Blacklist"
+			{
+				type =  functions
+				form = Visitor
+				on start
+				{
+					actions 
+					{
+					blacklistVisitor(ID);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"User"
+			{
+				name = "User"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:true}
+				description = "This profile only have add and view permission.\n"
+			}
+			"Employee"
+			{
+				name = "Employee"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "Employee Profile\n"
+				ModulePermissions
+				{
+					Visitor
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							My_Visitors={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							IN_Date_Time{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Picture{visibility:true,readonly:false}
+							Signature{visibility:true,readonly:false}
+							Purpose{visibility:true,readonly:false}
+							Blacklist{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Person_To_Meet{visibility:true,readonly:false}
+							Mobile{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					New_Visit_Request
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							My_Pending_Visit_Requests={"View","Edit","Delete"}
+							My_Confirmed_Visit_Requests={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Date_and_time_of_visit{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Section1{visibility:true,readonly:false}
+							Purpose{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Person_To_Meet{visibility:true,readonly:false}
+							Mobile{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Staff
+					{
+						FieldPermissions
+						{
+							Department{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Work_Location{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Job_Title{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Mobile{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+				}
+			}
+			"Member"
+			{
+				name = "Member"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:true}
+				description = "This profile will not have administrative permissions.\n"
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users.\n\n"
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 2
+		new theme color = 1
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-operation-6"
+    	icon theme = "blue"
+		icons style = solid
+	}
+
+	translation
+{
+"{\"de\":{\"App.visitor-management\":\"Besuchermanagement \",\"FormField.New_Visit_Request.prefix\":\" Präfix \",\"FormField.Staff.ID\":\" ICH WÜRDE \",\"ReportField.All_Visit_Requests.first_name\":\" Name \",\"ReportField.All_Visitors.address_line_12\":\" Adresse \",\"CompositeSubFields.Visitor.Name.first_name\":\" Vorname \",\"PicklistOption.Visitor.prefix.1\":\" Herr. \",\"PicklistOption.Visitor.prefix.2\":\" Frau. \",\"PicklistOption.New_Visit_Request.prefix.1\":\" Herr. \",\"PicklistOption.Visitor.prefix.3\":\" Frau. \",\"PicklistOption.New_Visit_Request.prefix.2\":\" Frau. \",\"CompositeSubFields.Visitor.Address.state_province2\":\" Staat / Provinz \",\"ReportField.My_Visitors.IN_Date_Time\":\" Datum und Uhrzeit des Besuchs \",\"PicklistOption.New_Visit_Request.prefix.3\":\" Frau. \",\"FormField.New_Visit_Request.Purpose\":\" Zweck \",\"FormField.Visitor.ID\":\" ICH WÜRDE \",\"FormField.Staff.suffix\":\" Suffix \",\"Languages List.zh-TW\":\" Chinesische Tradition \",\"FormField.Staff.Modified_User\":\" Geänderter Benutzer \",\"Languages List.ja\":\" japanisch \",\"CompositeSubFields.Visitor.Name.last_name\":\" Familienname, Nachname \",\"FormField.Visitor.postal_Code2\":\" Postleitzahl \",\"ReportField.My_Confirmed_Visit_Requests.Mobile\":\" Handy, Mobiltelefon \",\"FormField.Visitor.IN_Date_Time\":\" Datum und Uhrzeit des Besuchs \",\"ReportField.My_Visitors.first_name\":\" Name \",\"FormField.New_Visit_Request.first_name\":\" Vorname \",\"Languages List.ku\":\" kurdisch \",\"FormField.Visitor.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Visitor.Name\":\" Name \",\"Languages List.km\":\" Khmer \",\"FormField.Staff.Department\":\" Abteilung \",\"CustomAction.All_Visitors.Blacklist\":\" Schwarze Liste \",\"Languages List.ko\":\" Koreanisch \",\"Languages List.kn\":\" Kannada \",\"FormField.Staff.state_province2\":\" Staat / Provinz \",\"Languages List.ka\":\" georgisch \",\"FormButton.Staff.cancel\":\" Stornieren \",\"CompositeSubFields.Staff.Address.address_line_12\":\" Anschrift Zeile 1 \",\"ReportField.All_Visit_Requests.Date_and_time_of_visit\":\" Datum und Uhrzeit des Besuchs \",\"Languages List.hu\":\" ungarisch \",\"CompositeSubFields.Visitor.Address.postal_Code2\":\" Postleitzahl \",\"Languages List.yi\":\" Jiddisch \",\"CompositeSubFields.Staff.Name.prefix\":\" Präfix \",\"ReportField.Blacklisted_Visitors.Picture\":\" Bild \",\"ReportField.All_Visitors.Signature\":\" Unterschrift \",\"FormField.Visitor.Section\":\" Sektion \",\"FormField.Visitor.last_name\":\" Familienname, Nachname \",\"Languages List.hy\":\" Armenisch \",\"ReportField.My_Pending_Visit_Requests.first_name\":\" Name \",\"ReportField.My_Visitors.address_line_12\":\" Adresse \",\"Languages List.hr\":\" kroatisch \",\"FormField.Staff.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Visitor.Record_Status\":\" Aufnahmestatus \",\"Form.Visitor\":\" Neuer Besucher \",\"Languages List.hi\":\" Hindi \",\"CompositeSubFields.Staff.Address.address_line_22\":\" Adresszeile 2 \",\"FormField.Visitor.Mobile\":\" Handy, Mobiltelefon \",\"ReportField.My_Pending_Visit_Requests.Purpose\":\" Zweck \",\"ReportField.Visitor_Calendar.Person_To_Meet\":\" Zu treffende Person \",\"Languages List.zh\":\" Chinesisch \",\"Languages List.iw\":\" hebräisch \",\"CompositeSubFields.New_Visit_Request.Name.suffix\":\" Suffix \",\"Form.Staff\":\" Neuer Angestellter \",\"Section.Staff\":\" Angestellte \",\"FormField.Visitor.longitude2\":\" Längengrad \",\"FormButton.New_Visit_Request.submit\":\" einreichen \",\"Languages List.is\":\" isländisch \",\"Languages List.it\":\" Italienisch \",\"FormButton.Visitor.reset\":\" Zurücksetzen \",\"Form.New_Visit_Request\":\" Neue Besuchsanfrage \",\"FormField.Visitor.Added_User\":\" Benutzer hinzugefügt \",\"ReportField.Company_Staff_List.Job_Title\":\" Berufsbezeichnung \",\"ReportField.Blacklisted_Visitors.Person_To_Meet\":\" Zu treffende Person \",\"CompositeSubFields.Staff.Address.postal_Code2\":\" Postleitzahl \",\"CompositeSubFields.Staff.Name.last_name\":\" Familienname, Nachname \",\"ReportField.My_Visitors.Picture\":\" Bild \",\"Section.Visitor\":\" Besucher \",\"FormField.Staff.Work_Location\":\" Arbeitsplatz \",\"FormField.Visitor.first_name\":\" Vorname \",\"ReportField.Visitor_Calendar.Purpose\":\" Zweck \",\"FormField.Visitor.district_city2\":\" Stadtteil \",\"ReportField.All_Visitors.Purpose\":\" Zweck \",\"FormField.Staff.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Staff.postal_Code2\":\" Postleitzahl \",\"ReportField.Visitor_Calendar.first_name\":\" Name \",\"Report.All_Visitors\":\" Alle Besucher \",\"ReportField.All_Visit_Requests.Purpose\":\" Zweck \",\"Report.Staff_Visitor_Chart\":\" Mitarbeiter-Besucher-Chart \",\"ReportField.My_Confirmed_Visit_Requests.first_name\":\" Name \",\"ReportField.All_Visit_Requests.Person_To_Meet\":\" Zu treffende Person \",\"FormField.New_Visit_Request.Email\":\" Email \",\"FormField.Visitor.address_line_22\":\" Adresszeile 2 \",\"Languages List.nl\":\" Niederländisch \",\"FormField.Staff.Added_User\":\" Benutzer hinzugefügt \",\"CompositeSubFields.Staff.Name.first_name\":\" Vorname \",\"Languages List.no\":\" norwegisch \",\"FormField.Staff.longitude2\":\" Längengrad \",\"ReportField.Company_Staff_List.Email\":\" Email \",\"ReportField.All_Visitors.IN_Date_Time\":\" Datum und Uhrzeit des Besuchs \",\"FormField.Staff.Email\":\" Email \",\"CompositeSubFields.Visitor.Name.suffix\":\" Suffix \",\"FormField.Staff.prefix\":\" Präfix \",\"FormField.Staff.Address\":\" Adresse \",\"FormField.New_Visit_Request.Person_To_Meet\":\" Zu treffende Person \",\"ReportField.Blacklisted_Visitors.Email\":\" Email \",\"FormField.Visitor.latitude2\":\" Breite \",\"FormField.Visitor.Address\":\" Adresse \",\"FormField.Visitor.Purpose\":\" Zweck \",\"PicklistOption.Staff.prefix.3\":\" Frau. \",\"PicklistOption.Staff.prefix.2\":\" Frau. \",\"PicklistOption.Staff.prefix.1\":\" Herr. \",\"FormField.Staff.Name\":\"Name\",\"ReportField.All_Visit_Requests.Status\":\" Status \",\"FormField.Visitor.Modified_Time\":\" Geänderte Zeit \",\"ReportField.My_Confirmed_Visit_Requests.Email\":\" Email \",\"FormField.Staff.Job_Title\":\" Berufsbezeichnung \",\"FormField.New_Visit_Request.suffix\":\" Suffix \",\"FormField.Staff.last_name\":\" Familienname, Nachname \",\"ReportField.My_Pending_Visit_Requests.Date_and_time_of_visit\":\" Datum und Uhrzeit des Besuchs \",\"ReportField.Blacklisted_Visitors.Blacklist\":\" Schwarze Liste \",\"FormField.Visitor.suffix\":\" Suffix \",\"ReportField.All_Visit_Requests.Mobile\":\" Handy, Mobiltelefon \",\"Languages List.lt\":\" litauisch \",\"FormField.Visitor.state_province2\":\" Staat / Provinz \",\"Languages List.lv\":\" lettisch \",\"FormField.New_Visit_Request.Section1\":\" Sektion \",\"FormField.New_Visit_Request.Section\":\" Sektion \",\"FormField.Visitor.prefix\":\" Präfix \",\"PicklistOption.New_Visit_Request.Status.2\":\" Bestätigt \",\"PicklistOption.New_Visit_Request.Status.1\":\" steht aus \",\"ReportField.Company_Staff_List.address_line_12\":\" Adresse \",\"Languages List.lo\":\" Laothian \",\"FormField.New_Visit_Request.Added_Time\":\" Zeit hinzugefügt \",\"Languages List.la\":\" Latein \",\"ReportField.Blacklisted_Visitors.Signature\":\" Unterschrift \",\"ReportField.Blacklisted_Visitors.IN_Date_Time\":\" Datum und Uhrzeit des Besuchs \",\"CompositeSubFields.Visitor.Name.prefix\":\" Präfix \",\"Report.Company_Staff_List\":\" Mitarbeiterliste des Unternehmens \",\"CompositeSubFields.Staff.Address.state_province2\":\" Staat / Provinz \",\"Languages List.ms\":\" malaiisch \",\"Languages List.mr\":\" Marathi \",\"Languages List.mt\":\" maltesisch \",\"Languages List.mk\":\" mazedonisch \",\"FormField.New_Visit_Request.last_name\":\" Familienname, Nachname \",\"FormField.New_Visit_Request.Mobile\":\" Handy, Mobiltelefon \",\"FormField.New_Visit_Request.Modified_User\":\" Geänderter Benutzer \",\"FormField.New_Visit_Request.ID\":\" ICH WÜRDE \",\"Report.My_Confirmed_Visit_Requests\":\" Meine bestätigten Besuchsanfragen \",\"FormField.New_Visit_Request.Record_Status\":\" Aufnahmestatus \",\"ReportField.My_Visitors.Person_To_Meet\":\" Zu treffende Person \",\"Languages List.bg\":\" bulgarisch \",\"CompositeSubFields.Staff.Address.district_city2\":\" Stadtteil \",\"Languages List.bn\":\" Bengali \",\"Languages List.ro\":\" rumänisch \",\"PicklistOption.Visitor.country2.2\":\" Beispielland2 \",\"ReportField.Visitor_Calendar.Picture\":\" Bild \",\"ReportField.Visitor_Calendar.Mobile\":\" Handy, Mobiltelefon \",\"PicklistOption.Visitor.country2.1\":\" Beispielland1 \",\"Languages List.be\":\" Belarussisch \",\"Languages List.ru\":\" Russisch \",\"ReportField.Blacklisted_Visitors.first_name\":\" Name \",\"FormField.Staff.Modified_Time\":\" Geänderte Zeit \",\"CompositeSubFields.New_Visit_Request.Name.prefix\":\" Präfix \",\"Languages List.az\":\" Aserbaidschanisch \",\"Report.Visitor_Calendar\":\" Besucherkalender \",\"Languages List.ta\":\" Tamilisch \",\"Languages List.cs\":\" Tschechisch \",\"ReportField.Company_Staff_List.first_name\":\" Name \",\"ReportField.Company_Staff_List.Work_Location\":\" Arbeitsplatz \",\"ReportField.My_Visitors.Email\":\" Email \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" Thai \",\"FormField.New_Visit_Request.Status\":\" Status \",\"ReportField.Company_Staff_List.Department\":\" Abteilung \",\"ReportField.All_Visitors.first_name\":\" Name \",\"FormField.Visitor.Signature\":\" Unterschrift \",\"ReportField.Blacklisted_Visitors.Purpose\":\" Zweck \",\"Languages List.sq\":\" albanisch \",\"Languages List.ca\":\" katalanisch \",\"FormField.Staff.Record_Status\":\" Aufnahmestatus \",\"FormField.Staff.country2\":\" Land \",\"Languages List.sw\":\" Swahili \",\"Languages List.sv\":\" Schwedisch \",\"ReportField.Blacklisted_Visitors.address_line_12\":\" Adresse \",\"Languages List.sk\":\" slowakisch \",\"FormField.Staff.latitude2\":\" Breite \",\"ReportField.All_Visitors.Email\":\" Email \",\"Languages List.sl\":\" Slowenisch \",\"FormField.Staff.district_city2\":\" Stadtteil \",\"FormField.New_Visit_Request.Date_and_time_of_visit\":\" Datum und Uhrzeit des Besuchs \",\"ReportField.Company_Staff_List.Mobile\":\" Handy, Mobiltelefon \",\"PicklistOption.Staff.country2.1\":\" Beispielland1 \",\"Languages List.pt\":\" Portugiesisch \",\"CompositeSubFields.Visitor.Address.address_line_12\":\" Anschrift Zeile 1 \",\"ReportField.All_Visit_Requests.Email\":\" Email \",\"FormField.Staff.Mobile\":\" Handy, Mobiltelefon \",\"CompositeSubFields.Staff.Name.suffix\":\" Suffix \",\"FormField.Staff.address_line_22\":\" Adresszeile 2 \",\"FormField.New_Visit_Request.Name\":\" Name \",\"PicklistOption.Staff.country2.2\":\" Beispielland2 \",\"Languages List.pl\":\" Polieren \",\"Languages List.ar\":\" Arabisch \",\"ReportField.Visitor_Calendar.Added_Time\":\" Zeit hinzugefügt \",\"FormButton.New_Visit_Request.cancel\":\" Stornieren \",\"Languages List.af\":\" Afrikaans \",\"Section.New_Visit_Requests\":\" Besuchen Sie Anfragen für das Internet \",\"ReportField.Visitor_Calendar.Signature\":\" Unterschrift \",\"CustomAction.My_Pending_Visit_Requests.Confirm\":\" Bestätigen \",\"FormField.Visitor.address_line_12\":\" Anschrift Zeile 1 \",\"ReportField.My_Confirmed_Visit_Requests.Status\":\" Status \",\"CompositeSubFields.Visitor.Address.address_line_22\":\" Adresszeile 2 \",\"FormField.Visitor.Added_Time\":\" Zeit hinzugefügt \",\"Report.Blacklisted_Visitors\":\" Blacklisted Besucher \",\"FormField.Staff.Section\":\" Sektion \",\"FormField.Staff.address_line_12\":\" Anschrift Zeile 1 \",\"ReportField.My_Visitors.Signature\":\" Unterschrift \",\"CustomAction.All_Visit_Requests.Confirm1\":\" Bestätigen \",\"FormButton.Staff.reset\":\" Zurücksetzen \",\"ReportField.All_Visitors.Person_To_Meet\":\" Zu treffende Person \",\"ReportField.Visitor_Calendar.Blacklist\":\" Schwarze Liste \",\"Languages List.fr\":\" Französisch \",\"FormButton.New_Visit_Request.reset\":\" Zurücksetzen \",\"FormField.Staff.Added_Time\":\" Zeit hinzugefügt \",\"Languages List.fi\":\" Finnese \",\"FormButton.Visitor.cancel\":\" Stornieren \",\"CompositeSubFields.New_Visit_Request.Name.first_name\":\" Vorname \",\"Languages List.fa\":\" persisch \",\"Languages List.gu\":\" Gujarati \",\"FormButton.New_Visit_Request.update\":\" Aktualisieren \",\"CompositeSubFields.Visitor.Address.district_city2\":\" Stadtteil \",\"FormField.New_Visit_Request.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Languages List.gl\":\" galizisch \",\"FormField.Visitor.Person_To_Meet\":\" Zu treffende Person \",\"ReportField.All_Visitors.Picture\":\" Bild \",\"Report.My_Visitors\":\" Meine Besucher \",\"ReportField.Visitor_Calendar.IN_Date_Time\":\" Datum und Uhrzeit des Besuchs \",\"FormField.New_Visit_Request.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"CompositeSubFields.Visitor.Address.country2\":\" Land \",\"ReportField.My_Pending_Visit_Requests.Mobile\":\" Handy, Mobiltelefon \",\"CompositeSubFields.Staff.Address.country2\":\" Land \",\"ReportField.My_Visitors.Mobile\":\" Handy, Mobiltelefon \",\"FormField.Visitor.Modified_User\":\" Geänderter Benutzer \",\"Languages List.ga\":\" irisch \",\"ReportField.Visitor_Calendar.Email\":\" Email \",\"Report.All_Visit_Requests\":\" Alle Besuchsanfragen \",\"FormButton.Staff.submit\":\" einreichen \",\"FormField.Visitor.Blacklist\":\" Schwarze Liste \",\"ReportField.Visitor_Calendar.address_line_12\":\" Adresse \",\"CompositeSubFields.New_Visit_Request.Name.last_name\":\" Familienname, Nachname \",\"FormField.Visitor.Picture\":\" Bild \",\"ReportField.My_Confirmed_Visit_Requests.Purpose\":\" Zweck \",\"Languages List.tr\":\" Türkisch \",\"Languages List.da\":\" dänisch \",\"FormField.Staff.first_name\":\" Vorname \",\"Languages List.de\":\" Deutsche \",\"Languages List.cy\":\" Walisisch \",\"Languages List.tl\":\" Filipino \",\"FormField.New_Visit_Request.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Visitor.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"ReportField.My_Pending_Visit_Requests.Email\":\" Email \",\"FormButton.Visitor.submit\":\" einreichen \",\"Languages List.es\":\" Spanisch \",\"ReportField.Blacklisted_Visitors.Mobile\":\" Handy, Mobiltelefon \",\"ReportField.My_Visitors.Purpose\":\" Zweck \",\"Languages List.eu\":\" baskisch \",\"Languages List.et\":\" estnisch \",\"FormField.Visitor.Email\":\" Email \",\"Report.My_Pending_Visit_Requests\":\" Meine ausstehenden Besuchsanfragen \",\"FormField.Visitor.country2\":\" Land \",\"Languages List.vi\":\" Vietnamesisch \",\"Languages List.el\":\" griechisch \",\"ReportField.All_Visitors.Mobile\":\" Handy, Mobiltelefon \",\"Languages List.eo\":\" Esperanto \",\"Languages List.en\":\" Englisch \",\"ReportField.My_Pending_Visit_Requests.Status\":\" Status \",\"FormButton.Staff.update\":\" Aktualisieren \",\"FormButton.Visitor.update\":\" Aktualisieren \",\"Languages List.ur\":\" Urdu \",\"FormField.New_Visit_Request.Modified_Time\":\" Geänderte Zeit \",\"ReportField.My_Confirmed_Visit_Requests.Date_and_time_of_visit\":\" Datum und Uhrzeit des Besuchs \"},\"fr\":{\"App.visitor-management\":\"Gestion des visiteurs \",\"FormField.New_Visit_Request.prefix\":\" Préfixe \",\"FormField.Staff.ID\":\" ID \",\"ReportField.All_Visit_Requests.first_name\":\" prénom \",\"ReportField.All_Visitors.address_line_12\":\" Adresse \",\"CompositeSubFields.Visitor.Name.first_name\":\" Prénom \",\"PicklistOption.Visitor.prefix.1\":\" M. \",\"PicklistOption.Visitor.prefix.2\":\" Madame. \",\"PicklistOption.New_Visit_Request.prefix.1\":\" M. \",\"PicklistOption.Visitor.prefix.3\":\" Mme. \",\"PicklistOption.New_Visit_Request.prefix.2\":\" Madame. \",\"CompositeSubFields.Visitor.Address.state_province2\":\" Etat / Province \",\"ReportField.My_Visitors.IN_Date_Time\":\" Date et heure de la visite \",\"PicklistOption.New_Visit_Request.prefix.3\":\" Mme. \",\"FormField.New_Visit_Request.Purpose\":\" Objectif \",\"FormField.Visitor.ID\":\" ID \",\"FormField.Staff.suffix\":\" Suffixe \",\"Languages List.zh-TW\":\" Chinois traditionnel \",\"FormField.Staff.Modified_User\":\" Utilisateur modifié \",\"Languages List.ja\":\" Japonais \",\"CompositeSubFields.Visitor.Name.last_name\":\" Nom de famille \",\"FormField.Visitor.postal_Code2\":\" code postal \",\"ReportField.My_Confirmed_Visit_Requests.Mobile\":\" Mobile \",\"FormField.Visitor.IN_Date_Time\":\" Date et heure de la visite \",\"ReportField.My_Visitors.first_name\":\" prénom \",\"FormField.New_Visit_Request.first_name\":\" Prénom \",\"Languages List.ku\":\" kurde \",\"FormField.Visitor.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Visitor.Name\":\" prénom \",\"Languages List.km\":\" Khmer \",\"FormField.Staff.Department\":\" département \",\"CustomAction.All_Visitors.Blacklist\":\" Liste noire \",\"Languages List.ko\":\" coréen \",\"Languages List.kn\":\" Kannada \",\"FormField.Staff.state_province2\":\" Etat / Province \",\"Languages List.ka\":\" géorgien \",\"FormButton.Staff.cancel\":\" Annuler \",\"CompositeSubFields.Staff.Address.address_line_12\":\" Adresse 1 \",\"ReportField.All_Visit_Requests.Date_and_time_of_visit\":\" Date et heure de la visite \",\"Languages List.hu\":\" hongrois \",\"CompositeSubFields.Visitor.Address.postal_Code2\":\" code postal \",\"Languages List.yi\":\" yiddish \",\"CompositeSubFields.Staff.Name.prefix\":\" Préfixe \",\"ReportField.Blacklisted_Visitors.Picture\":\" Image \",\"ReportField.All_Visitors.Signature\":\" Signature \",\"FormField.Visitor.Section\":\" Section \",\"FormField.Visitor.last_name\":\" Nom de famille \",\"Languages List.hy\":\" arménien \",\"ReportField.My_Pending_Visit_Requests.first_name\":\" prénom \",\"ReportField.My_Visitors.address_line_12\":\" Adresse \",\"Languages List.hr\":\" croate \",\"FormField.Staff.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Visitor.Record_Status\":\" Statut d'enregistrement \",\"Form.Visitor\":\" Nouveau visiteur \",\"Languages List.hi\":\" hindi \",\"CompositeSubFields.Staff.Address.address_line_22\":\" Adresse Ligne 2 \",\"FormField.Visitor.Mobile\":\" Mobile \",\"ReportField.My_Pending_Visit_Requests.Purpose\":\" Objectif \",\"ReportField.Visitor_Calendar.Person_To_Meet\":\" Personne à rencontrer \",\"Languages List.zh\":\" chinois \",\"Languages List.iw\":\" hébreu \",\"CompositeSubFields.New_Visit_Request.Name.suffix\":\" Suffixe \",\"Form.Staff\":\" Nouvel employé \",\"Section.Staff\":\" Des employés \",\"FormField.Visitor.longitude2\":\" longitude \",\"FormButton.New_Visit_Request.submit\":\" Soumettre \",\"Languages List.is\":\" islandais \",\"Languages List.it\":\" italien \",\"FormButton.Visitor.reset\":\" Réinitialiser \",\"Form.New_Visit_Request\":\" Nouvelle demande de visite \",\"FormField.Visitor.Added_User\":\" Utilisateur ajouté \",\"ReportField.Company_Staff_List.Job_Title\":\" Profession \",\"ReportField.Blacklisted_Visitors.Person_To_Meet\":\" Personne à rencontrer \",\"CompositeSubFields.Staff.Address.postal_Code2\":\" code postal \",\"CompositeSubFields.Staff.Name.last_name\":\" Nom de famille \",\"ReportField.My_Visitors.Picture\":\" Image \",\"Section.Visitor\":\" Visiteurs \",\"FormField.Staff.Work_Location\":\" Lieu de travail \",\"FormField.Visitor.first_name\":\" Prénom \",\"ReportField.Visitor_Calendar.Purpose\":\" Objectif \",\"FormField.Visitor.district_city2\":\" District de la ville \",\"ReportField.All_Visitors.Purpose\":\" Objectif \",\"FormField.Staff.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Staff.postal_Code2\":\" code postal \",\"ReportField.Visitor_Calendar.first_name\":\" prénom \",\"Report.All_Visitors\":\" Tous les visiteurs \",\"ReportField.All_Visit_Requests.Purpose\":\" Objectif \",\"Report.Staff_Visitor_Chart\":\" Graphique du visiteur de l'employé \",\"ReportField.My_Confirmed_Visit_Requests.first_name\":\" prénom \",\"ReportField.All_Visit_Requests.Person_To_Meet\":\" Personne à rencontrer \",\"FormField.New_Visit_Request.Email\":\" Email \",\"FormField.Visitor.address_line_22\":\" Adresse Ligne 2 \",\"Languages List.nl\":\" néerlandais \",\"FormField.Staff.Added_User\":\" Utilisateur ajouté \",\"CompositeSubFields.Staff.Name.first_name\":\" Prénom \",\"Languages List.no\":\" norvégien \",\"FormField.Staff.longitude2\":\" longitude \",\"ReportField.Company_Staff_List.Email\":\" Email \",\"ReportField.All_Visitors.IN_Date_Time\":\" Date et heure de la visite \",\"FormField.Staff.Email\":\" Email \",\"CompositeSubFields.Visitor.Name.suffix\":\" Suffixe \",\"FormField.Staff.prefix\":\" Préfixe \",\"FormField.Staff.Address\":\" Adresse \",\"FormField.New_Visit_Request.Person_To_Meet\":\" Personne à rencontrer \",\"ReportField.Blacklisted_Visitors.Email\":\" Email \",\"FormField.Visitor.latitude2\":\" latitude \",\"FormField.Visitor.Address\":\" Adresse \",\"FormField.Visitor.Purpose\":\" Objectif \",\"PicklistOption.Staff.prefix.3\":\" Mme. \",\"PicklistOption.Staff.prefix.2\":\" Madame. \",\"PicklistOption.Staff.prefix.1\":\" M. \",\"FormField.Staff.Name\":\"prénom\",\"ReportField.All_Visit_Requests.Status\":\" Statut \",\"FormField.Visitor.Modified_Time\":\" Heure modifiée \",\"ReportField.My_Confirmed_Visit_Requests.Email\":\" Email \",\"FormField.Staff.Job_Title\":\" Profession \",\"FormField.New_Visit_Request.suffix\":\" Suffixe \",\"FormField.Staff.last_name\":\" Nom de famille \",\"ReportField.My_Pending_Visit_Requests.Date_and_time_of_visit\":\" Date et heure de la visite \",\"ReportField.Blacklisted_Visitors.Blacklist\":\" Liste noire \",\"FormField.Visitor.suffix\":\" Suffixe \",\"ReportField.All_Visit_Requests.Mobile\":\" Mobile \",\"Languages List.lt\":\" lituanien \",\"FormField.Visitor.state_province2\":\" Etat / Province \",\"Languages List.lv\":\" letton \",\"FormField.New_Visit_Request.Section1\":\" Section \",\"FormField.New_Visit_Request.Section\":\" Section \",\"FormField.Visitor.prefix\":\" Préfixe \",\"PicklistOption.New_Visit_Request.Status.2\":\" Confirmé \",\"PicklistOption.New_Visit_Request.Status.1\":\" en attendant \",\"ReportField.Company_Staff_List.address_line_12\":\" Adresse \",\"Languages List.lo\":\" Laothian \",\"FormField.New_Visit_Request.Added_Time\":\" Temps ajouté \",\"Languages List.la\":\" Latin \",\"ReportField.Blacklisted_Visitors.Signature\":\" Signature \",\"ReportField.Blacklisted_Visitors.IN_Date_Time\":\" Date et heure de la visite \",\"CompositeSubFields.Visitor.Name.prefix\":\" Préfixe \",\"Report.Company_Staff_List\":\" Liste des employés de l'entreprise \",\"CompositeSubFields.Staff.Address.state_province2\":\" Etat / Province \",\"Languages List.ms\":\" malais \",\"Languages List.mr\":\" Marathi \",\"Languages List.mt\":\" maltais \",\"Languages List.mk\":\" Macédonien \",\"FormField.New_Visit_Request.last_name\":\" Nom de famille \",\"FormField.New_Visit_Request.Mobile\":\" Mobile \",\"FormField.New_Visit_Request.Modified_User\":\" Utilisateur modifié \",\"FormField.New_Visit_Request.ID\":\" ID \",\"Report.My_Confirmed_Visit_Requests\":\" Mes demandes de visite confirmées \",\"FormField.New_Visit_Request.Record_Status\":\" Statut d'enregistrement \",\"ReportField.My_Visitors.Person_To_Meet\":\" Personne à rencontrer \",\"Languages List.bg\":\" bulgare \",\"CompositeSubFields.Staff.Address.district_city2\":\" District de la ville \",\"Languages List.bn\":\" bengali \",\"Languages List.ro\":\" roumain \",\"PicklistOption.Visitor.country2.2\":\" SampleCountry2 \",\"ReportField.Visitor_Calendar.Picture\":\" Image \",\"ReportField.Visitor_Calendar.Mobile\":\" Mobile \",\"PicklistOption.Visitor.country2.1\":\" SampleCountry1 \",\"Languages List.be\":\" Biélorusse \",\"Languages List.ru\":\" russe \",\"ReportField.Blacklisted_Visitors.first_name\":\" prénom \",\"FormField.Staff.Modified_Time\":\" Heure modifiée \",\"CompositeSubFields.New_Visit_Request.Name.prefix\":\" Préfixe \",\"Languages List.az\":\" azerbaïdjanais \",\"Report.Visitor_Calendar\":\" Calendrier des visiteurs \",\"Languages List.ta\":\" Tamil \",\"Languages List.cs\":\" tchèque \",\"ReportField.Company_Staff_List.first_name\":\" prénom \",\"ReportField.Company_Staff_List.Work_Location\":\" Lieu de travail \",\"ReportField.My_Visitors.Email\":\" Email \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" thaïlandais \",\"FormField.New_Visit_Request.Status\":\" Statut \",\"ReportField.Company_Staff_List.Department\":\" département \",\"ReportField.All_Visitors.first_name\":\" prénom \",\"FormField.Visitor.Signature\":\" Signature \",\"ReportField.Blacklisted_Visitors.Purpose\":\" Objectif \",\"Languages List.sq\":\" albanais \",\"Languages List.ca\":\" catalan \",\"FormField.Staff.Record_Status\":\" Statut d'enregistrement \",\"FormField.Staff.country2\":\" Pays \",\"Languages List.sw\":\" Swahili \",\"Languages List.sv\":\" suédois \",\"ReportField.Blacklisted_Visitors.address_line_12\":\" Adresse \",\"Languages List.sk\":\" slovaque \",\"FormField.Staff.latitude2\":\" latitude \",\"ReportField.All_Visitors.Email\":\" Email \",\"Languages List.sl\":\" slovène \",\"FormField.Staff.district_city2\":\" District de la ville \",\"FormField.New_Visit_Request.Date_and_time_of_visit\":\" Date et heure de la visite \",\"ReportField.Company_Staff_List.Mobile\":\" Mobile \",\"PicklistOption.Staff.country2.1\":\" SampleCountry1 \",\"Languages List.pt\":\" Portugais \",\"CompositeSubFields.Visitor.Address.address_line_12\":\" Adresse 1 \",\"ReportField.All_Visit_Requests.Email\":\" Email \",\"FormField.Staff.Mobile\":\" Mobile \",\"CompositeSubFields.Staff.Name.suffix\":\" Suffixe \",\"FormField.Staff.address_line_22\":\" Adresse Ligne 2 \",\"FormField.New_Visit_Request.Name\":\" prénom \",\"PicklistOption.Staff.country2.2\":\" SampleCountry2 \",\"Languages List.pl\":\" polonais \",\"Languages List.ar\":\" arabe \",\"ReportField.Visitor_Calendar.Added_Time\":\" Temps ajouté \",\"FormButton.New_Visit_Request.cancel\":\" Annuler \",\"Languages List.af\":\" afrikaans \",\"Section.New_Visit_Requests\":\" Visiter les demandes de web \",\"ReportField.Visitor_Calendar.Signature\":\" Signature \",\"CustomAction.My_Pending_Visit_Requests.Confirm\":\" Confirmer \",\"FormField.Visitor.address_line_12\":\" Adresse 1 \",\"ReportField.My_Confirmed_Visit_Requests.Status\":\" Statut \",\"CompositeSubFields.Visitor.Address.address_line_22\":\" Adresse Ligne 2 \",\"FormField.Visitor.Added_Time\":\" Temps ajouté \",\"Report.Blacklisted_Visitors\":\" Visiteurs sur liste noire \",\"FormField.Staff.Section\":\" Section \",\"FormField.Staff.address_line_12\":\" Adresse 1 \",\"ReportField.My_Visitors.Signature\":\" Signature \",\"CustomAction.All_Visit_Requests.Confirm1\":\" Confirmer \",\"FormButton.Staff.reset\":\" Réinitialiser \",\"ReportField.All_Visitors.Person_To_Meet\":\" Personne à rencontrer \",\"ReportField.Visitor_Calendar.Blacklist\":\" Liste noire \",\"Languages List.fr\":\" français \",\"FormButton.New_Visit_Request.reset\":\" Réinitialiser \",\"FormField.Staff.Added_Time\":\" Temps ajouté \",\"Languages List.fi\":\" Finnois \",\"FormButton.Visitor.cancel\":\" Annuler \",\"CompositeSubFields.New_Visit_Request.Name.first_name\":\" Prénom \",\"Languages List.fa\":\" persan \",\"Languages List.gu\":\" Gujarati \",\"FormButton.New_Visit_Request.update\":\" Mettre à jour \",\"CompositeSubFields.Visitor.Address.district_city2\":\" District de la ville \",\"FormField.New_Visit_Request.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Languages List.gl\":\" Galicien \",\"FormField.Visitor.Person_To_Meet\":\" Personne à rencontrer \",\"ReportField.All_Visitors.Picture\":\" Image \",\"Report.My_Visitors\":\" Mes visiteurs \",\"ReportField.Visitor_Calendar.IN_Date_Time\":\" Date et heure de la visite \",\"FormField.New_Visit_Request.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"CompositeSubFields.Visitor.Address.country2\":\" Pays \",\"ReportField.My_Pending_Visit_Requests.Mobile\":\" Mobile \",\"CompositeSubFields.Staff.Address.country2\":\" Pays \",\"ReportField.My_Visitors.Mobile\":\" Mobile \",\"FormField.Visitor.Modified_User\":\" Utilisateur modifié \",\"Languages List.ga\":\" irlandais \",\"ReportField.Visitor_Calendar.Email\":\" Email \",\"Report.All_Visit_Requests\":\" Toutes les demandes de visite \",\"FormButton.Staff.submit\":\" Soumettre \",\"FormField.Visitor.Blacklist\":\" Liste noire \",\"ReportField.Visitor_Calendar.address_line_12\":\" Adresse \",\"CompositeSubFields.New_Visit_Request.Name.last_name\":\" Nom de famille \",\"FormField.Visitor.Picture\":\" Image \",\"ReportField.My_Confirmed_Visit_Requests.Purpose\":\" Objectif \",\"Languages List.tr\":\" turc \",\"Languages List.da\":\" danois \",\"FormField.Staff.first_name\":\" Prénom \",\"Languages List.de\":\" allemand \",\"Languages List.cy\":\" gallois \",\"Languages List.tl\":\" Philippin \",\"FormField.New_Visit_Request.Added_User\":\" Utilisateur ajouté \",\"FormField.Visitor.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"ReportField.My_Pending_Visit_Requests.Email\":\" Email \",\"FormButton.Visitor.submit\":\" Soumettre \",\"Languages List.es\":\" Espanol \",\"ReportField.Blacklisted_Visitors.Mobile\":\" Mobile \",\"ReportField.My_Visitors.Purpose\":\" Objectif \",\"Languages List.eu\":\" basque \",\"Languages List.et\":\" estonien \",\"FormField.Visitor.Email\":\" Email \",\"Report.My_Pending_Visit_Requests\":\" Mes demandes de visite en attente \",\"FormField.Visitor.country2\":\" Pays \",\"Languages List.vi\":\" vietnamien \",\"Languages List.el\":\" grec \",\"ReportField.All_Visitors.Mobile\":\" Mobile \",\"Languages List.eo\":\" espéranto \",\"Languages List.en\":\" Anglais \",\"ReportField.My_Pending_Visit_Requests.Status\":\" Statut \",\"FormButton.Staff.update\":\" Mettre à jour \",\"FormButton.Visitor.update\":\" Mettre à jour \",\"Languages List.ur\":\" Urdu \",\"FormField.New_Visit_Request.Modified_Time\":\" Heure modifiée \",\"ReportField.My_Confirmed_Visit_Requests.Date_and_time_of_visit\":\" Date et heure de la visite \"}}"
+}
+	reports configuration
+	{
+	
+		Version = 1251000165802249
+		Key     = "45vTQt635M2xwgtTwRHYJS073y04WqdNBv2ZDCVWEE5j8ujGCjUp20mVfSFdQMdEnFYK6NFrfhzYsgd7mCvmezTjNC2P1OsWdrb8"
+	}
+}

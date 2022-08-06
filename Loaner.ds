@@ -1,0 +1,6494 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 23:12:58
+ * Version      : 1.0
+ */
+ application "Loaner"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+	section Dashboard
+	{
+		icon = "ui-1-dashboard-half"
+				 page Dashboard 
+	 	 { 
+ 	 	 displayname = "Dashboard" 
+
+ 	 	 icon = "" 
+	 	 Content="<zml \t\t\n\t\t\n\t\t\n\t\t\twebDeviceConfig='{\"layout\":{\"displayType\":\"card\",\"design\":\"fluid\",\"style\":\"padding-right:0px;padding-top:0px;padding-bottom:0px;padding-left:0px;\"}}'\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"25%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Today Arrivals'\n   \t\t size = '3'\n   \t\t color = '#333333'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Product.ID.count'\n   \t\t criteria = '(((Added_Time is today)))'\n   \t\t size = '8'\n   \t\t color = '#FF4C2F'\n   \t\t bold = 'true'\n   \t\t marginTop = '2px'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"25%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Total Products'\n   \t\t size = '3'\n   \t\t color = '#333333'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Product.ID.count'\n   \t\t size = '8'\n   \t\t color = '#FF4C2F'\n   \t\t bold = 'true'\n   \t\t marginTop = '2px'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"25%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'New Signups'\n   \t\t size = '3'\n   \t\t color = '#333333'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_User.ID.count'\n   \t\t criteria = '(((Added_Time is today)))'\n   \t\t size = '8'\n   \t\t color = '#C462EA'\n   \t\t bold = 'true'\n   \t\t marginTop = '2px'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"25%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Total Users'\n   \t\t size = '3'\n   \t\t color = '#333333'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_User.ID.count'\n   \t\t size = '8'\n   \t\t color = '#C462EA'\n   \t\t bold = 'true'\n   \t\t marginTop = '2px'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"40%\"\n   \t>\n\t<chart    \t\t type = 'Donut'\n   \t\t appLinkName = 'thisapp'\n   \t\t formLinkName = 'Hire_Request'\n   \t\t xfield = 'Status'\n   \t\t yfields = 'count:Status'\n   \t\t bgColor = '#FFFFFF'\n   \t\t theme = 'theme1'\n   \t\t legendPos = 'center.top'\n\n\/>\n<\/column><column\n   \t\t width=\"60%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'New_Arrivals'\n   \t\t zc_Header = 'true'\n\n\/>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Unverified_Users'\n   \t\t zc_Header = 'true'\n\n\/>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dspZml id='zml_snippet'>\n\t<![CDATA[htmlpage zml_snippet()\ncontent\n&lt;%{\n\tif(Add_Product.count() == 0)\n\t{\n\t\topenUrl(&quot;#Form:Add_Product&quot;,&quot;popup window&quot;);\n\t}\n\t%&gt;\n&lt;panel&gt; &lt;\/panel&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dspZml>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+	}
+	section Products
+	{
+		icon = "shopping-gift"
+		list New_Arrivals
+		{
+			displayName = "New Arrivals"
+   			hide = true
+			show all rows from Add_Product  [Added_Time is today]  
+			(
+				Scale
+				Security_Deposit as "Security Deposit"
+				Status
+				Description
+				Rent
+				Sub_Category as "Sub Category"
+				Category
+				Product_Image as "Product Image"
+				Product_Code as "Product Code"
+				Product_Name as "Product Name"
+				Owner
+			)
+			options
+			(
+				icon = "clothes-vest-sport"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Product_Image as "Product Image"
+							Product_Name as "Product Name"
+							Product_Code as "Product Code"
+							Category
+							Sub_Category as "Sub Category"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Owner
+							Product_Name as "Product Name"
+							Product_Code as "Product Code"
+							Product_Image as "Product Image"
+							Category
+							Sub_Category as "Sub Category"
+							Description
+							Rent
+							Scale
+							Security_Deposit as "Security Deposit"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		custom All_Products
+		{
+			displayName = "All Products"
+			show all rows from Add_Product  [Status == "Available"]  
+			(
+				Status
+				Security_Deposit as "Security Deposit"
+				Product_Code as "Product Code"
+				Sub_Category as "Sub Category"
+				Product_Image as "Product Image"
+				Owner.Email
+				Owner.Driving_License as "Driving License"
+				Owner.Phone_Number as "Phone Number"
+				Owner.Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Owner.Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Rent
+				Description
+				Category
+				Product_Name as "Product Name"
+			)
+			options
+			(
+				icon = "design-app"
+	 		)
+			custom actions
+			(
+				"Rent Request"
+				(
+	  			workflow = Rent_Request
+				show action in view header = true
+				show action in edit record menu = true
+				condition = (Status == "Available")
+				)
+				"Change Status"
+				(
+	  			workflow = Change_Status
+				show action in view header = true
+				show action in edit record menu = true
+				condition = (Owner.Email == zoho.loginuserid)
+				)
+				"Add to Wishlist"
+				(
+	  			workflow = Wishlist
+				show action in edit record menu = true
+				)
+			)
+			conditional formatting
+			(
+				"Available"
+				{
+				condition = (Status == "Available")
+				fields = [Product_Code]
+				format = "color:#398ef3;"
+				}
+				"Not Available"
+				{
+				condition = (Status == "Not Available")
+				fields = [Product_Code]
+				format = "color:#e64d3b;"
+				}
+				"Available"
+				{
+				condition = (Status == "Available")
+				fields = [Product_Name]
+				format = "color:#398ef3;"
+				}
+				"Not Available"
+				{
+				condition = (Status == "Not Available")
+				fields = [Product_Name]
+				format = "color:#e64d3b;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 6
+					datablock1
+					(
+			 			layout type = 29
+		     			title = "Overview"
+						fields
+						(
+							Product_Image as "Product Image"
+							Product_Name as "Product Name"
+							Description
+							Category
+							Rent
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+			 			"Change Status"
+    	 			)
+							record
+							(
+								"Rent Request"
+								"Change Status"
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Add to Wishlist"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								"Rent Request"
+								"Change Status"
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock3
+					(
+			 			layout type = 29
+		     			title = "Owner Details"
+						fields
+						(
+							Owner.Driving_License as "Driving License"
+							Owner.Name as "Name"
+							Owner.Address as "Address"
+							Owner.Email as "Email"
+							Owner.Phone_Number as "Phone Number"
+						)
+					)
+					datablock4
+					(
+			 			layout type = -2
+		     			title = "Product Details"
+						fields
+						(
+							Product_Name as "Product Name"
+							Product_Code as "Product Code"
+							Category
+							Sub_Category as "Sub Category"
+							Rent
+							Security_Deposit as "Security Deposit"
+						)
+					)
+					datablock5
+					(
+			 			layout type = -2
+		     			title = "Description"
+						fields
+						(
+							Description
+						)
+					)
+					datablock6
+					(
+			 			layout type = -1
+		     			title = "Review"
+		     			related field =  Review[Status == "Available"]
+						fields
+						(
+							Review
+							Satisfaction
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Rent Request"
+			 			"Change Status"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		custom My_Products
+		{
+			displayName = "My Products"
+			show all rows from Add_Product  [Owner.Email == zoho.loginuserid]  
+			(
+				Rent
+				Security_Deposit as "Security Deposit"
+				Status
+				Record_Status as "Record Status"
+				Description
+				Owner.Email
+				Owner.Phone_Number as "Phone Number"
+				Product_Code as "Product Code"
+				Product_Image as "Product Image"
+				Sub_Category as "Sub Category"
+				Category
+				Product_Name as "Product Name"
+			)
+			options
+			(
+				icon = "shopping-box-3d-67"
+	 		)
+			custom actions
+			(
+				"Hire"
+				(
+	  			workflow = Rent_Request
+				show action in view header = true
+				show action in edit record menu = true
+				condition = (Status == "Available")
+				)
+				"Change Status"
+				(
+	  			workflow = Change_Status
+				show action in view header = true
+				show action in edit record menu = true
+				condition = (Owner.Email == zoho.loginuserid)
+				)
+			)
+			conditional formatting
+			(
+				"Available"
+				{
+				condition = (Status == "Available")
+				fields = [Product_Code]
+				format = "color:#398ef3;"
+				}
+				"Not Available"
+				{
+				condition = (Status == "Not Available")
+				fields = [Product_Code]
+				format = "color:#e64d3b;"
+				}
+				"Available"
+				{
+				condition = (Status == "Available")
+				fields = [Product_Name]
+				format = "color:#398ef3;"
+				}
+				"Not Available"
+				{
+				condition = (Status == "Not Available")
+				fields = [Product_Name]
+				format = "color:#e64d3b;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 6
+					datablock1
+					(
+			 			layout type = 30
+		     			title = "Overview"
+						fields
+						(
+							Product_Name as "Product Name"
+							Product_Code as "Product Code"
+							Category
+							Sub_Category as "Sub Category"
+							Product_Image as "Product Image"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+			 			"Change Status"
+    	 			)
+							record
+							(
+								"Change Status"
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								"Change Status"
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock3
+					(
+			 			layout type = 29
+		     			title = "Owner Details"
+						fields
+						(
+							Product_Image as "Product Image"
+							Owner.Email as "Email"
+							Owner.Phone_Number as "Phone Number"
+						)
+					)
+					datablock4
+					(
+			 			layout type = -2
+		     			title = "Product Details"
+						fields
+						(
+							Product_Name as "Product Name"
+							Product_Code as "Product Code"
+							Category
+							Sub_Category as "Sub Category"
+							Rent
+							Security_Deposit as "Security Deposit"
+						)
+					)
+					datablock5
+					(
+			 			layout type = -2
+		     			title = "Description"
+						fields
+						(
+							Description
+						)
+					)
+					datablock6
+					(
+			 			layout type = -1
+		     			title = "Reviews"
+		     			related field =  Review[Owner.Email == zoho.loginuserid]
+						fields
+						(
+							Borrower
+							Review
+							Satisfaction as "How much satisfied with our product"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Change Status"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		form Add_Product
+		{
+			displayname = "Add Product"
+			success message = "Product Added Successfully"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Owner
+			(
+				type = picklist
+				values  = Add_User.ID
+    			bidirectional = Products
+    			displayformat = [Email]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Product_Name
+			(
+    			type = text
+				displayname = "Product Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Product_Code
+			(
+    			type = text
+				displayname = "Product Code"
+				qrcode = true
+				barcode = true
+				camera = primary
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Product_Image
+			(
+    			type = image
+				displayname = "Product Image"
+				source  = file
+				aspect ratio = original
+				show onload = true
+				camera = primary
+				preview duration = 0
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Category
+			(
+				type = picklist
+				values  = New_Category.ID
+    			displayformat = [Category]
+				allow new entries = true
+				[
+					displayname = "Add New Category"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Sub_Category
+			(
+				type = picklist
+				displayname = "Sub Category"
+				values  = New_Sub_Category[Category.ID == input.Category].ID
+    			displayformat = [Sub_Category]
+				allow new entries = true
+				[
+					displayname = "Add New Sub Category"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Rent
+			(
+				type = INR
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Scale
+			(
+				type = picklist
+				values = {"Per Day", "Per Week", "Per Month", "Per Year"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Security_Deposit
+			(
+				displayname = "Security Deposit"
+				type = INR
+				initial value = 0.00
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Status
+			(
+				type = radiobuttons
+				values = {"Available", "Not Available"}
+				initial value = "Available"
+				layout = 2
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Review
+			(
+				type = grid
+				values  = Add_Review.ID
+    			bidirectional = Product
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-circle-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Users
+	{
+		icon = "users-multiple-19"
+		form Add_User
+		{
+			displayname = "Add User"
+			success message = "User Added Successfully"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Products
+			(
+				type = list
+				values  = Add_Product.ID
+    			bidirectional = Owner
+    			displayformat = [Product_Name]
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Driving_License
+			(
+    			type = image
+				displayname = "Driving License"
+				source  = file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Verified_User
+			(
+    			type = checkbox
+				displayname = "Verified User"
+				initial value = false
+				private = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-add-29"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list All_Users
+		{
+			displayName = "All Users"
+			show all rows from Add_User    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				custom action "Verified"
+				(
+	  			workflow = Verified
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Verified"
+				condition = (Verified_User == false && Email != zoho.adminuserid)
+				)
+				Verified_User as "Verified User"
+				Email
+				Driving_License as "Driving License"
+				Phone_Number as "Phone Number"
+			)
+			options
+			(
+				icon = "users-2-contacts-45"
+	 		)
+			conditional formatting
+			(
+				"Verified User"
+				{
+				condition = (Verified_User == true)
+				fields = [Verified_User]
+				format = "color:#16d0ef;"
+				}
+				"Unverified User"
+				{
+				condition = (Verified_User == false)
+				fields = [Verified_User]
+				format = "color:#ef8216;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email
+							Phone_Number as "Phone Number"
+							Verified_User as "Verified User"
+							Driving_License as "Driving License"
+				"Verified"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+			 			"Verified"
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Verified"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+								"Verified"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email
+							Phone_Number as "Phone Number"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Products"
+		     			related field =  Products
+						fields
+						(
+							Product_Name as "Product Name"
+							Product_Code as "Product Code"
+							Product_Image as "Product Image"
+							Category
+							Sub_Category as "Sub Category"
+							Description
+							Rent
+							Security_Deposit as "Security Deposit"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		map User_Location
+		{
+			displayName = "User Location"
+			show all rows from Add_User    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Products
+				Phone_Number as "Phone Number"
+				Email
+			)
+			options
+			(
+	 			display field = Address
+	 	 		radius = 100 Miles
+		 		icon = "users-2-a-location"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email
+							Phone_Number as "Phone Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email
+							Phone_Number as "Phone Number"
+							Products
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		summary Verified_User
+		{
+			displayName = "Verified User"
+			show all rows from Add_User  [Verified_User == true]  
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Email
+				Phone_Number as "Phone Number"
+				Products
+				Driving_License as "Driving License"
+				Verified_User as "Verified User"
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 2
+				icon = "users-2-a-check"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email
+							Phone_Number as "Phone Number"
+							Address
+							Driving_License as "Driving License"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email
+							Phone_Number as "Phone Number"
+							Address
+							Products
+							Driving_License as "Driving License"
+							Verified_User as "Verified User"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Category
+	{
+		icon = "tech-desktop"
+		form New_Category
+		{
+			displayname = "New Category"
+			success message = "Category Added Successfully"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Category
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Sub_Category
+			(
+				type = list
+				displayname = "Sub Category"
+				values  = New_Sub_Category.ID
+    			bidirectional = Category
+    			displayformat = [Sub_Category]
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "files-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form New_Sub_Category
+		{
+			displayname = "New Sub Category"
+			success message = "New Sub Category Added Successfully"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Category
+			(
+				type = picklist
+				values  = New_Category.ID
+    			bidirectional = Sub_Category
+    			displayformat = [Category]
+				allow new entries = true
+				[
+					displayname = "Add New Category"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Sub_Category
+			(
+    			type = text
+				displayname = "Sub Category"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Owner
+	{
+		icon = "shopping-cart-simple"
+		form Hire_Request
+		{
+			displayname = "Hire Request"
+			success message = "Product Hired Successfully"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Product_Name
+			(
+				type = picklist
+				displayname = "Product Name"
+				values  = Add_Product[Status == "Available"].ID
+    			displayformat = [Product_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Owner_Email
+			(
+				type = picklist
+				displayname = "Owner Email"
+				values  = Add_User[Products.ID == input.Product_Name].ID
+    			displayformat = [Email]
+				sortorder = ascending
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Section1
+			(
+				type = section
+				displayname = "Section"
+	 			row = 2
+	 			column = 0   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = ""
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Availability
+			(
+				type = section
+				visibility = true
+	 			row = 3
+	 			column = 0   
+				width = medium
+			)
+			Calendar
+			(
+    			type = plaintext
+				value = ""
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			Section2
+			(
+				type = section
+				displayname = "Section"
+	 			row = 4
+	 			column = 0   
+				width = medium
+			)
+			must have Starting_Date
+			(
+    			type = date
+				displayname = "Starting Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 4
+	 			column = 1   
+				width = medium
+			)
+			must have Ending_Date
+			(
+    			type = date
+				displayname = "Ending Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 4
+	 			column = 2   
+				width = medium
+			)
+			Section3
+			(
+				type = section
+				displayname = "Section"
+	 			row = 5
+	 			column = 0   
+				width = medium
+			)
+			Status
+			(
+				type = picklist
+				values = {"Requested", "Approved", "Returned", "Denied"}
+				initial value = "Requested"
+	 			row = 5
+	 			column = 1   
+				width = medium
+			)
+			Borrower
+			(
+				type = picklist
+				values  = Add_User.ID
+    			displayformat = [Email]
+				sortorder = ascending
+	 			row = 5
+	 			column = 1   
+				width = medium
+			)
+			Invoice_Number
+			(
+				type = picklist
+				displayname = "Invoice Number"
+				values  = Add_Invoice.ID
+    			bidirectional = Rental_ID
+    			displayformat = [Invoice_Number]
+				sortorder = ascending
+	 			row = 5
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "shopping-cart-simple-in"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Hire"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Admin_View
+		{
+			displayName = "Admin View"
+			show all rows from Hire_Request    
+			(
+				Product_Name as "Product Name"
+				Owner_Email as "Owner Email"
+				Starting_Date as "Starting Date"
+				Ending_Date as "Ending Date"
+				Status
+				Owner_Email.Name  as "Owner Name"
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Borrower
+				Invoice_Number as "Invoice Number"
+			)
+			filters
+			(
+				Status
+				Product_Name
+				Starting_Date
+			)
+			group by
+			(
+				Status ascending
+			)
+			options
+			(
+				icon = "users-2-a-security"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Product_Name as "Product Name"
+							Owner_Email.Name as "Owner Name"
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+							Status
+							Borrower
+							Invoice_Number as "Invoice Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Product_Name as "Product Name"
+							Owner_Email as "Owner Email"
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+							Status
+							Borrower
+							Invoice_Number as "Invoice Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Pending_Requests
+		{
+			displayName = "Pending Requests"
+			show all rows from Hire_Request  [Status == "Requested" && Owner_Email.Email == zoho.loginuserid]  
+			(
+				Borrower.Email as "Borrower Email"
+				Borrower.Name  as "Borrower Name"
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				custom action "Approve"
+				(
+	  			workflow = Approve
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Approve"
+				condition = (Status == "Requested")
+				)
+				custom action "Denied"
+				(
+	  			workflow = Denied
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Denied"
+				condition = (Status == "Requested")
+				)
+				Borrower.Address  as "Borrower Address"
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Borrower.Phone_Number as "Phone Number"
+				Product_Name as "Product Name"
+				Status
+				Ending_Date as "Ending Date"
+				Starting_Date as "Starting Date"
+			)
+			options
+			(
+				icon = "ui-2-hourglass"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Product_Name as "Product Name"
+							Borrower.Name as "Borrower Name"
+							Borrower.Email as "Borrower Email"
+							Borrower.Phone_Number as "Phone Number"
+							Borrower.Address as "Borrower Address"
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+							Status
+				"Approve"
+				"Denied"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+								"Approve"
+								"Denied"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Borrower Details"
+		     			related field =  Borrower[Status == "Requested" && Owner_Email.Email == zoho.loginuserid]
+						fields
+						(
+							Name
+							Email
+							Phone_Number as "Phone Number"
+							Address
+							Driving_License as "Driving License"
+							Verified_User as "Verified User"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Product_Name as "Product Name"
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Approve"
+			 			"Denied" as "Deny"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Approved_Requests
+		{
+			displayName = "Approved Requests"
+			show all rows from Hire_Request  [Status == "Approved" && Owner_Email.Email == zoho.loginuserid]  
+			(
+				Product_Name as "Product Name"
+				Owner_Email as "Owner Email"
+				Starting_Date as "Starting Date"
+				Ending_Date as "Ending Date"
+				Status
+			)
+			options
+			(
+				icon = "ui-1-check-curve"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Product_Name as "Product Name"
+							Owner_Email as "Owner Email"
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Product_Name as "Product Name"
+							Owner_Email as "Owner Email"
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Returned_Products
+		{
+			displayName = "Returned Products"
+			show all rows from Hire_Request  [Status == "Returned" && Owner_Email.Email == zoho.loginuserid]  
+			(
+				Borrower.Email as "Borrower Email"
+				Borrower.Phone_Number as "Phone Number"
+				Product_Name as "Product Name"
+				Status
+				Ending_Date as "Ending Date"
+				Starting_Date as "Starting Date"
+				custom action "Add Invoice"
+				(
+	  			workflow = Add_Invoice
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Add Invoice"
+				condition = (Invoice_Number.ID is null)
+				)
+			)
+			options
+			(
+				icon = "arrows-1-back-80"
+	 		)
+			custom actions
+			(
+				"Approve"
+				(
+	  			workflow = Approve
+				show action in view header = true
+				show action in edit record menu = true
+				condition = (Status == "Requested")
+				)
+				"Denied"
+				(
+	  			workflow = Denied
+				show action in view header = true
+				show action in edit record menu = true
+				condition = (Status == "Requested")
+				)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Product_Name as "Product Name"
+							Borrower.Email as "Borrower Email"
+							Borrower.Phone_Number as "Phone Number"
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+							Status
+				"Add Invoice"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Product_Name as "Product Name"
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+							Status
+						)
+					)
+					datablock4
+					(
+			 			layout type = -2
+		     			title = "Invoice Number"
+		     			related field =  Invoice_Number[Status == "Returned" && Owner_Email.Email == zoho.loginuserid]
+						fields
+						(
+							Invoice_Number as "Invoice Number"
+							Status
+							Product
+							Owner
+							Owner_Address as "Owner Address"
+							Borrower
+							Borrower_Address as "Borrower Address"
+							Rental_Charges as "Rental Charges"
+							Additional_Charges as "Additional Charges"
+							Discount
+							Grand_Total as "Grand Total"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Approve"
+			 			"Denied" as "Deny"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Declined_Requests
+		{
+			displayName = "Declined Requests"
+			show all rows from Hire_Request  [Status == "Denied" && Owner_Email.Email == zoho.loginuserid]  
+			(
+				Product_Name as "Product Name"
+				Owner_Email as "Owner Email"
+				Starting_Date as "Starting Date"
+				Ending_Date as "Ending Date"
+				Status
+			)
+			options
+			(
+				icon = "ui-1-circle-bold-remove"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Product_Name as "Product Name"
+							Owner_Email as "Owner Email"
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Product_Name as "Product Name"
+							Owner_Email as "Owner Email"
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Customer
+	{
+		icon = "users-2-b-meeting"
+		list All_Requests
+		{
+			displayName = "All Requests"
+			show all rows from Hire_Request  [Borrower.Email == zoho.loginuserid]  
+			(
+				Owner_Email as "Owner Email"
+				Status
+				custom action "Cancel Request"
+				(
+	  			workflow = Cancel_Request
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Cancel Request"
+				condition = (Starting_Date > zoho.currenttime && Status != "Denied")
+				)
+				custom action "Return Product"
+				(
+	  			workflow = Return_Product
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Return Product"
+				condition = (Status == "Approved" && Starting_Date < zoho.currentdate)
+				)
+				Product_Name.Product_Image as "Product Image"
+				Product_Name as "Product Name"
+				Ending_Date as "Ending Date"
+				Starting_Date as "Starting Date"
+				Borrower
+			)
+			filters
+			(
+				Status
+				Product_Name
+				Starting_Date
+			)
+			group by
+			(
+				Status ascending
+			)
+			options
+			(
+				icon = "arrows-1-curved-previous"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Product_Name as "Product Name"
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+							Status
+				"Cancel Request"
+				"Return Product"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Cancel Request"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Cancel Request"
+								"Return Product"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+								"Cancel Request"
+								"Return Product"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Product_Name as "Product Name"
+							Owner_Email as "Owner Email"
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+			 			"Cancel Request"
+			 			"Return Product"
+    	 			)
+    			)
+			)
+		}
+	}
+	section Wishlist
+	{
+		icon = "ui-3-heart"
+		form Wishlist
+		{
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			User
+			(
+				type = picklist
+				values  = Add_User.ID
+    			displayformat = [" " + Name.first_name + " " + Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Category
+			(
+				type = picklist
+				values  = New_Category.ID
+    			displayformat = [Category]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Sub_Category
+			(
+				type = picklist
+				displayname = "Sub Category"
+				values  = New_Sub_Category[Category.ID == input.Category].ID
+    			displayformat = [Sub_Category]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Product_Name
+			(
+				type = picklist
+				displayname = "Product Name"
+				values  = Add_Product.ID
+    			displayformat = [Product_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Product_Name_Text
+			(
+    			type = text
+				displayname = "Product Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-3-heart-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		custom My_Wishlists
+		{
+			displayName = "My Wishlists"
+			show all rows from Wishlist  [User.Email == zoho.loginuserid]  
+			(
+				Sub_Category as "Sub Category"
+				User
+				Product_Name as "Product Name"
+				Product_Name_Text as "Product Name"
+				Category
+				Product_Name.Product_Image as "Product Image"
+			)
+			options
+			(
+				icon = "users-2-a-heart"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 3
+					datablock1
+					(
+			 			layout type = 7
+		     			title = "Overview"
+						fields
+						(
+							Product_Name.Product_Image as "Product Image"
+							Product_Name_Text as "Product Name"
+							Category
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Product_Name as "Product Name"
+							Product_Name_Text as "Product Name"
+							Category
+							Sub_Category as "Sub Category"
+							User
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Reviews
+	{
+		icon = "ui-2-chat-round-content"
+		form Add_Review
+		{
+			displayname = "Add Review"
+			success message = "Review Added Successfully"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Product
+			(
+				type = picklist
+				values  = Add_Product.ID
+    			bidirectional = Review
+    			displayformat = [Product_Code]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Borrower
+			(
+				type = picklist
+				values  = Add_User.ID
+    			displayformat = [Name.first_name + " " + Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Review
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Satisfaction
+			(
+				type = radiobuttons
+				displayname = "How much satisfied with our product"
+				values = {"Very satisfied", "Satisfied", "Neutral", "Unsatisfied", "Very Unsatisfied", "N/A"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "business-cheque"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		custom All_Reviews
+		{
+			displayName = "All Reviews"
+			show all rows from Add_Review    
+			(
+				Product
+				Borrower
+				Review
+				Satisfaction
+				Product.Product_Image as "Product Image"
+			)
+			options
+			(
+				icon = "ui-3-chat-33"
+	 		)
+			conditional formatting
+			(
+				"N/A"
+				{
+				condition = (Satisfaction == "N/A")
+				fields = [Satisfaction]
+				format = "color:#7c7c7c;"
+				}
+				"Very Unsatisfied"
+				{
+				condition = (Satisfaction == "Very Unsatisfied")
+				fields = [Satisfaction]
+				format = "color:#cc1111;"
+				}
+				"Unsatisfied"
+				{
+				condition = (Satisfaction == "Unsatisfied")
+				fields = [Satisfaction]
+				format = "color:#ef1616;"
+				}
+				"Neutral"
+				{
+				condition = (Satisfaction == "Neutral")
+				fields = [Satisfaction]
+				format = "color:#a811cc;"
+				}
+				"Satisfied"
+				{
+				condition = (Satisfaction == "Satisfied")
+				fields = [Satisfaction]
+				format = "color:#11b1cc;"
+				}
+				"Very Satisfied"
+				{
+				condition = (Satisfaction == "Very satisfied")
+				fields = [Satisfaction]
+				format = "color:#4ea64c;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 6
+					datablock1
+					(
+			 			layout type = 28
+		     			title = "Overview"
+						fields
+						(
+							Product.Product_Image as "Product Image"
+							Borrower
+							Review
+							Satisfaction
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Borrower
+							Review
+							Satisfaction
+							Product
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		custom My_Reviews
+		{
+			displayName = "My Reviews"
+			show all rows from Add_Review  [Borrower.Email == zoho.loginuserid]  
+			(
+				Satisfaction
+				Borrower.Email
+				Borrower.Phone_Number as "Phone Number"
+				Borrower
+				Product
+				Review
+				Product.Product_Image as "Product Image"
+			)
+			options
+			(
+				icon = "users-2-b-meeting"
+	 		)
+			conditional formatting
+			(
+				"N/A"
+				{
+				condition = (Satisfaction == "N/A")
+				fields = [Satisfaction]
+				format = "color:#7c7c7c;"
+				}
+				"Very Unsatisfied"
+				{
+				condition = (Satisfaction == "Very Unsatisfied")
+				fields = [Satisfaction]
+				format = "color:#cc1111;"
+				}
+				"Unsatisfied"
+				{
+				condition = (Satisfaction == "Unsatisfied")
+				fields = [Satisfaction]
+				format = "color:#ef1616;"
+				}
+				"Neutral"
+				{
+				condition = (Satisfaction == "Neutral")
+				fields = [Satisfaction]
+				format = "color:#a811cc;"
+				}
+				"Satisfied"
+				{
+				condition = (Satisfaction == "Satisfied")
+				fields = [Satisfaction]
+				format = "color:#11b1cc;"
+				}
+				"Very Satisfied"
+				{
+				condition = (Satisfaction == "Very satisfied")
+				fields = [Satisfaction]
+				format = "color:#4ea64c;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 6
+					datablock1
+					(
+			 			layout type = 28
+		     			title = "Overview"
+						fields
+						(
+							Product.Product_Image as "Product Image"
+							Borrower
+							Review
+							Borrower.Email as "Email"
+							Borrower.Phone_Number as "Phone Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Borrower
+							Review
+							Satisfaction
+							Product
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Invoices
+	{
+		icon = "shopping-receipt-list-42"
+		form Add_Invoice
+		{
+			displayname = "Add Invoice"
+			success message = "Invoice Added Successfully"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			unique Invoice_Number
+			(
+    			type = text
+				displayname = "Invoice Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Status
+			(
+				type = picklist
+				values = {"Paid", "Not Paid"}
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Rental_ID
+			(
+				type = picklist
+				displayname = "Rental ID"
+				values  = Hire_Request[Status == "Returned"].ID
+    			bidirectional = Invoice_Number
+    			displayformat = [ID]
+				sortorder = ascending
+	 			row = 1
+	 			column = 3   
+				width = medium
+			)
+			Section1
+			(
+				type = section
+				displayname = "Section"
+	 			row = 2
+	 			column = 0   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = "<a><span style=\"background-color: rgb(245, 245, 245); font-size: 16px\">Owner Details</span></a>"
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			must have Owner
+			(
+				type = picklist
+				values  = Add_User.ID
+    			displayformat = [Name.first_name + " " + Name.last_name]
+				sortorder = ascending
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			must have Owner_Address
+			(
+    			type = address
+				displayname = "Owner Address"
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			plain1
+			(
+    			type = plaintext
+				value = "<a><span style=\"background-color: rgb(245, 245, 245); font-size: 16px\">Borrower Details</span></a>"
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			must have Borrower
+			(
+				type = picklist
+				values  = Add_User.ID
+    			displayformat = [" " + Name.first_name + " " + Name.last_name]
+				sortorder = ascending
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			must have Borrower_Address
+			(
+    			type = address
+				displayname = "Borrower Address"
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_13
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_23
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city3
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province3
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code3
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country3
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude3
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude3
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			Billing
+			(
+				type = section
+				visibility = true
+	 			row = 3
+	 			column = 0   
+				width = medium
+			)
+			must have Product
+			(
+				type = picklist
+				values  = Add_Product.ID
+    			displayformat = [Product_Code]
+				sortorder = ascending
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			must have Rental_Charges
+			(
+				displayname = "Rental Charges"
+				type = USD
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			Additional_Charges
+			(
+				displayname = "Additional Charges"
+				type = USD
+				initial value = 0.00
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			Discount
+			(
+				type = USD
+				initial value = 0.00
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			Grand_Total
+			(
+				displayname = "Grand Total"
+				type = USD
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			billing_notes
+			(
+    			type = plaintext
+				value = "Add your Note here ..."
+	 			row = 3
+	 			column = 2   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "shopping-receipt-list-42"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list All_Invoices
+		{
+			displayName = "All Invoices"
+			show all rows from Add_Invoice    
+			(
+				Borrower
+				Owner
+				Invoice_Number as "Invoice Number"
+				Product
+				Rental_Charges as "Rental Charges"
+				Additional_Charges as "Additional Charges"
+				Discount
+				Grand_Total as "Grand Total"
+				Status
+				custom action "Paid"
+				(
+	  			workflow = Paid
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Paid"
+				condition = (Status == "Not Paid")
+				)
+			)
+			options
+			(
+				icon = "business-calculator"
+	 		)
+			conditional formatting
+			(
+				"BoldForm"
+				{
+				fields = [Invoice_Number]
+				format = "font-weight:bold;color:#000000;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Invoice_Number as "Invoice Number"
+							Product
+							Owner
+							Borrower
+							Rental_Charges as "Rental Charges"
+							Additional_Charges as "Additional Charges"
+							Discount
+							Grand_Total as "Grand Total"
+							Status
+				"Paid"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock4
+					(
+			 			layout type = -2
+		     			title = "Invoice Number"
+						fields
+						(
+							Invoice_Number as "Invoice Number"
+						)
+					)
+					datablock5
+					(
+			 			layout type = -2
+		     			title = "Details"
+						fields
+						(
+							Product
+							Rental_Charges as "Rental Charges"
+							Additional_Charges as "Additional Charges"
+							Discount
+							Grand_Total as "Grand Total"
+						)
+					)
+					datablock6
+					(
+			 			layout type = -2
+		     			title = "Borrower"
+		     			related field =  Borrower
+						fields
+						(
+							Name
+							Address
+							Email
+							Phone_Number as "Phone Number"
+						)
+					)
+					datablock7
+					(
+			 			layout type = -2
+		     			title = "Owner"
+		     			related field =  Owner
+						fields
+						(
+							Name
+							Address
+							Email
+							Phone_Number as "Phone Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Paid"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Admin
+	{
+		icon = "ui-1-lock-circle-open"
+		summary Unverified_Users
+		{
+			displayName = "Unverified Users"
+			show all rows from Add_User  [Verified_User == false]  
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				custom action "Verified"
+				(
+	  			workflow = Verified
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Verified"
+				condition = (Verified_User == false && Email != zoho.adminuserid)
+				)
+				Phone_Number as "Phone Number"
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Email
+				Driving_License as "Driving License"
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 2
+				icon = "users-2-a-edit"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email
+							Phone_Number as "Phone Number"
+							Address
+							Driving_License as "Driving License"
+				"Verified"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+			 			"Verified"
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Verified"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+								"Verified"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email
+							Phone_Number as "Phone Number"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field =  Products[Verified_User == false]
+						fields
+						(
+							Product_Name as "Product Name"
+							Product_Code as "Product Code"
+							Product_Image as "Product Image"
+							Category
+							Sub_Category as "Sub Category"
+							Description
+							Rent
+							Security_Deposit as "Security Deposit"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Categories
+		{
+			displayName = "All Categories"
+			show all rows from New_Category    
+			(
+				Category
+			)
+			options
+			(
+				icon = "ui-2-menu-dots"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Category
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Category
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Sub_Categories
+		{
+			displayName = "All Sub Categories"
+			show all rows from New_Sub_Category    
+			(
+				Category
+				Sub_Category as "Sub Category"
+			)
+			options
+			(
+				icon = "design-2-layers"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Category
+							Sub_Category as "Sub Category"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Category
+							Sub_Category as "Sub Category"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	functions
+	{
+ 			string Util.runCalendar(date startingDate, int productRecID)
+			{
+				monthStarting = toStartOfMonth(startingDate);
+				weekStarting = toStartOfWeek(monthStarting).toDate();
+				loop42 = leftpad("",42).replaceAll(" ","1,").removeLastOccurence(",").toList();
+				constr = "<table style='width:100%;padding:0 45%;'><thead><tr style='text-align:center;font-size:17.3px;color:rgb(59, 60, 61);'><th colspan='7'>" + startingDate.toString("MMM") + ", " + startingDate.getYear() + "</th></tr></thead><tbody><tr style='font-size:17px;'> <th style='color:#3b3c3d;padding:15px;'> Sun </th> <th style='color:#3b3c3d;padding:15px;'> Mon </th><th style='color:#3b3c3d;padding:15px;'> Tue </th> <th style='color:#3b3c3d;padding:15px;'> Wed </th><th style='color:#3b3c3d;padding:15px;'> Thu </th><th style='color:#3b3c3d;padding:15px;'> Fri </th><th style='color:#3b3c3d;padding:15px;'> Sat </th></tr><tr>";
+				loopDate = weekStarting;
+				for each  eachDay in loop42
+				{
+					curDay = loopDate.getDay();
+					curMonth = loopDate.toString("MMM");
+					getRec = Hire_Request[Product_Name == productRecID && Status == "Approved" && Starting_Date <= loopDate && Ending_Date >= loopDate];
+					if(getRec.count() != 0)
+					{
+						// 				constr = constr + "<td style='color:#3987D9;padding:15px;text-align:center;font-size:16px;'>" + curDay + "</div><div style='color:#3987D9;font-size:14px;'>" + curMonth + "</div></td>";
+						constr = constr + "<td style='color:#d93939;padding:15px;text-align:center;font-size:16px;'>" + curDay + "</div><div style='color:#d93939;font-size:14px;'><span class='zc-li-solid media-1-button-record' style='font-size:10px;'></span></div></td>";
+					}
+					else
+					{
+						if(curMonth != startingDate.toString("MMM"))
+						{
+							constr = constr + "<td style='color:#b8b4b4;padding:15px;text-align:center;font-size:16px;'> <div>" + curDay + "</div><div styl='font-size:14px;'><span class='zc-li-solid media-1-button-record' style='font-size:10px;'></span></div></td>";
+						}
+						else
+						{
+							constr = constr + "<td style='color:#1abc9c;padding:15px;text-align:center;font-size:16px;'>" + curDay + "</div><div style='color:#888;font-size:14px;'><span class='zc-li-solid media-1-button-record' style='font-size:10px;'></span></div></td>";
+						}
+					}
+					/* 		if(curMonth != startingDate.toString("MMM"))
+											{
+												constr = constr + "<td style='color:#b8b4b4;padding:15px;text-align:center;font-size:16px;'> <div>" + curDay + "</div><div styl='font-size:14px;'><span class='zc-li-solid media-1-button-record' style='font-size:10px;'></span></div></td>";
+											}
+											else
+											{
+												getRec = Hire_Product[Product_Name == productRecID && Starting_Date <= loopDate && Ending_Date >= loopDate];
+												if(getRec.count() != 0)
+												{
+									// 				constr = constr + "<td style='color:#3987D9;padding:15px;text-align:center;font-size:16px;'>" + curDay + "</div><div style='color:#3987D9;font-size:14px;'>" + curMonth + "</div></td>";
+													constr = constr + "<td style='color:#d93939;padding:15px;text-align:center;font-size:16px;'>" + curDay + "</div><div style='color:#d93939;font-size:14px;'><span class='zc-li-solid media-1-button-record' style='font-size:10px;'></span></div></td>";
+													
+												}
+												else
+												{
+													constr = constr + "<td style='color:#1abc9c;padding:15px;text-align:center;font-size:16px;'>" + curDay + "</div><div style='color:#888;font-size:14px;'><span class='zc-li-solid media-1-button-record' style='font-size:10px;'></span></div></td>";
+												}
+											} */
+					if(loopDate.getDayOfWeek() == 7)
+					{
+						constr = constr + "</tr><tr>";
+					}
+					loopDate = loopDate.addDay(1);
+				}
+				constr = constr + "</table>";
+				return constr;
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Run_Scripts_While_Editing2 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_User
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(old.Email != input.Email)
+										{
+											// Custom User
+											thisapp.permissions.deleteuser(old.Email);
+											thisapp.permissions.assignUserInProfile(input.Email,"Custom User");
+											appname = zoho.appname.toUpperCase();
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :input.Email
+												subject :"Invitation to access '" + zoho.appname + "' "
+												message :"<div style='width:100%;display:inline-block;box-sizing:border-box;border:1px solid #ddd;'><div style='padding:2%;text-align:center;'>You've been invited to use an application built on Zoho Creator by \"" + zoho.adminuserid + "\".</div><div style='background: #efefef; padding: 20.0px;margin: 20.0px 0 10.0px;text-align:center;'><h2>" + appname.toUpperCase() + "</h2><div style='margin: 20.0px 0 10.0px;'><a style='padding:10px;background-color: rgb(62,149,205);text-decoration: none;color: rgb(255,255,255);font-size: 14.0px;' href='https://creator.zoho.com" + zoho.appuri + "' target='_blank'> Go to application </a></div></div></div>"
+											]
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Creatin4 as "Run Scripts - While Creating a Record"
+			{
+				type =  form
+				form = Add_Product
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						disable Owner;
+					}
+	}
+
+			}
+			Run_Scripts_While_Creatin5 as "Run Scripts - While Creating a Record"
+			{
+				type =  form
+				form = Add_Product
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											getUser = Add_User[Email == zoho.loginuserid && Verified_User == true];
+										if(getUser.count() == 0)
+										{
+											userID = insert into Add_User
+										[
+											Email=zoho.loginuserid
+											Added_User=zoho.loginuser
+											Name.first_name="Admin"
+											Verified_User=true
+										];
+										}
+										else
+										{
+											userID = getUser.ID;
+										}
+										input.Owner = userID;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always4 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Product
+				record event = on add or edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Review;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always5 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Hire_Request
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Invoice_Number;
+						hide Status,Availability;
+					}
+					actions  (Product_Name is not null)
+					{
+						disable Product_Name;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always6 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Hire_Request
+				record event = on add or edit
+
+	on load
+	{
+					actions  (Product_Name is not null)
+					{
+						custom deluge script
+						(
+											getOwnerEmail = Add_User[ID == input.Product_Name.Owner];
+										input.Owner_Email = getOwnerEmail.ID;
+										input.plain = ("<div><h2>Pickup Address : </h2></div><label style='color:#1a9bc;'><span><font class='location-pin zc-li-outline'></font></span> " + getOwnerEmail.Address) + " </label>";
+										dateparam = ifnull(input.Starting_Date,zoho.currentdate);
+										input.Calendar = thisapp.Util.runCalendar(dateparam,input.Product_Name);
+										disable Owner_Email;
+										show Calendar;
+										show Availability;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always7 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Hire_Request
+				record event = on add or edit
+
+	on validate
+	{
+					actions  (Product_Name is not null)
+					{
+						custom deluge script
+						(
+											getRecords = Hire_Request[Product_Name == input.Product_Name && Status == "Approved" && (Starting_Date >= input.Starting_Date && Ending_Date < input.Ending_Date) || (Starting_Date <= input.Starting_Date && Ending_Date >= input.Starting_Date) || (Starting_Date <= input.Ending_Date && Ending_Date > input.Ending_Date)];
+										if(getRecords.count() != 0)
+										{
+											alert "Sorry, Product is not available on your specified date. Please try some other date";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always8 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Hire_Request
+				record event = on add or edit
+
+	on success
+	{
+					actions  (Product_Name is not null)
+					{
+						custom deluge script
+						(
+											openUrl("#Script:dialog.close","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always9 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Hire_Request
+				record event = on add or edit
+
+	on user input of Starting_Date
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											dateparam = ifnull(input.Starting_Date,zoho.currentdate);
+										input.Calendar = thisapp.Util.runCalendar(dateparam,input.Product_Name);
+						)
+						custom deluge script
+						(
+											if(input.Starting_Date != null && input.Starting_Date < zoho.currentdate)
+										{
+											alert "Please select future date";
+											input.Starting_Date = null;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always10 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Hire_Request
+				record event = on add or edit
+
+	on user input of Ending_Date
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Ending_Date != null && input.Ending_Date < input.Starting_Date)
+										{
+											alert "Ending Date must be greater than starting date";
+											input.Ending_Date = null;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always11 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Hire_Request
+				record event = on add or edit
+
+	on user input of Product_Name
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Product_Name != null)
+										{
+											getOwnerDetails = Add_User[ID == input.Product_Name.Owner];
+											input.Owner_Email = getOwnerDetails.ID;
+											input.plain = ("<div><h2>Pickup Address : </h2></div><label style='color:#1a9bc;'><span><font class='location-pin zc-li-outline'></font></span> " + getOwnerDetails.Address) + " </label>";
+											disable Owner_Email;
+											dateparam = ifnull(input.Starting_Date,zoho.currentdate);
+											input.Calendar = thisapp.Util.runCalendar(dateparam,input.Product_Name);
+											show Availability;
+											show Calendar;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing3 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Product
+				record event = on edit
+
+	on update of Status
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Status == "Not Available")
+										{
+											getAllRequest = Hire_Request[Product_Name == input.ID && Starting_Date <= zoho.currentdate && Status != "Denied"];
+											if(getAllRequest.count() != 0)
+											{
+												info "There are some requests awaiting for this product, please cancel those request to mark this product not available";
+												input.Status = "Available";
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Script_On_Always1 as "Run Script - On Always"
+			{
+				type =  form
+				form = Wishlist
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						disable User;
+						hide Product_Name_Text;
+					}
+					actions  (Product_Name is null)
+					{
+						hide Product_Name;
+						show Product_Name_Text;
+					}
+	}
+
+			}
+			Run_Script_On_Always2 as "Run Script - On Always"
+			{
+				type =  form
+				form = Wishlist
+				record event = on add or edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.User = Add_User[Email == zoho.loginuserid].ID;
+										if(input.Product_Name != null)
+										{
+											input.Category = input.Product_Name.Category;
+											input.Sub_Category = input.Product_Name.Sub_Category;
+											disable Category;
+											disable Product_Name;
+											disable Sub_Category;
+											input.Product_Name_Text = input.Product_Name.Product_Name;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Script_On_Always3 as "Run Script - On Always"
+			{
+				type =  form
+				form = Wishlist
+				record event = on add or edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Product_Name == null && Product_Name_Text == "")
+										{
+											alert "Please Enter Product Name";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Script_On_Always4 as "Run Script - On Always"
+			{
+				type =  form
+				form = Wishlist
+				record event = on add or edit
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											openUrl("#Script:dialog.close","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Creatin6 as "Run Scripts - While Creating a Record"
+			{
+				type =  form
+				form = Hire_Request
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide Borrower;
+					}
+	}
+
+			}
+			Run_Scripts_While_Creatin7 as "Run Scripts - While Creating a Record"
+			{
+				type =  form
+				form = Hire_Request
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Borrower = Add_User[Email == zoho.loginuserid].ID;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Creatin8 as "Run Scripts - While Creating a Record"
+			{
+				type =  form
+				form = Add_User
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide Products;
+					}
+	}
+
+			}
+			Run_Scripts_While_Creatin9 as "Run Scripts - While Creating a Record"
+			{
+				type =  form
+				form = Add_User
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											// Custom User
+										thisapp.permissions.assignUserInProfile(input.Email,"Custom User");
+										appname = zoho.appname.toUpperCase();
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Email
+											subject :"Invitation to access '" + zoho.appname + "' "
+											message :"<div style='width:100%;display:inline-block;box-sizing:border-box;border:1px solid #ddd;'><div style='padding:2%;text-align:center;'>You've been invited to use an application built on Zoho Creator by \"" + zoho.adminuserid + "\".</div><div style='background: #efefef; padding: 20.0px;margin: 20.0px 0 10.0px;text-align:center;'><h2>" + appname.toUpperCase() + "</h2><div style='margin: 20.0px 0 10.0px;'><a style='padding:10px;background-color: rgb(62,149,205);text-decoration: none;color: rgb(255,255,255);font-size: 14.0px;' href='https://creator.zoho.com" + zoho.appuri + "' target='_blank'> Go to application </a></div></div></div>"
+										]
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Creatin10 as "Run Scripts - While Creating a Record"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide Invoice_Number,billing_notes;
+					}
+					actions  (Rental_ID is not null)
+					{
+						disable Owner,Owner_Address,Borrower,Borrower_Address,Product,Rental_ID;
+					}
+	}
+
+			}
+			Run_Scripts_While_Creatin11 as "Run Scripts - While Creating a Record"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add
+
+	on load
+	{
+					actions  (Rental_ID is not null)
+					{
+						custom deluge script
+						(
+											getRentalDetails = Hire_Request[ID == input.Rental_ID];
+										hide Rental_ID;
+										show billing_notes;
+										input.Owner = getRentalDetails.Owner_Email;
+										input.Owner_Address = getRentalDetails.Owner_Email.Address;
+										input.Borrower = getRentalDetails.Borrower;
+										input.Borrower_Address = getRentalDetails.Borrower.Address;
+										input.Product = getRentalDetails.Product_Name;
+										strOutput = "<div><div  class='form-group clearfix'><a><span style='background-color: rgb(245, 245, 245);text-align:center; font-size: 16px'>" + getRentalDetails.Product_Name.Product_Name + "</span></a></div><div class='form-group clearfix'><label class='form-label zc-dem-clearfix'><span class='zc-label-text'> Starting Time </span></label><div class='form-field clearfix mediumSizeLive'>" + getRentalDetails.Starting_Date + "</div></div><div class='form-group clearfix'><label class='form-label zc-dem-clearfix'><span class='zc-label-text'>Ending Time </span></label><div class='form-field clearfix mediumSizeLive'>" + getRentalDetails.Ending_Date + "</div></div><div class='form-group clearfix'><label class='form-label zc-dem-clearfix'><span class='zc-label-text'> No. of Days </span></label><div class='form-field clearfix mediumSizeLive'>" + (days360(getRentalDetails.Starting_Date,getRentalDetails.Ending_Date) + 1) + " </div></div><div class='form-group clearfix'><label class='form-label zc-dem-clearfix'><span class='zc-label-text'>Rent </span></label><div class='form-field clearfix mediumSizeLive'>" + getRentalDetails.Product_Name.Rent + " / " + getRentalDetails.Product_Name.Scale + " </div></div></div>";
+										input.billing_notes = strOutput;
+										// calculating Rental charges
+										// rentalCycle = if((getRentalDetails.Product_Name.Scale == "Per Day"),1,(if(getRentalDetails.Product_Name.Scale == "Per Week"),7,(if(getRentalDetails.Product_Name.Scale == "Per Month"),getRentalDetails.Product_Name.Number_of_days,(if(getRentalDetails.Product_Name.Scale == "Per Year"),365,1))));
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Creatin12 as "Run Scripts - While Creating a Record"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											getLastRec = Add_Invoice[ID != 0] sort by Added_Time desc;
+										if(getLastRec.count() != 0)
+										{
+											invoiceNumber = getLastRec.Invoice_Number.removeAllAlpha().toLong();
+											nextVal = invoiceNumber + 1;
+											input.Invoice_Number = "INV" + leftpad(nextVal.toString(),4).replaceAll(" ","0").toString();
+										}
+										else
+										{
+											input.Invoice_Number = "INV0001";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Creatin13 as "Run Scripts - While Creating a Record"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add
+
+	on user input of Rental_ID
+	{
+					actions  (Rental_ID is not null)
+					{
+						custom deluge script
+						(
+											getRentalDetails = Hire_Request[ID == input.Rental_ID];
+										input.Owner = getRentalDetails.Owner_Email;
+										input.Owner_Address = getRentalDetails.Owner_Email.Address;
+										input.Borrower = getRentalDetails.Borrower;
+										input.Borrower_Address = getRentalDetails.Borrower.Address;
+										input.Product = getRentalDetails.Product_Name;
+										strOutput = "<div><div  class='form-group clearfix'><a><span style='background-color: rgb(245, 245, 245);text-align:center; font-size: 16px'>" + getRentalDetails.Product_Name.Product_Name + "</span></a></div><div class='form-group clearfix'><label class='form-label zc-dem-clearfix'><span class='zc-label-text'> Starting Time </span></label><div class='form-field clearfix mediumSizeLive'>" + getRentalDetails.Starting_Date + "</div></div><div class='form-group clearfix'><label class='form-label zc-dem-clearfix'><span class='zc-label-text'>Ending Time </span></label><div class='form-field clearfix mediumSizeLive'>" + getRentalDetails.Ending_Date + "</div></div><div class='form-group clearfix'><label class='form-label zc-dem-clearfix'><span class='zc-label-text'> No. of Days </span></label><div class='form-field clearfix mediumSizeLive'>" + (days360(getRentalDetails.Starting_Date,getRentalDetails.Ending_Date) + 1) + " </div></div><div class='form-group clearfix'><label class='form-label zc-dem-clearfix'><span class='zc-label-text'>Rent </span></label><div class='form-field clearfix mediumSizeLive'>" + getRentalDetails.Product_Name.Rent + " / " + getRentalDetails.Product_Name.Scale + " </div></div></div>";
+										input.billing_notes = strOutput;
+										disable Rental_ID;
+										show billing_notes;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always12 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_User
+				record event = on add or edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Name.isEmpty())
+										{
+											alert "Please Enter your Name";
+											cancel submit;
+										}
+										if(input.Phone_Number == "" || input.Phone_Number == null)
+										{
+											alert "Please enter your phone number";
+											cancel submit;
+										}
+										if(input.Address.isEmpty())
+										{
+											alert "Please enter your address";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin1 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_User
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.permissions.deleteuser(input.Email);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always13 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						disable Grand_Total;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always14 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+	on user input of Rental_Charges
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											rentChrg = ifnull(input.Rental_Charges,0.0);
+										addChrg = ifnull(input.Additional_Charges,0.0);
+										discountAmnt = ifnull(input.Discount,0.0);
+										input.Grand_Total = rentChrg + addChrg - discountAmnt;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always15 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+	on user input of Additional_Charges
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											rentChrg = ifnull(input.Rental_Charges,0.0);
+										addChrg = ifnull(input.Additional_Charges,0.0);
+										discountAmnt = ifnull(input.Discount,0.0);
+										input.Grand_Total = rentChrg + addChrg - discountAmnt;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always16 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+	on user input of Discount
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											rentChrg = ifnull(input.Rental_Charges,0.0);
+										addChrg = ifnull(input.Additional_Charges,0.0);
+										discountAmnt = ifnull(input.Discount,0.0);
+										input.Grand_Total = rentChrg + addChrg - discountAmnt;
+						)
+					}
+	}
+
+			}
+			Walkthrough_Step_4 as "Walkthrough - Step 2"
+			{
+				type =  form
+				form = Add_Product
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Add_Product.count() == 1)
+										{
+											openUrl("#Form:Add_User","same window");
+										}
+						)
+					}
+	}
+
+			}
+			Walkthrough_Step_5 as "Walkthrough - Step 3"
+			{
+				type =  form
+				form = Add_User
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											getRec = Add_User[Email != zoho.adminuserid];
+										if(getRec.count() == 1)
+										{
+											openUrl("#Report:All_Products","same window");
+										}
+						)
+					}
+	}
+
+			}
+		}
+		functions
+		{
+			Rent_Request as "Rent Request"
+			{
+				type =  functions
+				form = Add_Product
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						openUrl("#Form:Hire_Request?Product_Name=" + input.ID,"popup window","height=<height>,width=<width>");
+					)
+					}
+				}
+			}
+			Change_Status as "Change Status"
+			{
+				type =  functions
+				form = Add_Product
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						if(input.Status == "Available")
+										{
+											getAllRequest = Hire_Request[Product_Name == input.ID && Starting_Date <= zoho.currentdate && Status != "Denied"];
+											if(getAllRequest.count() != 0)
+											{
+												info "There are some requests awaiting for this product.\n Please cancel those request to mark this product not available!";
+												input.Status = "Available";
+												openUrl("#Report:All_Requests","same window");
+											}
+											else
+											{
+												input.Status = "Not Available";
+												success message "Product is not available now!";
+											}
+										}
+										else if(input.Status == "Not Available")
+										{
+											input.Status = "Available";
+											success message "Product is ready for lend!";
+										}
+					)
+					}
+				}
+			}
+			Cancel_Request as "Cancel Request"
+			{
+				type =  functions
+				form = Hire_Request
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						input.Status = "Denied";
+					)
+					}
+				}
+			}
+			Wishlist as "Wishlist"
+			{
+				type =  functions
+				form = Add_Product
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						// openUrl("#Form:Wishlist?Product_Name=" + input.ID,"popup window");
+										currentUser = Add_User[Email == zoho.loginuserid];
+										var = insert into Wishlist
+										[
+											Added_User=zoho.loginuser
+											Product_Name=input.ID
+											Product_Name_Text=input.Product_Name
+											Category=input.Category
+											Sub_Category=input.Sub_Category
+											User=currentUser.ID
+										];
+										info "Item has been added to your wishlist!";
+					)
+					}
+				}
+			}
+			Verified as "Verified"
+			{
+				type =  functions
+				form = Add_User
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						input.Verified_User = true;
+					)
+					}
+				}
+			}
+			Approve as "Approve"
+			{
+				type =  functions
+				form = Hire_Request
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						input.Status = "Approved";
+					)
+					}
+				}
+			}
+			Denied as "Denied"
+			{
+				type =  functions
+				form = Hire_Request
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						input.Status = "Denied";
+					)
+					}
+				}
+			}
+			Return_Product as "Return Product"
+			{
+				type =  functions
+				form = Hire_Request
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						input.Status = "Returned";
+										input.Ending_Date = zoho.currentdate;
+					)
+					}
+				}
+			}
+			Add_Invoice as "Add Invoice"
+			{
+				type =  functions
+				form = Hire_Request
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						openUrl("#Form:Add_Invoice?Rental_ID=" + input.ID,"popup window");
+					)
+					}
+				}
+			}
+			Paid as "Paid"
+			{
+				type =  functions
+				form = Add_Invoice
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						input.Status = "Paid";
+					)
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Read"
+			{
+				name = "Read"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have read permission for all components\n"
+			}
+			"Write"
+			{
+				name = "Write"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have write permission for all components\n"
+			}
+			"Custom User"
+			{
+				name = "Custom User"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "Custom User Profile\n"
+				ModulePermissions
+				{
+					Add_Product
+					{
+						enabled= Create,Export,Tab 
+						ReportPermissions
+						{
+							My_Products={"View","Edit","Delete"}
+							All_Products={"View"}
+						}
+						FieldPermissions
+						{
+							Sub_Category{visibility:true,readonly:false}
+							Status{visibility:true,readonly:false}
+							Owner{visibility:true,readonly:false}
+							Product_Image{visibility:true,readonly:false}
+							Category{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Security_Deposit{visibility:true,readonly:false}
+							Product_Name{visibility:true,readonly:false}
+							Scale{visibility:true,readonly:false}
+							Review{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Product_Code{visibility:true,readonly:false}
+							Rent{visibility:true,readonly:false}
+						}
+					}
+					Add_Invoice
+					{
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Grand_Total{visibility:true,readonly:false}
+							Owner{visibility:true,readonly:false}
+							Discount{visibility:true,readonly:false}
+							Borrower{visibility:true,readonly:false}
+							Additional_Charges{visibility:true,readonly:false}
+							Product{visibility:true,readonly:false}
+							Invoice_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Owner_Address{visibility:true,readonly:false}
+							billing_notes{visibility:true,readonly:false}
+							Borrower_Address{visibility:true,readonly:false}
+							Section1{visibility:true,readonly:false}
+							plain{visibility:true,readonly:false}
+							Billing{visibility:true,readonly:false}
+							plain1{visibility:true,readonly:false}
+							Rental_ID{visibility:true,readonly:false}
+							Rental_Charges{visibility:true,readonly:false}
+						}
+					}
+					New_Sub_Category
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Sub_Category{visibility:true,readonly:false}
+							Category{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_User
+					{
+						FieldPermissions
+						{
+							Driving_License{visibility:true,readonly:false}
+							Products{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Verified_User{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Wishlist
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							My_Wishlists={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Sub_Category{visibility:true,readonly:false}
+							User{visibility:true,readonly:false}
+							Category{visibility:true,readonly:false}
+							Product_Name_Text{visibility:true,readonly:false}
+							Product_Name{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Hire_Request
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							Pending_Requests={"View"}
+							All_Requests={"View"}
+							Approved_Requests={"View"}
+							Declined_Requests={"View"}
+						}
+						FieldPermissions
+						{
+							Availability{visibility:true,readonly:false}
+							Status{visibility:true,readonly:false}
+							Borrower{visibility:true,readonly:false}
+							Owner_Email{visibility:true,readonly:false}
+							Calendar{visibility:true,readonly:false}
+							Product_Name{visibility:true,readonly:false}
+							Invoice_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Starting_Date{visibility:true,readonly:false}
+							Ending_Date{visibility:true,readonly:false}
+							Section3{visibility:true,readonly:false}
+							Section1{visibility:true,readonly:false}
+							plain{visibility:true,readonly:false}
+							Section2{visibility:true,readonly:false}
+						}
+					}
+					Add_Review
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							All_Reviews={"View"}
+							My_Reviews={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Product{visibility:true,readonly:false}
+							Review{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Borrower{visibility:true,readonly:false}
+							Satisfaction{visibility:true,readonly:false}
+						}
+					}
+					New_Category
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Sub_Category{visibility:true,readonly:false}
+							Category{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+				}
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users.\n"
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 6
+		new theme color = 7
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-education-10"
+    	icon theme = "yellow"
+		icons style = outline
+	}
+
+	phone
+	{
+		section  Dashboard1
+		{
+			displayname= "Dashboard"
+			icon = "ui-1-dashboard-half"
+			page Dashboard
+			{
+			}
+		}
+		section  Products
+		{
+			icon = "shopping-gift"
+			form  Add_Product
+			{
+				layout = auto
+				icon = "ui-1-circle-bold-add"
+			}
+			custom All_Products
+			{
+				icon = "design-app"
+				quickview
+				(
+					layout
+					(
+		 				type = 3
+						datablock1
+						(
+			 				layout type = 7
+		     				title = "Overview"
+							fields
+							(
+								Product_Image as "Product Image"
+								Product_Name as "Product Name"
+								Description
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										"Rent Request"
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Rent Request"
+										Duplicate   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Rent Request"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Product_Image as "Product Image"
+								Product_Code as "Product Code"
+								Product_Name as "Product Name"
+								Description
+								Category
+								Sub_Category as "Sub Category"
+								Rent
+								Security_Deposit as "Security Deposit"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Rent Request"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			custom My_Products
+			{
+				icon = "shopping-box-3d-67"
+				quickview
+				(
+					layout
+					(
+		 				type = 6
+						datablock1
+						(
+			 				layout type = 28
+		     				title = "Overview"
+							fields
+							(
+								Product_Image as "Product Image"
+								Product_Name as "Product Name"
+								Product_Code as "Product Code"
+								Category
+								Sub_Category as "Sub Category"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+			 				"Change Status"
+    	 				)
+									record
+									(
+										"Change Status"
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Change Status"
+										Duplicate   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Change Status"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock3
+						(
+			 				layout type = 29
+		     				title = "Owner Details"
+							fields
+							(
+								Product_Image as "Product Image"
+								Owner.Email as "Email"
+								Owner.Phone_Number as "Phone Number"
+							)
+						)
+						datablock4
+						(
+			 				layout type = -2
+		     				title = "Product Details"
+							fields
+							(
+								Product_Name as "Product Name"
+								Product_Code as "Product Code"
+								Category
+								Sub_Category as "Sub Category"
+								Rent
+								Security_Deposit as "Security Deposit"
+							)
+						)
+						datablock5
+						(
+			 				layout type = -2
+		     				title = "Description"
+							fields
+							(
+								Description
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Change Status"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list New_Arrivals
+			{
+				icon = "clothes-vest-sport"
+				quickview
+				(
+					layout
+					(
+		 				type = 6
+						datablock1
+						(
+			 				layout type = 19
+		     				title = "Overview"
+							fields
+							(
+								Product_Image as "Product Image"
+								Product_Name as "Product Name"
+								Product_Code as "Product Code"
+								Category
+								Sub_Category as "Sub Category"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Owner
+								Product_Name as "Product Name"
+								Product_Code as "Product Code"
+								Product_Image as "Product Image"
+								Category
+								Sub_Category as "Sub Category"
+								Description
+								Rent
+								Scale
+								Security_Deposit as "Security Deposit"
+								Status
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Users
+		{
+			icon = "users-multiple-19"
+			form  Add_User
+			{
+				layout = auto
+				icon = "users-add-29"
+			}
+			list All_Users
+			{
+				icon = "users-2-contacts-45"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Email
+								Phone_Number as "Phone Number"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+			 				"Verified"
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+										"Verified"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+										"Verified"
+    								)
+									on left swipe
+									(
+										"Verified"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 19
+		     				title = "Overview"
+							fields
+							(
+								Driving_License as "Driving License"
+								Name
+								Email
+								Phone_Number as "Phone Number"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+			 				"Verified"
+    	 				)
+    				)
+				)
+			}
+			map User_Location
+			{
+				icon = "users-2-a-location"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Email
+								Phone_Number as "Phone Number"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+										View Record   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Email
+								Phone_Number as "Phone Number"
+								Products
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			summary Verified_User
+			{
+				icon = "users-2-a-check"
+				quickview
+				(
+					layout
+					(
+		 				type = 6
+						datablock1
+						(
+			 				layout type = 19
+		     				title = "Overview"
+							fields
+							(
+								Driving_License as "Driving License"
+								Name
+								Address
+								Email
+								Phone_Number as "Phone Number"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Email
+								Phone_Number as "Phone Number"
+								Address
+								Products
+								Driving_License as "Driving License"
+								Verified_User as "Verified User"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			summary Unverified_Users
+			{
+				icon = "users-2-a-edit"
+				quickview
+				(
+					layout
+					(
+		 				type = 6
+						datablock1
+						(
+			 				layout type = 19
+		     				title = "Overview"
+							fields
+							(
+								Driving_License as "Driving License"
+								Name
+								Address
+								Email
+								Phone_Number as "Phone Number"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+			 				"Verified"
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+										"Verified"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+										"Verified"
+    								)
+									on left swipe
+									(
+										"Verified"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Email
+								Phone_Number as "Phone Number"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+			 				"Verified"
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Category
+		{
+			icon = "tech-desktop"
+			form  New_Category
+			{
+				layout = auto
+				icon = "files-add"
+				hide = true
+			}
+			form  New_Sub_Category
+			{
+				layout = auto
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Owner1
+		{
+			displayname= "Owner"
+			icon = "location-position-user"
+			form  Hire_Request
+			{
+				layout = auto
+				icon = "shopping-cart-simple-in"
+				hide = true
+			}
+			list Admin_View
+			{
+				icon = "users-2-a-security"
+			}
+			list Pending_Requests
+			{
+				icon = "ui-2-hourglass"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Product_Name as "Product Name"
+								Borrower.Address as "Borrower Address"
+								Borrower.Email as "Borrower Email"
+								Borrower.Phone_Number as "Phone Number"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+										"Approve"
+										"Denied"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+										View Record   	   
+										"Approve"
+										"Denied"
+    								)
+									on left swipe
+									(
+										"Approve"
+										"Denied"
+    								)
+									on right swipe
+									(
+										Edit   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock3
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Product_Name as "Product Name"
+								Starting_Date as "Starting Date"
+								Ending_Date as "Ending Date"
+								Status
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Approve"
+			 				"Denied" as "Deny"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Approved_Requests
+			{
+				icon = "ui-1-check-curve"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Product_Name as "Product Name"
+								Owner_Email as "Owner Email"
+								Starting_Date as "Starting Date"
+								Ending_Date as "Ending Date"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Product_Name as "Product Name"
+								Owner_Email as "Owner Email"
+								Starting_Date as "Starting Date"
+								Ending_Date as "Ending Date"
+								Status
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Returned_Products
+			{
+				icon = "arrows-1-back-80"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Product_Name as "Product Name"
+								Borrower.Email as "Borrower Email"
+								Borrower.Phone_Number as "Phone Number"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+										"Add Invoice"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+										View Record   	   
+										"Add Invoice"
+    								)
+									on left swipe
+									(
+										"Add Invoice"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock3
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Product_Name as "Product Name"
+								Starting_Date as "Starting Date"
+								Ending_Date as "Ending Date"
+								Status
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Add Invoice"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Declined_Requests
+			{
+				icon = "ui-1-circle-bold-remove"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Product_Name as "Product Name"
+								Owner_Email as "Owner Email"
+								Starting_Date as "Starting Date"
+								Ending_Date as "Ending Date"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Product_Name as "Product Name"
+								Owner_Email as "Owner Email"
+								Starting_Date as "Starting Date"
+								Ending_Date as "Ending Date"
+								Status
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Customer1
+		{
+			displayname= "Customer"
+			list All_Requests
+			{
+				icon = "arrows-1-curved-previous"
+				quickview
+				(
+					layout
+					(
+		 				type = 6
+						datablock1
+						(
+			 				layout type = 19
+		     				title = "Overview"
+							fields
+							(
+								Product_Name.Product_Image as "Product Image"
+								Product_Name as "Product Name"
+								Borrower
+								Starting_Date as "Starting Date"
+								Ending_Date as "Ending Date"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Cancel Request" as "Cancel"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+										"Cancel Request" as "Cancel"
+										"Return Product" as "Return"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+										"Cancel Request" as "Cancel"
+										"Return Product" as "Return"
+    								)
+									on left swipe
+									(
+										"Cancel Request" as "Cancel"
+										"Return Product" as "Return"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Product_Name as "Product Name"
+								Owner_Email as "Owner Email"
+								Starting_Date as "Starting Date"
+								Ending_Date as "Ending Date"
+								Status
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+			 				"Cancel Request" as "Cancel"
+			 				"Return Product" as "Return"
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Wishlist
+		{
+			icon = "ui-3-heart"
+			form  Wishlist
+			{
+				layout = auto
+				icon = "ui-3-heart-add"
+			}
+			custom My_Wishlists
+			{
+				icon = "users-2-a-heart"
+				quickview
+				(
+					layout
+					(
+		 				type = 3
+						datablock1
+						(
+			 				layout type = 7
+		     				title = "Overview"
+							fields
+							(
+								Product_Name.Product_Image as "Product Image"
+								Product_Name_Text as "Product Name"
+								Category
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Product_Name as "Product Name"
+								Product_Name_Text as "Product Name"
+								Category
+								Sub_Category as "Sub Category"
+								User
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Reviews
+		{
+			icon = "ui-2-chat-round-content"
+			form  Add_Review
+			{
+				layout = auto
+				icon = "business-cheque"
+			}
+			custom All_Reviews
+			{
+				icon = "ui-3-chat-33"
+				quickview
+				(
+					layout
+					(
+		 				type = 6
+						datablock1
+						(
+			 				layout type = 27
+		     				title = "Overview"
+							fields
+							(
+								Product.Product_Image as "Product Image"
+								Borrower
+								Review
+								Satisfaction
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Borrower
+								Product
+								Review
+								Satisfaction
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			custom My_Reviews
+			{
+				icon = "users-2-b-meeting"
+				quickview
+				(
+					layout
+					(
+		 				type = 6
+						datablock1
+						(
+			 				layout type = 28
+		     				title = "Overview"
+							fields
+							(
+								Product.Product_Image as "Product Image"
+								Borrower
+								Review
+								Product
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Borrower
+								Review
+								Satisfaction
+								Product
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Invoices
+		{
+			icon = "shopping-receipt-list-42"
+			form  Add_Invoice
+			{
+				layout = auto
+				icon = "shopping-receipt-list-42"
+			}
+			list All_Invoices
+			{
+				icon = "business-calculator"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Invoice_Number as "Invoice Number"
+								Product
+								Owner
+								Borrower
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+										"Paid"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+										"Paid"
+    								)
+									on left swipe
+									(
+										"Paid"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock4
+						(
+			 				layout type = -2
+		     				title = "Invoice Number"
+							fields
+							(
+								Invoice_Number as "Invoice Number"
+							)
+						)
+						datablock5
+						(
+			 				layout type = -2
+		     				title = "Details"
+							fields
+							(
+								Product
+								Rental_Charges as "Rental Charges"
+								Additional_Charges as "Additional Charges"
+								Discount
+								Grand_Total as "Grand Total"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Paid"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Admin
+		{
+			icon = "ui-1-lock-circle-open"
+			list All_Categories
+			{
+				icon = "ui-2-menu-dots"
+			}
+			list All_Sub_Categories
+			{
+				icon = "design-2-layers"
+			}
+		}
+		customize
+		{
+			colour = yellow
+        	layout = slidingpane
+		 	icons style = outline
+		}
+	}
+	tablet
+	{
+		section  Dashboard1
+		{
+			displayname= "Dashboard"
+			page Dashboard
+			{
+			}
+		}
+		section  Products
+		{
+			custom All_Products
+			{
+				icon = "design-app"
+			}
+			custom My_Products
+			{
+				icon = "shopping-box-3d-67"
+			}
+			form  Add_Product
+			{
+				layout = auto
+				icon = "ui-1-circle-bold-add"
+			}
+		}
+		section  Users
+		{
+			form  Add_User
+			{
+				layout = auto
+				icon = "users-add-29"
+			}
+			list All_Users
+			{
+				icon = "users-2-contacts-45"
+			}
+			map User_Location
+			{
+				icon = "users-2-a-location"
+			}
+			summary Verified_User
+			{
+				icon = "users-2-a-check"
+			}
+			summary Unverified_Users
+			{
+				icon = "users-2-a-edit"
+			}
+		}
+		section  Category
+		{
+			form  New_Category
+			{
+				layout = auto
+				icon = "files-add"
+				hide = true
+			}
+			form  New_Sub_Category
+			{
+				layout = auto
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Owner1
+		{
+			displayname= "Owner"
+			form  Hire_Request
+			{
+				layout = auto
+				icon = "shopping-cart-simple-in"
+				hide = true
+			}
+			list Admin_View
+			{
+				icon = "users-2-a-security"
+			}
+			list Pending_Requests
+			{
+				icon = "ui-2-hourglass"
+			}
+			list Approved_Requests
+			{
+				icon = "ui-1-check-curve"
+			}
+			list Returned_Products
+			{
+				icon = "arrows-1-back-80"
+			}
+			list Declined_Requests
+			{
+				icon = "ui-1-circle-bold-remove"
+			}
+		}
+		section  Customer1
+		{
+			displayname= "Customer"
+			list All_Requests
+			{
+				icon = "arrows-1-curved-previous"
+			}
+		}
+		section  Wishlist
+		{
+			form  Wishlist
+			{
+				layout = auto
+				icon = "ui-3-heart-add"
+			}
+			custom My_Wishlists
+			{
+				icon = "users-2-a-heart"
+			}
+		}
+		section  Reviews
+		{
+			form  Add_Review
+			{
+				layout = auto
+				icon = "business-cheque"
+			}
+			custom All_Reviews
+			{
+				icon = "ui-3-chat-33"
+			}
+			custom My_Reviews
+			{
+				icon = "users-2-b-meeting"
+			}
+		}
+		section  Invoices
+		{
+			form  Add_Invoice
+			{
+				layout = auto
+				icon = "shopping-receipt-list-42"
+			}
+			list All_Invoices
+			{
+				icon = "business-calculator"
+			}
+		}
+		section  Admin
+		{
+			list New_Arrivals
+			{
+				icon = "clothes-vest-sport"
+			}
+			list All_Categories
+			{
+				icon = "ui-2-menu-dots"
+			}
+			list All_Sub_Categories
+			{
+				icon = "design-2-layers"
+			}
+		}
+		customize
+		{
+			colour = yellow
+        	layout = slidingpane
+		 	icons style = outline
+		}
+	}
+	
+}

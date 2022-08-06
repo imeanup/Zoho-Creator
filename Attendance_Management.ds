@@ -1,0 +1,3874 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 23:19:27
+ * Version      : 1.0
+ */
+ application "Attendance Management"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "IST"
+ 	time format = "24-hr"
+	section Student_Attendance
+	{
+		displayname= "Take Attendance"
+		icon = "users-2-a-check"
+		form Fill_Attendance
+		{
+			displayname = "Fill Attendance"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Attendance_Date
+			(
+    			type = date
+				displayname = "Attendance Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Class
+			(
+				type = picklist
+				values  = Add_Class[Class_Status == "Active"].ID
+    			displayformat = [Class_Title]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Attendance_Type
+			(
+				type = picklist
+				displayname = "Attendance Type"
+				values = {"Full Day", "Early Out", "Late Out", "Late Start", "Canceled", "Extra Class", "Holiday"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Present_Students
+			(
+				type = checkboxes
+				displayname = "Present Students"
+				values  = Add_Student.ID
+    			displayformat = [Registration_Number + " - " + Parent_Name1.first_name2]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Absent_Students
+			(
+				type = list
+				displayname = "Absent Students"
+				values  = Add_Student.ID
+    			displayformat = [Registration_Number + " - " + Parent_Name1.first_name2]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Late_Comers
+			(
+				type = list
+				displayname = "Late Comers"
+				values  = Add_Student.ID
+    			displayformat = [Registration_Number + " - " + Parent_Name1.first_name2]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Number_Of_Present_Students
+			(
+				type = number
+				displayname = "Number Of Present Students"
+				maxchar = 3
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Number_Of_Absent_Students
+			(
+				type = number
+				displayname = "Number Of Absent Students"
+				maxchar = 3
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					Save_Attendance
+					(
+   						type = submit
+   						displayname = "Save Attendacne"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Dashboard
+	{
+		displayname= "Fill Attendance"
+		icon = "ui-1-check-square-11"
+				 page Attendance_Iframe_Page(date) 
+	 	 { 
+ 	 	 displayname = "Attendance Iframe Page" 
+
+ 	 	 icon = "" 
+
+ 	 	 hide =  true
+	 	 Content="<zml \n\t\t\tisPdfEnabled='false'\n\t\t\n\t\t\tisPrintEnabled='false'\n\t\t\n\t\t\n\t\t\twebDeviceConfig='{\"layout\":{\"style\":\"padding-right:0px;padding-top:0px;padding-bottom:0px;padding-left:0px;\",\"design\":\"fluid\",\"displayType\":\"plain\"}}'\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dsp id='ZMLScript2'>\n\t<![CDATA[htmlpage ZMLScript2(date)\ndisplayname = &quot;ZMLScript&quot;\ncontent\n&lt;%{\n\t%&gt;\n&lt;style&gt;\n\t.form_title{\n\t\twidth : 47%;\n\t\tfloat: left;\n\t\tcolor: #555;\n\t\tfont-size: 24px;\n\t}\n\t.close{\n\t\tfloat: right;\n\t\tfont-size: 19px;\n\t\tcolor: #555555;\n\t\tpadding-top: 5px;\n\t\t}\n\t.formStyle{\n\t\tposition: relative;\n\t\theight: 86vh;\n\t\toverflow-x: hidden;\n\t}\n\t.zc-pb-embed-placeholder\n\t{\n\t\tpadding:0px;\n\t}\n\t&lt;\/style&gt;\n\t&lt;div style=&quot;width:97%;display:inline-block;padding:1% 2%; border-bottom:1px solid #eaeaea;&quot; &gt;\n\t&lt;div class = &quot;form_title&quot;&gt;Fill Attendance&lt;\/div&gt;\n\t&lt;a style=&quot;width : 47%;float:right;&quot; href= &quot;https:\/\/app.zohocreator.com&lt;%=zoho.appuri%&gt;#Page:Take_Attendance_2?calen=&lt;%=date%&gt;&amp;passdate=false&quot; target=&quot;_parent&quot;&gt;&lt;div class =&quot;zc-li-outline ui-1-simple-remove close&quot;&gt;&lt;\/div&gt;&lt;\/a&gt;\n\t&lt;\/div&gt;\n\t\n\t&lt;div elName=&apos;zc-component&apos; class=&quot;formStyle&quot; formLinkName=&apos;Fill_Attendance&apos; params=&apos;zc_Header=false&amp;amp&amp;Date1=&lt;%=date%&gt;&apos; &gt;Loading Form...&lt;\/div&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+				 page Take_Attendance(calen) 
+	 	 { 
+ 	 	 displayname = "Take Attendance" 
+
+ 	 	 icon = "users-2-a-check" 
+	 	 Content="<zml \n\t\t\tisPdfEnabled='false'\n\t\t\n\t\t\tisPrintEnabled='false'\n\t\t\n\t\t\n\t\t\twebDeviceConfig='{\"layout\":{\"displayType\":\"plain\",\"design\":\"fluid\",\"style\":\"padding-right:0px;padding-top:0px;padding-bottom:0px;padding-left:0px;\"}}'\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"50%\"\n   \t>\n\t<dsp id='ZMLScript1'>\n\t<![CDATA[htmlpage ZMLScript1(calen)\ndisplayname = &quot;ZMLScript&quot;\ncontent\n&lt;%{\n\tc = thisapp.calendar_functions.calendar_view(calen);\n\tif(input.calen == null || input.calen == &quot;null&quot; || input.calen == &quot;&quot;)\n\t{\n\t\topenUrl(&quot;https:\/\/app.zohocreator.com&quot; + zoho.appuri + &quot;#Page:Take_Attendance?calen=&quot; + c.get(&quot;date&quot;),&quot;same window&quot;);\n\t}\n\t%&gt;\n&lt;%=c.get(&quot;calendar&quot;)%&gt;\n&lt;link href=&quot;https:\/\/fonts.googleapis.com\/css?family=Maven+Pro&quot; rel=&quot;stylesheet&quot;&gt;\n&lt;link href=&quot;https:\/\/fonts.googleapis.com\/css?family=Roboto+Slab&quot; rel=&quot;stylesheet&quot;&gt;\n\n &lt;style&gt; \n  .mini-cal {\n    box-sizing: border-box;\n    font-family: &apos;Maven Pro&apos;, sans-serif;\n    width: 85%;\n    margin: auto;\n    height: 80vh;\n    background: #fff;\n\t}\n   .clndr-controls {\n    position: relative;\n    padding: 0px 0px 0px 0px;\n    width: 94%;\n\tmargin:auto;\n\t} \n  .clndr-control-button{\n\tfont-size: 40px;\n    width: 10%;\n    float: left;\n    font-weight: 600;\n\t cursor: pointer;\n\t}\n  .month{\n\t      width: 80%;\n    float: left;\n    text-align: center;\n    font-size: 23px;\n    padding-top: 2%;\n    color: #258bd3;\n\n  }\n  .rightalign{\n\t  text-align: right;\n\t} \n  .clndr-table {\n\t  font-family: &apos;Maven Pro&apos;, sans-serif;\n\t  table-layout: fixed;\n\t  width: 100%;\n\t  margin: 2% auto;\n\t  background: #ffffff;\n\t  padding-bottom: 10px;\n\t}\n\tcenter{\n\t\tbackground:white;\n\t\tmin-height:410px;\n\t\twidth: 100%;\n\t}\n  .header-days {\n    font-size: 0.85em;\n    font-weight: 600;\n    font-family: &apos;Maven Pro&apos;, sans-serif;\n  }\n  .header-day{\n    font-family: &apos;Maven Pro&apos;, sans-serif;\n  \tvertical-align: middle;\n    text-align: center;\n    color: #da8ea3;\n\tfont-size: 19px;\n    font-weight: 600;\n  }\n  .bold{\n  \tfont-weight:bold;\n  }\n  .clndr-table tr {\n    height: 45px;\n  }\n  .day{\n\tpadding:2%;\n    height: inherit;\n    color: #999;\n  }\n  .day-contents {\n    box-sizing: border-box;\n    font-size: 18px;\n    \/* width: 76%; *\/\n    height: 34px;\n    margin: auto;\n    text-align: center;\n    align-items: center;\n    height: 100%;\n    display: grid;\n    cursor: pointer;\n    padding: 28%;\n    font-weight: 600;\n    border-radius: 100%;\n\t}\n  .active {\n    background-color: #5b8cb3;\n    color: white;\n  }\n\t.day a{\n\t  color:black;\n\t}  \n\t.day a .day-contents:hover {\n\t\tbackground-color: #e7e7f1 ;\n\t\tcolor:black ;\n\t}\n\n\t.zpcontent-wrapper .zpelement-wrapper p {\n\t\tfont-size: 28px;\n\t\tmargin: 0;\n\t\tpadding: 5px 5px 5px 7px;\n\t\tcolor: #5b8cb3;\n\t\tfont-weight: normal;\n\t}\n&lt;\/style&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column><column\n   \t\t width=\"50%\"\n   \t>\n\t<form    \t\t appLinkName = 'thisapp'\n   \t\t urlAppLinkName = 'thisapp'\n   \t\t heightType = 'auto'\n   \t\t heightValue = '350'\n   \t\t linkName = 'Fill_Attendance'\n   \t\t searchString = 'Attendance_Date=${calen}'\n   \t\t zc_Header = 'false'\n   \t\t urlType = 'none'\n\n\/>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+		list Today_Attendance
+		{
+			displayName = "Today Attendance"
+			show all rows from Fill_Attendance  [Attendance_Date is today && Added_User == zoho.loginuser]  
+			(
+				Attendance_Type as "Attendance Type"
+				Attendance_Date as "Attendance Date"
+				Class
+				Number_Of_Present_Students as "Number Of Present Students"
+				Number_Of_Absent_Students as "Number Of Absent Students"
+				custom action "Mark Latecomers"
+				(
+	  			workflow = Mark_Late_comers
+				show action in edit record menu = true
+				column header = "Mark Latecomers"
+				condition = (Attendance_Date is today)
+				)
+				Added_User as "Added User"
+			)
+			group by
+			(
+				Attendance_Type ascending
+			)
+			options
+			(
+				icon = "arrows-4-system-update"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Class
+							Attendance_Date as "Attendance Date"
+							Attendance_Type as "Attendance Type"
+							Number_Of_Present_Students as "Number Of Present Students"
+							Number_Of_Absent_Students as "Number Of Absent Students"
+				"Mark Latecomers"
+							Added_User as "Added User"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+								"Mark Latecomers"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Class Attendance"
+						fields
+						(
+							Class
+							Attendance_Date as "Attendance Date"
+							Attendance_Type as "Attendance Type"
+							Number_Of_Present_Students as "Number Of Present Students"
+							Number_Of_Absent_Students as "Number Of Absent Students"
+						)
+					)
+					datablock2
+					(
+			 			layout type = 19
+		     			title = "Present Students"
+		     			related field =  Present_Students[Attendance_Date is today && Added_User == zoho.loginuser]
+						fields
+						(
+							Photo
+							Student_Name as "Name"
+							Registration_Number as "Registration Number"
+							Age
+							Gender
+						)
+					)
+					datablock3
+					(
+			 			layout type = 19
+		     			title = "Absent Students"
+		     			related field =  Absent_Students[Attendance_Date is today && Added_User == zoho.loginuser]
+						fields
+						(
+							Photo
+							Student_Name as "Name"
+							Registration_Number as "Registration Number"
+							Age
+							Gender
+						)
+					)
+					datablock4
+					(
+			 			layout type = 19
+		     			title = "Late Comers"
+		     			related field =  Late_Comers[Attendance_Date is today && Added_User == zoho.loginuser]
+						fields
+						(
+							Photo
+							Registration_Number as "Registration Number"
+							Address
+							Age
+							Gender
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Class
+	{
+		displayname= "Classes"
+		icon = "business-badge"
+		list Active_Classes
+		{
+			displayName = "Active Classes"
+   			hide = true
+			show all rows from Add_Class  [Class_Status == "Active"]  
+			(
+				custom action "Archive Class"
+				(
+	  			workflow = Archive_Class
+				show action in edit record menu = true
+				column header = "Archive Class"
+				)
+				Date_unbounded as "Date unbounded"
+				Class_Title as "Class Title"
+				Starting_Date as "Starting Date"
+				Ending_Date as "Ending Date"
+				Class_Status as "Class Status"
+				Class_In_charge as "Class In-charge"
+				(
+					view = Staffs
+				)
+				Days_Meet as "Days Meet"
+			)
+			options
+			(
+				icon = "education-book-open"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Class_Title as "Class Title"
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+							Class_Status as "Class Status"
+							Class_In_charge as "Class In-charge"
+				"Archive Class"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Archive Class"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Class_Title as "Class Title"
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+							Date_unbounded as "Date unbounded"
+							Class_Status as "Class Status"
+							Days_Meet as "Days Meet"
+						)
+					)
+					datablock2
+					(
+			 			layout type = 19
+		     			title = "Class In-charge "
+		     			related field =  Class_In_charge[Class_Status == "Active"]
+						fields
+						(
+							Photo
+							Name
+							Address
+							Official__Email_ID as "Official Email ID"
+							Phone_Number as "Phone Number"
+						)
+					)
+					datablock3
+					(
+			 			layout type = 19
+		     			title = "Students"
+		     			related field =  Students[Class_Status == "Active"]
+						fields
+						(
+							Photo
+							Student_Name as "Name"
+							Registration_Number as "Registration Number"
+							Parent_Mobile_Number as "Parent Mobile Number"
+							Email
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Archive Class"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Archive_Classes
+		{
+			displayName = "Archive Classes"
+   			hide = true
+			show all rows from Add_Class  [Class_Status == "Archive"]  
+			(
+				Days_Meet as "Days Meet"
+				custom action "Active Class"
+				(
+	  			workflow = Active_Class
+				show action in edit record menu = true
+				column header = "Active Class"
+				)
+				Starting_Date as "Starting Date"
+				Class_Title as "Class Title"
+				Ending_Date as "Ending Date"
+				Date_unbounded as "Date unbounded"
+				Class_Status as "Class Status"
+				Class_In_charge as "Class In-charge"
+				(
+					view = Staffs
+				)
+			)
+			options
+			(
+				icon = "arrows-2-block-down"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Class_Title as "Class Title"
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+							Date_unbounded as "Date unbounded"
+							Class_Status as "Class Status"
+							Class_In_charge as "Class In-charge"
+				"Active Class"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Active Class"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Class_Title as "Class Title"
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+							Date_unbounded as "Date unbounded"
+							Class_Status as "Class Status"
+						)
+					)
+					datablock2
+					(
+			 			layout type = 19
+		     			title = "Class In-charge "
+		     			related field =  Class_In_charge[Class_Status == "Archive"]
+						fields
+						(
+							Photo
+							Name
+							Department
+							Phone_Number as "Phone Number"
+							Official__Email_ID as "Official Email ID"
+						)
+					)
+					datablock3
+					(
+			 			layout type = 19
+		     			title = "Students"
+		     			related field =  Students[Class_Status == "Archive"]
+						fields
+						(
+							Photo
+							Student_Name as "Name"
+							Registration_Number as "Registration Number"
+							Contact_No as "Contact No"
+							Email
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		form Add_Class
+		{
+			displayname = "Add Class"
+			success message = "Class Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Class_Title
+			(
+    			type = text
+				displayname = "Class Title"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Starting_Date
+			(
+    			type = date
+				displayname = "Starting Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Ending_Date
+			(
+    			type = date
+				displayname = "Ending Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Date_unbounded
+			(
+    			type = checkbox
+				displayname = "Date unbounded"
+				initial value = false
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Class_Status
+			(
+				type = radiobuttons
+				displayname = "Class Status"
+				values = {"Active", "Archive"}
+				initial value = "Active"
+				layout = 2
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Class_In_charge
+			(
+				type = picklist
+				displayname = "Class In-charge "
+				values  = Add_Staff.ID
+    			displayformat = [" " + Name.first_name1 + " -" + Official__Email_ID]
+				allow new entries = true
+				[
+					displayname = "Add Class Admin"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Students
+			(
+				type = list
+				values  = Add_Student[Student_Status == "Active"].ID
+    			displayformat = [" " + Registration_Number + " -" + Student_Name.first_name1]
+				allow new entries = true
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Days_Meet
+			(
+				type = checkboxes
+				displayname = "Days Meet"
+				values = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					Add_Class
+					(
+   						type = submit
+   						displayname = "Add Class"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		kanban All_Classes
+		{
+			displayName = "All Classes"
+			show all rows from Add_Class    
+			(
+				Date_unbounded as "Date unbounded"
+				Class_Status as "Class Status"
+				Class_In_charge as "Class In-charge"
+				Ending_Date as "Ending Date"
+				Starting_Date as "Starting Date"
+				Days_Meet as "Days Meet"
+				Class_Title as "Class Title"
+				Class_In_charge.Name 
+	 			(
+	      			displayformat = [first_name1+""+prefix1+""+last_name1+""+suffix1]
+	 			)
+			)
+			options
+			(
+	 			display field = Class_Status
+				record count  = enable
+				icon = "design-2-selection"
+	 		)
+			conditional formatting
+			(
+				"class teacher"
+				{
+				format = "color:#bd588b;"
+				}
+				"class tittle"
+				{
+				fields = [Class_Title]
+				format = "font-weight:bold;color:#57869e;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = 1
+		     			title = "Overview"
+						fields
+						(
+							Class_Title as "Class Title"
+							Class_In_charge.Name as "Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Class_Title as "Class Title"
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+							Days_Meet as "Days Meet"
+						)
+					)
+					datablock2
+					(
+			 			layout type = 19
+		     			title = "Class In-charge "
+		     			related field =  Class_In_charge
+						fields
+						(
+							Photo
+							Name
+							Address
+							Phone_Number as "Phone Number"
+							Official__Email_ID as "Official Email ID"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Students"
+		     			related field =  Students
+						fields
+						(
+							Registration_Number as "Registration Number"
+							Photo
+							Student_Name as "Name"
+							Address
+							Age
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Staff_Details
+	{
+		displayname= "Staff Details"
+		icon = "users-network"
+		form Add_Staff
+		{
+			displayname = "Add Staff"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix1
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name1
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name1
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix1
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have unique Official__Email_ID
+			(
+    			type = email
+				displayname = "Official Email ID"
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Gender
+			(
+				type = radiobuttons
+				values = {"Male", "Female"}
+				initial value = "Male"
+				layout = 3
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Designation
+			(
+				type = picklist
+				values = {"Class Admin"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Department
+			(
+				type = picklist
+				values = {"Department 1", "Department 2", "Department 3"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_11
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_21
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city1
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province1
+     			(
+	     			  type = state_province
+	     			  displayname = "State Province"
+     			) 
+     			postal_Code1
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country1
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude1
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude1
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Photo
+			(
+    			type = image
+				source  = public_url,file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					Add_Staff
+					(
+   						type = submit
+   						displayname = "Add Staff"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Student_Details
+	{
+		displayname= "Student Details"
+		icon = "users-multiple-19"
+		form Add_Student
+		{
+			displayname = "Add Student"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Registration_Number
+			(
+				type = number
+				displayname = "Registration Number"
+				maxchar = 9
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Student_Details
+			(
+    			type = plaintext
+				value = "<span style=\"font-size: 15.6px; font-weight: 600; line-height: 36px\"><a>Student Details</a></span>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Student_Name
+			(
+    			type = name
+				displayname = "Name"
+     			prefix1
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name1
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name1
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix1
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Date_of_Birth
+			(
+    			type = date
+				displayname = "Date of Birth"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			ErrorText
+			(
+    			type = plaintext
+				value = "<div style=\"text-align: center\"><span style=\"color: red\">Please enter a valid date</span></div>"
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Age
+			(
+				type = number
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Gender
+			(
+				type = radiobuttons
+				values = {"Male", "Female"}
+				initial value = "Male"
+				layout = 3
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Nationality
+			(
+    			type = text
+				maxchar = 254
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Contact_No
+			(
+    			type = phonenumber
+				displayname = "Contact No"
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Student_Status
+			(
+				type = radiobuttons
+				displayname = "Student Status"
+				values = {"Active", "Archive"}
+				initial value = "Active"
+				layout = 2
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Photo
+			(
+    			type = image
+				source  = public_url,file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Parent_Guardian_Details
+			(
+    			type = plaintext
+				value = "<span style=\"font-size: 15.6px; font-weight: 600; line-height: 36px\"><a>Parent/Guardian Details</a></span>"
+	 			row = 1
+	 			column = 2   
+				width = 300px
+			)
+			must have Parent_Name1
+			(
+    			type = name
+				displayname = "Parent Name"
+     			prefix2
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name2
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name2
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix2
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 2   
+				width = 300px
+			)
+			must have Parent_Email
+			(
+    			type = email
+				displayname = "Parent Email"
+	 			row = 1
+	 			column = 2   
+				width = 300px
+			)
+			Parent_Mobile_Number
+			(
+    			type = phonenumber
+				displayname = "Parent Mobile Number"
+	 			row = 1
+	 			column = 2   
+				width = 300px
+			)
+			Father_s_Occupation
+			(
+    			type = text
+				displayname = "Occupation"
+	 			row = 1
+	 			column = 2   
+				width = 300px
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_11
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_21
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city1
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province1
+     			(
+	     			  type = state_province
+	     			  displayname = "State Province"
+     			) 
+     			postal_Code1
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country1
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude1
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude1
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					Add_Student
+					(
+   						type = submit
+   						displayname = "Add Student"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		custom Active_Students
+		{
+			displayName = "Active Students"
+			show all rows from Add_Student  [Student_Status == "Active"]  
+			(
+				Student_Name  as "Name"
+	 			(
+	      			displayformat = [first_name1+""+prefix1+""+last_name1+""+suffix1]
+	 			)
+				Parent_Name1  as "Parent Name"
+	 			(
+	      			displayformat = [first_name2+""+prefix2+""+last_name2+""+suffix2]
+	 			)
+				Email
+				Contact_No as "Contact No"
+				Parent_Email as "Parent Email"
+				Parent_Mobile_Number as "Parent Mobile Number"
+				Father_s_Occupation as "Occupation"
+				Student_Status as "Student Status"
+				Age
+				Gender
+				Photo
+				Registration_Number as "Registration Number"
+			)
+			group by
+			(
+				Student_Status ascending
+			)
+			sort by
+			(
+				Student_Status ascending
+			)
+			options
+			(
+				icon = "users-2-b-check"
+	 		)
+			custom actions
+			(
+				"Archive Student"
+				(
+	  			workflow = Active_Archive1
+				show action in view header = true
+				show action in edit record menu = true
+				)
+				"Add Into Class"
+				(
+	  			workflow = Add_into_class1
+				show action in view header = true
+				show action in edit record menu = true
+				)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 6
+					datablock1
+					(
+			 			layout type = 19
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Student_Name as "Name"
+							Registration_Number as "Registration Number"
+							Age
+							Gender
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+								"Archive Student"
+								"Add Into Class"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Student Details"
+						fields
+						(
+							Photo
+							Student_Name as "Name"
+							Registration_Number as "Registration Number"
+							Age
+							Gender
+							Contact_No as "Contact No"
+							Student_Status as "Student Status"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Parent/Guardian Derails"
+						fields
+						(
+							Parent_Name1 as "Parent Name"
+							Parent_Email as "Parent Email"
+							Parent_Mobile_Number as "Parent Mobile Number"
+							Father_s_Occupation as "Occupation"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+			 			"Archive Student"
+			 			"Add Into Class"
+    	 			)
+    			)
+			)
+		}
+		custom Archive_Students
+		{
+			displayName = "Archive Students"
+			show all rows from Add_Student  [Student_Status == "Archive"]  
+			(
+				Student_Name  as "Name"
+	 			(
+	      			displayformat = [first_name1+""+prefix1+""+last_name1+""+suffix1]
+	 			)
+				Parent_Name1  as "Parent Name"
+	 			(
+	      			displayformat = [first_name2+""+prefix2+""+last_name2+""+suffix2]
+	 			)
+				Email
+				Address 
+	 			(
+	      			displayformat = [address_line_11+""+address_line_21+""+district_city1+""+state_province1+""+postal_Code1+""+country1]
+	 			)
+				Contact_No as "Contact No"
+				Nationality
+				Parent_Email as "Parent Email"
+				Parent_Mobile_Number as "Parent Mobile Number"
+				Father_s_Occupation as "Occupation"
+				Student_Status as "Student Status"
+				Photo
+				Gender
+				Age
+				Registration_Number as "Registration Number"
+			)
+			options
+			(
+				icon = "arrows-2-block-down"
+	 		)
+			custom actions
+			(
+				"Active Student"
+				(
+	  			workflow = Active_Archive2
+				show action in view header = true
+				show action in edit record menu = true
+				)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 6
+					datablock1
+					(
+			 			layout type = 19
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Student_Name as "Name"
+							Registration_Number as "Registration Number"
+							Age
+							Gender
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Active Student"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Student Details"
+						fields
+						(
+							Photo
+							Registration_Number as "Registration Number"
+							Student_Name as "Name"
+							Age
+							Gender
+							Contact_No as "Contact No"
+							Nationality
+							Student_Status as "Student Status"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Parent/Guardian Details"
+						fields
+						(
+							Parent_Name1 as "Parent Name"
+							Parent_Email as "Parent Email"
+							Parent_Mobile_Number as "Parent Mobile Number"
+							Father_s_Occupation as "Occupation"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+			 			"Active Student"
+    	 			)
+    			)
+			)
+		}
+	}
+	section New_Section3
+	{
+		displayname= "Admin View"
+		icon = "users-2-home"
+		list Staffs
+		{
+			displayName = "Staffs"
+			show all rows from Add_Staff    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name1]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_11]
+	      			enable = Show_As_Text
+	 			)
+				Department
+				Gender
+				Official__Email_ID as "Official Email ID"
+				Designation
+				Phone_Number as "Phone Number"
+				Photo
+			)
+			filters
+			(
+				Department
+			)
+			options
+			(
+				icon = "users-multiple-11"
+	 		)
+			custom actions
+			(
+				"Add Into Class"
+				(
+	  			workflow = Add_staff_into_class
+				show action in view header = true
+				)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 6
+					datablock1
+					(
+			 			layout type = 19
+		     			title = "Class Incharge"
+						fields
+						(
+							Photo
+							Name
+							Designation
+							Official__Email_ID as "Official Email ID"
+							Phone_Number as "Phone Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+								"Add Into Class"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Staff Details"
+						fields
+						(
+							Photo
+							Name
+							Gender
+							Designation
+							Department
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Contact Details"
+						fields
+						(
+							Official__Email_ID as "Official Email ID"
+							Phone_Number as "Phone Number"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+			 			"Add Into Class"
+    	 			)
+    			)
+			)
+		}
+		calendar Attendance_View
+		{
+			displayName = "Attendance View"
+			show all rows from Fill_Attendance    
+			(
+				Class
+				Number_Of_Present_Students as "Number Of Present Students"
+				Number_Of_Absent_Students as "Number Of Absent Students"
+				Attendance_Type as "Attendance Type"
+				Attendance_Date as "Attendance Date"
+			)
+			options
+			(
+				display type = week
+				week start day = sunday
+				display field = Class
+				start date = Attendance_Date
+				default date 
+				(
+	    			day   = Today
+	    			month = Currentmonth
+	    			year  = Currentyear
+				)
+				icon = "ui-1-calendar-grid-58"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Class
+							Attendance_Date as "Attendance Date"
+							Attendance_Type as "Attendance Type"
+							Number_Of_Present_Students as "Number Of Present Students"
+							Number_Of_Absent_Students as "Number Of Absent Students"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 2
+		     			title = "Overview"
+						fields
+						(
+							Attendance_Date as "Attendance Date"
+							Attendance_Type as "Attendance Type"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Class"
+		     			related field =  Class
+						fields
+						(
+							Class_Title as "Class Title"
+							Class_In_charge as "Class In-charge "
+							Students
+						)
+					)
+					datablock3
+					(
+			 			layout type = 19
+		     			title = "Present Students"
+		     			related field =  Present_Students
+						fields
+						(
+							Photo
+							Student_Name as "Name"
+							Registration_Number as "Registration Number"
+							Age
+							Gender
+						)
+					)
+					datablock4
+					(
+			 			layout type = 19
+		     			title = "Absent Students"
+		     			related field =  Absent_Students
+						fields
+						(
+							Photo
+							Student_Name as "Name"
+							Registration_Number as "Registration Number"
+							Age
+							Gender
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section New_Section1
+	{
+		displayname= "My Class Reports"
+		icon = "users-2-man-down"
+		custom My_Classes
+		{
+			displayName = "My Classes"
+			show all rows from Add_Class  [Class_In_charge.Official__Email_ID == zoho.loginuserid]  
+			(
+				Days_Meet as "Days Meet"
+				Class_Title as "Class Title"
+				Starting_Date as "Starting Date"
+				Ending_Date as "Ending Date"
+				Class_Status as "Class Status"
+			)
+			options
+			(
+				icon = "users-single-position"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Class_Title as "Class Title"
+							Class_Status as "Class Status"
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Class_Title as "Class Title"
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+							Class_Status as "Class Status"
+						)
+					)
+					datablock2
+					(
+			 			layout type = 19
+		     			title = "Class In-charge "
+		     			related field =  Class_In_charge[Class_In_charge.Official__Email_ID == zoho.loginuserid]
+						fields
+						(
+							Photo
+							Name
+							Address
+							Official__Email_ID as "Official Email ID"
+							Phone_Number as "Phone Number"
+						)
+					)
+					datablock3
+					(
+			 			layout type = 19
+		     			title = "Students"
+		     			related field =  Students[Class_In_charge.Official__Email_ID == zoho.loginuserid]
+						fields
+						(
+							Photo
+							Student_Name as "Name"
+							Registration_Number as "Registration Number"
+							Gender
+							Age
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		calendar My_Class_Attendance_View
+		{
+			displayName = "My Class Attendance View"
+			show all rows from Fill_Attendance  [Added_User == zoho.loginuser]  
+			(
+				Attendance_Date as "Attendance Date"
+				Class
+				Attendance_Type as "Attendance Type"
+				Number_Of_Present_Students as "Number Of Present Students"
+				Number_Of_Absent_Students as "Number Of Absent Students"
+			)
+			options
+			(
+				display type = week
+				week start day = sunday
+				display field = Class
+				start date = Attendance_Date
+				default date 
+				(
+	    			day   = Today
+	    			month = Currentmonth
+	    			year  = Currentyear
+				)
+				icon = "ui-1-calendar-grid-61"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = 1
+		     			title = "Overview"
+						fields
+						(
+							Class
+							Attendance_Type as "Attendance Type"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Attendance_Date as "Attendance Date"
+							Class
+							Attendance_Type as "Attendance Type"
+							Number_Of_Present_Students as "Number Of Present Students"
+							Number_Of_Absent_Students as "Number Of Absent Students"
+						)
+					)
+					datablock3
+					(
+			 			layout type = 19
+		     			title = "Present Students"
+		     			related field =  Present_Students[Added_User == zoho.loginuser]
+						fields
+						(
+							Photo
+							Student_Name as "Name"
+							Registration_Number as "Registration Number"
+							Gender
+							Age
+						)
+					)
+					datablock4
+					(
+			 			layout type = 19
+		     			title = "Absent Students"
+		     			related field =  Absent_Students[Added_User == zoho.loginuser]
+						fields
+						(
+							Photo
+							Student_Name as "Name"
+							Registration_Number as "Registration Number"
+							Gender
+							Age
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Send_Mail
+	{
+		displayname= "Mails"
+		icon = "ui-1-email-85"
+		form Mark_Latecomers
+		{
+			displayname = "Mark Latecomers"
+			store data in zc = false
+			success message = ""
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Class
+			(
+				type = picklist
+				values  = Fill_Attendance.ID
+    			displayformat = [Attendance_Date]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Select_Late_Comers
+			(
+				type = list
+				displayname = "Select Late Comers"
+				values  = Add_Student[Student_Status == "Active"].ID
+    			displayformat = [Registration_Number + " - " + Parent_Name1.first_name2]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				Save
+				(
+   					type = submit
+   					displayname = "Save"
+				)
+				Reset
+				(
+   					type = reset
+   					displayname = "Reset"
+				)
+			}
+		}
+		form Send_Mail
+		{
+			displayname = "Send Mail"
+			success message = "Mail sent successfully"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have To
+			(
+				type = picklist
+				values = {"Class admins", "Parents", "Students", "All"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Students
+			(
+				type = list
+				values  = Add_Student[Student_Status == "Active"].ID
+    			displayformat = [Registration_Number + " - " + Parent_Name1.first_name2]
+				sortorder = ascending
+				height = 60px
+    			description
+    			[
+    				type = help_text
+    			 	message = "Select Students to send mail to students or parents."
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Classes
+			(
+				type = list
+				values  = Add_Class[Class_Status == "Active"].ID
+    			displayformat = [Class_Title]
+				sortorder = ascending
+				height = 60px
+    			description
+    			[
+    				type = help_text
+    			 	message = "Select Class to send mail to class admins."
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Subject_field
+			(
+    			type = text
+				displayname = "Subject"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Message
+			(
+    			type = richtext
+				height = 200px
+				toolbar = enable
+				[
+					style, font-color, background-color, alignment, link, table, bullets-and-numbering, 
+					font-size : {1, 2, 3, 4, 5, 6, 7},
+					font-family : {"Serif", "Arial", "Courier New", "Georgia", "Tahoma", "Times New Roman", "Trebuchet", "Verdana", "Comic Sans Ms"}
+				]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-3-send"
+			)
+			actions
+			{
+				on add
+				{
+					Send_Mail
+					(
+   						type = submit
+   						displayname = "Send Mail"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		custom Send_Mail_Report
+		{
+			displayName = "Send Mail Report"
+			show all rows from Send_Mail    
+			(
+				To
+				Subject_field as "Subject"
+				Message
+			)
+			options
+			(
+				icon = "ui-1-email-84"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							To
+							Message
+							Subject_field as "Subject"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							To
+						)
+					)
+					datablock4
+					(
+			 			layout type = 1
+		     			title = "Message"
+						fields
+						(
+							Subject_field as "Subject"
+							Message
+						)
+					)
+					datablock5
+					(
+			 			layout type = -1
+		     			title = "Class"
+		     			related field =  Classes
+						fields
+						(
+							Class_Title as "Class Title"
+							Class_In_charge as "Class In-charge "
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section page
+	{
+		displayname= "Hidden Section"
+		form Select_class
+		{
+			displayname = "Select class"
+			store data in zc = false
+			success message = ""
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Student_Staff_ID
+			(
+				type = number
+				displayname = "Student/Staff ID"
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Class
+			(
+				type = picklist
+				values  = Add_Class[Class_Status == "Active"].ID
+    			displayformat = [Class_Title]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				Add
+				(
+   					type = submit
+   					displayname = "Add"
+				)
+				Reset
+				(
+   					type = reset
+   					displayname = "Reset"
+				)
+			}
+		}
+	}
+	functions
+	{
+ 			void classCustomActions.changeClassStatus(int recID)
+			{
+				a = Add_Class[ID == input.recID];
+				if(a.Class_Status == "Active")
+				{
+					a.Class_Status="Archive";
+				}
+				else
+				{
+					a.Class_Status="Active";
+				}
+			}
+ 			void studentsCustomActions.changeStudentStatus(int recID)
+			{
+				thisStudent = Add_Student[ID == input.recID];
+				if(thisStudent.Student_Status == "Active")
+				{
+					thisStudent.Student_Status="Archive";
+				}
+				else
+				{
+					thisStudent.Student_Status="Active";
+				}
+			}
+ 			void Schedule_Functions.send_status_to_parent()
+			{
+				active_students = Add_Student[Student_Status == "Active"];
+				for each  student in active_students
+				{
+					msg = (("Hi " + student.Parent_Name1) + "<br><br>Your Son/Daughter " + student.Student_Name) + "'s this week attence report has been sent to you. Plaese check.<br><br>";
+					classes_of_students = Add_Class[Students.contains(student.ID)];
+					for each  class_of_student in classes_of_students
+					{
+						msg = msg + "<div style = 'text-align:center;'><div>" + class_of_student.Class_Title + "</div><table border = 1>";
+						this_week_classes = Fill_Attendance[Class == class_of_student.ID || Attendance_Date in last week];
+						for each  class in this_week_classes
+						{
+							msg = msg + "<tr><th>" + class.Attendance_Date + "</th>";
+							student_status = "Present";
+							if(class.Absent_Students.contains(student.ID))
+							{
+								student_status = "Absent";
+							}
+							if(class.Late_Comers.contains(student.ID))
+							{
+								student_status = "Late";
+							}
+							msg = msg + "<td>" + student_status + "</td></tr>";
+						}
+						msg = msg + "</table></div>";
+					}
+				}
+			}
+ 			void Add_into_class.add_into_class(int thisId)
+			{
+				openUrl(zoho.appuri + "#Form:Select_class?Student_Staff_ID=" + thisId,"popup window");
+			}
+ 			void Update_Attendance.latecomers(int this_class_id)
+			{
+				this_class = Fill_Attendance[ID == this_class_id].Absent_Students.getAll();
+				openUrl(zoho.appuri + "#Form:Mark_Latecomers?Class=" + this_class_id,"popup window");
+			}
+ 			map calendar_functions.createCalendar(string calen)
+			{
+				day_of_week = {"1":"Sun","2":"Mon","3":"Tue","4":"Wed","5":"Thu","6":"Fri","7":"Sat"};
+				month_of_year = {"1":"January","2":"February","3":"March","4":"April","5":"May","6":"June","7":"July","8":"August","9":"September","10":"October","11":"November","12":"December"};
+				flag = 0;
+				if(input.calen == " " || input.calen == null || input.calen == "")
+				{
+					Calendar = zoho.currentdate;
+					todayDate = zoho.currentdate;
+					flag = 1;
+				}
+				else if(calen.toDate().getMonth() == zoho.currentdate.getMonth() && calen.toDate().getYear() == zoho.currentdate.getYear())
+				{
+					Calendar = calen.toDate();
+					todayDate = calen.toDate();
+					flag = 2;
+				}
+				else if(input.calen != " " || input.calen != null || input.calen != "")
+				{
+					if(calen.toDate() == zoho.currentdate)
+					{
+						Calendar = zoho.currentdate;
+						todayDate = zoho.currentdate;
+						flag = 1;
+					}
+					else
+					{
+						Calendar = calen.toDate();
+						todayDate = calen.toDate();
+						flag = 0;
+					}
+				}
+				info Calendar;
+				year = Calendar.getYear();
+				month = Calendar.getMonth();
+				today = Calendar.getDay();
+				weekday = Calendar.getDayOfWeek();
+				DAYS_OF_WEEK = 7;
+				DAYS_OF_MONTH = eomonth(Calendar,0).getDay();
+				CurrentCalendar = toStartOfMonth(Calendar);
+				clndr = "<div class='mini-cal'> <div class='clndr-controls zc_tab zc_transition selected zc_expand selected-init'> <div class='clndr-control-button'><a href='https://app.zohocreator.com" + zoho.appuri + "#Page:Take_Attendance_2?calen=" + Calendar.subMonth(1) + "' ><p class='clndr-previous-button'>❮</p></a></div> <div class='month'>" + month_of_year.get(month.toString()) + "   " + year + "</div> <div class='clndr-control-button rightalign'>";
+				if(Calendar.getMonth() == zoho.currentdate.getMonth() && Calendar.getYear() == zoho.currentdate.getYear())
+				{
+					clndr = clndr + "<p class='clndr-next-button' style = 'color:#999'>❯</p> </div></div>";
+				}
+				else
+				{
+					clndr = clndr + "<a href='https://app.zohocreator.com" + zoho.appuri + "#Page:Take_Attendance_2?calen=" + Calendar.addMonth(1) + "' ><p class='clndr-next-button'>❯</p></a> </div></div>";
+				}
+				clndr = clndr + "<table class='clndr-table' border=0 cellspacing=0 cellpadding=0><thead><tr class='header-days'>";
+				weekDaysLoop = {1,2,3,4,5,6,7};
+				for each  ind in weekDaysLoop
+				{
+					if(weekday == ind)
+					{
+						clndr = clndr + "<td class='header-day bold'>" + day_of_week.get(ind.toString()) + "</td>";
+					}
+					else
+					{
+						clndr = clndr + "<td class='header-day'>" + day_of_week.get(ind.toString()) + "</td>";
+					}
+				}
+				clndr = clndr + "</tr></thead><tbody>";
+				monthDaysLoop1 = leftpad("",DAYS_OF_WEEK - 1).replaceAll(" ","1,",true).toList();
+				monthDaysLoop = List:Int();
+				i = 1;
+				for each  ele1 in monthDaysLoop1
+				{
+					monthDaysLoop.add(i);
+					i = i + 1;
+				}
+				i = 0;
+				lastMonthLastDay = eomonth(CurrentCalendar,-1).getDay();
+				for each  day in monthDaysLoop
+				{
+					if(day < CurrentCalendar.getDayOfWeek())
+					{
+						lastMonthDay = lastMonthLastDay.toLong() - (CurrentCalendar.getDayOfWeek() - 2);
+						if(i == 0)
+						{
+							i = 1;
+							clndr = clndr + "<tr><td class='day'><div class='day-contents' style='cursor: default;'>" + lastMonthDay + "</div></td>";
+						}
+						else
+						{
+							clndr = clndr + "<td class='day'><div class='day-contents' style='cursor: default;'>" + lastMonthDay + "</div></td>";
+						}
+						lastMonthLastDay = lastMonthLastDay + 1;
+					}
+				}
+				monthAllDaysLoop1 = leftpad("",DAYS_OF_MONTH - 1).replaceAll(" ","1,",true).toList();
+				monthAllDaysLoop = List:Int();
+				i = 1;
+				for each  ele2 in monthAllDaysLoop1
+				{
+					monthAllDaysLoop.add(i);
+					i = i + 1;
+				}
+				info DAYS_OF_MONTH;
+				for each  allDays in monthAllDaysLoop
+				{
+					week_day = CurrentCalendar.getDayOfWeek();
+					if(week_day == 1)
+					{
+						clndr = clndr + "<tr>";
+					}
+					if(week_day <= DAYS_OF_WEEK)
+					{
+						day = CurrentCalendar.getDay();
+						if(today == CurrentCalendar.getDay())
+						{
+							clndr = clndr + "<td class='day highlight'><a href='https://app.zohocreator.com" + zoho.appuri + "#Page:Take_Attendance_2?calen=" + CurrentCalendar + "&passdate=true'><div class='day-contents active'>" + day + "</div></a></td>";
+						}
+						else if(today >= allDays)
+						{
+							clndr = clndr + "<td class='day'><a href='https://app.zohocreator.com" + zoho.appuri + "#Page:Take_Attendance_2?calen=" + CurrentCalendar + "&passdate=true'><div class='day-contents'>" + day + "</div></a>" + "</td>";
+						}
+						else if(today < allDays && flag == 0)
+						{
+							clndr = clndr + "<td class='day'><a href='https://app.zohocreator.com" + zoho.appuri + "#Page:Take_Attendance_2?calen=" + CurrentCalendar + "&passdate=true'><div class='day-contents'>" + day + "</div></a>" + "</td>";
+						}
+						else if(today < allDays && flag == 2 && zoho.currentdate.getDay() >= allDays)
+						{
+							clndr = clndr + "<td class='day'><a href='https://app.zohocreator.com" + zoho.appuri + "#Page:Take_Attendance_2?calen=" + CurrentCalendar + "&passdate=true'><div class='day-contents'>" + day + "</div></a>" + "</td>";
+						}
+						else
+						{
+							clndr = clndr + "<td class='day'><div class='day-contents' style='cursor: default;'>" + day + "</div></td>";
+						}
+					}
+					if(week_day == DAYS_OF_WEEK)
+					{
+						clndr = clndr + "</tr>";
+					}
+					CurrentCalendar = CurrentCalendar.addDay(1);
+				}
+				i = 1;
+				for each  ind in weekDaysLoop
+				{
+					if(week_day != DAYS_OF_WEEK)
+					{
+						clndr = clndr + "<td class='day'><div class='day-contents' style='cursor: default;'>" + i + "</div></td>";
+						i = i + 1;
+						week_day = week_day + 1;
+					}
+				}
+				clndr = clndr + "</tbody></table></div>";
+				mapReturn = {"calendar":clndr,"date":todayDate};
+				info zoho.currentdate;
+				return mapReturn;
+			}
+ 			list Schedule_Functions.mail_mesg_builder()
+			{
+				active_students = Add_Student[Student_Status == "Active"];
+				list_of_email_msgs = List();
+				for each  student in active_students
+				{
+					email_msg = Map();
+					email_msg.put("parent_mail",student.Parent_Email);
+					msg = (("Hi " + student.Parent_Name1) + "<br><br>Your Son/Daughter " + student.Student_Name) + "'s this week attence report has been sent to you. Plaese check.<br><br>";
+					classes_of_students = Add_Class[Students.contains(student.ID)];
+					for each  class_of_student in classes_of_students
+					{
+						msg = msg + "<div style = 'text-align:center;'><div>" + class_of_student.Class_Title + "</div><table border = 1>";
+						this_week_classes = Fill_Attendance[Class == class_of_student.ID && Attendance_Date in last week];
+						for each  class in this_week_classes
+						{
+							msg = msg + "<tr><th>" + class.Attendance_Date + "</th>";
+							student_status = "Present";
+							if(class.Absent_Students.contains(student.ID))
+							{
+								student_status = "Absent";
+							}
+							if(class.Late_Comers.contains(student.ID))
+							{
+								student_status = "Late";
+							}
+							msg = msg + "<td>" + student_status + "</td></tr>";
+						}
+						msg = msg + "</table></div>";
+						if(this_week_classes.count() != 0)
+						{
+							email_msg.put("message",msg);
+						}
+					}
+					if(email_msg.get("message") != null)
+					{
+						list_of_email_msgs.add(email_msg);
+					}
+				}
+				return list_of_email_msgs;
+			}
+ 			map calendar_functions.calendar_view(String calen)
+			{
+				day_of_week = {"1":"Sun","2":"Mon","3":"Tue","4":"Wed","5":"Thu","6":"Fri","7":"Sat"};
+				month_of_year = {"1":"January","2":"February","3":"March","4":"April","5":"May","6":"June","7":"July","8":"August","9":"September","10":"October","11":"November","12":"December"};
+				flag = 0;
+				if(input.calen == " " || input.calen == null || input.calen == "")
+				{
+					Calendar = zoho.currentdate;
+					todayDate = zoho.currentdate;
+					flag = 1;
+				}
+				else if(calen.toDate().getMonth() == zoho.currentdate.getMonth() && calen.toDate().getYear() == zoho.currentdate.getYear())
+				{
+					Calendar = calen.toDate();
+					todayDate = calen.toDate();
+					flag = 2;
+				}
+				else if(input.calen != " " || input.calen != null || input.calen != "")
+				{
+					if(calen.toDate() == zoho.currentdate)
+					{
+						Calendar = zoho.currentdate;
+						todayDate = zoho.currentdate;
+						flag = 1;
+					}
+					else
+					{
+						Calendar = calen.toDate();
+						todayDate = calen.toDate();
+						flag = 0;
+					}
+				}
+				year = Calendar.getYear();
+				month = Calendar.getMonth();
+				today = Calendar.getDay();
+				weekday = Calendar.getDayOfWeek();
+				DAYS_OF_WEEK = 7;
+				DAYS_OF_MONTH = eomonth(Calendar,0).getDay();
+				CurrentCalendar = toStartOfMonth(Calendar);
+				clndr = "<div class='mini-cal'> <div class='clndr-controls zc_tab zc_transition selected zc_expand selected-init'><a href='https://app.zohocreator.com" + zoho.appuri + "#Page:Take_Attendance?calen=" + Calendar.subMonth(1) + "' ><div class='clndr-control-button'><</div></a> <div class='month'>" + month_of_year.get(month.toString()) + "   " + year + "</div> ";
+				if(Calendar.getMonth() == zoho.currentdate.getMonth() && Calendar.getYear() == zoho.currentdate.getYear())
+				{
+					clndr = clndr + "<div class='clndr-control-button rightalign'> > </div></div>";
+				}
+				else
+				{
+					clndr = clndr + "<a href='https://app.zohocreator.com" + zoho.appuri + "#Page:Take_Attendance?calen=" + Calendar.addMonth(1) + "' ><div class='clndr-control-button rightalign'> > </div></a></div>";
+				}
+				clndr = clndr + "<table class='clndr-table' border=0 cellspacing=0 cellpadding=0><thead><tr class='header-days'>";
+				weekDaysLoop = {1,2,3,4,5,6,7};
+				for each  ind in weekDaysLoop
+				{
+					if(weekday == ind)
+					{
+						clndr = clndr + "<td class='header-day bold'>" + day_of_week.get(ind.toString()) + "</td>";
+					}
+					else
+					{
+						clndr = clndr + "<td class='header-day'>" + day_of_week.get(ind.toString()) + "</td>";
+					}
+				}
+				clndr = clndr + "</tr></thead><tbody>";
+				monthDaysLoop1 = leftpad("",DAYS_OF_WEEK - 1).replaceAll(" ","1,",true).toList();
+				monthDaysLoop = List:Int();
+				i = 1;
+				for each  ele1 in monthDaysLoop1
+				{
+					monthDaysLoop.add(i);
+					i = i + 1;
+				}
+				i = 0;
+				lastMonthLastDay = eomonth(CurrentCalendar,-1).getDay();
+				for each  day in monthDaysLoop
+				{
+					if(day < CurrentCalendar.getDayOfWeek())
+					{
+						lastMonthDay = lastMonthLastDay.toLong() - (CurrentCalendar.getDayOfWeek() - 2);
+						if(i == 0)
+						{
+							i = 1;
+							clndr = clndr + "<tr><td class='day'><div class='day-contents' style='cursor: default;'>" + lastMonthDay + "</div></td>";
+						}
+						else
+						{
+							clndr = clndr + "<td class='day'><div class='day-contents' style='cursor: default;'>" + lastMonthDay + "</div></td>";
+						}
+						lastMonthLastDay = lastMonthLastDay + 1;
+					}
+				}
+				monthAllDaysLoop1 = leftpad("",DAYS_OF_MONTH - 1).replaceAll(" ","1,",true).toList();
+				monthAllDaysLoop = List:Int();
+				i = 1;
+				for each  ele2 in monthAllDaysLoop1
+				{
+					monthAllDaysLoop.add(i);
+					i = i + 1;
+				}
+				for each  allDays in monthAllDaysLoop
+				{
+					week_day = CurrentCalendar.getDayOfWeek();
+					if(week_day == 1)
+					{
+						clndr = clndr + "<tr>";
+					}
+					if(week_day <= DAYS_OF_WEEK)
+					{
+						day = CurrentCalendar.getDay();
+						if(today == CurrentCalendar.getDay())
+						{
+							clndr = clndr + "<td class='day highlight'><a href='https://app.zohocreator.com" + zoho.appuri + "#Page:Take_Attendance?calen=" + CurrentCalendar + "&passdate=true'><div class='day-contents active'>" + day + "</div></a></td>";
+						}
+						else if(today >= allDays)
+						{
+							clndr = clndr + "<td class='day'><a href='https://app.zohocreator.com" + zoho.appuri + "#Page:Take_Attendance?calen=" + CurrentCalendar + "&passdate=true'><div class='day-contents'>" + day + "</div></a>" + "</td>";
+						}
+						else if(today < allDays && flag == 0)
+						{
+							clndr = clndr + "<td class='day'><a href='https://app.zohocreator.com" + zoho.appuri + "#Page:Take_Attendance?calen=" + CurrentCalendar + "&passdate=true'><div class='day-contents'>" + day + "</div></a>" + "</td>";
+						}
+						else if(today < allDays && flag == 2 && zoho.currentdate.getDay() >= allDays)
+						{
+							clndr = clndr + "<td class='day'><a href='https://app.zohocreator.com" + zoho.appuri + "#Page:Take_Attendance?calen=" + CurrentCalendar + "&passdate=true'><div class='day-contents'>" + day + "</div></a>" + "</td>";
+						}
+						else
+						{
+							clndr = clndr + "<td class='day'><div class='day-contents' style='cursor: default;'>" + day + "</div></td>";
+						}
+					}
+					if(week_day == DAYS_OF_WEEK)
+					{
+						clndr = clndr + "</tr>";
+					}
+					CurrentCalendar = CurrentCalendar.addDay(1);
+				}
+				i = 1;
+				for each  ind in weekDaysLoop
+				{
+					if(week_day != DAYS_OF_WEEK)
+					{
+						clndr = clndr + "<td class='day'><div class='day-contents' style='cursor: default;'>" + i + "</div></td>";
+						i = i + 1;
+						week_day = week_day + 1;
+					}
+				}
+				clndr = clndr + "</tbody></table></div>";
+				mapReturn = {"calendar":clndr,"date":todayDate};
+				return mapReturn;
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Send_Email_Form_Propertie as "Send Email - Form Properties"
+			{
+				type =  presuccess
+				form = Send_Mail
+				on start
+				{
+					actions 
+					{
+						sendmail
+						(
+							from : "zoho.adminuserid"
+							to : "zoho.adminuserid"
+							subject : "Attendance Management C5 : New entry added"
+							message : "Hello,<br /><br />A new entry added in &#39;Send Mail&#39; form of &#39;Attendance Management C5&#39; application.<br /><br /><br /><br /><br />"
+							attachments : template : _default as inline
+						)
+					}
+				}
+			}
+			On_click_Button_Scripts as "On-click Button Scripts"
+			{
+				type =  form
+				form = Select_class
+				button = Add
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						class = Add_Class[ID == input.Class];
+										Students = Add_Student[ID == input.Student_Staff_ID];
+										if(Students.count() > 0)
+										{
+											class_students = class.Students;
+											class_students.add(input.Student_Staff_ID);
+											class.Students=class_students;
+										}
+										else
+										{
+											class.Class_In_charge=input.Student_Staff_ID;
+										}
+					)
+						openURL("http://#Script:page.close","new window");
+					}
+				}
+			}
+			Onsuccess_scripts as "Onsuccess scripts"
+			{
+				type =  form
+				form = Mark_Latecomers
+				button = Save
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						class_to_update = Fill_Attendance[ID == input.Class];
+										class_to_update.Late_Comers=input.Select_Late_Comers;
+										present_students = class_to_update.Present_Students;
+										absent_students = class_to_update.Absent_Students;
+										for each  student in input.Select_Late_Comers
+										{
+											present_students.add(student);
+											absent_students.removeElement(student);
+										}
+										class_to_update.Present_Students=present_students;
+										class_to_update.Absent_Students=absent_students;
+										class_to_update.Number_Of_Present_Students=class_to_update.Present_Students.size();
+										class_to_update.Number_Of_Absent_Students=class_to_update.Absent_Students.size();
+										openUrl("#Script:page.refresh","same window");
+					)
+					}
+				}
+			}
+			Field_Scripts2 as "Field Scripts"
+			{
+				type =  form
+				form = Add_Class
+				record event = on add or edit
+
+	field rules
+	{
+					actions  (Date_unbounded == true)
+					{
+						hide Ending_Date,Starting_Date;
+					}
+	}
+
+			}
+			Field_Scripts5 as "Field Scripts"
+			{
+				type =  form
+				form = Add_Class
+				record event = on add or edit
+
+	on user input of Date_unbounded
+	{
+					actions  (Date_unbounded == true)
+					{
+						custom deluge script
+						(
+											if(Date_unbounded)
+										{
+											input.Starting_Date = null;
+											input.Ending_Date = null;
+										}
+						)
+					}
+	}
+
+			}
+			Field_Scripts6 as "Field Scripts"
+			{
+				type =  form
+				form = Add_Class
+				record event = on add or edit
+
+	on user input of Ending_Date
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Ending_Date < input.Starting_Date)
+										{
+											alert "End date must be greater than start date";
+											input.Ending_Date = null;
+										}
+						)
+					}
+	}
+
+			}
+			Field_Scripts7 as "Field Scripts"
+			{
+				type =  form
+				form = Add_Student
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						disable Age;
+						hide Registration_Number,ErrorText,Student_Status;
+					}
+	}
+
+			}
+			Field_Scripts8 as "Field Scripts"
+			{
+				type =  form
+				form = Add_Student
+				record event = on add or edit
+
+	on user input of Date_of_Birth
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Date_of_Birth > zoho.currentdate)
+										{
+											alert "Enter Valid date of birth";
+											input.Date_of_Birth = null;
+										}
+										else
+										{
+											input.Age = yearsBetween(input.Date_of_Birth,zoho.currentdate);
+										}
+						)
+					}
+	}
+
+			}
+			Validation1 as "Validation"
+			{
+				type =  form
+				form = Add_Class
+				record event = on add
+
+	on validate
+	{
+					actions  (Date_unbounded == false)
+					{
+						custom deluge script
+						(
+											if(input.Starting_Date == null || input.Ending_Date == null)
+										{
+											alert "Please mention dates";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Registration_Number_Gener as "Registration Number Generation(On Success Scr)"
+			{
+				type =  form
+				form = Add_Student
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											studentDetails = Add_Student[ID != 0];
+										if(studentDetails.count() > 1)
+										{
+											maxRegistrationNumber = studentDetails.maximum(Registration_Number);
+											input.Registration_Number = maxRegistrationNumber + 1;
+										}
+										else if(studentDetails.count() == 1)
+										{
+											input.Registration_Number = 1;
+										}
+										success message "Student Registration Number is " + input.Registration_Number;
+						)
+					}
+	}
+
+			}
+			Field_Scripts9 as "Field Scripts"
+			{
+				type =  form
+				form = Fill_Attendance
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Number_Of_Present_Students,Absent_Students,Late_Comers,Number_Of_Absent_Students;
+						disable Attendance_Date;
+					}
+					actions  (Class is not null)
+					{
+						show Present_Students;
+					}
+	}
+
+			}
+			Field_Scripts10 as "Field Scripts"
+			{
+				type =  form
+				form = Fill_Attendance
+				record event = on add or edit
+
+	on user input of Attendance_Date
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Attendance_Date <= zoho.currentdate)
+										{
+											days = {"1":"Sunday","2":"Monday","3":"Tuesday","4":"Wednesday","5":"Thursday","6":"Friday","7":"Saturday"};
+											weekDay = input.Attendance_Date.getDayOfWeek();
+											classes = List();
+											for each  thisClass in Add_Class[Class_Status == "Active" && Days_Meet in days.get(weekDay.toString())]
+											{
+												classes.add(thisClass);
+											}
+											input.Class:ui.add(classes);
+										}
+										if(input.Attendance_Date > zoho.currentdate)
+										{
+											alert "Future Date is not Allowed";
+											input.Attendance_Date = null;
+											input.Class:ui.add({});
+										}
+						)
+					}
+	}
+
+			}
+			Field_Scripts11 as "Field Scripts"
+			{
+				type =  form
+				form = Fill_Attendance
+				record event = on add or edit
+
+	on user input of Class
+	{
+					actions  (Class is not null)
+					{
+						custom deluge script
+						(
+											class_Details = Add_Class[ID == input.Class];
+										student_list = class_Details.Students;
+										input.Present_Students:ui.add(student_list);
+						)
+					}
+	}
+
+			}
+			On_success_Scripts1 as "On success Scripts"
+			{
+				type =  form
+				form = Fill_Attendance
+				record event = on add or edit
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											thisClass = Add_Class[ID == input.Class];
+										students = thisClass.Students;
+										ab_students = List();
+										for each  student in students
+										{
+											if(student.ID not in input.Present_Students)
+											{
+												ab_students.add(student);
+											}
+										}
+										input.Absent_Students = ab_students;
+										input.Number_Of_Present_Students = input.Present_Students.size();
+										input.Number_Of_Absent_Students = ab_students.size();
+										success message "Attendance record has been saved";
+						)
+					}
+	}
+
+			}
+			Field_Scripts12 as "Field Scripts"
+			{
+				type =  form
+				form = Select_class
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide Student_Staff_ID;
+					}
+	}
+
+			}
+			On_load_scripts1 as "On load scripts"
+			{
+				type =  form
+				form = Select_class
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Student_Staff_ID != null)
+										{
+											this_student = Add_Student[ID == input.Student_Staff_ID];
+											if(this_student.count() > 0)
+											{
+												// 		workaround
+												allClasses = Add_Class[ID != 0].ID.getAll();
+												classes = Add_Class[Students == this_student.ID].ID.getAll();
+												allClasses.removeAll(classes);
+												input.Class:ui.add(allClasses);
+											}
+											else
+											{
+												classes = Add_Class[Class_In_charge == null && Class_Status == "Active"].ID.getAll();
+												input.Class:ui.add(classes);
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_adding_ as "Run Scripts -  While adding a record"
+			{
+				type =  form
+				form = Send_Mail
+				record event = on add
+
+	field rules
+	{
+					actions  (To is null)
+					{
+						hide Classes,Students;
+					}
+	}
+
+			}
+			Run_Scripts_While_adding_2 as "Run Scripts -  While adding a record"
+			{
+				type =  form
+				form = Send_Mail
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											to_mail_IDs = List();
+										if(input.To == "Class admins" || input.To == "All")
+										{
+											for each  class in input.Classes
+											{
+												to_mail_IDs.add(class.Class_In_charge.Official__Email_ID);
+											}
+										}
+										if(input.To == "Students" || input.To == "Parents" || input.To == "All")
+										{
+											for each  student in input.Students
+											{
+												if(input.To == "Students" || input.To == "All")
+												{
+													to_mail_IDs.add(student.Email);
+												}
+												if(input.To == "Parents" || input.To == "All")
+												{
+													to_mail_IDs.add(student.Parent_Email);
+												}
+											}
+										}
+										sendmail
+										[
+											from :zoho.loginuserid
+											to :to_mail_IDs
+											subject :input.Subject_field
+											message :input.Message
+										]
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_adding_3 as "Run Scripts -  While adding a record"
+			{
+				type =  form
+				form = Send_Mail
+				record event = on add
+
+	on user input of To
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Classes = null;
+										input.Students = null;
+										if(input.To == "All")
+										{
+											show Classes;
+											show Students;
+										}
+										else if(input.To == "Class admins")
+										{
+											show Classes;
+											hide Students;
+										}
+										else if(input.To == "Students" || input.To == "Parents")
+										{
+											show Students;
+											hide Classes;
+										}
+						)
+					}
+	}
+
+			}
+			Updation_scripts1 as "Updation scripts"
+			{
+				type =  form
+				form = Mark_Latecomers
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						disable Class;
+					}
+	}
+
+			}
+			Onload_Scripts1 as "Onload Scripts"
+			{
+				type =  form
+				form = Mark_Latecomers
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											today_class = Fill_Attendance[ID == input.Class];
+										input.Select_Late_Comers:ui.add(today_class.Absent_Students);
+						)
+					}
+	}
+
+			}
+			Share_scripts1 as "Share scripts"
+			{
+				type =  form
+				form = Add_Staff
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						success message "Staff have been added";
+					}
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.permissions.assignUserInProfile(input.Official__Email_ID,"Class Admin");
+						)
+						sendmail
+						(
+							from : "zoho.adminuserid"
+							to : Official__Email_ID
+							subject : "Conformation Mail"
+							message : "Hii <b>${first_name1},</b><div>&nbsp; &nbsp; &nbsp;&nbsp;</div><div>&nbsp; &nbsp; &nbsp; You have been added to the staff. You may access our application with the link have been shared.</div><div>&nbsp; &nbsp; &nbsp;&nbsp;</div><div>&nbsp; &nbsp; &nbsp;&nbsp;<b><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://app.zohocreator.com+zoho.appuri/\" title=\"Access the Application\">Click here</a>&nbsp;</b>to access our app.</div><div><br /></div><div>Regards,</div><div>${zoho.adminuserid}<br /></div>"
+						)
+					}
+	}
+
+			}
+			delete_user_scripts1 as "delete user scripts"
+			{
+				type =  form
+				form = Add_Staff
+				record event = on delete
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.permissions.deleteuser(input.Official__Email_ID);
+						)
+						success message "Staff have been removed form the user of the application";
+						success message "User Has been removed from the application";
+					}
+	}
+
+			}
+			on_load_scripts as "on load scripts"
+			{
+				type =  form
+				form = Fill_Attendance
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											class_Details = Add_Class[ID == input.Class];
+										students = input.Present_Students;
+										disable Class;
+										student_list = class_Details.Students;
+										input.Present_Students:ui.add(student_list);
+										Present_Students.select(students);
+						)
+					}
+	}
+
+			}
+			On_Load_Scripts1 as "On Load Scripts"
+			{
+				type =  form
+				form = Fill_Attendance
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Attendance_Date <= zoho.currentdate)
+										{
+											days = {"1":"Sunday","2":"Monday","3":"Tuesday","4":"Wednesday","5":"Thursday","6":"Friday","7":"Saturday"};
+											weekDay = input.Attendance_Date.getDayOfWeek();
+											classes = List();
+											for each  thisClass in Add_Class[Class_Status == "Active" && Days_Meet in days.get(weekDay.toString())]
+											{
+												classes.add(thisClass);
+											}
+											input.Class:ui.add(classes);
+										}
+										if(input.Attendance_Date > zoho.currentdate)
+										{
+											alert "Future Date is not Allowed";
+											input.Attendance_Date = null;
+											input.Class:ui.add({});
+										}
+						)
+					}
+	}
+
+			}
+		}
+		schedule
+		{
+			Send_weekly_report_to_par as "Send weekly report to parents"
+			{
+				type =  schedule
+				start = "2018-06-16 18:49:00"
+				frequency = weekly
+				time zone = "IST"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						list_of_mail_contents = thisapp.Schedule_Functions.mail_mesg_builder();
+										for each  mail_content in list_of_mail_contents
+										{
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :mail_content.get("parent_mail")
+												subject :"Attendance Report"
+												message :mail_content.get('message')
+											]
+										}
+					)
+					}
+				}
+			}
+		}
+		functions
+		{
+			Active_Archive1 as "Active/Archive"
+			{
+				type =  functions
+				form = Add_Student
+				on start
+				{
+					actions 
+					{
+					classCustomActions.changeClassStatus(ID);
+					}
+				}
+			}
+			Active_Archive2 as "Active/Archive"
+			{
+				type =  functions
+				form = Add_Student
+				on start
+				{
+					actions 
+					{
+					studentsCustomActions.changeStudentStatus(ID);
+					}
+				}
+			}
+			Active_Class as "Active Class"
+			{
+				type =  functions
+				form = Add_Class
+				on start
+				{
+					actions 
+					{
+					classCustomActions.changeClassStatus(ID);
+					}
+				}
+			}
+			Archive_Class as "Archive Class"
+			{
+				type =  functions
+				form = Add_Class
+				on start
+				{
+					actions 
+					{
+					classCustomActions.changeClassStatus(ID);
+					}
+				}
+			}
+			Add_into_class1 as "Add into class"
+			{
+				type =  functions
+				form = Add_Student
+				on start
+				{
+					actions 
+					{
+					Add_into_class.add_into_class(ID);
+					}
+				}
+			}
+			Add_staff_into_class as "Add staff into class"
+			{
+				type =  functions
+				form = Add_Staff
+				on start
+				{
+					actions 
+					{
+					Add_into_class.add_into_class(ID);
+					}
+				}
+			}
+			Mark_Late_comers as "Mark Late comers"
+			{
+				type =  functions
+				form = Fill_Attendance
+				on start
+				{
+					actions 
+					{
+					Update_Attendance.latecomers(ID);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Read"
+			{
+				name = "Read"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have read permission for all components\n"
+			}
+			"Write"
+			{
+				name = "Write"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have write permission for all components\n"
+			}
+			"Class Admin"
+			{
+				name = "Class Admin"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "Class Admin Profile\n"
+				ModulePermissions
+				{
+					Fill_Attendance
+					{
+						enabled= Create,Import,Export,Tab 
+						ReportPermissions
+						{
+							My_Class_Attendance_View={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Absent_Students{visibility:true,readonly:false}
+							Attendance_Type{visibility:true,readonly:false}
+							Present_Students{visibility:true,readonly:false}
+							Attendance_Date{visibility:true,readonly:false}
+							Number_Of_Present_Students{visibility:true,readonly:false}
+							Class{visibility:true,readonly:false}
+							Late_Comers{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Number_Of_Absent_Students{visibility:true,readonly:false}
+						}
+					}
+					Select_class
+					{
+						FieldPermissions
+						{
+							Class{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Student_Staff_ID{visibility:true,readonly:false}
+						}
+					}
+					Mark_Latecomers
+					{
+						FieldPermissions
+						{
+							Class{visibility:true,readonly:false}
+							Select_Late_Comers{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_Class
+					{
+						ReportPermissions
+						{
+							My_Classes={"View"}
+						}
+						FieldPermissions
+						{
+							Date_unbounded{visibility:true,readonly:false}
+							Days_Meet{visibility:true,readonly:false}
+							Starting_Date{visibility:true,readonly:false}
+							Ending_Date{visibility:true,readonly:false}
+							Class_Title{visibility:true,readonly:false}
+							Students{visibility:true,readonly:false}
+							Class_Status{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Class_In_charge{visibility:true,readonly:false}
+						}
+					}
+					Send_Mail
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							Send_Mail_Report={"View"}
+						}
+						FieldPermissions
+						{
+							Students{visibility:true,readonly:false}
+							Message{visibility:true,readonly:false}
+							Subject_field{visibility:true,readonly:false}
+							To{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Classes{visibility:true,readonly:false}
+						}
+					}
+					Add_Staff
+					{
+						FieldPermissions
+						{
+							Designation{visibility:true,readonly:false}
+							Department{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Official__Email_ID{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Photo{visibility:true,readonly:false}
+							Gender{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Student
+					{
+						FieldPermissions
+						{
+							Parent_Guardian_Details{visibility:true,readonly:false}
+							Date_of_Birth{visibility:true,readonly:false}
+							ErrorText{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Contact_No{visibility:true,readonly:false}
+							Parent_Email{visibility:true,readonly:false}
+							Father_s_Occupation{visibility:true,readonly:false}
+							Photo{visibility:true,readonly:false}
+							Student_Details{visibility:true,readonly:false}
+							Gender{visibility:true,readonly:false}
+							Student_Status{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Registration_Number{visibility:true,readonly:false}
+							Nationality{visibility:true,readonly:false}
+							Parent_Mobile_Number{visibility:true,readonly:false}
+							Student_Name{visibility:true,readonly:false}
+							Parent_Name1{visibility:true,readonly:false}
+							Age{visibility:true,readonly:false}
+						}
+					}
+					Attendance_Iframe_Page
+					{
+						enabled = tab
+					}
+				}
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Customer"
+			{
+				name = "Customer"
+				type = Customer_Portal
+				permissions = {Chat:false, Predefined:true}
+				description = "This is the default profile having only add and view permission.\n"
+			}
+			roles
+			{
+				"Default"
+				{
+					description = "User belonging to this role can access data of all other users.\n"
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 5
+		new theme color = 1
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-education-3"
+    	icon theme = "green"
+		icons style = solid
+	}
+
+	translation
+{
+"{\"de\":{\"FormField.Add_Staff.Modified_User\":\" Geänderter Benutzer \",\"FormButton.Add_Staff.cancel\":\" Stornieren \",\"Section.Send_Mail\":\" Mails \",\"FormField.Add_Staff.Official__Email_ID\":\" Offizielle E-Mail-ID \",\"FormButton.Fill_Attendance.Save_Attendance\":\" Sparen Sie Attendacne \",\"PicklistOption.Add_Staff.Designation.1\":\" Klassenadministrator \",\"FormField.Add_Staff.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"PicklistOption.Add_Student.prefix1.1\":\" Herr. \",\"PicklistOption.Add_Staff.Gender.1\":\" Männlich \",\"FormField.Mark_Latecomers.Section\":\"Sektion\",\"PicklistOption.Add_Staff.Gender.2\":\" Weiblich \",\"Languages List.zh-TW\":\" Chinesische Tradition \",\"Languages List.ja\":\" japanisch \",\"PicklistOption.Add_Student.prefix1.2\":\" Frau. \",\"PicklistOption.Add_Student.prefix1.3\":\" Frau. \",\"FormField.Add_Student.longitude1\":\" Längengrad \",\"FormButton.Select_class.Add\":\" Hinzufügen \",\"FormField.Add_Staff.district_city1\":\" Stadtteil \",\"FormField.Add_Class.Date_unbounded\":\" Datum unbeschränkt \",\"ReportField.Active_Students.Student_Status\":\" Studenten-Status \",\"FormField.Add_Class.Class_In_charge\":\" Klasse verantwortlich \",\"Languages List.ku\":\" Kurkurdisch \",\"FormButton.Fill_Attendance.update\":\" Aktualisieren \",\"FormField.Add_Class.Students\":\" Studenten \",\"ReportField.Today_Attendance.Class\":\" Klasse \",\"Languages List.km\":\" Khmer \",\"Languages List.ko\":\" Koreanisch \",\"CompositeSubFields.Add_Student.Address.district_city1\":\" Stadtteil \",\"Languages List.kn\":\" Kannada \",\"Languages List.ka\":\" georgisch \",\"FormField.Fill_Attendance.Modified_User\":\" Geänderter Benutzer \",\"FormField.Add_Student.Nationality\":\" Staatsangehörigkeit \",\"CompositeSubFields.Add_Staff.Address.district_city1\":\" Stadtteil \",\"ReportField.Archive_Students.Contact_No\":\" Kontakt Nein \",\"Languages List.hu\":\" ungarisch \",\"Report.Archive_Students\":\" Studenten archivieren \",\"PicklistOption.Add_Class.Days_Meet.6\":\" Freitag \",\"FormField.Add_Class.Section\":\" Sektion \",\"PicklistOption.Add_Class.Days_Meet.5\":\" Donnerstag \",\"Languages List.hy\":\" Armenisch \",\"PicklistOption.Add_Class.Days_Meet.7\":\" Samstag \",\"PicklistOption.Add_Class.Days_Meet.2\":\" Montag \",\"FormField.Select_class.ID\":\" ICH WÜRDE \",\"Section.Add_Class\":\" Klassen \",\"PicklistOption.Add_Class.Days_Meet.1\":\" Sonntag \",\"PicklistOption.Add_Class.Days_Meet.4\":\" Mittwoch \",\"Report.My_Classes\":\" Meine Klassen \",\"PicklistOption.Add_Class.Days_Meet.3\":\" Dienstag \",\"Languages List.hr\":\" kroatisch \",\"FormField.Add_Staff.latitude1\":\" Breite \",\"CompositeSubFields.Add_Student.Parent_Name1.suffix2\":\" Suffix \",\"ReportField.Archive_Students.Gender\":\" Geschlecht \",\"Languages List.hi\":\" Hindi \",\"CompositeSubFields.Add_Student.Address.address_line_21\":\" Adresszeile 2 \",\"PicklistOption.Add_Student.prefix2.1\":\" Herr. \",\"PicklistOption.Add_Student.prefix2.2\":\" Frau. \",\"PicklistOption.Add_Student.prefix2.3\":\" Frau. \",\"Languages List.iw\":\" hebräisch \",\"ReportField.All_Classes.Ending_Date\":\" Ende \",\"Report.Archive_Classes\":\" Archivklassen \",\"Languages List.is\":\" isländisch \",\"Languages List.it\":\" Italienisch \",\"FormField.Add_Student.Email\":\" Email \",\"FormField.Add_Student.Parent_Name1\":\"Elternname\",\"FormField.Add_Student.prefix2\":\" Präfix \",\"CompositeSubFields.Add_Student.Address.address_line_11\":\" Anschrift Zeile 1 \",\"FormField.Add_Student.prefix1\":\" Präfix \",\"ReportField.Attendance_View.Class\":\" Klasse \",\"ReportField.Today_Attendance.Attendance_Type\":\" Anwesenheitsart \",\"ReportField.Active_Classes.Days_Meet\":\" Tage treffen \",\"FormField.Send_Mail.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormButton.Mark_Latecomers.Save\":\" sparen \",\"FormField.Select_class.Modified_User\":\" Geänderter Benutzer \",\"Languages List.nl\":\" Niederländisch \",\"FormButton.Add_Staff.Add_Staff\":\" Mitarbeiter hinzufügen \",\"FormField.Add_Student.address_line_21\":\" Adresszeile 2 \",\"Languages List.no\":\" norwegisch \",\"ReportField.Archive_Classes.Class_Status\":\" Klassenstatus \",\"FormField.Fill_Attendance.Section\":\" Sektion \",\"ReportField.Active_Students.Photo\":\" Foto \",\"ReportField.Archive_Students.Photo\":\" Foto \",\"Report.Send_Mail_Report\":\" E-Mail-Bericht senden \",\"ReportField.Staffs.address_line_11\":\" Adresse \",\"FormField.Add_Student.Modified_User\":\" Geänderter Benutzer \",\"Report.Attendance_View\":\" Anwesenheitsanzeige \",\"FormField.Add_Student.state_province1\":\" Bundesland \",\"FormField.Fill_Attendance.Attendance_Type\":\" Anwesenheitsart \",\"ReportField.Today_Attendance.Number_Of_Absent_Students\":\" Anzahl der abwesenden Studenten \",\"FormField.Add_Student.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Add_Class.Modified_User\":\" Geänderter Benutzer \",\"ReportField.Today_Attendance.Added_User\":\" Benutzer hinzugefügt \",\"Languages List.lt\":\" litauisch \",\"ReportField.Staffs.Official__Email_ID\":\" Offizielle E-Mail-ID \",\"Languages List.lv\":\" lettisch \",\"FormField.Add_Staff.country1\":\" Land \",\"ReportField.Staffs.address_line_21\":\" Adresse.Adresse Zeile 2 \",\"FormField.Send_Mail.Section\":\"Sektion\",\"ReportField.Active_Students.first_name2\":\"Elternname\",\"ReportField.Active_Students.first_name1\":\" Name \",\"CustomAction.Archive_Students.Active_Archive2\":\" Aktiv / Archiv \",\"Languages List.lo\":\" Laothian \",\"ReportField.Archive_Classes.Days_Meet\":\" Tage treffen \",\"Languages List.la\":\" Latein \",\"FormField.Select_class.Added_Time\":\" Zeit hinzugefügt \",\"ReportField.Archive_Students.Nationality\":\" Staatsangehörigkeit \",\"FormField.Add_Staff.suffix1\":\" Suffix \",\"FormField.Add_Student.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Mark_Latecomers.Modified_Time\":\" Geänderte Zeit \",\"FormButton.Send_Mail.update\":\" Aktualisieren \",\"FormButton.Send_Mail.Send_Mail\":\" E-Mail senden \",\"FormField.Add_Staff.Photo\":\" Foto \",\"ReportField.All_Classes.Class_Status\":\" Klassenstatus \",\"Languages List.ms\":\" malaiisch \",\"Languages List.mr\":\" Marathi \",\"CompositeSubFields.Add_Staff.Name.prefix1\":\" Präfix \",\"Form.Mark_Latecomers\":\" Mark Latecomers \",\"ReportField.Active_Students.Father_s_Occupation\":\" Besetzung \",\"Languages List.mt\":\" maltesisch \",\"ReportField.Archive_Students.Parent_Mobile_Number\":\" Handy, Mobiltelefon \",\"Languages List.mk\":\" mazedonisch \",\"CompositeSubFields.Add_Student.Student_Name.last_name1\":\" Familienname, Nachname \",\"ReportField.Archive_Students.Student_Status\":\" Studenten-Status \",\"FormField.Select_class.Student_Staff_ID\":\" Studenten- / Personalausweis \",\"FormField.Add_Staff.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Add_Student.latitude1\":\" Breite \",\"FormField.Add_Student.Father_s_Occupation\":\"Besetzung\",\"Languages List.bg\":\" bulgarisch \",\"ReportField.Today_Attendance.Attendance_Date\":\"Anwesenheitsdatum\",\"Languages List.bn\":\" Bengali \",\"FormField.Add_Staff.state_province1\":\" Bundesland \",\"Languages List.be\":\" Belarussisch \",\"ReportField.Staffs.last_name1\":\" Name und Nachname \",\"FormField.Fill_Attendance.Added_Time\":\" Zeit hinzugefügt \",\"Languages List.az\":\" Aserbaidschanisch \",\"Languages List.cs\":\" Tschechisch \",\"FormField.Add_Staff.Section\":\" Sektion \",\"ReportField.Active_Classes.Class_In_charge\":\" Klasse verantwortlich \",\"PicklistOption.Add_Student.country1.1\":\" Beispielland1 \",\"Section.Student_Details\":\" Schülerdetails \",\"PicklistOption.Add_Student.country1.2\":\" Beispielland2 \",\"FormField.Fill_Attendance.ID\":\" ICH WÜRDE \",\"FormField.Send_Mail.Record_Status\":\" Aufnahmestatus \",\"Languages List.ca\":\" katalanisch \",\"FormField.Send_Mail.To\":\"Zu\",\"ReportField.All_Classes.Date_unbounded\":\" Datum unbeschränkt \",\"FormField.Fill_Attendance.Modified_Time\":\" Geänderte Zeit \",\"FormButton.Add_Class.cancel\":\" Stornieren \",\"ReportField.Active_Classes.Ending_Date\":\" Ende \",\"CustomAction.Archive_Classes.Active_Class\":\" Aktive Klasse \",\"ReportField.My_Classes.Starting_Date\":\" Anfangsdatum \",\"FormField.Fill_Attendance.Attendance_Date\":\"Anwesenheitsdatum\",\"ReportField.Attendance_View.Attendance_Date\":\"Anwesenheitsdatum\",\"FormField.Add_Student.Contact_No\":\" Kontakt Nein \",\"Page.Attendance_Iframe_Page\":\" Teilnahme Iframe \",\"FormField.Add_Staff.first_name1\":\" Vorname \",\"ReportField.Staffs.Department\":\" Abteilung \",\"PicklistOption.Add_Student.Gender.2\":\" Weiblich \",\"FormButton.Add_Student.cancel\":\" Stornieren \",\"CustomAction.Today_Attendance.Mark_Late_comers\":\" Mark Late Comeers \",\"FormField.Add_Class.Class_Title\":\" Klassentitel \",\"PicklistOption.Add_Student.Gender.1\":\" Männlich \",\"FormField.Fill_Attendance.Record_Status\":\" Aufnahmestatus \",\"FormField.Select_class.Class\":\" Klasse \",\"ReportField.Archive_Classes.Date_unbounded\":\" Datum unbeschränkt \",\"ReportField.All_Classes.Days_Meet\":\"Tage treffen\",\"ReportField.Staffs.district_city1\":\" Adresse.Stadt / Bezirk \",\"Languages List.ar\":\" Arabisch \",\"Languages List.af\":\" Afrikaans \",\"FormField.Fill_Attendance.Present_Students\":\" Gegenwärtige Studenten \",\"FormField.Add_Student.suffix2\":\" Suffix \",\"FormField.Send_Mail.Modified_Time\":\" Geänderte Zeit \",\"CompositeSubFields.Add_Staff.Address.postal_Code1\":\" Postleitzahl \",\"FormField.Add_Class.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"ReportField.Active_Students.Email\":\" Email \",\"FormField.Add_Student.suffix1\":\" Suffix \",\"ReportField.Attendance_View.Number_Of_Absent_Students\":\" Anzahl der abwesenden Studenten \",\"Report.My_Class_Attendance_View\":\" Meine Klassenbesuchsansicht \",\"FormField.Add_Staff.longitude1\":\" Längengrad \",\"FormField.Send_Mail.Classes\":\" Klasse \",\"ReportField.Active_Classes.Class_Status\":\" Klassenstatus \",\"FormField.Add_Student.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"ReportField.Staffs.postal_Code1\":\" Adresse.Postcode \",\"CompositeSubFields.Add_Student.Parent_Name1.prefix2\":\" Präfix \",\"ReportField.Staffs.state_province1\":\" Anschrift.Staat Provinz \",\"Languages List.fr\":\" Französisch \",\"ReportField.Active_Classes.Date_unbounded\":\" Datum unbeschränkt \",\"FormField.Send_Mail.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Select_class.Section\":\" Sektion \",\"Languages List.fi\":\" Finnese \",\"Form.Send_Mail\":\" E-Mail senden \",\"Languages List.fa\":\" persisch \",\"Languages List.gu\":\" Gujarati \",\"PicklistOption.Add_Class.Class_Status.1\":\" Aktiv \",\"PicklistOption.Add_Class.Class_Status.2\":\" Archiv \",\"FormField.Add_Student.Registration_Number\":\" Registrationsnummer \",\"FormField.Fill_Attendance.Number_Of_Absent_Students\":\" Anzahl der abwesenden Studenten \",\"FormField.Add_Student.Date_of_Birth\":\" Geburtsdatum \",\"Languages List.gl\":\" galizisch \",\"FormField.Add_Class.Record_Status\":\" Aufnahmestatus \",\"PicklistOption.Add_Staff.country1.2\":\" Wahl 2 \",\"PicklistOption.Add_Staff.country1.1\":\" Wahl 1 \",\"FormField.Add_Staff.Name\":\" Name \",\"Languages List.ga\":\" irisch \",\"ReportField.Attendance_View.Attendance_Type\":\" Anwesenheitsart \",\"Section.page\":\" Versteckter Bereich \",\"FormField.Add_Staff.postal_Code1\":\" Postleitzahl \",\"FormField.Add_Class.Modified_Time\":\" Geänderte Zeit \",\"FormField.Fill_Attendance.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"CompositeSubFields.Add_Student.Address.postal_Code1\":\" Postleitzahl \",\"ReportField.Staffs.Gender\":\" Geschlecht \",\"Languages List.da\":\" dänisch \",\"Languages List.de\":\" Deutsche \",\"Languages List.cy\":\" Walisisch \",\"CompositeSubFields.Add_Staff.Address.country1\":\" Land \",\"Page.Take_Attendance\":\" Teilnahme nehmen \",\"FormField.Add_Student.Gender\":\" Geschlecht \",\"FormField.Select_class.Added_User\":\" Benutzer hinzugefügt \",\"Languages List.es\":\" Spanisch \",\"FormField.Add_Class.Added_Time\":\" Zeit hinzugefügt \",\"Languages List.eu\":\" baskisch \",\"CompositeSubFields.Add_Staff.Address.address_line_21\":\" Adresszeile 2 \",\"Languages List.et\":\" estnisch \",\"ReportField.Active_Students.Contact_No\":\" Kontakt Nein \",\"ReportField.Archive_Students.Age\":\" Alter \",\"FormField.Add_Class.ID\":\" ICH WÜRDE \",\"CompositeSubFields.Add_Staff.Name.suffix1\":\" Suffix \",\"Languages List.el\":\" griechisch \",\"Languages List.eo\":\" Esperanto \",\"Languages List.en\":\" Englisch \",\"FormButton.Add_Staff.reset\":\" Zurücksetzen \",\"FormField.Add_Student.Section\":\"Sektion\",\"FormButton.Add_Staff.update\":\" Aktualisieren \",\"ReportField.Active_Students.Parent_Email\":\"Übergeordnete E-Mail\",\"Form.Add_Class\":\" Klasse hinzufügen \",\"ReportField.Archive_Classes.Ending_Date\":\" Ende \",\"CompositeSubFields.Add_Staff.Address.address_line_11\":\" Anschrift Zeile 1 \",\"FormButton.Add_Student.Add_Student\":\" Schüler hinzufügen \",\"PicklistOption.Add_Student.Student_Status.2\":\" Archiv \",\"PicklistOption.Add_Student.Student_Status.1\":\" Aktiv \",\"FormButton.Add_Student.update\":\" Aktualisieren \",\"FormField.Add_Student.Photo\":\" Foto \",\"FormField.Add_Staff.address_line_11\":\" Anschrift Zeile 1 \",\"ReportField.My_Class_Attendance_View.Attendance_Type\":\" Anwesenheitsart \",\"FormField.Fill_Attendance.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Staff.Address\":\" Adresse \",\"ReportField.Active_Students.Parent_Mobile_Number\":\"Übergeordnete Handynummer\",\"ReportField.Staffs.prefix1\":\" Name.Präfix \",\"ReportField.Archive_Students.Parent_Email\":\"Übergeordnete E-Mail\",\"CompositeSubFields.Add_Student.Parent_Name1.first_name2\":\" Vorname \",\"FormField.Add_Class.Days_Meet\":\" Tage treffen \",\"CompositeSubFields.Add_Student.Student_Name.prefix1\":\" Präfix \",\"FormField.Add_Staff.address_line_21\":\" Adresszeile 2 \",\"ReportField.All_Classes.Starting_Date\":\" Anfangsdatum \",\"FormField.Add_Staff.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"Languages List.yi\":\" Jiddisch \",\"ReportField.Active_Students.Registration_Number\":\" Registrationsnummer \",\"ReportField.Staffs.first_name1\":\" Name \",\"ReportField.Archive_Students.first_name2\":\"Elternname\",\"ReportField.Archive_Students.first_name1\":\" Name \",\"FormField.Add_Class.Starting_Date\":\" Anfangsdatum \",\"FormField.Mark_Latecomers.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Mark_Latecomers.Class\":\" Klasse \",\"FormField.Add_Class.Ending_Date\":\" Ende \",\"FormButton.Mark_Latecomers.Reset\":\" Zurücksetzen \",\"Languages List.zh\":\" Chinesisch \",\"PicklistOption.Add_Staff.Department.1\":\" Abteilung 1 \",\"CompositeSubFields.Add_Student.Student_Name.first_name1\":\" Vorname \",\"ReportField.Staffs.Photo\":\" Foto \",\"PicklistOption.Add_Staff.Department.2\":\" Abteilung 2 \",\"PicklistOption.Add_Staff.Department.3\":\" Abteilung 3 \",\"CompositeSubFields.Add_Student.Parent_Name1.last_name2\":\" Familienname, Nachname \",\"FormField.Send_Mail.Modified_User\":\" Geänderter Benutzer \",\"ReportField.Active_Classes.Starting_Date\":\" Anfangsdatum \",\"ReportField.My_Class_Attendance_View.Number_Of_Present_Students\":\" Anzahl der anwesenden Studenten \",\"FormField.Mark_Latecomers.Select_Late_Comers\":\" Wählen Sie Late Comer \",\"Section.Staff_Details\":\" Mitarbeiterdetails \",\"ReportField.Archive_Students.Email\":\" Email \",\"CustomAction.Active_Classes.Archive_Class\":\" Archivklasse \",\"ReportField.My_Class_Attendance_View.Number_Of_Absent_Students\":\" Anzahl der abwesenden Studenten \",\"Report.Staffs\":\" Mitarbeiter \",\"FormButton.Send_Mail.reset\":\" Zurücksetzen \",\"ReportField.My_Classes.Ending_Date\":\" Ende \",\"FormField.Send_Mail.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Send_Mail.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"CompositeSubFields.Add_Student.Student_Name.suffix1\":\" Suffix \",\"ReportField.Archive_Classes.Class_Title\":\" Klassentitel \",\"FormField.Send_Mail.ID\":\" ICH WÜRDE \",\"FormField.Add_Student.Address\":\"Adresse\",\"PicklistOption.Fill_Attendance.Attendance_Type.5\":\" Abgebrochen \",\"PicklistOption.Fill_Attendance.Attendance_Type.6\":\" Extraklasse \",\"Section.Dashboard\":\" Füllen Sie die Anwesenheit \",\"PicklistOption.Fill_Attendance.Attendance_Type.7\":\" Urlaub \",\"PicklistOption.Fill_Attendance.Attendance_Type.1\":\" Ganztags \",\"PicklistOption.Fill_Attendance.Attendance_Type.2\":\" Früh aus \",\"PicklistOption.Fill_Attendance.Attendance_Type.3\":\" Spät aus \",\"PicklistOption.Fill_Attendance.Attendance_Type.4\":\" Später Anfang \",\"FormButton.Fill_Attendance.cancel\":\" Stornieren \",\"FormField.Add_Student.country1\":\" Land \",\"FormField.Add_Student.first_name2\":\" Vorname \",\"FormField.Add_Student.first_name1\":\" Vorname \",\"FormField.Add_Class.Added_User\":\" Benutzer hinzugefügt \",\"FormButton.Send_Mail.cancel\":\" Stornieren \",\"ReportField.Active_Students.Gender\":\" Geschlecht \",\"FormField.Fill_Attendance.Late_Comers\":\" Späte Ankunft \",\"FormButton.Fill_Attendance.reset\":\" Zurücksetzen \",\"FormField.Add_Student.postal_Code1\":\" Postleitzahl \",\"FormField.Add_Staff.Department\":\" Abteilung \",\"FormField.Add_Staff.Modified_Time\":\" Geänderte Zeit \",\"Report.Today_Attendance\":\" Heute Teilnahme \",\"Form.Select_class\":\" Wählen Sie die Klasse aus \",\"Languages List.ro\":\" rumänisch \",\"FormField.Add_Staff.Phone_Number\":\" Telefonnummer \",\"Languages List.ru\":\" Russisch \",\"FormField.Add_Staff.Record_Status\":\" Aufnahmestatus \",\"FormField.Fill_Attendance.Number_Of_Present_Students\":\" Anzahl der anwesenden Studenten \",\"FormButton.Select_class.Reset\":\" Zurücksetzen \",\"Languages List.ta\":\" Tamilisch \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" Thai \",\"ReportField.Staffs.suffix1\":\" Namenszusatz \",\"Languages List.sq\":\" albanisch \",\"FormField.Add_Staff.Designation\":\" Bezeichnung \",\"FormField.Mark_Latecomers.Record_Status\":\" Aufnahmestatus \",\"Languages List.sw\":\" Swahili \",\"Languages List.sv\":\" Schwedisch \",\"Report.Active_Students\":\" Aktive Studenten \",\"ReportField.Archive_Students.address_line_11\":\" Adresse \",\"ReportField.Send_Mail_Report.Subject_field\":\" Gegenstand \",\"Languages List.sk\":\" slowakisch \",\"CompositeSubFields.Add_Staff.Address.state_province1\":\" Bundesland \",\"ReportField.Archive_Classes.Starting_Date\":\" Anfangsdatum \",\"Languages List.sl\":\" Slowenisch \",\"CompositeSubFields.Add_Student.Address.state_province1\":\" Bundesland \",\"FormField.Send_Mail.Subject_field\":\" Gegenstand \",\"FormField.Add_Student.Parent_Email\":\"Übergeordnete E-Mail\",\"FormField.Add_Staff.Gender\":\" Geschlecht \",\"ReportField.Staffs.country1\":\" Adresse.Land \",\"ReportField.All_Classes.Class_Title\":\"Klassentitel\",\"ReportField.My_Class_Attendance_View.Class\":\" Klasse \",\"FormField.Mark_Latecomers.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Student.district_city1\":\" Stadtteil \",\"ReportField.Send_Mail_Report.Message\":\" Botschaft \",\"Section.New_Section1\":\" Meine Klassenberichte \",\"FormButton.Add_Student.reset\":\" Zurücksetzen \",\"Languages List.pt\":\" Portugiesisch \",\"Section.New_Section3\":\" Administratoransicht \",\"Report.Active_Classes\":\" Aktive Klassen \",\"Languages List.pl\":\" Polieren \",\"FormButton.Add_Class.Add_Class\":\" Klasse hinzufügen \",\"FormField.Add_Student.Parent_Mobile_Number\":\"Übergeordnete Handynummer\",\"FormField.Add_Student.address_line_11\":\" Anschrift Zeile 1 \",\"ReportField.Archive_Students.Registration_Number\":\" Registrationsnummer \",\"ReportField.Staffs.Phone_Number\":\" Telefonnummer \",\"FormField.Mark_Latecomers.ID\":\" ICH WÜRDE \",\"Form.Fill_Attendance\":\" Füllen Sie die Anwesenheit \",\"FormField.Select_class.Record_Status\":\" Aufnahmestatus \",\"FormButton.Add_Class.reset\":\" Zurücksetzen \",\"FormField.Select_class.Modified_Time\":\" Geänderte Zeit \",\"FormButton.Add_Class.update\":\" Aktualisieren \",\"PicklistOption.Send_Mail.To.4\":\"Alles\",\"Form.Add_Student\":\" Schüler hinzufügen \",\"PicklistOption.Send_Mail.To.3\":\"Studenten\",\"PicklistOption.Send_Mail.To.2\":\"Eltern\",\"PicklistOption.Send_Mail.To.1\":\"Klasse Admins\",\"ReportField.Send_Mail_Report.To\":\" Zu \",\"CompositeSubFields.Add_Staff.Name.first_name1\":\" Vorname \",\"CompositeSubFields.Add_Student.Address.country1\":\" Land \",\"FormField.Add_Student.ID\":\" ICH WÜRDE \",\"ReportField.Archive_Classes.Class_In_charge\":\" Klasse verantwortlich \",\"CustomAction.Active_Students.Add_into_class1\":\" Zu Klasse hinzufügen \",\"ReportField.My_Classes.Class_Title\":\" Klassentitel \",\"FormField.Add_Staff.last_name1\":\" Familienname, Nachname \",\"ReportField.My_Classes.Class_Status\":\" Klassenstatus \",\"Form.Add_Staff\":\" Mitarbeiter hinzufügen \",\"ReportField.My_Class_Attendance_View.Attendance_Date\":\" Datum \",\"App.attendance-management\":\"Anwesenheitsmanagement\",\"FormField.Add_Student.Modified_Time\":\" Geänderte Zeit \",\"FormField.Add_Student.Student_Name\":\" Name \",\"FormField.Send_Mail.Message\":\" Botschaft \",\"ReportField.Attendance_View.Number_Of_Present_Students\":\" Anzahl der anwesenden Studenten \",\"FormField.Add_Student.Record_Status\":\" Aufnahmestatus \",\"FormField.Add_Student.last_name1\":\" Familienname, Nachname \",\"FormField.Add_Student.Age\":\" Alter \",\"FormField.Add_Student.last_name2\":\" Familienname, Nachname \",\"ReportField.My_Classes.Days_Meet\":\" Tage treffen \",\"ReportField.Staffs.Designation\":\" Bezeichnung \",\"FormField.Add_Class.Class_Status\":\" Klassenstatus \",\"FormField.Fill_Attendance.Class\":\" Klasse \",\"Languages List.tr\":\" Türkisch \",\"Section.Student_Attendance\":\" Teilnahme nehmen \",\"Languages List.tl\":\" Filipino \",\"FormField.Fill_Attendance.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"ReportField.Active_Students.Age\":\" Alter \",\"FormField.Mark_Latecomers.Modified_User\":\" Geänderter Benutzer \",\"FormField.Add_Staff.prefix1\":\" Präfix \",\"FormField.Add_Student.Added_User\":\" Benutzer hinzugefügt \",\"PicklistOption.Add_Staff.prefix1.3\":\" Frau. \",\"PicklistOption.Add_Staff.prefix1.2\":\" Frau. \",\"PicklistOption.Add_Staff.prefix1.1\":\" Herr. \",\"Languages List.vi\":\" Vietnamesisch \",\"ReportField.Today_Attendance.Number_Of_Present_Students\":\" Anzahl der anwesenden Studenten \",\"FormField.Add_Staff.Added_User\":\" Benutzer hinzugefügt \",\"ReportField.Active_Classes.Class_Title\":\" Klassentitel \",\"CompositeSubFields.Add_Staff.Name.last_name1\":\" Familienname, Nachname \",\"CustomAction.Active_Students.Active_Archive1\":\" Aktiv / Archiv \",\"Languages List.ur\":\" Urdu \",\"FormField.Fill_Attendance.Absent_Students\":\" Abwesende Studenten \",\"ReportField.Archive_Students.Father_s_Occupation\":\" Besetzung \",\"FormField.Add_Staff.ID\":\" ICH WÜRDE \",\"FormField.Add_Student.Student_Status\":\" Studenten-Status \",\"FormField.Add_Class.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Report.All_Classes\":\" Alle Klassen \",\"ReportField.All_Classes.Class_In_charge\":\" Klasse verantwortlich \"},\"fr\":{\"FormField.Add_Staff.Modified_User\":\" Utilisateur modifié \",\"FormButton.Add_Staff.cancel\":\" Annuler \",\"Section.Send_Mail\":\" Mails \",\"FormField.Add_Staff.Official__Email_ID\":\" Identifiant Email officiel \",\"FormButton.Fill_Attendance.Save_Attendance\":\" Sauvegarder Attendacne \",\"PicklistOption.Add_Staff.Designation.1\":\" Admin de classe \",\"FormField.Add_Staff.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"PicklistOption.Add_Student.prefix1.1\":\" M. \",\"PicklistOption.Add_Staff.Gender.1\":\" Mâle \",\"FormField.Mark_Latecomers.Section\":\"Section\",\"PicklistOption.Add_Staff.Gender.2\":\" Femelle \",\"Languages List.zh-TW\":\" Chinois traditionnel \",\"Languages List.ja\":\" Japonais \",\"PicklistOption.Add_Student.prefix1.2\":\" Madame. \",\"PicklistOption.Add_Student.prefix1.3\":\" Mme. \",\"FormField.Add_Student.longitude1\":\" longitude \",\"FormButton.Select_class.Add\":\" Ajouter \",\"FormField.Add_Staff.district_city1\":\" District de la ville \",\"FormField.Add_Class.Date_unbounded\":\" Date illimitée \",\"ReportField.Active_Students.Student_Status\":\" Statut d'étudiant \",\"FormField.Add_Class.Class_In_charge\":\" Classe en charge \",\"Languages List.ku\":\" Kurkurde \",\"FormButton.Fill_Attendance.update\":\" Mettre à jour \",\"FormField.Add_Class.Students\":\" Élèves \",\"ReportField.Today_Attendance.Class\":\" Classe \",\"Languages List.km\":\" Khmer \",\"Languages List.ko\":\" coréen \",\"CompositeSubFields.Add_Student.Address.district_city1\":\" District de la ville \",\"Languages List.kn\":\" Kannada \",\"Languages List.ka\":\" géorgien \",\"FormField.Fill_Attendance.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Student.Nationality\":\" Nationalité \",\"CompositeSubFields.Add_Staff.Address.district_city1\":\" District de la ville \",\"ReportField.Archive_Students.Contact_No\":\" Pas de contact \",\"Languages List.hu\":\" hongrois \",\"Report.Archive_Students\":\" Archiver les étudiants \",\"PicklistOption.Add_Class.Days_Meet.6\":\" Vendredi \",\"FormField.Add_Class.Section\":\" Section \",\"PicklistOption.Add_Class.Days_Meet.5\":\" Jeudi \",\"Languages List.hy\":\" arménien \",\"PicklistOption.Add_Class.Days_Meet.7\":\" samedi \",\"PicklistOption.Add_Class.Days_Meet.2\":\" Lundi \",\"FormField.Select_class.ID\":\" ID \",\"Section.Add_Class\":\" Des classes \",\"PicklistOption.Add_Class.Days_Meet.1\":\" dimanche \",\"PicklistOption.Add_Class.Days_Meet.4\":\" Mercredi \",\"Report.My_Classes\":\" Mes classes \",\"PicklistOption.Add_Class.Days_Meet.3\":\" Mardi \",\"Languages List.hr\":\" croate \",\"FormField.Add_Staff.latitude1\":\" latitude \",\"CompositeSubFields.Add_Student.Parent_Name1.suffix2\":\" Suffixe \",\"ReportField.Archive_Students.Gender\":\" Le genre \",\"Languages List.hi\":\" hindi \",\"CompositeSubFields.Add_Student.Address.address_line_21\":\" Adresse Ligne 2 \",\"PicklistOption.Add_Student.prefix2.1\":\" M. \",\"PicklistOption.Add_Student.prefix2.2\":\" Madame. \",\"PicklistOption.Add_Student.prefix2.3\":\" Mme. \",\"Languages List.iw\":\" hébreu \",\"ReportField.All_Classes.Ending_Date\":\" Fin \",\"Report.Archive_Classes\":\" Classes d'archives \",\"Languages List.is\":\" islandais \",\"Languages List.it\":\" italien \",\"FormField.Add_Student.Email\":\" Email \",\"FormField.Add_Student.Parent_Name1\":\"Nom du parent\",\"FormField.Add_Student.prefix2\":\" Préfixe \",\"CompositeSubFields.Add_Student.Address.address_line_11\":\" Adresse 1 \",\"FormField.Add_Student.prefix1\":\" Préfixe \",\"ReportField.Attendance_View.Class\":\" Classe \",\"ReportField.Today_Attendance.Attendance_Type\":\" Type de présence \",\"ReportField.Active_Classes.Days_Meet\":\" Jours de rencontre \",\"FormField.Send_Mail.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormButton.Mark_Latecomers.Save\":\" sauvegarder \",\"FormField.Select_class.Modified_User\":\" Utilisateur modifié \",\"Languages List.nl\":\" néerlandais \",\"FormButton.Add_Staff.Add_Staff\":\" Ajouter du personnel \",\"FormField.Add_Student.address_line_21\":\" Adresse Ligne 2 \",\"Languages List.no\":\" norvégien \",\"ReportField.Archive_Classes.Class_Status\":\" Statut de la classe \",\"FormField.Fill_Attendance.Section\":\" Section \",\"ReportField.Active_Students.Photo\":\" Photo \",\"ReportField.Archive_Students.Photo\":\" Photo \",\"Report.Send_Mail_Report\":\" Envoyer un rapport de messagerie \",\"ReportField.Staffs.address_line_11\":\" Adresse \",\"FormField.Add_Student.Modified_User\":\" Utilisateur modifié \",\"Report.Attendance_View\":\" Vue de présence \",\"FormField.Add_Student.state_province1\":\" Province d'état \",\"FormField.Fill_Attendance.Attendance_Type\":\" Type de présence \",\"ReportField.Today_Attendance.Number_Of_Absent_Students\":\" Nombre d'étudiants absents \",\"FormField.Add_Student.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Add_Class.Modified_User\":\" Utilisateur modifié \",\"ReportField.Today_Attendance.Added_User\":\" Utilisateur ajouté \",\"Languages List.lt\":\" lituanien \",\"ReportField.Staffs.Official__Email_ID\":\" Identifiant Email officiel \",\"Languages List.lv\":\" letton \",\"FormField.Add_Staff.country1\":\" Pays \",\"ReportField.Staffs.address_line_21\":\" Address.Address Ligne 2 \",\"FormField.Send_Mail.Section\":\"Section\",\"ReportField.Active_Students.first_name2\":\"Nom du parent\",\"ReportField.Active_Students.first_name1\":\" prénom \",\"CustomAction.Archive_Students.Active_Archive2\":\" Actif / Archive \",\"Languages List.lo\":\" Laothian \",\"ReportField.Archive_Classes.Days_Meet\":\" Jours de rencontre \",\"Languages List.la\":\" Latin \",\"FormField.Select_class.Added_Time\":\" Temps ajouté \",\"ReportField.Archive_Students.Nationality\":\" Nationalité \",\"FormField.Add_Staff.suffix1\":\" Suffixe \",\"FormField.Add_Student.Added_Time\":\" Temps ajouté \",\"FormField.Mark_Latecomers.Modified_Time\":\" Heure modifiée \",\"FormButton.Send_Mail.update\":\" Mettre à jour \",\"FormButton.Send_Mail.Send_Mail\":\" Envoyer un mail \",\"FormField.Add_Staff.Photo\":\" Photo \",\"ReportField.All_Classes.Class_Status\":\" Statut de la classe \",\"Languages List.ms\":\" malais \",\"Languages List.mr\":\" Marathi \",\"CompositeSubFields.Add_Staff.Name.prefix1\":\" Préfixe \",\"Form.Mark_Latecomers\":\" Mark Latecomers \",\"ReportField.Active_Students.Father_s_Occupation\":\" Occupation \",\"Languages List.mt\":\" maltais \",\"ReportField.Archive_Students.Parent_Mobile_Number\":\"Numéro de téléphone parent\",\"Languages List.mk\":\" Macédonien \",\"CompositeSubFields.Add_Student.Student_Name.last_name1\":\" Nom de famille \",\"ReportField.Archive_Students.Student_Status\":\" Statut d'étudiant \",\"FormField.Select_class.Student_Staff_ID\":\" ID étudiant / personnel \",\"FormField.Add_Staff.Added_Time\":\" Temps ajouté \",\"FormField.Add_Student.latitude1\":\" latitude \",\"FormField.Add_Student.Father_s_Occupation\":\"Occupation\",\"Languages List.bg\":\" bulgare \",\"ReportField.Today_Attendance.Attendance_Date\":\"Date de présence\",\"Languages List.bn\":\" bengali \",\"FormField.Add_Staff.state_province1\":\" Province d'état \",\"Languages List.be\":\" Biélorusse \",\"ReportField.Staffs.last_name1\":\" Nom.Nom de fin \",\"FormField.Fill_Attendance.Added_Time\":\" Temps ajouté \",\"Languages List.az\":\" azerbaïdjanais \",\"Languages List.cs\":\" tchèque \",\"FormField.Add_Staff.Section\":\" Section \",\"ReportField.Active_Classes.Class_In_charge\":\" Classe en charge \",\"PicklistOption.Add_Student.country1.1\":\" SampleCountry1 \",\"Section.Student_Details\":\" Détails de l'étudiant \",\"PicklistOption.Add_Student.country1.2\":\" SampleCountry2 \",\"FormField.Fill_Attendance.ID\":\" ID \",\"FormField.Send_Mail.Record_Status\":\" Statut d'enregistrement \",\"Languages List.ca\":\" catalan \",\"FormField.Send_Mail.To\":\"À\",\"ReportField.All_Classes.Date_unbounded\":\" Date illimitée \",\"FormField.Fill_Attendance.Modified_Time\":\" Heure modifiée \",\"FormButton.Add_Class.cancel\":\" Annuler \",\"ReportField.Active_Classes.Ending_Date\":\" Fin \",\"CustomAction.Archive_Classes.Active_Class\":\" Classe active \",\"ReportField.My_Classes.Starting_Date\":\" Date de début \",\"FormField.Fill_Attendance.Attendance_Date\":\"Date de présence\",\"ReportField.Attendance_View.Attendance_Date\":\" Rendez-vous amoureux \",\"FormField.Add_Student.Contact_No\":\" Pas de contact \",\"Page.Attendance_Iframe_Page\":\" Participation à la page Iframe \",\"FormField.Add_Staff.first_name1\":\" Prénom \",\"ReportField.Staffs.Department\":\" département \",\"PicklistOption.Add_Student.Gender.2\":\" Femelle \",\"FormButton.Add_Student.cancel\":\" Annuler \",\"CustomAction.Today_Attendance.Mark_Late_comers\":\" Mark vient tard \",\"FormField.Add_Class.Class_Title\":\" Titre du cours \",\"PicklistOption.Add_Student.Gender.1\":\" Mâle \",\"FormField.Fill_Attendance.Record_Status\":\" Statut d'enregistrement \",\"FormField.Select_class.Class\":\" Classe \",\"ReportField.Archive_Classes.Date_unbounded\":\" Date illimitée \",\"ReportField.All_Classes.Days_Meet\":\"Jours de rencontre\",\"ReportField.Staffs.district_city1\":\" Adresse.Ville / District \",\"Languages List.ar\":\" arabe \",\"Languages List.af\":\" afrikaans \",\"FormField.Fill_Attendance.Present_Students\":\" Étudiants présents \",\"FormField.Add_Student.suffix2\":\" Suffixe \",\"FormField.Send_Mail.Modified_Time\":\" Heure modifiée \",\"CompositeSubFields.Add_Staff.Address.postal_Code1\":\" code postal \",\"FormField.Add_Class.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"ReportField.Active_Students.Email\":\" Email \",\"FormField.Add_Student.suffix1\":\" Suffixe \",\"ReportField.Attendance_View.Number_Of_Absent_Students\":\" Nombre d'étudiants absents \",\"Report.My_Class_Attendance_View\":\" Ma classe de présence \",\"FormField.Add_Staff.longitude1\":\" longitude \",\"FormField.Send_Mail.Classes\":\" Classe \",\"ReportField.Active_Classes.Class_Status\":\" Statut de la classe \",\"FormField.Add_Student.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"ReportField.Staffs.postal_Code1\":\" Adresse.Postal Code \",\"CompositeSubFields.Add_Student.Parent_Name1.prefix2\":\" Préfixe \",\"ReportField.Staffs.state_province1\":\" Address.State Province \",\"Languages List.fr\":\" français \",\"ReportField.Active_Classes.Date_unbounded\":\" Date illimitée \",\"FormField.Send_Mail.Added_User\":\" Utilisateur ajouté \",\"FormField.Select_class.Section\":\" Section \",\"Languages List.fi\":\" Finnois \",\"Form.Send_Mail\":\" Envoyer un mail \",\"Languages List.fa\":\" persan \",\"Languages List.gu\":\" Gujarati \",\"PicklistOption.Add_Class.Class_Status.1\":\" actif \",\"PicklistOption.Add_Class.Class_Status.2\":\" Archiver \",\"FormField.Add_Student.Registration_Number\":\" Numéro d'enregistrement \",\"FormField.Fill_Attendance.Number_Of_Absent_Students\":\" Nombre d'étudiants absents \",\"FormField.Add_Student.Date_of_Birth\":\" Date de naissance \",\"Languages List.gl\":\" Galicien \",\"FormField.Add_Class.Record_Status\":\" Statut d'enregistrement \",\"PicklistOption.Add_Staff.country1.2\":\" Choix 2 \",\"PicklistOption.Add_Staff.country1.1\":\" Choix 1 \",\"FormField.Add_Staff.Name\":\" prénom \",\"Languages List.ga\":\" irlandais \",\"ReportField.Attendance_View.Attendance_Type\":\" Type de présence \",\"Section.page\":\" Section cachée \",\"FormField.Add_Staff.postal_Code1\":\" code postal \",\"FormField.Add_Class.Modified_Time\":\" Heure modifiée \",\"FormField.Fill_Attendance.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"CompositeSubFields.Add_Student.Address.postal_Code1\":\" code postal \",\"ReportField.Staffs.Gender\":\" Le genre \",\"Languages List.da\":\" danois \",\"Languages List.de\":\" allemand \",\"Languages List.cy\":\" gallois \",\"CompositeSubFields.Add_Staff.Address.country1\":\" Pays \",\"Page.Take_Attendance\":\" Prendre les présences \",\"FormField.Add_Student.Gender\":\" Le genre \",\"FormField.Select_class.Added_User\":\" Utilisateur ajouté \",\"Languages List.es\":\" Espanol \",\"FormField.Add_Class.Added_Time\":\" Temps ajouté \",\"Languages List.eu\":\" basque \",\"CompositeSubFields.Add_Staff.Address.address_line_21\":\" Adresse Ligne 2 \",\"Languages List.et\":\" estonien \",\"ReportField.Active_Students.Contact_No\":\" Pas de contact \",\"ReportField.Archive_Students.Age\":\" Âge \",\"FormField.Add_Class.ID\":\" ID \",\"CompositeSubFields.Add_Staff.Name.suffix1\":\" Suffixe \",\"Languages List.el\":\" grec \",\"Languages List.eo\":\" espéranto \",\"Languages List.en\":\" Anglais \",\"FormButton.Add_Staff.reset\":\" Réinitialiser \",\"FormField.Add_Student.Section\":\"Section\",\"FormButton.Add_Staff.update\":\" Mettre à jour \",\"ReportField.Active_Students.Parent_Email\":\"Courriel du parent\",\"Form.Add_Class\":\" Ajouter une classe \",\"ReportField.Archive_Classes.Ending_Date\":\" Fin \",\"CompositeSubFields.Add_Staff.Address.address_line_11\":\" Adresse 1 \",\"FormButton.Add_Student.Add_Student\":\" Ajouter un étudiant \",\"PicklistOption.Add_Student.Student_Status.2\":\" Archiver \",\"PicklistOption.Add_Student.Student_Status.1\":\" actif \",\"FormButton.Add_Student.update\":\" Mettre à jour \",\"FormField.Add_Student.Photo\":\" Photo \",\"FormField.Add_Staff.address_line_11\":\" Adresse 1 \",\"ReportField.My_Class_Attendance_View.Attendance_Type\":\" Type de présence \",\"FormField.Fill_Attendance.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Staff.Address\":\" Adresse \",\"ReportField.Active_Students.Parent_Mobile_Number\":\" Mobile \",\"ReportField.Staffs.prefix1\":\" Préfixe de nom \",\"ReportField.Archive_Students.Parent_Email\":\" Email \",\"CompositeSubFields.Add_Student.Parent_Name1.first_name2\":\" Prénom \",\"FormField.Add_Class.Days_Meet\":\" Jours de rencontre \",\"CompositeSubFields.Add_Student.Student_Name.prefix1\":\" Préfixe \",\"FormField.Add_Staff.address_line_21\":\" Adresse Ligne 2 \",\"ReportField.All_Classes.Starting_Date\":\" Date de début \",\"FormField.Add_Staff.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"Languages List.yi\":\" yiddish \",\"ReportField.Active_Students.Registration_Number\":\" Numéro d'enregistrement \",\"ReportField.Staffs.first_name1\":\" prénom \",\"ReportField.Archive_Students.first_name2\":\"Nom du parent\",\"ReportField.Archive_Students.first_name1\":\" prénom \",\"FormField.Add_Class.Starting_Date\":\" Date de début \",\"FormField.Mark_Latecomers.Added_Time\":\" Temps ajouté \",\"FormField.Mark_Latecomers.Class\":\" Classe \",\"FormField.Add_Class.Ending_Date\":\" Fin \",\"FormButton.Mark_Latecomers.Reset\":\" Réinitialiser \",\"Languages List.zh\":\" chinois \",\"PicklistOption.Add_Staff.Department.1\":\" Département 1 \",\"CompositeSubFields.Add_Student.Student_Name.first_name1\":\" Prénom \",\"ReportField.Staffs.Photo\":\" Photo \",\"PicklistOption.Add_Staff.Department.2\":\" Département 2 \",\"PicklistOption.Add_Staff.Department.3\":\" Département 3 \",\"CompositeSubFields.Add_Student.Parent_Name1.last_name2\":\" Nom de famille \",\"FormField.Send_Mail.Modified_User\":\" Utilisateur modifié \",\"ReportField.Active_Classes.Starting_Date\":\" Date de début \",\"ReportField.My_Class_Attendance_View.Number_Of_Present_Students\":\" Nombre d'étudiants actuels \",\"FormField.Mark_Latecomers.Select_Late_Comers\":\" Sélectionnez Late Comers \",\"Section.Staff_Details\":\" Détails du personnel \",\"ReportField.Archive_Students.Email\":\" Email \",\"CustomAction.Active_Classes.Archive_Class\":\" Classe d'archives \",\"ReportField.My_Class_Attendance_View.Number_Of_Absent_Students\":\" Nombre d'étudiants absents \",\"Report.Staffs\":\" Staffs \",\"FormButton.Send_Mail.reset\":\" Réinitialiser \",\"ReportField.My_Classes.Ending_Date\":\" Fin \",\"FormField.Send_Mail.Added_Time\":\" Temps ajouté \",\"FormField.Send_Mail.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"CompositeSubFields.Add_Student.Student_Name.suffix1\":\" Suffixe \",\"ReportField.Archive_Classes.Class_Title\":\" Titre du cours \",\"FormField.Send_Mail.ID\":\" ID \",\"FormField.Add_Student.Address\":\"Adresse\",\"PicklistOption.Fill_Attendance.Attendance_Type.5\":\" Annulé \",\"PicklistOption.Fill_Attendance.Attendance_Type.6\":\" Classe supplémentaire \",\"Section.Dashboard\":\" Fill Attendance \",\"PicklistOption.Fill_Attendance.Attendance_Type.7\":\" Vacances \",\"PicklistOption.Fill_Attendance.Attendance_Type.1\":\" Journée complète \",\"PicklistOption.Fill_Attendance.Attendance_Type.2\":\" Early Out \",\"PicklistOption.Fill_Attendance.Attendance_Type.3\":\" En retard \",\"PicklistOption.Fill_Attendance.Attendance_Type.4\":\" Départ retardé \",\"FormButton.Fill_Attendance.cancel\":\" Annuler \",\"FormField.Add_Student.country1\":\" Pays \",\"FormField.Add_Student.first_name2\":\" Prénom \",\"FormField.Add_Student.first_name1\":\" Prénom \",\"FormField.Add_Class.Added_User\":\" Utilisateur ajouté \",\"FormButton.Send_Mail.cancel\":\" Annuler \",\"ReportField.Active_Students.Gender\":\" Le genre \",\"FormField.Fill_Attendance.Late_Comers\":\" Comers tardifs \",\"FormButton.Fill_Attendance.reset\":\" Réinitialiser \",\"FormField.Add_Student.postal_Code1\":\" code postal \",\"FormField.Add_Staff.Department\":\" département \",\"FormField.Add_Staff.Modified_Time\":\" Heure modifiée \",\"Report.Today_Attendance\":\" Présence aujourd'hui \",\"Form.Select_class\":\" Choisissez une classe \",\"Languages List.ro\":\" roumain \",\"FormField.Add_Staff.Phone_Number\":\" Numéro de téléphone \",\"Languages List.ru\":\" russe \",\"FormField.Add_Staff.Record_Status\":\" Statut d'enregistrement \",\"FormField.Fill_Attendance.Number_Of_Present_Students\":\" Nombre d'étudiants actuels \",\"FormButton.Select_class.Reset\":\" Réinitialiser \",\"Languages List.ta\":\" Tamil \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" thaïlandais \",\"ReportField.Staffs.suffix1\":\" Suffixe de nom \",\"Languages List.sq\":\" albanais \",\"FormField.Add_Staff.Designation\":\" La désignation \",\"FormField.Mark_Latecomers.Record_Status\":\" Statut d'enregistrement \",\"Languages List.sw\":\" Swahili \",\"Languages List.sv\":\" suédois \",\"Report.Active_Students\":\" Étudiants actifs \",\"ReportField.Archive_Students.address_line_11\":\" Adresse \",\"ReportField.Send_Mail_Report.Subject_field\":\" Assujettir \",\"Languages List.sk\":\" slovaque \",\"CompositeSubFields.Add_Staff.Address.state_province1\":\" Province d'état \",\"ReportField.Archive_Classes.Starting_Date\":\" Date de début \",\"Languages List.sl\":\" slovène \",\"CompositeSubFields.Add_Student.Address.state_province1\":\" Province d'état \",\"FormField.Send_Mail.Subject_field\":\" Assujettir \",\"FormField.Add_Student.Parent_Email\":\"Courriel du parent\",\"FormField.Add_Staff.Gender\":\" Le genre \",\"ReportField.Staffs.country1\":\" Adresse.Pays \",\"ReportField.All_Classes.Class_Title\":\"Titre du cours\",\"ReportField.My_Class_Attendance_View.Class\":\" Classe \",\"FormField.Mark_Latecomers.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Student.district_city1\":\" District de la ville \",\"ReportField.Send_Mail_Report.Message\":\" Message \",\"Section.New_Section1\":\" Mes rapports de classe \",\"FormButton.Add_Student.reset\":\" Réinitialiser \",\"Languages List.pt\":\" Portugais \",\"Section.New_Section3\":\" Admin View \",\"Report.Active_Classes\":\" Classes actives \",\"Languages List.pl\":\" polonais \",\"FormButton.Add_Class.Add_Class\":\" Ajouter une classe \",\"FormField.Add_Student.Parent_Mobile_Number\":\"Numéro de téléphone parent\",\"FormField.Add_Student.address_line_11\":\" Adresse 1 \",\"ReportField.Archive_Students.Registration_Number\":\" Numéro d'enregistrement \",\"ReportField.Staffs.Phone_Number\":\" Numéro de téléphone \",\"FormField.Mark_Latecomers.ID\":\" ID \",\"Form.Fill_Attendance\":\" Fill Attendance \",\"FormField.Select_class.Record_Status\":\" Statut d'enregistrement \",\"FormButton.Add_Class.reset\":\" Réinitialiser \",\"FormField.Select_class.Modified_Time\":\" Heure modifiée \",\"FormButton.Add_Class.update\":\" Mettre à jour \",\"PicklistOption.Send_Mail.To.4\":\"Tout\",\"Form.Add_Student\":\" Ajouter un étudiant \",\"PicklistOption.Send_Mail.To.3\":\"Étudiants\",\"PicklistOption.Send_Mail.To.2\":\"Parents\",\"PicklistOption.Send_Mail.To.1\":\"Administrateurs de classe\",\"ReportField.Send_Mail_Report.To\":\" À \",\"CompositeSubFields.Add_Staff.Name.first_name1\":\" Prénom \",\"CompositeSubFields.Add_Student.Address.country1\":\" Pays \",\"FormField.Add_Student.ID\":\" ID \",\"ReportField.Archive_Classes.Class_In_charge\":\" Classe en charge \",\"CustomAction.Active_Students.Add_into_class1\":\" Ajouter en classe \",\"ReportField.My_Classes.Class_Title\":\" Titre du cours \",\"FormField.Add_Staff.last_name1\":\" Nom de famille \",\"ReportField.My_Classes.Class_Status\":\" Statut de la classe \",\"Form.Add_Staff\":\" Ajouter du personnel \",\"ReportField.My_Class_Attendance_View.Attendance_Date\":\" Rendez-vous amoureux \",\"App.attendance-management\":\"Gestion des présences\",\"FormField.Add_Student.Modified_Time\":\" Heure modifiée \",\"FormField.Add_Student.Student_Name\":\" prénom \",\"FormField.Send_Mail.Message\":\" Message \",\"ReportField.Attendance_View.Number_Of_Present_Students\":\" Nombre d'étudiants actuels \",\"FormField.Add_Student.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_Student.last_name1\":\" Nom de famille \",\"FormField.Add_Student.Age\":\" Âge \",\"FormField.Add_Student.last_name2\":\" Nom de famille \",\"ReportField.My_Classes.Days_Meet\":\" Jours de rencontre \",\"ReportField.Staffs.Designation\":\" La désignation \",\"FormField.Add_Class.Class_Status\":\" Statut de la classe \",\"FormField.Fill_Attendance.Class\":\" Classe \",\"Languages List.tr\":\" turc \",\"Section.Student_Attendance\":\" Prendre les présences \",\"Languages List.tl\":\" Philippin \",\"FormField.Fill_Attendance.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"ReportField.Active_Students.Age\":\" Âge \",\"FormField.Mark_Latecomers.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Staff.prefix1\":\" Préfixe \",\"FormField.Add_Student.Added_User\":\" Utilisateur ajouté \",\"PicklistOption.Add_Staff.prefix1.3\":\" Mme. \",\"PicklistOption.Add_Staff.prefix1.2\":\" Madame. \",\"PicklistOption.Add_Staff.prefix1.1\":\" M. \",\"Languages List.vi\":\" vietnamien \",\"ReportField.Today_Attendance.Number_Of_Present_Students\":\" Nombre d'étudiants actuels \",\"FormField.Add_Staff.Added_User\":\" Utilisateur ajouté \",\"ReportField.Active_Classes.Class_Title\":\" Titre du cours \",\"CompositeSubFields.Add_Staff.Name.last_name1\":\" Nom de famille \",\"CustomAction.Active_Students.Active_Archive1\":\" Actif / Archive \",\"Languages List.ur\":\" Urdu \",\"FormField.Fill_Attendance.Absent_Students\":\" Étudiants absents \",\"ReportField.Archive_Students.Father_s_Occupation\":\" Occupation \",\"FormField.Add_Staff.ID\":\" ID \",\"FormField.Add_Student.Student_Status\":\" Statut d'étudiant \",\"FormField.Add_Class.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Report.All_Classes\":\" Toutes les classes \",\"ReportField.All_Classes.Class_In_charge\":\" Classe en charge \"}}"
+}
+}

@@ -1,0 +1,4513 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 07-May-2020 01:45:46
+ * Version      : 1.0
+ */
+ application "Quotation Management"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+	section Quotations
+	{
+		icon = "files-copy"
+		list All_Quotations
+		{
+			displayName = "All Quotations"
+   			hide = true
+			show all rows from Create_Quotation    
+			(
+				custom action "Send To Client"
+				(
+	  			workflow = Send_To_Client
+				column header = "Send To Client"
+				success message = ""
+				condition = (Quote_Status == "New")
+				)
+				Products_On_Quote.Product_Services_Name as "Products On Quote"
+				(
+					view = Product_Service_Subform_Report
+				)
+				Tax_Amount as "Tax Amount"
+				custom action "Change Status"
+				(
+	  			workflow = Change_Status
+				column header = "Change Status"
+				success message = ""
+				condition = (Quote_Status == "Sent To Client")
+				)
+				Discounted_Amount as "Discount Amount"
+				Send_quotation_in_mail as "Send quotation in mail"
+				Quotation_Number1 as "Quotation Number"
+				Quotation_Request_Number as "Quotation Request Number"
+				(
+					view = All_Requested_Quotations
+				)
+				Client_Name as "Client Name"
+				Quote_Status as "Quotation Status"
+				Grand_Total as "Grand Total"
+				Expiry_Date as "Expiry Date"
+				Quotation_Date as "Quotation Date"
+				Subject_field as "Subject"
+				Products_On_Quote.Rate as "Products On Quote"
+			)
+			options
+			(
+				icon = "files-single-folded-content"
+	 		)
+			conditional formatting
+			(
+				"New Formatting"
+				{
+				fields = [Quote_Status]
+				format = "font-weight:bold;font-style:italic;color:#00b339;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+				"Send To Client"
+							Quote_Status as "Quotation Status"
+				"Change Status"
+							Subject_field as "Subject"
+							Client_Name as "Client Name"
+							Quotation_Date as "Quotation Date"
+							Expiry_Date as "Expiry Date"
+							Grand_Total as "Grand Total"
+							Tax_Amount as "Tax Amount"
+							Discounted_Amount as "Discount Amount"
+							Send_quotation_in_mail as "Send quotation in mail"
+							Quotation_Number1 as "Quotation Number"
+							Quotation_Request_Number as "Quotation Request Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+				"Send To Client"
+							Quote_Status as "Quotation Status"
+				"Change Status"
+							Subject_field as "Subject"
+							Client_Name as "Client Name"
+							Quotation_Date as "Quotation Date"
+							Expiry_Date as "Expiry Date"
+							Grand_Total as "Grand Total"
+							Tax_Amount as "Tax Amount"
+							Discounted_Amount as "Discount Amount"
+							Send_quotation_in_mail as "Send quotation in mail"
+							Quotation_Number1 as "Quotation Number"
+							Quotation_Request_Number as "Quotation Request Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		form Create_Quotation
+		{
+			displayname = "Create Quotation"
+			success message = "Quotation Created Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Subject_field
+			(
+    			type = text
+				displayname = "Subject"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Quotation_Request_Number
+			(
+				type = picklist
+				displayname = "Quotation Request Number"
+				values  = Request_Quotation[Status == "Pending"].ID
+    			bidirectional = Created_Quotation
+    			displayformat = [Quotation_Request_Number]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Client_Name
+			(
+				type = picklist
+				displayname = "Client Name"
+				values  = Add_Client.ID
+    			displayformat = [Client_Name]
+				allow new entries = true
+				[
+					displayname = "Add Client"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Quotation_Number1
+			(
+    			type = autonumber
+				displayname = "Quotation Number"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Quote_Status
+			(
+				type = picklist
+				displayname = "Quotation Status"
+				values = {"New", "Sent To Client", "Accepted", "Declined", "Analyze decline"}
+				initial value = "New"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Quotation_Date
+			(
+    			type = date
+				displayname = "Quotation Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Expiry_Date
+			(
+    			type = date
+				displayname = "Expiry Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Quote_Owner
+			(
+				type = picklist
+				displayname = "Quotation Owner"
+				values  = Add_User.ID
+    			displayformat = [Name1.first_name + "  " + Name1.last_name]
+				allow new entries = true
+				[
+					displayname = "Add New Owner"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Products_On_Quote
+			(
+				type = grid
+				displayname = "Products On Quote"
+				values  = Product_Service_Subform.ID
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Company_Details
+			(
+				type = picklist
+				displayname = "Company Details"
+				values  = Create_Company.ID
+    			displayformat = [Company_Name]
+				searchable = true
+				sortorder = ascending
+	 			row = 3
+	 			column = 1   
+				width = 200px
+			)
+			Grand_Total
+			(
+				displayname = "Grand Total"
+				type = USD
+				initial value = 0
+	 			row = 3
+	 			column = 1   
+				width = 200px
+			)
+			Sub_Total
+			(
+				displayname = "Sub Total"
+				type = USD
+				initial value = 0
+	 			row = 3
+	 			column = 1   
+				width = 200px
+			)
+			must have Tax
+			(
+    			type = percentage
+				displayname = "Tax (%)"
+				initial value = 0%
+	 			row = 3
+	 			column = 1   
+				width = 200px
+			)
+			Tax_Amount
+			(
+				displayname = "Tax Amount"
+				type = USD
+	 			row = 3
+	 			column = 1   
+				width = 200px
+			)
+			must have Discount
+			(
+    			type = percentage
+				initial value = 0%
+	 			row = 3
+	 			column = 1   
+				width = 200px
+			)
+			Discounted_Amount
+			(
+				displayname = "Discount Amount"
+				type = USD
+	 			row = 3
+	 			column = 1   
+				width = 200px
+			)
+			Send_quotation_in_mail
+			(
+    			type = checkbox
+				displayname = "Send quotation in mail"
+				initial value = false
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			must have Terms_Conditions
+			(
+    			type = textarea
+				displayname = "Terms & Conditions"
+				height = 100px
+	 			row = 3
+	 			column = 1   
+				width = 200px
+			)
+			Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 3
+	 			column = 1   
+				width = 200px
+			)
+			Section1
+			(
+				type = section
+				displayname = "Section"
+	 			row = 3
+	 			column = 0   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Create"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		print template
+			{
+				Quote_View
+				{
+						displayname = "Quotation View"
+						content = {"layout":"1","pageNumberOption":null,"orientation":"null","isFooterEnabled":false,"mainLayout":[{"elements":[{"type":"columns","element":{"split":"100","id":"elem_15e2fa8029d1","elemStyle":"","collayouts":[{"colElements":[{"type":"text","element":{"Fields":[{"Label_Name":"Client_Name"},{"Label_Name":"Expiry_Date"},{"Label_Name":"Quotation_Date"},{"Label_Name":"Quotation_Number1"},{"Label_Name":"Subject_field"},{"Related_Fields":["Email"],"Label_Name":"Client_Name"},{"Related_Fields":["Company_Name"],"Label_Name":"Company_Details"},{"Related_Fields":["Logo"],"Label_Name":"Company_Details"},{"Related_Fields":["Phone_Number"],"Label_Name":"Company_Details"},{"Related_Fields":["Website"],"Label_Name":"Company_Details"}],"content":"<div style=\"\"><style>\n.companyLogoContainer > img {\n    max-width: 150px !important\n}\n<\/style> <div style=\"padding: 15px; border: 1px solid gray; border-top-right-radius: 4px; font-size: 13px; border-top-left-radius: 4px; border-bottom: none; margin: 10px; margin-bottom: 0px\">   <div style=\"width: 100%; display: table\">     <div style=\"width: 50%; float: left\">       <h2 style=\"font-weight: bold; color: green\"> Quotation <\/h2>       <div style=\"padding: 3px 5px 3px 7px\">       Quotation No :&nbsp;<span><span>${Quotation_Number1}<\/span><\/span><\/div>       <div style=\"padding: 3px 5px 3px 7px\">       Subject : ${Subject_field} <\/div>       <div style=\"padding: 3px 5px 3px 7px\">       Quotation Date :&nbsp;<span><span>${Quotation_Date}<\/span><\/span><\/div>       <div style=\"padding: 3px 5px 5px 7px\">       Expiry Date : <span><span>${Expiry_Date}<\/span><\/span><\/div>       <ul style=\"margin-top: 50px; border: 1px solid rgb(187, 187, 187); border-radius: 3px; max-width: 300px\">         <li style=\"list-style: none; width: 20%; float: left; font-weight: bold\">         To, <\/li>         <li style=\"margin-left: 20%; list-style: none\">           <div style=\"padding: 1px 0px\">${Client_Name}<\/div>           <div style=\"padding: 1px 0px\"><\/div>           <div style=\"padding: 1px 0px\">${Client_Name.Email}<\/div>           <div style=\"padding: 1px 0px\"><\/div>         <\/li>       <\/ul>       <div style=\"clear: both\"><\/div>     <\/div>     <div style=\"width: 50%; float: right; text-align: right\">       <div class=\"companyLogoContainer\" style=\"padding: 1px 0px\">       ${Company_Details.Logo} <\/div>       <div style=\"color: green; padding: 1px 0px\">       ${Company_Details.Company_Name}<\/div>       <div style=\"padding: 1px 0px\">       <\/div>       <div style=\"padding: 1px 0px; margin-top: 26px\">         <b>Phone :&nbsp;<\/b>${Company_Details.Phone_Number}<\/div>       <div style=\"padding: 1px 0px\">         <span style=\"font-weight: bold\">Web :<\/span> <span><span>${Company_Details.Website}<\/span><\/span><\/div>     <\/div>   <\/div>   <hr style=\"background: rgb(175, 174, 174); height: 2px; margin-top: 25px\" />   <div>     <div>       <div style=\"padding: 2px 0px\"><b>${Client_Name},<\/b><\/div>       <div style=\"padding: 1px 0px\">Thank you for the opportunity to quote, we have the pleasure         of providing you with the following quotation.<\/div>       <div style=\"padding: 1px 0px\">Please feel free to contact us with any questions you have.<\/div>     <\/div>     <div> <\/div>   <\/div> <\/div><\/div>"}},{"id":"elem_1521033469925","type":"lookupfields","element":{"valueStyle":"width: 50%;","valueTextStyle":"border: 1px solid #dedede;border-radius: 4px;","fieldLayoutType":"1","related_Form":"Product_Service_Subform","labelText":"Products On Quote","wrapperStyle":"padding:15px;border-left: 1px solid gray;border-bottom: none;border-right: 1px solid gray; margin:0px 10px;","labelStyle":"width: 50%; display: none;","Label_Name":"Products_On_Quote","refFields":[{"valueStyle":"","fieldLayoutType":"2","labelText":"Product / Services Name","labelStyle":"","Label_Name":"Product_Services_Name"},{"valueStyle":"","fieldLayoutType":"2","labelText":"Unit","labelStyle":"","Label_Name":"Unit"},{"valueStyle":"","fieldLayoutType":"2","labelText":"Rate","labelStyle":"","Label_Name":"Rate"},{"valueStyle":"","fieldLayoutType":"2","labelText":"Quantity","labelStyle":"","Label_Name":"Quantity"},{"valueStyle":"","fieldLayoutType":"2","labelText":"Amount","labelStyle":"","Label_Name":"Amount"}],"labelTextStyle":""}},{"type":"columns","element":{"split":"100","id":"elem_15e3a4656931","elemStyle":"","collayouts":[{"colElements":[{"type":"text","element":{"Fields":[{"Label_Name":"Discounted_Amount"},{"Label_Name":"Grand_Total"},{"Label_Name":"Sub_Total"},{"Label_Name":"Tax_Amount"},{"Label_Name":"Terms_Conditions"}],"content":"<div style=\"\"><div style=\"padding: 0px 15px 15px 15px; border-left: 1px solid gray; border-right: 1px solid gray; border-bottom: 1px solid gray; margin: 0px 10px; margin-bottom: 10px\">   <div style=\"float: right\">     <table>       <tbody>         <tr>           <td colspan=\"4\" align=\"right\">Sub Total<\/td>           <td align=\"right\"><b><span><span>${Sub_Total}<\/span><\/span><\/b> <\/td>         <\/tr>         <tr>           <td colspan=\"4\" align=\"right\">Discount             <br />Tax<\/td>           <td align=\"right\">             <span>               <span><\/span>               <span>                 <span>${Discounted_Amount}<\/span>               <\/span>             <\/span>             <br />             <span>               <span>                 <span>                   <span>${Tax_Amount}<\/span>                 <\/span>               <\/span>             <\/span>           <\/td>         <\/tr>         <tr>           <td style=\"BORDER-BOTTOM: rgb(204, 204, 204) 2px solid\" colspan=\"4\" align=\"right\"><b>Grand Total<\/b> <\/td>           <td style=\"BORDER-BOTTOM: rgb(204, 204, 204) 2px solid; BORDER-TOP: rgb(218, 218, 218) 2px solid\" align=\"right\"><b>${Grand_Total}<\/b> <\/td>         <\/tr>       <\/tbody>     <\/table>   <\/div>   <div style=\"\">     <br />     <br />     <table border=\"0\" cellpadding=\"5\" cellspacing=\"0\" width=\"100%\" style=\"padding-top: 20px\">       <tbody>         <tr>           <td style=\"COLOR: gray; BORDER-TOP: gray 2px solid\"><b>Terms and Conditions <\/b> <\/td>         <\/tr>         <tr>           <td>             <span>               <span>${Terms_Conditions}<\/span>             <\/span>             <br /> <\/td>         <\/tr>       <\/tbody>     <\/table>   <\/div> <\/div><\/div>"}}]}]}}]}]}}],"id":1}],"resize":"default","templateStyle":"text-align: left; width: 95%; margin: 0px; padding: 20px;","isHeaderEnabled":false}
+				}
+			}
+		}
+		kanban All_Quotations1
+		{
+			displayName = "All Quotations"
+			show all rows from Create_Quotation    
+			(
+				Company_Details as "Company Details"
+				Send_quotation_in_mail as "Send quotation in mail"
+				Quote_Owner as "Quotation Owner"
+				Expiry_Date as "Expiry Date"
+				Quotation_Date as "Quotation Date"
+				Quote_Status as "Quotation Status"
+				Quotation_Number1 as "Quotation Number"
+				Client_Name as "Client Name"
+				(
+					view = All_Clients
+				)
+				Quotation_Request_Number as "Quotation Request Number"
+				(
+					view = All_Requested_Quotations
+				)
+				Subject_field as "Subject"
+				Grand_Total as "Grand Total"
+				Sub_Total as "Sub Total"
+				Tax as "Tax (%)"
+				Tax_Amount as "Tax Amount"
+				Discount
+				Discounted_Amount as "Discount Amount"
+				Terms_Conditions as "Terms & Conditions"
+			)
+			options
+			(
+	 			display field = Quote_Status
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Subject_field as "Subject"
+							Client_Name as "Client Name"
+							Quotation_Number1 as "Quotation Number"
+							Quotation_Date as "Quotation Date"
+							Grand_Total as "Grand Total"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Subject_field as "Subject"
+							Client_Name as "Client Name"
+							Quote_Status as "Quotation Status"
+							Quotation_Request_Number as "Quotation Request Number"
+							Quotation_Number1 as "Quotation Number"
+							Quotation_Date as "Quotation Date"
+							Expiry_Date as "Expiry Date"
+							Quote_Owner as "Quotation Owner"
+							Terms_Conditions as "Terms & Conditions"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field =  Products_On_Quote
+						fields
+						(
+							Product_Services_Name as "Product / Services Name"
+							Unit
+							Rate
+							Quantity
+							Amount
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Quotation Value"
+						fields
+						(
+							Sub_Total as "Sub Total"
+							Tax as "Tax (%)"
+							Tax_Amount as "Tax Amount"
+							Discount
+							Discounted_Amount as "Discount Amount"
+							Grand_Total as "Grand Total"
+							Terms_Conditions as "Terms & Conditions"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list New_Quotations
+		{
+			displayName = "New Quotations"
+			show all rows from Create_Quotation  [Quote_Status == "New"]  
+			(
+				custom action "Send To Client"
+				(
+	  			workflow = Send_To_Client1
+				column header = "Send To Client"
+				success message = ""
+				)
+				Quote_Status as "Quotation Status"
+				Subject_field as "Subject"
+				custom action "Change Status"
+				(
+	  			workflow = Change_Status1
+				column header = "Change Status"
+				success message = ""
+				condition = (Quote_Status == "New")
+				)
+				Client_Name as "Client Name"
+				Quotation_Date as "Quotation Date"
+				Products_On_Quote.Product_Services_Name as "Products On Quote"
+				(
+					view = Product_Service_Subform_Report
+				)
+				Expiry_Date as "Expiry Date"
+				Grand_Total as "Grand Total"
+				Tax_Amount as "Tax Amount"
+				Discounted_Amount as "Discount Amount"
+				Send_quotation_in_mail as "Send quotation in mail"
+				Quotation_Number1 as "Quotation Number"
+				Quotation_Request_Number as "Quotation Request Number"
+				(
+					view = All_Requested_Quotations
+				)
+			)
+			options
+			(
+				icon = "business-books"
+	 		)
+			conditional formatting
+			(
+				"New Formatting"
+				{
+				fields = [Quote_Status]
+				format = "font-weight:bold;font-style:italic;color:#00b339;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+				"Send To Client"
+				"Change Status"
+							Quote_Status as "Quotation Status"
+							Subject_field as "Subject"
+							Client_Name as "Client Name"
+							Quotation_Date as "Quotation Date"
+							Expiry_Date as "Expiry Date"
+							Grand_Total as "Grand Total"
+							Tax_Amount as "Tax Amount"
+							Discounted_Amount as "Discount Amount"
+							Send_quotation_in_mail as "Send quotation in mail"
+							Quotation_Number1 as "Quotation Number"
+							Quotation_Request_Number as "Quotation Request Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+				"Send To Client"
+				"Change Status"
+							Quote_Status as "Quotation Status"
+							Subject_field as "Subject"
+							Client_Name as "Client Name"
+							Quotation_Date as "Quotation Date"
+							Expiry_Date as "Expiry Date"
+							Grand_Total as "Grand Total"
+							Tax_Amount as "Tax Amount"
+							Discounted_Amount as "Discount Amount"
+							Send_quotation_in_mail as "Send quotation in mail"
+							Quotation_Number1 as "Quotation Number"
+							Quotation_Request_Number as "Quotation Request Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Sent_To_Client
+		{
+			displayName = "Sent To Client"
+			template = Quote_View
+			print template = Quote_View
+			show all rows from Create_Quotation  [Quote_Status == "Sent To Client"]  
+			(
+				Quote_Status as "Quotation Status"
+				custom action "Change Status"
+				(
+	  			workflow = Change_Status2
+				column header = "Change Status"
+				success message = ""
+				condition = (Quote_Status == "Sent To Client")
+				)
+				Subject_field as "Subject"
+				Client_Name as "Client Name"
+				Quotation_Date as "Quotation Date"
+				Products_On_Quote.Product_Services_Name as "Products On Quote"
+				(
+					view = Product_Service_Subform_Report
+				)
+				Expiry_Date as "Expiry Date"
+				Grand_Total as "Grand Total"
+			)
+			options
+			(
+				icon = "arrows-1-share-92"
+	 		)
+			conditional formatting
+			(
+				"New Formatting"
+				{
+				fields = [Quote_Status]
+				format = "font-weight:bold;font-style:italic;color:#00b339;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Quote_Status as "Quotation Status"
+				"Change Status"
+							Subject_field as "Subject"
+							Client_Name as "Client Name"
+							Quotation_Date as "Quotation Date"
+							Expiry_Date as "Expiry Date"
+							Grand_Total as "Grand Total"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Quote_Status as "Quotation Status"
+				"Change Status"
+							Subject_field as "Subject"
+							Client_Name as "Client Name"
+							Quotation_Date as "Quotation Date"
+							Expiry_Date as "Expiry Date"
+							Grand_Total as "Grand Total"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Accepted
+		{
+			displayName = "Accepted"
+			show all rows from Create_Quotation  [Quote_Status == "Accepted"]  
+			(
+				Quote_Status as "Quotation Status"
+				Subject_field as "Subject"
+				Client_Name as "Client Name"
+				Quotation_Date as "Quotation Date"
+				Products_On_Quote.Product_Services_Name as "Products On Quote"
+				(
+					view = Product_Service_Subform_Report
+				)
+				Expiry_Date as "Expiry Date"
+				Grand_Total as "Grand Total"
+			)
+			options
+			(
+				icon = "emoticons-like"
+	 		)
+			conditional formatting
+			(
+				"New Formatting"
+				{
+				fields = [Quote_Status]
+				format = "font-weight:bold;font-style:italic;color:#00b339;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Quote_Status as "Quotation Status"
+							Subject_field as "Subject"
+							Client_Name as "Client Name"
+							Quotation_Date as "Quotation Date"
+							Expiry_Date as "Expiry Date"
+							Grand_Total as "Grand Total"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Quote_Status as "Quotation Status"
+							Subject_field as "Subject"
+							Client_Name as "Client Name"
+							Quotation_Date as "Quotation Date"
+							Expiry_Date as "Expiry Date"
+							Grand_Total as "Grand Total"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Declined
+		{
+			displayName = "Declined"
+			show all rows from Create_Quotation  [Quote_Status == "Declined"]  
+			(
+				Quote_Status as "Quotation Status"
+				Subject_field as "Subject"
+				Client_Name as "Client Name"
+				Quotation_Date as "Quotation Date"
+				Products_On_Quote.Product_Services_Name as "Products On Quote"
+				(
+					view = Product_Service_Subform_Report
+				)
+				Expiry_Date as "Expiry Date"
+				Grand_Total as "Grand Total"
+			)
+			options
+			(
+				icon = "emoticons-like-no"
+	 		)
+			conditional formatting
+			(
+				"New Formatting"
+				{
+				fields = [Quote_Status]
+				format = "font-weight:bold;font-style:italic;color:#00b339;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Quote_Status as "Quotation Status"
+							Subject_field as "Subject"
+							Client_Name as "Client Name"
+							Quotation_Date as "Quotation Date"
+							Expiry_Date as "Expiry Date"
+							Grand_Total as "Grand Total"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Quote_Status as "Quotation Status"
+							Subject_field as "Subject"
+							Client_Name as "Client Name"
+							Quotation_Date as "Quotation Date"
+							Expiry_Date as "Expiry Date"
+							Grand_Total as "Grand Total"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Analyze_decline
+		{
+			displayName = "Analyze decline"
+			show all rows from Create_Quotation  [Quote_Status == "Analyze decline"]  
+			(
+				Quote_Status as "Quotation Status"
+				Subject_field as "Subject"
+				Client_Name as "Client Name"
+				Quotation_Date as "Quotation Date"
+				Products_On_Quote.Product_Services_Name as "Products On Quote"
+				(
+					view = Product_Service_Subform_Report
+				)
+				Expiry_Date as "Expiry Date"
+				Grand_Total as "Grand Total"
+			)
+			options
+			(
+				icon = "ui-1-bold-remove"
+	 		)
+			conditional formatting
+			(
+				"New Formatting"
+				{
+				fields = [Quote_Status]
+				format = "font-weight:bold;font-style:italic;color:#00b339;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Quote_Status as "Quotation Status"
+							Subject_field as "Subject"
+							Client_Name as "Client Name"
+							Quotation_Date as "Quotation Date"
+							Expiry_Date as "Expiry Date"
+							Grand_Total as "Grand Total"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Quote_Status as "Quotation Status"
+							Subject_field as "Subject"
+							Client_Name as "Client Name"
+							Quotation_Date as "Quotation Date"
+							Expiry_Date as "Expiry Date"
+							Grand_Total as "Grand Total"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Users
+	{
+		icon = "users-multiple-11"
+		form Add_User
+		{
+			displayname = "Add User"
+			success message = "User Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Name1
+			(
+    			type = name
+				displayname = "Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Department
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-2-a-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list All_Users
+		{
+			displayName = "All Users"
+			show all rows from Add_User    
+			(
+				Email
+			)
+			options
+			(
+				icon = "users-single-03"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Email
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Email
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Products_Services
+	{
+		displayname= "Products / Services"
+		icon = "shopping-box-3d-50"
+		form Add_Product_Service
+		{
+			displayname = "Add Product / Service"
+			success message = "Product / Service Added Successfully!"
+			field alignment = left
+			feature property = 32
+			must have Product_Service_Name
+			(
+    			type = text
+				displayname = "Product / Service Name"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Rate
+			(
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Unit
+			(
+				type = picklist
+				values = {"Box", "Carton", "Caton", "Dozen", "Each", "Hour(s)", "Impressions", "Lb", "M", "Pack", "Pages", "Pieces", "Quantity", "Reams", "Sheet", "Spiral Binder", "Square Feet"}
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Available_Quantity
+			(
+				type = number
+				displayname = "Available Quantity"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list All_Products_Services
+		{
+			displayName = "All Products / Services"
+			show all rows from Add_Product_Service    
+			(
+				Product_Service_Name as "Product / Service Name"
+				Rate
+				Unit
+				Available_Quantity as "Available Quantity"
+			)
+			options
+			(
+				icon = "ui-2-grid-49"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Product_Service_Name as "Product / Service Name"
+							Rate
+							Unit
+							Available_Quantity as "Available Quantity"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Product_Service_Name as "Product / Service Name"
+							Rate
+							Unit
+							Available_Quantity as "Available Quantity"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Clients
+	{
+		icon = "users-2-standing-man"
+		list All_Clients
+		{
+			displayName = "All Clients"
+   			hide = true
+			show all rows from Add_Client    
+			(
+				Email
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+			)
+			options
+			(
+				icon = "users-multiple-11"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Email
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Email
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		form Add_Client
+		{
+			displayname = "Add Client"
+			success message = "Client Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section1
+			(
+				type = section
+				displayname = "Section"
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Client_Name
+			(
+    			type = text
+				displayname = "Client / Company Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		map All_Clients1
+		{
+			displayName = "All Clients"
+			show all rows from Add_Client    
+			(
+				Client_Name as "Client / Company Name"
+				Email
+				Phone_Number as "Phone Number"
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+			)
+			options
+			(
+	 			display field = Address
+	 	 		radius = 100 Miles
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = 1
+		     			title = "Overview"
+						fields
+						(
+							Client_Name as "Client / Company Name"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Client_Name as "Client / Company Name"
+							Email
+							Phone_Number as "Phone Number"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Admin
+	{
+		icon = "ui-1-lock-circle-open"
+		form Create_Company
+		{
+			displayname = "Create Company"
+			success message = "Company Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = ""
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Company_Name
+			(
+    			type = text
+				displayname = "Company Name"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Address1
+			(
+    			type = address
+				displayname = "Address"
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Logo
+			(
+    			type = image
+				source  = public_url,file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Website
+			(
+    			type = url
+	 			row = 1
+	 			column = 1   
+				width = 140px
+			)
+			must have Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		properties
+		{
+			total entries
+			{
+				allowed count = 1
+			}
+		}
+		}
+		list Company_Details
+		{
+			displayName = "Company Details"
+			show all rows from Create_Company    
+			(
+				Company_Name as "Company Name"
+				Website
+				Logo
+			)
+			options
+			(
+				icon = "business-building"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Company_Name as "Company Name"
+							Website
+							Logo
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Company_Name as "Company Name"
+							Website
+							Logo
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Others
+	{
+		hide = true
+		icon = "ui-2-menu-bold"
+		form Product_Service_Subform
+		{
+			displayname = "Product / Service Subform"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			must have Product_Services_Name
+			(
+				type = picklist
+				displayname = "Product / Services Name"
+				values  = Add_Product_Service.ID
+    			displayformat = [Product_Service_Name]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Unit
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Rate
+			(
+				type = picklist
+				values  = Add_Product_Service.ID
+    			displayformat = [Rate]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Quantity
+			(
+				type = number
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Amount
+			(
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Status_Selection
+		{
+			displayname = "Status Selection"
+			store data in zc = false
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			QuotationRecID
+			(
+				type = picklist
+				values  = Create_Quotation.ID
+    			displayformat = [ID]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Select_Status
+			(
+				type = picklist
+				displayname = "Select Status"
+				values = {"Sent To Client", "Accepted", "Declined", "Analyze decline"}
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				Change
+				(
+   					type = button
+   					displayname = "Change"
+				)
+			}
+		}
+		list Product_Service_Subform_Report
+		{
+			displayName = "Product / Service Subform Report"
+   			hide = true
+			show all rows from Product_Service_Subform    
+			(
+				Product_Services_Name as "Product / Services Name"
+				Rate
+				Quantity
+				Unit
+				Amount
+			)
+			options
+			(
+				icon = "ui-2-grid-49"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Product_Services_Name as "Product / Services Name"
+							Rate
+							Quantity
+							Unit
+							Amount
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Product_Services_Name as "Product / Services Name"
+							Rate
+							Quantity
+							Unit
+							Amount
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Quotation_Requests
+	{
+		displayname= "Quotation Requests"
+		icon = "gestures-active-40"
+		form Request_Quotation
+		{
+			displayname = "Request Quotation"
+			success message = "Quotation Request Sent Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Client_Name
+			(
+				type = picklist
+				displayname = "Client Name"
+				values  = Add_Client.ID
+    			displayformat = [Client_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Required_Before
+			(
+    			type = date
+				displayname = "Required Before"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Status
+			(
+				type = radiobuttons
+				values = {"Pending", "Sent to client", "Rejected"}
+				initial value = "Pending"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Quotation_Request_Number
+			(
+    			type = autonumber
+				displayname = "Quotation Request Number"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Created_Quotation
+			(
+				type = picklist
+				displayname = "Created Quotation"
+				values  = Create_Quotation.ID
+    			bidirectional = Quotation_Request_Number
+    			displayformat = [Quotation_Number1]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Items_On_Quote
+			(
+				type = grid
+				displayname = "Items On Quote"
+	    
+				must have Product_Service
+				(
+					type = picklist
+					displayname = "Product / Service"
+					values  = Add_Product_Service.ID
+    				displayformat = [Product_Service_Name]
+					searchable = true
+					sortorder = ascending
+					width = 200px
+				)
+				must have Quantity
+				(
+					type = number
+					maxchar = 5
+					width = 200px
+				)
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		print template
+			{
+				Quotation_Request_Summary
+				{
+						content = {"layout":"1","pageNumberOption":null,"orientation":null,"isFooterEnabled":false,"mainLayout":[{"elements":[{"id":"elem_16221b977e6","type":"lookupfields","element":{"valueStyle":"font-size: 13px;border-top-right-radius: 5px; width: 50%; border-right: 1px solid #9e9e9e; border-top: 1px solid #9e9e9e;","valueTextStyle":"text-align: center;","fieldLayoutType":"2","related_Form":"Add_Client","labelText":"Client Name","wrapperStyle":"","labelStyle":"font-size: 13px; width: 50%; border-top: 1px solid #9e9e9e; border-left: 1px solid #9e9e9e; border-right: 1px solid #9e9e9e;border-top-left-radius: 5px;","Label_Name":"Client_Name","refFields":[{"valueStyle":"font-size: 13px;","fieldLayoutType":"2","labelText":"Client / Company Name","labelStyle":"font-size: 13px;display:none;","Label_Name":"Client_Name"}],"labelTextStyle":"font-size: 13px;"}},{"id":"elem_16221b9c9fb","type":"fields","element":{"valueStyle":"font-size: 13px; width: 50%; border-top: 1px solid #9e9e9e; border-right: 1px solid #9e9e9e;","valueTextStyle":"font-size: 13px; text-align: center;","fieldLayoutType":"2","labelText":"Required Before","wrapperStyle":"font-size: 13px;","labelStyle":"font-size: 13px; width: 50%; border-top: 1px solid #9e9e9e; border-left: 1px solid #9e9e9e; border-right: 1px solid #9e9e9e;","Label_Name":"Required_Before","labelTextStyle":"font-size: 13px;"}},{"id":"elem_16221b9d8c6","type":"fields","element":{"valueStyle":"font-size: 13px; width: 50%; border-top: 1px solid #9e9e9e; border-right: 1px solid #9e9e9e;","valueTextStyle":"font-size: 13px; text-align: center;","fieldLayoutType":"2","labelText":"Quotation Request Number","wrapperStyle":"font-size: 13px;","labelStyle":"font-size: 13px; width: 50%; border-top: 1px solid #9e9e9e; border-left: 1px solid #9e9e9e; border-right: 1px solid #9e9e9e;","Label_Name":"Quotation_Request_Number","labelTextStyle":"font-size: 13px;"}},{"id":"elem_16221b9e6b3","type":"lookupfields","element":{"valueStyle":"font-size: 13px; width: 50%; border-right: 1px solid #9e9e9e;border-bottom-right-radius: 5px; border-top: 1px solid #9e9e9e; border-bottom: 1px solid #9e9e9e;","valueTextStyle":"text-align: center;","fieldLayoutType":"2","related_Form":"ZC_SUBFORM_735","labelText":"Items On Quote","wrapperStyle":"font-size: 13px;","labelStyle":"width: 50%; border-width: 1px; border-style: solid; border-color: #9e9e9e;border-bottom-left-radius: 5px;","Label_Name":"Items_On_Quote","refFields":[{"fieldLayoutType":"2","labelText":"Product / Service","Label_Name":"Product_Service"},{"fieldLayoutType":"2","labelText":"Quantity","Label_Name":"Quantity"}],"labelTextStyle":"font-size: 13px;"}}],"id":1}],"resize":"default","templateStyle":"text-align: left; width: 100%; margin: 0 auto;","isHeaderEnabled":false}
+				}
+			}
+		}
+		list All_Requested_Quotations
+		{
+			displayName = "All Requests"
+			show all rows from Request_Quotation    
+			(
+				Client_Name as "Client Name"
+				Required_Before as "Required Before"
+				Items_On_Quote.Product_Service as "Items On Quote"
+				Items_On_Quote.Quantity as "Items On Quote.Quantity"
+				Status
+				Quotation_Request_Number as "Quotation Request Number"
+				custom action "Reject"
+				(
+	  			workflow = Reject
+				column header = "Reject"
+				success message = "Quotation Request Rejected."
+				condition = (Status == "Pending")
+				)
+				Created_Quotation as "Created Quotation"
+				custom action "Create Quotation"
+				(
+	  			workflow = Create_Quotation
+				column header = "Create Quotation"
+				success message = ""
+				condition = (Status == "Pending")
+				)
+			)
+			options
+			(
+				icon = "files-single-folded"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Client_Name as "Client Name"
+							Required_Before as "Required Before"
+							Status
+							Quotation_Request_Number as "Quotation Request Number"
+				"Reject"
+				"Create Quotation"
+							Created_Quotation as "Created Quotation"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Client_Name as "Client Name"
+							Required_Before as "Required Before"
+							Status
+							Quotation_Request_Number as "Quotation Request Number"
+				"Reject"
+				"Create Quotation"
+							Created_Quotation as "Created Quotation"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Requested_Quotation
+		{
+			displayName = "My Requests"
+			show all rows from Request_Quotation  [Client_Name.Email == zoho.loginuserid]  
+			(
+				Client_Name as "Client Name"
+				Required_Before as "Required Before"
+				Items_On_Quote.Product_Service as "Items On Quote"
+				Items_On_Quote.Quantity as "Items On Quote.Quantity"
+			)
+			options
+			(
+				icon = "files-single-content-02"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Client_Name as "Client Name"
+							Required_Before as "Required Before"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Client_Name as "Client Name"
+							Required_Before as "Required Before"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Overdue_Quotation_Requests
+		{
+			displayName = "Overdue Requests"
+			show all rows from Request_Quotation  [Status == "Pending" && Required_Before < zoho.currentdate]  
+			(
+				Client_Name as "Client Name"
+				Required_Before as "Required Before"
+				Items_On_Quote.Product_Service as "Items On Quote"
+				Items_On_Quote.Quantity as "Items On Quote.Quantity"
+				Status
+				Quotation_Request_Number as "Quotation Request Number"
+				Created_Quotation as "Created Quotation"
+				custom action "Reject"
+				(
+	  			workflow = Reject1
+				column header = "Reject"
+				success message = "Quotation Request Rejected."
+				condition = (Status == "Pending")
+				)
+				custom action "Create Quotation"
+				(
+	  			workflow = Create_Quotation1
+				column header = "Create Quotation"
+				success message = ""
+				condition = (Status == "Pending")
+				)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Client_Name as "Client Name"
+							Required_Before as "Required Before"
+							Status
+							Quotation_Request_Number as "Quotation Request Number"
+							Created_Quotation as "Created Quotation"
+				"Reject"
+				"Create Quotation"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Client_Name as "Client Name"
+							Required_Before as "Required Before"
+							Status
+							Quotation_Request_Number as "Quotation Request Number"
+							Created_Quotation as "Created Quotation"
+				"Reject"
+				"Create Quotation"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	functions
+	{
+ 			void openUrl.StatusChangePopUp(int id)
+			{
+				openUrl("#Form:Status_Selection?zc_Header=false&QuotationRecID=" + id,"popup window");
+			}
+ 			void RecUpdate.ChangeStatus(int id, string status)
+			{
+				quoteRec = Create_Quotation[ID == input.id];
+				quoteRec.Quote_Status=status;
+				//Closing the popup
+				openUrl("#Script:dialog.close","same window");
+			}
+ 			void quoteRequest.rejectQuote(int id)
+			{
+				quotationRequest = Request_Quotation[ID == input.id];
+				quotationRequest.Status="Rejected";
+			}
+ 			void quoteRequest.createQuotation(int requestID)
+			{
+				openUrl("#Form:Create_Quotation?Quotation_Request_Number=" + requestID,"same window");
+			}
+ 			void openUrl.sendToClientEdit(int id, string status)
+			{
+				openUrl("#Form:Create_Quotation?recLinkID=" + id + "&viewLinkName=New_Quotations&Quote_Status=Sent To Client","popup window");
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Delete_record_scripts2 as "Delete record scripts"
+			{
+				type =  form
+				form = Add_Client
+				record event = on delete
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Unsharing the Request Quotation form and report once th client is been deleted
+										thisapp.permissions.deleteUser(input.Email);
+						)
+					}
+	}
+
+			}
+			Delete_record_scripts3 as "Delete record scripts"
+			{
+				type =  form
+				form = Add_User
+				record event = on delete
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											// Unsharing forms and reports with deleted user
+										thisapp.permissions.deleteUser(input.Email);
+						)
+					}
+	}
+
+			}
+			Field_scripts3 as "Field scripts"
+			{
+				type =  form
+				form = Product_Service_Subform
+				record event = on add or edit
+
+	on user input of Product_Services_Name
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Rate = input.Product_Services_Name;
+										productRec = Add_Product_Service[ID == input.Product_Services_Name];
+										input.Unit = productRec.Unit;
+						)
+					}
+	}
+
+			}
+			Field_scripts4 as "Field scripts"
+			{
+				type =  form
+				form = Request_Quotation
+				record event = on add or edit
+
+	on user input of Items_On_Quote.Quantity
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//checking if the entered quantity is minimum 1
+										if(row.Quantity < 1)
+										{
+											alert "Quantity cannot be less than 1.!";
+											row.Quantity=null;
+										}
+						)
+					}
+	}
+
+			}
+			Field_scripts5 as "Field scripts"
+			{
+				type =  form
+				form = Request_Quotation
+				record event = on add or edit
+
+	on user input of Required_Before
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Add_Client[Email == zoho.loginuserid].count() != 0 && input.Required_Before < zoho.currentdate)
+										{
+											alert "Required before cannot be the past date.!";
+											input.Required_Before = null;
+										}
+						)
+					}
+	}
+
+			}
+			Field_scripts6 as "Field scripts"
+			{
+				type =  form
+				form = Request_Quotation
+				record event = on add or edit
+
+	on add row of Items_On_Quote
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Removing already selected items in quote from the product/services name options
+										products = Add_Product_Service[ID != 0].ID.getAll();
+										for each  item in Items_On_Quote
+										{
+											products.removeelement(item.Product_Service);
+										}
+										row.Product_Service:ui.add(products);
+						)
+					}
+	}
+
+			}
+			New_Rule1 as "New Rule"
+			{
+				type =  form
+				form = Create_Quotation
+				record event = on edit
+
+	field rules
+	{
+					actions  (Quote_Status != "New")
+					{
+					hide add row of Products_On_Quote;
+					hide delete row of Products_On_Quote;
+					}
+	}
+
+			}
+			Edit_record_scripts4 as "Edit record scripts"
+			{
+				type =  form
+				form = Request_Quotation
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Hiding client name and Created_Quotation
+										hide Client_Name;
+										hide Created_Quotation;
+						)
+					}
+	}
+
+			}
+			Create_record_scripts8 as "Create record scripts"
+			{
+				type =  form
+				form = Add_User
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Opening Create Company form to add users company details first
+										if(Create_Company[ID != 0].count(ID) == 0)
+										{
+											openUrl("#Form:Create_Company","same window");
+										}
+						)
+					}
+	}
+
+			}
+			Create_record_scripts9 as "Create record scripts"
+			{
+				type =  form
+				form = Add_User
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											// sharing forms and reports with newly added user
+										var = thisapp.permissions.assignUserInProfile(input.Email,"Company Users");
+										//send mail to intimate user about app and share the app link
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Email
+											subject :"Invitation to access Quotation Mangement"
+											message :("Hi " + input.Name1) + ",<br><br>Welcome to Quotation Management. To complement your efforts, we have added you as a user in Quotation Management application, which will help you maintain all tasks related to quotation management.<br><br>Application link : http://creator.zoho.com" + zoho.appuri + "#<br><br>Thanks,<br> Admin"
+										]
+						)
+					}
+	}
+
+			}
+			Edit_record_scripts5 as "Edit record scripts"
+			{
+				type =  form
+				form = Add_User
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Email != old.Email)
+										{
+											// sharing forms and reports with new email user
+											var = thisapp.permissions.assignUserInProfile(input.Email,"Company Users");
+											// Unsharing forms and reports with old email user
+											thisapp.permissions.deleteUser(old.Email);
+											//send mail to intimate user about app and share the app link
+											//send mail to intimate user about app and share the app link
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :input.Email
+												subject :"Invitation to access Quotation Mangement"
+												message :("Hi " + input.Name1) + ",<br><br>Welcome to Quotation Management. To complement your efforts, we have added you as a user in Quotation Management application, which will help you maintain all tasks related to quotation management.<br><br>Application link : http://creator.zoho.com" + zoho.appuri + "#<br><br>Thanks,<br> Admin"
+											]
+										}
+						)
+					}
+	}
+
+			}
+			Field_scripts7 as "Field scripts"
+			{
+				type =  form
+				form = Create_Quotation
+				record event = on add or edit
+
+	on user input of Products_On_Quote.Product_Services_Name
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Updating rate, sub_total and grand_total fields based on input of the product/service
+										if(row.Product_Services_Name != null)
+										{
+											row.Rate=row.Product_Services_Name;
+											ProductRec = Add_Product_Service[ID == row.Product_Services_Name];
+											row.Unit=ProductRec.Unit;
+											//Updating the sub total and grand total
+											if(input.Sub_Total != 0 && input.Sub_Total != null && row.Quantity != null)
+											{
+												input.Sub_Total = input.Sub_Total - row.Amount;
+												discountAmount = input.Discount / 100 * input.Sub_Total;
+												taxAmount = input.Tax / 100 * input.Sub_Total;
+												input.Grand_Total = input.Sub_Total - discountAmount + taxAmount;
+												input.Discounted_Amount = discountAmount;
+												input.Tax_Amount = taxAmount;
+											}
+											row.Quantity=0;
+											row.Amount=0;
+										}
+										else
+										{
+											row.Rate=null;
+											row.Unit=null;
+											//Updating the sub total and grand total
+											if(input.Sub_Total != 0 && input.Sub_Total != null && row.Quantity != null)
+											{
+												input.Sub_Total = input.Sub_Total - row.Amount;
+												discountAmount = input.Discount / 100 * input.Sub_Total;
+												taxAmount = input.Tax / 100 * input.Sub_Total;
+												input.Grand_Total = input.Sub_Total - discountAmount + taxAmount;
+												input.Discounted_Amount = discountAmount;
+												input.Tax_Amount = taxAmount;
+											}
+											row.Quantity=null;
+											row.Amount=null;
+										}
+						)
+					}
+	}
+
+			}
+			Field_scripts8 as "Field scripts"
+			{
+				type =  form
+				form = Create_Quotation
+				record event = on add or edit
+
+	on user input of Tax
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Tax == null)
+										{
+											alert "Tax percentage cannot be empty.";
+											input.Tax = 0;
+										}
+										discountAmount = input.Discount / 100 * input.Sub_Total;
+										taxAmount = input.Tax / 100 * input.Sub_Total;
+										input.Discounted_Amount = discountAmount;
+										input.Tax_Amount = taxAmount;
+										input.Grand_Total = input.Sub_Total - discountAmount + taxAmount;
+						)
+					}
+	}
+
+			}
+			Field_scripts9 as "Field scripts"
+			{
+				type =  form
+				form = Create_Quotation
+				record event = on add or edit
+
+	on user input of Quote_Status
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Quote_Status == "New")
+										{
+											input.Send_quotation_in_mail = null;
+											disable Send_quotation_in_mail;
+											hide Send_quotation_in_mail;
+										}
+										else
+										{
+											show Send_quotation_in_mail;
+											enable Send_quotation_in_mail;
+										}
+						)
+					}
+	}
+
+			}
+			Field_scripts10 as "Field scripts"
+			{
+				type =  form
+				form = Create_Quotation
+				record event = on add or edit
+
+	on user input of Discount
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Discount == null)
+										{
+											alert "Discount percentage cannot be empty.";
+											input.Discount = 0;
+										}
+										discountAmount = input.Discount / 100 * input.Sub_Total;
+										taxAmount = input.Tax / 100 * input.Sub_Total;
+										input.Grand_Total = input.Sub_Total - discountAmount + taxAmount;
+										input.Discounted_Amount = discountAmount;
+										input.Tax_Amount = taxAmount;
+						)
+					}
+	}
+
+			}
+			Field_scripts11 as "Field scripts"
+			{
+				type =  form
+				form = Create_Quotation
+				record event = on add or edit
+
+	on user input of Quotation_Request_Number
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											quoteRequest = Request_Quotation[ID == input.Quotation_Request_Number];
+										input.Client_Name = quoteRequest.Client_Name;
+						)
+					}
+	}
+
+			}
+			Field_scripts12 as "Field scripts"
+			{
+				type =  form
+				form = Create_Quotation
+				record event = on add or edit
+
+	on user input of Products_On_Quote.Quantity
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//checking if the entered quantity is minimum 1
+										if(row.Quantity >= 1)
+										{
+											//Selected item amount calculation and total amount calculation
+											row.Amount=row.Rate.Rate * row.Quantity;
+											totalAmount = 0.0;
+											for each  item in Products_On_Quote
+											{
+												totalAmount = totalAmount + item.Amount;
+											}
+											input.Sub_Total = totalAmount;
+											discountAmount = input.Discount / 100 * input.Sub_Total;
+											taxAmount = input.Tax / 100 * input.Sub_Total;
+											input.Grand_Total = input.Sub_Total - discountAmount + taxAmount;
+											input.Discounted_Amount = discountAmount;
+											input.Tax_Amount = taxAmount;
+										}
+										else
+										{
+											alert "Quantity cannot be less than 1.!";
+											row.Quantity=null;
+										}
+						)
+					}
+	}
+
+			}
+			Field_scripts13 as "Field scripts"
+			{
+				type =  form
+				form = Create_Quotation
+				record event = on add or edit
+
+	on user input of Expiry_Date
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Expiry_Date < input.Quotation_Date)
+										{
+											alert "Expiry date should be date after quotation date.!";
+											input.Expiry_Date = null;
+										}
+						)
+					}
+	}
+
+			}
+			Field_scripts14 as "Field scripts"
+			{
+				type =  form
+				form = Create_Quotation
+				record event = on add or edit
+
+	on user input of Quotation_Date
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Expiry_Date != null && input.Quotation_Date > input.Expiry_Date)
+										{
+											alert "Quotation_Date should be date before expiry date.!";
+											input.Quotation_Date = null;
+										}
+						)
+					}
+	}
+
+			}
+			Field_scripts15 as "Field scripts"
+			{
+				type =  form
+				form = Create_Quotation
+				record event = on add or edit
+
+	on add row of Products_On_Quote
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//if quotation request is for quotation request then fetching products/services from the request and adding it to the row
+										if(input.Quotation_Request_Number != null)
+										{
+											clear row.Product_Services_Name;
+											quotationRequest = Request_Quotation[ID == input.Quotation_Request_Number];
+											rowNumber = 0;
+											for each  item in Products_On_Quote
+											{
+												rowNumber = rowNumber + 1;
+											}
+											requestRowNumber = 0;
+											for each  lineItem in quotationRequest.Items_On_Quote
+											{
+												requestRowNumber = requestRowNumber + 1;
+												if(requestRowNumber == rowNumber)
+												{
+													row.Product_Services_Name=lineItem.Product_Service;
+													row.Rate=row.Product_Services_Name;
+													ProductRec = Add_Product_Service[ID == row.Product_Services_Name];
+													row.Unit=ProductRec.Unit;
+													row.Quantity=lineItem.Quantity;
+													//Selected item amount calculation and total amount calculation
+													row.Amount=row.Rate.Rate * row.Quantity;
+													totalAmount = 0.0;
+													for each  item in Products_On_Quote
+													{
+														totalAmount = totalAmount + item.Amount;
+													}
+													input.Sub_Total = totalAmount;
+													discountAmount = input.Discount / 100 * input.Sub_Total;
+													taxAmount = input.Tax / 100 * input.Sub_Total;
+													input.Grand_Total = input.Sub_Total - discountAmount + taxAmount;
+													input.Discounted_Amount = discountAmount;
+													input.Tax_Amount = taxAmount;
+												}
+											}
+										}
+										else
+										{
+											//Removing already selected items in quote from the product/services name options
+											products = Add_Product_Service[ID != 0].ID.getAll();
+											for each  item in Products_On_Quote
+											{
+												products.removeelement(item.Product_Services_Name);
+											}
+											row.Product_Services_Name:ui.add(products);
+										}
+						)
+					}
+	}
+
+			}
+			Field_scripts16 as "Field scripts"
+			{
+				type =  form
+				form = Create_Quotation
+				record event = on add or edit
+
+	on delete row of Products_On_Quote
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Updating the sub total and grand total
+										if(input.Sub_Total != 0 && input.Sub_Total != null && row.Quantity != null)
+										{
+											input.Sub_Total = input.Sub_Total - row.Amount;
+											discountAmount = input.Discount / 100 * input.Sub_Total;
+											taxAmount = input.Tax / 100 * input.Sub_Total;
+											input.Grand_Total = input.Sub_Total - discountAmount + taxAmount;
+											input.Discounted_Amount = discountAmount;
+											input.Tax_Amount = taxAmount;
+										}
+						)
+					}
+	}
+
+			}
+			Create_record_scripts10 as "Create record scripts"
+			{
+				type =  form
+				form = Add_Product_Service
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Opening Create Company form to add users company details first
+										if(Create_Company[ID != 0].count(ID) == 0)
+										{
+											openUrl("#Form:Create_Company","same window");
+										}
+										//showing message to add product or services when user accesses the application for the first time
+										if(Add_Product_Service[ID != 0].count(ID) == 0)
+										{
+											alert "You can now add products or services which you offer.!";
+										}
+						)
+					}
+	}
+
+			}
+			Create_record_scripts11 as "Create record scripts"
+			{
+				type =  form
+				form = Add_Product_Service
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//opening Add_Client form
+										if(Add_Product_Service[ID != 0].count(ID) == 1)
+										{
+											openUrl("Form:Add_Client","same window");
+										}
+						)
+					}
+	}
+
+			}
+			Edit_record_scripts6 as "Edit record scripts"
+			{
+				type =  form
+				form = Add_Client
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//checking whether email has been changed
+										if(input.Email != old.Email)
+										{
+											//sending email to newly added client informing about app and sharing the app link in it.
+											companyDetails = Create_Company[ID != 0];
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :input.Email
+												subject :"You've been granted access to Quotaion Management by " + companyDetails.Company_Name
+												message :"Hi,<br><br>You've been granted access by " + companyDetails.Company_Name + " to the following portal in Quotation Management:<br><br><a href=\"https://app.zohocreator.com" + zoho.appuri + "#Form:Request_Quotation\" target=\"_blank\">Request Quotation</a><br><br><br>You can now access and request for new quotations.<br><br>Please email us back if you have questions about accessing the app.<br><br>Cheers,<br>" + companyDetails.Company_Name
+											]
+											//sharing request quotation form and report with the new email client
+											var = thisapp.permissions.assignUserInProfile(input.Email,"Clients");
+											//unsharing request quotation form and report with the old email client
+											thisapp.permissions.deleteUser(old.Email);
+										}
+						)
+					}
+	}
+
+			}
+			Create_record_scripts12 as "Create record scripts"
+			{
+				type =  form
+				form = Add_Client
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Opening Create Company form to add users company details first
+										if(Create_Company[ID != 0].count(ID) == 0)
+										{
+											openUrl("#Form:Create_Company","same window");
+										}
+										//showing message to add clients for whom you will be sending the quotaions when user accesses the application for the first time
+										if(Add_Client[ID != 0].count() == 0)
+										{
+											alert "You can now submit the client details to whom you will be sending the quotations.!";
+										}
+						)
+					}
+	}
+
+			}
+			Create_record_scripts13 as "Create record scripts"
+			{
+				type =  form
+				form = Add_Client
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//sending email to newly added client informing about app and sharing the app link in it.
+										companyDetails = Create_Company[ID != 0];
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Email
+											subject :"You've been granted access to Quotaion Management by " + companyDetails.Company_Name
+											message :"Hi,<br><br>You've been granted access by " + companyDetails.Company_Name + " to the following portal in Quotation Management:<br><br><a href=\"https://app.zohocreator.com" + zoho.appuri + "#Form:Request_Quotation\" target=\"_blank\">Request Quotation</a><br><br><br>You can now access and request for new quotations.<br><br>Please email us back if you have questions about accessing the app.<br><br>Cheers,<br>" + companyDetails.Company_Name
+										]
+										//sharing request quotation form and report with the client
+										var = thisapp.permissions.assignUserInProfile(input.Email,"Clients");
+										//opening Add_Client form
+										if(Add_Client[ID != 0].count() == 1)
+										{
+											openUrl("Form:Create_Quotation","same window");
+										}
+						)
+					}
+	}
+
+			}
+			Create_record_scripts14 as "Create record scripts"
+			{
+				type =  form
+				form = Create_Company
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Alert message to submit company details while accessing this application for the first time.
+										if(Create_Company[ID != 0].count(ID) == 0)
+										{
+											input.plain = "<h3 style='font-weight:bold;color:red;'>Please enter your company details to access this application.!</h3>";
+											show plain;
+										}
+										else
+										{
+											//hide plain ;
+											input.plain = "<h3 style='font-weight:bold;color:red;'>Please enter your company details to access this application.!</h3>";
+										}
+						)
+					}
+	}
+
+			}
+			Create_record_scripts15 as "Create record scripts"
+			{
+				type =  form
+				form = Create_Company
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//opening Add_Product_Service form
+										openUrl("Form:Add_Product_Service","same window");
+						)
+					}
+	}
+
+			}
+			Create_record_scripts16 as "Create record scripts"
+			{
+				type =  form
+				form = Product_Service_Subform
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											disable Unit;
+										disable Rate;
+						)
+					}
+	}
+
+			}
+			Create_record_scripts17 as "Create record scripts"
+			{
+				type =  form
+				form = Status_Selection
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide QuotationRecID;
+										quoteRec = Create_Quotation[ID == input.QuotationRecID];
+										input.Select_Status = quoteRec.Quote_Status;
+						)
+					}
+	}
+
+			}
+			Create_record_scripts18 as "Create record scripts"
+			{
+				type =  form
+				form = Request_Quotation
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Selecting client from loggedin client if loggedin user is not admin
+										if(Add_User[Email == zoho.loginuserid].count() == 0)
+										{
+											input.Client_Name = Add_Client[Email == zoho.loginuserid].ID;
+											disable Client_Name;
+											hide Status;
+										}
+										//Opening Create Company form to add users company details first
+										if(Create_Company[ID != 0].count(ID) == 0)
+										{
+											openUrl("#Form:Create_Company","same window");
+										}
+										//Created_Quotation field
+										hide Created_Quotation;
+						)
+					}
+	}
+
+			}
+			Create_record_scripts19 as "Create record scripts"
+			{
+				type =  form
+				form = Request_Quotation
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Notifing admin in mail about the new quote request
+										clientRec = Add_Client[ID == input.Client_Name];
+										sendmail
+										[
+											from :zoho.loginuserid
+											to :zoho.adminuserid
+											subject :"New Quote Request"
+											message :"Dear Admin,<div><br>An client " + clientRec.Client_Name + " has requested for the quotation.<br><br></div><div>Please find the details below.</div><div><br></div><div><br></div>"
+											Attachments :template:Quotation_Request_Summary as INLINE
+										]
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :clientRec.Email
+											subject :"New Quote Requested"
+											message :"Dear " + clientRec.Client_Name + ",<div><br>Your quotation request has been successfully raised.<br><br></div><div>Please find the details below.</div><div><br></div><div><br></div>"
+											Attachments :template:Quotation_Request_Summary as INLINE
+										]
+						)
+					}
+	}
+
+			}
+			Create_record_scripts20 as "Create record scripts"
+			{
+				type =  form
+				form = Create_Quotation
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Opening Create Company form to add user's company details first and to add admin as user after installation
+										if(Create_Company[ID != 0].count(ID) == 0)
+										{
+											if(Add_User[ID != 0].count() == 0)
+											{
+												insert into Add_User
+												[
+													Email=zoho.loginuserid
+													Name1.first_name="Admin"
+													Name1.last_name="User"
+													Added_User=zoho.loginuser
+												]
+											}
+											openUrl("#Form:Create_Company","same window");
+										}
+										// Default selecting quotation date and disabling the rate and unit in subform
+										input.Company_Details = Create_Company[ID != 0].ID;
+										hide Company_Details;
+										input.Quote_Owner = Add_User[Email == zoho.loginuserid].ID;
+										input.Quotation_Date = zoho.currentdate;
+										disable Products_On_Quote.Rate;
+										disable Products_On_Quote.Unit;
+										disable Sub_Total;
+										disable Grand_Total;
+										disable Discounted_Amount;
+										disable Tax_Amount;
+										disable Products_On_Quote.Amount;
+										//if quotation request is not null then selecting the client from the request
+										quoteRequest = Request_Quotation[ID == input.Quotation_Request_Number];
+										input.Client_Name = quoteRequest.Client_Name;
+										//Disabling 'Send_quotation_in_mail' option when the Quotation status is new else enabling it
+										if(input.Quote_Status == "New")
+										{
+											input.Send_quotation_in_mail = null;
+											disable Send_quotation_in_mail;
+											hide Send_quotation_in_mail;
+										}
+										else
+										{
+											enable Send_quotation_in_mail;
+											show Send_quotation_in_mail;
+										}
+						)
+					}
+	}
+
+			}
+			Create_record_scripts21 as "Create record scripts"
+			{
+				type =  form
+				form = Create_Quotation
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//if quotation is for quotation request then checking whether all the requested products/services are been added into the quote or not, if not added then alert and cancel submit
+										if(input.Quotation_Request_Number != null)
+										{
+											quotationRequest = Request_Quotation[ID == input.Quotation_Request_Number];
+											rowNumber = 0;
+											for each  item in Products_On_Quote
+											{
+												rowNumber = rowNumber + 1;
+											}
+											requestRowNumber = 0;
+											for each  lineItem in quotationRequest.Items_On_Quote
+											{
+												requestRowNumber = requestRowNumber + 1;
+											}
+											if(requestRowNumber != rowNumber)
+											{
+												alert "Please select all the requested product/services in the Products On Quote subform for the selected quotation request.!";
+												cancel submit;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Create_record_scripts22 as "Create record scripts"
+			{
+				type =  form
+				form = Create_Quotation
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Send quotation in pdf format to client in email
+										clientDetails = Add_Client[ID == input.Client_Name];
+										if(input.Quote_Status == "Sent To Client" || input.Send_quotation_in_mail)
+										{
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :clientDetails.Email
+												subject :"Quotation for " + clientDetails.Client_Name
+												message :"Greetings " + clientDetails.Client_Name + ", <br><br>Thank you for your recent enquiry. Please find the enclosed quoitation for your consideration.<br><br>Should you wish to instruct me further with this quotation or if you have any questions please do not hesitate to contact us.<br><br>Yours faithfully,<br>" + input.Company_Details.Company_Name
+												Attachments :template:Quote_View as PDF
+											]
+										}
+										//if quotation is for quotation request then changing the status of quotation request to sent to client
+										if(input.Quotation_Request_Number != null)
+										{
+											quotationRequest = Request_Quotation[ID == input.Quotation_Request_Number];
+											quotationRequest.Status="Sent to client";
+										}
+										if(input.Quote_Status == "New" && input.Send_quotation_in_mail)
+										{
+											input.Quote_Status = "Sent To Client";
+										}
+						)
+					}
+	}
+
+			}
+			Edit_record_scripts7 as "Edit record scripts"
+			{
+				type =  form
+				form = Create_Quotation
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Company_Details;
+										if(input.Send_quotation_in_mail)
+										{
+											disable Quote_Status;
+											disable Subject_field;
+											disable Quote_Owner;
+											disable Terms_Conditions;
+											disable Tax;
+											disable Quotation_Date;
+											disable Company_Details;
+											disable Sub_Total;
+											disable Discount;
+											disable Description;
+											disable Expiry_Date;
+											disable Client_Name;
+											disable Grand_Total;
+											disable Discounted_Amount;
+											disable Tax_Amount;
+											alert "Sorry this quotation is already sent to client, you cannot edit it now.!";
+										}
+										disable Products_On_Quote.Rate;
+										disable Products_On_Quote.Unit;
+										disable Sub_Total;
+										disable Grand_Total;
+										disable Discounted_Amount;
+										disable Tax_Amount;
+										disable Products_On_Quote.Amount;
+						)
+					}
+	}
+
+			}
+		}
+		functions
+		{
+			Change_Status as "Change Status"
+			{
+				type =  functions
+				form = Create_Quotation
+				on start
+				{
+					actions 
+					{
+					openUrl.StatusChangePopUp(ID);
+					}
+				}
+			}
+			Reject1 as "Reject"
+			{
+				type =  functions
+				form = Request_Quotation
+				on start
+				{
+					actions 
+					{
+					quoteRequest.rejectQuote(ID);
+					}
+				}
+			}
+			Reject as "Reject"
+			{
+				type =  functions
+				form = Request_Quotation
+				on start
+				{
+					actions 
+					{
+					quoteRequest.rejectQuote(ID);
+					}
+				}
+			}
+			Create_Quotation1 as "Create Quotation"
+			{
+				type =  functions
+				form = Request_Quotation
+				on start
+				{
+					actions 
+					{
+					quoteRequest.createQuotation(ID);
+					}
+				}
+			}
+			Change_Status2 as "Change Status"
+			{
+				type =  functions
+				form = Create_Quotation
+				on start
+				{
+					actions 
+					{
+					openUrl.StatusChangePopUp(ID);
+					}
+				}
+			}
+			Change_Status1 as "Change Status"
+			{
+				type =  functions
+				form = Create_Quotation
+				on start
+				{
+					actions 
+					{
+					openUrl.StatusChangePopUp(ID);
+					}
+				}
+			}
+			Create_Quotation as "Create Quotation"
+			{
+				type =  functions
+				form = Request_Quotation
+				on start
+				{
+					actions 
+					{
+					quoteRequest.createQuotation(ID);
+					}
+				}
+			}
+			Send_To_Client1 as "Send To Client"
+			{
+				type =  functions
+				form = Create_Quotation
+				on start
+				{
+					actions 
+					{
+					openUrl.sendToClientEdit(ID,Quote_Status);
+					}
+				}
+			}
+			Send_To_Client as "Send To Client"
+			{
+				type =  functions
+				form = Create_Quotation
+				on start
+				{
+					actions 
+					{
+					openUrl.sendToClientEdit(ID,Quote_Status);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"User"
+			{
+				name = "User"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "This profile only have add and view permission.\n"
+				ModulePermissions
+				{
+					Create_Company
+					{
+						FieldPermissions
+						{
+							Modified_User{visibility:false}
+							Modified_Time{visibility:false}
+							Website{visibility:false,readonly:false}
+							Phone_Number{visibility:false,readonly:false}
+							Address1{visibility:false,readonly:false}
+							Section{visibility:false,readonly:false}
+							Logo{visibility:false,readonly:false}
+							Modified_User_IP_Address{visibility:false}
+							Added_User_IP_Address{visibility:false}
+							plain{visibility:false,readonly:false}
+							Added_User{visibility:false}
+							Company_Name{visibility:false,readonly:false}
+							ID{visibility:false}
+							Added_Time{visibility:false}
+						}
+					}
+					Product_Service_Subform
+					{
+						FieldPermissions
+						{
+							Modified_User{visibility:false}
+							Modified_Time{visibility:false}
+							Rate{visibility:false,readonly:false}
+							Product_Services_Name{visibility:false,readonly:false}
+							Amount{visibility:false,readonly:false}
+							Quantity{visibility:false,readonly:false}
+							Unit{visibility:false,readonly:false}
+							Modified_User_IP_Address{visibility:false}
+							Added_User_IP_Address{visibility:false}
+							Added_User{visibility:false}
+							ID{visibility:false}
+							Added_Time{visibility:false}
+						}
+					}
+					Add_Client
+					{
+						FieldPermissions
+						{
+							Modified_User{visibility:false}
+							Client_Name{visibility:false,readonly:false}
+							Modified_Time{visibility:false}
+							Email{visibility:false,readonly:false}
+							Address{visibility:false,readonly:false}
+							Phone_Number{visibility:false,readonly:false}
+							Modified_User_IP_Address{visibility:false}
+							Added_User_IP_Address{visibility:false}
+							Section1{visibility:false,readonly:false}
+							Added_User{visibility:false}
+							ID{visibility:false}
+							Added_Time{visibility:false}
+						}
+					}
+					Add_Product_Service
+					{
+						FieldPermissions
+						{
+							Modified_User{visibility:false}
+							Added_User_IP_Address{visibility:false}
+							Modified_Time{visibility:false}
+							Product_Service_Name{visibility:false,readonly:false}
+							Rate{visibility:false,readonly:false}
+							Added_User{visibility:false}
+							ID{visibility:false}
+							Unit{visibility:false,readonly:false}
+							Available_Quantity{visibility:false,readonly:false}
+							Added_Time{visibility:false}
+							Modified_User_IP_Address{visibility:false}
+						}
+					}
+					Status_Selection
+					{
+						FieldPermissions
+						{
+							QuotationRecID{visibility:false,readonly:false}
+							Select_Status{visibility:false,readonly:false}
+						}
+					}
+					Add_User
+					{
+						FieldPermissions
+						{
+							Modified_User{visibility:false}
+							Modified_Time{visibility:false}
+							Email{visibility:false,readonly:false}
+							Phone_Number{visibility:false,readonly:false}
+							Section{visibility:false,readonly:false}
+							Modified_User_IP_Address{visibility:false}
+							Added_User_IP_Address{visibility:false}
+							Department{visibility:false,readonly:false}
+							Added_User{visibility:false}
+							ID{visibility:false}
+							Name1{visibility:false,readonly:false}
+							Added_Time{visibility:false}
+						}
+					}
+					Request_Quotation
+					{
+						FieldPermissions
+						{
+							Status{visibility:false,readonly:false}
+							Modified_User{visibility:false}
+							Client_Name{visibility:false,readonly:false}
+							Modified_Time{visibility:false}
+							Created_Quotation{visibility:false,readonly:false}
+							Quotation_Request_Number{visibility:false,readonly:false}
+							Required_Before{visibility:false,readonly:false}
+							Section{visibility:false,readonly:false}
+							Modified_User_IP_Address{visibility:false}
+							Added_User_IP_Address{visibility:false}
+							Items_On_Quote{visibility:false,readonly:false}
+							Added_User{visibility:false}
+							ID{visibility:false}
+							Added_Time{visibility:false}
+						}
+					}
+					Create_Quotation
+					{
+						enabled= Create,Viewall,Tab,View,Search 
+						FieldPermissions
+						{
+							Client_Name{visibility:true,readonly:false}
+							Grand_Total{visibility:true,readonly:false}
+							Expiry_Date{visibility:true,readonly:false}
+							Discount{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Quotation_Request_Number{visibility:true,readonly:false}
+							Company_Details{visibility:true,readonly:false}
+							Sub_Total{visibility:true,readonly:false}
+							Quotation_Date{visibility:true,readonly:false}
+							Tax{visibility:true,readonly:false}
+							Products_On_Quote{visibility:true,readonly:false}
+							Terms_Conditions{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Discounted_Amount{visibility:true,readonly:false}
+							Send_quotation_in_mail{visibility:true,readonly:false}
+							Tax_Amount{visibility:true,readonly:false}
+							Quote_Owner{visibility:true,readonly:false}
+							Subject_field{visibility:true,readonly:false}
+							Section1{visibility:false,readonly:false}
+							Quote_Status{visibility:true,readonly:false}
+							Quotation_Number1{visibility:true,readonly:false}
+						}
+					}
+				}
+			}
+			"Clients"
+			{
+				name = "Clients"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "Clients Profile\n"
+				ModulePermissions
+				{
+					Create_Company
+					{
+						FieldPermissions
+						{
+							plain{visibility:true,readonly:false}
+							Website{visibility:true,readonly:false}
+							Company_Name{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Address1{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Logo{visibility:true,readonly:false}
+						}
+					}
+					Product_Service_Subform
+					{
+						FieldPermissions
+						{
+							Quantity{visibility:true,readonly:false}
+							Unit{visibility:true,readonly:false}
+							Rate{visibility:true,readonly:false}
+							Product_Services_Name{visibility:true,readonly:false}
+							Amount{visibility:true,readonly:false}
+						}
+					}
+					Add_Client
+					{
+						FieldPermissions
+						{
+							Client_Name{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Section1{visibility:true,readonly:false}
+						}
+					}
+					Add_Product_Service
+					{
+						FieldPermissions
+						{
+							Product_Service_Name{visibility:true,readonly:false}
+							Unit{visibility:true,readonly:false}
+							Rate{visibility:true,readonly:false}
+							Available_Quantity{visibility:true,readonly:false}
+						}
+					}
+					Status_Selection
+					{
+						FieldPermissions
+						{
+							QuotationRecID{visibility:true,readonly:false}
+							Select_Status{visibility:true,readonly:false}
+						}
+					}
+					Add_User
+					{
+						FieldPermissions
+						{
+							Department{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Name1{visibility:true,readonly:false}
+						}
+					}
+					Request_Quotation
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							My_Requested_Quotation={"View","Delete"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Client_Name{visibility:true,readonly:false}
+							Items_On_Quote{visibility:true,readonly:false}
+							Created_Quotation{visibility:true,readonly:false}
+							Quotation_Request_Number{visibility:true,readonly:false}
+							Required_Before{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Create_Quotation
+					{
+						FieldPermissions
+						{
+							Client_Name{visibility:true,readonly:false}
+							Grand_Total{visibility:true,readonly:false}
+							Expiry_Date{visibility:true,readonly:false}
+							Discount{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Quotation_Request_Number{visibility:true,readonly:false}
+							Company_Details{visibility:true,readonly:false}
+							Sub_Total{visibility:true,readonly:false}
+							Quotation_Date{visibility:true,readonly:false}
+							Tax{visibility:true,readonly:false}
+							Products_On_Quote{visibility:true,readonly:false}
+							Terms_Conditions{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Discounted_Amount{visibility:true,readonly:false}
+							Send_quotation_in_mail{visibility:true,readonly:false}
+							Tax_Amount{visibility:true,readonly:false}
+							Quote_Owner{visibility:true,readonly:false}
+							Subject_field{visibility:true,readonly:false}
+							Section1{visibility:true,readonly:false}
+							Quote_Status{visibility:true,readonly:false}
+							Quotation_Number1{visibility:true,readonly:false}
+						}
+					}
+				}
+			}
+			"Company Users"
+			{
+				name = "Company Users"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "Company Users Profile\n"
+				ModulePermissions
+				{
+					Create_Company
+					{
+						FieldPermissions
+						{
+							plain{visibility:true,readonly:false}
+							Website{visibility:true,readonly:false}
+							Company_Name{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Address1{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Logo{visibility:true,readonly:false}
+						}
+					}
+					Product_Service_Subform
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							Product_Service_Subform_Report={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Quantity{visibility:true,readonly:false}
+							Unit{visibility:true,readonly:false}
+							Rate{visibility:true,readonly:false}
+							Product_Services_Name{visibility:true,readonly:false}
+							Amount{visibility:true,readonly:false}
+						}
+					}
+					Add_Client
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							All_Clients1={"View","Edit","Delete"}
+							All_Clients={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Client_Name{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Section1{visibility:true,readonly:false}
+						}
+					}
+					Add_Product_Service
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							All_Products_Services={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Product_Service_Name{visibility:true,readonly:false}
+							Unit{visibility:true,readonly:false}
+							Rate{visibility:true,readonly:false}
+							Available_Quantity{visibility:true,readonly:false}
+						}
+					}
+					Status_Selection
+					{
+						FieldPermissions
+						{
+							QuotationRecID{visibility:true,readonly:false}
+							Select_Status{visibility:true,readonly:false}
+						}
+					}
+					Add_User
+					{
+						FieldPermissions
+						{
+							Department{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Name1{visibility:true,readonly:false}
+						}
+					}
+					Request_Quotation
+					{
+						ReportPermissions
+						{
+							All_Requested_Quotations={"View"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Client_Name{visibility:true,readonly:false}
+							Items_On_Quote{visibility:true,readonly:false}
+							Created_Quotation{visibility:true,readonly:false}
+							Quotation_Request_Number{visibility:true,readonly:false}
+							Required_Before{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Create_Quotation
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							Analyze_decline={"View","Edit","Delete"}
+							Declined={"View","Edit","Delete"}
+							Sent_To_Client={"View","Edit","Delete"}
+							All_Quotations1={"View","Edit","Delete"}
+							New_Quotations={"View","Edit","Delete"}
+							Accepted={"View","Edit","Delete"}
+							All_Quotations={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Client_Name{visibility:true,readonly:false}
+							Grand_Total{visibility:true,readonly:false}
+							Expiry_Date{visibility:true,readonly:false}
+							Discount{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Quotation_Request_Number{visibility:true,readonly:false}
+							Company_Details{visibility:true,readonly:false}
+							Sub_Total{visibility:true,readonly:false}
+							Quotation_Date{visibility:true,readonly:false}
+							Tax{visibility:true,readonly:false}
+							Products_On_Quote{visibility:true,readonly:false}
+							Terms_Conditions{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Discounted_Amount{visibility:true,readonly:false}
+							Send_quotation_in_mail{visibility:true,readonly:false}
+							Tax_Amount{visibility:true,readonly:false}
+							Quote_Owner{visibility:true,readonly:false}
+							Subject_field{visibility:true,readonly:false}
+							Section1{visibility:true,readonly:false}
+							Quote_Status{visibility:true,readonly:false}
+							Quotation_Number1{visibility:true,readonly:false}
+						}
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users.\n"
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 3
+		new theme color = 1
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-education-10"
+    	icon theme = "blue"
+		icons style = solid
+	}
+
+	translation
+{
+"{\"de\":{\"FormField.Add_Product_Service.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"ReportField.Declined.Expiry_Date\":\" Verfallsdatum \",\"FormField.Add_Client.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Product_Service_Subform.ID\":\" ICH WÜRDE \",\"FormField.Request_Quotation.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Add_Client.Modified_User\":\" Geänderter Benutzer \",\"FormButton.Add_Client.reset\":\" Zurücksetzen \",\"FormField.Create_Quotation.Section\":\" Sektion \",\"Languages List.zh-TW\":\" Chinesische Tradition \",\"FormField.Add_Client.Phone_Number\":\" Telefonnummer \",\"FormField.Request_Quotation.Modified_User\":\" Geänderter Benutzer \",\"Languages List.ja\":\" japanisch \",\"FormButton.Add_Client.update\":\" Aktualisieren \",\"ReportField.All_Quotations.Quote_Status\":\" Angebotsstatus \",\"ReportField.All_Quotations1.Send_quotation_in_mail\":\" Senden Sie das Angebot per Post \",\"FormField.Product_Service_Subform.Unit\":\" Einheit \",\"FormButton.Add_User.update\":\" Aktualisieren \",\"FormField.Create_Quotation.Discounted_Amount\":\" Rabattbetrag \",\"ReportField.Sent_To_Client.Expiry_Date\":\" Verfallsdatum \",\"FormButton.Add_Product_Service.submit\":\" einreichen \",\"FormField.Create_Quotation.Subject_field\":\" Gegenstand \",\"Section.Products_Services\":\"Produkte \",\"Languages List.ku\":\" kurdisch \",\"FormField.Product_Service_Subform.Added_Time\":\" Zeit hinzugefügt \",\"ReportField.All_Quotations.Discounted_Amount\":\" Rabattbetrag \",\"ReportField.Accepted.Subject_field\":\" Gegenstand \",\"Languages List.km\":\" Khmer \",\"Languages List.ko\":\" Koreanisch \",\"FormField.Create_Quotation.Modified_Time\":\" Geänderte Zeit \",\"Languages List.kn\":\" Kannada \",\"Languages List.ka\":\" georgisch \",\"FormField.Create_Company.Record_Status\":\" Aufnahmestatus \",\"FormButton.Create_Company.update\":\" Aktualisieren \",\"Report.All_Products_Services\":\" Alle Produkte / Dienstleistungen \",\"FormField.Status_Selection.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"ReportField.All_Quotations1.Quotation_Number1\":\" Angebotsnummer \",\"Languages List.hu\":\" ungarisch \",\"CustomAction.All_Requested_Quotations.Create_Quotation\":\" Angebot erstellen \",\"Languages List.hy\":\" Armenisch \",\"FormField.Add_User.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormButton.Request_Quotation.cancel\":\" Stornieren \",\"ReportField.New_Quotations.Quotation_Request_Number\":\" Angebotsnummer \",\"FormField.Add_Client.Email\":\" Email \",\"Report.Product_Service_Subform_Report\":\" Produkt / Service-Unterformular Bericht \",\"Languages List.hr\":\" kroatisch \",\"FormField.Status_Selection.Record_Status\":\" Aufnahmestatus \",\"FormButton.Add_User.reset\":\" Zurücksetzen \",\"FormField.Status_Selection.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Report.Accepted\":\" Akzeptiert \",\"Languages List.hi\":\" Hindi \",\"ReportField.New_Quotations.Grand_Total\":\" Gesamtsumme \",\"FormButton.Product_Service_Subform.update\":\" Aktualisieren \",\"Languages List.iw\":\" hebräisch \",\"Report.Overdue_Quotation_Requests\":\" Überfällige Anfragen \",\"Section.Clients\":\" Kunden \",\"Languages List.is\":\" isländisch \",\"Languages List.it\":\" Italienisch \",\"ReportField.All_Quotations1.Sub_Total\":\" Untersumme \",\"FormField.Create_Quotation.ID\":\" ICH WÜRDE \",\"Report.All_Quotations1\":\" Alle Zitate \",\"CompositeSubFields.Create_Company.Address1.state_province2\":\" Staat / Provinz \",\"CustomAction.All_Requested_Quotations.Reject\":\" Ablehnen \",\"ReportField.All_Quotations1.Terms_Conditions\":\" Terms &amp; amp; Bedingungen \",\"FormField.Add_User.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Create_Quotation.Grand_Total\":\" Gesamtsumme \",\"FormField.Add_User.Name1\":\" Name \",\"FormField.Add_Product_Service.Product_Service_Name\":\" Produkt- / Servicename \",\"ReportField.All_Quotations.Expiry_Date\":\" Verfallsdatum \",\"Languages List.nl\":\" Niederländisch \",\"Languages List.no\":\" norwegisch \",\"ReportField.Product_Service_Subform_Report.Rate\":\" Bewertung \",\"FormField.Add_Product_Service.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Create_Quotation.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Request_Quotation.Items_On_Quote.Product_Service\":\" Produkt / Dienstleistung \",\"Form.Add_Product_Service\":\" Produkt / Service hinzufügen \",\"ReportField.Sent_To_Client.Products_On_Quote.Product_Services_Name\":\" Produkte auf Angebot \",\"FormField.Add_User.Email\":\" Email \",\"CompositeSubFields.Create_Company.Address1.country2\":\" Land \",\"Form.Create_Quotation\":\" Angebot erstellen \",\"FormField.Product_Service_Subform.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Add_User.Modified_Time\":\" Geänderte Zeit \",\"FormField.Product_Service_Subform.Modified_Time\":\" Geänderte Zeit \",\"PicklistOption.Create_Company.country2.1\":\" Wahl 1 \",\"PicklistOption.Create_Company.country2.2\":\" Wahl 2 \",\"FormField.Create_Quotation.Quote_Status\":\" Angebotsstatus \",\"FormField.Request_Quotation.Created_Quotation\":\" Erstelltes Angebot \",\"ReportField.All_Quotations.Quotation_Request_Number\":\" Angebotsnummer \",\"Languages List.lt\":\" litauisch \",\"ReportField.Accepted.Client_Name\":\" Kundenname \",\"Languages List.lv\":\" lettisch \",\"ReportField.Analyze_decline.Grand_Total\":\" Gesamtsumme \",\"FormField.Add_Client.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Status_Selection.QuotationRecID\":\" ZitatRecID \",\"FormField.Create_Company.ID\":\" ICH WÜRDE \",\"Languages List.lo\":\" Laothian \",\"Languages List.la\":\" Latein \",\"CustomAction.Sent_To_Client.Change_Status2\":\" Status ändern \",\"FormField.Create_Quotation.Added_Time\":\" Zeit hinzugefügt \",\"Languages List.ms\":\" malaiisch \",\"Languages List.mr\":\" Marathi \",\"FormField.Create_Company.Logo\":\" Logo \",\"Languages List.mt\":\" maltesisch \",\"Report.Company_Details\":\" Firmendetails \",\"ReportField.Accepted.Grand_Total\":\" Gesamtsumme \",\"Languages List.mk\":\" mazedonisch \",\"FormButton.Create_Quotation.update\":\" Aktualisieren \",\"ReportField.All_Quotations.Send_quotation_in_mail\":\" Senden Sie das Angebot per Post \",\"ReportField.Sent_To_Client.Quotation_Date\":\" Angebotsdatum \",\"Report.My_Requested_Quotation\":\" Meine Anfragen \",\"FormField.Product_Service_Subform.Rate\":\" Bewertung \",\"FormField.Request_Quotation.Required_Before\":\" Erforderlich vorher \",\"ReportField.Declined.Subject_field\":\" Gegenstand \",\"ReportField.Product_Service_Subform_Report.Amount\":\" Menge \",\"FormButton.Create_Company.cancel\":\" Stornieren \",\"ReportField.All_Quotations1.Quotation_Request_Number\":\" Angebotsnummer \",\"Languages List.bg\":\" bulgarisch \",\"FormField.Product_Service_Subform.Amount\":\" Menge \",\"ReportField.Overdue_Quotation_Requests.Created_Quotation\":\" Erstelltes Angebot \",\"Languages List.bn\":\" Bengali \",\"CompositeSubFields.Add_User.Name1.suffix\":\" Suffix \",\"ReportField.My_Requested_Quotation.Items_On_Quote.Quantity\":\" Artikel auf Quote.Quantity \",\"ReportField.All_Quotations1.Discount\":\" Rabatt \",\"FormField.Request_Quotation.Modified_Time\":\" Geänderte Zeit \",\"FormField.Status_Selection.Added_Time\":\" Zeit hinzugefügt \",\"ReportField.All_Products_Services.Product_Service_Name\":\" Produkt- / Servicename \",\"ReportField.All_Quotations1.Discounted_Amount\":\" Rabattbetrag \",\"Languages List.be\":\" Belarussisch \",\"FormField.Create_Quotation.Send_quotation_in_mail\":\" Senden Sie das Angebot per Post \",\"Languages List.az\":\" Aserbaidschanisch \",\"ReportField.Product_Service_Subform_Report.Product_Services_Name\":\" Produkt / Dienstleistungen Name \",\"PicklistOption.Add_User.prefix.3\":\" Frau. \",\"FormField.Product_Service_Subform.Added_User\":\" Benutzer hinzugefügt \",\"PicklistOption.Add_User.prefix.1\":\" Herr. \",\"ReportField.Declined.Grand_Total\":\" Gesamtsumme \",\"Languages List.cs\":\" Tschechisch \",\"PicklistOption.Add_User.prefix.2\":\" Frau. \",\"FormButton.Add_Product_Service.cancel\":\" Stornieren \",\"FormField.Create_Company.district_city2\":\" Stadtteil \",\"FormField.Create_Company.Section\":\" Sektion \",\"ReportField.New_Quotations.Expiry_Date\":\" Verfallsdatum \",\"FormField.Add_User.first_name\":\" Vorname \",\"FormField.Create_Company.postal_Code2\":\" Postleitzahl \",\"Languages List.ca\":\" katalanisch \",\"Section.Users\":\" Benutzer \",\"ReportField.My_Requested_Quotation.Items_On_Quote.Product_Service\":\" Einzelteile auf Zitat \",\"CustomAction.All_Quotations.Change_Status\":\" Status ändern \",\"ReportField.New_Quotations.Subject_field\":\" Gegenstand \",\"FormField.Request_Quotation.Items_On_Quote.Quantity\":\" Menge \",\"FormButton.Add_Client.cancel\":\" Stornieren \",\"ReportField.Overdue_Quotation_Requests.Status\":\" Status \",\"FormField.Add_Product_Service.Unit\":\" Einheit \",\"ReportField.All_Quotations1.Tax\":\" MwSt (%) \",\"FormField.Add_Client.Address\":\" Adresse \",\"ReportField.All_Products_Services.Unit\":\" Einheit \",\"Report.All_Clients\":\" Alle Kunden \",\"CompositeSubFields.Add_User.Name1.first_name\":\" Vorname \",\"Form.Create_Company\":\" Firma erstellen \",\"ReportField.All_Quotations.Products_On_Quote.Rate\":\" Produkte auf Angebot \",\"ReportField.All_Clients.address_line_12\":\" Adresse \",\"FormField.Add_User.Department\":\" Abteilung \",\"ReportField.New_Quotations.Quote_Status\":\" Angebotsstatus \",\"FormField.Request_Quotation.Record_Status\":\" Aufnahmestatus \",\"Languages List.ar\":\" Arabisch \",\"CompositeSubFields.Add_Client.Address.state_province2\":\" Staat / Provinz \",\"Languages List.af\":\" Afrikaans \",\"FormButton.Add_User.submit\":\" einreichen \",\"FormButton.Product_Service_Subform.reset\":\" Zurücksetzen \",\"ReportField.Product_Service_Subform_Report.Quantity\":\" Menge \",\"ReportField.All_Clients1.Phone_Number\":\" Telefonnummer \",\"ReportField.All_Quotations1.Client_Name\":\" Kundenname \",\"PicklistOption.Add_Client.country2.2\":\" Wahl 2 \",\"PicklistOption.Add_Client.country2.1\":\" Wahl 1 \",\"FormField.Create_Quotation.Products_On_Quote\":\" Produkte auf Angebot \",\"ReportField.New_Quotations.Send_quotation_in_mail\":\" Senden Sie das Angebot per Post \",\"Languages List.fr\":\" Französisch \",\"ReportField.Accepted.Quote_Status\":\" Angebotsstatus \",\"FormField.Create_Quotation.Quotation_Date\":\" Angebotsdatum \",\"Languages List.fi\":\" Finnese \",\"ReportField.Analyze_decline.Expiry_Date\":\" Verfallsdatum \",\"FormField.Request_Quotation.Section\":\" Sektion \",\"Languages List.fa\":\" persisch \",\"Languages List.gu\":\" Gujarati \",\"ReportField.All_Quotations.Tax_Amount\":\" Steuerbetrag \",\"Languages List.gl\":\" galizisch \",\"ReportField.All_Clients1.Email\":\" Email \",\"FormField.Create_Company.Added_User\":\" Benutzer hinzugefügt \",\"Form.Status_Selection\":\" Statusauswahl \",\"ReportField.All_Requested_Quotations.Items_On_Quote.Quantity\":\" Artikel auf Quote.Quantity \",\"FormField.Create_Quotation.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Status_Selection.Select_Status\":\" Wählen Sie Status \",\"FormButton.Create_Quotation.reset\":\" Zurücksetzen \",\"ReportField.All_Requested_Quotations.Created_Quotation\":\" Erstelltes Angebot \",\"Languages List.ga\":\" irisch \",\"ReportField.Accepted.Expiry_Date\":\" Verfallsdatum \",\"ReportField.All_Requested_Quotations.Items_On_Quote.Product_Service\":\" Einzelteile auf Zitat \",\"FormField.Add_User.Modified_User\":\" Geänderter Benutzer \",\"ReportField.All_Quotations1.Grand_Total\":\" Gesamtsumme \",\"PicklistOption.Add_Product_Service.Unit.8\":\" Pfund \",\"ReportField.Product_Service_Subform_Report.Unit\":\" Einheit \",\"PicklistOption.Add_Product_Service.Unit.7\":\" Eindrücke \",\"PicklistOption.Add_Product_Service.Unit.6\":\" Std) \",\"PicklistOption.Add_Product_Service.Unit.5\":\" Jeder \",\"PicklistOption.Add_Product_Service.Unit.4\":\" Dutzend \",\"PicklistOption.Add_Product_Service.Unit.3\":\" Caton \",\"FormField.Create_Company.Company_Name\":\" Name der Firma \",\"PicklistOption.Add_Product_Service.Unit.2\":\" Karton \",\"PicklistOption.Add_Product_Service.Unit.1\":\" Box \",\"ReportField.New_Quotations.Discounted_Amount\":\" Rabattbetrag \",\"ReportField.Analyze_decline.Quote_Status\":\" Angebotsstatus \",\"Languages List.da\":\" dänisch \",\"ReportField.Analyze_decline.Products_On_Quote.Product_Services_Name\":\" Produkte auf Angebot \",\"Languages List.de\":\" Deutsche \",\"PicklistOption.Add_Product_Service.Unit.9\":\" M \",\"Languages List.cy\":\" Walisisch \",\"ReportField.Company_Details.Logo\":\" Logo \",\"ReportField.All_Requested_Quotations.Client_Name\":\" Kundenname \",\"FormField.Add_Client.state_province2\":\" Staat / Provinz \",\"ReportField.Overdue_Quotation_Requests.Quotation_Request_Number\":\" Angebotsnummer \",\"Languages List.es\":\" Spanisch \",\"Languages List.eu\":\" baskisch \",\"ReportField.All_Quotations1.Subject_field\":\" Gegenstand \",\"Languages List.et\":\" estnisch \",\"ReportField.All_Requested_Quotations.Status\":\" Status \",\"FormField.Create_Quotation.Added_User\":\" Benutzer hinzugefügt \",\"Section.Admin\":\" Administrator \",\"Languages List.el\":\" griechisch \",\"Languages List.eo\":\" Esperanto \",\"Languages List.en\":\" Englisch \",\"FormField.Create_Company.country2\":\" Land \",\"PicklistOption.Status_Selection.Select_Status.3\":\" Abgelehnt \",\"PicklistOption.Status_Selection.Select_Status.2\":\" Akzeptiert \",\"PicklistOption.Status_Selection.Select_Status.4\":\" Analysieren Sie den Rückgang \",\"FormButton.Status_Selection.Change\":\" Veränderung \",\"ReportField.All_Clients1.Client_Name\":\" Name des Kunden / Unternehmens \",\"PicklistOption.Status_Selection.Select_Status.1\":\" An den Kunden gesendet \",\"ReportField.All_Products_Services.Rate\":\" Bewertung \",\"Section.Others\":\" Andere \",\"FormField.Add_Client.Section1\":\" Sektion \",\"CustomAction.Overdue_Quotation_Requests.Create_Quotation1\":\" Angebot erstellen \",\"CompositeSubFields.Create_Company.Address1.postal_Code2\":\" Postleitzahl \",\"ReportField.All_Quotations1.Quote_Status\":\" Angebotsstatus \",\"CompositeSubFields.Add_Client.Address.postal_Code2\":\" Postleitzahl \",\"ReportField.All_Requested_Quotations.Quotation_Request_Number\":\" Angebotsnummer \",\"Section.Quotation_Requests\":\" Angebotsanforderungen \",\"ReportField.Declined.Client_Name\":\" Kundenname \",\"ReportField.Declined.Products_On_Quote.Product_Services_Name\":\" Produkte auf Angebot \",\"CompositeSubFields.Add_Client.Address.address_line_22\":\" Adresszeile 2 \",\"FormField.Create_Company.Modified_Time\":\" Geänderte Zeit \",\"FormField.Status_Selection.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Create_Quotation.Record_Status\":\" Aufnahmestatus \",\"ReportField.All_Quotations.Subject_field\":\" Gegenstand \",\"FormField.Add_Client.postal_Code2\":\" Postleitzahl \",\"PicklistOption.Request_Quotation.Status.3\":\" Abgelehnt \",\"PicklistOption.Request_Quotation.Status.2\":\" An den Kunden gesendet \",\"FormField.Request_Quotation.Client_Name\":\" Kundenname \",\"PicklistOption.Request_Quotation.Status.1\":\" steht aus \",\"ReportField.Company_Details.Website\":\" Webseite \",\"PicklistOption.Create_Quotation.Quote_Status.1\":\" Neu \",\"PicklistOption.Create_Quotation.Quote_Status.2\":\" An den Kunden gesendet \",\"PicklistOption.Create_Quotation.Quote_Status.3\":\" Akzeptiert \",\"FormField.Add_User.Phone_Number\":\" Telefonnummer \",\"PicklistOption.Create_Quotation.Quote_Status.4\":\" Abgelehnt \",\"PicklistOption.Create_Quotation.Quote_Status.5\":\" Analysieren Sie den Rückgang \",\"FormField.Add_User.suffix\":\" Suffix \",\"ReportField.All_Products_Services.Available_Quantity\":\" verfügbare Anzahl \",\"FormButton.Product_Service_Subform.submit\":\" einreichen \",\"ReportField.Analyze_decline.Subject_field\":\" Gegenstand \",\"FormField.Create_Company.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Add_User.ID\":\" ICH WÜRDE \",\"CompositeSubFields.Add_Client.Address.address_line_12\":\" Anschrift Zeile 1 \",\"Languages List.yi\":\" Jiddisch \",\"ReportField.Analyze_decline.Quotation_Date\":\" Angebotsdatum \",\"FormField.Status_Selection.Modified_Time\":\" Geänderte Zeit \",\"CustomAction.All_Quotations.Send_To_Client\":\" An den Kunden senden \",\"ReportField.Accepted.Quotation_Date\":\" Angebotsdatum \",\"Languages List.zh\":\" Chinesisch \",\"ReportField.Sent_To_Client.Client_Name\":\" Kundenname \",\"FormField.Request_Quotation.Added_Time\":\" Zeit hinzugefügt \",\"CompositeSubFields.Add_Client.Address.district_city2\":\" Stadtteil \",\"Report.Analyze_decline\":\" Analysieren Sie den Rückgang \",\"FormField.Create_Quotation.Description\":\" Beschreibung \",\"ReportField.All_Quotations1.Quotation_Date\":\" Angebotsdatum \",\"FormButton.Add_Client.submit\":\" einreichen \",\"FormField.Create_Quotation.Tax\":\" MwSt (%) \",\"CompositeSubFields.Add_User.Name1.prefix\":\" Präfix \",\"FormField.Add_Client.district_city2\":\" Stadtteil \",\"FormButton.Request_Quotation.submit\":\" einreichen \",\"FormField.Add_Product_Service.Added_Time\":\" Zeit hinzugefügt \",\"ReportField.All_Quotations.Client_Name\":\" Kundenname \",\"FormButton.Create_Quotation.cancel\":\" Stornieren \",\"Report.New_Quotations\":\" Neue Angebote \",\"CustomAction.New_Quotations.Send_To_Client1\":\" An den Kunden senden \",\"FormField.Add_Product_Service.Rate\":\" Bewertung \",\"FormField.Create_Company.Added_Time\":\" Zeit hinzugefügt \",\"FormButton.Create_Quotation.submit\":\" Erstellen \",\"ReportField.Overdue_Quotation_Requests.Required_Before\":\" Erforderlich vorher \",\"ReportField.Analyze_decline.Client_Name\":\" Kundenname \",\"FormField.Add_User.Record_Status\":\" Aufnahmestatus \",\"FormField.Add_User.last_name\":\" Familienname, Nachname \",\"FormField.Add_User.prefix\":\" Präfix \",\"FormField.Request_Quotation.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Status_Selection.ID\":\" ICH WÜRDE \",\"FormButton.Create_Company.submit\":\" einreichen \",\"FormField.Product_Service_Subform.Product_Services_Name\":\" Produkt / Dienstleistungen Name \",\"FormField.Create_Company.Address1\":\" Adresse \",\"Form.Add_Client\":\" Client hinzufügen \",\"FormField.Create_Company.address_line_12\":\" Anschrift Zeile 1 \",\"FormField.Add_Client.address_line_12\":\" Anschrift Zeile 1 \",\"FormField.Request_Quotation.ID\":\" ICH WÜRDE \",\"FormField.Create_Quotation.Terms_Conditions\":\" Terms &amp; amp; Bedingungen \",\"FormField.Add_Client.longitude2\":\" Längengrad \",\"FormButton.Request_Quotation.reset\":\" Zurücksetzen \",\"Report.Declined\":\" Abgelehnt \",\"CompositeSubFields.Add_Client.Address.country2\":\" Land \",\"FormField.Add_Product_Service.Modified_User\":\" Geänderter Benutzer \",\"FormField.Create_Company.address_line_22\":\" Adresszeile 2 \",\"ReportField.All_Quotations1.Expiry_Date\":\" Verfallsdatum \",\"CustomAction.New_Quotations.Change_Status1\":\" Status ändern \",\"ReportField.New_Quotations.Quotation_Date\":\" Angebotsdatum \",\"FormField.Add_Client.Client_Name\":\" Name des Kunden / Unternehmens \",\"ReportField.Sent_To_Client.Grand_Total\":\" Gesamtsumme \",\"FormField.Add_Client.latitude2\":\" Breite \",\"FormButton.Request_Quotation.update\":\" Aktualisieren \",\"Report.All_Users\":\" Alle Nutzer \",\"ReportField.All_Users.Email\":\" Email \",\"CompositeSubFields.Add_User.Name1.last_name\":\" Familienname, Nachname \",\"FormField.Add_Client.ID\":\" ICH WÜRDE \",\"FormField.Add_Client.Modified_Time\":\" Geänderte Zeit \",\"Languages List.ro\":\" rumänisch \",\"FormField.Create_Quotation.Quotation_Number1\":\" Angebotsnummer \",\"FormField.Create_Company.Website\":\" Webseite \",\"FormField.Create_Company.Modified_User\":\" Geänderter Benutzer \",\"FormField.Create_Quotation.Quote_Owner\":\" Zitat Besitzer \",\"FormField.Add_Client.Record_Status\":\" Aufnahmestatus \",\"Report.All_Quotations\":\" Alle Zitate \",\"Languages List.ru\":\" Russisch \",\"FormField.Add_Client.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"Languages List.ta\":\" Tamilisch \",\"ReportField.New_Quotations.Products_On_Quote.Product_Services_Name\":\" Produkte auf Angebot \",\"ReportField.Accepted.Products_On_Quote.Product_Services_Name\":\" Produkte auf Angebot \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" Thai \",\"ReportField.New_Quotations.Client_Name\":\" Kundenname \",\"FormField.Product_Service_Subform.Record_Status\":\" Aufnahmestatus \",\"FormField.Create_Company.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormButton.Product_Service_Subform.cancel\":\" Stornieren \",\"FormField.Create_Quotation.Company_Details\":\" Firmendetails \",\"Languages List.sq\":\" albanisch \",\"Report.All_Requested_Quotations\":\" Alle Anfragen \",\"ReportField.Company_Details.Company_Name\":\" Name der Firma \",\"FormField.Create_Quotation.Modified_User\":\" Geänderter Benutzer \",\"ReportField.All_Quotations1.Tax_Amount\":\" Steuerbetrag \",\"Languages List.sw\":\" Swahili \",\"FormField.Add_Client.country2\":\" Land \",\"Languages List.sv\":\" Schwedisch \",\"Form.Request_Quotation\":\" Angebot anfordern \",\"Languages List.sk\":\" slowakisch \",\"FormField.Add_User.Section\":\" Sektion \",\"Languages List.sl\":\" Slowenisch \",\"FormField.Add_Client.address_line_22\":\" Adresszeile 2 \",\"FormField.Create_Quotation.Sub_Total\":\" Untersumme \",\"ReportField.All_Clients1.address_line_12\":\" Adresse \",\"FormField.Create_Quotation.Section1\":\" Sektion \",\"FormField.Create_Company.Phone_Number\":\" Telefonnummer \",\"FormField.Create_Quotation.Discount\":\" Rabatt \",\"ReportField.All_Quotations1.Company_Details\":\" Firmendetails \",\"Languages List.pt\":\" Portugiesisch \",\"Languages List.pl\":\" Polieren \",\"FormField.Add_Product_Service.Available_Quantity\":\" verfügbare Anzahl \",\"FormField.Create_Quotation.Client_Name\":\" Kundenname \",\"ReportField.New_Quotations.Tax_Amount\":\" Steuerbetrag \",\"FormField.Request_Quotation.Added_User\":\" Benutzer hinzugefügt \",\"FormButton.Add_User.cancel\":\" Stornieren \",\"FormField.Status_Selection.Modified_User\":\" Geänderter Benutzer \",\"ReportField.Overdue_Quotation_Requests.Client_Name\":\" Kundenname \",\"ReportField.Overdue_Quotation_Requests.Items_On_Quote.Product_Service\":\" Einzelteile auf Zitat \",\"ReportField.All_Clients.Email\":\" Email \",\"ReportField.All_Requested_Quotations.Required_Before\":\" Erforderlich vorher \",\"FormField.Request_Quotation.Items_On_Quote\":\" Einzelteile auf Zitat \",\"FormField.Request_Quotation.Status\":\" Status \",\"FormField.Product_Service_Subform.Quantity\":\" Menge \",\"FormField.Add_User.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Add_Product_Service.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Request_Quotation.Quotation_Request_Number\":\" Angebotsnummer \",\"ReportField.Sent_To_Client.Quote_Status\":\" Angebotsstatus \",\"CompositeSubFields.Create_Company.Address1.district_city2\":\" Stadtteil \",\"FormButton.Create_Company.reset\":\" Zurücksetzen \",\"PicklistOption.Add_Product_Service.Unit.16\":\" Spiralbindung \",\"PicklistOption.Add_Product_Service.Unit.17\":\" Quadratfüße \",\"PicklistOption.Add_Product_Service.Unit.14\":\" Riesig \",\"FormField.Create_Quotation.Quotation_Request_Number\":\" Angebotsnummer \",\"PicklistOption.Add_Product_Service.Unit.15\":\" Blatt \",\"PicklistOption.Add_Product_Service.Unit.12\":\" Stücke \",\"PicklistOption.Add_Product_Service.Unit.13\":\" Menge \",\"PicklistOption.Add_Product_Service.Unit.10\":\" Pack \",\"PicklistOption.Add_Product_Service.Unit.11\":\" Seiten \",\"FormField.Create_Company.state_province2\":\" Staat / Provinz \",\"FormField.Create_Company.latitude2\":\" Breite \",\"ReportField.New_Quotations.Quotation_Number1\":\" Angebotsnummer \",\"App.quotation-management\":\"Angebotsverwaltung \",\"FormButton.Add_Product_Service.update\":\" Aktualisieren \",\"Form.Product_Service_Subform\":\" Produkt / Service Unterformular \",\"ReportField.Declined.Quote_Status\":\" Angebotsstatus \",\"FormField.Add_Product_Service.ID\":\" ICH WÜRDE \",\"ReportField.All_Quotations.Grand_Total\":\" Gesamtsumme \",\"FormField.Create_Company.longitude2\":\" Längengrad \",\"FormField.Create_Quotation.Tax_Amount\":\" Steuerbetrag \",\"ReportField.Overdue_Quotation_Requests.Items_On_Quote.Quantity\":\" Artikel auf Quote.Quantity \",\"ReportField.My_Requested_Quotation.Client_Name\":\" Kundenname \",\"Report.Sent_To_Client\":\" An den Kunden gesendet \",\"Section.Quotations\":\" Zitate \",\"CustomAction.Overdue_Quotation_Requests.Reject1\":\" Ablehnen \",\"CompositeSubFields.Create_Company.Address1.address_line_12\":\" Anschrift Zeile 1 \",\"FormField.Add_Client.Added_Time\":\" Zeit hinzugefügt \",\"ReportField.All_Quotations.Quotation_Number1\":\" Angebotsnummer \",\"Report.All_Clients1\":\" Alle Kunden \",\"ReportField.Declined.Quotation_Date\":\" Angebotsdatum \",\"FormField.Product_Service_Subform.Modified_User\":\" Geänderter Benutzer \",\"CompositeSubFields.Create_Company.Address1.address_line_22\":\" Adresszeile 2 \",\"Languages List.tr\":\" Türkisch \",\"FormField.Add_User.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"ReportField.All_Quotations1.Quote_Owner\":\" Zitat Besitzer \",\"Form.Add_User\":\" Benutzer hinzufügen \",\"FormField.Add_Product_Service.Record_Status\":\" Aufnahmestatus \",\"ReportField.Sent_To_Client.Subject_field\":\" Gegenstand \",\"Languages List.tl\":\" Filipino \",\"FormField.Product_Service_Subform.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"ReportField.My_Requested_Quotation.Required_Before\":\" Erforderlich vorher \",\"FormField.Create_Quotation.Expiry_Date\":\" Verfallsdatum \",\"Languages List.vi\":\" Vietnamesisch \",\"ReportField.All_Quotations.Quotation_Date\":\" Angebotsdatum \",\"ReportField.All_Quotations.Products_On_Quote.Product_Services_Name\":\" Produkte auf Angebot \",\"FormButton.Add_Product_Service.reset\":\" Zurücksetzen \",\"Languages List.ur\":\" Urdu \",\"FormField.Add_Product_Service.Modified_Time\":\" Geänderte Zeit \"},\"fr\":{\"FormField.Add_Product_Service.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"ReportField.Declined.Expiry_Date\":\" Date d'expiration \",\"FormField.Add_Client.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Product_Service_Subform.ID\":\" ID \",\"FormField.Request_Quotation.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Add_Client.Modified_User\":\" Utilisateur modifié \",\"FormButton.Add_Client.reset\":\" Réinitialiser \",\"FormField.Create_Quotation.Section\":\" Section \",\"Languages List.zh-TW\":\" Chinois traditionnel \",\"FormField.Add_Client.Phone_Number\":\" Numéro de téléphone \",\"FormField.Request_Quotation.Modified_User\":\" Utilisateur modifié \",\"Languages List.ja\":\" Japonais \",\"FormButton.Add_Client.update\":\" Mettre à jour \",\"ReportField.All_Quotations.Quote_Status\":\" Statut de la citation \",\"ReportField.All_Quotations1.Send_quotation_in_mail\":\" Envoyer un devis dans un courrier \",\"FormField.Product_Service_Subform.Unit\":\" Unité \",\"FormButton.Add_User.update\":\" Mettre à jour \",\"FormField.Create_Quotation.Discounted_Amount\":\" Montant de l'escompte \",\"ReportField.Sent_To_Client.Expiry_Date\":\" Date d'expiration \",\"FormButton.Add_Product_Service.submit\":\" Soumettre \",\"FormField.Create_Quotation.Subject_field\":\" Assujettir \",\"Section.Products_Services\":\"Produits \",\"Languages List.ku\":\" kurde \",\"FormField.Product_Service_Subform.Added_Time\":\" Temps ajouté \",\"ReportField.All_Quotations.Discounted_Amount\":\" Montant de l'escompte \",\"ReportField.Accepted.Subject_field\":\" Assujettir \",\"Languages List.km\":\" Khmer \",\"Languages List.ko\":\" coréen \",\"FormField.Create_Quotation.Modified_Time\":\" Heure modifiée \",\"Languages List.kn\":\" Kannada \",\"Languages List.ka\":\" géorgien \",\"FormField.Create_Company.Record_Status\":\" Statut d'enregistrement \",\"FormButton.Create_Company.update\":\" Mettre à jour \",\"Report.All_Products_Services\":\" Tous les produits / services \",\"FormField.Status_Selection.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"ReportField.All_Quotations1.Quotation_Number1\":\" Numéro de devis \",\"Languages List.hu\":\" hongrois \",\"CustomAction.All_Requested_Quotations.Create_Quotation\":\" Créer une offre \",\"Languages List.hy\":\" arménien \",\"FormField.Add_User.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormButton.Request_Quotation.cancel\":\" Annuler \",\"ReportField.New_Quotations.Quotation_Request_Number\":\" Numéro de demande de devis \",\"FormField.Add_Client.Email\":\" Email \",\"Report.Product_Service_Subform_Report\":\" Rapport de sous-formulaire de produit / service \",\"Languages List.hr\":\" croate \",\"FormField.Status_Selection.Record_Status\":\" Statut d'enregistrement \",\"FormButton.Add_User.reset\":\" Réinitialiser \",\"FormField.Status_Selection.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Report.Accepted\":\" Accepté \",\"Languages List.hi\":\" hindi \",\"ReportField.New_Quotations.Grand_Total\":\" somme finale \",\"FormButton.Product_Service_Subform.update\":\" Mettre à jour \",\"Languages List.iw\":\" hébreu \",\"Report.Overdue_Quotation_Requests\":\" Demandes en retard \",\"Section.Clients\":\" Clients \",\"Languages List.is\":\" islandais \",\"Languages List.it\":\" italien \",\"ReportField.All_Quotations1.Sub_Total\":\" Sous total \",\"FormField.Create_Quotation.ID\":\" ID \",\"Report.All_Quotations1\":\" Toutes les citations \",\"CompositeSubFields.Create_Company.Address1.state_province2\":\" Etat / Province \",\"CustomAction.All_Requested_Quotations.Reject\":\" Rejeter \",\"ReportField.All_Quotations1.Terms_Conditions\":\" termes et conditions \",\"FormField.Add_User.Added_User\":\" Utilisateur ajouté \",\"FormField.Create_Quotation.Grand_Total\":\" somme finale \",\"FormField.Add_User.Name1\":\" prénom \",\"FormField.Add_Product_Service.Product_Service_Name\":\" Nom du produit / service \",\"ReportField.All_Quotations.Expiry_Date\":\" Date d'expiration \",\"Languages List.nl\":\" néerlandais \",\"Languages List.no\":\" norvégien \",\"ReportField.Product_Service_Subform_Report.Rate\":\" Taux \",\"FormField.Add_Product_Service.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Create_Quotation.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Request_Quotation.Items_On_Quote.Product_Service\":\" Produit / Service \",\"Form.Add_Product_Service\":\" Ajouter un produit / service \",\"ReportField.Sent_To_Client.Products_On_Quote.Product_Services_Name\":\" Produits sur devis \",\"FormField.Add_User.Email\":\" Email \",\"CompositeSubFields.Create_Company.Address1.country2\":\" Pays \",\"Form.Create_Quotation\":\" Créer une offre \",\"FormField.Product_Service_Subform.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Add_User.Modified_Time\":\" Heure modifiée \",\"FormField.Product_Service_Subform.Modified_Time\":\" Heure modifiée \",\"PicklistOption.Create_Company.country2.1\":\" Choix 1 \",\"PicklistOption.Create_Company.country2.2\":\" Choix 2 \",\"FormField.Create_Quotation.Quote_Status\":\" Statut de la citation \",\"FormField.Request_Quotation.Created_Quotation\":\" Création de devis \",\"ReportField.All_Quotations.Quotation_Request_Number\":\" Numéro de demande de devis \",\"Languages List.lt\":\" lituanien \",\"ReportField.Accepted.Client_Name\":\" Nom du client \",\"Languages List.lv\":\" letton \",\"ReportField.Analyze_decline.Grand_Total\":\" somme finale \",\"FormField.Add_Client.Added_User\":\" Utilisateur ajouté \",\"FormField.Status_Selection.QuotationRecID\":\" QuotationRecID \",\"FormField.Create_Company.ID\":\" ID \",\"Languages List.lo\":\" Laothian \",\"Languages List.la\":\" Latin \",\"CustomAction.Sent_To_Client.Change_Status2\":\" Changer le statut \",\"FormField.Create_Quotation.Added_Time\":\" Temps ajouté \",\"Languages List.ms\":\" malais \",\"Languages List.mr\":\" Marathi \",\"FormField.Create_Company.Logo\":\" Logo \",\"Languages List.mt\":\" maltais \",\"Report.Company_Details\":\" Détails de la société \",\"ReportField.Accepted.Grand_Total\":\" somme finale \",\"Languages List.mk\":\" Macédonien \",\"FormButton.Create_Quotation.update\":\" Mettre à jour \",\"ReportField.All_Quotations.Send_quotation_in_mail\":\" Envoyer un devis dans un courrier \",\"ReportField.Sent_To_Client.Quotation_Date\":\" Date de la cotation \",\"Report.My_Requested_Quotation\":\" Mes demandes \",\"FormField.Product_Service_Subform.Rate\":\" Taux \",\"FormField.Request_Quotation.Required_Before\":\" Obligatoire avant \",\"ReportField.Declined.Subject_field\":\" Assujettir \",\"ReportField.Product_Service_Subform_Report.Amount\":\" Montant \",\"FormButton.Create_Company.cancel\":\" Annuler \",\"ReportField.All_Quotations1.Quotation_Request_Number\":\" Numéro de demande de devis \",\"Languages List.bg\":\" bulgare \",\"FormField.Product_Service_Subform.Amount\":\" Montant \",\"ReportField.Overdue_Quotation_Requests.Created_Quotation\":\" Création de devis \",\"Languages List.bn\":\" bengali \",\"CompositeSubFields.Add_User.Name1.suffix\":\" Suffixe \",\"ReportField.My_Requested_Quotation.Items_On_Quote.Quantity\":\" Articles sur devis.Quantité \",\"ReportField.All_Quotations1.Discount\":\" Remise \",\"FormField.Request_Quotation.Modified_Time\":\" Heure modifiée \",\"FormField.Status_Selection.Added_Time\":\" Temps ajouté \",\"ReportField.All_Products_Services.Product_Service_Name\":\" Nom du produit / service \",\"ReportField.All_Quotations1.Discounted_Amount\":\" Montant de l'escompte \",\"Languages List.be\":\" Biélorusse \",\"FormField.Create_Quotation.Send_quotation_in_mail\":\" Envoyer un devis dans un courrier \",\"Languages List.az\":\" azerbaïdjanais \",\"ReportField.Product_Service_Subform_Report.Product_Services_Name\":\" Nom du produit / service \",\"PicklistOption.Add_User.prefix.3\":\" Mme. \",\"FormField.Product_Service_Subform.Added_User\":\" Utilisateur ajouté \",\"PicklistOption.Add_User.prefix.1\":\" M. \",\"ReportField.Declined.Grand_Total\":\" somme finale \",\"Languages List.cs\":\" tchèque \",\"PicklistOption.Add_User.prefix.2\":\" Madame. \",\"FormButton.Add_Product_Service.cancel\":\" Annuler \",\"FormField.Create_Company.district_city2\":\" District de la ville \",\"FormField.Create_Company.Section\":\" Section \",\"ReportField.New_Quotations.Expiry_Date\":\" Date d'expiration \",\"FormField.Add_User.first_name\":\" Prénom \",\"FormField.Create_Company.postal_Code2\":\" code postal \",\"Languages List.ca\":\" catalan \",\"Section.Users\":\" Utilisateurs \",\"ReportField.My_Requested_Quotation.Items_On_Quote.Product_Service\":\" Articles sur devis \",\"CustomAction.All_Quotations.Change_Status\":\" Changer le statut \",\"ReportField.New_Quotations.Subject_field\":\" Assujettir \",\"FormField.Request_Quotation.Items_On_Quote.Quantity\":\" Quantité \",\"FormButton.Add_Client.cancel\":\" Annuler \",\"ReportField.Overdue_Quotation_Requests.Status\":\" Statut \",\"FormField.Add_Product_Service.Unit\":\" Unité \",\"ReportField.All_Quotations1.Tax\":\" Impôt (%) \",\"FormField.Add_Client.Address\":\" Adresse \",\"ReportField.All_Products_Services.Unit\":\" Unité \",\"Report.All_Clients\":\" Tous les clients \",\"CompositeSubFields.Add_User.Name1.first_name\":\" Prénom \",\"Form.Create_Company\":\" Créer une entreprise \",\"ReportField.All_Quotations.Products_On_Quote.Rate\":\" Produits sur devis \",\"ReportField.All_Clients.address_line_12\":\" Adresse \",\"FormField.Add_User.Department\":\" département \",\"ReportField.New_Quotations.Quote_Status\":\" Statut de la citation \",\"FormField.Request_Quotation.Record_Status\":\" Statut d'enregistrement \",\"Languages List.ar\":\" arabe \",\"CompositeSubFields.Add_Client.Address.state_province2\":\" Etat / Province \",\"Languages List.af\":\" afrikaans \",\"FormButton.Add_User.submit\":\" Soumettre \",\"FormButton.Product_Service_Subform.reset\":\" Réinitialiser \",\"ReportField.Product_Service_Subform_Report.Quantity\":\" Quantité \",\"ReportField.All_Clients1.Phone_Number\":\" Numéro de téléphone \",\"ReportField.All_Quotations1.Client_Name\":\" Nom du client \",\"PicklistOption.Add_Client.country2.2\":\" Choix 2 \",\"PicklistOption.Add_Client.country2.1\":\" Choix 1 \",\"FormField.Create_Quotation.Products_On_Quote\":\" Produits sur devis \",\"ReportField.New_Quotations.Send_quotation_in_mail\":\" Envoyer un devis dans un courrier \",\"Languages List.fr\":\" français \",\"ReportField.Accepted.Quote_Status\":\" Statut de la citation \",\"FormField.Create_Quotation.Quotation_Date\":\" Date de la cotation \",\"Languages List.fi\":\" Finnois \",\"ReportField.Analyze_decline.Expiry_Date\":\" Date d'expiration \",\"FormField.Request_Quotation.Section\":\" Section \",\"Languages List.fa\":\" persan \",\"Languages List.gu\":\" Gujarati \",\"ReportField.All_Quotations.Tax_Amount\":\" Montant de la taxe \",\"Languages List.gl\":\" Galicien \",\"ReportField.All_Clients1.Email\":\" Email \",\"FormField.Create_Company.Added_User\":\" Utilisateur ajouté \",\"Form.Status_Selection\":\" Sélection du statut \",\"ReportField.All_Requested_Quotations.Items_On_Quote.Quantity\":\" Articles sur devis.Quantité \",\"FormField.Create_Quotation.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Status_Selection.Select_Status\":\" Sélectionnez le statut \",\"FormButton.Create_Quotation.reset\":\" Réinitialiser \",\"ReportField.All_Requested_Quotations.Created_Quotation\":\" Création de devis \",\"Languages List.ga\":\" irlandais \",\"ReportField.Accepted.Expiry_Date\":\" Date d'expiration \",\"ReportField.All_Requested_Quotations.Items_On_Quote.Product_Service\":\" Articles sur devis \",\"FormField.Add_User.Modified_User\":\" Utilisateur modifié \",\"ReportField.All_Quotations1.Grand_Total\":\" somme finale \",\"PicklistOption.Add_Product_Service.Unit.8\":\" Kg \",\"ReportField.Product_Service_Subform_Report.Unit\":\" Unité \",\"PicklistOption.Add_Product_Service.Unit.7\":\" Impressions \",\"PicklistOption.Add_Product_Service.Unit.6\":\" Heures) \",\"PicklistOption.Add_Product_Service.Unit.5\":\" Chaque \",\"PicklistOption.Add_Product_Service.Unit.4\":\" Douzaine \",\"PicklistOption.Add_Product_Service.Unit.3\":\" Caton \",\"FormField.Create_Company.Company_Name\":\" Nom de la compagnie \",\"PicklistOption.Add_Product_Service.Unit.2\":\" Carton \",\"PicklistOption.Add_Product_Service.Unit.1\":\" Boîte \",\"ReportField.New_Quotations.Discounted_Amount\":\" Montant de l'escompte \",\"ReportField.Analyze_decline.Quote_Status\":\" Statut de la citation \",\"Languages List.da\":\" danois \",\"ReportField.Analyze_decline.Products_On_Quote.Product_Services_Name\":\" Produits sur devis \",\"Languages List.de\":\" allemand \",\"PicklistOption.Add_Product_Service.Unit.9\":\" M \",\"Languages List.cy\":\" gallois \",\"ReportField.Company_Details.Logo\":\" Logo \",\"ReportField.All_Requested_Quotations.Client_Name\":\" Nom du client \",\"FormField.Add_Client.state_province2\":\" Etat / Province \",\"ReportField.Overdue_Quotation_Requests.Quotation_Request_Number\":\" Numéro de demande de devis \",\"Languages List.es\":\" Espanol \",\"Languages List.eu\":\" basque \",\"ReportField.All_Quotations1.Subject_field\":\" Assujettir \",\"Languages List.et\":\" estonien \",\"ReportField.All_Requested_Quotations.Status\":\" Statut \",\"FormField.Create_Quotation.Added_User\":\" Utilisateur ajouté \",\"Section.Admin\":\" Admin \",\"Languages List.el\":\" grec \",\"Languages List.eo\":\" espéranto \",\"Languages List.en\":\" Anglais \",\"FormField.Create_Company.country2\":\" Pays \",\"PicklistOption.Status_Selection.Select_Status.3\":\" Diminué \",\"PicklistOption.Status_Selection.Select_Status.2\":\" Accepté \",\"PicklistOption.Status_Selection.Select_Status.4\":\" Analyser le déclin \",\"FormButton.Status_Selection.Change\":\" Changement \",\"ReportField.All_Clients1.Client_Name\":\" Nom du client / de l'entreprise \",\"PicklistOption.Status_Selection.Select_Status.1\":\" Envoyé au client \",\"ReportField.All_Products_Services.Rate\":\" Taux \",\"Section.Others\":\" Autres \",\"FormField.Add_Client.Section1\":\" Section \",\"CustomAction.Overdue_Quotation_Requests.Create_Quotation1\":\" Créer une offre \",\"CompositeSubFields.Create_Company.Address1.postal_Code2\":\" code postal \",\"ReportField.All_Quotations1.Quote_Status\":\" Statut de la citation \",\"CompositeSubFields.Add_Client.Address.postal_Code2\":\" code postal \",\"ReportField.All_Requested_Quotations.Quotation_Request_Number\":\" Numéro de demande de devis \",\"Section.Quotation_Requests\":\" Demandes de devis \",\"ReportField.Declined.Client_Name\":\" Nom du client \",\"ReportField.Declined.Products_On_Quote.Product_Services_Name\":\" Produits sur devis \",\"CompositeSubFields.Add_Client.Address.address_line_22\":\" Adresse Ligne 2 \",\"FormField.Create_Company.Modified_Time\":\" Heure modifiée \",\"FormField.Status_Selection.Added_User\":\" Utilisateur ajouté \",\"FormField.Create_Quotation.Record_Status\":\" Statut d'enregistrement \",\"ReportField.All_Quotations.Subject_field\":\" Assujettir \",\"FormField.Add_Client.postal_Code2\":\" code postal \",\"PicklistOption.Request_Quotation.Status.3\":\" Rejeté \",\"PicklistOption.Request_Quotation.Status.2\":\" Envoyé au client \",\"FormField.Request_Quotation.Client_Name\":\" Nom du client \",\"PicklistOption.Request_Quotation.Status.1\":\" en attendant \",\"ReportField.Company_Details.Website\":\" Site Internet \",\"PicklistOption.Create_Quotation.Quote_Status.1\":\" Nouveau \",\"PicklistOption.Create_Quotation.Quote_Status.2\":\" Envoyé au client \",\"PicklistOption.Create_Quotation.Quote_Status.3\":\" Accepté \",\"FormField.Add_User.Phone_Number\":\" Numéro de téléphone \",\"PicklistOption.Create_Quotation.Quote_Status.4\":\" Diminué \",\"PicklistOption.Create_Quotation.Quote_Status.5\":\" Analyser le déclin \",\"FormField.Add_User.suffix\":\" Suffixe \",\"ReportField.All_Products_Services.Available_Quantity\":\" quantité disponible \",\"FormButton.Product_Service_Subform.submit\":\" Soumettre \",\"ReportField.Analyze_decline.Subject_field\":\" Assujettir \",\"FormField.Create_Company.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Add_User.ID\":\" ID \",\"CompositeSubFields.Add_Client.Address.address_line_12\":\" Adresse 1 \",\"Languages List.yi\":\" yiddish \",\"ReportField.Analyze_decline.Quotation_Date\":\" Date de la cotation \",\"FormField.Status_Selection.Modified_Time\":\" Heure modifiée \",\"CustomAction.All_Quotations.Send_To_Client\":\" Envoyer au client \",\"ReportField.Accepted.Quotation_Date\":\" Date de la cotation \",\"Languages List.zh\":\" chinois \",\"ReportField.Sent_To_Client.Client_Name\":\" Nom du client \",\"FormField.Request_Quotation.Added_Time\":\" Temps ajouté \",\"CompositeSubFields.Add_Client.Address.district_city2\":\" District de la ville \",\"Report.Analyze_decline\":\" Analyser le déclin \",\"FormField.Create_Quotation.Description\":\" La description \",\"ReportField.All_Quotations1.Quotation_Date\":\" Date de la cotation \",\"FormButton.Add_Client.submit\":\" Soumettre \",\"FormField.Create_Quotation.Tax\":\" Impôt (%) \",\"CompositeSubFields.Add_User.Name1.prefix\":\" Préfixe \",\"FormField.Add_Client.district_city2\":\" District de la ville \",\"FormButton.Request_Quotation.submit\":\" Soumettre \",\"FormField.Add_Product_Service.Added_Time\":\" Temps ajouté \",\"ReportField.All_Quotations.Client_Name\":\" Nom du client \",\"FormButton.Create_Quotation.cancel\":\" Annuler \",\"Report.New_Quotations\":\" Nouvelles citations \",\"CustomAction.New_Quotations.Send_To_Client1\":\" Envoyer au client \",\"FormField.Add_Product_Service.Rate\":\" Taux \",\"FormField.Create_Company.Added_Time\":\" Temps ajouté \",\"FormButton.Create_Quotation.submit\":\" Créer \",\"ReportField.Overdue_Quotation_Requests.Required_Before\":\" Obligatoire avant \",\"ReportField.Analyze_decline.Client_Name\":\" Nom du client \",\"FormField.Add_User.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_User.last_name\":\" Nom de famille \",\"FormField.Add_User.prefix\":\" Préfixe \",\"FormField.Request_Quotation.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Status_Selection.ID\":\" ID \",\"FormButton.Create_Company.submit\":\" Soumettre \",\"FormField.Product_Service_Subform.Product_Services_Name\":\" Nom du produit / service \",\"FormField.Create_Company.Address1\":\" Adresse \",\"Form.Add_Client\":\" Ajouter un client \",\"FormField.Create_Company.address_line_12\":\" Adresse 1 \",\"FormField.Add_Client.address_line_12\":\" Adresse 1 \",\"FormField.Request_Quotation.ID\":\" ID \",\"FormField.Create_Quotation.Terms_Conditions\":\" termes et conditions \",\"FormField.Add_Client.longitude2\":\" longitude \",\"FormButton.Request_Quotation.reset\":\" Réinitialiser \",\"Report.Declined\":\" Diminué \",\"CompositeSubFields.Add_Client.Address.country2\":\" Pays \",\"FormField.Add_Product_Service.Modified_User\":\" Utilisateur modifié \",\"FormField.Create_Company.address_line_22\":\" Adresse Ligne 2 \",\"ReportField.All_Quotations1.Expiry_Date\":\" Date d'expiration \",\"CustomAction.New_Quotations.Change_Status1\":\" Changer le statut \",\"ReportField.New_Quotations.Quotation_Date\":\" Date de la cotation \",\"FormField.Add_Client.Client_Name\":\" Nom du client / de l'entreprise \",\"ReportField.Sent_To_Client.Grand_Total\":\" somme finale \",\"FormField.Add_Client.latitude2\":\" latitude \",\"FormButton.Request_Quotation.update\":\" Mettre à jour \",\"Report.All_Users\":\" Tous les utilisateurs \",\"ReportField.All_Users.Email\":\" Email \",\"CompositeSubFields.Add_User.Name1.last_name\":\" Nom de famille \",\"FormField.Add_Client.ID\":\" ID \",\"FormField.Add_Client.Modified_Time\":\" Heure modifiée \",\"Languages List.ro\":\" roumain \",\"FormField.Create_Quotation.Quotation_Number1\":\" Numéro de devis \",\"FormField.Create_Company.Website\":\" Site Internet \",\"FormField.Create_Company.Modified_User\":\" Utilisateur modifié \",\"FormField.Create_Quotation.Quote_Owner\":\" Propriétaire de devis \",\"FormField.Add_Client.Record_Status\":\" Statut d'enregistrement \",\"Report.All_Quotations\":\" Toutes les citations \",\"Languages List.ru\":\" russe \",\"FormField.Add_Client.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"Languages List.ta\":\" Tamil \",\"ReportField.New_Quotations.Products_On_Quote.Product_Services_Name\":\" Produits sur devis \",\"ReportField.Accepted.Products_On_Quote.Product_Services_Name\":\" Produits sur devis \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" thaïlandais \",\"ReportField.New_Quotations.Client_Name\":\" Nom du client \",\"FormField.Product_Service_Subform.Record_Status\":\" Statut d'enregistrement \",\"FormField.Create_Company.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormButton.Product_Service_Subform.cancel\":\" Annuler \",\"FormField.Create_Quotation.Company_Details\":\" Détails de la société \",\"Languages List.sq\":\" albanais \",\"Report.All_Requested_Quotations\":\" Toutes les demandes \",\"ReportField.Company_Details.Company_Name\":\" Nom de la compagnie \",\"FormField.Create_Quotation.Modified_User\":\" Utilisateur modifié \",\"ReportField.All_Quotations1.Tax_Amount\":\" Montant de la taxe \",\"Languages List.sw\":\" Swahili \",\"FormField.Add_Client.country2\":\" Pays \",\"Languages List.sv\":\" suédois \",\"Form.Request_Quotation\":\" Demande de cotation \",\"Languages List.sk\":\" slovaque \",\"FormField.Add_User.Section\":\" Section \",\"Languages List.sl\":\" slovène \",\"FormField.Add_Client.address_line_22\":\" Adresse Ligne 2 \",\"FormField.Create_Quotation.Sub_Total\":\" Sous total \",\"ReportField.All_Clients1.address_line_12\":\" Adresse \",\"FormField.Create_Quotation.Section1\":\" Section \",\"FormField.Create_Company.Phone_Number\":\" Numéro de téléphone \",\"FormField.Create_Quotation.Discount\":\" Remise \",\"ReportField.All_Quotations1.Company_Details\":\" Détails de la société \",\"Languages List.pt\":\" Portugais \",\"Languages List.pl\":\" polonais \",\"FormField.Add_Product_Service.Available_Quantity\":\" quantité disponible \",\"FormField.Create_Quotation.Client_Name\":\" Nom du client \",\"ReportField.New_Quotations.Tax_Amount\":\" Montant de la taxe \",\"FormField.Request_Quotation.Added_User\":\" Utilisateur ajouté \",\"FormButton.Add_User.cancel\":\" Annuler \",\"FormField.Status_Selection.Modified_User\":\" Utilisateur modifié \",\"ReportField.Overdue_Quotation_Requests.Client_Name\":\" Nom du client \",\"ReportField.Overdue_Quotation_Requests.Items_On_Quote.Product_Service\":\" Articles sur devis \",\"ReportField.All_Clients.Email\":\" Email \",\"ReportField.All_Requested_Quotations.Required_Before\":\" Obligatoire avant \",\"FormField.Request_Quotation.Items_On_Quote\":\" Articles sur devis \",\"FormField.Request_Quotation.Status\":\" Statut \",\"FormField.Product_Service_Subform.Quantity\":\" Quantité \",\"FormField.Add_User.Added_Time\":\" Temps ajouté \",\"FormField.Add_Product_Service.Added_User\":\" Utilisateur ajouté \",\"FormField.Request_Quotation.Quotation_Request_Number\":\" Numéro de demande de devis \",\"ReportField.Sent_To_Client.Quote_Status\":\" Statut de la citation \",\"CompositeSubFields.Create_Company.Address1.district_city2\":\" District de la ville \",\"FormButton.Create_Company.reset\":\" Réinitialiser \",\"PicklistOption.Add_Product_Service.Unit.16\":\" Reliure en spirale \",\"PicklistOption.Add_Product_Service.Unit.17\":\" Pieds carrés \",\"PicklistOption.Add_Product_Service.Unit.14\":\" Rames \",\"FormField.Create_Quotation.Quotation_Request_Number\":\" Numéro de demande de devis \",\"PicklistOption.Add_Product_Service.Unit.15\":\" Drap \",\"PicklistOption.Add_Product_Service.Unit.12\":\" Pièces \",\"PicklistOption.Add_Product_Service.Unit.13\":\" Quantité \",\"PicklistOption.Add_Product_Service.Unit.10\":\" Pack \",\"PicklistOption.Add_Product_Service.Unit.11\":\" Pages \",\"FormField.Create_Company.state_province2\":\" Etat / Province \",\"FormField.Create_Company.latitude2\":\" latitude \",\"ReportField.New_Quotations.Quotation_Number1\":\" Numéro de devis \",\"App.quotation-management\":\"Gestion des devis \",\"FormButton.Add_Product_Service.update\":\" Mettre à jour \",\"Form.Product_Service_Subform\":\" Sous-formulaire de produit / service \",\"ReportField.Declined.Quote_Status\":\" Statut de la citation \",\"FormField.Add_Product_Service.ID\":\" ID \",\"ReportField.All_Quotations.Grand_Total\":\" somme finale \",\"FormField.Create_Company.longitude2\":\" longitude \",\"FormField.Create_Quotation.Tax_Amount\":\" Montant de la taxe \",\"ReportField.Overdue_Quotation_Requests.Items_On_Quote.Quantity\":\" Articles sur devis.Quantité \",\"ReportField.My_Requested_Quotation.Client_Name\":\" Nom du client \",\"Report.Sent_To_Client\":\" Envoyé au client \",\"Section.Quotations\":\" Citations \",\"CustomAction.Overdue_Quotation_Requests.Reject1\":\" Rejeter \",\"CompositeSubFields.Create_Company.Address1.address_line_12\":\" Adresse 1 \",\"FormField.Add_Client.Added_Time\":\" Temps ajouté \",\"ReportField.All_Quotations.Quotation_Number1\":\" Numéro de devis \",\"Report.All_Clients1\":\" Tous les clients \",\"ReportField.Declined.Quotation_Date\":\" Date de la cotation \",\"FormField.Product_Service_Subform.Modified_User\":\" Utilisateur modifié \",\"CompositeSubFields.Create_Company.Address1.address_line_22\":\" Adresse Ligne 2 \",\"Languages List.tr\":\" turc \",\"FormField.Add_User.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"ReportField.All_Quotations1.Quote_Owner\":\" Propriétaire de devis \",\"Form.Add_User\":\" Ajouter un utilisateur \",\"FormField.Add_Product_Service.Record_Status\":\" Statut d'enregistrement \",\"ReportField.Sent_To_Client.Subject_field\":\" Assujettir \",\"Languages List.tl\":\" Philippin \",\"FormField.Product_Service_Subform.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"ReportField.My_Requested_Quotation.Required_Before\":\" Obligatoire avant \",\"FormField.Create_Quotation.Expiry_Date\":\" Date d'expiration \",\"Languages List.vi\":\" vietnamien \",\"ReportField.All_Quotations.Quotation_Date\":\" Date de la cotation \",\"ReportField.All_Quotations.Products_On_Quote.Product_Services_Name\":\" Produits sur devis \",\"FormButton.Add_Product_Service.reset\":\" Réinitialiser \",\"Languages List.ur\":\" Urdu \",\"FormField.Add_Product_Service.Modified_Time\":\" Heure modifiée \"}}"
+}
+}

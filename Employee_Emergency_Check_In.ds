@@ -1,0 +1,2934 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 23:54:50
+ * Version      : 1.0
+ */
+ application "Employee Emergency Check In"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+	section Raise_New_Crisis
+	{
+		displayname= "Crisis"
+		icon = "users-2-police"
+		form Raise_New_Crisis
+		{
+			displayname = "Raise New Crisis"
+			success message = "New Crisis Raised Successfully"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Branch
+			(
+				type = picklist
+				values  = Add_Branch.ID
+    			bidirectional = Raise_New_Crisis_Crisis_Name
+    			displayformat = [Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Name_The_Crisis
+			(
+    			type = text
+				displayname = "Name The Crisis"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Describe_The_Crisis
+			(
+    			type = textarea
+				displayname = "Describe The Crisis"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Raising_By
+			(
+				type = picklist
+				displayname = "Raised By"
+				values  = Add_Employee.ID
+    			displayformat = [" " + Name.first_name + " " + Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Date_field
+			(
+    			type = date
+				displayname = "Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Status
+			(
+				type = picklist
+				values = {"Open", "Closed"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Branch_Employees
+			(
+				type = list
+				displayname = "Branch Employees"
+				values  = Add_Employee.ID
+    			displayformat = [" " + Name.first_name + " " + Name.last_name]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Checked_In_Employees
+			(
+				type = list
+				displayname = "Checked In Employees"
+				values  = Add_Employee[Branch.ID == input.Branch].ID
+    			displayformat = [" " + Email]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "weather-sun-fog-29"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		summary All_Crisis
+		{
+			displayName = "All Crisis"
+			show all rows from Raise_New_Crisis    
+			(
+				custom action "View Details"
+				(
+	  			workflow = Run_Scripts_On_Click_of_V
+				show action in edit record menu = true
+				column header = "View Details"
+				)
+				custom action "Close Crisis"
+				(
+	  			workflow = Run_Scripts_On_Click_of_C
+				show action in edit record menu = true
+				column header = "Close Crisis"
+				condition = (Status == "Open")
+				)
+				Branch
+				Describe_The_Crisis as "Describe The Crisis"
+				Date_field as "Date"
+				Raising_By as "Raised By"
+				Status
+				Name_The_Crisis as "Name The Crisis"
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 2
+				icon = "weather-sun-cloud-snow-54"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Branch
+							Name_The_Crisis as "Name The Crisis"
+							Describe_The_Crisis as "Describe The Crisis"
+							Date_field as "Date"
+							Raising_By as "Raised By"
+							Status
+				"View Details"
+				"Close Crisis"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"View Details"
+								"Close Crisis"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Branch
+							Branch
+							Date_field as "Date"
+							Date_field as "Date"
+							Status
+							Name_The_Crisis as "Name The Crisis"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Requested Helps"
+		     			related field =  Employee_Check_In_Form.Crisis_Name
+						fields
+						(
+							Employee_Name as "Employee Name"
+							Your_Need as "Need"
+							Branch
+							Date_field as "Date"
+							Request_Status as "Request Status"
+							Crisis_Name as "Crisis Name"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Safe Peoples"
+		     			related field =  Employee_Check_In_Form.Crisis_Name
+						fields
+						(
+							Employee_Name as "Employee Name"
+							Branch
+							Date_field as "Date"
+							Crisis_Name as "Crisis Name"
+						)
+					)
+					datablock4
+					(
+			 			layout type = -1
+		     			title = "People Not There"
+		     			related field =  Employee_Check_In_Form.Crisis_Name
+						fields
+						(
+							Employee_Name as "Employee Name"
+							Branch
+							Date_field as "Date"
+							Crisis_Name as "Crisis Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		summary Open_Crisis_In_Our_Branch
+		{
+			displayName = "Open Crisis In Our Branch"
+			show all rows from Raise_New_Crisis  [Branch_Employees.Email.contains(zoho.loginuserid) && Status == "Open"]  
+			(
+				custom action "Update Status"
+				(
+	  			workflow = Run_Scripts_On_Click_of_U
+				show action in edit record menu = true
+				column header = "Update Status"
+				condition = (!Checked_In_Employees.Email.contains(zoho.loginuserid) || Checked_In_Employees.Email is null)
+				)
+				Branch
+				Name_The_Crisis as "Name The Crisis"
+				Describe_The_Crisis as "Describe The Crisis"
+				Raising_By as "Raised By"
+				Date_field as "Date"
+				Status
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 2
+				icon = "objects-leaf-38"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Branch
+							Name_The_Crisis as "Name The Crisis"
+							Describe_The_Crisis as "Describe The Crisis"
+							Raising_By as "Raised By"
+							Date_field as "Date"
+							Status
+				"Update Status"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Update Status"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Branch
+							Status
+							Describe_The_Crisis as "Describe The Crisis"
+							Raising_By as "Raised By"
+							Date_field as "Date"
+							Status
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "My Status"
+		     			related field =  Employee_Check_In_Form.Crisis_Name
+						fields
+						(
+							Crisis_Name as "Crisis Name"
+							Status
+							Your_Need as "Your Need"
+							Request_Status as "Request Status"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Employee
+	{
+		displayname= "Employees"
+		icon = "users-single-04"
+		form Add_Employee
+		{
+			displayname = "Add Employee"
+			success message = "Employee Added Successfully"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Branch
+			(
+				type = picklist
+				values  = Add_Branch.ID
+    			bidirectional = Employees
+    			displayformat = [Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Category
+			(
+				type = picklist
+				values = {"Manager", "Staff"}
+    			description
+    			[
+    				type = help_text
+    			 	message = "Only managers can raise a crisis"
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-add-27"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list All_Employees
+		{
+			displayName = "All Employees"
+			show all rows from Add_Employee    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Email
+				Phone_Number as "Phone Number"
+				Category
+				Branch
+			)
+			group by
+			(
+				Category ascending
+			)
+			sort by
+			(
+				Category ascending
+			)
+			options
+			(
+				icon = "users-circle-08"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email
+							Phone_Number as "Phone Number"
+							Category
+							Branch
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email
+							Phone_Number as "Phone Number"
+							Category
+							Branch
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Branch
+	{
+		displayname= "Branches"
+		form Add_Branch
+		{
+			displayname = "Add Branch"
+			success message = "Branch Added Successfully"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Raise_New_Crisis_Crisis_Name
+			(
+				type = list
+				displayname = "Raise New Crisis - Crisis Name"
+				values  = Raise_New_Crisis.ID
+    			bidirectional = Branch
+    			displayformat = [Name_The_Crisis]
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Company_Name
+			(
+				type = picklist
+				displayname = "Company Name"
+				values  = Add_Company_Details.ID
+    			bidirectional = Branches
+    			displayformat = [Company_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Name
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Email
+			(
+    			type = email
+    			description
+    			[
+    				type = none
+    			 	message = "Hi"
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Employees
+			(
+				type = grid
+				values  = Add_Employee.ID
+    			bidirectional = Branch
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "location-pin-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Checked_In_Employees
+	{
+		displayname= "Checked In Employees"
+		icon = "users-single-04"
+		form Employee_Check_In_Form
+		{
+			displayname = "Employee Check In Form"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 40
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Crisis_Name
+			(
+				type = picklist
+				displayname = "Crisis Name"
+				values  = Raise_New_Crisis.ID
+    			displayformat = [Name_The_Crisis]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Branch
+			(
+				type = picklist
+				values  = Add_Branch.ID
+    			displayformat = [Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Employee_Name
+			(
+				type = picklist
+				displayname = "Employee Name"
+				values  = Add_Employee.ID
+    			displayformat = [" " + Name.first_name + " " + Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Your_Need
+			(
+    			type = textarea
+				displayname = "Your Need"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Date_field
+			(
+    			type = date
+				displayname = "Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Status
+			(
+				type = picklist
+				values = {"Safe", "Away From Location", "Need Help"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Request_Status
+			(
+				type = picklist
+				displayname = "Request Status"
+				values = {"Pending", "Closed"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Comments
+			(
+				type = grid
+				values  = Response_Form.ID
+    			bidirectional = Request_Id
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-circle-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Safe_Employees
+		{
+			displayName = "Safe Employees"
+			show all rows from Employee_Check_In_Form  [Status != "Need Help"]  
+			(
+				Employee_Name as "Employee Name"
+				Branch
+				Date_field as "Date"
+				Status
+				Crisis_Name as "Crisis Name"
+			)
+			group by
+			(
+				Crisis_Name ascending
+				Status ascending
+			)
+			sort by
+			(
+				Status ascending
+			)
+			options
+			(
+				icon = "ui-1-check-bold"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Employee_Name as "Employee Name"
+							Branch
+							Date_field as "Date"
+							Status
+							Crisis_Name as "Crisis Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Employee_Name as "Employee Name"
+							Branch
+							Date_field as "Date"
+							Status
+							Crisis_Name as "Crisis Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Requests
+		{
+			displayName = "My Requests"
+			show all rows from Employee_Check_In_Form  [Employee_Name.Email == zoho.loginuserid && Status == "Need Help"]  
+			(
+				custom action "Close Request"
+				(
+	  			workflow = Run_Scripts_On_Click_of_C1
+				show action in edit record menu = true
+				column header = "Close Request"
+				condition = (Request_Status == "Pending")
+				)
+				Employee_Name as "Employee Name"
+				Your_Need as "Your Need"
+				Branch
+				Date_field as "Date"
+				Status
+				Crisis_Name as "Crisis Name"
+				Request_Status as "Request Status"
+				custom action "Comment"
+				(
+	  			workflow = Run_Scripts_On_Click_of_C3
+				show action in edit record menu = true
+				column header = "Comment"
+				condition = (Request_Status == "Pending")
+				)
+			)
+			group by
+			(
+				Crisis_Name ascending
+			)
+			options
+			(
+				icon = "arrows-2-skew-down"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Employee_Name as "Employee Name"
+							Your_Need as "Your Need"
+							Branch
+							Date_field as "Date"
+							Status
+							Crisis_Name as "Crisis Name"
+							Request_Status as "Request Status"
+				"Close Request"
+				"Comment"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Close Request"
+								"Comment"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Employee_Name as "Employee Name"
+							Your_Need as "Your Need"
+							Branch
+							Date_field as "Date"
+							Status
+							Crisis_Name as "Crisis Name"
+							Request_Status as "Request Status"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Comments"
+		     			related field =  Comments[Employee_Name.Email == zoho.loginuserid && Status == "Need Help"]
+						fields
+						(
+							Comment
+							By
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Requested_Helps
+		{
+			displayName = "Requested Helps"
+			show all rows from Employee_Check_In_Form  [Status == "Need Help"]  
+			(
+				custom action "Comment"
+				(
+	  			workflow = Run_Scripts_On_Click_of_C2
+				show action in edit record menu = true
+				column header = "Comment"
+				condition = (Request_Status == "Pending")
+				)
+				Employee_Name as "Employee Name"
+				Your_Need as "Need"
+				Branch
+				Date_field as "Date"
+				Status
+				Crisis_Name as "Crisis Name"
+				Request_Status as "Request Status"
+				Added_Location  as "Added Location"
+	 			(
+	      			displayformat = [district_city+""+state_province+""+postal_Code+""+country]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+			)
+			group by
+			(
+				Crisis_Name ascending
+				Request_Status ascending
+			)
+			options
+			(
+				icon = "holidays-dead-hand"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Employee_Name as "Employee Name"
+							Your_Need as "Need"
+							Branch
+							Date_field as "Date"
+							Status
+							Crisis_Name as "Crisis Name"
+							Request_Status as "Request Status"
+				"Comment"
+							Added_Location as "Added Location"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Comment"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Branch
+							Your_Need as "Need"
+							Branch
+							Date_field as "Date"
+							Status
+							Crisis_Name as "Crisis Name"
+							Request_Status as "Request Status"
+							Added_Location as "Added Location"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Comments"
+		     			related field =  Comments[Status == "Need Help"]
+						fields
+						(
+							Comment
+							By
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Employee Details"
+		     			related field =  Employee_Name[Status == "Need Help"]
+						fields
+						(
+							Branch
+							Name
+							Email
+							Phone_Number as "Phone Number"
+							Category
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Status
+		{
+			displayName = "My Status"
+			show all rows from Employee_Check_In_Form  [Employee_Name.Email == zoho.loginuserid]  
+			(
+				Crisis_Name as "Crisis Name"
+				Branch
+				Employee_Name as "Employee Name"
+				Your_Need as "Your Need"
+				Date_field as "Date"
+				Status
+				Request_Status as "Request Status"
+			)
+			options
+			(
+				icon = "health-heartbeat-16"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Crisis_Name as "Crisis Name"
+							Branch
+							Employee_Name as "Employee Name"
+							Your_Need as "Your Need"
+							Date_field as "Date"
+							Status
+							Request_Status as "Request Status"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Crisis_Name as "Crisis Name"
+							Branch
+							Employee_Name as "Employee Name"
+							Your_Need as "Your Need"
+							Date_field as "Date"
+							Status
+							Request_Status as "Request Status"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Company_Details
+	{
+		displayname= "Settings"
+		icon = "tech-2-p-settings"
+		form Add_Company_Details
+		{
+			displayname = "Add Company Details"
+			success message = "Company Detail Added Successfully"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Company_Name
+			(
+    			type = text
+				displayname = "Company Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Email_Id
+			(
+    			type = email
+				displayname = "Email Id"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Website
+			(
+    			type = url
+				enable  linkname
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Branches
+			(
+				type = grid
+				values  = Add_Branch.ID
+    			bidirectional = Company_Name
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		properties
+		{
+			total entries
+			{
+				allowed count = 1
+			}
+		}
+		}
+		summary Company_Details
+		{
+			displayName = "Company Details"
+			show all rows from Add_Company_Details    
+			(
+				Email_Id as "Email Id"
+				Company_Name as "Company Name"
+				Phone_Number as "Phone Number"
+				Website
+				Branches.Name as "Branches"
+				(
+					view = Branches
+				)
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 2
+				icon = "business-building"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Company_Name as "Company Name"
+							Branches.Name as "Branches"
+							Email_Id as "Email Id"
+							Phone_Number as "Phone Number"
+							Website
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Email_Id as "Email Id"
+							Company_Name as "Company Name"
+							Phone_Number as "Phone Number"
+							Phone_Number as "Phone Number"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Branches"
+		     			related field =  Branches
+						fields
+						(
+							Name
+							Address
+							Email
+							Phone_Number as "Phone Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		custom Branches
+		{
+			displayName = "Branches"
+			show all rows from Add_Branch    
+			(
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Company_Name.Email_Id as "Email Id"
+				Name
+				Phone_Number as "Phone Number"
+				Email
+			)
+			options
+			(
+				icon = "location-pin-copy"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = 1
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Address
+							Name
+							Phone_Number as "Phone Number"
+							Email
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Crisis_Page
+	{
+		displayname= "Crisis Page"
+		icon = "social-1-logo-wordpress"
+				 page Crisis_Details(Crisis_Id) 
+	 	 { 
+ 	 	 displayname = "Crisis Details" 
+
+ 	 	 icon = "" 
+
+ 	 	 hide =  true
+	 	 Content="<zml \n\t\t\tisPdfEnabled='false'\n\t\t\n\t\t\tisPrintEnabled='false'\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"33%\"\n   \t>\n\t<dspZml id='zml_snippet4'>\n\t<![CDATA[htmlpage zml_snippet4(Crisis_Id)\ndisplayname = &quot;zml_snippet&quot;\ncontent\n&lt;%{\n\tsafepeoples_count = Employee_Check_In_Form[Crisis_Name == input.Crisis_Id.toLong() &amp;&amp; Status == &quot;Safe&quot;].count(ID);\n\t%&gt;\n&lt;panel&gt;\n  &lt;pr height=&apos;fill&apos; width=&apos;fill&apos;&gt;\n    &lt;pc width=&apos;100%&apos; bgColor=&apos;#FFFFFF&apos; padding=&apos;20px&apos; hAlign=&apos;center&apos; vAlign=&apos;middle&apos;&gt;\n      &lt;pr height=&apos;auto&apos; width=&apos;auto&apos;&gt;\n        &lt;pc&gt;\n          &lt;pr&gt;\n            &lt;pc&gt;\n              &lt;image color=&apos;#FFFFFF&apos; bgColor=&apos;#0ABB51&apos; width=&apos;52px&apos; height=&apos;52px&apos; imageType=&apos;icon&apos; value=&apos;zc-li-solid ui-1-check-bold&apos; iconsize=&apos;4&apos; cornerRadius=&apos;26px&apos; unicodeValue=&apos;ee45&apos; \/&gt; &lt;\/pc&gt;\n          &lt;\/pr&gt;\n          &lt;pr&gt;\n            &lt;pc&gt;\n              &lt;text type=&apos;Text&apos; value=&apos;No. of Safe People&apos; size=&apos;4&apos; color=&apos;#333333&apos; marginTop=&apos;5px&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n            &lt;\/pc&gt;\n          &lt;\/pr&gt;\n          &lt;pr&gt;\n            &lt;pc&gt;\n              &lt;text type=&apos;Text&apos; value=&quot;&lt;%=safepeoples_count%&gt;&quot; size=&apos;8&apos; color=&apos;#0ABB51&apos; bold=&apos;true&apos; marginTop=&apos;2px&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n            &lt;\/pc&gt;\n          &lt;\/pr&gt;\n        &lt;\/pc&gt;\n      &lt;\/pr&gt;\n    &lt;\/pc&gt;\n  &lt;\/pr&gt;\n&lt;\/panel&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dspZml>\n<\/column><column\n   \t\t width=\"33%\"\n   \t>\n\t<dspZml id='zml_snippet1'>\n\t<![CDATA[htmlpage zml_snippet1(Crisis_Id)\ndisplayname = &quot;zml_snippet&quot;\ncontent\n&lt;%{\n\trequestedhelps_count = Employee_Check_In_Form[Crisis_Name == input.Crisis_Id.toLong() &amp;&amp; Status == &quot;Need Help&quot;].count(ID);\n\t%&gt;\n&lt;panel&gt;\n  &lt;pr height=&apos;fill&apos; width=&apos;fill&apos;&gt;\n    &lt;pc width=&apos;100%&apos; bgColor=&apos;#FFFFFF&apos; padding=&apos;20px&apos; hAlign=&apos;center&apos; vAlign=&apos;middle&apos;&gt;\n      &lt;pr height=&apos;auto&apos; width=&apos;auto&apos;&gt;\n        &lt;pc&gt;\n          &lt;pr&gt;\n            &lt;pc&gt;\n              &lt;image color=&apos;#FFFFFF&apos; bgColor=&apos;#ff5b5b&apos; width=&apos;52px&apos; height=&apos;52px&apos; imageType=&apos;icon&apos; value=&apos;zc-li-solid education-paper-diploma&apos; iconsize=&apos;4&apos; cornerRadius=&apos;26px&apos; unicodeValue=&apos;e8c4&apos; \/&gt; &lt;\/pc&gt;\n          &lt;\/pr&gt;\n          &lt;pr&gt;\n            &lt;pc&gt;\n              &lt;text type=&apos;Text&apos; value=&apos;Requested Help&apos; size=&apos;4&apos; color=&apos;#333333&apos; marginTop=&apos;5px&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n            &lt;\/pc&gt;\n          &lt;\/pr&gt;\n          &lt;pr&gt;\n            &lt;pc&gt;\n              &lt;text type=&apos;Text&apos; value=&quot;&lt;%=requestedhelps_count%&gt;&quot; size=&apos;8&apos; color=&apos;#ff5b5b&apos; bold=&apos;true&apos; marginTop=&apos;2px&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n            &lt;\/pc&gt;\n          &lt;\/pr&gt;\n        &lt;\/pc&gt;\n      &lt;\/pr&gt;\n    &lt;\/pc&gt;\n  &lt;\/pr&gt;\n&lt;\/panel&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dspZml>\n<\/column><column\n   \t\t width=\"34%\"\n   \t>\n\t<dspZml id='zml_snippet5'>\n\t<![CDATA[htmlpage zml_snippet5(Crisis_Id)\ndisplayname = &quot;zml_snippet&quot;\ncontent\n&lt;%{\n\taway_from_location_count = Employee_Check_In_Form[Crisis_Name == input.Crisis_Id.toLong() &amp;&amp; Status == &quot;Away From Location&quot;].count(ID);\n\t%&gt;\n&lt;panel&gt;\n  &lt;pr height=&apos;fill&apos; width=&apos;fill&apos;&gt;\n    &lt;pc width=&apos;100%&apos; bgColor=&apos;#FFFFFF&apos; padding=&apos;20px&apos; hAlign=&apos;center&apos; vAlign=&apos;middle&apos;&gt;\n      &lt;pr height=&apos;auto&apos; width=&apos;auto&apos;&gt;\n        &lt;pc&gt;\n          &lt;pr&gt;\n            &lt;pc&gt;\n              &lt;image color=&apos;#FFFFFF&apos; bgColor=&apos;#3280e2&apos; width=&apos;52px&apos; height=&apos;52px&apos; imageType=&apos;icon&apos; value=&apos;zc-li-solid files-folder-no-access&apos; iconsize=&apos;4&apos; cornerRadius=&apos;26px&apos; unicodeValue=&apos;ef10&apos; \/&gt; &lt;\/pc&gt;\n          &lt;\/pr&gt;\n          &lt;pr&gt;\n            &lt;pc&gt;\n              &lt;text type=&apos;Text&apos; value=&apos;Away From Location&apos; size=&apos;4&apos; color=&apos;#333333&apos; marginTop=&apos;5px&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n            &lt;\/pc&gt;\n          &lt;\/pr&gt;\n          &lt;pr&gt;\n            &lt;pc&gt;\n              &lt;text type=&apos;Text&apos; value=&quot;&lt;%=away_from_location_count%&gt;&quot; size=&apos;8&apos; color=&apos;#3280e2&apos; bold=&apos;true&apos; marginTop=&apos;2px&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n            &lt;\/pc&gt;\n          &lt;\/pr&gt;\n        &lt;\/pc&gt;\n      &lt;\/pr&gt;\n    &lt;\/pc&gt;\n  &lt;\/pr&gt;\n&lt;\/panel&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dspZml>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"50%\"\n   \t>\n\t<dspZml id='zml_snippet2'>\n\t<![CDATA[htmlpage zml_snippet2(Crisis_Id)\ndisplayname = &quot;zml_snippet&quot;\ncontent\n&lt;%{\n\tclosed_requests_count = Employee_Check_In_Form[Crisis_Name == input.Crisis_Id.toLong() &amp;&amp; Status == &quot;Need Help&quot; &amp;&amp; Request_Status == &quot;Closed&quot;].count(ID);\n\t%&gt;\n&lt;panel&gt;\n  &lt;pr height=&apos;fill&apos; width=&apos;fill&apos;&gt;\n    &lt;pc width=&apos;100%&apos; bgColor=&apos;#FFFFFF&apos; padding=&apos;20px&apos; hAlign=&apos;center&apos; vAlign=&apos;middle&apos;&gt;\n      &lt;pr height=&apos;auto&apos; width=&apos;auto&apos;&gt;\n        &lt;pc&gt;\n          &lt;pr&gt;\n            &lt;pc&gt;\n              &lt;image color=&apos;#FFFFFF&apos; bgColor=&apos;#33da95&apos; width=&apos;52px&apos; height=&apos;52px&apos; imageType=&apos;icon&apos; value=&apos;zc-li-solid ui-1-lock-circle&apos; iconsize=&apos;4&apos; cornerRadius=&apos;26px&apos; unicodeValue=&apos;ed67&apos; \/&gt; &lt;\/pc&gt;\n          &lt;\/pr&gt;\n          &lt;pr&gt;\n            &lt;pc&gt;\n              &lt;text type=&apos;Text&apos; value=&apos;Closed Requests&apos; size=&apos;3&apos; color=&apos;#333333&apos; marginTop=&apos;5px&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n            &lt;\/pc&gt;\n          &lt;\/pr&gt;\n          &lt;pr&gt;\n            &lt;pc&gt;\n              &lt;text type=&apos;Text&apos; value=&quot;&lt;%=closed_requests_count%&gt;&quot; size=&apos;8&apos; color=&apos;#33da95&apos; bold=&apos;true&apos; marginTop=&apos;2px&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n            &lt;\/pc&gt;\n          &lt;\/pr&gt;\n        &lt;\/pc&gt;\n      &lt;\/pr&gt;\n    &lt;\/pc&gt;\n  &lt;\/pr&gt;\n&lt;\/panel&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dspZml>\n<\/column><column\n   \t\t width=\"50%\"\n   \t>\n\t<dspZml id='zml_snippet3'>\n\t<![CDATA[htmlpage zml_snippet3(Crisis_Id)\ndisplayname = &quot;zml_snippet&quot;\ncontent\n&lt;%{\n\tpending_requests_count = Employee_Check_In_Form[Crisis_Name == input.Crisis_Id.toLong() &amp;&amp; Status == &quot;Need Help&quot; &amp;&amp; Request_Status == &quot;Pending&quot;].count(ID);\n\t%&gt;\n&lt;panel&gt;\n  &lt;pr height=&apos;fill&apos; width=&apos;fill&apos;&gt;\n    &lt;pc width=&apos;100%&apos; bgColor=&apos;#FFFFFF&apos; padding=&apos;20px&apos; hAlign=&apos;center&apos; vAlign=&apos;middle&apos;&gt;\n      &lt;pr height=&apos;auto&apos; width=&apos;auto&apos;&gt;\n        &lt;pc&gt;\n          &lt;pr&gt;\n            &lt;pc&gt;\n              &lt;image color=&apos;#FFFFFF&apos; bgColor=&apos;#daaf60&apos; width=&apos;52px&apos; height=&apos;52px&apos; imageType=&apos;icon&apos; value=&apos;zc-li-solid ui-1-lock-circle-open&apos; iconsize=&apos;4&apos; cornerRadius=&apos;26px&apos; unicodeValue=&apos;ed66&apos; \/&gt; &lt;\/pc&gt;\n          &lt;\/pr&gt;\n          &lt;pr&gt;\n            &lt;pc&gt;\n              &lt;text type=&apos;Text&apos; value=&apos;Pending Requests&apos; size=&apos;3&apos; color=&apos;#333333&apos; marginTop=&apos;5px&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n            &lt;\/pc&gt;\n          &lt;\/pr&gt;\n          &lt;pr&gt;\n            &lt;pc&gt;\n              &lt;text type=&apos;Text&apos; value=&quot;&lt;%=pending_requests_count%&gt;&quot; size=&apos;8&apos; color=&apos;#daaf60&apos; bold=&apos;true&apos; marginTop=&apos;2px&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n            &lt;\/pc&gt;\n          &lt;\/pr&gt;\n        &lt;\/pc&gt;\n      &lt;\/pr&gt;\n    &lt;\/pc&gt;\n  &lt;\/pr&gt;\n&lt;\/panel&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dspZml>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+				 page Crisis_View_Page(Crisis_Id) 
+	 	 { 
+ 	 	 displayname = "Crisis_View_Page" 
+
+ 	 	 icon = "design-window-paragraph" 
+
+ 	 	 hide =  true
+	 	 Content="<zml \n\t\t\tisPdfEnabled='false'\n\t\t\n\t\t\tisPrintEnabled='false'\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dspZml id='zml_snippet1'>\n\t<![CDATA[htmlpage zml_snippet1(Crisis_Id)\ndisplayname = &quot;zml_snippet&quot;\ncontent\n&lt;%{\n\tif(Crisis_Id != null)\n\t{\n\t\tcrisis = Raise_New_Crisis[ID == input.Crisis_Id.toLong()];\n\t\tbranch = Add_Branch[ID == crisis.Branch].Name;\n\t\traised_by = Add_Employee[ID == crisis.Raising_By].Name;\n\t\t%&gt;\n&lt;panel&gt;\n\t&lt;pr width=&quot;fill&quot; height=&quot;fill&quot;&gt;\n\t\t&lt;pc width=&quot;100%&quot; &gt;\n\t\t\t&lt;pr width=&quot;fill&quot; height=&quot;fill&quot;&gt;\n\t\t\t\t&lt;pc width=&quot;100%&quot; padding=&quot;10px&quot; hAlign=&quot;center&quot; vAlign=&quot;middle&quot; bgColor=&quot;#e2e2e2&quot;&gt;\n\t\t\t\t\t&lt;text value=&quot;&lt;%=crisis.Name_The_Crisis%&gt;&quot;&gt;&lt;\/text&gt;\n\t\t\t\t&lt;\/pc&gt;\n\t\t\t&lt;\/pr&gt;\n\t\t\t&lt;pr width=&quot;fill&quot; height=&quot;auto&quot;&gt;\n\t\t\t\t&lt;pc width=&quot;100%&quot; height=&quot;auto&quot;&gt;\n\t\t\t\t\t&lt;pr&gt;\n\t\t\t\t\t\t&lt;pc width=&quot;100%&quot; padding=&quot;10px&quot; hAlign=&quot;left&quot; vAlign=&quot;middle&quot;&gt;\n\t\t\t\t\t\t\t&lt;text value=&quot;About Crisis&quot;&gt;&lt;\/text&gt;\n\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t\t&lt;pr white-space=&quot;normal&quot; height=&apos;auto&apos; width=&apos;auto&apos;&gt;\n\t\t\t\t\t\t&lt;pc width=&quot;100%&quot; padding=&quot;10px&quot; vAlign=&quot;middle&quot; hAlign=&quot;center&quot;&gt;\n\t\t\t\t\t\t\t&lt;text value=&quot;&lt;%=crisis.Describe_The_Crisis%&gt;&quot;&gt;&lt;\/text&gt;\n\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t&lt;\/pc&gt;\n\t\t\t&lt;\/pr&gt;\n\t\t\t&lt;pr width=&quot;fill&quot; height=&quot;auto&quot;&gt;\n\t\t\t\t&lt;pc width=&quot;100%&quot; height=&quot;auto&quot;&gt;\n\t\t\t\t\t&lt;pr width=&quot;fill&quot;&gt;\n\t\t\t\t\t\t&lt;pc width=&quot;50%&quot; hAlign=&quot;left&quot; vAlign=&quot;middle&quot; padding=&quot;10px&quot;&gt;\n\t\t\t\t\t\t\t&lt;text value=&quot;Branch : &lt;%=branch%&gt;&quot;&gt;&lt;\/text&gt;\n\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t\t&lt;pc width=&quot;50%&quot; hAlign=&quot;right&quot; vAlign=&quot;middle&quot; padding=&quot;10px&quot;&gt;\n\t\t\t\t\t\t\t&lt;text value=&quot;Raised By&quot;&gt;&lt;\/text&gt;\n\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t\t&lt;pr width=&quot;fill&quot;&gt;\n\t\t\t\t\t\t&lt;pc width=&quot;50%&quot; hAlign=&quot;left&quot; vAlign=&quot;middle&quot; padding=&quot;10px&quot;&gt;\n\t\t\t\t\t\t\t&lt;text value=&quot;Date : &lt;%=crisis.Date_field%&gt;&quot;&gt;&lt;\/text&gt;\n\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t\t&lt;pc width=&quot;50%&quot; hAlign=&quot;right&quot; vAlign=&quot;middle&quot; padding=&quot;10px&quot;&gt;\n\t\t\t\t\t\t\t&lt;text value=&quot;&lt;%=raised_by%&gt;&quot;&gt;&lt;\/text&gt;\n\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t&lt;\/pc&gt;\n\t\t\t&lt;\/pr&gt;\n\t\t\t&lt;pr width=&quot;fill&quot; height=&quot;auto&quot;&gt;\n\t\t\t\t&lt;pc width=&quot;100%&quot;&gt;\n\t\t\t\t\t&lt;pr width=&quot;fill&quot; height=&quot;auto&quot;&gt;\n\t\t\t\t\t\t&lt;pc width=&quot;auto&quot; height=&quot;auto&quot; padding=&quot;20px&quot;&gt;\n\t\t\t\t\t\t\t&lt;button text=&apos;Need Help&apos; size=&apos;4&apos; color=&apos;#ffffff&apos; bgColor=&apos;#ff5d5d&apos; btnType=&apos;flat&apos; action=&apos;Form&apos; componentLinkName=&apos;Employee_Check_In_Form&apos; target=&apos;new window&apos; parameters=&apos;Crisis_Name=&lt;%=crisis.ID%&gt;&apos; \/&gt;\n\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t\t&lt;pc width=&quot;auto&quot; height=&quot;auto&quot; padding=&quot;20px&quot;&gt;\n\t\t\t\t\t\t\t&lt;button text=&apos;Safe&apos; size=&apos;4&apos; color=&apos;#ffffff&apos; bgColor=&apos;#3bc585&apos; btnType=&apos;flat&apos; action=&apos;Function&apos; functionName=&apos;Crisis.Changing_Status_To_Safe&apos; parameters=&apos;Crisis_Id&apos; \/&gt;\n\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t\t&lt;pc width=&quot;auto&quot; height=&quot;auto&quot; padding=&quot;20px&quot;&gt;\n\t\t\t\t\t\t\t &lt;button text=&apos;Away From Location&apos; size=&apos;4&apos; color=&apos;#ffffff&apos; bgColor=&apos;#5281ea&apos; btnType=&apos;flat&apos; action=&apos;Function&apos; functionName=&apos;Crisis.Changing_Status_To_Away_From_Location&apos; parameters=&apos;Crisis_Id&apos; \/&gt;\n\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t&lt;\/pc&gt;\n\t\t\t&lt;\/pr&gt;\n\t\t&lt;\/pc&gt;\n\t&lt;\/pr&gt;\n&lt;\/panel&gt;\n&lt;%\n\t}\n\telse\n\t{\n\t\t%&gt;\n&lt;panel&gt;\n  &lt;pr height=&apos;fill&apos; width=&apos;fill&apos;&gt;\n    &lt;pc width=&apos;100%&apos; bgColor=&apos;#FFFFFF&apos; padding=&apos;20px&apos; hAlign=&apos;center&apos; vAlign=&apos;middle&apos;&gt;\n      &lt;pr height=&apos;auto&apos; width=&apos;auto&apos;&gt;\n        &lt;pc&gt;\n          &lt;pr height=&apos;auto&apos; width=&apos;fill&apos;&gt;\n            &lt;pc width=&apos;100%&apos;&gt;\n              &lt;text type=&apos;Text&apos; value=&apos;Select Any Crisis to update your Status&apos; size=&apos;4&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n            &lt;\/pc&gt;\n          &lt;\/pr&gt;\n          &lt;pr height=&apos;auto&apos; width=&apos;fill&apos;&gt;\n            &lt;pc width=&apos;100%&apos;&gt;\n              &lt;button text=&apos;Select&apos; size=&apos;3&apos; color=&apos;#ffffff&apos; bgColor=&apos;#0072F4&apos; btnType=&apos;flat&apos; action=&apos;Report&apos; componentLinkName=&apos;Open_Crisis_In_Our_Branch&apos; target=&apos;same-window&apos; \/&gt; &lt;\/pc&gt;\n          &lt;\/pr&gt;\n        &lt;\/pc&gt;\n      &lt;\/pr&gt;\n    &lt;\/pc&gt;\n  &lt;\/pr&gt;\n&lt;\/panel&gt;\n&lt;%\n\t}\n\n}%&gt;]]>\n<\/dspZml>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+	}
+	section Response_Form
+	{
+		displayname= "Responses"
+		icon = "health-heartbeat-16"
+		form Response_Form
+		{
+			displayname = "Response Form"
+			success message = "Response Added Successfully"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Comment
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have By
+			(
+				type = picklist
+				values  = Add_Employee.ID
+    			displayformat = [" " + Name.first_name + " " + Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Request_Id
+			(
+				type = picklist
+				displayname = "Request Id"
+				values  = Employee_Check_In_Form.ID
+    			bidirectional = Comments
+    			displayformat = [ID]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-favourite-add-29"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Response_Form_Report
+		{
+			displayName = "All Responses"
+   			hide = true
+			show all rows from Response_Form    
+			(
+				Comment
+				By
+				Request_Id as "Request Id"
+			)
+			options
+			(
+				icon = "business-handshake"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Comment
+							By
+							Request_Id as "Request Id"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Comment
+							By
+							Request_Id as "Request Id"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	functions
+	{
+ 			void Crisis.Changing_Status_To_Safe(string crisis_id)
+			{
+				//Updating employee status as safe
+				user = Add_Employee[Email == zoho.loginuserid].ID;
+				branch = Add_Employee[ID == user].Branch;
+				record_count = Employee_Check_In_Form[Crisis_Name == crisis_id.toLong() && Branch == branch && Employee_Name == user].count();
+				if(record_count == 0)
+				{
+					insert into Employee_Check_In_Form
+					[
+						Added_User=zoho.loginuser
+						Date_field=zoho.currentdate
+						Branch=branch
+						Employee_Name=user
+						Status="Safe"
+						Crisis_Name=crisis_id.toLong()
+					]
+					thisapp.Crisis.Add_Checked_In_List(crisis_id.toLong(),user);
+				}
+			}
+ 			void Crisis.Add_Checked_In_List(int Crisis_Id, int Emp_Id)
+			{
+				crisis_rec = Raise_New_Crisis[ID == input.Crisis_Id];
+				employee_list = crisis_rec.Checked_In_Employees;
+				employee_list.add(Emp_Id);
+				crisis_rec.Checked_In_Employees=employee_list;
+				openUrl("#Report:My_Status","same window");
+			}
+ 			void Crisis.Changing_Status_To_Away_From_Location(string crisis_id)
+			{
+				//Updating employee status as Not there
+				user = Add_Employee[Email == zoho.loginuserid].ID;
+				branch = Add_Employee[ID == user].Branch;
+				record_count = Employee_Check_In_Form[Crisis_Name == crisis_id.toLong() && Branch == branch && Employee_Name == user].count();
+				if(record_count == 0)
+				{
+					insert into Employee_Check_In_Form
+					[
+						Added_User=zoho.loginuser
+						Date_field=zoho.currentdate
+						Branch=branch
+						Employee_Name=user
+						Status="Away From Location"
+						Crisis_Name=crisis_id.toLong()
+					]
+					thisapp.Crisis.Add_Checked_In_List(crisis_id.toLong(),user);
+				}
+			}
+ 			void Crisis.Changing_Crisis_Status_To_Closed(int crisis_id)
+			{
+				//Changing crisis status to closed
+				this_record = Raise_New_Crisis[ID == input.crisis_id];
+				this_record.Status="Closed";
+				request_count = Employee_Check_In_Form[Crisis_Name == input.crisis_id && Request_Status == "Pending"].count(Crisis_Name);
+				if(request_count != 0)
+				{
+					for each  rec in Employee_Check_In_Form[Crisis_Name == input.crisis_id && Request_Status == "Pending"]
+					{
+						rec.Request_Status="Closed";
+					}
+				}
+			}
+ 			void Crisis.Comment_To_Request(int request_id)
+			{
+				//Opening response page
+				// 	url = "https://app.zohocreator.com" + zoho.appuri + "#Form:Response_Form?Request_Id=" + recid;
+				url = "#Form:Response_Form?Request_Id=" + request_id;
+				openUrl(url,"popup window");
+			}
+ 			void Notification.Send_Notification(string userEmail)
+			{
+				//Notification to users
+				appname = zoho.appname;
+				sendmail
+				[
+					from :zoho.adminuserid
+					to :userEmail
+					subject :"Invitation to access '" + zoho.appname + "' "
+					message :"<div style='width:100%;display:inline-block;box-sizing:border-box;border:1px solid #ddd;'><div style='padding:2%;text-align:center;'>You've been invited to use an application built on Zoho Creator by \"" + zoho.adminuserid + "\".</div><div style='background: #efefef; padding: 20.0px;margin: 20.0px 0 10.0px;text-align:center;'><h2>" + appname.toUpperCase() + "</h2><div style='margin: 20.0px 0 10.0px;'><a style='padding:10px;background-color: rgb(62,149,205);text-decoration: none;color: rgb(255,255,255);font-size: 14.0px;' href='https://creator.zoho.com" + zoho.appuri + "' target='_blank'> Go to application </a></div></div></div>"
+				]
+			}
+ 			void Request.Changing_Request_Status_To_Closed(int request_id)
+			{
+				//Changing the request status to closed
+				this_record = Employee_Check_In_Form[ID == input.request_id];
+				this_record.Request_Status="Closed";
+			}
+ 			void Crisis.View_Crisis_Details(int crisis_id)
+			{
+				//Opening crisis details page
+				url = "#Page:Crisis_Details?Crisis_Id=" + crisis_id;
+				openUrl(url,"popup window");
+			}
+ 			void Crisis.Open_Check_In_Page(int Crisis_Id)
+			{
+				url = "#Page:Crisis_View_Page?Crisis_Id=" + Crisis_Id;
+				openUrl(url,"same window");
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Run_Scripts_While_Adding_6 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Employee_Check_In_Form
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						disable Crisis_Name,Status,Date_field,Employee_Name,Branch;
+						hide Comments,Request_Status;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_7 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Employee_Check_In_Form
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Filling requester name and branch
+										input.Status = "Need Help";
+										if(Status == "Need Help")
+										{
+											input.Request_Status = "Pending";
+										}
+										input.Employee_Name = Add_Employee[Email == zoho.loginuserid].ID;
+										input.Date_field = zoho.currentdate;
+										input.Branch = Add_Employee[ID == input.Employee_Name].Branch;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_8 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Employee_Check_In_Form
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Status == "Need Help")
+										{
+											if(input.Your_Need == null || input.Your_Need == "")
+											{
+												alert "Please enter your needs";
+												cancel submit;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_9 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Employee_Check_In_Form
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Status == "Need Help")
+										{
+											thisapp.Crisis.Add_Checked_In_List(input.Crisis_Name,input.Employee_Name);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_10 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Raise_New_Crisis
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						disable Raising_By;
+						hide Status;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_11 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Raise_New_Crisis
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											company_detail = Add_Company_Details[ID != 0];
+										if(company_detail.count() == 0)
+										{
+											openUrl("#Form:Add_Company_Details","popup window");
+										}
+										//Prefilling employee and branch name
+										input.Raising_By = Add_Employee[Email == zoho.loginuserid].ID;
+										branch = Add_Employee[ID == input.Raising_By].Branch;
+										if(branch != null)
+										{
+											input.Branch = branch;
+										}
+										input.Status = "Open";
+										input.Date_field = zoho.currentdate;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_12 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Raise_New_Crisis
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Sending mail for all employees in the branch
+										url = "https://app.zohocreator.com/" + zoho.appuri + "#Page:Crisis_View_Page?Crisis_Id=" + input.ID;
+										for each  emp in input.Branch_Employees
+										{
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :emp.Email
+												subject :"New Crisis"
+												message :"A new crisis raised in our company so please <a href=" + url + ">click here to update your status</a>"
+											]
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_13 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											company_detail = Add_Company_Details[ID != 0];
+										if(company_detail.count() == 0)
+										{
+											openUrl("#Form:Add_Company_Details","popup window");
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_14 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Sharing app to employees 
+										if(Email != zoho.adminuserid)
+										{
+											thisapp.permissions.assignUserInProfile(input.Email,input.Category);
+											thisapp.Notification.Send_Notification(input.Email);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_15 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Response_Form
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide Request_Id;
+						disable By;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_16 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Response_Form
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Fetching employee name
+										input.By = Add_Employee[Email == zoho.loginuserid].ID;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_17 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Response_Form
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											openUrl("#Script:page.refresh","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_18 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Company_Details
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Sets email as admin email
+										input.Email_Id = zoho.adminuserid;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_19 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Company_Details
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											openUrl("#Script:dialog.close","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin3 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Unsharing app from this user
+										if(Email != zoho.adminuserid)
+										{
+											thisapp.permissions.deleteuser(input.Email);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing2 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(old.Email != input.Email)
+										{
+											//Unshare app from old email
+											//Share app to new email id
+											thisapp.permissions.deleteuser(old.Email);
+											thisapp.permissions.assignUserInProfile(input.Email,input.Category);
+										}
+										else
+										{
+											if(old.Category != input.Category)
+											{
+												thisapp.permissions.assignUserInProfile(input.Email,input.Category);
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_20 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Branch
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Redirects to add company details
+										detail_count = Add_Company_Details[ID != 0];
+										if(detail_count.count(Company_Name) == 0)
+										{
+											alert "You have to add the company details first";
+											openUrl("#Form:Add_Company_Details","popup window");
+										}
+										else
+										{
+											input.Company_Name = detail_count.ID;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_21 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Branch
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Check for same branch
+										address_count = Add_Branch[Address == input.Address].count(ID);
+										if(address_count == 1)
+										{
+											alert "You have already added this branch please add another one";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin4 as "Run Scripts While Deleting a Record"
+			{
+				type =  form
+				form = Add_Company_Details
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											branch_count = Add_Branch[Company_Name == input.ID].count(ID);
+										if(branch_count != 0)
+										{
+											alert "You have already added branches to this company, First delete those branches and try again";
+											cancel delete;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing3 as "Run Scripts While Editing a Record"
+			{
+				type =  form
+				form = Raise_New_Crisis
+				record event = on edit
+
+	field rules
+	{
+					actions 
+					{
+						disable Branch,Status,Raising_By;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always2 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Raise_New_Crisis
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Branch_Employees,Checked_In_Employees;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always3 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Raise_New_Crisis
+				record event = on add or edit
+
+	on user input of Date_field
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Checking for valid date
+										if(Date_field > zoho.currentdate)
+										{
+											alert "Enter a Valid Date";
+											input.Date_field = null;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always4 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Raise_New_Crisis
+				record event = on add or edit
+
+	on user input of Branch
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											branch_employees = Add_Employee[Branch == input.Branch].ID.getAll();
+										input.Branch_Employees = branch_employees;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always5 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Add_Branch
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Company_Name;
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin5 as "Run Scripts While Deleting a Record"
+			{
+				type =  form
+				form = Employee_Check_In_Form
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											crisis_rec = Raise_New_Crisis[ID == input.Crisis_Name];
+										employee_list = crisis_rec.Checked_In_Employees;
+										employee_list.removeElement(input.Employee_Name);
+						)
+					}
+	}
+
+			}
+		}
+		functions
+		{
+			Run_Scripts_On_Click_of_V as "Run Scripts On Click of View Crisis Details Button"
+			{
+				type =  functions
+				form = Raise_New_Crisis
+				on start
+				{
+					actions 
+					{
+					Crisis.View_Crisis_Details(ID);
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_C as "Run Scripts On Click of Close Crisis Button"
+			{
+				type =  functions
+				form = Raise_New_Crisis
+				on start
+				{
+					actions 
+					{
+					Crisis.Changing_Crisis_Status_To_Closed(ID);
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_C1 as "Run Scripts On Click of Close Request Button"
+			{
+				type =  functions
+				form = Employee_Check_In_Form
+				on start
+				{
+					actions 
+					{
+					Request.Changing_Request_Status_To_Closed(ID);
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_C2 as "Run Scripts On Click of Comment Button"
+			{
+				type =  functions
+				form = Employee_Check_In_Form
+				on start
+				{
+					actions 
+					{
+					Crisis.Comment_To_Request(ID);
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_C3 as "Run Scripts On Click of Comment "
+			{
+				type =  functions
+				form = Employee_Check_In_Form
+				on start
+				{
+					actions 
+					{
+					Crisis.Comment_To_Request(ID);
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_U as "Run Scripts On Click of Update Status"
+			{
+				type =  functions
+				form = Raise_New_Crisis
+				on start
+				{
+					actions 
+					{
+					Crisis.Open_Check_In_Page(ID);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Read"
+			{
+				name = "Read"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have read permission for all components\n"
+			}
+			"Write"
+			{
+				name = "Write"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have write permission for all components\n"
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Manager"
+			{
+				name = "Manager"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "Manager Profile\n"
+				ModulePermissions
+				{
+					Add_Company_Details
+					{
+						FieldPermissions
+						{
+							Email_Id{visibility:true,readonly:false}
+							Branches{visibility:true,readonly:false}
+							Website{visibility:true,readonly:false}
+							Company_Name{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Raise_New_Crisis
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							All_Crisis={"View"}
+							Open_Crisis_In_Our_Branch={"View","Edit"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Date_field{visibility:true,readonly:false}
+							Checked_In_Employees{visibility:true,readonly:false}
+							Branch{visibility:true,readonly:false}
+							Branch_Employees{visibility:true,readonly:false}
+							Raising_By{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Name_The_Crisis{visibility:true,readonly:false}
+							Describe_The_Crisis{visibility:true,readonly:false}
+						}
+					}
+					Response_Form
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Comment{visibility:true,readonly:false}
+							Request_Id{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							By{visibility:true,readonly:false}
+						}
+					}
+					Add_Branch
+					{
+						FieldPermissions
+						{
+							Raise_New_Crisis_Crisis_Name{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Employees{visibility:true,readonly:false}
+							Company_Name{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Employee_Check_In_Form
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							My_Requests={"View"}
+							My_Status={"View"}
+							Requested_Helps={"View"}
+							Safe_Employees={"View"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Date_field{visibility:true,readonly:false}
+							Crisis_Name{visibility:true,readonly:false}
+							Branch{visibility:true,readonly:false}
+							Comments{visibility:true,readonly:false}
+							Employee_Name{visibility:true,readonly:false}
+							Your_Need{visibility:true,readonly:false}
+							Request_Status{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_Employee
+					{
+						FieldPermissions
+						{
+							Email{visibility:true,readonly:false}
+							Category{visibility:true,readonly:false}
+							Branch{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Crisis_Details
+					{
+						enabled = tab
+					}
+					Crisis_View_Page
+					{
+						enabled = tab
+					}
+				}
+			}
+			"Staff"
+			{
+				name = "Staff"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "Staff Profile\n"
+				ModulePermissions
+				{
+					Add_Company_Details
+					{
+						FieldPermissions
+						{
+							Email_Id{visibility:true,readonly:false}
+							Branches{visibility:true,readonly:false}
+							Website{visibility:true,readonly:false}
+							Company_Name{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Raise_New_Crisis
+					{
+						ReportPermissions
+						{
+							Open_Crisis_In_Our_Branch={"View"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Date_field{visibility:true,readonly:false}
+							Checked_In_Employees{visibility:true,readonly:false}
+							Branch{visibility:true,readonly:false}
+							Branch_Employees{visibility:true,readonly:false}
+							Raising_By{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Name_The_Crisis{visibility:true,readonly:false}
+							Describe_The_Crisis{visibility:true,readonly:false}
+						}
+					}
+					Response_Form
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Comment{visibility:true,readonly:false}
+							Request_Id{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							By{visibility:true,readonly:false}
+						}
+					}
+					Add_Branch
+					{
+						FieldPermissions
+						{
+							Raise_New_Crisis_Crisis_Name{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Employees{visibility:true,readonly:false}
+							Company_Name{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Employee_Check_In_Form
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							My_Requests={"View"}
+							My_Status={"View"}
+							Requested_Helps={"View"}
+							Safe_Employees={"View"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Date_field{visibility:true,readonly:false}
+							Crisis_Name{visibility:true,readonly:false}
+							Branch{visibility:true,readonly:false}
+							Comments{visibility:true,readonly:false}
+							Employee_Name{visibility:true,readonly:false}
+							Your_Need{visibility:true,readonly:false}
+							Request_Status{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_Employee
+					{
+						FieldPermissions
+						{
+							Email{visibility:true,readonly:false}
+							Category{visibility:true,readonly:false}
+							Branch{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Crisis_View_Page
+					{
+						enabled = tab
+					}
+				}
+			}
+			roles
+			{
+				"Default"
+				{
+					description = "User belonging to this role can access data of all other users.\n"
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 2
+		new theme color = 2
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-non-profit7"
+    	icon theme = "lightred"
+		icons style = solid
+	}
+
+	translation
+{
+"{\"de\":{\"FormField.Add_Branch.address_line_22\":\" Adresszeile 2 \",\"FormButton.Raise_New_Crisis.update\":\" Aktualisieren \",\"ReportField.My_Requests.Date_field\":\"Datum\",\"FormButton.Add_Branch.cancel\":\" Stornieren \",\"FormField.Add_Company_Details.ID\":\" ICH WÜRDE \",\"FormField.Response_Form.Section\":\" Sektion \",\"FormButton.Employee_Check_In_Form.cancel\":\" Stornieren \",\"Languages List.zh-TW\":\" Chinesische Tradition \",\"FormField.Raise_New_Crisis.Record_Status\":\" Aufnahmestatus \",\"FormField.Employee_Check_In_Form.district_city1\":\" Stadtteil \",\"Languages List.ja\":\" japanisch \",\"FormField.Employee_Check_In_Form.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"ReportField.All_Crisis.Status\":\"Status\",\"FormField.Employee_Check_In_Form.Your_Need\":\" Deine Bedürfnisse \",\"ReportField.Company_Details.Website\":\"Webseite\",\"FormField.Add_Company_Details.Website\":\" Webseite \",\"FormField.Add_Branch.address_line_12\":\" Anschrift Zeile 1 \",\"ReportField.Response_Form_Report.Comment\":\" Kommentar \",\"FormField.Add_Branch.postal_Code2\":\" Postleitzahl \",\"Section.Crisis_Page\":\" Krise Seite \",\"PicklistOption.Employee_Check_In_Form.Request_Status.2\":\" Geschlossen \",\"ReportField.Safe_Employees.Employee_Name\":\"Mitarbeitername\",\"Languages List.ku\":\" kurdisch \",\"PicklistOption.Employee_Check_In_Form.Request_Status.1\":\" steht aus \",\"FormField.Employee_Check_In_Form.longitude\":\" Längengrad \",\"Section.Add_Employee\":\" Angestellte \",\"Languages List.km\":\" Khmer \",\"Languages List.ko\":\" Koreanisch \",\"ReportField.All_Employees.first_name\":\" Name \",\"Languages List.kn\":\" Kannada \",\"PicklistOption.Employee_Check_In_Form.country1.1\":\" Beispielland1 \",\"Languages List.ka\":\" georgisch \",\"PicklistOption.Employee_Check_In_Form.country1.2\":\" Beispielland2 \",\"Form.Response_Form\":\" Antwortformular \",\"FormField.Raise_New_Crisis.Modified_Time\":\" Geänderte Zeit \",\"FormButton.Response_Form.submit\":\" einreichen \",\"CompositeSubFields.Add_Employee.Name.suffix\":\" Suffix \",\"Languages List.hu\":\" ungarisch \",\"Languages List.yi\":\" Jiddisch \",\"ReportField.Requested_Helps.Branch\":\" Ast \",\"Languages List.hy\":\" Armenisch \",\"FormField.Raise_New_Crisis.ID\":\" ICH WÜRDE \",\"FormField.Add_Company_Details.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"ReportField.Open_Crisis_In_Our_Branch.Status\":\"Status\",\"ReportField.Safe_Employees.Date_field\":\" Datum \",\"CompositeSubFields.Add_Branch.Address.state_province2\":\" Staat / Provinz \",\"FormField.Add_Branch.Section\":\" Sektion \",\"Languages List.hr\":\" kroatisch \",\"FormField.Add_Branch.Name\":\" Name \",\"Report.My_Requests\":\" Meine Anfragen \",\"FormField.Response_Form.Added_User\":\" Benutzer hinzugefügt \",\"Languages List.hi\":\" Hindi \",\"FormField.Employee_Check_In_Form.Comments\":\" Bemerkungen \",\"App.employee-emergency-check-in\":\"Mitarbeiter Notfall Tracker \",\"PicklistOption.Employee_Check_In_Form.Status.3\":\"Brauche Hilfe\",\"Languages List.zh\":\" Chinesisch \",\"Languages List.iw\":\" hebräisch \",\"Section.Response_Form\":\" Antworten \",\"PicklistOption.Employee_Check_In_Form.Status.2\":\"Weg vom Standort\",\"PicklistOption.Employee_Check_In_Form.Status.1\":\"Sicher\",\"FormField.Employee_Check_In_Form.Branch\":\" Ast \",\"ReportField.Safe_Employees.Branch\":\" Ast \",\"FormField.Raise_New_Crisis.Added_Time\":\" Zeit hinzugefügt \",\"ReportField.Branches.Email\":\"Email\",\"Languages List.is\":\" isländisch \",\"FormField.Add_Employee.Phone_Number\":\" Telefonnummer \",\"Languages List.it\":\" Italienisch \",\"FormField.Add_Branch.Email\":\"Email\",\"FormButton.Add_Company_Details.reset\":\" Zurücksetzen \",\"Form.Add_Employee\":\" Mitarbeiter hinzufügen \",\"FormField.Response_Form.Comment\":\" Kommentar \",\"Report.Requested_Helps\":\" Angeforderte Hilfe \",\"FormField.Add_Branch.Added_User\":\" Benutzer hinzugefügt \",\"FormButton.Add_Branch.reset\":\" Zurücksetzen \",\"FormField.Employee_Check_In_Form.latitude1\":\" Breite \",\"FormField.Raise_New_Crisis.Section\":\"Sektion\",\"ReportField.Requested_Helps.Request_Status\":\" Anforderungsstatus \",\"FormField.Employee_Check_In_Form.Modified_Location\":\" Geänderter Standort \",\"FormField.Response_Form.Modified_User\":\" Geänderter Benutzer \",\"FormField.Employee_Check_In_Form.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"ReportField.All_Crisis.Name_The_Crisis\":\"Krisenname\",\"ReportField.My_Requests.Employee_Name\":\"Name des Anfragenden\",\"ReportField.Branches.Name\":\"Name\",\"Languages List.nl\":\" Niederländisch \",\"FormField.Add_Branch.Record_Status\":\" Aufnahmestatus \",\"CompositeSubFields.Add_Branch.Address.postal_Code2\":\" Postleitzahl \",\"FormField.Add_Company_Details.Modified_User\":\" Geänderter Benutzer \",\"Languages List.no\":\" norwegisch \",\"ReportField.All_Crisis.Date_field\":\"Datum\",\"ReportField.Company_Details.Phone_Number\":\"Telefonnummer\",\"FormField.Add_Employee.Modified_User\":\" Geänderter Benutzer \",\"FormField.Response_Form.Request_Id\":\" Anfrage ID \",\"FormButton.Response_Form.reset\":\" Zurücksetzen \",\"CustomAction.Requested_Helps.Run_Scripts_On_Click_of_C2\":\" Kommentar \",\"FormField.Employee_Check_In_Form.Modified_Time\":\" Geänderte Zeit \",\"ReportField.Open_Crisis_In_Our_Branch.Date_field\":\"Datum\",\"FormField.Employee_Check_In_Form.ID\":\" ICH WÜRDE \",\"Report.Branches\":\" Geäst \",\"FormField.Add_Employee.last_name\":\" Familienname, Nachname \",\"FormButton.Raise_New_Crisis.submit\":\" einreichen \",\"FormField.Employee_Check_In_Form.country1\":\" Land \",\"Report.Open_Crisis_In_Our_Branch\":\"Offene Krise in unserer Branche\",\"FormField.Add_Branch.Modified_Time\":\" Geänderte Zeit \",\"ReportField.Requested_Helps.Your_Need\":\"Brauchen\",\"FormField.Response_Form.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Raise_New_Crisis.Date_field\":\" Datum \",\"FormField.Employee_Check_In_Form.Record_Status\":\" Aufnahmestatus \",\"FormField.Add_Branch.ID\":\" ICH WÜRDE \",\"Languages List.lt\":\" litauisch \",\"Languages List.lv\":\" lettisch \",\"FormField.Add_Branch.latitude2\":\" Breite \",\"Form.Add_Company_Details\":\" Firmendetails hinzufügen \",\"FormField.Raise_New_Crisis.Branch\":\" Wählen Sie Filiale \",\"Languages List.lo\":\" Laothian \",\"FormField.Add_Employee.Added_Time\":\" Zeit hinzugefügt \",\"Languages List.la\":\" Latein \",\"CustomAction.My_Requests.Run_Scripts_On_Click_of_C1\":\" Anfrage schließen \",\"ReportField.All_Employees.Category\":\"Kategorie\",\"FormField.Response_Form.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Add_Employee.first_name\":\" Vorname \",\"ReportField.My_Requests.Crisis_Name\":\"Krisenname\",\"Languages List.ms\":\" malaiisch \",\"Languages List.mr\":\" Marathi \",\"Languages List.mt\":\" maltesisch \",\"Report.Company_Details\":\" Firmendetails \",\"CompositeSubFields.Add_Employee.Name.first_name\":\" Vorname \",\"Form.Raise_New_Crisis\":\" Raise New Crisis \",\"Languages List.mk\":\" mazedonisch \",\"FormField.Employee_Check_In_Form.Section\":\" Sektion \",\"FormField.Employee_Check_In_Form.Added_Time\":\" Zeit hinzugefügt \",\"ReportField.Safe_Employees.Status\":\" Status \",\"Report.All_Crisis\":\" Alle Krise \",\"FormField.Add_Employee.Section\":\" Sektion \",\"FormField.Add_Company_Details.Added_Time\":\" Zeit hinzugefügt \",\"CompositeSubFields.Add_Branch.Address.address_line_22\":\" Adresszeile 2 \",\"Languages List.bg\":\" bulgarisch \",\"FormField.Add_Company_Details.Company_Name\":\" Name der Firma \",\"Languages List.bn\":\" Bengali \",\"ReportField.My_Requests.Your_Need\":\"Deine Bedürfnisse\",\"ReportField.Open_Crisis_In_Our_Branch.Name_The_Crisis\":\"Krisenname\",\"Section.Checked_In_Employees\":\" Bitte um Hilfe \",\"FormField.Employee_Check_In_Form.Status\":\"Status\",\"Languages List.ro\":\" rumänisch \",\"ReportField.Requested_Helps.Employee_Name\":\"Mitarbeitername\",\"ReportField.Requested_Helps.Status\":\" Status \",\"FormField.Employee_Check_In_Form.Date_field\":\" Datum \",\"Languages List.be\":\" Belarussisch \",\"Languages List.ru\":\" Russisch \",\"ReportField.Open_Crisis_In_Our_Branch.Branch\":\"Wählen Sie Filiale\",\"FormButton.Employee_Check_In_Form.reset\":\" Zurücksetzen \",\"Languages List.az\":\" Aserbaidschanisch \",\"FormField.Add_Company_Details.Branches\":\" Geäst \",\"Languages List.ta\":\" Tamilisch \",\"FormField.Add_Company_Details.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"Languages List.cs\":\" Tschechisch \",\"FormField.Add_Employee.Email\":\" Email \",\"ReportField.All_Employees.Phone_Number\":\" Telefonnummer \",\"PicklistOption.Add_Employee.Category.1\":\"Manager\",\"Languages List.te\":\" Telugu \",\"PicklistOption.Add_Employee.Category.2\":\"Mitarbeiter\",\"Languages List.th\":\" Thai \",\"ReportField.All_Crisis.Branch\":\"Ast\",\"FormField.Raise_New_Crisis.Name_The_Crisis\":\"Nennen Sie die Krise\",\"ReportField.All_Crisis.Describe_The_Crisis\":\"Über die Krise\",\"FormField.Employee_Check_In_Form.Crisis_Name\":\" Krise_Id \",\"ReportField.My_Requests.Request_Status\":\"Anforderungsstatus\",\"Languages List.sq\":\" albanisch \",\"Languages List.ca\":\" katalanisch \",\"FormButton.Raise_New_Crisis.cancel\":\" Stornieren \",\"ReportField.Company_Details.Company_Name\":\"Name der Firma\",\"FormField.Employee_Check_In_Form.country\":\" Land \",\"FormField.Raise_New_Crisis.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Languages List.sw\":\" Swahili \",\"Languages List.sv\":\" Schwedisch \",\"FormField.Employee_Check_In_Form.state_province\":\" Staat / Provinz \",\"Languages List.sk\":\" slowakisch \",\"Section.Add_Branch\":\" Geäst \",\"Languages List.sl\":\" Slowenisch \",\"FormButton.Response_Form.cancel\":\" Stornieren \",\"FormField.Raise_New_Crisis.Modified_User\":\" Geänderter Benutzer \",\"FormField.Add_Branch.state_province2\":\" Staat / Provinz \",\"FormButton.Raise_New_Crisis.reset\":\" Zurücksetzen \",\"FormField.Add_Branch.Company_Name\":\" Firmen-ID \",\"ReportField.All_Employees.Branch\":\"Ast\",\"ReportField.Response_Form_Report.By\":\" Durch \",\"CompositeSubFields.Add_Employee.Name.prefix\":\" Präfix \",\"ReportField.Company_Details.Email_Id\":\"E-Mail-ID\",\"PicklistOption.Employee_Check_In_Form.country.2\":\" Beispielland2 \",\"PicklistOption.Employee_Check_In_Form.country.1\":\" Beispielland1 \",\"FormField.Response_Form.Added_Time\":\" Zeit hinzugefügt \",\"FormButton.Add_Employee.reset\":\" Zurücksetzen \",\"FormField.Employee_Check_In_Form.postal_Code1\":\" Postleitzahl \",\"FormButton.Add_Branch.submit\":\" einreichen \",\"FormField.Add_Employee.Category\":\"Kategorie\",\"PicklistOption.Add_Employee.prefix.1\":\" Herr. \",\"ReportField.Safe_Employees.Crisis_Name\":\"Krisenname\",\"CompositeSubFields.Add_Branch.Address.district_city2\":\" Stadtteil \",\"PicklistOption.Add_Employee.prefix.3\":\" Frau. \",\"Languages List.pt\":\" Portugiesisch \",\"PicklistOption.Add_Employee.prefix.2\":\" Frau. \",\"FormField.Response_Form.ID\":\" ICH WÜRDE \",\"FormButton.Add_Employee.update\":\" Aktualisieren \",\"Languages List.pl\":\" Polieren \",\"ReportField.Branches.Phone_Number\":\"Telefonnummer\",\"FormField.Employee_Check_In_Form.postal_Code\":\" Postleitzahl \",\"Languages List.ar\":\" Arabisch \",\"CompositeSubFields.Add_Branch.Address.address_line_12\":\" Anschrift Zeile 1 \",\"FormField.Add_Employee.Name\":\"Name\",\"Report.Safe_Employees\":\" Sichere Mitarbeiter \",\"Languages List.af\":\" Afrikaans \",\"FormField.Add_Branch.longitude2\":\" Längengrad \",\"ReportField.My_Requests.Branch\":\"Ast\",\"FormField.Add_Branch.district_city2\":\" Stadtteil \",\"FormField.Add_Company_Details.Email_Id\":\" E-Mail-ID \",\"Report.All_Employees\":\" Alle Angestellten \",\"FormField.Raise_New_Crisis.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Employee.suffix\":\" Suffix \",\"FormField.Add_Branch.Address\":\" Adresse \",\"FormField.Add_Employee.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Add_Branch.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Employee_Check_In_Form.district_city\":\" Stadtteil \",\"ReportField.Response_Form_Report.Request_Id\":\" Anfrage ID \",\"FormField.Add_Employee.prefix\":\" Präfix \",\"CompositeSubFields.Add_Employee.Name.last_name\":\" Familienname, Nachname \",\"FormField.Add_Employee.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Employee_Check_In_Form.Added_Location\":\" Standort hinzugefügt \",\"FormField.Response_Form.Modified_Time\":\" Geänderte Zeit \",\"CustomAction.All_Crisis.Run_Scripts_On_Click_of_C\":\" Schließen Sie die Krise \",\"FormButton.Add_Employee.cancel\":\" Stornieren \",\"Languages List.fr\":\" Französisch \",\"Form.Add_Branch\":\" Zweig hinzufügen \",\"FormField.Add_Employee.Modified_Time\":\" Geänderte Zeit \",\"FormField.Employee_Check_In_Form.longitude1\":\" Längengrad \",\"FormField.Raise_New_Crisis.Raising_By\":\" Anheben durch \",\"ReportField.Requested_Helps.Crisis_Name\":\"Krisenname\",\"Languages List.fi\":\" Finnese \",\"FormField.Add_Company_Details.Modified_Time\":\" Geänderte Zeit \",\"ReportField.Open_Crisis_In_Our_Branch.Raising_By\":\"Anheben durch\",\"ReportField.All_Employees.Email\":\" Email \",\"CustomAction.All_Crisis.Run_Scripts_On_Click_of_V\":\" Details anzeigen \",\"Languages List.fa\":\" persisch \",\"FormField.Add_Branch.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Employee_Check_In_Form.Modified_User\":\" Geänderter Benutzer \",\"FormField.Response_Form.Record_Status\":\" Aufnahmestatus \",\"Languages List.gu\":\" Gujarati \",\"Section.Raise_New_Crisis\":\" Krise \",\"FormField.Employee_Check_In_Form.Request_Status\":\" Anforderungsstatus \",\"ReportField.Branches.address_line_12\":\" Adresse \",\"FormField.Employee_Check_In_Form.latitude\":\" Breite \",\"ReportField.Requested_Helps.Date_field\":\" Datum \",\"FormField.Add_Employee.Record_Status\":\" Aufnahmestatus \",\"Form.Employee_Check_In_Form\":\"Mitarbeiter-Check-In-Formular\",\"Languages List.gl\":\" galizisch \",\"FormField.Add_Company_Details.Record_Status\":\" Aufnahmestatus \",\"FormField.Raise_New_Crisis.Describe_The_Crisis\":\"Beschreiben Sie die Krise\",\"FormField.Add_Company_Details.Phone_Number\":\" Telefonnummer \",\"Report.Response_Form_Report\":\" Alle Antworten \",\"CompositeSubFields.Add_Branch.Address.country2\":\" Land \",\"ReportField.All_Crisis.Raising_By\":\"Anheben durch\",\"Languages List.ga\":\" irisch \",\"FormField.Add_Branch.Modified_User\":\" Geänderter Benutzer \",\"FormButton.Add_Branch.update\":\" Aktualisieren \",\"FormField.Raise_New_Crisis.Status\":\" Status \",\"FormButton.Add_Employee.submit\":\" einreichen \",\"FormField.Add_Company_Details.Section\":\" Sektion \",\"FormButton.Response_Form.update\":\" Aktualisieren \",\"FormField.Add_Employee.ID\":\" ICH WÜRDE \",\"FormField.Add_Branch.Phone_Number\":\" Telefonnummer \",\"Languages List.tr\":\" Türkisch \",\"Languages List.da\":\" dänisch \",\"FormButton.Employee_Check_In_Form.submit\":\" einreichen \",\"Languages List.de\":\" Deutsche \",\"ReportField.Company_Details.Branches.Name\":\"Geäst\",\"Languages List.cy\":\" Walisisch \",\"FormField.Add_Employee.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Employee_Check_In_Form.Employee_Name\":\" Name des Anfragenden \",\"Languages List.tl\":\" Filipino \",\"ReportField.My_Requests.Status\":\"Status\",\"PicklistOption.Add_Branch.country2.2\":\" Wahl 2 \",\"Languages List.es\":\" Spanisch \",\"FormButton.Add_Company_Details.submit\":\" einreichen \",\"Languages List.eu\":\" baskisch \",\"Languages List.et\":\" estnisch \",\"Section.Company_Details\":\" die Einstellungen \",\"FormField.Add_Branch.country2\":\" Land \",\"FormButton.Add_Company_Details.cancel\":\" Stornieren \",\"FormButton.Employee_Check_In_Form.update\":\" Aktualisieren \",\"PicklistOption.Add_Branch.country2.1\":\" Wahl 1 \",\"Languages List.vi\":\" Vietnamesisch \",\"Languages List.el\":\" griechisch \",\"FormButton.Add_Company_Details.update\":\" Aktualisieren \",\"Languages List.eo\":\" Esperanto \",\"Languages List.en\":\" Englisch \",\"FormField.Raise_New_Crisis.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Employee_Check_In_Form.state_province1\":\" Staat / Provinz \",\"Languages List.ur\":\" Urdu \",\"FormField.Employee_Check_In_Form.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Branch.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Response_Form.By\":\" Durch \",\"FormField.Add_Company_Details.Added_User\":\" Benutzer hinzugefügt \",\"PicklistOption.Raise_New_Crisis.Status.2\":\" Geschlossen \",\"PicklistOption.Raise_New_Crisis.Status.1\":\" Öffnen \"},\"fr\":{\"FormField.Add_Branch.address_line_22\":\" Adresse Ligne 2 \",\"FormButton.Raise_New_Crisis.update\":\" Mettre à jour \",\"ReportField.My_Requests.Date_field\":\"Rendez-vous amoureux\",\"FormButton.Add_Branch.cancel\":\" Annuler \",\"FormField.Add_Company_Details.ID\":\" ID \",\"FormField.Response_Form.Section\":\" Section \",\"FormButton.Employee_Check_In_Form.cancel\":\" Annuler \",\"Languages List.zh-TW\":\" Chinois traditionnel \",\"FormField.Raise_New_Crisis.Record_Status\":\" Statut d'enregistrement \",\"FormField.Employee_Check_In_Form.district_city1\":\" District de la ville \",\"Languages List.ja\":\" Japonais \",\"FormField.Employee_Check_In_Form.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"ReportField.All_Crisis.Status\":\"Statut\",\"FormField.Employee_Check_In_Form.Your_Need\":\" Votre besoin \",\"ReportField.Company_Details.Website\":\"Site Internet\",\"FormField.Add_Company_Details.Website\":\" Site Internet \",\"FormField.Add_Branch.address_line_12\":\" Adresse 1 \",\"ReportField.Response_Form_Report.Comment\":\" Commentaire \",\"FormField.Add_Branch.postal_Code2\":\" code postal \",\"Section.Crisis_Page\":\" Page de crise \",\"PicklistOption.Employee_Check_In_Form.Request_Status.2\":\" Fermé \",\"ReportField.Safe_Employees.Employee_Name\":\" Nom du demandeur \",\"Languages List.ku\":\" kurde \",\"PicklistOption.Employee_Check_In_Form.Request_Status.1\":\" en attendant \",\"FormField.Employee_Check_In_Form.longitude\":\" longitude \",\"Section.Add_Employee\":\" Des employés \",\"Languages List.km\":\" Khmer \",\"Languages List.ko\":\" coréen \",\"ReportField.All_Employees.first_name\":\" prénom \",\"Languages List.kn\":\" Kannada \",\"PicklistOption.Employee_Check_In_Form.country1.1\":\" SampleCountry1 \",\"Languages List.ka\":\" géorgien \",\"PicklistOption.Employee_Check_In_Form.country1.2\":\" SampleCountry2 \",\"Form.Response_Form\":\" Formulaire de réponse \",\"FormField.Raise_New_Crisis.Modified_Time\":\" Heure modifiée \",\"FormButton.Response_Form.submit\":\" Soumettre \",\"CompositeSubFields.Add_Employee.Name.suffix\":\" Suffixe \",\"Languages List.hu\":\" hongrois \",\"Languages List.yi\":\" yiddish \",\"ReportField.Requested_Helps.Branch\":\" Branche \",\"Languages List.hy\":\" arménien \",\"FormField.Raise_New_Crisis.ID\":\" ID \",\"FormField.Add_Company_Details.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"ReportField.Open_Crisis_In_Our_Branch.Status\":\"Statut\",\"ReportField.Safe_Employees.Date_field\":\" Rendez-vous amoureux \",\"CompositeSubFields.Add_Branch.Address.state_province2\":\" Etat / Province \",\"FormField.Add_Branch.Section\":\" Section \",\"Languages List.hr\":\" croate \",\"FormField.Add_Branch.Name\":\" prénom \",\"Report.My_Requests\":\" Mes demandes \",\"FormField.Response_Form.Added_User\":\" Utilisateur ajouté \",\"Languages List.hi\":\" hindi \",\"FormField.Employee_Check_In_Form.Comments\":\" commentaires \",\"App.employee-emergency-check-in\":\"Suivi d'urgence des employés \",\"PicklistOption.Employee_Check_In_Form.Status.3\":\"Besoin d'aide pour\",\"Languages List.zh\":\" chinois \",\"Languages List.iw\":\" hébreu \",\"Section.Response_Form\":\" Réponses \",\"PicklistOption.Employee_Check_In_Form.Status.2\":\"Loin de l'emplacement\",\"PicklistOption.Employee_Check_In_Form.Status.1\":\"Sûr\",\"FormField.Employee_Check_In_Form.Branch\":\" Branche \",\"ReportField.Safe_Employees.Branch\":\" Branche \",\"FormField.Raise_New_Crisis.Added_Time\":\" Temps ajouté \",\"ReportField.Branches.Email\":\"Email\",\"Languages List.is\":\" islandais \",\"FormField.Add_Employee.Phone_Number\":\" Numéro de téléphone \",\"Languages List.it\":\" italien \",\"FormField.Add_Branch.Email\":\"Email\",\"FormButton.Add_Company_Details.reset\":\" Réinitialiser \",\"Form.Add_Employee\":\" Ajouter un employé \",\"FormField.Response_Form.Comment\":\" Commentaire \",\"Report.Requested_Helps\":\" Aide demandée \",\"FormField.Add_Branch.Added_User\":\" Utilisateur ajouté \",\"FormButton.Add_Branch.reset\":\" Réinitialiser \",\"FormField.Employee_Check_In_Form.latitude1\":\" latitude \",\"FormField.Raise_New_Crisis.Section\":\"Section\",\"ReportField.Requested_Helps.Request_Status\":\" Demande d'état \",\"FormField.Employee_Check_In_Form.Modified_Location\":\" Emplacement modifié \",\"FormField.Response_Form.Modified_User\":\" Utilisateur modifié \",\"FormField.Employee_Check_In_Form.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"ReportField.All_Crisis.Name_The_Crisis\":\"Nom de crise\",\"ReportField.My_Requests.Employee_Name\":\" Nom du demandeur \",\"ReportField.Branches.Name\":\"prénom\",\"Languages List.nl\":\" néerlandais \",\"FormField.Add_Branch.Record_Status\":\" Statut d'enregistrement \",\"CompositeSubFields.Add_Branch.Address.postal_Code2\":\" code postal \",\"FormField.Add_Company_Details.Modified_User\":\" Utilisateur modifié \",\"Languages List.no\":\" norvégien \",\"ReportField.All_Crisis.Date_field\":\" Rendez-vous amoureux \",\"ReportField.Company_Details.Phone_Number\":\" Numéro de téléphone \",\"FormField.Add_Employee.Modified_User\":\" Utilisateur modifié \",\"FormField.Response_Form.Request_Id\":\" Demande d'identifiant \",\"FormButton.Response_Form.reset\":\" Réinitialiser \",\"CustomAction.Requested_Helps.Run_Scripts_On_Click_of_C2\":\" Commentaire \",\"FormField.Employee_Check_In_Form.Modified_Time\":\" Heure modifiée \",\"ReportField.Open_Crisis_In_Our_Branch.Date_field\":\"Rendez-vous amoureux\",\"FormField.Employee_Check_In_Form.ID\":\" ID \",\"Report.Branches\":\" Branches \",\"FormField.Add_Employee.last_name\":\" Nom de famille \",\"FormButton.Raise_New_Crisis.submit\":\" Soumettre \",\"FormField.Employee_Check_In_Form.country1\":\" Pays \",\"Report.Open_Crisis_In_Our_Branch\":\"Crise ouverte dans notre branche\",\"FormField.Add_Branch.Modified_Time\":\" Heure modifiée \",\"ReportField.Requested_Helps.Your_Need\":\"Avoir besoin\",\"FormField.Response_Form.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Raise_New_Crisis.Date_field\":\" Rendez-vous amoureux \",\"FormField.Employee_Check_In_Form.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_Branch.ID\":\" ID \",\"Languages List.lt\":\" lituanien \",\"Languages List.lv\":\" letton \",\"FormField.Add_Branch.latitude2\":\" latitude \",\"Form.Add_Company_Details\":\" Ajouter les détails de l'entreprise \",\"FormField.Raise_New_Crisis.Branch\":\" Sélectionnez une branche \",\"Languages List.lo\":\" Laothian \",\"FormField.Add_Employee.Added_Time\":\" Temps ajouté \",\"Languages List.la\":\" Latin \",\"CustomAction.My_Requests.Run_Scripts_On_Click_of_C1\":\" Fermer la demande \",\"ReportField.All_Employees.Category\":\"Catégorie\",\"FormField.Response_Form.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Add_Employee.first_name\":\" Prénom \",\"ReportField.My_Requests.Crisis_Name\":\"Nom de crise\",\"Languages List.ms\":\" malais \",\"Languages List.mr\":\" Marathi \",\"Languages List.mt\":\" maltais \",\"Report.Company_Details\":\" Détails de la société \",\"CompositeSubFields.Add_Employee.Name.first_name\":\" Prénom \",\"Form.Raise_New_Crisis\":\" Relever la nouvelle crise \",\"Languages List.mk\":\" Macédonien \",\"FormField.Employee_Check_In_Form.Section\":\" Section \",\"FormField.Employee_Check_In_Form.Added_Time\":\" Temps ajouté \",\"ReportField.Safe_Employees.Status\":\" Statut \",\"Report.All_Crisis\":\" Toute crise \",\"FormField.Add_Employee.Section\":\" Section \",\"FormField.Add_Company_Details.Added_Time\":\" Temps ajouté \",\"CompositeSubFields.Add_Branch.Address.address_line_22\":\" Adresse Ligne 2 \",\"Languages List.bg\":\" bulgare \",\"FormField.Add_Company_Details.Company_Name\":\" Nom de la compagnie \",\"Languages List.bn\":\" bengali \",\"ReportField.My_Requests.Your_Need\":\"Votre besoin\",\"Section.Checked_In_Employees\":\" Demande d'aide \",\"FormField.Employee_Check_In_Form.Status\":\"Statut\",\"Languages List.ro\":\" roumain \",\"ReportField.Requested_Helps.Employee_Name\":\"Nom de l'employé\",\"ReportField.Requested_Helps.Status\":\" Statut \",\"FormField.Employee_Check_In_Form.Date_field\":\" Rendez-vous amoureux \",\"Languages List.be\":\" Biélorusse \",\"Languages List.ru\":\" russe \",\"FormButton.Employee_Check_In_Form.reset\":\" Réinitialiser \",\"Languages List.az\":\" azerbaïdjanais \",\"FormField.Add_Company_Details.Branches\":\" Branches \",\"Languages List.ta\":\" Tamil \",\"FormField.Add_Company_Details.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"Languages List.cs\":\" tchèque \",\"FormField.Add_Employee.Email\":\" Email \",\"ReportField.All_Employees.Phone_Number\":\" Numéro de téléphone \",\"PicklistOption.Add_Employee.Category.1\":\"Directeur\",\"Languages List.te\":\" Telugu \",\"PicklistOption.Add_Employee.Category.2\":\"Personnel\",\"Languages List.th\":\" thaïlandais \",\"ReportField.All_Crisis.Branch\":\"Branche\",\"FormField.Raise_New_Crisis.Name_The_Crisis\":\"Nommez la crise\",\"ReportField.All_Crisis.Describe_The_Crisis\":\"À propos de la crise\",\"FormField.Employee_Check_In_Form.Crisis_Name\":\" Crisis_Id \",\"ReportField.My_Requests.Request_Status\":\"Demande d'état\",\"Languages List.sq\":\" albanais \",\"Languages List.ca\":\" catalan \",\"FormButton.Raise_New_Crisis.cancel\":\" Annuler \",\"ReportField.Company_Details.Company_Name\":\" Nom de la compagnie \",\"FormField.Employee_Check_In_Form.country\":\" Pays \",\"FormField.Raise_New_Crisis.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Languages List.sw\":\" Swahili \",\"Languages List.sv\":\" suédois \",\"FormField.Employee_Check_In_Form.state_province\":\" Etat / Province \",\"Languages List.sk\":\" slovaque \",\"Section.Add_Branch\":\" Branches \",\"Languages List.sl\":\" slovène \",\"FormButton.Response_Form.cancel\":\" Annuler \",\"FormField.Raise_New_Crisis.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Branch.state_province2\":\" Etat / Province \",\"FormButton.Raise_New_Crisis.reset\":\" Réinitialiser \",\"FormField.Add_Branch.Company_Name\":\" ID de l'entreprise \",\"ReportField.All_Employees.Branch\":\"Branche\",\"ReportField.Response_Form_Report.By\":\" Par \",\"CompositeSubFields.Add_Employee.Name.prefix\":\" Préfixe \",\"ReportField.Company_Details.Email_Id\":\"Identifiant Email\",\"PicklistOption.Employee_Check_In_Form.country.2\":\" SampleCountry2 \",\"PicklistOption.Employee_Check_In_Form.country.1\":\" SampleCountry1 \",\"FormField.Response_Form.Added_Time\":\" Temps ajouté \",\"FormButton.Add_Employee.reset\":\" Réinitialiser \",\"FormField.Employee_Check_In_Form.postal_Code1\":\" code postal \",\"FormButton.Add_Branch.submit\":\" Soumettre \",\"FormField.Add_Employee.Category\":\"Catégorie\",\"PicklistOption.Add_Employee.prefix.1\":\" M. \",\"ReportField.Safe_Employees.Crisis_Name\":\"Nom de crise\",\"CompositeSubFields.Add_Branch.Address.district_city2\":\" District de la ville \",\"PicklistOption.Add_Employee.prefix.3\":\" Mme. \",\"Languages List.pt\":\" Portugais \",\"PicklistOption.Add_Employee.prefix.2\":\" Madame. \",\"FormField.Response_Form.ID\":\" ID \",\"FormButton.Add_Employee.update\":\" Mettre à jour \",\"Languages List.pl\":\" polonais \",\"ReportField.Branches.Phone_Number\":\"Numéro de téléphone\",\"FormField.Employee_Check_In_Form.postal_Code\":\" code postal \",\"Languages List.ar\":\" arabe \",\"CompositeSubFields.Add_Branch.Address.address_line_12\":\" Adresse 1 \",\"FormField.Add_Employee.Name\":\"prénom\",\"Report.Safe_Employees\":\" Employés en sécurité \",\"Languages List.af\":\" afrikaans \",\"FormField.Add_Branch.longitude2\":\" longitude \",\"ReportField.My_Requests.Branch\":\"Branche\",\"FormField.Add_Branch.district_city2\":\" District de la ville \",\"FormField.Add_Company_Details.Email_Id\":\" Identifiant Email \",\"Report.All_Employees\":\" Tous les employés \",\"FormField.Raise_New_Crisis.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Employee.suffix\":\" Suffixe \",\"FormField.Add_Branch.Address\":\" Adresse \",\"FormField.Add_Employee.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Add_Branch.Added_Time\":\" Temps ajouté \",\"FormField.Employee_Check_In_Form.district_city\":\" District de la ville \",\"ReportField.Response_Form_Report.Request_Id\":\" Demande d'identifiant \",\"FormField.Add_Employee.prefix\":\" Préfixe \",\"CompositeSubFields.Add_Employee.Name.last_name\":\" Nom de famille \",\"FormField.Add_Employee.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Employee_Check_In_Form.Added_Location\":\" Emplacement ajouté \",\"FormField.Response_Form.Modified_Time\":\" Heure modifiée \",\"CustomAction.All_Crisis.Run_Scripts_On_Click_of_C\":\" Fermer la crise \",\"FormButton.Add_Employee.cancel\":\" Annuler \",\"Languages List.fr\":\" français \",\"Form.Add_Branch\":\" Ajouter une branche \",\"FormField.Add_Employee.Modified_Time\":\" Heure modifiée \",\"FormField.Employee_Check_In_Form.longitude1\":\" longitude \",\"FormField.Raise_New_Crisis.Raising_By\":\" Élever par \",\"ReportField.Requested_Helps.Crisis_Name\":\" Crisis_Id \",\"Languages List.fi\":\" Finnois \",\"FormField.Add_Company_Details.Modified_Time\":\" Heure modifiée \",\"ReportField.Open_Crisis_In_Our_Branch.Raising_By\":\"Élever par\",\"ReportField.All_Employees.Email\":\" Email \",\"CustomAction.All_Crisis.Run_Scripts_On_Click_of_V\":\" Voir les détails \",\"Languages List.fa\":\" persan \",\"FormField.Add_Branch.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Employee_Check_In_Form.Modified_User\":\" Utilisateur modifié \",\"FormField.Response_Form.Record_Status\":\" Statut d'enregistrement \",\"Languages List.gu\":\" Gujarati \",\"Section.Raise_New_Crisis\":\" Crise \",\"FormField.Employee_Check_In_Form.Request_Status\":\" Demande d'état \",\"ReportField.Branches.address_line_12\":\" Adresse \",\"FormField.Employee_Check_In_Form.latitude\":\" latitude \",\"ReportField.Requested_Helps.Date_field\":\" Rendez-vous amoureux \",\"FormField.Add_Employee.Record_Status\":\" Statut d'enregistrement \",\"Form.Employee_Check_In_Form\":\"Formulaire d'enregistrement d'employé\",\"Languages List.gl\":\" Galicien \",\"FormField.Add_Company_Details.Record_Status\":\" Statut d'enregistrement \",\"FormField.Raise_New_Crisis.Describe_The_Crisis\":\"Décrivez la crise\",\"FormField.Add_Company_Details.Phone_Number\":\" Numéro de téléphone \",\"Report.Response_Form_Report\":\" Toutes les réponses \",\"CompositeSubFields.Add_Branch.Address.country2\":\" Pays \",\"ReportField.All_Crisis.Raising_By\":\"Élever par\",\"Languages List.ga\":\" irlandais \",\"FormField.Add_Branch.Modified_User\":\" Utilisateur modifié \",\"FormButton.Add_Branch.update\":\" Mettre à jour \",\"FormField.Raise_New_Crisis.Status\":\" Statut \",\"FormButton.Add_Employee.submit\":\" Soumettre \",\"FormField.Add_Company_Details.Section\":\" Section \",\"FormButton.Response_Form.update\":\" Mettre à jour \",\"FormField.Add_Employee.ID\":\" ID \",\"FormField.Add_Branch.Phone_Number\":\" Numéro de téléphone \",\"Languages List.tr\":\" turc \",\"Languages List.da\":\" danois \",\"FormButton.Employee_Check_In_Form.submit\":\" Soumettre \",\"Languages List.de\":\" allemand \",\"ReportField.Company_Details.Branches.Name\":\"Branches\",\"Languages List.cy\":\" gallois \",\"FormField.Add_Employee.Added_User\":\" Utilisateur ajouté \",\"FormField.Employee_Check_In_Form.Employee_Name\":\" Nom du demandeur \",\"Languages List.tl\":\" Philippin \",\"ReportField.My_Requests.Status\":\" Statut \",\"PicklistOption.Add_Branch.country2.2\":\" Choix 2 \",\"Languages List.es\":\" Espanol \",\"FormButton.Add_Company_Details.submit\":\" Soumettre \",\"Languages List.eu\":\" basque \",\"Languages List.et\":\" estonien \",\"Section.Company_Details\":\" Paramètres \",\"FormField.Add_Branch.country2\":\" Pays \",\"FormButton.Add_Company_Details.cancel\":\" Annuler \",\"FormButton.Employee_Check_In_Form.update\":\" Mettre à jour \",\"PicklistOption.Add_Branch.country2.1\":\" Choix 1 \",\"Languages List.vi\":\" vietnamien \",\"Languages List.el\":\" grec \",\"FormButton.Add_Company_Details.update\":\" Mettre à jour \",\"Languages List.eo\":\" espéranto \",\"Languages List.en\":\" Anglais \",\"FormField.Raise_New_Crisis.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Employee_Check_In_Form.state_province1\":\" Etat / Province \",\"Languages List.ur\":\" Urdu \",\"FormField.Employee_Check_In_Form.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Branch.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Response_Form.By\":\" Par \",\"FormField.Add_Company_Details.Added_User\":\" Utilisateur ajouté \",\"PicklistOption.Raise_New_Crisis.Status.2\":\" Fermé \",\"PicklistOption.Raise_New_Crisis.Status.1\":\" Ouvrir \"}}"
+}
+}

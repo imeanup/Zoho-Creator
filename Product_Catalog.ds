@@ -1,0 +1,3581 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 23:28:54
+ * Version      : 1.0
+ */
+ application "Product Catalog"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+	section Hidden
+	{
+		icon = "ui-1-eye-ban-20"
+		form Add_Category
+		{
+			displayname = "Add Category"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Category
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "design-shape-circle"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Category
+		{
+			displayName = "Category"
+   			hide = true
+			show all rows from Add_Category    
+			(
+				Category
+			)
+			options
+			(
+				icon = "shopping-award"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Category
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Category
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		form Add_Sub_Category
+		{
+			displayname = "Add Sub Category"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Category
+			(
+				type = picklist
+				values  = Add_Category.ID
+    			displayformat = [Category]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Sub_Category
+			(
+    			type = text
+				displayname = "Sub Category"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "design-shape-circle"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Sub_Categories
+		{
+			displayName = "Sub Categories"
+   			hide = true
+			show all rows from Add_Sub_Category    
+			(
+				Sub_Category as "Sub Category"
+				Category
+			)
+			options
+			(
+				icon = "food-pizza"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Sub_Category as "Sub Category"
+							Category
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Sub_Category as "Sub Category"
+							Category
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Shared_Report_Image
+		{
+			displayName = "Shared_Report_Image"
+   			hide = true
+			show all rows from Add_Product_Images    
+			(
+				Product_Image as "Productt Image"
+				Product_Name as "Product Name"
+				Primary_Pic as "Primary Pic"
+			)
+			group by
+			(
+				Product_Name ascending
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Product_Image as "Productt Image"
+							Product_Name as "Product Name"
+							Primary_Pic as "Primary Pic"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Product_Image as "Productt Image"
+							Product_Name as "Product Name"
+							Primary_Pic as "Primary Pic"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+				 page images(imgLink) 
+	 	 { 
+ 	 	 displayname = "images" 
+
+ 	 	 icon = "" 
+
+ 	 	 hide =  true
+	 	 Content="<zml \n\t\t\tisPdfEnabled='false'\n\t\t\n\t\t\tisPrintEnabled='false'\n\t\t\n\t\t\n\t\t\twebDeviceConfig='{\"layout\":{\"style\":\"padding-right:0px;padding-top:0px;padding-bottom:0px;padding-left:0px;\",\"design\":\"fluid\",\"displayType\":\"plain\"}}'\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dsp id='images1'>\n\t<![CDATA[htmlpage images1(imgLink)\ncontent\n&lt;%{\n\tif(imgLink == null || imgLink == &quot;null&quot; || imgLink == &quot;&quot;)\n\t{\n\t\tprimeimgstr = &quot;&lt;div style=\\&quot;padding-top:25%;color: #bdbdbd;font-size: -webkit-xxx-large;text-shadow: -1px 1px 0px #e4e4e4;font-family: karla,Maven pro;box-sizing:border-box;\\&quot;&gt; No Image Preview &lt;\/div&gt;&quot;;\n\t}\n\telse\n\t{\n\t\tgetPrimaryImg = Add_Product_Images[ID == imgLink.toLong()].Product_Image;\n\t\tprimeimgstr = getPrimaryImg.replaceAll(&quot;\/sharedBy\/appLinkName\/viewLinkName\/fieldName&quot;,zoho.appuri + &quot;Shared_Report_Image\/Product_Image&quot;);\n\t\tprimeimgstr = primeimgstr.replaceAll(&quot;&lt;img src = &quot;,&quot;&lt;img style=&apos;min-width:50%;&apos; src=&quot;);\n\t}\n\t%&gt;\n&lt;link href=&quot;\/\/fonts.googleapis.com\/css?family=Karla:400,700&quot; rel=&quot;stylesheet&quot; type=&quot;text\/css&quot; media=&quot;all&quot; \/&gt;\n&lt;style&gt;\n\t\t\t\t\t\t\tbody{\n\t\t\t\t\t\t\t\tbackground:white;}\n\t\t\t\t\t\t\t\timg{\n\t\t\t\t\t\t\t\tmax-width:100%;\n\t\t\t\t\t\t\t\tmax-height:100%;}\n\t\t\t\t\t\t\t&lt;\/style&gt;\n\t\t\t\t\t\t\t&lt;div style=&quot;text-align:center;height:100vh;&quot;&gt;\n\t\t\t\t\t\t\t&lt;%=primeimgstr%&gt;\n\t\t\t\t\t\t\t&lt;\/div&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+				 page Products(category_var,subCategory,searchKey,start,end) 
+	 	 { 
+ 	 	 displayname = "Products" 
+
+ 	 	 icon = "" 
+
+ 	 	 hide =  true
+	 	 Content="<zml \n\t\t\tisPdfEnabled='false'\n\t\t\n\t\t\tisPrintEnabled='false'\n\t\t\n\t\t\n\t\t\twebDeviceConfig='{\"layout\":{\"style\":\"padding-right:0px;padding-top:0px;padding-bottom:0px;padding-left:0px;\",\"design\":\"fluid\",\"displayType\":\"plain\"}}'\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dsp id='Products1'>\n\t<![CDATA[htmlpage Products1(category_var,subCategory,searchKey,start,end)\ncontent\n&lt;%{\n\t%&gt;\n&lt;link href=&quot;https:\/\/fonts.googleapis.com\/css?family=Maven+Pro&quot; rel=&quot;stylesheet&quot;&gt;\n\t\t\t\t\t\t    &lt;link href=&quot;\/\/fonts.googleapis.com\/css?family=Karla:400,700&quot; rel=&quot;stylesheet&quot; type=&quot;text\/css&quot; media=&quot;all&quot; \/&gt;\n\t\t\t\t\t\t  &lt;link href=&quot;\/\/fonts.googleapis.com\/css?family=Unica+One:400,700&quot; rel=&quot;stylesheet&quot; type=&quot;text\/css&quot; media=&quot;all&quot; \/&gt;\n &lt;style&gt;\n  \n  body{\n  background:white;}\n  .row{\n  width:100%;\n  box-sizing:border-box;\n  }\n  .productbox{\n    float:left;\n\t  width:23%;\n\t  margin:1%;\n  position:relative;\n\tbox-sizing:border-box;\n    top: 0;\n    background: #fff;\n    transition: all 1s ease;\n    -webkit-transition: all 1s ease;\n    -moz-transition: all 1s ease;\n    box-shadow: 1px 1px 27px rgba(0,0,0,0.08);\n    z-index: 3;\n  cursor:pointer;\n  \n  }\n    .img_div{\n  text-align:center;\n  overflow:hidden;\n  width:100%;\n  height:180px;\n  border:1px solid #e8e8e8;\n  display:flex;\n  align-items:center;\n  }\n  .img_div img{\n   transition: all 1s ease;\n    -webkit-transition: all 1s ease;\n    -moz-transition: all 1s ease;}\n  .productbox:hover{\n  overflow:hidden;\n  box-sizing:border-box;\n  z-index:6;\n  box-shadow: 2px 2px 21px rgba(0,0,0,0.1);\n  }\n  .productbox:hover .img_div img{\n  \/*width:125%;\n   transition: all 1s ease;\n    -webkit-transition: all 1s ease;\n    -moz-transition: all 1s ease;\n  text-align:center;*\/\n      transition: all 1s ease;\n    -webkit-transition: all 1s ease;\n    -moz-transition: all 1s ease;\n    text-align: center;\n  -moz-transform: scale(1.3);\n  -webkit-transform: scale(1.3);\n  transform: scale(1.3);\n  }\n  .zc-pb-page-content-wrapper\n\t{\n\t\tbackground: #fff;\n\t}\n\t.zc-pb-page-content-wrapper .elemContainment{\n\t\tpadding:0;\n\t}\n\t.zc-pb-tile-card {\n    box-shadow: none !important;\n\t}\n  .productbox:hover .img_div::after {\n    content: &quot;&quot;;\n    position: absolute;\n    background: rgba(0,0,0,0.3);\n    width: 100%;\n    height: 75%;\n    top: 0;\n  left:0;\n  transition: all 1s ease;\n    -webkit-transition: all 1s ease;\n    -moz-transition: all 1s ease;\n}\n\n  .thumbnail{\n  text-align:center; \n  box-sizing:border-box;\n  width:100%;\n  }\n  .text_bar{\n  min-height:60px;\n  height:60px;\n  background:white;\n  border-top:2px solid rgba(238, 238, 238, 0.34);\n  }\n  .fav_ico{\n  color:#fc5f74;\n  background:#eee;\n  position:absolute;\n  top:0;\n  right:-2px;\n  padding:2%;\n  z-index:100;\n  }\n  .direction_bar{\n  width:100%;\n  display:inline;\n  }\n  .text_cont{\n    font-family: &quot;Karla&quot;,&quot;Unica One&quot;,&quot;HelveticaNeue&quot;,&quot;Helvetica Neue&quot;,sans-serif;\n    -webkit-font-smoothing: antialiased;\n  width:80%;\n  color:#888;\n  float:left;\n  overflow:hidden;\n  white-space:nowrap;\n  text-overflow:ellipsis;\n  padding:3%;\n  font-size:14px;\n  }\n  .row{\n  width:98%;\n  margin:auto;}\n        @media (max-width: 960px) {\n            .productbox {\n                margin: 1%;\n                width: 48%;\n                min-width: 48%;\n            }\n        }\n       @media (max-width: 769px) {\n            .productbox {\n                margin: 1%;\n                width: 96%;\n  \n            }\n        }\n\t\t\t\t\t\t\t.zc-page-perma{\n\t\t\t\t\t\twidth:100% !important;\n\t\t\t\t\t}\n  &lt;\/style&gt;\n&lt;%\n\tif(input.start == &quot;&quot; || input.start == null)\n\t{\n\t\tstart = &quot;1&quot;;\n\t}\n\tif(input.end == &quot;&quot;)\n\t{\n\t\tend = &quot;12&quot;;\n\t}\n\tif(input.category_var == &quot;&quot; || input.category_var == null &amp;&amp; input.subCategory == null || input.subCategory == &quot;&quot; &amp;&amp; input.searchKey == &quot;&quot;)\n\t{\n\t\tgetProducts = Add_Product[ID != 0] sort by Added_Time desc range from start.toLong() to end.toLong();\n\t\ttotalCount = Add_Product[ID != 0].count();\n\t}\n\telse\n\t{\n\t\tif(input.category_var != null &amp;&amp; input.category_var != &quot;&quot; &amp;&amp; input.searchKey == null || input.searchKey == &quot;&quot;)\n\t\t{\n\t\t\tif(input.subCategory != null &amp;&amp; input.subCategory != &quot;&quot;)\n\t\t\t{\n\t\t\t\tgetProducts = Add_Product[Category == category_var.toLong() &amp;&amp; Sub_Category == subCategory.toLong()] sort by Added_Time desc range from start.toLong() to end.toLong();\n\t\t\t\ttotalCount = Add_Product[Category == category_var.toLong() &amp;&amp; Sub_Category == subCategory.toLong()].count();\n\t\t\t}\n\t\t\telse\n\t\t\t{\n\t\t\t\tgetProducts = Add_Product[Category == category_var.toLong()] sort by Added_Time desc range from start.toLong() to end.toLong();\n\t\t\t\ttotalCount = Add_Product[Category == category_var.toLong()].count();\n\t\t\t}\n\t\t}\n\t\telse\n\t\t{\n\t\t\tif(input.category_var != null &amp;&amp; input.category_var != &quot;&quot; &amp;&amp; input.searchKey != null &amp;&amp; input.searchKey != &quot;&quot;)\n\t\t\t{\n\t\t\t\tif(input.subCategory != null &amp;&amp; input.subCategory != &quot;&quot;)\n\t\t\t\t{\n\t\t\t\t\tgetProducts = Add_Product[Category == category_var.toLong() &amp;&amp; Sub_Category == subCategory.toLong() &amp;&amp; Search_Keys.contains(searchKey)] sort by Added_Time desc range from start.toLong() to end.toLong();\n\t\t\t\t\ttotalCount = Add_Product[Category == category_var.toLong() &amp;&amp; Sub_Category == subCategory.toLong() &amp;&amp; Search_Keys.contains(searchKey)].count();\n\t\t\t\t}\n\t\t\t\telse\n\t\t\t\t{\n\t\t\t\t\tgetProducts = Add_Product[Category == category_var.toLong() &amp;&amp; Search_Keys.contains(searchKey)] sort by Added_Time desc range from start.toLong() to end.toLong();\n\t\t\t\t\ttotalCount = Add_Product[Category == category_var.toLong() &amp;&amp; Search_Keys.contains(searchKey)].count();\n\t\t\t\t}\n\t\t\t}\n\t\t\telse\n\t\t\t{\n\t\t\t\tgetProducts = Add_Product[Search_Keys.contains(searchKey)] sort by Added_Time desc range from start.toLong() to end.toLong();\n\t\t\t\ttotalCount = Add_Product[Search_Keys.contains(searchKey)].count();\n\t\t\t}\n\t\t}\n\t}\n\tstr = &quot; &lt;div style=&apos;height:99vh;&apos;&gt;&quot;;\n\tif(getProducts.count() != 0)\n\t{\n\t\tfor each  eachproduct in getProducts\n\t\t{\n\t\t\tgetPrdDetails = Add_Product[ID == eachproduct.ID];\n\t\t\tgetPrimaryImg = Add_Product_Images[Product_Name == getPrdDetails.ID &amp;&amp; Primary_Pic].Product_Image;\n\t\t\tcalc = thisapp.Util.calcPercent(getPrdDetails.ID);\n\t\t\tif(getPrdDetails.Product_Images.isEmpty() || getPrdDetails.Product_Images == null)\n\t\t\t{\n\t\t\t\timgstr = &quot;&lt;div style=\\&quot;color: #bdbdbd;font-size: -webkit-xxx-large;text-shadow: -1px 1px 0px #e4e4e4;font-family: karla,Maven pro;\\&quot;&gt; No Image Preview &lt;\/div&gt;&quot;;\n\t\t\t}\n\t\t\telse\n\t\t\t{\n\t\t\t\timgstr = getPrimaryImg.replaceAll(&quot;\/sharedBy\/appLinkName\/viewLinkName\/fieldName&quot;,zoho.appuri + &quot;Shared_Report_Image\/Product_Image&quot;);\n\t\t\t\timgstr = imgstr.replaceAll(&quot;&lt;img src = &quot;,&quot;&lt;img class=&apos;thumbnail&apos; src=&quot;);\n\t\t\t}\n\t\t\tstr = str + &quot;&lt;a href=&apos;&quot; + zoho.appuri + &quot;page-embed\/ProductDescription?recID=&quot; + getPrdDetails.ID + &quot;&amp;category_var=&quot; + category_var + &quot;&amp;subCategory=&quot; + subCategory + &quot;&amp;searchKey=&quot; + searchKey + &quot;&amp;start=&quot; + start + &quot;&amp;end=&quot; + end + &quot;&apos; target=&apos;catalog&apos;&gt;&lt;div class=&apos;productbox&apos; &gt;&lt;div&gt;&lt;span class=&apos;fa fa-heart fav_ico&apos;&gt; &lt;font style=&apos;color:#888&apos;&gt;\u00A0 &quot; + calc + &quot;%&lt;\/font&gt;&lt;\/span&gt;&lt;\/div&gt;&lt;div class=&apos;img_div&apos;&gt;&quot; + imgstr + &quot;&lt;\/img&gt;&lt;\/div&gt;&lt;div class=&apos;text_bar&apos;&gt;&lt;div class=&apos;text_cont&apos;&gt;&quot; + getPrdDetails.Product_Name + &quot;&lt;\/div&gt;&lt;\/div&gt;&lt;\/div&gt;&lt;\/a&gt;&quot;;\n\t\t}\n\t}\n\telse\n\t{\n\t\tstr = str + &quot;&lt;div style=&apos;height:100%;position:absolute;top:35%;color:#877c7c;left:35%;font-size:22px&apos;&gt;Sorry! No Product Available in Search Criteria&lt;\/div&gt;&quot;;\n\t}\n\tstr = str + &quot;&lt;\/div&gt;&quot;;\n\t%&gt;\n&lt;div class=&quot;row&quot;&gt;\n\t\t\t\t\t\t  \t&lt;div class=&quot;direction_bar&quot;&gt;\n&lt;%\n\tnextstartVal = end.toLong() + 1;\n\tnextendVal = nextstartVal + 11;\n\tprevstartVal = start.toLong() - 12;\n\tprevendVal = start.toLong() - 1;\n\tif(start.toLong() &gt; 12)\n\t{\n\t\t%&gt;\n&lt;div style=&quot;text-align:left;float:left;&quot;&gt;\n\t\t\t\t\t\t  &lt;a href=&quot;&lt;%=zoho.appuri%&gt;page-embed\/Products?category_var=&amp;subCategory=&amp;searchKey=&amp;start=&lt;%=prevstartVal%&gt;&amp;end=&lt;%=prevendVal%&gt;&quot;&gt; \u00AB\u00A0Previous &lt;\/a&gt;&lt;\/div&gt;\n&lt;%\n\t}\n\tif(totalCount &gt; end.toLong() &amp;&amp; end.toLong() &gt;= 12)\n\t{\n\t\t%&gt;\n&lt;div style=&quot;text-align:right;&quot;&gt;&lt;a href=&quot;&lt;%=zoho.appuri%&gt;page-embed\/Products?category_var=&amp;subCategory=&amp;searchKey=&amp;start=&lt;%=nextstartVal%&gt;&amp;end=&lt;%=nextendVal%&gt;&quot;&gt; Next\u00A0\u00BB &lt;\/a&gt;&lt;\/div&gt;\n&lt;%\n\t}\n\t%&gt;\n&lt;div style=&quot;clear:both;&quot;&gt;&lt;\/div&gt;\n\t\t\t\t\t\t    &lt;\/div&gt;\n\t\t\t\t\t\t  \t\t&lt;%=str%&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+				 page ProductDescription(recID,category_var,subCategory,searchKey,start,end) 
+	 	 { 
+ 	 	 displayname = "ProductDescription" 
+
+ 	 	 icon = "" 
+
+ 	 	 hide =  true
+	 	 Content="<zml \n\t\t\tisPdfEnabled='false'\n\t\t\n\t\t\tisPrintEnabled='false'\n\t\t\n\t\t\n\t\t\twebDeviceConfig='{\"layout\":{\"style\":\"padding-right:0px;padding-top:0px;padding-bottom:0px;padding-left:0px;\",\"design\":\"fluid\",\"displayType\":\"plain\"}}'\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dsp id='ProductDescription1'>\n\t<![CDATA[htmlpage ProductDescription1(recID,category_var,subCategory,searchKey,start,end)\ncontent\n&lt;%{\n\t%&gt;\n&lt;link href=&quot;\/\/fonts.googleapis.com\/css?family=Karla:400,700&quot; rel=&quot;stylesheet&quot; type=&quot;text\/css&quot; media=&quot;all&quot; \/&gt;\n\t\t\t\t\t\t&lt;style&gt;\n\t\t\t\t\t\t  body{\n\t\t\t\t\t\t  background:white;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .container{\n\t\t\t\t\t\t  display:inline-block;\n\t\t\t\t\t\t  height:100vh;\n\t\t\t\t\t\t  background:white;\n\t\t\t\t\t\t  width:100%;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  \n\t\t\t\t\t\t#zc-component{\n\t\t\t\t\t\t  overflow-x:hidden;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .leftpad{\n\t\t\t\t\t\t  width:50%;\n\t\t\t\t\t\t  float:left;\n\t\t\t\t\t\t  position:relative;\n\t\t\t\t\t\t  display:inline;\n\t\t\t\t\t\t  height:100%;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .thumb_div{\n\t\t\t\t\t\t      position: relative;\n\t\t\t\t\t\t    background: white;\n\t\t\t\t\t\t    width: 90%;\n\t\t\t\t\t\t    margin: auto;\n\t\t\t\t\t\t\theight:15vh;\n\t\t\t\t\t\t    margin-top: 1%;\n\t\t\t\t\t\t    border-top: 1px solid #877c7c;\n\t\t\t\t\t\t    padding-top: 3%;\n\t\t\t\t\t\t  overflow-y:hidden;\n\t\t\t\t\t\t  overflow-x:auto;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .rightpad{\n\t\t\t\t\t\t   font-family: &quot;Karla&quot;,&quot;Unica One&quot;,&quot;HelveticaNeue&quot;,&quot;Helvetica Neue&quot;,sans-serif;\n\t\t\t\t\t\t    -webkit-font-smoothing: antialiased;\n\t\t\t\t\t\t    width:47%;\n\t\t\t\t\t\t    float: left;\n\t\t\t\t\t\t    margin-left: 2%;\n\t\t\t\t\t\t    -ms-flex-preferred-size: auto !important;\n\t\t\t\t\t\t    -webkit-flex-basis: auto !important;\n\t\t\t\t\t\t    -moz-flex-basis: auto !important;\n\t\t\t\t\t\t    flex-basis: auto !important;\n\t\t\t\t\t\t\tposition:relative;\n\t\t\t\t\t\t   display:inline;\n\t\t\t\t\t\t    height:90vh;\n\t\t\t\t\t\t  box-sizing:border-box;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .ul-class{\n\t\t\t\t\t\t   list-style: none;\n\t\t\t\t\t\t    display: inline-flex;\n\t\t\t\t\t\t    height: 100%;\n\t\t\t\t\t\t\twidth:400px;\n\t\t\t\t\t\t    padding: 0;\n\t\t\t\t\t\t    flex-direction:row;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .ul-class li{\n\t\t\t\t\t\t  flex:1;\n\t\t\t\t\t\t  max-width:250px;\n\t\t\t\t\t\t  float:left;\n\t\t\t\t\t\t  padding:1%;\n\t\t\t\t\t\t  box-sizing:border-box;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  .direction_bar{\n\t\t\t\t\t\t  width:100%;\n\t\t\t\t\t\t  display:inline;\n\t\t\t\t\t\t  margin-left:2%;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  .prod{\n\t\t\t\t\t\t  display:inline-block;\n\t\t\t\t\t\t  white-space:pre-wrap;\n\t\t\t\t\t\t  -webkit-font-smoothing: antialiased;\n\t\t\t\t\t\t  margin-bottom:2%;\n\t\t\t\t\t\t  height:71%;\n\t\t\t\t\t\t  overflow:auto;\n\t\t\t\t\t\t  width:100%;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .review_section{\n\t\t\t\t\t\t  height:28%;\n\t\t\t\t\t\t  overflow:auto;\n\t\t\t\t\t\t  -webkit-font-smoothing: antialiased;\n\t\t\t\t\t\t  margin:1% 0%;\n\t\t\t\t\t\t  }  \n\t\t\t\t\t\t  .letter_style{\n\t\t\t\t\t\t      border-radius: 50%;\n\t\t\t\t\t\t    background: #00bc9e;\n\t\t\t\t\t\t    color: white;\n\t\t\t\t\t\t    font-family: &apos;sans-serif&apos;,&apos;Arial&apos;;\n\t\t\t\t\t\t    float: left;\n\t\t\t\t\t\t    position: relative;\n\t\t\t\t\t\t    top: 0px;\n\t\t\t\t\t\t    width: 30px;\n\t\t\t\t\t\t    text-align: center;\n\t\t\t\t\t\t    margin-right: 2%;\n\t\t\t\t\t\t  -webkit-font-smoothing: antialiased;\n\t\t\t\t\t\t    margin-bottom: 0;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .wishlist_btn{\n\t\t\t\t\t\t\t width: 35%;\n    \t\t\t\t\t\t box-sizing: border-box;\n    \t\t\t\t\t\t background: white;\n    \t\t\t\t\t\t color: #2C7BD0;\n    \t\t\t\t\t\t text-align: center;\n\t\t\t\t\t\t\t float: right;\n    \t\t\t\t\t\t font-family: &apos;Karla&apos;,&apos;Arial&apos;,&apos;Sans-serif&apos;;\n    \t\t\t\t\t\t border: 1px solid #2C7BD0;\n    \t\t\t\t\t\t border-radius: 25px;\n    \t\t\t\t\t\t font-size: 14px;\n\t\t\t\t\t\t\t box-shadow: 2px 2px 2px #b0aeae;\n\t\t\t\t\t\t\t height:50px;\n\t\t\t\t\t\t     transition: all 0.5s ease-in-out;}\n\t\t\t\t\t\t  .wishlist_btn a{color:#2C7BD0;}\n\t\t\t\t\t\t  .wishlist_btn:hover{ background:#2C7BD0;cursor:pointer;transition: all 0.5s ease-in-out;}\n\t\t\t\t\t\t  .wishlist_btn:hover a { color:white;}\n\t\t\t\t\t\t  .zc-pb-page-content-wrapper\t{background: #fff;}\n\t\t\t\t\t.zc-pb-page-content-wrapper .elemContainment{padding:0;\t}\n\t\t\t\t\t.zc-pb-tile-card {\n\t\t\t\t    box-shadow: none !important;\n\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t\t.zc-page-perma{\n\t\t\t\t\t\twidth:100% !important;\n\t\t\t\t\t}\n\t\t\t\t\t.wish_List_Btn{\n\t\t\t\t\t    color: black;\n\t\t\t\t\t    background: white;\n\t\t\t\t\t    padding: 5px;\n\t\t\t\t\t    border: 1px solid;\n\t\t\t\t\t    font-size: 14px;\n\t\t\t\t\t\ttransition: all 0.5s ;\n\t\t\t\t\t\tposition:relative;\n\t\t\t\t\t}\n\t\t\t\t\t.wish_List_Btn:hover{\n\t\t\t\t\t\tbackground:black;\n\t\t\t\t\t\tcolor:white;\n\t\t\t\t\t\tbox-shadow:2px 2px #eee;\n\t\t\t\t\t\ttransition: all 0.5s ;\n\t\t\t\t\t}\n\t\t\t\t\t\t  &lt;\/style&gt;\n&lt;%\n\tgetProdDetails = Add_Product[ID == recID.toLong()];\n\tgetPrimaryImg = Add_Product_Images[Product_Name == recID.toLong() &amp;&amp; Primary_Pic].ID;\n\tgetImgs = Add_Product_Images[Product_Name == recID.toLong()].ID.getAll();\n\timgList = {};\n\timgIDList = {};\n\tfor each  eachImages in getImgs\n\t{\n\t\tgetImg = Add_Product_Images[ID == eachImages.toLong()];\n\t\timgstr = getImg.Product_Image.replaceAll(&quot;\/sharedBy\/appLinkName\/viewLinkName\/fieldName&quot;,zoho.appuri + &quot;Shared_Report_Image\/Product_Image&quot;);\n\t\timgstr = imgstr.replaceAll(&quot;&lt;img src = &quot;,&quot;&lt;img style=&apos;height:100%;&apos; src=&quot;);\n\t\timgList.add(imgstr);\n\t\timgIDList.add(getImg.ID);\n\t}\n\t%&gt;\n&lt;div class=&quot;container&quot;&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;direction_bar&quot;&gt;\n\t\t\t\t\t\t  \t&lt;span style=&quot;font-size:16px;&quot;&gt;&lt;a href=&quot;&lt;%=zoho.appuri%&gt;page-embed\/Products?category_var=&lt;%=category_var%&gt;&amp;subCategory=&lt;%=subCategory%&gt;&amp;searchKey=&lt;%=searchKey%&gt;&amp;start=&lt;%=start%&gt;&amp;end=&lt;%=end%&gt;&quot;&gt; \u2190&amp;nbsp; Back&lt;\/a&gt;&lt;\/span&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  \t&lt;div class=&quot;leftpad&quot;&gt;\n\t\t\t\t\t\t  \t&lt;iframe style=&quot;border:0;height:70vh;background:white;&quot; width=&quot;100%&quot; scrolling=&quot;no&quot; src=&quot;&lt;%=zoho.appuri%&gt;page-embed\/images?imgLink=&lt;%=getPrimaryImg%&gt;&quot; name=&quot;prod_image&quot;&gt;&lt;\/iframe&gt;\n\t\t\t\t\t\t  \t&lt;div class=&quot;thumb_div&quot;&gt;\n\t\t\t\t\t\t  \t&lt;ul class=&quot;ul-class&quot;&gt;\n&lt;%\n\tcounter = 0;\n\tfor each  eachrec in imgList\n\t{\n\t\timgID = imgIDList.get(counter);\n\t\t%&gt;\n&lt;li&gt; &lt;a href=&quot;&lt;%=zoho.appuri%&gt;page-embed\/images?imgLink=&lt;%=imgID%&gt;&quot; target=&quot;prod_image&quot;&gt;&lt;%=eachrec%&gt; &lt;\/a&gt; &lt;\/li&gt;\n&lt;%\n\t\tcounter = counter + 1;\n\t}\n\t%&gt;\n&lt;\/ul&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  \t&lt;div class=&quot;rightpad&quot;&gt;\n\t\t\t\t\t\t  \t\t&lt;div class=&quot;prod&quot;&gt;\n\t\t\t\t\t\t\t\t  &lt;h2 style=&quot;margin-bottom:0;color:#313949;white-space: pre-line;font-variant:all-small-caps;&quot;&gt;\n\t\t\t\t\t\t\t\t\t&lt;%=getProdDetails.Product_Name%&gt;\n\t\t\t\t\t\t\t\t  &lt;\/h2&gt;\n\t\t\t\t\t\t\t\t  \t&lt;div&gt;\n\t\t\t\t\t\t\t\t\t\t&lt;a class=&apos;wish_List_Btn&apos; href=&quot;&lt;%=zoho.appuri%&gt;#Form:Add_to_wishlist?Product_Name=&lt;%=recID%&gt;&amp;zc_LoadIn=dialog&quot; target=&quot;_parent&quot;&gt; Add to Wishlist &lt;\/a&gt;\n\t\t\t\t\t\t\t\t\t&lt;\/div&gt;\n\t\t\t\t\t\t\t\t  &lt;div style=&quot;font-size:14px;&quot;&gt;\n\t\t\t\t\t\t  \t\t\t\t &lt;div style=&quot;font-family: &apos;Karla&apos;,&apos;Arial&apos;,&apos;Sans-serif&apos;;&quot;&gt;Category :&amp;nbsp; &lt;%=getProdDetails.Category.Category%&gt;&lt;\/div&gt;\n\t\t\t\t\t\t\t\t  \t\t &lt;div style=&quot;font-family: &apos;Karla&apos;,&apos;Arial&apos;,&apos;Sans-serif&apos;;&quot;&gt;Subcategory :&amp;nbsp; &lt;%=if(getProdDetails.Sub_Category.Sub_Category == null,&quot;-&quot;,getProdDetails.Sub_Category.Sub_Category)%&gt;&lt;\/div&gt;\n\t\t\t\t\t\t  \t\t  \t\t &lt;div style=&quot;font-family: &apos;Karla&apos;,&apos;Arial&apos;,&apos;Sans-serif&apos;;&quot;&gt;Value :&amp;nbsp; &lt;%=thisapp.Page.currency(getProdDetails.Product_Value)%&gt;&lt;\/div&gt;\n\t\t\t\t\t\t\t\t   &lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t    &lt;div style=&quot;color:#100707;clear:both;white-space:pre-wrap;font-size:14px;&quot;&gt;\n\t\t\t\t\t\t  \t\t\t\t&lt;%=getProdDetails.Product_Description%&gt;\n\t\t\t\t\t\t\t  \t\t&lt;\/div&gt;\n\t\t\t\t\t\t  \t\t&lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div style=&quot;width:100%;border-bottom:1px solid #877c7c;font-weight:500;font-size:16px;&quot;&gt;Reviews&lt;\/div&gt;\n\t\t\t\t\t\t  \t\t&lt;div class=&quot;review_section&quot;&gt;\n&lt;%\n\treviewStr = &quot;&lt;ul style=&apos;list-style:none;padding:0;&apos;&gt;&quot;;\n\tgetProductReviews = Add_Review[Product_Name == recID.toLong()].ID.getAll();\n\tif(getProductReviews.size() != 0)\n\t{\n\t\tfor each  eachreview in getProductReviews\n\t\t{\n\t\t\tgetReview = Add_Review[ID == eachreview];\n\t\t\tgetUserName = Add_Traders[ID == getReview.Name];\n\t\t\tfirstLetter = getUserName.Name.subString(0,2).toUpperCase();\n\t\t\treviewStr = (reviewStr + &quot;&lt;li style=&apos;margin-bottom:4%;&apos;&gt;&lt;h2 class=&apos;letter_style&apos;&gt;&quot; + firstLetter + &quot;&lt;\/h2&gt;&lt;h2 style=&apos;margin-bottom:0;font-size:18px;&apos;&gt;&quot; + getUserName.Name) + &quot;&lt;div style=&apos;float:right;direction:rtl;&apos;&gt;&quot; + thisapp.Page.starRating(getReview.Rating.toLong()) + &quot;&lt;\/div&gt;&lt;\/h2&gt;&lt;div style=&apos;margin-bottom:2%;&apos;&gt;&quot; + getUserName.Company_Name + &quot;&lt;\/div&gt;&lt;div style=&apos;position:relative;left:6%;width:95%;&apos;&gt;&quot; + getReview.Review + &quot;&lt;\/div&gt;&lt;\/li&gt;&quot;;\n\t\t}\n\t\treviewStr = reviewStr + &quot;&lt;\/ul&gt;&quot;;\n\t}\n\telse\n\t{\n\t\treviewStr = reviewStr + &quot;&lt;li style=&apos;text-align: center;font-size: 22px; color: #888;&apos;&gt;Sorry, No Reviews Yet!&lt;\/li&gt;&lt;\/ul&gt;&quot;;\n\t}\n\t%&gt;\n&lt;%=reviewStr%&gt;\n\t\t\t\t\t\t  \t\t&lt;\/div&gt;\n\t\t\t\t\t\t\t&lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+		list Product_Images_Admin
+		{
+			displayName = "Product Images Admin"
+   			hide = true
+			show all rows from Add_Product_Images    
+			(
+				Product_Image as "Productt Image"
+				Product_Name as "Product Name"
+				Primary_Pic as "Primary Pic"
+			)
+			options
+			(
+				icon = "business-net"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Product_Image as "Productt Image"
+							Product_Name as "Product Name"
+							Primary_Pic as "Primary Pic"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Product_Image as "Productt Image"
+							Product_Name as "Product Name"
+							Primary_Pic as "Primary Pic"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		form Search
+		{
+			store data in zc = false
+			success message = "Data Added Successfully!"
+			field alignment = labelinplace
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Category
+			(
+				type = picklist
+				values  = Add_Category.ID
+    			displayformat = [Category]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Sub_Category
+			(
+				type = picklist
+				displayname = "Sub Category"
+				values  = Add_Sub_Category[Category == input.Category].ID
+    			displayformat = [Sub_Category]
+				sortorder = ascending
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Search
+			(
+    			type = text
+	 			row = 1
+	 			column = 3   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-2-search"
+			)
+		}
+	}
+	section Admin
+	{
+		icon = "ui-1-lock-circle"
+		form Add_Product
+		{
+			displayname = "Add Product"
+			success message = "Product Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Company_Name
+			(
+    			type = text
+				displayname = "Company Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Product_Name
+			(
+    			type = text
+				displayname = "Product Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			unique Product_ID
+			(
+    			type = text
+				displayname = "Product ID"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Model_Make
+			(
+    			type = text
+				displayname = "Model / Make"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Category
+			(
+				type = picklist
+				values  = Add_Category.ID
+    			displayformat = [Category]
+				allow new entries = true
+				[
+					displayname = "Add Category"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Sub_Category
+			(
+				type = picklist
+				displayname = "Sub Category"
+				values  = Add_Sub_Category[Category == input.Category].ID
+    			displayformat = [Sub_Category]
+				allow new entries = true
+				[
+					displayname = "Add Sub Category"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Product_Description
+			(
+    			type = textarea
+				displayname = "Product Description"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Product_Value
+			(
+				type = number
+				displayname = "Product Value"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Tags
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Search_Keys
+			(
+				type = list
+				displayname = "Search Keys"
+				values = {"a", "[Test, HDR234, Kanon, ]", "Anime", "Japaneese series", "[Ar3, Ar30163, Mppiehw, ]", "Interior Decorations", "Shelf", "[POIUYTREWQ, 3215623g, iad, ]", "[test, afasd, asdfasd, ]", "asfsadf", "asdfsdfa", "[EFGH, IJKS, IJKL, MNOP, ]", "[test, afasd, asdfasd, Flipkart SmartBuy A5 Notebook]", "[test, afasd, asdfasd, Flipkart SmartBuy A5 Notebook (Guitar Notes PU Hard Bound Notebook With Elastic Band And Slider, )]", "[test, afasd, asdfasd, Flipkart SmartBuy A5 Notebook (Guitar Notes PU Hard Bound Notebook With Elastic Band And Slider, 160 Pages, ]", "[test, afasd, asdfasd, Flipkart SmartBuy A5 Notebook (Guitar Notes PU Hard Bound Notebook With Elastic Band And Slider, 160 Pages, Single Ruled Size Blue)]", "[test, afasd, asdfasd, Flipkart SmartBuy A5 Notebook (Guitar Notes PU Hard Bound Notebook With Elastic Band And Slider, 160 Pages, Single Ruled Size  (5.8 x 8.3), Blue)]", "[Camera, 340 degree camera, ]", "survey", "Camera"}
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Overall_Rating
+			(
+				type = number
+				displayname = "Overall Rating"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Product_Images
+			(
+				type = grid
+				displayname = "Product Images"
+				values  = Add_Product_Images.ID
+    			bidirectional = Product_Name
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "design-2-3d-29"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Product_Images
+		{
+			displayname = "Add Product Images"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Product_Name
+			(
+				type = picklist
+				displayname = "Product Name"
+				values  = Add_Product.ID
+    			bidirectional = Product_Images
+    			displayformat = [Product_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Product_Image
+			(
+    			type = image
+				displayname = "Product Image"
+				source  = public_url,file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Primary_Pic
+			(
+    			type = checkbox
+				displayname = "Primary Pic"
+				initial value = false
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+	
+			customize
+			(
+				icon = "social-1-logo-flickr"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Traders
+		{
+			displayname = "Add Traders"
+			success message = "Application is shared with the Vendor Successfully!\n"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Company_Name
+			(
+    			type = text
+				displayname = "Company Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Company_Address
+			(
+    			type = address
+				displayname = "Company Address"
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "shopping-mobile-card"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		custom All_Reviews
+		{
+			displayName = "All Reviews"
+			show all rows from Add_Review    
+			(
+				Product_Name as "Product Name"
+				Review
+				Name
+				Rating
+			)
+			group by
+			(
+				Product_Name ascending
+			)
+			conditional formatting
+			(
+				"Good Rating"
+				{
+				condition = (Rating == "5")
+				fields = [Rating]
+				format = "color:#46c9b1;"
+				}
+				"Average Rating"
+				{
+				condition = (Rating == "3" || Rating == "4")
+				fields = [Rating]
+				format = "color:#5457c2;"
+				}
+				"Low Rating"
+				{
+				condition = (Rating == "2" || Rating == "1")
+				fields = [Rating]
+				format = "color:#ff3d3d;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Review
+							Rating
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Review
+							Rating
+							Name
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Reviewed By"
+		     			related field =  Name
+						fields
+						(
+							Name
+							Email
+							Company_Name as "Company Name"
+							Company_Address as "Company Address"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Products
+	{
+		icon = "design-app"
+		list Product_Details
+		{
+			displayName = "Product Details"
+			show all rows from Add_Product    
+			(
+				Product_Images.Product_Image as "Product Images"
+				Company_Name as "Company Name"
+				Model_Make as "Model / Make"
+				Category
+				Product_Value as "Product Value"
+				Product_Name as "Product Name"
+				Product_ID as "Product ID"
+				Sub_Category as "Sub Category"
+				Product_Description as "Product Description"
+			)
+			filters
+			(
+				Category
+				Sub_Category
+			)
+			group by
+			(
+				Company_Name ascending
+				Category ascending
+			)
+			options
+			(
+				icon = "users-2-contacts-44"
+	 		)
+			conditional formatting
+			(
+				"Product ID"
+				{
+				fields = [Product_ID]
+				format = "color:#780202;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Company_Name as "Company Name"
+							Product_ID as "Product ID"
+							Product_Name as "Product Name"
+							Model_Make as "Model / Make"
+							Product_Description as "Product Description"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Company_Name as "Company Name"
+							Product_ID as "Product ID"
+							Product_Name as "Product Name"
+							Product_Value as "Product Value"
+							Category
+							Sub_Category as "Sub Category"
+							Model_Make as "Model / Make"
+							Product_Description as "Product Description"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Product Images"
+		     			related field =  Product_Images
+						fields
+						(
+							Product_Image as "Product Image"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Product_Catalogue
+	{
+		displayname= "Product Catalogue"
+		icon = "design-pantone"
+				 page Product_Catalogue 
+	 	 { 
+ 	 	 displayname = "Product Catalogue" 
+
+ 	 	 icon = "" 
+	 	 Content="<zml \n\t\t\tisPdfEnabled='false'\n\t\t\n\t\t\tisPrintEnabled='false'\n\t\t\n\t\t\n\t\t\twebDeviceConfig='{\"layout\":{\"style\":\"padding-right:0px;padding-top:0px;padding-bottom:0px;padding-left:0px;\",\"design\":\"fluid\",\"displayType\":\"plain\"}}'\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dsp id='Product_Catalogue1'>\n\t<![CDATA[htmlpage Product_Catalogue1()\ncontent\n&lt;%{\n\t%&gt;\n&lt;style&gt;\n\t\t\t\t\t\t    body {\n\t\t\t\t\t\t\t\tbackground: white;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t.whole_container {\n\t\t\t\t\t\t\t\twidth: 100%;\n\t\t\t\t\t\t\t\tmargin: 0;\n\/* \t\t\t\t\t\t\t\theight: 100vh; *\/\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t.embedstyle {\n\/* \t\t\t\t\t\t\t\tmin-height: 80vh; *\/\n\t\t\t\t\t\t\t\twidth: 98%;\n\t\t\t\t\t\t\t\tmargin: 1%;\n\t\t\t\t\t\t\t\tposition: relative;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t.page_content_wrapper table [formlinkname].divEmbedContainer{\n\t\t\t\t\t\t\t\theight: initial !important;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t.zc-Category-group, .zc-Sub_Category-group {\n\t\t\t\t\t\t\t\tmin-width: 25%;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t.page_content_wrapper {\n\t\t\t\t\t\t\t\toverflow: hidden;\n\t\t\t\t\t\t\t\tbackground: white;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t.zcform_Search .first-column .form-field {\n\t\t\t\t\t\t\t\twidth: 100% !important;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t.column-3{width: calc(100% - 600px) !important;}\n\t\t\t\t\t\t\t.zcform_Search .column-3 .form-field{width: 100% !important;}\n\t\t\t\t\t\t\t#zc-Search{\n\t\t\t\t\t\t\t\t    width: 100% !important;\n\t\t\t\t\t\t\t\t    border: none;\n\t\t\t\t\t\t\t\t    border-bottom: 1px solid #ddd;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t  &lt;\/style&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;whole_container&quot;&gt;\n\t\t\t\t\t\t\t  &lt;div id=&quot;searchForm&quot; class=&quot;formstyle_embed&quot; zc_mobileView=&apos;inline&apos; elName=&apos;zc-component&apos; formLinkName=&apos;Search&apos; params=&apos;zc_Header=false&amp;amp;zc_SuccMsg=Data Added Successfully!&amp;amp;zc_SubmitVal=Submit&amp;amp;zc_ResetVal=Reset&amp;zc_Focus=false&apos;&gt;Loading Form...&lt;\/div&gt;\n\t\t\t\t\t\t\t  &lt;div class=&quot;embedstyle&quot;&gt;\n\t\t\t\t\t\t\t  &lt;iframe style=&quot;height:72vh;border:0;&quot;width=&quot;100%;&quot; zc_mobileView=&apos;inline&apos; name=&quot;catalog&quot; scrolling=&quot;yes&quot; src=&quot;&lt;%=zoho.appuri%&gt;page-embed\/Products?category_var=&amp;subCategory=&amp;searchKey=&amp;start=1&amp;end=12&quot; style=&quot;border:0;background:transparent;&quot;&gt;&lt;\/iframe&gt;\n\t\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+		list All_Products
+		{
+			displayName = "All Products"
+   			hide = true
+			show all rows from Add_Product    
+			(
+				Product_Value as "Product Value"
+				Search_Keys as "Search Keys"
+				Overall_Rating as "Overall Rating"
+				Tags
+				Product_Description as "Product Description"
+				Sub_Category as "Sub Category"
+				Category
+				Model_Make as "Model / Make"
+				Product_ID as "Product ID"
+				Product_Name as "Product Name"
+				Company_Name as "Company Name"
+			)
+			options
+			(
+				icon = "design-2-group"
+	 		)
+			custom actions
+			(
+				"Add to Wishlist"
+				(
+	  			workflow = Add_to_Wishlist1
+				show action in view header = true
+				show action in edit record menu = true
+				)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Company_Name as "Company Name"
+							Product_Name as "Product Name"
+							Product_ID as "Product ID"
+							Model_Make as "Model / Make"
+							Category
+							Sub_Category as "Sub Category"
+							Product_Description as "Product Description"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Company_Name as "Company Name"
+							Product_Name as "Product Name"
+							Product_ID as "Product ID"
+							Model_Make as "Model / Make"
+							Category
+							Sub_Category as "Sub Category"
+							Product_Description as "Product Description"
+							Product_Value as "Product Value"
+							Tags
+							Search_Keys as "Search Keys"
+							Overall_Rating as "Overall Rating"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Traders
+	{
+		icon = "users-multiple-11"
+		map Traders_List
+		{
+			displayName = "Traders"
+			show all rows from Add_Traders    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Company_Address  as "Company Address"
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Company_Name as "Company Name"
+				Email
+			)
+			options
+			(
+	 			display field = Company_Address
+	 	 		radius = 100 Miles
+		 		icon = "users-2-exchange"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Company_Name as "Company Name"
+							Name
+							Email
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email
+							Company_Name as "Company Name"
+							Company_Address as "Company Address"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Review
+	{
+		displayname= "Add Review"
+		icon = "emoticons-like"
+		form Add_Review
+		{
+			displayname = "Add Review"
+			success message = "Review Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Product_Name
+			(
+				type = picklist
+				displayname = "Product Name"
+				values  = Add_Product.ID
+    			displayformat = [Product_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Rating
+			(
+				type = radiobuttons
+				values = {"5", "4", "3", "2", "1"}
+				initial value = "5"
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Name
+			(
+				type = picklist
+				values  = Add_Traders.ID
+    			displayformat = [Name.first_name + Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Review
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "social-1-logo-yelp"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		custom My_Reviews
+		{
+			displayName = "My Reviews"
+			show all rows from Add_Review  [Name.Email == zoho.loginuserid]  
+			(
+				Product_Name as "Product Name"
+				Review
+				Rating
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = 1
+		     			title = "Overview"
+						fields
+						(
+							Product_Name as "Product Name"
+							Review
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Product_Name as "Product Name"
+							Review
+							Rating
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Wishlist
+	{
+		displayname= "Wishlist"
+		icon = "ui-3-heart"
+		form Add_to_wishlist
+		{
+			displayname = "Add to wishlist"
+			success message = "Product has been added to your wishlist successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Product_Name
+			(
+				type = picklist
+				displayname = "Product Name"
+				values  = Add_Product.ID
+    			displayformat = [Product_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = "<div style=\"text-align: center\">Are you sure you want to add this product to your wishlist?</div>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "design-2-3d-29"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Yes"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "No"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		custom My_Wishlist
+		{
+			displayName = "My Wishlist"
+			show all rows from Add_to_wishlist  [Email == zoho.loginuserid]  
+			(
+				Email
+				Product_Name.Product_Name as "Product Name"
+				Product_Name as "Product Name"
+				Product_Name.Product_ID as "Product ID"
+				Product_Name.Model_Make as "Model / Make"
+				Product_Name.Product_Description as "Product Description"
+			)
+			options
+			(
+				icon = "users-2-b-love"
+	 		)
+			custom actions
+			(
+				"Remove Item"
+				(
+	  			workflow = Remove_From_Wishlist
+				show action in view header = true
+				show action in edit record menu = true
+				)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = 1
+		     			title = "Overview"
+						fields
+						(
+							Product_Name as "Product Name"
+							Product_Name.Product_Description as "Product Description"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								"Remove Item"
+								Edit   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								"Remove Item"
+								Edit   	   
+								Delete   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Product_Name as "Product Name"
+							Product_Name.Model_Make as "Model / Make"
+							Product_Name.Product_ID as "Product ID"
+							Product_Name.Product_Description as "Product Description"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Remove Item"
+    		 			Edit 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Charts
+	{
+		icon = "health-pulse-chart"
+		pivotchart Most_Liked_Products
+		{ 
+			displayname = "Most Liked Products"
+			based on Autoview_1517222035855_Add_to_wishlist
+							icon = "clothes-makeup"				show all rows from Add_to_wishlist
+				(
+ 					Email 
+ 					Product_Name  as "Products"
+				)
+		}
+		pivotchart Overall_Rating
+		{ 
+			displayname = "Overall Rating"
+			based on Autoview_1491543918060_Product_Details
+							icon = "social-1-logo-product-hunt"				show all rows from Add_Product
+				(
+ 					Sub_Category  as "Sub Category"
+ 					Product_ID  as "Product ID"
+ 					Model_Make  as "Model / Make"
+ 					Company_Name  as "Company Name"
+ 					Product_Name  as "Product Name"
+ 					Product_Value  as "Product Value"
+ 					Overall_Rating  as "Overall Rating"
+ 					Category 
+				)
+		}
+	}
+	functions
+	{
+ 			string Page.currency(float num)
+			{
+				if(input.num != null)
+				{
+					num = num.round(2);
+					myStr = num.toString().replaceAll("(?<!\.\d)(?<=\d)(?=(?:\d\d\d)+\b)",",");
+				}
+				return myStr;
+			}
+ 			float Util.calcPercent(int recID)
+			{
+				getPrd = Add_Review[Product_Name == input.recID].ID.getAll();
+				total = 0;
+				counter = 0;
+				avg = 0.0;
+				for each  eachrec in getPrd
+				{
+					getreview = Add_Review[ID == eachrec];
+					rating = getreview.Rating;
+					total = rating.toLong() + total;
+					counter = counter + 1;
+				}
+				if(counter != 0)
+				{
+					avg = (total / (counter * 5) * 100).round(1);
+				}
+				return avg;
+			}
+ 			string Page.starRating(int Rating)
+			{
+				strlist = leftpad("",Rating).replaceAll(" ","1,").removeLastOccurence(",").toList();
+				str = "";
+				for each  loop in strlist
+				{
+					str = str + "<span style='color:#ecab00;font-size:18px;' class='fa fa-star'></span>";
+				}
+				return str;
+			}
+ 			void appSharing.toTraders(string email)
+			{
+				thisapp.permissions.assignUserInProfile(email,"Trader");
+			}
+ 			void appUnsharing.toTraders(string emailID)
+			{
+				thisapp.permissions.deleteuser(emailID);
+			}
+ 			void customActions.removeFromWishlist(int wishlistRecID)
+			{
+				delete from Add_to_wishlist[ID == input.wishlistRecID];
+				info "The Product is removed from your wishlist!";
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Run_Scripts_While_Deletin4 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_Category
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											delete from Add_Sub_Category[Category == input.ID];
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_4 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Search
+				record event = on add or edit
+
+	on user input of Category
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											cat = "";
+										subcat = "";
+										if(input.Category != null)
+										{
+											cat = input.Category.toString();
+										}
+										if(input.Sub_Category != null)
+										{
+											subcat = input.Sub_Category.toString();
+										}
+										openUrl(zoho.appuri + "page-embed/Products?category_var=" + cat + "&subCategory=" + subcat + "&searchKey=" + input.Search + "&start=&end=","iframe","catalog");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_5 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Search
+				record event = on add or edit
+
+	on user input of Search
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											cat = "";
+										subcat = "";
+										if(input.Category != null)
+										{
+											cat = input.Category.toString();
+										}
+										if(input.Sub_Category != null)
+										{
+											subcat = input.Sub_Category.toString();
+										}
+										openUrl(zoho.appuri + "page-embed/Products?category_var=" + cat + "&subCategory=" + subcat + "&searchKey=" + input.Search + "&start=&end=","iframe","catalog");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_6 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Search
+				record event = on add or edit
+
+	on user input of Sub_Category
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											cat = "";
+										subcat = "";
+										if(input.Category != null)
+										{
+											cat = input.Category.toString();
+										}
+										if(input.Sub_Category != null)
+										{
+											subcat = input.Sub_Category.toString();
+										}
+										openUrl(zoho.appuri + "page-embed/Products?category_var=" + cat + "&subCategory=" + subcat + "&searchKey=" + input.Search + "&start=&end=","iframe","catalog");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin5 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_Product
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											delete from Add_Product_Images[Product_Name == ID];
+										delete from Add_Review[Product_Name == ID];
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always1 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Product
+				record event = on add or edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Search_Keys;
+										hide Product_Images.Product_Name;
+										hide Product_Images.Primary_Pic;
+										hide Overall_Rating;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always2 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Product
+				record event = on add or edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Tags != null || input.Tags != "")
+										{
+											tempList = List:String();
+											tempList = input.Tags.trim().toList().distinct();
+											input.Search_Keys.addall(tempList);
+										}
+										getCat = Add_Category[ID == input.Category];
+										getsubcat = Add_Sub_Category[ID == input.Sub_Category];
+										input.Search_Keys.add(getCat.Category);
+										input.Search_Keys.add(getsubcat.Sub_Category);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always3 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Product
+				record event = on add or edit
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Add_Product[ID != 0].count() == 1)
+										{
+											openUrl("#Form:Add_Traders","same window");
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always4 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Product
+				record event = on add or edit
+
+	on user input of Product_ID
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Product_ID != null && input.Product_ID != "")
+										{
+											input.Tags = input.Tags + input.Product_ID + ",";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always5 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Product
+				record event = on add or edit
+
+	on user input of Model_Make
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Model_Make != "")
+										{
+											input.Tags = input.Tags + input.Model_Make + ",";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always6 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Product
+				record event = on add or edit
+
+	on user input of Product_Name
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Product_Name != "")
+										{
+											input.Tags = input.Tags + input.Product_Name + ",";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always7 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Product
+				record event = on add or edit
+
+	on add row of Product_Images
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											flag = 1;
+										for each  eachrow in Product_Images
+										{
+											if(flag == 1)
+											{
+												eachrow.Primary_Pic=true;
+												flag = 0;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always8 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Product
+				record event = on add or edit
+
+	on delete row of Product_Images
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(row.Primary_Pic)
+										{
+											flag = 1;
+											for each  eachrow in Product_Images
+											{
+												if(!eachrow.Primary_Pic && flag != 0)
+												{
+													eachrow.Primary_Pic=true;
+													flag = 0;
+												}
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_7 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Product_Images
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide Primary_Pic;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_8 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Product_Images
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											getDetails = Add_Product_Images[Product_Name == input.Product_Name];
+										if(getDetails.count(Primary_Pic) == 0)
+										{
+											input.Primary_Pic = true;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin6 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_Product_Images
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Primary_Pic)
+										{
+											getPrd = Add_Product_Images[Product_Name == input.Product_Name && Primary_Pic == false] sort by Added_Time asc;
+											getPrd.Primary_Pic=true;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_9 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Traders
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Email != zoho.adminuserid)
+										{
+											thisapp.appSharing.toTraders(input.Email);
+											getCompany = Add_Product[ID != 0].Company_Name;
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :input.Email
+												subject :"Invitation to Access " + getCompany + "'s Product Catalogue"
+												message :("<div>Dear " + input.Name) + ",<br>We are Happy to Introduce you to our Web App Product Catalogue, Here you will know about all our company Product Details and their Market value.<br> Please feel free to add Reviews about our Products.<br> Please <a href='https://app.zohocreator.com" + zoho.appuri + "#Page:Product_Catalogue' target='_blank'>Click</a> here to access our app.<br> Thanks and regards,<br>" + zoho.adminuser + "</div>"
+											]
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing2 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Traders
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Email != old.Email)
+										{
+											thisapp.appUnsharing.toTraders(old.Email);
+											thisapp.appSharing.toTraders(input.Email);
+											getCompany = Add_Product[ID != 0].Company_Name;
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :input.Email
+												subject :"Invitation to Access " + getCompany + "'s Product Catalogue"
+												message :("<div>Dear " + input.Name) + ",<br>We are Happy to Introduce you to our Web App Product Catalogue, Here you will know about all our company Product Details and their Market value.<br> Please feel free to add Reviews about our Products.<br> Please <a href='https://app.zohocreator.com" + zoho.appuri + "#Page:Product_Catalogue' target='_blank'>Click</a> here to access our app.<br> Thanks and regards,<br>" + zoho.adminuser + "</div>"
+											]
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin7 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_Traders
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Email != zoho.adminuserid)
+										{
+											thisapp.appUnsharing.toTraders(input.Email);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_10 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Review
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											getuserDetails = Add_Traders[Email == zoho.loginuserid];
+										input.Name = getuserDetails.ID;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_11 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Review
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											prdDetails = Add_Product[ID == input.Product_Name];
+										getAvg = Add_Review[Product_Name == input.Product_Name].avg(Rating);
+										prdDetails.Overall_Rating=getAvg.toLong();
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing3 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Review
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(old.Rating != input.Rating)
+										{
+											prdDetails = Add_Product[ID == input.Product_Name];
+											getAvg = Add_Review[Product_Name == input.Product_Name].avg(Rating);
+											prdDetails.Overall_Rating=getAvg.toLong();
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing4 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Review
+				record event = on edit
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											success message "Thanks for your Reviews. Review Updated Successfully";
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Creatin1 as "Run Scripts - While Creating a Record"
+			{
+				type =  form
+				form = Add_to_wishlist
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Email = zoho.loginuserid;
+										hide Product_Name;
+										hide Email;
+										if(input.Product_Name != null)
+										{
+											getRec = Add_to_wishlist[Product_Name == input.Product_Name && Email == zoho.loginuserid];
+											if(getRec.count() != 0)
+											{
+												input.plain = "<center>The Product has been already added to your wishlist.<br> Are you sure you want to add this product to your wishlist?</center>";
+											}
+										}
+										else
+										{
+											input.plain = "<center>Are you sure you want to add this product to your wishlist?</center>";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Creatin2 as "Run Scripts - While Creating a Record"
+			{
+				type =  form
+				form = Add_to_wishlist
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											getRec = Add_to_wishlist[Product_Name == input.Product_Name && Email == zoho.loginuserid];
+										if(getRec.count() > 1)
+										{
+											delete from Add_to_wishlist[ID == input.ID];
+										}
+										openUrl("#Script:dialog.close","same window");
+						)
+					}
+	}
+
+			}
+		}
+		functions
+		{
+			Remove_From_Wishlist as "Remove From Wishlist"
+			{
+				type =  functions
+				form = Add_to_wishlist
+				on start
+				{
+					actions 
+					{
+					customActions.removeFromWishlist(ID);
+					}
+				}
+			}
+			Add_to_Wishlist as "Add to Wishlist"
+			{
+				type =  functions
+				form = Add_Product
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						openUrl("#Form:Add_to_wishlist?Product_Name=" + input.ID,"popup window");
+					)
+					}
+				}
+			}
+			Add_to_Wishlist1 as "Add to Wishlist"
+			{
+				type =  functions
+				form = Add_Product
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						openUrl("#Form:Add_to_wishlist?Product_Name=" + input.ID,"same window");
+					)
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Trader"
+			{
+				name = "Trader"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "This profile will have limited access.\n"
+				ModulePermissions
+				{
+					Add_Traders
+					{
+						FieldPermissions
+						{
+							Company_Name{visibility:true,readonly:false}
+							Company_Address{visibility:false,readonly:false}
+							Email{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:false,readonly:false}
+						}
+					}
+					Add_Product
+					{
+						ReportPermissions
+						{
+							All_Products={"View"}
+						}
+						FieldPermissions
+						{
+							Sub_Category{visibility:true,readonly:false}
+							Product_Description{visibility:true,readonly:false}
+							Category{visibility:true,readonly:false}
+							Product_ID{visibility:true,readonly:false}
+							Product_Name{visibility:true,readonly:false}
+							Product_Images{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Overall_Rating{visibility:true,readonly:false}
+							Search_Keys{visibility:true,readonly:false}
+							Company_Name{visibility:true,readonly:false}
+							Product_Value{visibility:true,readonly:false}
+							Model_Make{visibility:true,readonly:false}
+							Tags{visibility:true,readonly:false}
+						}
+					}
+					Add_Sub_Category
+					{
+						FieldPermissions
+						{
+							Sub_Category{visibility:true,readonly:false}
+							Category{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Add_Product_Images
+					{
+						enabled= Viewall,Export 
+						ReportPermissions
+						{
+							Shared_Report_Image={"View"}
+						}
+						FieldPermissions
+						{
+							Product_Name{visibility:true,readonly:false}
+							Product_Image{visibility:true,readonly:false}
+							Primary_Pic{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Search
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Sub_Category{visibility:true,readonly:false}
+							Category{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Search{visibility:true,readonly:false}
+						}
+					}
+					Add_Review
+					{
+						enabled= Create,Viewall,Export,Tab 
+						ReportPermissions
+						{
+							My_Reviews={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Product_Name{visibility:true,readonly:false}
+							Review{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Rating{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Add_to_wishlist
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							My_Wishlist={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Product_Name{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							plain{visibility:true,readonly:false}
+						}
+					}
+					Add_Category
+					{
+						FieldPermissions
+						{
+							Section{visibility:false,readonly:false}
+							Category{visibility:true,readonly:false}
+						}
+					}
+					Product_Catalogue
+					{
+						enabled = tab
+					}
+					images
+					{
+						enabled = tab
+					}
+					Products
+					{
+						enabled = tab
+					}
+					ProductDescription
+					{
+						enabled = tab
+					}
+				}
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users.\n\n"
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 4
+		new theme color = 1
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-sales-and-supp4"
+    	icon theme = "blue"
+		icons style = outline
+	}
+
+	phone
+	{
+		section  Hidden
+		{
+			icon = "ui-1-eye-ban-20"
+			form  Add_Category
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			list Category
+			{
+				icon = "design-bullet-list-68"
+				hide = true
+			}
+			form  Add_Sub_Category
+			{
+				layout = left
+				icon = "ui-1-circle-bold-add"
+				hide = true
+			}
+			list Sub_Categories
+			{
+				icon = "business-hierarchy-54"
+				hide = true
+			}
+			list Shared_Report_Image
+			{
+				hide = true
+			}
+			page images
+			{
+				hide = true
+			}
+			page Products
+			{
+				hide = true
+			}
+			page ProductDescription
+			{
+				hide = true
+			}
+			list Product_Images_Admin
+			{
+				icon = "business-net"
+				hide = true
+			}
+			form  Search
+			{
+				layout = left
+				icon = "ui-1-zoom"
+				hide = true
+			}
+		}
+		section  Admin
+		{
+			icon = "ui-1-lock-circle"
+			form  Add_Product
+			{
+				layout = left
+				icon = "shopping-basket-add"
+			}
+			form  Add_Product_Images
+			{
+				layout = left
+				icon = "files-image"
+			}
+			form  Add_Traders
+			{
+				layout = left
+				icon = "users-2-a-add"
+			}
+			custom All_Reviews
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Review
+								Rating
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+										Print   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+										Print   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Product_Name as "Product Name"
+								Review
+								Rating
+								Name
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Print 
+    		 				Delete 
+    		 				Duplicate 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Products
+		{
+			icon = "design-app"
+			list Product_Details
+			{
+				icon = "design-app"
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Product_Name as "Product Name"
+								Product_Description as "Product Description"
+								Product_ID as "Product ID"
+								Model_Make as "Model / Make"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+										Print   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Company_Name as "Company Name"
+								Product_ID as "Product ID"
+								Product_Name as "Product Name"
+								Product_Description as "Product Description"
+								Product_Value as "Product Value"
+								Category
+								Sub_Category as "Sub Category"
+								Model_Make as "Model / Make"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    		 				Duplicate 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Product_Catalogue
+		{
+			displayname= "Product Catalogue"
+			icon = "design-pantone"
+			page Product_Catalogue
+			{
+				hide = true
+			}
+			list All_Products
+			{
+				icon = "design-pantone"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Product_Name as "Product Name"
+								Product_ID as "Product ID"
+								Category
+								Sub_Category as "Sub Category"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+										"Add to Wishlist"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+										"Add to Wishlist"
+    								)
+									on left swipe
+									(
+										"Add to Wishlist"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Company_Name as "Company Name"
+								Product_Name as "Product Name"
+								Product_ID as "Product ID"
+								Model_Make as "Model / Make"
+								Category
+								Sub_Category as "Sub Category"
+								Product_Description as "Product Description"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+			 				"Add to Wishlist"
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Traders
+		{
+			icon = "users-multiple-11"
+			map Traders_List
+			{
+				icon = "location-pin"
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Company_Name as "Company Name"
+								Name
+								Email
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Edit   	   
+										Delete   	   
+										View Record   	   
+										Duplicate   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Email
+								Company_Name as "Company Name"
+								Company_Address as "Company Address"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    		 				Duplicate 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Add_Review
+		{
+			displayname= "Add Review"
+			icon = "ui-2-like"
+			form  Add_Review
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+			}
+			custom My_Reviews
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = 1
+		     				title = "Overview"
+							fields
+							(
+								Product_Name as "Product Name"
+								Review
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+										Print   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Product_Name as "Product Name"
+								Review
+								Rating
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Delete 
+    		 				Duplicate 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Add_Wishlist
+		{
+			displayname= "Wishlist"
+			icon = "ui-3-heart"
+			form  Add_to_wishlist
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			custom My_Wishlist
+			{
+				icon = "users-2-a-heart"
+				quickview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = 1
+		     				title = "Overview"
+							fields
+							(
+								Product_Name as "Product Name"
+								Product_Name.Product_Description as "Product Description"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										"Remove Item"
+										Edit   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Remove Item"
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Remove Item"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Product_Name as "Product Name"
+								Product_Name.Product_ID as "Product ID"
+								Product_Name.Model_Make as "Model / Make"
+								Product_Name.Product_Description as "Product Description"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Remove Item"
+    		 				Edit 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Charts
+		{
+			icon = "health-pulse-chart"
+			pivotchart Overall_Rating
+			{
+				icon = "ui-3-chart-bars"
+			}
+			pivotchart Most_Liked_Products
+			{
+				icon = "business-chart-pie-36"
+			}
+		}
+		customize
+		{
+			colour = darkgrey
+        	layout = slidingpane
+		 	icons style = outline
+		}
+	}
+	tablet
+	{
+		section  Hidden
+		{
+			form  Add_Category
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			list Category
+			{
+				icon = "design-bullet-list-68"
+				hide = true
+			}
+			form  Add_Sub_Category
+			{
+				layout = left
+				icon = "ui-1-circle-bold-add"
+				hide = true
+			}
+			list Sub_Categories
+			{
+				icon = "business-hierarchy-54"
+				hide = true
+			}
+			list Shared_Report_Image
+			{
+				hide = true
+			}
+			page images
+			{
+				hide = true
+			}
+			page Products
+			{
+				hide = true
+			}
+			page ProductDescription
+			{
+				hide = true
+			}
+			list Product_Images_Admin
+			{
+				icon = "business-net"
+				hide = true
+			}
+			form  Search
+			{
+				layout = left
+				icon = "ui-1-zoom"
+				hide = true
+			}
+		}
+		section  Admin
+		{
+			form  Add_Product
+			{
+				layout = left
+				icon = "design-app"
+			}
+			form  Add_Product_Images
+			{
+				layout = left
+				icon = "files-image"
+			}
+			form  Add_Traders
+			{
+				layout = left
+				icon = "users-2-a-add"
+			}
+			custom All_Reviews
+			{
+			}
+		}
+		section  Products
+		{
+			list Product_Details
+			{
+				icon = "social-1-logo-dropbox"
+			}
+		}
+		section  Product_Catalogue
+		{
+			displayname= "Product Catalogue"
+			page Product_Catalogue
+			{
+				hide = true
+			}
+			list All_Products
+			{
+				icon = "food-fridge"
+			}
+		}
+		section  Traders
+		{
+			map Traders_List
+			{
+				icon = "location-pin"
+			}
+		}
+		section  Add_Review
+		{
+			displayname= "Add Review"
+			form  Add_Review
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+			}
+			custom My_Reviews
+			{
+			}
+		}
+		section  Add_Wishlist
+		{
+			displayname= "Wishlist"
+			form  Add_to_wishlist
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			custom My_Wishlist
+			{
+				icon = "users-2-a-heart"
+			}
+		}
+		section  Charts
+		{
+			pivotchart Overall_Rating
+			{
+				icon = "ui-3-chart-bars"
+			}
+			pivotchart Most_Liked_Products
+			{
+				icon = "business-chart-pie-36"
+			}
+		}
+		customize
+		{
+			colour = darkgrey
+        	layout = slidingpane
+		 	icons style = outline
+		}
+	}
+	translation
+{
+"{\"Language_Settings\" : {\"LANGAGUE_WITH_LOGIN\":\"user\"},\"de\":{\"FormField.Search.Modified_Time\":\" Geänderte Zeit \",\"CompositeSubFields.Add_Traders.Company_Address.address_line_12\":\" Anschrift Zeile 1 \",\"ReportField.All_Products.Product_ID\":\"Produkt ID\",\"ReportField.Product_Details.Product_Images.Product_Image\":\" Produktbilder \",\"ReportField.Product_Details.Product_Name\":\" Produktname \",\"Report.Category\":\" Kategorie \",\"FormField.Add_Category.Record_Status\":\" Aufnahmestatus \",\"FormField.Add_Product_Images.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Add_Product_Images.Section\":\" Sektion \",\"FormField.Add_Category.Added_Time\":\" Zeit hinzugefügt \",\"CompositeSubFields.Add_Traders.Name.prefix\":\" Präfix \",\"Languages List.zh-TW\":\" Chinesische Tradition \",\"Languages List.ja\":\" japanisch \",\"FormField.Add_Product_Images.Modified_Time\":\" Geänderte Zeit \",\"FormButton.Add_Review.reset\":\" Zurücksetzen \",\"Form.Add_Category\":\" Kategorie hinzufügen \",\"FormField.Add_Product.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Add_Sub_Category.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Product_Images.Record_Status\":\" Aufnahmestatus \",\"FormField.Add_to_wishlist.Record_Status\":\" Aufnahmestatus \",\"FormField.Add_to_wishlist.Added_User\":\" Benutzer hinzugefügt \",\"Languages List.ku\":\" kurdisch \",\"FormField.Search.Record_Status\":\" Aufnahmestatus \",\"ReportField.Product_Images_Admin.Product_Image\":\" Produktbild \",\"Report.Most_Liked_Products\":\" Am meisten gefallene Produkte \",\"ReportField.All_Products.Product_Name\":\"Produktname\",\"Languages List.km\":\" Khmer \",\"Languages List.ko\":\" Koreanisch \",\"FormField.Add_Product.Modified_Time\":\" Geänderte Zeit \",\"Languages List.kn\":\" Kannada \",\"Languages List.ka\":\" georgisch \",\"ReportField.Product_Details.Product_Value\":\" Produktwert \",\"FormButton.Add_to_wishlist.update\":\" Aktualisieren \",\"Report.Shared_Report_Image\":\" Shared_Report_Image \",\"Languages List.hu\":\" ungarisch \",\"FormField.Add_Traders.Added_User\":\" Benutzer hinzugefügt \",\"Languages List.yi\":\" Jiddisch \",\"FormButton.Add_to_wishlist.submit\":\" Ja \",\"Languages List.hy\":\" Armenisch \",\"ReportField.Product_Images_Admin.Product_Name\":\" Produktname \",\"ReportField.Shared_Report_Image.Product_Name\":\" Produktname \",\"FormField.Search.Category\":\" Kategorie \",\"FormField.Add_to_wishlist.Modified_Time\":\" Geänderte Zeit \",\"Languages List.hr\":\" kroatisch \",\"FormField.Add_Product_Images.Primary_Pic\":\" Primäres Bild \",\"FormField.Search.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Review.Product_Name\":\" Produktname \",\"Languages List.hi\":\" Hindi \",\"Form.Add_Product\":\" Produkt hinzufügen \",\"FormButton.Add_Product_Images.reset\":\" Zurücksetzen \",\"FormField.Add_Category.Category\":\" Kategorie \",\"FormField.Add_Product.Product_ID\":\" Produkt ID \",\"ReportField.My_Wishlist.Product_Name\":\" Produktname \",\"PicklistOption.Add_Review.Rating.5\":\" 1 \",\"FormButton.Add_Category.submit\":\" einreichen \",\"PicklistOption.Add_Review.Rating.4\":\" 2 \",\"FormField.Add_Traders.Company_Name\":\" Name der Firma \",\"PicklistOption.Add_Review.Rating.3\":\" 3 \",\"Languages List.zh\":\" Chinesisch \",\"Languages List.iw\":\" hebräisch \",\"FormField.Add_Product.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Category.Modified_Time\":\" Geänderte Zeit \",\"ReportField.Product_Images_Admin.Primary_Pic\":\" Primäres Bild \",\"FormField.Search.Section\":\" Sektion \",\"Section.Add_Review\":\" Bewertung hinzufügen \",\"Form.Search\":\" Suche \",\"Section.Products\":\" Produkte \",\"Languages List.is\":\" isländisch \",\"Languages List.it\":\" Italienisch \",\"FormField.Add_Traders.state_province2\":\" Staat / Provinz \",\"PicklistOption.Add_Traders.country2.2\":\" Wahl 2 \",\"FormButton.Add_Category.update\":\" Aktualisieren \",\"PicklistOption.Add_Traders.country2.1\":\" Wahl 1 \",\"Report.Product_Images_Admin\":\" Produktbilder Admin \",\"Form.Add_to_wishlist\":\" Zur Wunschliste hinzufügen \",\"FormButton.Add_Sub_Category.cancel\":\" Stornieren \",\"ReportField.All_Products.Product_Description\":\"Produktbeschreibung\",\"FormField.Add_Traders.district_city2\":\" Stadtteil \",\"FormField.Add_Product.Sub_Category\":\" Unterkategorie \",\"ReportField.Product_Details.Company_Name\":\" Name der Firma \",\"CompositeSubFields.Add_Traders.Company_Address.postal_Code2\":\" Postleitzahl \",\"FormField.Add_to_wishlist.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Add_Product.Category\":\" Kategorie \",\"FormField.Add_Review.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Add_Traders.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Search.Search\":\" Suche \",\"ReportField.My_Reviews.Product_Name\":\" Produktname \",\"Languages List.nl\":\" Niederländisch \",\"FormField.Add_Review.Modified_Time\":\" Geänderte Zeit \",\"Languages List.no\":\" norwegisch \",\"Page.Product_Catalogue\":\" Produktkatalog \",\"FormButton.Add_Product.reset\":\" Zurücksetzen \",\"Form.Add_Traders\":\" Händler hinzufügen \",\"FormField.Add_Sub_Category.Record_Status\":\" Aufnahmestatus \",\"ReportField.Traders_List.address_line_12\":\" Firmenanschrift \",\"FormField.Search.ID\":\" ICH WÜRDE \",\"FormField.Add_Traders.postal_Code2\":\" Postleitzahl \",\"FormField.Search.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Add_Review.Rating\":\" Bewertung \",\"Report.All_Reviews\":\" Alle Bewertungen \",\"ReportField.All_Reviews.Rating\":\" Bewertung \",\"FormField.Add_Review.Name\":\" Name \",\"CompositeSubFields.Add_Traders.Company_Address.district_city2\":\" Stadtteil \",\"Report.My_Reviews\":\" Meine Bewertungen \",\"Section.Traders\":\" Händler \",\"FormField.Add_Product_Images.ID\":\" ICH WÜRDE \",\"FormField.Add_Review.Record_Status\":\" Aufnahmestatus \",\"FormField.Add_Traders.prefix\":\" Präfix \",\"FormButton.Add_Traders.reset\":\" Zurücksetzen \",\"ReportField.Traders_List.Company_Name\":\" Name der Firma \",\"Languages List.lt\":\" litauisch \",\"Languages List.lv\":\" lettisch \",\"FormButton.Add_Traders.update\":\" Aktualisieren \",\"FormField.Add_Product.Search_Keys\":\" Suchschlüssel \",\"Languages List.lo\":\" Laothian \",\"FormField.Add_Product_Images.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"Languages List.la\":\" Latein \",\"FormField.Add_Traders.Modified_Time\":\" Geänderte Zeit \",\"FormField.Add_to_wishlist.Email\":\" Email \",\"CompositeSubFields.Add_Traders.Company_Address.address_line_22\":\" Adresszeile 2 \",\"Languages List.ms\":\" malaiisch \",\"Languages List.mr\":\" Marathi \",\"FormField.Search.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Section.Add_Wishlist\":\" Wunschzettel \",\"Languages List.mt\":\" maltesisch \",\"Form.Add_Product_Images\":\" Fügen Sie Produktbilder hinzu \",\"FormButton.Add_Traders.submit\":\" einreichen \",\"FormButton.Add_Traders.cancel\":\" Stornieren \",\"Languages List.mk\":\" mazedonisch \",\"FormField.Add_Product.Overall_Rating\":\" Gesamtbewertung \",\"ReportField.Product_Details.Sub_Category\":\" Unterkategorie \",\"ReportField.All_Products.Category\":\"Kategorie\",\"FormField.Add_Product.ID\":\" ICH WÜRDE \",\"FormField.Add_Sub_Category.Modified_Time\":\" Geänderte Zeit \",\"FormButton.Add_to_wishlist.cancel\":\" Stornieren \",\"FormField.Add_Product_Images.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Report.Product_Details\":\" Produktdetails \",\"Report.Sub_Categories\":\" Unterkategorien \",\"FormField.Add_to_wishlist.ID\":\" ICH WÜRDE \",\"FormField.Add_Traders.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"Languages List.bg\":\" bulgarisch \",\"ReportField.My_Wishlist.Email\":\" Email \",\"FormField.Search.Modified_User\":\" Geänderter Benutzer \",\"Languages List.bn\":\" Bengali \",\"ReportField.Shared_Report_Image.Primary_Pic\":\" Primäres Bild \",\"Languages List.ro\":\" rumänisch \",\"Section.Product_Catalogue\":\" Produktkatalog \",\"FormField.Add_Product_Images.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Category.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Review.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"ReportField.All_Products.Sub_Category\":\"Unterkategorie\",\"Languages List.be\":\" Belarussisch \",\"Languages List.ru\":\" Russisch \",\"ReportField.My_Reviews.Review\":\" Rezension \",\"Languages List.az\":\" Aserbaidschanisch \",\"FormButton.Add_Category.cancel\":\" Stornieren \",\"FormField.Add_Product_Images.Modified_User\":\" Geänderter Benutzer \",\"Languages List.ta\":\" Tamilisch \",\"FormField.Add_Traders.suffix\":\" Suffix \",\"Languages List.cs\":\" Tschechisch \",\"FormButton.Add_Product.cancel\":\" Stornieren \",\"Form.Add_Sub_Category\":\" Unterkategorie hinzufügen \",\"ReportField.All_Reviews.Review\":\" Rezension \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" Thai \",\"FormField.Add_Sub_Category.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Add_Product.Product_Images\":\" Produktbilder \",\"FormField.Add_to_wishlist.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Add_Traders.longitude2\":\" Längengrad \",\"ReportField.Sub_Categories.Sub_Category\":\" Unterkategorie \",\"FormField.Add_Review.Review\":\" Rezension \",\"Languages List.sq\":\" albanisch \",\"Languages List.ca\":\" katalanisch \",\"FormField.Add_Product.Modified_User\":\" Geänderter Benutzer \",\"FormField.Add_Product.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Add_Product.Product_Description\":\" Produktbeschreibung \",\"Languages List.sw\":\" Swahili \",\"FormField.Add_Traders.address_line_12\":\" Anschrift Zeile 1 \",\"Languages List.sv\":\" Schwedisch \",\"Languages List.sk\":\" slowakisch \",\"FormField.Add_Traders.Email\":\" Email \",\"Languages List.sl\":\" Slowenisch \",\"FormField.Add_Sub_Category.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Add_Sub_Category.ID\":\" ICH WÜRDE \",\"FormField.Add_Traders.Section\":\" Sektion \",\"FormField.Add_Traders.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Add_Category.ID\":\" ICH WÜRDE \",\"FormField.Add_to_wishlist.Modified_User\":\" Geänderter Benutzer \",\"FormField.Add_Traders.Record_Status\":\" Aufnahmestatus \",\"FormButton.Add_Sub_Category.reset\":\" Zurücksetzen \",\"FormButton.Add_Product_Images.update\":\" Aktualisieren \",\"FormButton.Add_Sub_Category.update\":\" Aktualisieren \",\"FormField.Add_Product.Tags\":\" Stichworte \",\"Languages List.pt\":\" Portugiesisch \",\"FormField.Add_Traders.Name\":\" Name \",\"FormField.Add_Product.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Search.Added_Time\":\" Zeit hinzugefügt \",\"Languages List.pl\":\" Polieren \",\"FormField.Add_Product.Product_Value\":\" Produktwert \",\"FormField.Add_Sub_Category.Sub_Category\":\" Unterkategorie \",\"CompositeSubFields.Add_Traders.Company_Address.state_province2\":\" Staat / Provinz \",\"FormButton.Add_Sub_Category.submit\":\" einreichen \",\"CompositeSubFields.Add_Traders.Company_Address.country2\":\" Land \",\"Languages List.ar\":\" Arabisch \",\"FormField.Add_Product.Section\":\" Sektion \",\"FormField.Add_Traders.first_name\":\" Vorname \",\"ReportField.Product_Details.Category\":\" Kategorie \",\"FormField.Add_Category.Modified_User\":\" Geänderter Benutzer \",\"Languages List.af\":\" Afrikaans \",\"ReportField.Traders_List.first_name\":\" Name \",\"FormField.Add_Traders.country2\":\" Land \",\"FormField.Add_Traders.Company_Address\":\" Firmenanschrift \",\"Page.Products\":\" Produkte \",\"FormField.Add_Product_Images.Product_Name\":\" Produktname \",\"ReportField.Product_Details.Product_ID\":\" Produkt ID \",\"FormField.Add_Category.Section\":\" Sektion \",\"FormButton.Add_Product_Images.cancel\":\" Stornieren \",\"ReportField.My_Reviews.Rating\":\" Bewertung \",\"FormButton.Add_Review.submit\":\" einreichen \",\"FormField.Add_to_wishlist.Section\":\"Sektion\",\"Report.Traders_List\":\" Händler \",\"Languages List.fr\":\" Französisch \",\"FormField.Add_Review.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Review.Modified_User\":\" Geänderter Benutzer \",\"Languages List.fi\":\" Finnese \",\"Report.My_Wishlist\":\" Meine Wunschliste \",\"CompositeSubFields.Add_Traders.Name.suffix\":\" Suffix \",\"Languages List.fa\":\" persisch \",\"PicklistOption.Add_Review.Rating.2\":\" 4 \",\"Languages List.gu\":\" Gujarati \",\"PicklistOption.Add_Review.Rating.1\":\" 5 \",\"FormButton.Add_Product.submit\":\" einreichen \",\"FormField.Add_Traders.latitude2\":\" Breite \",\"Languages List.gl\":\" galizisch \",\"Section.Charts\":\" Diagramme \",\"FormField.Add_Review.ID\":\" ICH WÜRDE \",\"FormField.Add_Sub_Category.Category\":\" Kategorie \",\"FormField.Add_to_wishlist.Product_Name\":\" Produktname \",\"FormField.Search.Sub_Category\":\" Unterkategorie \",\"ReportField.Shared_Report_Image.Product_Image\":\" Produktbild \",\"ReportField.Product_Details.Model_Make\":\" Modell / Marke \",\"Report.All_Products\":\"Alle Produkte\",\"FormField.Add_Product.Model_Make\":\" Modell / Marke \",\"Languages List.ga\":\" irisch \",\"ReportField.All_Products.Company_Name\":\"Name der Firma\",\"Section.Hidden\":\" Versteckt \",\"FormField.Add_Traders.last_name\":\" Familienname, Nachname \",\"ReportField.Sub_Categories.Category\":\" Kategorie \",\"Report.Overall_Rating\":\" Gesamtbewertung \",\"Page.ProductDescription\":\" Produktbeschreibung \",\"FormButton.Add_Product_Images.submit\":\" einreichen \",\"FormField.Add_Product_Images.Product_Image\":\" Produktbild \",\"FormButton.Add_Review.cancel\":\" Stornieren \",\"Languages List.tr\":\" Türkisch \",\"Languages List.da\":\" dänisch \",\"FormField.Add_Traders.ID\":\" ICH WÜRDE \",\"FormField.Add_Category.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Add_Traders.address_line_22\":\" Adresszeile 2 \",\"Languages List.de\":\" Deutsche \",\"Languages List.cy\":\" Walisisch \",\"Languages List.tl\":\" Filipino \",\"FormField.Add_Sub_Category.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"ReportField.All_Reviews.Product_Name\":\" Produktname \",\"CompositeSubFields.Add_Traders.Name.first_name\":\" Vorname \",\"FormField.Add_Traders.Modified_User\":\" Geänderter Benutzer \",\"Languages List.es\":\" Spanisch \",\"ReportField.Product_Details.Product_Description\":\" Produktbeschreibung \",\"Languages List.eu\":\" baskisch \",\"Languages List.et\":\" estnisch \",\"FormField.Add_Product.Company_Name\":\" Name der Firma \",\"FormField.Add_to_wishlist.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"ReportField.Category.Category\":\" Kategorie \",\"PicklistOption.Add_Product.Search_Keys.1\":\" ein \",\"Languages List.vi\":\" Vietnamesisch \",\"PicklistOption.Add_Product.Search_Keys.3\":\" Anime \",\"PicklistOption.Add_Product.Search_Keys.2\":\" [Test, HDR234, Kanon,] \",\"PicklistOption.Add_Product.Search_Keys.5\":\" [Ar3, Ar30163, Mppiehw] \",\"FormField.Add_Product.Record_Status\":\" Aufnahmestatus \",\"Section.Admin\":\" Administrator \",\"PicklistOption.Add_Product.Search_Keys.4\":\" Japanische Serie \",\"Languages List.el\":\" griechisch \",\"PicklistOption.Add_Product.Search_Keys.7\":\" Regal \",\"FormButton.Add_Product.update\":\" Aktualisieren \",\"FormField.Add_Review.Section\":\" Sektion \",\"Languages List.eo\":\" Esperanto \",\"PicklistOption.Add_Product.Search_Keys.6\":\" Innen Dekorationen \",\"Languages List.en\":\" Englisch \",\"ReportField.All_Reviews.Name\":\" Name \",\"PicklistOption.Add_Product.Search_Keys.8\":\" [POIUYTREWQ, 3215623g, iad,] \",\"ReportField.All_Products.Tags\":\"Stichworte\",\"FormField.Add_Sub_Category.Section\":\" Sektion \",\"FormField.Add_Sub_Category.Modified_User\":\" Geänderter Benutzer \",\"FormField.Add_Review.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Languages List.ur\":\" Urdu \",\"FormField.Add_Product.Product_Name\":\" Produktname \",\"FormButton.Add_to_wishlist.reset\":\" Nein \",\"FormButton.Add_Review.update\":\" Aktualisieren \",\"Page.images\":\" Bilder \",\"CompositeSubFields.Add_Traders.Name.last_name\":\" Familienname, Nachname \",\"PicklistOption.Add_Traders.prefix.3\":\" Frau. \",\"FormField.Add_Category.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Form.Add_Review\":\" Bewertung hinzufügen \",\"PicklistOption.Add_Traders.prefix.2\":\" Frau. \",\"ReportField.Traders_List.Email\":\" Email \",\"PicklistOption.Add_Traders.prefix.1\":\" Herr. \",\"FormButton.Add_Category.reset\":\" Zurücksetzen \",\"CustomAction.My_Wishlist.Remove_From_Wishlist\":\" Benutzerdefiniertes Aktionsskript \"},\"fr\":{\"FormField.Search.Modified_Time\":\" Heure modifiée \",\"CompositeSubFields.Add_Traders.Company_Address.address_line_12\":\" Adresse 1 \",\"ReportField.All_Products.Product_ID\":\"ID de produit\",\"ReportField.Product_Details.Product_Images.Product_Image\":\" Images du produit \",\"ReportField.Product_Details.Product_Name\":\" Nom du produit \",\"Report.Category\":\" Catégorie \",\"FormField.Add_Category.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_Product_Images.Added_Time\":\" Temps ajouté \",\"FormField.Add_Product_Images.Section\":\" Section \",\"FormField.Add_Category.Added_Time\":\" Temps ajouté \",\"CompositeSubFields.Add_Traders.Name.prefix\":\" Préfixe \",\"Languages List.zh-TW\":\" Chinois traditionnel \",\"Languages List.ja\":\" Japonais \",\"FormField.Add_Product_Images.Modified_Time\":\" Heure modifiée \",\"FormButton.Add_Review.reset\":\" Réinitialiser \",\"Form.Add_Category\":\" ajouter une catégorie \",\"FormField.Add_Product.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Add_Sub_Category.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Product_Images.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_to_wishlist.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_to_wishlist.Added_User\":\" Utilisateur ajouté \",\"Languages List.ku\":\" kurde \",\"FormField.Search.Record_Status\":\" Statut d'enregistrement \",\"ReportField.Product_Images_Admin.Product_Image\":\" Image du produit \",\"Report.Most_Liked_Products\":\" Produits les plus appréciés \",\"ReportField.All_Products.Product_Name\":\"Nom du produit\",\"Languages List.km\":\" Khmer \",\"Languages List.ko\":\" coréen \",\"FormField.Add_Product.Modified_Time\":\" Heure modifiée \",\"Languages List.kn\":\" Kannada \",\"Languages List.ka\":\" géorgien \",\"ReportField.Product_Details.Product_Value\":\" Valeur du produit \",\"FormButton.Add_to_wishlist.update\":\" Mettre à jour \",\"Report.Shared_Report_Image\":\" Shared_Report_Image \",\"Languages List.hu\":\" hongrois \",\"FormField.Add_Traders.Added_User\":\" Utilisateur ajouté \",\"Languages List.yi\":\" yiddish \",\"FormButton.Add_to_wishlist.submit\":\" Oui \",\"Languages List.hy\":\" arménien \",\"ReportField.Product_Images_Admin.Product_Name\":\" Nom du produit \",\"ReportField.Shared_Report_Image.Product_Name\":\" Nom du produit \",\"FormField.Search.Category\":\" Catégorie \",\"FormField.Add_to_wishlist.Modified_Time\":\" Heure modifiée \",\"Languages List.hr\":\" croate \",\"FormField.Add_Product_Images.Primary_Pic\":\" Pic primaire \",\"FormField.Search.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Review.Product_Name\":\" Nom du produit \",\"Languages List.hi\":\" hindi \",\"Form.Add_Product\":\" Ajouter un produit \",\"FormButton.Add_Product_Images.reset\":\" Réinitialiser \",\"FormField.Add_Category.Category\":\" Catégorie \",\"FormField.Add_Product.Product_ID\":\" ID de produit \",\"ReportField.My_Wishlist.Product_Name\":\" Nom du produit \",\"PicklistOption.Add_Review.Rating.5\":\" 1 \",\"FormButton.Add_Category.submit\":\" Soumettre \",\"PicklistOption.Add_Review.Rating.4\":\" 2 \",\"FormField.Add_Traders.Company_Name\":\" Nom de la compagnie \",\"PicklistOption.Add_Review.Rating.3\":\" 3 \",\"Languages List.zh\":\" chinois \",\"Languages List.iw\":\" hébreu \",\"FormField.Add_Product.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Category.Modified_Time\":\" Heure modifiée \",\"ReportField.Product_Images_Admin.Primary_Pic\":\" Pic primaire \",\"FormField.Search.Section\":\" Section \",\"Section.Add_Review\":\" Ajouter un commentaire \",\"Form.Search\":\" Chercher \",\"Section.Products\":\" Des produits \",\"Languages List.is\":\" islandais \",\"Languages List.it\":\" italien \",\"FormField.Add_Traders.state_province2\":\" Etat / Province \",\"PicklistOption.Add_Traders.country2.2\":\" Choix 2 \",\"FormButton.Add_Category.update\":\" Mettre à jour \",\"PicklistOption.Add_Traders.country2.1\":\" Choix 1 \",\"Report.Product_Images_Admin\":\" Image du produit Admin \",\"Form.Add_to_wishlist\":\" Ajouter à la liste de souhaits \",\"FormButton.Add_Sub_Category.cancel\":\" Annuler \",\"ReportField.All_Products.Product_Description\":\"Description du produit\",\"FormField.Add_Traders.district_city2\":\" District de la ville \",\"FormField.Add_Product.Sub_Category\":\" Sous-catégorie \",\"ReportField.Product_Details.Company_Name\":\" Nom de la compagnie \",\"CompositeSubFields.Add_Traders.Company_Address.postal_Code2\":\" code postal \",\"FormField.Add_to_wishlist.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Add_Product.Category\":\" Catégorie \",\"FormField.Add_Review.Added_Time\":\" Temps ajouté \",\"FormField.Add_Traders.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Search.Search\":\" Chercher \",\"ReportField.My_Reviews.Product_Name\":\" Nom du produit \",\"Languages List.nl\":\" néerlandais \",\"FormField.Add_Review.Modified_Time\":\" Heure modifiée \",\"Languages List.no\":\" norvégien \",\"Page.Product_Catalogue\":\" Catalogue des produits \",\"FormButton.Add_Product.reset\":\" Réinitialiser \",\"Form.Add_Traders\":\" Ajouter des traders \",\"FormField.Add_Sub_Category.Record_Status\":\" Statut d'enregistrement \",\"ReportField.Traders_List.address_line_12\":\" Adresse de la société \",\"FormField.Search.ID\":\" ID \",\"FormField.Add_Traders.postal_Code2\":\" code postal \",\"FormField.Search.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Add_Review.Rating\":\" Évaluation \",\"Report.All_Reviews\":\" Tous les commentaires \",\"ReportField.All_Reviews.Rating\":\" Évaluation \",\"FormField.Add_Review.Name\":\" prénom \",\"CompositeSubFields.Add_Traders.Company_Address.district_city2\":\" District de la ville \",\"Report.My_Reviews\":\" Mes commentaires \",\"Section.Traders\":\" Les commerçants \",\"FormField.Add_Product_Images.ID\":\" ID \",\"FormField.Add_Review.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_Traders.prefix\":\" Préfixe \",\"FormButton.Add_Traders.reset\":\" Réinitialiser \",\"ReportField.Traders_List.Company_Name\":\" Nom de la compagnie \",\"Languages List.lt\":\" lituanien \",\"Languages List.lv\":\" letton \",\"FormButton.Add_Traders.update\":\" Mettre à jour \",\"FormField.Add_Product.Search_Keys\":\" Touches de recherche \",\"Languages List.lo\":\" Laothian \",\"FormField.Add_Product_Images.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"Languages List.la\":\" Latin \",\"FormField.Add_Traders.Modified_Time\":\" Heure modifiée \",\"FormField.Add_to_wishlist.Email\":\" Email \",\"CompositeSubFields.Add_Traders.Company_Address.address_line_22\":\" Adresse Ligne 2 \",\"Languages List.ms\":\" malais \",\"Languages List.mr\":\" Marathi \",\"FormField.Search.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Section.Add_Wishlist\":\" Favoris \",\"Languages List.mt\":\" maltais \",\"Form.Add_Product_Images\":\" Ajouter des images de produit \",\"FormButton.Add_Traders.submit\":\" Soumettre \",\"FormButton.Add_Traders.cancel\":\" Annuler \",\"Languages List.mk\":\" Macédonien \",\"FormField.Add_Product.Overall_Rating\":\" Évaluation globale \",\"ReportField.Product_Details.Sub_Category\":\" Sous-catégorie \",\"ReportField.All_Products.Category\":\"Catégorie\",\"FormField.Add_Product.ID\":\" ID \",\"FormField.Add_Sub_Category.Modified_Time\":\" Heure modifiée \",\"FormButton.Add_to_wishlist.cancel\":\" Annuler \",\"FormField.Add_Product_Images.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Report.Product_Details\":\" détails du produit \",\"Report.Sub_Categories\":\" Sous Catégories \",\"FormField.Add_to_wishlist.ID\":\" ID \",\"FormField.Add_Traders.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"Languages List.bg\":\" bulgare \",\"ReportField.My_Wishlist.Email\":\" Email \",\"FormField.Search.Modified_User\":\" Utilisateur modifié \",\"Languages List.bn\":\" bengali \",\"ReportField.Shared_Report_Image.Primary_Pic\":\" Pic primaire \",\"Languages List.ro\":\" roumain \",\"Section.Product_Catalogue\":\" Catalogue des produits \",\"FormField.Add_Product_Images.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Category.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Review.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"ReportField.All_Products.Sub_Category\":\"Sous-catégorie\",\"Languages List.be\":\" Biélorusse \",\"Languages List.ru\":\" russe \",\"ReportField.My_Reviews.Review\":\" La revue \",\"Languages List.az\":\" azerbaïdjanais \",\"FormButton.Add_Category.cancel\":\" Annuler \",\"FormField.Add_Product_Images.Modified_User\":\" Utilisateur modifié \",\"Languages List.ta\":\" Tamil \",\"FormField.Add_Traders.suffix\":\" Suffixe \",\"Languages List.cs\":\" tchèque \",\"FormButton.Add_Product.cancel\":\" Annuler \",\"Form.Add_Sub_Category\":\" Ajouter une sous-catégorie \",\"ReportField.All_Reviews.Review\":\" La revue \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" thaïlandais \",\"FormField.Add_Sub_Category.Added_Time\":\" Temps ajouté \",\"FormField.Add_Product.Product_Images\":\" Images du produit \",\"FormField.Add_to_wishlist.Added_Time\":\" Temps ajouté \",\"FormField.Add_Traders.longitude2\":\" longitude \",\"ReportField.Sub_Categories.Sub_Category\":\" Sous-catégorie \",\"FormField.Add_Review.Review\":\" La revue \",\"Languages List.sq\":\" albanais \",\"Languages List.ca\":\" catalan \",\"FormField.Add_Product.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Product.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Add_Product.Product_Description\":\" Description du produit \",\"Languages List.sw\":\" Swahili \",\"FormField.Add_Traders.address_line_12\":\" Adresse 1 \",\"Languages List.sv\":\" suédois \",\"Languages List.sk\":\" slovaque \",\"FormField.Add_Traders.Email\":\" Email \",\"Languages List.sl\":\" slovène \",\"FormField.Add_Sub_Category.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Add_Sub_Category.ID\":\" ID \",\"FormField.Add_Traders.Section\":\" Section \",\"FormField.Add_Traders.Added_Time\":\" Temps ajouté \",\"FormField.Add_Category.ID\":\" ID \",\"FormField.Add_to_wishlist.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Traders.Record_Status\":\" Statut d'enregistrement \",\"FormButton.Add_Sub_Category.reset\":\" Réinitialiser \",\"FormButton.Add_Product_Images.update\":\" Mettre à jour \",\"FormButton.Add_Sub_Category.update\":\" Mettre à jour \",\"FormField.Add_Product.Tags\":\" Mots clés \",\"Languages List.pt\":\" Portugais \",\"FormField.Add_Traders.Name\":\" prénom \",\"FormField.Add_Product.Added_Time\":\" Temps ajouté \",\"FormField.Search.Added_Time\":\" Temps ajouté \",\"Languages List.pl\":\" polonais \",\"FormField.Add_Product.Product_Value\":\" Valeur du produit \",\"FormField.Add_Sub_Category.Sub_Category\":\" Sous-catégorie \",\"CompositeSubFields.Add_Traders.Company_Address.state_province2\":\" Etat / Province \",\"FormButton.Add_Sub_Category.submit\":\" Soumettre \",\"CompositeSubFields.Add_Traders.Company_Address.country2\":\" Pays \",\"Languages List.ar\":\" arabe \",\"FormField.Add_Product.Section\":\" Section \",\"FormField.Add_Traders.first_name\":\" Prénom \",\"ReportField.Product_Details.Category\":\" Catégorie \",\"FormField.Add_Category.Modified_User\":\" Utilisateur modifié \",\"Languages List.af\":\" afrikaans \",\"ReportField.Traders_List.first_name\":\" prénom \",\"FormField.Add_Traders.country2\":\" Pays \",\"FormField.Add_Traders.Company_Address\":\" Adresse de la société \",\"Page.Products\":\" Des produits \",\"FormField.Add_Product_Images.Product_Name\":\" Nom du produit \",\"ReportField.Product_Details.Product_ID\":\" ID de produit \",\"FormField.Add_Category.Section\":\" Section \",\"FormButton.Add_Product_Images.cancel\":\" Annuler \",\"ReportField.My_Reviews.Rating\":\" Évaluation \",\"FormButton.Add_Review.submit\":\" Soumettre \",\"FormField.Add_to_wishlist.Section\":\"Section\",\"Report.Traders_List\":\" Les commerçants \",\"Languages List.fr\":\" français \",\"FormField.Add_Review.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Review.Modified_User\":\" Utilisateur modifié \",\"Languages List.fi\":\" Finnois \",\"Report.My_Wishlist\":\" Ma liste d'envies \",\"CompositeSubFields.Add_Traders.Name.suffix\":\" Suffixe \",\"Languages List.fa\":\" persan \",\"PicklistOption.Add_Review.Rating.2\":\" 4 \",\"Languages List.gu\":\" Gujarati \",\"PicklistOption.Add_Review.Rating.1\":\" 5 \",\"FormButton.Add_Product.submit\":\" Soumettre \",\"FormField.Add_Traders.latitude2\":\" latitude \",\"Languages List.gl\":\" Galicien \",\"Section.Charts\":\" Graphiques \",\"FormField.Add_Review.ID\":\" ID \",\"FormField.Add_Sub_Category.Category\":\" Catégorie \",\"FormField.Add_to_wishlist.Product_Name\":\" Nom du produit \",\"FormField.Search.Sub_Category\":\" Sous-catégorie \",\"ReportField.Shared_Report_Image.Product_Image\":\" Image du produit \",\"ReportField.Product_Details.Model_Make\":\" Modèle / Marque \",\"Report.All_Products\":\"Tous les produits\",\"FormField.Add_Product.Model_Make\":\" Modèle / Marque \",\"Languages List.ga\":\" irlandais \",\"ReportField.All_Products.Company_Name\":\"Nom de la compagnie\",\"Section.Hidden\":\" Caché \",\"FormField.Add_Traders.last_name\":\" Nom de famille \",\"ReportField.Sub_Categories.Category\":\" Catégorie \",\"Report.Overall_Rating\":\" Évaluation globale \",\"Page.ProductDescription\":\" Description du produit \",\"FormButton.Add_Product_Images.submit\":\" Soumettre \",\"FormField.Add_Product_Images.Product_Image\":\" Image du produit \",\"FormButton.Add_Review.cancel\":\" Annuler \",\"Languages List.tr\":\" turc \",\"Languages List.da\":\" danois \",\"FormField.Add_Traders.ID\":\" ID \",\"FormField.Add_Category.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Add_Traders.address_line_22\":\" Adresse Ligne 2 \",\"Languages List.de\":\" allemand \",\"Languages List.cy\":\" gallois \",\"Languages List.tl\":\" Philippin \",\"FormField.Add_Sub_Category.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"ReportField.All_Reviews.Product_Name\":\" Nom du produit \",\"CompositeSubFields.Add_Traders.Name.first_name\":\" Prénom \",\"FormField.Add_Traders.Modified_User\":\" Utilisateur modifié \",\"Languages List.es\":\" Espanol \",\"ReportField.Product_Details.Product_Description\":\" Description du produit \",\"Languages List.eu\":\" basque \",\"Languages List.et\":\" estonien \",\"FormField.Add_Product.Company_Name\":\" Nom de la compagnie \",\"FormField.Add_to_wishlist.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"ReportField.Category.Category\":\" Catégorie \",\"PicklistOption.Add_Product.Search_Keys.1\":\" une \",\"Languages List.vi\":\" vietnamien \",\"PicklistOption.Add_Product.Search_Keys.3\":\" Anime \",\"PicklistOption.Add_Product.Search_Keys.2\":\" [Test, HDR234, Kanon,] \",\"PicklistOption.Add_Product.Search_Keys.5\":\" [Ar3, Ar30163, Mppiehw,] \",\"FormField.Add_Product.Record_Status\":\" Statut d'enregistrement \",\"Section.Admin\":\" Admin \",\"PicklistOption.Add_Product.Search_Keys.4\":\" Série Japaneese \",\"Languages List.el\":\" grec \",\"PicklistOption.Add_Product.Search_Keys.7\":\" Étagère \",\"FormButton.Add_Product.update\":\" Mettre à jour \",\"FormField.Add_Review.Section\":\" Section \",\"Languages List.eo\":\" espéranto \",\"PicklistOption.Add_Product.Search_Keys.6\":\" Décorations d'intérieur \",\"Languages List.en\":\" Anglais \",\"ReportField.All_Reviews.Name\":\" prénom \",\"PicklistOption.Add_Product.Search_Keys.8\":\" [POIUYTREWQ, 3215623g, iad,] \",\"ReportField.All_Products.Tags\":\"Mots clés\",\"FormField.Add_Sub_Category.Section\":\" Section \",\"FormField.Add_Sub_Category.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Review.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Languages List.ur\":\" Urdu \",\"FormField.Add_Product.Product_Name\":\" Nom du produit \",\"FormButton.Add_to_wishlist.reset\":\" Non \",\"FormButton.Add_Review.update\":\" Mettre à jour \",\"Page.images\":\" images \",\"CompositeSubFields.Add_Traders.Name.last_name\":\" Nom de famille \",\"PicklistOption.Add_Traders.prefix.3\":\" Mme. \",\"FormField.Add_Category.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Form.Add_Review\":\" Ajouter un commentaire \",\"PicklistOption.Add_Traders.prefix.2\":\" Madame. \",\"ReportField.Traders_List.Email\":\" Email \",\"PicklistOption.Add_Traders.prefix.1\":\" M. \",\"FormButton.Add_Category.reset\":\" Réinitialiser \",\"CustomAction.My_Wishlist.Remove_From_Wishlist\":\" Script d'action personnalisé \"}}"
+}
+	reports configuration
+	{
+	
+		Version = 1251000165802313
+		Key     = "x564Eyp1fDUGVr9zsxe0aGAS6QkEaZUeJsyw0RwrJ0TMMAGbgCzxXuQxnrwEfnpaBkzWMQO5kRXRmxmNGCfz6nPv7hNxJ0v9SPrq"
+	}
+}

@@ -1,0 +1,2761 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 23:29:52
+ * Version      : 1.0
+ */
+ application "Email Campaign"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "IST"
+ 	time format = "24-hr"
+	section Dashboard
+	{
+		icon = "ui-1-dashboard-half"
+				 page Dashboard_Test 
+	 	 { 
+ 	 	 displayname = "Dashboard" 
+
+ 	 	 icon = "" 
+
+ 	 	 hide =  true
+	 	 Content="<zml \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"24%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '80%'\n   \t\t bgColor = '#F56954'\n   \t\t padding = '20px'\n   \t\t hAlign = 'left'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.New_Campaign.ID.count'\n   \t\t size = '9'\n   \t\t color = '#FFFFFF'\n   \t\t textAlign = 'left'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Campaigns'\n   \t\t size = '2'\n   \t\t color = '#FFFFFF'\n   \t\t textAlign = 'left'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc><pc    \t\t width = '20%'\n   \t\t bgColor = '#F56954'\n   \t\t padding = '20px 0px'\n   \t\t hAlign = 'center'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t vAlign = 'middle'\n\n>\n\t<image    \t\t color = '#DC5D4B'\n   \t\t bgColor = '#F56954'\n   \t\t width = '60px'\n   \t\t height = '60px'\n   \t\t type = 'icon'\n   \t\t value = 'zc-li-solid media-1-speaker'\n   \t\t size = '3'\n   \t\t cornerRadius = '30px'\n\n\/>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"24%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '80%'\n   \t\t bgColor = '#01A659'\n   \t\t padding = '20px'\n   \t\t hAlign = 'left'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Subscriber.ID.count'\n   \t\t size = '9'\n   \t\t color = '#FFFFFF'\n   \t\t bgColor = '#01A659'\n   \t\t textAlign = 'left'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Subscribers'\n   \t\t size = '2'\n   \t\t color = '#FFFFFF'\n   \t\t textAlign = 'left'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc><pc    \t\t width = '20%'\n   \t\t bgColor = '#01A659'\n   \t\t padding = '20px 0px'\n   \t\t hAlign = 'center'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t vAlign = 'middle'\n\n>\n\t<image    \t\t color = '#04954F'\n   \t\t bgColor = '#01A659'\n   \t\t width = '60px'\n   \t\t height = '60px'\n   \t\t type = 'icon'\n   \t\t value = 'zc-li-solid social-1-logo-rss'\n   \t\t size = '3'\n   \t\t cornerRadius = '30px'\n\n\/>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"25%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '80%'\n   \t\t bgColor = '#02C1EF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'left'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.New_Campaign.ID.count'\n   \t\t criteria = '(((Status == &quot;Scheduled&quot;)))'\n   \t\t size = '9'\n   \t\t color = '#FFFFFF'\n   \t\t textAlign = 'left'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Scheduled'\n   \t\t size = '2'\n   \t\t color = '#FFFFFF'\n   \t\t textAlign = 'left'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc><pc    \t\t width = '20%'\n   \t\t bgColor = '#02C1EF'\n   \t\t padding = '20px 0px'\n   \t\t hAlign = 'center'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t vAlign = 'middle'\n\n>\n\t<image    \t\t color = '#05ACD7'\n   \t\t bgColor = '#02C1EF'\n   \t\t width = '60px'\n   \t\t height = '60px'\n   \t\t type = 'icon'\n   \t\t value = 'zc-li-solid ui-1-calendar-grid-61'\n   \t\t size = '3'\n   \t\t cornerRadius = '30px'\n\n\/>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"27%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '80%'\n   \t\t bgColor = '#00639E'\n   \t\t padding = '20px'\n   \t\t hAlign = 'left'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Email_Count1.Count_field.sum'\n   \t\t size = '9'\n   \t\t color = '#FFFFFF'\n   \t\t textAlign = 'left'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Emails Sent'\n   \t\t size = '2'\n   \t\t color = '#FFFFFF'\n   \t\t textAlign = 'left'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc><pc    \t\t width = '20%'\n   \t\t bgColor = '#00639E'\n   \t\t padding = '20px 0px'\n   \t\t hAlign = 'center'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t vAlign = 'middle'\n\n>\n\t<image    \t\t color = '#4092C7'\n   \t\t bgColor = '#00639E'\n   \t\t width = '60px'\n   \t\t height = '60px'\n   \t\t type = 'icon'\n   \t\t value = 'zc-li-solid ui-1-email-83'\n   \t\t size = '3'\n   \t\t cornerRadius = '30px'\n\n\/>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"74%\"\n   \t>\n\t<chart    \t\t type = 'Donut'\n   \t\t appLinkName = 'thisapp'\n   \t\t formLinkName = 'Subscribers_Subform_For_New_Campaign'\n   \t\t xtitle = 'Activity'\n   \t\t xfield = 'Status'\n   \t\t ytitle = 'Activity'\n   \t\t yfields = 'count:Status'\n   \t\t bgColor = '#FFFFFF'\n   \t\t theme = 'theme1'\n   \t\t legendPos = 'right.center'\n   \t\t title = 'Subscribers Activity Percentage'\n\n\/>\n<\/column><column\n   \t\t width=\"26%\"\n   \t>\n\t<dsp id='ZMLScript1'>\n\t<![CDATA[htmlpage ZMLScript1()\ndisplayname = &quot;ZMLScript&quot;\ncontent\n&lt;%{\n\t%&gt;\n&lt;style&gt; .zpelement-wrapper zcpage-elemContainer &gt;.column-container{width:70% !important;} .zpelement-wrapper zcpage-elemContainer &gt;.column-container+.column-container{width:30% !important;}    .zpelement-wrapper zcpage-elemContainer.zcp-col .zcp-panel-rowtype-auto{    background-color:black;   } .zc_live_adminbar &gt;.zcp-col{    background-color: black !important;   }       .num{   font-size: 34px;     font-weight: bold;   }   .tile-stats .num, .tile-stats h3, .tile-stats p {     position: relative;     color: #fff;     z-index: 5;     margin: 0;     padding: 0;   text-overflow: ellipsis;     white-space: nowrap;     overflow: hidden; } .tile-stats h3 {     font-size: 18px;     margin-top: 0px; }  .tile-stats p {     font-size: 11px;     margin-top: 0px; }    .recentActivity_container{  width:100%%; }      &lt;\/style&gt;     &lt;div class=&quot;recentActivity_container&quot; style=&quot;&quot;&gt;   &lt;div class=&quot;panel_container&quot; style=&quot;border-color: rgb(221, 221, 221);margin-bottom: 20px;background-color: rgb(255, 255, 255);box-shadow: rgba(0, 0, 0, 0.0470588) 0px 1px 1px;    border-width: 1px;    border-style: solid;    border-image: initial;    border-radius: 4px;&quot;&gt;   &lt;div class=&quot;panel_head&quot; style=&quot;color: rgb(51, 51, 51);background-color: rgb(245, 245, 245);border-color: rgb(221, 221, 221);border-top-left-radius: 3px;border-top-right-radius: 3px;padding: 10px 15px;border-bottom: 1px solid transparent;&quot;&gt; Other Information     &lt;\/div&gt;   &lt;div class=&quot;panel_bodyContainer&quot; style=&quot;&quot;&gt;   &lt;div style=&quot;&quot;&gt;   &lt;\/div&gt;   &lt;ul style=&quot;margin: 0px;list-style-type: none;&quot;&gt;    &lt;li style=&quot;padding: 8px 0px 0px 0px;border-left: 1px solid #afafaf;position: relative;&quot;&gt;    &lt;div style=&quot;float:left;position: absolute;top: 20%; left: -3%; background: white;color: #0073b7;font-size: 20px;&quot;&gt;   &lt;i class=&quot;fa fa-check-circle-o&quot; aria-hidden=&quot;true&quot;&gt;&lt;\/i&gt;   &lt;\/div&gt;   &lt;div style=&quot;margin:  0px 10px 0px 20px;border-bottom: 1px dotted #cecdcd;&quot;&gt;       &lt;div style=&quot;font-size: 15px;    font-weight: 600;&quot;&gt;Recent Campaigns&lt;\/div&gt;\n&lt;%\n\tif(New_Campaign[ID != 0 &amp;&amp; Status == &quot;Sent&quot;].count() != 0)\n\t{\n\t\tfor each  rec in New_Campaign[ID != 0 &amp;&amp; Status == &quot;Sent&quot;] sort by Added_Time desc range from 0 to 1\n\t\t{\n\t\t\t%&gt;\n&lt;div style=&quot;margin-top: 3px;&quot;&gt;   &lt;div style=&quot;color: #212121;    font-size: 13px;&quot;&gt;   &lt;%=rec.Campaign_Name%&gt;   &lt;\/div&gt;   &lt;div style=&quot;color: gray;    font-size: 10px;&quot;&gt; &lt;%=rec.Date_Time%&gt;   &lt;\/div&gt;   &lt;\/div&gt;\n&lt;%\n\t\t}\n\t}\n\telse\n\t{\n\t\t%&gt;\n&lt;div style=&quot;min-height: 55px;display: flex;align-items: center;font-size: 13px;&quot;&gt; No Campaigns Sent Yet!   &lt;\/div&gt;\n&lt;%\n\t}\n\t%&gt;\n&lt;\/div&gt;   &lt;\/li&gt;        &lt;li style=&quot;padding: 8px 0px 0px 0px;border-left: 1px solid #afafaf;position: relative;&quot;&gt;   &lt;div style=&quot;float:left;position: absolute;top: 20%; left: -3%; background: white;color: #00c0ef;font-size: 20px;&quot;&gt;   &lt;i class=&quot;fa fa-calendar-times-o&quot; aria-hidden=&quot;true&quot;&gt;&lt;\/i&gt;   &lt;\/div&gt;     &lt;div style=&quot;margin:  0px 10px 0px 20px;border-bottom: 1px dotted #cecdcd;&quot;&gt;       &lt;div style=&quot;font-size: 15px;    font-weight: 600;&quot;&gt;Scheduled Campaigns&lt;\/div&gt;\n&lt;%\n\tif(New_Campaign[ID != 0 &amp;&amp; Status == &quot;Scheduled&quot;].count() != 0)\n\t{\n\t\tfor each  rec in New_Campaign[ID != 0 &amp;&amp; Status == &quot;Scheduled&quot;] sort by Added_Time desc range from 0 to 1\n\t\t{\n\t\t\t%&gt;\n&lt;div style=&quot;margin-top: 3px;&quot;&gt;   &lt;div style=&quot;color: #212121;    font-size: 13px;&quot;&gt;  &lt;%=rec.Campaign_Name%&gt;   &lt;\/div&gt;   &lt;div style=&quot;color: gray;    font-size: 10px;&quot;&gt; &lt;%=rec.Date_Time%&gt;   &lt;\/div&gt;   &lt;\/div&gt;\n&lt;%\n\t\t}\n\t}\n\telse\n\t{\n\t\t%&gt;\n&lt;div style=&quot;min-height: 55px;display: flex;align-items: center;font-size: 13px;&quot;&gt; No Campaigns Scheduled Yet!   &lt;\/div&gt;\n&lt;%\n\t}\n\t%&gt;\n&lt;\/div&gt;     &lt;\/li&gt;        &lt;li style=&quot;padding: 8px 0px 6px 0px;border-left: 1px solid #afafaf;position: relative;&quot;&gt;   &lt;div style=&quot;float:left;position: absolute;top: 20%; left: -3%; background: white;color: green;font-size: 20px;&quot;&gt;   &lt;i class=&quot;fa fa-bullhorn&quot; aria-hidden=&quot;true&quot;&gt;&lt;\/i&gt;   &lt;\/div&gt;   &lt;div style=&quot;margin:  0px 10px 0px 20px;     border-bottom: 1px dotted #cecdcd;&quot;&gt;       &lt;div style=&quot;font-size: 15px;    font-weight: 600;&quot;&gt;Most Popular Campaigns&lt;\/div&gt;\n&lt;%\n\tif(New_Campaign[ID != 0].count() != 0)\n\t{\n\t\tmostPopularCampaign = &quot;No Campaign Activity Updated!&quot;;\n\t\topenedCount = 0;\n\t\tfor each  rec in New_Campaign[ID != 0] sort by Added_Time desc\n\t\t{\n\t\t\tif(openedCount &lt; Subscribers_Subform_For_New_Campaign[New_Campaign_Bi == rec.ID &amp;&amp; Status == &quot;Opened&quot;].count())\n\t\t\t{\n\t\t\t\tmostPopularCampaign = rec.Campaign_Name;\n\t\t\t\topenedCount = Subscribers_Subform_For_New_Campaign[New_Campaign_Bi == rec.ID &amp;&amp; Status == &quot;Opened&quot;].count();\n\t\t\t}\n\t\t}\n\t\t%&gt;\n&lt;div style=&quot;margin-top: 3px;&quot;&gt;   &lt;div style=&quot;color: #212121;    font-size: 13px;&quot;&gt;   &lt;%=mostPopularCampaign%&gt;   &lt;\/div&gt;   &lt;div style=&quot;color: gray;    font-size: 10px;&quot;&gt;  based on opened activity.   &lt;\/div&gt;   &lt;\/div&gt;\n&lt;%\n\t}\n\telse\n\t{\n\t\t%&gt;\n&lt;div style=&quot;color: #212121;font-size: 13px;min-height: 55px; display: flex;align-items: center;&quot;&gt;   No Campaign Added Yet!   &lt;\/div&gt;\n&lt;%\n\t}\n\t%&gt;\n&lt;\/div&gt;     &lt;\/li&gt;\n&lt;%\n\tif(zoho.loginuser = zoho.adminuser)\n\t{\n\t\t%&gt;\n&lt;li style=&quot;padding: 8px 0px 6px 0px;border-left: 1px solid #afafaf;position: relative;&quot;&gt;   &lt;div style=&quot;float:left;position: absolute;top: 20%; left: -3%; background: white;color: #1056a4;font-size: 20px;&quot;&gt;    &lt;i class=&quot;fa fa-link&quot; aria-hidden=&quot;true&quot;&gt;&lt;\/i&gt;   &lt;\/div&gt;   &lt;div style=&quot;margin: 0px 10px 0px 20px;&quot;&gt;   &lt;div style=&quot;font-size: 15px;font-weight: 600;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;&quot;&gt;Subscription Form For Website&lt;\/div&gt;   &lt;div style=&quot;margin-top: 3px;&quot;&gt;    &lt;div style=&quot;color: #000000;font-size: 13px;&quot;&gt;Get Embed Link for &apos;Subscribe Me Form&apos;&lt;\/div&gt;   &lt;a href=&quot;https:\/\/www.zoho.com\/creator\/help\/forms\/embed-form-report-in-website.html#embed-forms&quot; target=&quot;_blank&quot;&gt;   &lt;div style=&quot;font-size: 10px;color: #004b9e;&quot;&gt; How to generate permalink?  &lt;\/div&gt;&lt;\/a&gt;   &lt;\/div&gt;\n&lt;%\n\t}\n\t%&gt;\n&lt;\/ul&gt;    &lt;\/div&gt;    &lt;\/div&gt;   &lt;\/div&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dsp id='ZMLScript4'>\n\t<![CDATA[htmlpage ZMLScript4()\ndisplayname = &quot;ZMLScript&quot;\ncontent\n&lt;%{\n\t%&gt;\n&lt;div style=&quot;height:500px;width:100%&quot;&gt;    &lt;iframe class=&quot;back&quot; name=&apos;chartFrame&apos; allowTransparency=&apos;true&apos; zc_mobileView=&apos;inline&apos; zc_Header=&apos;false&apos; style=&quot;border:none; margin:0px auto; width:100%;box-sizing:border-box; height:100%;&quot; src=&apos;&lt;%=zoho.appuri%&gt;report-embed\/Campaigns_info?zc_Header=false&apos;&gt;&lt;\/iframe&gt;     &lt;\/div&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+				 page Dashboard 
+	 	 { 
+ 	 	 displayname = "Dashboard" 
+
+ 	 	 icon = "files-dev" 
+	 	 Content="<zml \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dsp id='Dashboard1'>\n\t<![CDATA[htmlpage Dashboard1()\ncontent\n&lt;%{\n\tif(Create_New_List[ID != 0].count(ID) == 0)\n\t{\n\t\topenUrl(&quot;#Form:Create_New_List&quot;,&quot;same window&quot;);\n\t}\n\tcampaigns = 0;\n\tsubscribers = 0;\n\tscheduled = 0;\n\temail_count = 0;\n\tcampaigns = New_Campaign[ID != 0].count();\n\tsubscribers = Add_Subscriber[ID != 0].count();\n\tscheduled = New_Campaign[ID != 0 &amp;&amp; Status = &quot;Scheduled&quot;].count();\n\tif(Email_Count1[ID != 0].count() != 0)\n\t{\n\t\temail_count = Email_Count1[ID != 0].Count_field;\n\t}\n\t%&gt;\n&lt;style&gt;\n\t\t\t\t\t\t  .main_home{\n\t\t\t\t\t\t\t  margin-top:10px;\n\t\t\t\t\t\t  width:100%;\n\t\t\t\t\t\t  height:100%;\n\t\t\t\t\t\t  position:relative;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .top_Navbar{\n\t\t\t\t\t\t  min-width: 100%;\n\t\t\t\t\t\t    display: table;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .main_container{\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .countBox{\n\t\t\t\t\t\t  box-sizing: border-box;\n\t\t\t\t\t\t  width:25%;\n\t\t\t\t\t\t      position: relative;\n\t\t\t\t\t\t    min-height: 1px;\n\t\t\t\t\t\t    padding-left: 15px;\n\t\t\t\t\t\t    padding-right: 15px;\n\t\t\t\t\t\t  float:left;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  @media (max-width: 768px)\n\t\t\t\t\t\t.countBox{\n\t\t\t\t\t\t    width: 50%;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t\n\t\t\t\t\t\t  .tile-stats{\n\t\t\t\t\t\t  position: relative;\n\t\t\t\t\t\t    display: block;\n\t\t\t\t\t\t    background: #303641;\n\t\t\t\t\t\t    padding: 5px 20px;\n\t\t\t\t\t\t    margin-bottom: 10px;\n\t\t\t\t\t\t    overflow: hidden;\n\t\t\t\t\t\t    -webkit-border-radius: 5px;\n\t\t\t\t\t\t    -webkit-background-clip: padding-box;\n\t\t\t\t\t\t    -moz-border-radius: 5px;\n\t\t\t\t\t\t    -moz-background-clip: padding;\n\t\t\t\t\t\t    border-radius: 5px;\n\t\t\t\t\t\t    background-clip: padding-box;\n\t\t\t\t\t\t    -webkit-transition: all 300ms ease-in-out;\n\t\t\t\t\t\t    -moz-transition: all 300ms ease-in-out;\n\t\t\t\t\t\t    -o-transition: all 300ms ease-in-out;\n\t\t\t\t\t\t    transition: all 300ms ease-in-out;\n\t\t\t\t\t\t\tpadding-top: 0px !important;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .tile-red{\n\t\t\t\t\t\t      background: #f56954;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .tile-stats.tile-red:hover {\n\t\t\t\t\t\t    background: #f4543c;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t.tile-green{\n\t\t\t\t\t\t  background: #00a65a;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .tile-stats.tile-gren:hover {\n\t\t\t\t\t\t    background: #008d4c;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t.tile-aqua{\n\t\t\t\t\t\t  background: #00c0ef;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .tile-stats.tile-aqua:hover {\n\t\t\t\t\t\t    background: #00acd6;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t.tile-blue{\n\t\t\t\t\t\t  background: #0073b7;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .tile-stats.tile-blue:hover {\n\t\t\t\t\t\t    background: #00639e;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t  .icon{\n\t\t\t\t\t\t  color: rgba(0, 0, 0, 0.1);\n\t\t\t\t\t\t    position: absolute;\n\t\t\t\t\t\t    right: 5px;\n\t\t\t\t\t\t    bottom: 0px;\n\t\t\t\t\t\t    z-index: 1;\n\t\t\t\t\t\t  font-size: 90px;\n\t\t\t\t\t\t    line-height: 0;\n\t\t\t\t\t\t    margin: 0;\n\t\t\t\t\t\t    padding: 0;\n\t\t\t\t\t\t    vertical-align: bottom;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  .num{\n\t\t\t\t\t\t  font-size: 34px;\n\t\t\t\t\t\t    font-weight: bold;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .tile-stats .num, .tile-stats h3, .tile-stats p {\n\t\t\t\t\t\t    position: relative;\n\t\t\t\t\t\t    color: #fff;\n\t\t\t\t\t\t    z-index: 5;\n\t\t\t\t\t\t    margin: 0;\n\t\t\t\t\t\t    padding: 0;\n\t\t\t\t\t\t  text-overflow: ellipsis;\n\t\t\t\t\t\t    white-space: nowrap;\n\t\t\t\t\t\t    overflow: hidden;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t.tile-stats h3 {\n\t\t\t\t\t\t    font-size: 18px;\n\t\t\t\t\t\t    margin-top: 0px;\n\t\t\t\t\t\t\tfont-weight: 600;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t .tile-stats p {\n\t\t\t\t\t\t    font-size: 11px;\n\t\t\t\t\t\t    margin-top: 0px;\n\t\t\t\t\t\t} \n\t\t\t\t\t\t.percentageChart_container {\n\t\t\t\t\t\t    width: 70%;\n\t\t\t\t\t\t  float:left;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t.reportfullwidth&gt;div&gt;div{\n\t\t\t\t\t\tbox-sizing: border-box;\n\t\t\t\t\t\t    display: flex;\n\t\t\t\t\t\t\tmargin:0px 10px !important;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t#zohoreportel{\n\t\t\t\t\t\t  height:100% !important;\n\t\t\t\t\t\t  position:absolute;\n\t\t\t\t\t\t  overflow:hidden;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t  .recentActivity_container{\n\t\t\t\t\t\t\twidth:23.5%;\n\t\t\t\t\t\t    float:right;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t  .recent_activity{\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .mostPopularClick_Container{\n\t\t\t\t\t\t\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t\n\t\t\t\t\t\t    &lt;\/style&gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t&lt;div class=&quot;main_home&quot;&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;top_Navbar&quot;&gt;\n\t\t\t\t\t\t\n\t\t\t\t\t\t  &lt;div class=&quot;countBox&quot;&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;tile-stats tile-red&quot;&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;icon&quot;&gt;\n\t\t\t\t\t\t&lt;i class=&quot;fa fa-bullhorn&quot; aria-hidden=&quot;true&quot;&gt;&lt;\/i&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t&lt;div class=&quot;num&quot;&gt;&lt;%=campaigns%&gt;&lt;\/div&gt;\n\t\t\t\t\t\t&lt;h3&gt;Campaigns\n\t\t\t\t\t\t  &lt;\/h3&gt;\n\t\t\t\t\t\t  &lt;p&gt;so far you have created.\n\t\t\t\t\t\t  &lt;\/p&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;countBox&quot;&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;tile-stats tile-green&quot;&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;icon&quot;&gt;\n\t\t\t\t\t\t  &lt;i class=&quot;fa fa-rss&quot; aria-hidden=&quot;true&quot;&gt;&lt;\/i&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t&lt;div class=&quot;num&quot;&gt;&lt;%=subscribers%&gt;&lt;\/div&gt;\n\t\t\t\t\t\t&lt;h3&gt;Subscribers\n\t\t\t\t\t\t  &lt;\/h3&gt;\n\t\t\t\t\t\t  &lt;p&gt;in this account right now.\n\t\t\t\t\t\t  &lt;\/p&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;countBox&quot;&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;tile-stats tile-aqua&quot;&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;icon&quot; style=&quot;font-size: 85px;bottom: 4px;&quot;&gt;\n\t\t\t\t\t\t&lt;i class=&quot;fa fa-calendar-times-o&quot; aria-hidden=&quot;true&quot;&gt;&lt;\/i&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t&lt;div class=&quot;num&quot;&gt;&lt;%=scheduled%&gt;&lt;\/div&gt;\n\t\t\t\t\t\t&lt;h3&gt;Scheduled\n\t\t\t\t\t\t  &lt;\/h3&gt;\n\t\t\t\t\t\t  &lt;p&gt;will be sent on selected date.\n\t\t\t\t\t\t  &lt;\/p&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;countBox&quot;&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;tile-stats tile-blue&quot;&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;icon&quot; style=&quot;right: 7px;color:rgba(255, 255, 255, 0.22);bottom: 3px;&quot;&gt;\n\t\t\t\t\t\t &lt;i class=&quot;fa fa-envelope&quot; aria-hidden=&quot;true&quot;&gt;&lt;\/i&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t&lt;div class=&quot;num&quot;&gt;&lt;%=email_count%&gt;&lt;\/div&gt;\n\t\t\t\t\t\t&lt;h3&gt;Emails Sent\n\t\t\t\t\t\t  &lt;\/h3&gt;\n\t\t\t\t\t\t  &lt;p&gt;total emails sent so far using this app.\n\t\t\t\t\t\t  &lt;\/p&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t\n\t\t\t\t\t\t  &lt;\/div&gt; \n\t\t\t\t\t\t  &lt;div class=&quot;main_container&quot; style=&quot;box-sizing: border-box;margin: 0px 15px;&quot;&gt;\n\t\t\t\t\t\t  &lt;div class=&apos;middle_container&apos; style=&quot;width: 100%; display:table;box-sizing: border-box;&quot;&gt;\n\t\t\t\t\t\t\t&lt;div class=&apos;percentageChart_container&apos;&gt;\n\t\t\t\t\t\t\t  &lt;div style=&quot;text-align:center;margin-top: 3px;margin-right: -6%;border: 1px dashed #d8d8d8;border-radius: 3px;&quot;&gt;Subscribers Activity Percentage&lt;\/div&gt;\n\t\t\t\t\t\t\t&lt;div style=&quot;height:340px;width:100%&quot; elName=&apos;zc-component&apos; reportLinkName=&apos;Activity_Percentage&apos; params=&apos;zc_Header=false&apos;&gt;&lt;\/div&gt;\n\t\t\t\t\t\t&lt;\/div&gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  &lt;div class=&quot;recentActivity_container&quot; style=&quot;&quot;&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;panel_container&quot; style=&quot;border-color: rgb(221, 221, 221);margin-bottom: 20px;background-color: rgb(255, 255, 255);box-shadow: rgba(0, 0, 0, 0.0470588) 0px 1px 1px;    border-width: 1px;    border-style: solid;    border-image: initial;    border-radius: 4px;&quot;&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;panel_head&quot; style=&quot;color: rgb(51, 51, 51);background-color: rgb(245, 245, 245);border-color: rgb(221, 221, 221);border-top-left-radius: 3px;border-top-right-radius: 3px;padding: 10px 15px;border-bottom: 1px solid transparent;&quot;&gt; Other Information\n\t\t\t\t\t\t  \n\t\t\t\t\t\t &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;panel_bodyContainer&quot; style=&quot;&quot;&gt;\n\t\t\t\t\t\t  &lt;div style=&quot;&quot;&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;ul style=&quot;margin: 0px;list-style-type: none;&quot;&gt;\n\t\t\t\t\t\t\n\t\t\t\t\t\t  &lt;li style=&quot;padding: 8px 0px 0px 0px;border-left: 1px solid #afafaf;position: relative;&quot;&gt;\n\t\t\t\t\t\t\n\t\t\t\t\t\t  &lt;div style=&quot;float:left;position: absolute;top: 20%; left: -3%; background: white;color: #0073b7;font-size: 20px;&quot;&gt;\n\t\t\t\t\t\t  &lt;i class=&quot;fa fa-check-circle-o&quot; aria-hidden=&quot;true&quot;&gt;&lt;\/i&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div style=&quot;margin:  0px 10px 0px 20px;border-bottom: 1px dotted #cecdcd;&quot;&gt;\n\t\t\t\t\t\t      &lt;div style=&quot;font-size: 15px;    font-weight: 600;&quot;&gt;Recent Campaigns&lt;\/div&gt;\n&lt;%\n\tif(New_Campaign[ID != 0 &amp;&amp; Status == &quot;Sent&quot;].count() != 0)\n\t{\n\t\tfor each  rec in New_Campaign[ID != 0 &amp;&amp; Status == &quot;Sent&quot;] sort by Added_Time desc range from 0 to 1\n\t\t{\n\t\t\t%&gt;\n&lt;div style=&quot;margin-top: 3px;&quot;&gt;\n\t\t\t\t\t\t  &lt;div style=&quot;color: #212121;    font-size: 13px;&quot;&gt;\n\t\t\t\t\t\t  &lt;%=rec.Campaign_Name%&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div style=&quot;color: gray;    font-size: 10px;&quot;&gt;\n\t\t\t\t\t\t&lt;%=rec.Date_Time%&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n&lt;%\n\t\t}\n\t}\n\telse\n\t{\n\t\t%&gt;\n&lt;div style=&quot;min-height: 55px;display: flex;align-items: center;font-size: 13px;&quot;&gt; No Campaigns Sent Yet!\n\t\t\t\t\t\t  &lt;\/div&gt;\n&lt;%\n\t}\n\t%&gt;\n&lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/li&gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t    &lt;li style=&quot;padding: 8px 0px 0px 0px;border-left: 1px solid #afafaf;position: relative;&quot;&gt;\n\t\t\t\t\t\t  &lt;div style=&quot;float:left;position: absolute;top: 20%; left: -3%; background: white;color: #00c0ef;font-size: 20px;&quot;&gt;\n\t\t\t\t\t\t  &lt;i class=&quot;fa fa-calendar-times-o&quot; aria-hidden=&quot;true&quot;&gt;&lt;\/i&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t    &lt;div style=&quot;margin:  0px 10px 0px 20px;border-bottom: 1px dotted #cecdcd;&quot;&gt;\n\t\t\t\t\t\t      &lt;div style=&quot;font-size: 15px;    font-weight: 600;&quot;&gt;Scheduled Campaigns&lt;\/div&gt;\n&lt;%\n\tif(New_Campaign[ID != 0 &amp;&amp; Status == &quot;Scheduled&quot;].count() != 0)\n\t{\n\t\tfor each  rec in New_Campaign[ID != 0 &amp;&amp; Status == &quot;Scheduled&quot;] sort by Added_Time desc range from 0 to 1\n\t\t{\n\t\t\t%&gt;\n&lt;div style=&quot;margin-top: 3px;&quot;&gt;\n\t\t\t\t\t\t  &lt;div style=&quot;color: #212121;    font-size: 13px;&quot;&gt;\n\t\t\t\t\t\t &lt;%=rec.Campaign_Name%&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div style=&quot;color: gray;    font-size: 10px;&quot;&gt;\n\t\t\t\t\t\t&lt;%=rec.Date_Time%&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n&lt;%\n\t\t}\n\t}\n\telse\n\t{\n\t\t%&gt;\n&lt;div style=&quot;min-height: 55px;display: flex;align-items: center;font-size: 13px;&quot;&gt; No Campaigns Scheduled Yet!\n\t\t\t\t\t\t  &lt;\/div&gt;\n&lt;%\n\t}\n\t%&gt;\n&lt;\/div&gt;\n\t\t\t\t\t\t    &lt;\/li&gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t    &lt;li style=&quot;padding: 8px 0px 6px 0px;border-left: 1px solid #afafaf;position: relative;&quot;&gt;\n\t\t\t\t\t\t  &lt;div style=&quot;float:left;position: absolute;top: 20%; left: -3%; background: white;color: green;font-size: 20px;&quot;&gt;\n\t\t\t\t\t\t  &lt;i class=&quot;fa fa-bullhorn&quot; aria-hidden=&quot;true&quot;&gt;&lt;\/i&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div style=&quot;margin:  0px 10px 0px 20px;     border-bottom: 1px dotted #cecdcd;&quot;&gt;\n\t\t\t\t\t\t      &lt;div style=&quot;font-size: 15px;    font-weight: 600;&quot;&gt;Most Popular Campaigns&lt;\/div&gt;\n&lt;%\n\tif(New_Campaign[ID != 0].count() != 0)\n\t{\n\t\tmostPopularCampaign = &quot;No Campaign Activity Updated!&quot;;\n\t\topenedCount = 0;\n\t\tfor each  rec in New_Campaign[ID != 0] sort by Added_Time desc\n\t\t{\n\t\t\tif(openedCount &lt; Subscribers_Subform_For_New_Campaign[New_Campaign_Bi == rec.ID &amp;&amp; Status == &quot;Opened&quot;].count())\n\t\t\t{\n\t\t\t\tmostPopularCampaign = rec.Campaign_Name;\n\t\t\t\topenedCount = Subscribers_Subform_For_New_Campaign[New_Campaign_Bi == rec.ID &amp;&amp; Status == &quot;Opened&quot;].count();\n\t\t\t}\n\t\t}\n\t\t%&gt;\n&lt;div style=&quot;margin-top: 3px;&quot;&gt;\n\t\t\t\t\t\t  &lt;div style=&quot;color: #212121;    font-size: 13px;&quot;&gt;\n\t\t\t\t\t\t  &lt;%=mostPopularCampaign%&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div style=&quot;color: gray;    font-size: 10px;&quot;&gt;\n\t\t\t\t\t\t based on opened activity.\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n&lt;%\n\t}\n\telse\n\t{\n\t\t%&gt;\n&lt;div style=&quot;color: #212121;font-size: 13px;min-height: 55px; display: flex;align-items: center;&quot;&gt;\n\t\t\t\t\t\t  No Campaign Added Yet!\n\t\t\t\t\t\t  &lt;\/div&gt;\n&lt;%\n\t}\n\t%&gt;\n&lt;\/div&gt;\n\t\t\t\t\t\t    &lt;\/li&gt;\n&lt;%\n\tif(zoho.loginuser = zoho.adminuser)\n\t{\n\t\t%&gt;\n&lt;li style=&quot;padding: 8px 0px 6px 0px;border-left: 1px solid #afafaf;position: relative;&quot;&gt;\n\t\t\t\t\t\t  &lt;div style=&quot;float:left;position: absolute;top: 20%; left: -3%; background: white;color: #1056a4;font-size: 20px;&quot;&gt; \n\t\t\t\t\t\t  &lt;i class=&quot;fa fa-link&quot; aria-hidden=&quot;true&quot;&gt;&lt;\/i&gt;\n\t\t\t\t\t\t\t &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div style=&quot;margin: 0px 10px 0px 20px;&quot;&gt;\n\t\t\t\t\t\t  &lt;div style=&quot;font-size: 15px;font-weight: 600;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;&quot;&gt;Subscription Form For Website&lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div style=&quot;margin-top: 3px;&quot;&gt; \n\t\t\t\t\t\t  &lt;div style=&quot;color: #000000;font-size: 13px;&quot;&gt;Get Embed Link for &apos;Subscribe Me Form&apos;&lt;\/div&gt;\n\t\t\t\t\t\t  &lt;a href=&quot;https:\/\/www.zoho.com\/creator\/help\/forms\/embed-form-report-in-website.html#embed-forms&quot; target=&quot;_blank&quot;&gt;\n\t\t\t\t\t\t  &lt;div style=&quot;font-size: 10px;color: #004b9e;&quot;&gt; How to generate permalink?\t &lt;\/div&gt;&lt;\/a&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n&lt;%\n\t}\n\t%&gt;\n&lt;\/ul&gt;\n\t\t\t\t\t\t   &lt;\/div&gt;\n\t\t\t\t\t\t   &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  \n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div&gt;\n\t\t\t\t\t\t  &lt;div style=&quot;text-align:center;margin-top: 3px;border: 1px dashed #d8d8d8;    margin-left: 15px;    margin-right: 15px;&quot;&gt;Campaigns Activity Info Chart&lt;\/div&gt;\n\t\t\t\t\t\t        &lt;div style=&quot;height:320px;width:100%&quot; elName=&apos;zc-component&apos; reportLinkName=&apos;Campaigns_info&apos; params=&apos;zc_Header=false&apos;&gt;&lt;\/div&gt;            \n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+	}
+	section Campaigns
+	{
+		icon = "media-1-speaker"
+		form New_Campaign
+		{
+			displayname = "New Campaign"
+			success message = "Campaign Created Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = "<font color=\"#aeafb2\" style=\"font-size: 13px\">Give your campaign an easily identifiable name. The name you choose will appear when you view the reports for this campaign.</font>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Campaign_Name
+			(
+    			type = text
+				displayname = "Campaign Name"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			plain1
+			(
+    			type = plaintext
+				value = "<div><font color=\"#aeafb2\"><br /></font></div><font color=\"#aeafb2\" style=\"font-size: 13px\">It will appear as subject in your email.</font>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Email_Subject_for_this_Campaign1
+			(
+    			type = text
+				displayname = "Email Subject for this Campaign"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			plain3
+			(
+    			type = plaintext
+				value = "<div><font color=\"#5f9ea0\"><br /></font></div><font color=\"#aeafb2\" style=\"\">This is the email address your campaign will come from.</font>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			From_Email
+			(
+    			type = email
+				displayname = "From Email"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			plain4
+			(
+    			type = plaintext
+				value = "<div><font color=\"#5f9ea0\"><br /></font></div><font color=\"#aeafb2\" style=\"\">If your recipients reply to this email, what email address should these replies to be sent to? Make sure you use valid address.</font>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Send_Replies_to
+			(
+    			type = email
+				displayname = "Send Replies to"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			plain7
+			(
+    			type = plaintext
+				value = "<div><font color=\"#5f9ea0\"><br /></font></div><font color=\"#aeafb2\" style=\"\">Recipients can be new or from the subscribers list already created.</font>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Subscribers_Type
+			(
+				type = radiobuttons
+				displayname = "Recipients Type"
+				values = {"Select Subscribers List", "Type Manually"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Select_Subscribers_List
+			(
+				type = checkboxes
+				displayname = "Select Subscribers List"
+				values  = Create_New_List.ID
+    			displayformat = [List_Name]
+				allow new entries = true
+				[
+					displayname = "Create New List"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Type_Subscribers
+			(
+				type = grid
+				displayname = "Type Subscribers"
+				values  = Add_Subscriber.ID
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			plain2
+			(
+    			type = plaintext
+				value = "<div><font color=\"#5f9ea0\"><br /></font></div><font color=\"#aeafb2\" style=\"\">When do you want to deliver the campaign?</font>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Schedule_Campaign_Delivery
+			(
+				type = radiobuttons
+				displayname = "Schedule Campaign Delivery"
+				values = {"Deliver Immediately", "Deliver at Following Time"}
+				initial value = "Deliver Immediately"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Date_Time
+			(
+    			type = datetime
+				displayname = "Date-Time"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			plain5
+			(
+    			type = plaintext
+				value = "<div><font color=\"#5f9ea0\"><br /></font></div><font color=\"#aeafb2\" style=\"\">What will be the content of your campaign message?</font>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Campaign_Message_Format_Type
+			(
+				type = radiobuttons
+				displayname = "Campaign Message Format Type"
+				values = {"Select From Template", "Type Manually"}
+				initial value = "Type Manually"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Select_Template
+			(
+				type = picklist
+				displayname = "Select Template"
+				values  = Campaign_Template.ID
+    			displayformat = [Template_Name]
+				allow new entries = true
+				[
+					displayname = "Add New"
+				]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			plain8
+			(
+    			type = plaintext
+				value = "<div><font color=\"#aeafb2\" style=\"\"><br /></font></div><font color=\"#aeafb2\" style=\"\"><div>If your analytics tool offers a tracking, include link in the message from tool. You can then check your campaign&#39;s progress in your analytics tool.</div></font>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Message1
+			(
+    			type = richtext
+				displayname = "Message"
+				height = 200px
+				toolbar = enable
+				[
+					style, strike-through, indent, font-color, background-color, remove-formatting, alignment, link, table, ruler, bullets-and-numbering, script-text, code, html, quote, 
+					font-size : {1, 2, 3, 4, 5, 6, 7},
+					font-family : {"Serif", "Arial", "Courier New", "Georgia", "Tahoma", "Times New Roman", "Trebuchet", "Verdana", "Comic Sans Ms"}
+				]
+	 			row = 1
+	 			column = 1   
+				width = 506px
+			)
+			plain6
+			(
+    			type = plaintext
+				value = "<div><font color=\"#5f9ea0\"><br /></font></div><font color=\"#aeafb2\" style=\"\">It is better to send yourself a few tests before scheduling campaign.</font>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Select_If_You_Want_To_Test_This_Campaign
+			(
+    			type = checkbox
+				displayname = "Test This Campaign"
+				initial value = false
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Subscribers
+			(
+				type = grid
+				values  = Subscribers_Subform_For_New_Campaign.ID
+    			bidirectional = New_Campaign_Bi
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			editMode
+			(
+				type = radiobuttons
+				values = {"Select_Activity", "Normal"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status
+			(
+				type = radiobuttons
+				values = {"Sent", "Scheduled"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		calendar All_Campaigns
+		{
+			displayName = "All Campaigns"
+			show all rows from New_Campaign    
+			(
+				Status
+				custom action "Update Subscriber's Activities"
+				(
+	  			workflow = Update_Subscriber_s_Activ
+				column header = "Update Subscriber's Activities"
+				success message = ""
+				condition = (Status == "Sent")
+				)
+				Date_Time as "Date-Time"
+				Schedule_Campaign_Delivery as "Campaign Delivery"
+				Email_Subject_for_this_Campaign1 as "Subject"
+				Campaign_Name as "Campaign Name"
+				Subscribers_Type as "Recipients Type"
+				Send_Replies_to as "Send Replies to"
+				From_Email as "From Email"
+				Campaign_Message_Format_Type as "Campaign Message Format Type"
+				Select_Subscribers_List as "Select Subscribers List"
+				Select_Template as "Select Template"
+				Message1 as "Message"
+			)
+			group by
+			(
+				Status descending
+			)
+			options
+			(
+				display type = month
+				week start day = sunday
+				display field = Campaign_Name
+				start date = Date_Time
+				default date 
+				(
+	    			day   = Today
+	    			month = Currentmonth
+	    			year  = Currentyear
+				)
+				icon = "ui-1-calendar-60"
+			)
+			conditional formatting
+			(
+				"Sent Formatting"
+				{
+				condition = (Status == "Sent")
+				format = "color:#19bc9f;background-color:#ffffff;"
+				}
+				"Scheduled Formatting"
+				{
+				condition = (Status == "Scheduled")
+				format = "color:#6343cc;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = 1
+		     			title = "Overview"
+						fields
+						(
+							Campaign_Name as "Campaign Name"
+							Email_Subject_for_this_Campaign1 as "Subject"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Campaign_Name as "Campaign Name"
+							Status
+							Status
+							Send_Replies_to as "Send Replies to"
+							Subscribers_Type as "Recipients Type"
+							Schedule_Campaign_Delivery as "Campaign Delivery"
+							Campaign_Message_Format_Type as "Campaign Message Format Type"
+							Select_Subscribers_List as "Select Subscribers List"
+							Select_Template as "Select Template"
+						)
+					)
+					datablock5
+					(
+			 			layout type = -2
+		     			title = "Email Details"
+						fields
+						(
+							From_Email as "From Email"
+							Email_Subject_for_this_Campaign1 as "Subject"
+							Message1 as "Message"
+						)
+					)
+					datablock6
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field =  Subscribers
+						fields
+						(
+							Name1 as "Name"
+							Email
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Subscribers
+	{
+		icon = "users-multiple-11"
+		form Create_New_List
+		{
+			displayname = "Create New List"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have List_Name
+			(
+    			type = text
+				displayname = "List Name"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Add_New_Subscribers
+			(
+				type = grid
+				displayname = "Add New Subscribers"
+				values  = Add_Subscriber.ID
+    			bidirectional = New_List_Bi
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-2-a-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Subscribers_List
+		{
+			displayName = "Subscribers List"
+			show all rows from Create_New_List    
+			(
+				List_Name as "List Name"
+				Add_New_Subscribers.New_List_Bi as "Add New Subscribers"
+			)
+			options
+			(
+				icon = "users-single-03"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = 1
+		     			title = "Overview"
+						fields
+						(
+							List_Name as "List Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "List Name"
+						fields
+						(
+							List_Name as "List Name"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field =  Add_New_Subscribers
+						fields
+						(
+							Name1 as "Name"
+							Email
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Templates
+	{
+		icon = "files-image"
+		form Campaign_Template
+		{
+			displayname = "New Template"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			must have Template_Name
+			(
+    			type = text
+				displayname = "Template Title"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Message
+			(
+    			type = richtext
+				height = 200px
+				toolbar = enable
+				[
+					style, font-color, background-color, alignment, link, table, bullets-and-numbering, 
+					font-size : {1, 2, 3, 4, 5, 6, 7},
+					font-family : {"Serif", "Arial", "Courier New", "Georgia", "Tahoma", "Times New Roman", "Trebuchet", "Verdana", "Comic Sans Ms"}
+				]
+	 			row = 1
+	 			column = 1   
+				width = 506px
+			)
+	
+			customize
+			(
+				icon = "files-single-folded-content"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Campaign_Template_Report
+		{
+			displayName = "All Templates"
+			show all rows from Campaign_Template    
+			(
+				Message
+				Template_Name as "Template Name"
+			)
+			options
+			(
+				icon = "files-copy"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Template_Name as "Template Name"
+							Message
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Template_Name as "Template Name"
+							Message
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Subscriber
+	{
+		displayname= "Add Subscriber"
+		hide = true
+		icon = "ui-2-menu-bold"
+	}
+	section Hidden
+	{
+		hide = true
+		icon = "ui-2-menu-bold"
+		form Add_Subscriber
+		{
+			displayname = "Add Subscriber"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Name1
+			(
+    			type = name
+				displayname = "Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Status
+			(
+				type = radiobuttons
+				values = {"Active", "Unsubscribed", "Bounced"}
+				initial value = "Active"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			New_List_Bi
+			(
+				type = picklist
+				displayname = "New List_Bi"
+				values  = Create_New_List.ID
+    			bidirectional = Add_New_Subscribers
+    			displayformat = [ID]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Test_Run_Campaign
+		{
+			displayname = "Test Run Campaign"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Test_campaign_to_be_sent_to
+			(
+    			type = email
+				displayname = "Test campaign to be sent to"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Message
+			(
+    			type = richtext
+				height = 200px
+				toolbar = enable
+				[
+					style, font-color, background-color, alignment, link, table, bullets-and-numbering, 
+					font-size : {1, 2, 3, 4, 5, 6, 7},
+					font-family : {"Serif", "Arial", "Courier New", "Georgia", "Tahoma", "Times New Roman", "Trebuchet", "Verdana", "Comic Sans Ms"}
+				]
+	 			row = 1
+	 			column = 1   
+				width = 506px
+			)
+			must have Subject_field
+			(
+    			type = text
+				displayname = "Subject"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Recent_test_addresses_you_have_already_used
+			(
+				type = checkboxes
+				displayname = "Recent test addresses you have already used.."
+				values = {""}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					Test
+					(
+   						type = submit
+   						displayname = "Test"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Email_Count1
+		{
+			displayname = "Email Count"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Count_field
+			(
+				type = number
+				displayname = "Count"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		properties
+		{
+			total entries
+			{
+				allowed count = 1
+			}
+		}
+		}
+		list Test_Run_Campaign_Report
+		{
+			displayName = "Test Run Campaign Report"
+   			hide = true
+			show all rows from Test_Run_Campaign    
+			(
+				Test_campaign_to_be_sent_to as "Test campaign to be sent to"
+				Message
+				Recent_test_addresses_you_have_already_used as "Recent test addresses you have already used.."
+				Subject_field as "Subject"
+			)
+			options
+			(
+				icon = "ui-2-grid-49"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Test_campaign_to_be_sent_to as "Test campaign to be sent to"
+							Message
+							Recent_test_addresses_you_have_already_used as "Recent test addresses you have already used.."
+							Subject_field as "Subject"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Test_campaign_to_be_sent_to as "Test campaign to be sent to"
+							Message
+							Recent_test_addresses_you_have_already_used as "Recent test addresses you have already used.."
+							Subject_field as "Subject"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Email_Count_Report
+		{
+			displayName = "Email Count Report"
+   			hide = true
+			show all rows from Email_Count1    
+			(
+				Count_field as "Count"
+			)
+			options
+			(
+				icon = "ui-2-grid-49"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Count_field as "Count"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Count_field as "Count"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		form Subscribers_Subform_For_New_Campaign
+		{
+			displayname = "Subscribers Subform For New Campaign"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Name1
+			(
+    			type = name
+				displayname = "Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Status
+			(
+				type = radiobuttons
+				values = {"Clicked", "Bounced", "Not Opened", "Forwarded", "Marked as spam", "Opened", "Unsubscribed"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			New_Campaign_Bi
+			(
+				type = picklist
+				displayname = "New Campaign - Bi"
+				values  = New_Campaign.ID
+    			bidirectional = Subscribers
+    			displayformat = [Campaign_Name]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Subscription_Form_Report
+		{
+			displayName = "Subscribers From Website Embed Form"
+   			hide = true
+			show all rows from Subscribe_Me_Form    
+			(
+				Email
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Email
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Email
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Add_Subscriber_Report
+		{
+			displayName = "Add Subscriber Report"
+   			hide = true
+			show all rows from Add_Subscriber    
+			(
+				Email
+				Status
+				Name1  as "Name"
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				New_List_Bi as "New List_Bi"
+			)
+			options
+			(
+				icon = "ui-1-database"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name1 as "Name"
+							Email
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Email
+							Status
+							New_List_Bi as "New List_Bi"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Subscribers_Subform_For_New_Campaign_Report
+		{
+			displayName = "Subscribers Subform For New Campaign Report"
+   			hide = true
+			show all rows from Subscribers_Subform_For_New_Campaign    
+			(
+				Email
+				Status
+				New_Campaign_Bi as "New Campaign - Bi"
+			)
+			options
+			(
+				icon = "ui-2-grid-49"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Email
+							Status
+							New_Campaign_Bi as "New Campaign - Bi"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Email
+							Status
+							New_Campaign_Bi as "New Campaign - Bi"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		pivotchart Activity_Percentage
+		{ 
+			displayname = "Activity Percentage"
+			based on Autoview_1490401807391_Subscribers_Subform_For_N
+					hide = true
+							icon = "ui-3-chart-bars"				show all rows from Subscribers_Subform_For_New_Campaign
+				(
+ 					Name1.prefix  as "Name.Prefix"
+ 					Name1.first_name  as "Name"
+ 					Name1.suffix  as "Name.Suffix"
+ 					Email 
+ 					Name1.last_name  as "Name.Last Name"
+ 					Status 
+ 					New_Campaign_Bi  as "New Campaign - Bi"
+				)
+		}
+	}
+	section Test_Run_Campaign
+	{
+		displayname= "Test Run Campaign"
+		hide = true
+		icon = "ui-2-menu-bold"
+	}
+	section Subscribers_Subform_For_New_Campaign
+	{
+		displayname= "Subscribers Subform For New Campaign"
+		hide = true
+		icon = "ui-2-menu-bold"
+	}
+	section Email_Count
+	{
+		displayname= "Email Count"
+		hide = true
+		icon = "ui-2-menu-bold"
+	}
+	section Subscribe_Me_Form
+	{
+		displayname= "Subscribe Me Form"
+		icon = "users-add-27"
+		form Subscribe_Me_Form
+		{
+			displayname = "Subscribe Me Form"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Name1
+			(
+    			type = name
+				displayname = "Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Phone_Number1
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-3-phone"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Subscribers_Subform_For_New_Campaign1
+	{
+		displayname= "Subscribers Subform For New Campaign"
+		pivotchart Campaigns_info
+		{ 
+			displayname = "Campaigns info"
+			based on Autoview_1490401807391_Subscribers_Subform_For_N
+					hide = true
+							icon = "ui-3-chart-bars"				show all rows from Subscribers_Subform_For_New_Campaign
+				(
+ 					Name1.prefix  as "Name.Prefix"
+ 					Name1.first_name  as "Name"
+ 					Name1.suffix  as "Name.Suffix"
+ 					Email 
+ 					Name1.last_name  as "Name.Last Name"
+ 					Status 
+ 					New_Campaign_Bi  as "New Campaign - Bi"
+				)
+		}
+	}
+	functions
+	{
+ 			void updateCampaignSubscribersActivity(int id)
+			{
+				openUrl("#Form:New_Campaign?recLinkID=" + id + "&viewLinkName=All_Campaigns&editMode=Select_Activity","popup window");
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Configuration_navigation2 as "Configuration navigation"
+			{
+				type =  form
+				form = Create_New_List
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Create_New_List[ID != 0].count(ID) == 1)
+										{
+											openUrl("#Form:New_Campaign","same window");
+										}
+						)
+					}
+	}
+
+			}
+			Configuration_navigation3 as "Configuration navigation"
+			{
+				type =  form
+				form = New_Campaign
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(New_Campaign[ID != 0].count(ID) == 1)
+										{
+											openUrl(zoho.appuri,"same window");
+										}
+						)
+					}
+	}
+
+			}
+			Hiding_Field_While_Editin1 as "Hiding Field While Editing a Record"
+			{
+				type =  form
+				form = Create_New_List
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Add_New_Subscribers.Status;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_3 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = New_Campaign
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Select_Subscribers_List;
+										hide Type_Subscribers;
+										hide Select_Template;
+										hide Date_Time;
+										hide Subscribers;
+										input.From_Email = zoho.adminuserid;
+										disable From_Email;
+										hide Type_Subscribers.Status;
+										hide Type_Subscribers.New_List_Bi;
+										hide editMode;
+										hide Status;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_5 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = New_Campaign
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.editMode = "Normal";
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_6 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = New_Campaign
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Schedule_Campaign_Delivery == "Deliver Immediately")
+										{
+											Email_Count = 0;
+											input.Status = "Sent";
+											if(input.Subscribers_Type == "Select Subscribers List")
+											{
+												for each  subList in input.Select_Subscribers_List
+												{
+													lst = Create_New_List[ID == subList].ID;
+													subs = Add_Subscriber[New_List_Bi == lst].ID.getAll();
+													for each  i in subs
+													{
+														rec = Add_Subscriber[ID == i];
+														insert into Subscribers_Subform_For_New_Campaign
+														[
+															Added_User=zoho.loginuser
+															Name1=rec.Name1
+															Email=rec.Email
+															New_Campaign_Bi=input.ID
+														]
+														Email_Count = Email_Count + 1;
+														sendmail
+														[
+															from :zoho.adminuserid
+															to :rec.Email
+															subject :input.Email_Subject_for_this_Campaign1
+															message :input.Message1
+														]
+													}
+												}
+												delete from Add_Subscriber[Name1.isEmpty() && Email is null];
+											}
+											else if(input.Subscribers_Type == "Type Manually")
+											{
+												insert into Create_New_List
+												[
+													List_Name="Subscribers for " + input.Campaign_Name
+													Added_User=zoho.loginuser
+												]
+												subsList = Create_New_List[List_Name == "Subscribers for " + input.Campaign_Name].ID;
+												for each  sub in input.Type_Subscribers
+												{
+													insert into Add_Subscriber
+													[
+														Email=sub.Email
+														Name1=sub.Name1
+														Added_User=zoho.loginuser
+														New_List_Bi=subsList
+														Status="Active"
+													]
+													insert into Subscribers_Subform_For_New_Campaign
+													[
+														Added_User=zoho.loginuser
+														Name1=sub.Name1
+														Email=sub.Email
+														New_Campaign_Bi=input.ID
+													]
+													Email_Count = Email_Count + 1;
+													sendmail
+													[
+														from :zoho.adminuserid
+														to :sub.Email
+														subject :input.Email_Subject_for_this_Campaign1
+														message :input.Message1
+													]
+												}
+											}
+											input.Date_Time = zoho.currenttime;
+											if(Email_Count1[ID != 0].count() == 0)
+											{
+												insert into Email_Count1
+												[
+													Added_User=zoho.loginuser
+													Count_field=Email_Count
+												]
+											}
+											else
+											{
+												EmailCount = Email_Count1[ID != 0];
+												EmailCount.Count_field=EmailCount.Count_field + Email_Count;
+											}
+										}
+										else
+										{
+											input.Status = "Scheduled";
+											if(input.Subscribers_Type == "Select Subscribers List")
+											{
+												for each  subList in input.Select_Subscribers_List
+												{
+													lst = Create_New_List[ID == subList].ID;
+													subs = Add_Subscriber[New_List_Bi == lst].ID.getAll();
+													for each  i in subs
+													{
+														rec = Add_Subscriber[ID == i];
+														insert into Subscribers_Subform_For_New_Campaign
+														[
+															Added_User=zoho.loginuser
+															Name1=rec.Name1
+															Email=rec.Email
+															New_Campaign_Bi=input.ID
+														]
+													}
+												}
+												delete from Add_Subscriber[Name1.isEmpty() && Email is null];
+											}
+											else if(input.Subscribers_Type == "Type Manually")
+											{
+												for each  sub in input.Type_Subscribers
+												{
+													insert into Subscribers_Subform_For_New_Campaign
+													[
+														Added_User=zoho.loginuser
+														Name1=sub.Name1
+														Email=sub.Email
+														New_Campaign_Bi=input.ID
+													]
+												}
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing2 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = New_Campaign
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.editMode == "Select_Activity")
+										{
+											hide Status;
+											hide Select_Subscribers_List;
+											hide Type_Subscribers;
+											hide Select_Template;
+											hide Date_Time;
+											show Subscribers;
+											disable From_Email;
+											hide Type_Subscribers.Status;
+											hide Type_Subscribers.New_List_Bi;
+											hide editMode;
+											hide Send_Replies_to;
+											hide Select_If_You_Want_To_Test_This_Campaign;
+											hide Message1;
+											hide Campaign_Message_Format_Type;
+											hide plain1;
+											hide plain3;
+											hide plain;
+											hide plain2;
+											hide plain5;
+											hide From_Email;
+											hide plain4;
+											hide plain7;
+											hide plain6;
+											hide Schedule_Campaign_Delivery;
+											hide Email_Subject_for_this_Campaign1;
+											disable Campaign_Name;
+											hide Subscribers_Type;
+											disable Subscribers.Name1;
+											disable Subscribers.Email;
+											hide Subscribers.New_Campaign_Bi;
+											disable Type_Subscribers.Name1;
+											disable Type_Subscribers.Email;
+											disable Type_Subscribers.New_List_Bi;
+											disable Type_Subscribers.Status;
+										}
+										else
+										{
+											if(input.Subscribers_Type == "Select Subscribers List")
+											{
+												show Select_Subscribers_List;
+												hide Type_Subscribers;
+											}
+											else if(input.Subscribers_Type == "Type Manually")
+											{
+												hide Select_Subscribers_List;
+												show Type_Subscribers;
+											}
+											else
+											{
+												hide Select_Subscribers_List;
+												hide Type_Subscribers;
+											}
+											if(input.Schedule_Campaign_Delivery == "Deliver at Following Time")
+											{
+												show Date_Time;
+											}
+											else if(input.Schedule_Campaign_Delivery == "Deliver Immediately")
+											{
+												hide Date_Time;
+											}
+											else
+											{
+												hide Date_Time;
+											}
+											if(input.Campaign_Message_Format_Type == "Select From Template")
+											{
+												show Select_Template;
+											}
+											else if(input.Campaign_Message_Format_Type == "Type Manually")
+											{
+												hide Select_Template;
+											}
+											else
+											{
+												hide Select_Template;
+												input.Message1 = null;
+											}
+											disable Type_Subscribers.Name1;
+											disable Type_Subscribers.Email;
+											disable Type_Subscribers.New_List_Bi;
+											disable Type_Subscribers.Status;
+											hide Status;
+											hide Subscribers;
+											disable From_Email;
+											hide Type_Subscribers.Status;
+											hide Type_Subscribers.New_List_Bi;
+											hide editMode;
+											if(input.Schedule_Campaign_Delivery == "Deliver at Following Time")
+											{
+											}
+											else
+											{
+												disable Type_Subscribers.Name1;
+												disable Type_Subscribers.Email;
+												disable Type_Subscribers.New_List_Bi;
+												disable Type_Subscribers.Status;
+												disable Campaign_Name;
+												disable Email_Subject_for_this_Campaign1;
+												disable Send_Replies_to;
+												disable Subscribers_Type;
+												disable Schedule_Campaign_Delivery;
+												disable Campaign_Message_Format_Type;
+												disable Select_If_You_Want_To_Test_This_Campaign;
+												disable Message1;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_7 as "Run Scripts - While Adding Editing a Record"
+			{
+				type =  form
+				form = Add_Subscriber
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide New_List_Bi;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_8 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Subscriber
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide New_List_Bi;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing3 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Subscribe_Me_Form
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Create_New_List[List_Name == "Subscribers from website"].count() == 0)
+										{
+											insert into Create_New_List
+											[
+												List_Name="Subscribers from website"
+												Added_User=zoho.loginuser
+											]
+											subsList = Create_New_List[List_Name == "Subscribers from website"].ID;
+											insert into Add_Subscriber
+											[
+												Email=input.Email
+												Name1=input.Name1
+												Added_User=zoho.loginuser
+												New_List_Bi=subsList
+												Status="Active"
+											]
+										}
+										else
+										{
+											subsList = Create_New_List[List_Name == "Subscribers from website"].ID;
+											insert into Add_Subscriber
+											[
+												Email=input.Email
+												Name1=input.Name1
+												Added_User=zoho.loginuser
+												New_List_Bi=subsList
+												Status="Active"
+											]
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_9 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Test_Run_Campaign
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											disable Message;
+										if(Test_Run_Campaign[ID != 0].count() != 0)
+										{
+											emails = Test_Run_Campaign[ID != 0].Test_campaign_to_be_sent_to.getAll().distinct();
+											show Recent_test_addresses_you_have_already_used;
+											input.Recent_test_addresses_you_have_already_used:ui.add(emails);
+										}
+										else
+										{
+											hide Recent_test_addresses_you_have_already_used;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_10 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Test_Run_Campaign
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Recent_test_addresses_you_have_already_used.toString() != null)
+										{
+											for each  em in input.Recent_test_addresses_you_have_already_used
+											{
+												sendmail
+												[
+													from :zoho.adminuserid
+													to :em
+													subject :input.Subject_field
+													message :input.Message
+												]
+											}
+										}
+										if(input.Test_campaign_to_be_sent_to != null)
+										{
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :input.Test_campaign_to_be_sent_to
+												subject :input.Subject_field
+												message :input.Message
+											]
+										}
+										openUrl("#Script:dialog.close","same window");
+						)
+					}
+	}
+
+			}
+			No_Add_Row1 as "No Add Row"
+			{
+				type =  form
+				form = New_Campaign
+				record event = on add or edit
+
+	field rules
+	{
+					actions  (editMode == "Normal" || editMode == "Select_Activity")
+					{
+					hide add row of Type_Subscribers;
+					hide delete row of Type_Subscribers;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always1 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = New_Campaign
+				record event = on add or edit
+
+	on user input of Subscribers_Type
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Subscribers_Type == "Select Subscribers List")
+										{
+											show Select_Subscribers_List;
+											hide Type_Subscribers;
+										}
+										else if(input.Subscribers_Type == "Type Manually")
+										{
+											hide Select_Subscribers_List;
+											show Type_Subscribers;
+										}
+										else
+										{
+											hide Select_Subscribers_List;
+											hide Type_Subscribers;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always2 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = New_Campaign
+				record event = on add or edit
+
+	on user input of Select_If_You_Want_To_Test_This_Campaign
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Select_If_You_Want_To_Test_This_Campaign)
+										{
+											openUrl("#Form:Test_Run_Campaign?Message=" + input.Message1 + "&Subject_field=" + input.Email_Subject_for_this_Campaign1,"popup window");
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always3 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = New_Campaign
+				record event = on add or edit
+
+	on user input of Campaign_Message_Format_Type
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Campaign_Message_Format_Type == "Select From Template")
+										{
+											show Select_Template;
+										}
+										else if(input.Campaign_Message_Format_Type == "Type Manually")
+										{
+											hide Select_Template;
+										}
+										else
+										{
+											hide Select_Template;
+											input.Message1 = null;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always4 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = New_Campaign
+				record event = on add or edit
+
+	on user input of Select_Template
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Message1 = Campaign_Template[ID == input.Select_Template].Message;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always5 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = New_Campaign
+				record event = on add or edit
+
+	on user input of Schedule_Campaign_Delivery
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Schedule_Campaign_Delivery == "Deliver at Following Time")
+										{
+											show Date_Time;
+										}
+										else if(input.Schedule_Campaign_Delivery == "Deliver Immediately")
+										{
+											hide Date_Time;
+											input.Date_Time = null;
+										}
+										else
+										{
+											hide Date_Time;
+										}
+						)
+					}
+	}
+
+			}
+			Hiding_Field_While_Adding1 as "Hiding Field While Adding a Record"
+			{
+				type =  form
+				form = Create_New_List
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Add_New_Subscribers.Status;
+						)
+					}
+	}
+
+			}
+		}
+		schedule
+		{
+			Scheduled_Campaign as "Scheduled_Campaign"
+			{
+				type =  schedule
+				form = New_Campaign
+				start = Date_Time
+				time zone = "IST"
+				on start
+				{
+					actions  (Schedule_Campaign_Delivery == "Deliver at Following Time")
+					{
+					on load
+					(
+						if(input.Schedule_Campaign_Delivery == "Deliver at Following Time")
+										{
+											Email_Count = 0;
+											if(input.Subscribers_Type == "Select Subscribers List")
+											{
+												for each  subList in input.Select_Subscribers_List
+												{
+													lst = Create_New_List[ID == subList].ID;
+													subs = Add_Subscriber[New_List_Bi == lst].ID.getAll();
+													for each  i in subs
+													{
+														rec = Add_Subscriber[ID == i];
+														Email_Count = Email_Count + 1;
+														sendmail
+														[
+															from :zoho.adminuserid
+															to :rec.Email
+															subject :input.Email_Subject_for_this_Campaign1
+															message :input.Message1
+														]
+													}
+												}
+												delete from Add_Subscriber[Name1.isEmpty() && Email is null];
+											}
+											else if(input.Subscribers_Type == "Type Manually")
+											{
+												insert into Create_New_List
+												[
+													Added_User=zoho.loginuser
+													List_Name="Subscribers for " + input.Campaign_Name
+												]
+												subsList = Create_New_List[List_Name == "Subscribers for " + input.Campaign_Name].ID;
+												for each  sub in input.Type_Subscribers
+												{
+													insert into Add_Subscriber
+													[
+														Added_User=zoho.loginuser
+														Email=sub.Email
+														Name1=sub.Name1
+														New_List_Bi=subsList
+														Status="Active"
+													]
+													insert into Subscribers_Subform_For_New_Campaign
+													[
+														Added_User=zoho.loginuser
+														Email=sub.Email
+														Name1=sub.Name1
+														New_Campaign_Bi=input.ID
+													]
+													Email_Count = Email_Count + 1;
+													sendmail
+													[
+														from :zoho.adminuserid
+														to :sub.Email
+														subject :input.Email_Subject_for_this_Campaign1
+														message :input.Message1
+													]
+												}
+											}
+											if(Email_Count1[ID != 0].count() == 0)
+											{
+												insert into Email_Count1
+												[
+													Added_User=zoho.loginuser
+													Count_field=Email_Count
+												]
+											}
+											else
+											{
+												EmailCount = Email_Count1[ID != 0];
+												EmailCount.Count_field=EmailCount.Count_field + Email_Count;
+											}
+											input.Status = "Sent";
+										}
+					)
+					}
+				}
+			}
+		}
+		functions
+		{
+			Update_Subscriber_s_Activ as "Update Subscriber's Activity"
+			{
+				type =  functions
+				form = New_Campaign
+				on start
+				{
+					actions 
+					{
+					updateCampaignSubscribersActivity(ID);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"User"
+			{
+				name = "User"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:true}
+				description = "This profile only have add and view permission.\n"
+			}
+			"Member"
+			{
+				name = "Member"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:true}
+				description = "This profile will not have administrative permissions.\n"
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users.\n"
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 4
+		new theme color = 1
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-approval8"
+    	icon theme = "yellow"
+		icons style = outline
+	}
+
+	phone
+	{
+		section  Dashboard
+		{
+			page Dashboard_Test
+			{
+			}
+		}
+		section  Campaigns
+		{
+			form  New_Campaign
+			{
+				layout = left
+			}
+		}
+		section  Subscribers
+		{
+			form  Create_New_List
+			{
+				layout = left
+			}
+		}
+		section  Templates
+		{
+			form  Campaign_Template
+			{
+				layout = auto
+			}
+		}
+		section  Subscribe_Me_Form
+		{
+			displayname= "Subscribe Me Form"
+			icon = "users-add-27"
+			form  Subscribe_Me_Form
+			{
+				layout = auto
+			}
+		}
+		section  Hidden
+		{
+			form  Add_Subscriber
+			{
+				layout = left
+				hide = true
+			}
+			form  Test_Run_Campaign
+			{
+				layout = auto
+				hide = true
+			}
+			form  Email_Count1
+			{
+				layout = auto
+				hide = true
+			}
+			form  Subscribers_Subform_For_New_Campaign
+			{
+				layout = left
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = green
+        	layout = slidingpane
+		 	icons style = outline
+		}
+	}
+	translation
+{
+"{\"de\":{\"FormButton.Subscribers_Subform_For_New_Campaign.cancel\":\" Stornieren \",\"FormField.Subscribe_Me_Form.Added_Time\":\" Zeit hinzugefügt \",\"Report.Campaign_Template_Report\":\" Alle Vorlagen \",\"App.email-campaign\":\"E-Mail-Kampagne \",\"FormField.Test_Run_Campaign.Section\":\" Sektion \",\"FormField.New_Campaign.Select_Template\":\" Vorlage auswählen \",\"FormField.New_Campaign.Subscribers_Type\":\" Empfängertyp \",\"FormField.Create_New_List.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.New_Campaign.editMode\":\" Bearbeitungsmodus \",\"FormField.Campaign_Template.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Campaign_Template.Modified_User\":\" Geänderter Benutzer \",\"FormField.Add_Subscriber.suffix\":\" Suffix \",\"FormField.Subscribers_Subform_For_New_Campaign.Modified_User\":\" Geänderter Benutzer \",\"Languages List.zh-TW\":\" Chinesische Tradition \",\"FormField.Create_New_List.Modified_Time\":\" Geänderte Zeit \",\"PicklistOption.Subscribers_Subform_For_New_Campaign.prefix.1\":\" Herr. \",\"PicklistOption.Subscribers_Subform_For_New_Campaign.prefix.2\":\" Frau. \",\"FormField.New_Campaign.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"PicklistOption.Subscribers_Subform_For_New_Campaign.prefix.3\":\" Frau. \",\"Languages List.ja\":\" japanisch \",\"FormField.Subscribers_Subform_For_New_Campaign.Name1\":\" Name \",\"FormButton.Test_Run_Campaign.update\":\" Aktualisieren \",\"FormField.Subscribers_Subform_For_New_Campaign.last_name\":\" Familienname, Nachname \",\"Page.Dashboard\":\" Instrumententafel \",\"FormField.New_Campaign.Select_Subscribers_List\":\" Wählen Sie Abonnentenliste \",\"Form.Subscribe_Me_Form\":\" Abonniere mich Formular \",\"FormField.Create_New_List.Added_User\":\" Benutzer hinzugefügt \",\"Languages List.ku\":\" kurdisch \",\"ReportField.All_Campaigns.Schedule_Campaign_Delivery\":\" Kampagnenlieferung \",\"FormField.Campaign_Template.ID\":\" ICH WÜRDE \",\"FormField.New_Campaign.Select_If_You_Want_To_Test_This_Campaign\":\" Testen Sie diese Kampagne \",\"Languages List.km\":\" Khmer \",\"Languages List.ko\":\" Koreanisch \",\"Section.Test_Run_Campaign\":\" Testlauf-Kampagne \",\"Languages List.kn\":\" Kannada \",\"Languages List.ka\":\" georgisch \",\"FormField.Add_Subscriber.Added_User\":\" Benutzer hinzugefügt \",\"FormButton.Campaign_Template.cancel\":\" Stornieren \",\"FormField.Subscribers_Subform_For_New_Campaign.first_name\":\" Vorname \",\"FormButton.Subscribe_Me_Form.reset\":\" Zurücksetzen \",\"FormField.Campaign_Template.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Subscribers_Subform_For_New_Campaign.ID\":\" ICH WÜRDE \",\"FormButton.Test_Run_Campaign.reset\":\" Zurücksetzen \",\"ReportField.All_Campaigns.Select_Subscribers_List\":\" Wählen Sie Abonnentenliste \",\"Languages List.hu\":\" ungarisch \",\"Report.Campaigns_info\":\" Kampagneninformationen \",\"Languages List.yi\":\" Jiddisch \",\"ReportField.Test_Run_Campaign_Report.Message\":\" Botschaft \",\"CompositeSubFields.Subscribers_Subform_For_New_Campaign.Name1.last_name\":\" Familienname, Nachname \",\"FormButton.New_Campaign.submit\":\" einreichen \",\"Languages List.hy\":\" Armenisch \",\"PicklistOption.New_Campaign.Schedule_Campaign_Delivery.2\":\" Liefern zur folgenden Zeit \",\"FormField.New_Campaign.Added_Time\":\" Zeit hinzugefügt \",\"Form.Campaign_Template\":\" Neue Vorlage \",\"Report.All_Campaigns\":\" Alle Kampagnen \",\"Languages List.hr\":\" kroatisch \",\"PicklistOption.New_Campaign.Schedule_Campaign_Delivery.1\":\" Sofort liefern \",\"PicklistOption.New_Campaign.Status.1\":\" Geschickt \",\"FormField.Email_Count1.Record_Status\":\" Aufnahmestatus \",\"PicklistOption.New_Campaign.Status.2\":\" Geplant \",\"FormField.Add_Subscriber.ID\":\" ICH WÜRDE \",\"Languages List.hi\":\" Hindi \",\"FormField.Subscribers_Subform_For_New_Campaign.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormButton.Email_Count1.update\":\" Aktualisieren \",\"FormButton.Create_New_List.update\":\" Aktualisieren \",\"FormField.Test_Run_Campaign.Modified_Time\":\" Geänderte Zeit \",\"Languages List.zh\":\" Chinesisch \",\"Languages List.iw\":\" hebräisch \",\"FormField.Add_Subscriber.Modified_User\":\" Geänderter Benutzer \",\"FormField.Email_Count1.Modified_Time\":\" Geänderte Zeit \",\"ReportField.All_Campaigns.Subscribers_Type\":\" Empfängertyp \",\"Languages List.is\":\" isländisch \",\"FormField.New_Campaign.Email_Subject_for_this_Campaign1\":\" E-Mail-Betreff für diese Kampagne \",\"Section.Subscribers_Subform_For_New_Campaign\":\" Subformular für Abonnenten für neue Kampagne \",\"Languages List.it\":\" Italienisch \",\"FormButton.Email_Count1.cancel\":\" Stornieren \",\"FormField.Test_Run_Campaign.Subject_field\":\" Gegenstand \",\"FormField.Test_Run_Campaign.Record_Status\":\" Aufnahmestatus \",\"FormField.Subscribers_Subform_For_New_Campaign.New_Campaign_Bi\":\" Neue Kampagne - Bi \",\"FormField.Subscribe_Me_Form.suffix\":\" Suffix \",\"FormButton.Subscribers_Subform_For_New_Campaign.reset\":\" Zurücksetzen \",\"ReportField.All_Campaigns.From_Email\":\" Aus der Email \",\"CompositeSubFields.Subscribe_Me_Form.Name1.last_name\":\" Familienname, Nachname \",\"FormField.Subscribe_Me_Form.last_name\":\" Familienname, Nachname \",\"PicklistOption.New_Campaign.Campaign_Message_Format_Type.1\":\" Wählen Sie Aus Vorlage \",\"Report.Subscribers_List\":\" Abonnentenliste \",\"PicklistOption.New_Campaign.Campaign_Message_Format_Type.2\":\" Geben Sie manuell ein \",\"ReportField.Add_Subscriber_Report.Email\":\" Email \",\"FormButton.Create_New_List.cancel\":\" Stornieren \",\"CompositeSubFields.Add_Subscriber.Name1.first_name\":\" Vorname \",\"Languages List.nl\":\" Niederländisch \",\"Form.Email_Count1\":\" Anzahl der E-Mails \",\"FormButton.Add_Subscriber.reset\":\" Zurücksetzen \",\"FormField.Test_Run_Campaign.Added_User\":\" Benutzer hinzugefügt \",\"FormField.New_Campaign.From_Email\":\" Aus der Email \",\"ReportField.Add_Subscriber_Report.New_List_Bi\":\" Neue Liste_Bi \",\"Languages List.no\":\" norwegisch \",\"FormButton.Subscribe_Me_Form.submit\":\" einreichen \",\"PicklistOption.Add_Subscriber.prefix.1\":\" Herr. \",\"PicklistOption.Add_Subscriber.prefix.2\":\" Frau. \",\"PicklistOption.Add_Subscriber.prefix.3\":\" Frau. \",\"FormField.New_Campaign.Campaign_Name\":\" Kampagnenname \",\"FormField.Test_Run_Campaign.Message\":\" Botschaft \",\"ReportField.Email_Count_Report.Count_field\":\" Anzahl \",\"FormField.Email_Count1.Added_Time\":\" Zeit hinzugefügt \",\"FormField.New_Campaign.Modified_User\":\" Geänderter Benutzer \",\"FormField.Add_Subscriber.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Subscribe_Me_Form.Section\":\" Sektion \",\"FormField.Test_Run_Campaign.Test_campaign_to_be_sent_to\":\" Testkampagne, an die gesendet werden soll \",\"ReportField.Test_Run_Campaign_Report.Test_campaign_to_be_sent_to\":\" Testkampagne, an die gesendet werden soll \",\"CompositeSubFields.Subscribers_Subform_For_New_Campaign.Name1.suffix\":\" Suffix \",\"ReportField.All_Campaigns.Email_Subject_for_this_Campaign1\":\" Gegenstand \",\"FormField.Subscribe_Me_Form.first_name\":\" Vorname \",\"Section.Dashboard\":\" Instrumententafel \",\"FormField.Subscribers_Subform_For_New_Campaign.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Create_New_List.Add_New_Subscribers\":\" Neue Abonnenten hinzufügen \",\"FormField.Subscribers_Subform_For_New_Campaign.Section\":\" Sektion \",\"ReportField.Subscription_Form_Report.Email\":\" Email \",\"Languages List.lt\":\" litauisch \",\"Section.Subscribers\":\" Abonnenten \",\"Languages List.lv\":\" lettisch \",\"Report.Add_Subscriber_Report\":\" Abonnentenbericht hinzufügen \",\"ReportField.Test_Run_Campaign_Report.Subject_field\":\" Gegenstand \",\"ReportField.Subscribers_Subform_For_New_Campaign_Report.Status\":\" Status \",\"PicklistOption.Subscribers_Subform_For_New_Campaign.Status.6\":\" Geöffnet \",\"PicklistOption.Subscribers_Subform_For_New_Campaign.Status.7\":\" Abgemeldet \",\"FormField.Campaign_Template.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormButton.Campaign_Template.reset\":\" Zurücksetzen \",\"FormButton.Subscribe_Me_Form.cancel\":\" Stornieren \",\"PicklistOption.Subscribers_Subform_For_New_Campaign.Status.4\":\" Weitergeleitet \",\"PicklistOption.Subscribers_Subform_For_New_Campaign.Status.5\":\" Als Spam markiert \",\"Languages List.lo\":\" Laothian \",\"FormField.New_Campaign.Send_Replies_to\":\" Senden Sie Antworten an \",\"PicklistOption.Subscribers_Subform_For_New_Campaign.Status.2\":\" Ausgetreten \",\"PicklistOption.Subscribers_Subform_For_New_Campaign.Status.3\":\" Nicht geöffnet \",\"Report.Email_Count_Report\":\" E-Mail-Zählbericht \",\"Languages List.la\":\" Latein \",\"PicklistOption.Subscribers_Subform_For_New_Campaign.Status.1\":\" Angeklickt \",\"FormButton.Add_Subscriber.submit\":\" einreichen \",\"FormField.Create_New_List.Section\":\" Sektion \",\"ReportField.Campaign_Template_Report.Message\":\" Botschaft \",\"ReportField.All_Campaigns.Date_Time\":\" Terminzeit \",\"ReportField.All_Campaigns.Message1\":\" Botschaft \",\"ReportField.Subscribers_List.Add_New_Subscribers.New_List_Bi\":\" Neue Abonnenten hinzufügen \",\"FormField.Campaign_Template.Message\":\" Botschaft \",\"FormField.Subscribe_Me_Form.Name1\":\" Name \",\"Languages List.ms\":\" malaiisch \",\"Languages List.mr\":\" Marathi \",\"Report.Subscription_Form_Report\":\" Abonnenten von Website-Formular einbetten \",\"ReportField.All_Campaigns.Campaign_Name\":\" Kampagnenname \",\"Languages List.mt\":\" maltesisch \",\"FormButton.Add_Subscriber.cancel\":\" Stornieren \",\"ReportField.Add_Subscriber_Report.first_name\":\" Name \",\"Languages List.mk\":\" mazedonisch \",\"FormField.Create_New_List.Record_Status\":\" Aufnahmestatus \",\"FormField.Subscribe_Me_Form.Modified_User\":\" Geänderter Benutzer \",\"Section.Subscribe_Me_Form\":\" Abonniere mich Formular \",\"FormButton.Subscribe_Me_Form.update\":\" Aktualisieren \",\"FormField.Add_Subscriber.Section\":\" Sektion \",\"FormField.Email_Count1.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"CompositeSubFields.Subscribers_Subform_For_New_Campaign.Name1.prefix\":\" Präfix \",\"FormField.Subscribe_Me_Form.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Subscribers_Subform_For_New_Campaign.Email\":\" Email \",\"FormField.New_Campaign.Schedule_Campaign_Delivery\":\" Planen Sie die Kampagnenzustellung \",\"FormButton.Test_Run_Campaign.Test\":\" Prüfung \",\"Languages List.bg\":\" bulgarisch \",\"CompositeSubFields.Subscribe_Me_Form.Name1.first_name\":\" Vorname \",\"Languages List.bn\":\" Bengali \",\"Form.New_Campaign\":\" Neue Kampagne \",\"FormField.Campaign_Template.Modified_Time\":\" Geänderte Zeit \",\"Languages List.ro\":\" rumänisch \",\"FormButton.Campaign_Template.update\":\" Aktualisieren \",\"FormField.Test_Run_Campaign.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"Languages List.be\":\" Belarussisch \",\"Languages List.ru\":\" Russisch \",\"FormField.New_Campaign.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Subscribe_Me_Form.Email\":\" Email \",\"FormField.Create_New_List.Modified_User\":\" Geänderter Benutzer \",\"Languages List.az\":\" Aserbaidschanisch \",\"FormButton.New_Campaign.reset\":\" Zurücksetzen \",\"Languages List.ta\":\" Tamilisch \",\"Languages List.cs\":\" Tschechisch \",\"FormField.Create_New_List.ID\":\" ICH WÜRDE \",\"Languages List.te\":\" Telugu \",\"PicklistOption.Subscribe_Me_Form.prefix.1\":\" Herr. \",\"Languages List.th\":\" Thai \",\"PicklistOption.Subscribe_Me_Form.prefix.3\":\" Frau. \",\"Report.Test_Run_Campaign_Report\":\" Testlauf-Kampagnenbericht \",\"FormField.New_Campaign.Campaign_Message_Format_Type\":\" Kampagnennachrichtenformattyp \",\"PicklistOption.Subscribe_Me_Form.prefix.2\":\" Frau. \",\"FormField.Create_New_List.Added_Time\":\" Zeit hinzugefügt \",\"Form.Subscribers_Subform_For_New_Campaign\":\" Subformular für Abonnenten für neue Kampagne \",\"Languages List.sq\":\" albanisch \",\"Languages List.ca\":\" katalanisch \",\"FormField.Campaign_Template.Added_User\":\" Benutzer hinzugefügt \",\"FormButton.Add_Subscriber.update\":\" Aktualisieren \",\"Languages List.sw\":\" Swahili \",\"ReportField.All_Campaigns.Status\":\" Status \",\"Languages List.sv\":\" Schwedisch \",\"Languages List.sk\":\" slowakisch \",\"FormField.Add_Subscriber.Added_Time\":\" Zeit hinzugefügt \",\"Languages List.sl\":\" Slowenisch \",\"FormField.Email_Count1.Section\":\" Sektion \",\"Report.Activity_Percentage\":\" Aktivitätsprozentsatz \",\"FormButton.Subscribers_Subform_For_New_Campaign.submit\":\" einreichen \",\"FormField.Email_Count1.Count_field\":\" Anzahl \",\"Section.Campaigns\":\" Kampagnen \",\"FormButton.Subscribers_Subform_For_New_Campaign.update\":\" Aktualisieren \",\"FormField.New_Campaign.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Subscriber.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Add_Subscriber.Record_Status\":\" Aufnahmestatus \",\"FormField.Add_Subscriber.Name1\":\" Name \",\"FormField.New_Campaign.Type_Subscribers\":\" Abonnenten eingeben \",\"ReportField.All_Campaigns.Send_Replies_to\":\" Senden Sie Antworten an \",\"FormField.Create_New_List.List_Name\":\" Listennamen \",\"Languages List.pt\":\" Portugiesisch \",\"ReportField.Add_Subscriber_Report.Status\":\" Status \",\"PicklistOption.Add_Subscriber.Status.1\":\" Aktiv \",\"PicklistOption.Add_Subscriber.Status.2\":\" Abgemeldet \",\"FormField.Test_Run_Campaign.Modified_User\":\" Geänderter Benutzer \",\"Languages List.pl\":\" Polieren \",\"PicklistOption.Add_Subscriber.Status.3\":\" Ausgetreten \",\"CustomAction.All_Campaigns.Update_Subscriber_s_Activ\":\" Aktivität des Abonnenten aktualisieren \",\"ReportField.All_Campaigns.Select_Template\":\" Vorlage auswählen \",\"FormField.Subscribe_Me_Form.Phone_Number1\":\" Telefonnummer \",\"Form.Create_New_List\":\" Erstellen Sie eine neue Liste \",\"Languages List.ar\":\" Arabisch \",\"FormField.Add_Subscriber.Modified_Time\":\" Geänderte Zeit \",\"FormField.Email_Count1.Modified_User\":\" Geänderter Benutzer \",\"FormField.Subscribe_Me_Form.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"Languages List.af\":\" Afrikaans \",\"FormField.Subscribers_Subform_For_New_Campaign.Modified_Time\":\" Geänderte Zeit \",\"FormField.Subscribers_Subform_For_New_Campaign.Record_Status\":\" Aufnahmestatus \",\"FormField.Test_Run_Campaign.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Subscribe_Me_Form.prefix\":\" Präfix \",\"FormButton.Create_New_List.submit\":\" einreichen \",\"FormButton.Email_Count1.submit\":\" einreichen \",\"Page.Dashboard_Test\":\" Instrumententafel \",\"FormButton.New_Campaign.cancel\":\" Stornieren \",\"FormField.Campaign_Template.Template_Name\":\" Vorlagentitel \",\"FormField.Campaign_Template.Record_Status\":\" Aufnahmestatus \",\"FormField.New_Campaign.Record_Status\":\" Aufnahmestatus \",\"FormField.Test_Run_Campaign.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormButton.Email_Count1.reset\":\" Zurücksetzen \",\"FormField.Test_Run_Campaign.Recent_test_addresses_you_have_already_used\":\" Letzte Testadressen, die Sie bereits verwendet haben .. \",\"Section.Email_Count\":\" Anzahl der E-Mails \",\"FormField.Add_Subscriber.last_name\":\" Familienname, Nachname \",\"Section.Subscribers_Subform_For_New_Campaign1\":\" Subformular für Abonnenten für neue Kampagne \",\"FormField.Add_Subscriber.prefix\":\" Präfix \",\"PicklistOption.New_Campaign.Subscribers_Type.2\":\" Geben Sie manuell ein \",\"Languages List.fr\":\" Französisch \",\"PicklistOption.New_Campaign.Subscribers_Type.1\":\" Wählen Sie Abonnentenliste \",\"ReportField.Subscribers_List.List_Name\":\" Listennamen \",\"Languages List.fi\":\" Finnese \",\"FormField.New_Campaign.Date_Time\":\" Terminzeit \",\"FormField.New_Campaign.Message1\":\" Botschaft \",\"Languages List.fa\":\" persisch \",\"FormField.Add_Subscriber.Email\":\" Email \",\"Languages List.gu\":\" Gujarati \",\"FormField.Email_Count1.Added_User\":\" Benutzer hinzugefügt \",\"CompositeSubFields.Subscribers_Subform_For_New_Campaign.Name1.first_name\":\" Vorname \",\"CompositeSubFields.Add_Subscriber.Name1.last_name\":\" Familienname, Nachname \",\"FormField.Add_Subscriber.Status\":\" Status \",\"FormField.New_Campaign.Subscribers\":\" Abonnenten \",\"FormField.New_Campaign.Status\":\" Status \",\"FormField.Subscribe_Me_Form.ID\":\" ICH WÜRDE \",\"Languages List.gl\":\" galizisch \",\"FormField.New_Campaign.Modified_Time\":\" Geänderte Zeit \",\"FormButton.New_Campaign.update\":\" Aktualisieren \",\"Form.Add_Subscriber\":\" Abonnent hinzufügen \",\"FormButton.Test_Run_Campaign.cancel\":\" Stornieren \",\"ReportField.Campaign_Template_Report.Template_Name\":\" Vorlagenname \",\"ReportField.Subscribers_Subform_For_New_Campaign_Report.Email\":\" Email \",\"Section.Add_Subscriber\":\" Abonnent hinzufügen \",\"FormButton.Campaign_Template.submit\":\" einreichen \",\"Languages List.ga\":\" irisch \",\"CompositeSubFields.Add_Subscriber.Name1.prefix\":\" Präfix \",\"FormField.Subscribers_Subform_For_New_Campaign.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Add_Subscriber.first_name\":\" Vorname \",\"Section.Hidden\":\" Versteckt \",\"FormField.Subscribers_Subform_For_New_Campaign.Added_User\":\" Benutzer hinzugefügt \",\"ReportField.Subscribers_Subform_For_New_Campaign_Report.New_Campaign_Bi\":\" Neue Kampagne - Bi \",\"CompositeSubFields.Add_Subscriber.Name1.suffix\":\" Suffix \",\"PicklistOption.New_Campaign.editMode.2\":\" Normal \",\"FormField.Subscribe_Me_Form.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"PicklistOption.New_Campaign.editMode.1\":\" Select_Activity \",\"FormField.Subscribers_Subform_For_New_Campaign.suffix\":\" Suffix \",\"FormField.New_Campaign.Section\":\" Sektion \",\"FormField.Email_Count1.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Create_New_List.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"Languages List.tr\":\" Türkisch \",\"Languages List.da\":\" dänisch \",\"FormField.Add_Subscriber.New_List_Bi\":\" Neue Liste_Bi \",\"FormField.Test_Run_Campaign.ID\":\" ICH WÜRDE \",\"Languages List.de\":\" Deutsche \",\"Languages List.cy\":\" Walisisch \",\"FormField.Email_Count1.ID\":\" ICH WÜRDE \",\"Report.Subscribers_Subform_For_New_Campaign_Report\":\" Subformular für Abonnenten für neuen Kampagnenbericht \",\"Languages List.tl\":\" Filipino \",\"FormField.Subscribe_Me_Form.Record_Status\":\" Aufnahmestatus \",\"FormField.New_Campaign.ID\":\" ICH WÜRDE \",\"FormField.Subscribers_Subform_For_New_Campaign.prefix\":\" Präfix \",\"Languages List.es\":\" Spanisch \",\"Languages List.eu\":\" baskisch \",\"FormButton.Create_New_List.reset\":\" Zurücksetzen \",\"Languages List.et\":\" estnisch \",\"CompositeSubFields.Subscribe_Me_Form.Name1.prefix\":\" Präfix \",\"ReportField.All_Campaigns.Campaign_Message_Format_Type\":\" Kampagnennachrichtenformattyp \",\"Languages List.vi\":\" Vietnamesisch \",\"Languages List.el\":\" griechisch \",\"Languages List.eo\":\" Esperanto \",\"Languages List.en\":\" Englisch \",\"Languages List.ur\":\" Urdu \",\"Form.Test_Run_Campaign\":\" Testlauf-Kampagne \",\"Section.Templates\":\" Vorlagen \",\"FormField.Subscribe_Me_Form.Modified_Time\":\" Geänderte Zeit \",\"FormField.Subscribers_Subform_For_New_Campaign.Status\":\" Status \",\"CompositeSubFields.Subscribe_Me_Form.Name1.suffix\":\" Suffix \",\"ReportField.Test_Run_Campaign_Report.Recent_test_addresses_you_have_already_used\":\" Letzte Testadressen, die Sie bereits verwendet haben .. \"},\"fr\":{\"FormButton.Subscribers_Subform_For_New_Campaign.cancel\":\" Annuler \",\"FormField.Subscribe_Me_Form.Added_Time\":\" Temps ajouté \",\"Report.Campaign_Template_Report\":\" Tous les modèles \",\"App.email-campaign\":\"Campagne par email \",\"FormField.Test_Run_Campaign.Section\":\" Section \",\"FormField.New_Campaign.Select_Template\":\" Sélectionnez un modèle \",\"FormField.New_Campaign.Subscribers_Type\":\" Type de destinataire \",\"FormField.Create_New_List.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.New_Campaign.editMode\":\" Mode édition \",\"FormField.Campaign_Template.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Campaign_Template.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Subscriber.suffix\":\" Suffixe \",\"FormField.Subscribers_Subform_For_New_Campaign.Modified_User\":\" Utilisateur modifié \",\"Languages List.zh-TW\":\" Chinois traditionnel \",\"FormField.Create_New_List.Modified_Time\":\" Heure modifiée \",\"PicklistOption.Subscribers_Subform_For_New_Campaign.prefix.1\":\" M. \",\"PicklistOption.Subscribers_Subform_For_New_Campaign.prefix.2\":\" Madame. \",\"FormField.New_Campaign.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"PicklistOption.Subscribers_Subform_For_New_Campaign.prefix.3\":\" Mme. \",\"Languages List.ja\":\" Japonais \",\"FormField.Subscribers_Subform_For_New_Campaign.Name1\":\" prénom \",\"FormButton.Test_Run_Campaign.update\":\" Mettre à jour \",\"FormField.Subscribers_Subform_For_New_Campaign.last_name\":\" Nom de famille \",\"Page.Dashboard\":\" Tableau de bord \",\"FormField.New_Campaign.Select_Subscribers_List\":\" Sélectionner la liste des abonnés \",\"Form.Subscribe_Me_Form\":\" M'abonner Formulaire \",\"FormField.Create_New_List.Added_User\":\" Utilisateur ajouté \",\"Languages List.ku\":\" kurde \",\"ReportField.All_Campaigns.Schedule_Campaign_Delivery\":\" Livraison de la campagne \",\"FormField.Campaign_Template.ID\":\" ID \",\"FormField.New_Campaign.Select_If_You_Want_To_Test_This_Campaign\":\" Testez cette campagne \",\"Languages List.km\":\" Khmer \",\"Languages List.ko\":\" coréen \",\"Section.Test_Run_Campaign\":\" Campagne de test \",\"Languages List.kn\":\" Kannada \",\"Languages List.ka\":\" géorgien \",\"FormField.Add_Subscriber.Added_User\":\" Utilisateur ajouté \",\"FormButton.Campaign_Template.cancel\":\" Annuler \",\"FormField.Subscribers_Subform_For_New_Campaign.first_name\":\" Prénom \",\"FormButton.Subscribe_Me_Form.reset\":\" Réinitialiser \",\"FormField.Campaign_Template.Added_Time\":\" Temps ajouté \",\"FormField.Subscribers_Subform_For_New_Campaign.ID\":\" ID \",\"FormButton.Test_Run_Campaign.reset\":\" Réinitialiser \",\"ReportField.All_Campaigns.Select_Subscribers_List\":\" Sélectionner la liste des abonnés \",\"Languages List.hu\":\" hongrois \",\"Report.Campaigns_info\":\" Informations sur les campagnes \",\"Languages List.yi\":\" yiddish \",\"ReportField.Test_Run_Campaign_Report.Message\":\" Message \",\"CompositeSubFields.Subscribers_Subform_For_New_Campaign.Name1.last_name\":\" Nom de famille \",\"FormButton.New_Campaign.submit\":\" Soumettre \",\"Languages List.hy\":\" arménien \",\"PicklistOption.New_Campaign.Schedule_Campaign_Delivery.2\":\" Livrer au moment suivant \",\"FormField.New_Campaign.Added_Time\":\" Temps ajouté \",\"Form.Campaign_Template\":\" Nouveau modèle \",\"Report.All_Campaigns\":\" Toutes les campagnes \",\"Languages List.hr\":\" croate \",\"PicklistOption.New_Campaign.Schedule_Campaign_Delivery.1\":\" Livrer immédiatement \",\"PicklistOption.New_Campaign.Status.1\":\" Envoyé \",\"FormField.Email_Count1.Record_Status\":\" Statut d'enregistrement \",\"PicklistOption.New_Campaign.Status.2\":\" Prévu \",\"FormField.Add_Subscriber.ID\":\" ID \",\"Languages List.hi\":\" hindi \",\"FormField.Subscribers_Subform_For_New_Campaign.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormButton.Email_Count1.update\":\" Mettre à jour \",\"FormButton.Create_New_List.update\":\" Mettre à jour \",\"FormField.Test_Run_Campaign.Modified_Time\":\" Heure modifiée \",\"Languages List.zh\":\" chinois \",\"Languages List.iw\":\" hébreu \",\"FormField.Add_Subscriber.Modified_User\":\" Utilisateur modifié \",\"FormField.Email_Count1.Modified_Time\":\" Heure modifiée \",\"ReportField.All_Campaigns.Subscribers_Type\":\" Type de destinataire \",\"Languages List.is\":\" islandais \",\"FormField.New_Campaign.Email_Subject_for_this_Campaign1\":\" Sujet de l'e-mail pour cette campagne \",\"Section.Subscribers_Subform_For_New_Campaign\":\" Sous-formulaire Abonnés pour une nouvelle campagne \",\"Languages List.it\":\" italien \",\"FormButton.Email_Count1.cancel\":\" Annuler \",\"FormField.Test_Run_Campaign.Subject_field\":\" Assujettir \",\"FormField.Test_Run_Campaign.Record_Status\":\" Statut d'enregistrement \",\"FormField.Subscribers_Subform_For_New_Campaign.New_Campaign_Bi\":\" Nouvelle campagne - Bi \",\"FormField.Subscribe_Me_Form.suffix\":\" Suffixe \",\"FormButton.Subscribers_Subform_For_New_Campaign.reset\":\" Réinitialiser \",\"ReportField.All_Campaigns.From_Email\":\" De l'email \",\"CompositeSubFields.Subscribe_Me_Form.Name1.last_name\":\" Nom de famille \",\"FormField.Subscribe_Me_Form.last_name\":\" Nom de famille \",\"PicklistOption.New_Campaign.Campaign_Message_Format_Type.1\":\" Sélectionner à partir du modèle \",\"Report.Subscribers_List\":\" Liste des abonnés \",\"PicklistOption.New_Campaign.Campaign_Message_Format_Type.2\":\" Tapez manuellement \",\"ReportField.Add_Subscriber_Report.Email\":\" Email \",\"FormButton.Create_New_List.cancel\":\" Annuler \",\"CompositeSubFields.Add_Subscriber.Name1.first_name\":\" Prénom \",\"Languages List.nl\":\" néerlandais \",\"Form.Email_Count1\":\" Nombre d'emails \",\"FormButton.Add_Subscriber.reset\":\" Réinitialiser \",\"FormField.Test_Run_Campaign.Added_User\":\" Utilisateur ajouté \",\"FormField.New_Campaign.From_Email\":\" De l'email \",\"ReportField.Add_Subscriber_Report.New_List_Bi\":\" Nouveau List_Bi \",\"Languages List.no\":\" norvégien \",\"FormButton.Subscribe_Me_Form.submit\":\" Soumettre \",\"PicklistOption.Add_Subscriber.prefix.1\":\" M. \",\"PicklistOption.Add_Subscriber.prefix.2\":\" Madame. \",\"PicklistOption.Add_Subscriber.prefix.3\":\" Mme. \",\"FormField.New_Campaign.Campaign_Name\":\" Nom de la campagne \",\"FormField.Test_Run_Campaign.Message\":\" Message \",\"ReportField.Email_Count_Report.Count_field\":\" Compter \",\"FormField.Email_Count1.Added_Time\":\" Temps ajouté \",\"FormField.New_Campaign.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Subscriber.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Subscribe_Me_Form.Section\":\" Section \",\"FormField.Test_Run_Campaign.Test_campaign_to_be_sent_to\":\" Campagne de test à envoyer à \",\"ReportField.Test_Run_Campaign_Report.Test_campaign_to_be_sent_to\":\" Campagne de test à envoyer à \",\"CompositeSubFields.Subscribers_Subform_For_New_Campaign.Name1.suffix\":\" Suffixe \",\"ReportField.All_Campaigns.Email_Subject_for_this_Campaign1\":\" Assujettir \",\"FormField.Subscribe_Me_Form.first_name\":\" Prénom \",\"Section.Dashboard\":\" Tableau de bord \",\"FormField.Subscribers_Subform_For_New_Campaign.Added_Time\":\" Temps ajouté \",\"FormField.Create_New_List.Add_New_Subscribers\":\" Ajouter de nouveaux abonnés \",\"FormField.Subscribers_Subform_For_New_Campaign.Section\":\" Section \",\"ReportField.Subscription_Form_Report.Email\":\" Email \",\"Languages List.lt\":\" lituanien \",\"Section.Subscribers\":\" Les abonnés \",\"Languages List.lv\":\" letton \",\"Report.Add_Subscriber_Report\":\" Ajouter un rapport d'abonné \",\"ReportField.Test_Run_Campaign_Report.Subject_field\":\" Assujettir \",\"ReportField.Subscribers_Subform_For_New_Campaign_Report.Status\":\" Statut \",\"PicklistOption.Subscribers_Subform_For_New_Campaign.Status.6\":\" Ouvert \",\"PicklistOption.Subscribers_Subform_For_New_Campaign.Status.7\":\" Désabonné \",\"FormField.Campaign_Template.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormButton.Campaign_Template.reset\":\" Réinitialiser \",\"FormButton.Subscribe_Me_Form.cancel\":\" Annuler \",\"PicklistOption.Subscribers_Subform_For_New_Campaign.Status.4\":\" Transféré \",\"PicklistOption.Subscribers_Subform_For_New_Campaign.Status.5\":\" Marqué comme spam \",\"Languages List.lo\":\" Laothian \",\"FormField.New_Campaign.Send_Replies_to\":\" Envoyer des réponses à \",\"PicklistOption.Subscribers_Subform_For_New_Campaign.Status.2\":\" Rebondi \",\"PicklistOption.Subscribers_Subform_For_New_Campaign.Status.3\":\" Pas ouvert \",\"Report.Email_Count_Report\":\" Rapport de compte de courrier électronique \",\"Languages List.la\":\" Latin \",\"PicklistOption.Subscribers_Subform_For_New_Campaign.Status.1\":\" Cliqué \",\"FormButton.Add_Subscriber.submit\":\" Soumettre \",\"FormField.Create_New_List.Section\":\" Section \",\"ReportField.Campaign_Template_Report.Message\":\" Message \",\"ReportField.All_Campaigns.Date_Time\":\" Date-heure \",\"ReportField.All_Campaigns.Message1\":\" Message \",\"ReportField.Subscribers_List.Add_New_Subscribers.New_List_Bi\":\" Ajouter de nouveaux abonnés \",\"FormField.Campaign_Template.Message\":\" Message \",\"FormField.Subscribe_Me_Form.Name1\":\" prénom \",\"Languages List.ms\":\" malais \",\"Languages List.mr\":\" Marathi \",\"Report.Subscription_Form_Report\":\" Abonnés du formulaire d'intégration de site Web \",\"ReportField.All_Campaigns.Campaign_Name\":\" Nom de la campagne \",\"Languages List.mt\":\" maltais \",\"FormButton.Add_Subscriber.cancel\":\" Annuler \",\"ReportField.Add_Subscriber_Report.first_name\":\" prénom \",\"Languages List.mk\":\" Macédonien \",\"FormField.Create_New_List.Record_Status\":\" Statut d'enregistrement \",\"FormField.Subscribe_Me_Form.Modified_User\":\" Utilisateur modifié \",\"Section.Subscribe_Me_Form\":\" M'abonner Formulaire \",\"FormButton.Subscribe_Me_Form.update\":\" Mettre à jour \",\"FormField.Add_Subscriber.Section\":\" Section \",\"FormField.Email_Count1.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"CompositeSubFields.Subscribers_Subform_For_New_Campaign.Name1.prefix\":\" Préfixe \",\"FormField.Subscribe_Me_Form.Added_User\":\" Utilisateur ajouté \",\"FormField.Subscribers_Subform_For_New_Campaign.Email\":\" Email \",\"FormField.New_Campaign.Schedule_Campaign_Delivery\":\" Calendrier de livraison \",\"FormButton.Test_Run_Campaign.Test\":\" Tester \",\"Languages List.bg\":\" bulgare \",\"CompositeSubFields.Subscribe_Me_Form.Name1.first_name\":\" Prénom \",\"Languages List.bn\":\" bengali \",\"Form.New_Campaign\":\" Nouvelle campagne \",\"FormField.Campaign_Template.Modified_Time\":\" Heure modifiée \",\"Languages List.ro\":\" roumain \",\"FormButton.Campaign_Template.update\":\" Mettre à jour \",\"FormField.Test_Run_Campaign.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"Languages List.be\":\" Biélorusse \",\"Languages List.ru\":\" russe \",\"FormField.New_Campaign.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Subscribe_Me_Form.Email\":\" Email \",\"FormField.Create_New_List.Modified_User\":\" Utilisateur modifié \",\"Languages List.az\":\" azerbaïdjanais \",\"FormButton.New_Campaign.reset\":\" Réinitialiser \",\"Languages List.ta\":\" Tamil \",\"Languages List.cs\":\" tchèque \",\"FormField.Create_New_List.ID\":\" ID \",\"Languages List.te\":\" Telugu \",\"PicklistOption.Subscribe_Me_Form.prefix.1\":\" M. \",\"Languages List.th\":\" thaïlandais \",\"PicklistOption.Subscribe_Me_Form.prefix.3\":\" Mme. \",\"Report.Test_Run_Campaign_Report\":\" Rapport de campagne de test \",\"FormField.New_Campaign.Campaign_Message_Format_Type\":\" Type de format de message de campagne \",\"PicklistOption.Subscribe_Me_Form.prefix.2\":\" Madame. \",\"FormField.Create_New_List.Added_Time\":\" Temps ajouté \",\"Form.Subscribers_Subform_For_New_Campaign\":\" Sous-formulaire Abonnés pour une nouvelle campagne \",\"Languages List.sq\":\" albanais \",\"Languages List.ca\":\" catalan \",\"FormField.Campaign_Template.Added_User\":\" Utilisateur ajouté \",\"FormButton.Add_Subscriber.update\":\" Mettre à jour \",\"Languages List.sw\":\" Swahili \",\"ReportField.All_Campaigns.Status\":\" Statut \",\"Languages List.sv\":\" suédois \",\"Languages List.sk\":\" slovaque \",\"FormField.Add_Subscriber.Added_Time\":\" Temps ajouté \",\"Languages List.sl\":\" slovène \",\"FormField.Email_Count1.Section\":\" Section \",\"Report.Activity_Percentage\":\" Pourcentage d'activité \",\"FormButton.Subscribers_Subform_For_New_Campaign.submit\":\" Soumettre \",\"FormField.Email_Count1.Count_field\":\" Compter \",\"Section.Campaigns\":\" Campagnes \",\"FormButton.Subscribers_Subform_For_New_Campaign.update\":\" Mettre à jour \",\"FormField.New_Campaign.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Subscriber.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Add_Subscriber.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_Subscriber.Name1\":\" prénom \",\"FormField.New_Campaign.Type_Subscribers\":\" Type Abonnés \",\"ReportField.All_Campaigns.Send_Replies_to\":\" Envoyer des réponses à \",\"FormField.Create_New_List.List_Name\":\" Liste de noms \",\"Languages List.pt\":\" Portugais \",\"ReportField.Add_Subscriber_Report.Status\":\" Statut \",\"PicklistOption.Add_Subscriber.Status.1\":\" actif \",\"PicklistOption.Add_Subscriber.Status.2\":\" Désabonné \",\"FormField.Test_Run_Campaign.Modified_User\":\" Utilisateur modifié \",\"Languages List.pl\":\" polonais \",\"PicklistOption.Add_Subscriber.Status.3\":\" Rebondi \",\"CustomAction.All_Campaigns.Update_Subscriber_s_Activ\":\" Mettre à jour l'activité de l'abonné \",\"ReportField.All_Campaigns.Select_Template\":\" Sélectionnez un modèle \",\"FormField.Subscribe_Me_Form.Phone_Number1\":\" Numéro de téléphone \",\"Form.Create_New_List\":\" Créer une nouvelle liste \",\"Languages List.ar\":\" arabe \",\"FormField.Add_Subscriber.Modified_Time\":\" Heure modifiée \",\"FormField.Email_Count1.Modified_User\":\" Utilisateur modifié \",\"FormField.Subscribe_Me_Form.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"Languages List.af\":\" afrikaans \",\"FormField.Subscribers_Subform_For_New_Campaign.Modified_Time\":\" Heure modifiée \",\"FormField.Subscribers_Subform_For_New_Campaign.Record_Status\":\" Statut d'enregistrement \",\"FormField.Test_Run_Campaign.Added_Time\":\" Temps ajouté \",\"FormField.Subscribe_Me_Form.prefix\":\" Préfixe \",\"FormButton.Create_New_List.submit\":\" Soumettre \",\"FormButton.Email_Count1.submit\":\" Soumettre \",\"Page.Dashboard_Test\":\" Tableau de bord \",\"FormButton.New_Campaign.cancel\":\" Annuler \",\"FormField.Campaign_Template.Template_Name\":\" Titre du modèle \",\"FormField.Campaign_Template.Record_Status\":\" Statut d'enregistrement \",\"FormField.New_Campaign.Record_Status\":\" Statut d'enregistrement \",\"FormField.Test_Run_Campaign.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormButton.Email_Count1.reset\":\" Réinitialiser \",\"FormField.Test_Run_Campaign.Recent_test_addresses_you_have_already_used\":\" Les adresses de test récentes que vous avez déjà utilisées. \",\"Section.Email_Count\":\" Nombre d'emails \",\"FormField.Add_Subscriber.last_name\":\" Nom de famille \",\"Section.Subscribers_Subform_For_New_Campaign1\":\" Sous-formulaire Abonnés pour une nouvelle campagne \",\"FormField.Add_Subscriber.prefix\":\" Préfixe \",\"PicklistOption.New_Campaign.Subscribers_Type.2\":\" Tapez manuellement \",\"Languages List.fr\":\" français \",\"PicklistOption.New_Campaign.Subscribers_Type.1\":\" Sélectionner la liste des abonnés \",\"ReportField.Subscribers_List.List_Name\":\" Liste de noms \",\"Languages List.fi\":\" Finnois \",\"FormField.New_Campaign.Date_Time\":\" Date-heure \",\"FormField.New_Campaign.Message1\":\" Message \",\"Languages List.fa\":\" persan \",\"FormField.Add_Subscriber.Email\":\" Email \",\"Languages List.gu\":\" Gujarati \",\"FormField.Email_Count1.Added_User\":\" Utilisateur ajouté \",\"CompositeSubFields.Subscribers_Subform_For_New_Campaign.Name1.first_name\":\" Prénom \",\"CompositeSubFields.Add_Subscriber.Name1.last_name\":\" Nom de famille \",\"FormField.Add_Subscriber.Status\":\" Statut \",\"FormField.New_Campaign.Subscribers\":\" Les abonnés \",\"FormField.New_Campaign.Status\":\" Statut \",\"FormField.Subscribe_Me_Form.ID\":\" ID \",\"Languages List.gl\":\" Galicien \",\"FormField.New_Campaign.Modified_Time\":\" Heure modifiée \",\"FormButton.New_Campaign.update\":\" Mettre à jour \",\"Form.Add_Subscriber\":\" Ajouter un abonné \",\"FormButton.Test_Run_Campaign.cancel\":\" Annuler \",\"ReportField.Campaign_Template_Report.Template_Name\":\" Nom du modèle \",\"ReportField.Subscribers_Subform_For_New_Campaign_Report.Email\":\" Email \",\"Section.Add_Subscriber\":\" Ajouter un abonné \",\"FormButton.Campaign_Template.submit\":\" Soumettre \",\"Languages List.ga\":\" irlandais \",\"CompositeSubFields.Add_Subscriber.Name1.prefix\":\" Préfixe \",\"FormField.Subscribers_Subform_For_New_Campaign.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Add_Subscriber.first_name\":\" Prénom \",\"Section.Hidden\":\" Caché \",\"FormField.Subscribers_Subform_For_New_Campaign.Added_User\":\" Utilisateur ajouté \",\"ReportField.Subscribers_Subform_For_New_Campaign_Report.New_Campaign_Bi\":\" Nouvelle campagne - Bi \",\"CompositeSubFields.Add_Subscriber.Name1.suffix\":\" Suffixe \",\"PicklistOption.New_Campaign.editMode.2\":\" Ordinaire \",\"FormField.Subscribe_Me_Form.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"PicklistOption.New_Campaign.editMode.1\":\" Select_Activity \",\"FormField.Subscribers_Subform_For_New_Campaign.suffix\":\" Suffixe \",\"FormField.New_Campaign.Section\":\" Section \",\"FormField.Email_Count1.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Create_New_List.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"Languages List.tr\":\" turc \",\"Languages List.da\":\" danois \",\"FormField.Add_Subscriber.New_List_Bi\":\" Nouveau List_Bi \",\"FormField.Test_Run_Campaign.ID\":\" ID \",\"Languages List.de\":\" allemand \",\"Languages List.cy\":\" gallois \",\"FormField.Email_Count1.ID\":\" ID \",\"Report.Subscribers_Subform_For_New_Campaign_Report\":\" Abonné sous-formulaire pour le nouveau rapport de campagne \",\"Languages List.tl\":\" Philippin \",\"FormField.Subscribe_Me_Form.Record_Status\":\" Statut d'enregistrement \",\"FormField.New_Campaign.ID\":\" ID \",\"FormField.Subscribers_Subform_For_New_Campaign.prefix\":\" Préfixe \",\"Languages List.es\":\" Espanol \",\"Languages List.eu\":\" basque \",\"FormButton.Create_New_List.reset\":\" Réinitialiser \",\"Languages List.et\":\" estonien \",\"CompositeSubFields.Subscribe_Me_Form.Name1.prefix\":\" Préfixe \",\"ReportField.All_Campaigns.Campaign_Message_Format_Type\":\" Type de format de message de campagne \",\"Languages List.vi\":\" vietnamien \",\"Languages List.el\":\" grec \",\"Languages List.eo\":\" espéranto \",\"Languages List.en\":\" Anglais \",\"Languages List.ur\":\" Urdu \",\"Form.Test_Run_Campaign\":\" Campagne de test \",\"Section.Templates\":\" Modèles \",\"FormField.Subscribe_Me_Form.Modified_Time\":\" Heure modifiée \",\"FormField.Subscribers_Subform_For_New_Campaign.Status\":\" Statut \",\"CompositeSubFields.Subscribe_Me_Form.Name1.suffix\":\" Suffixe \",\"ReportField.Test_Run_Campaign_Report.Recent_test_addresses_you_have_already_used\":\" Les adresses de test récentes que vous avez déjà utilisées. \"}}"
+}
+	reports configuration
+	{
+	
+		Version = 1251000165802323
+		Key     = "tdSnM7UvWNZ0m35qtdGpHzXvkpeBfu937Q8XPuvdEUhGRrapQWsJRO49G8K7WWhSvSWt9wUS8UrzPYR5er1PJxneJChNRvTd2ndT"
+	}
+}

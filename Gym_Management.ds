@@ -1,0 +1,5444 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 23:35:34
+ * Version      : 1.0
+ */
+ application "Gym Management"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "IST"
+ 	time format = "24-hr"
+	section Gym_Details
+	{
+		displayname= "Gym Details"
+		icon = "sport-cardio"
+		form Gym_Details
+		{
+			displayname = "Gym Details"
+			success message = "Gym Detail Added Successfully"
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Gym_Name
+			(
+    			type = text
+				displayname = "Gym Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Contact_Number
+			(
+				type = number
+				displayname = "Contact Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Gym_Address
+			(
+    			type = address
+				displayname = "Gym Address"
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_1
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_2
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "sport-cardio"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		properties
+		{
+			total entries
+			{
+				allowed count = 1
+			}
+		}
+		}
+	}
+	section Add_Staff_Trainer
+	{
+		displayname= "Add Staff/Trainer"
+		icon = "tech-desktop"
+		form Add_Staff_Trainer
+		{
+			displayname = "Add Staff/Trainer"
+			success message = "Staff/Trainer Added Successfully!"
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Phone_Number1
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Email_ID
+			(
+    			type = email
+				displayname = "Email ID"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Photo
+			(
+    			type = image
+				source  = file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Classes
+			(
+				type = list
+				values  = Add_Class.ID
+    			bidirectional = Class_Trainer
+    			displayformat = [Class_Name]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Admin
+	{
+		icon = "users-2-home"
+				 page Dashboard 
+	 	 { 
+ 	 	 displayname = "Dashboard" 
+
+ 	 	 icon = "ui-1-dashboard-half" 
+	 	 Content="<zml \n\t\t\tisPdfEnabled='false'\n\t\t\n\t\t\tisPrintEnabled='false'\n\t\t\n\t\t\n\t\t\n\t\t\tmobileDeviceConfig='{\"layout\":{\"displayType\":\"plain\",\"design\":\"onebyone\",\"forcedOrientation\":false}}'\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"33%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Members_By_Package'\n   \t\t heightType = 'custom'\n   \t\t heightValue = '500'\n   \t\t iszreport = 'true'\n   \t\t zc_Header = 'true'\n   \t\t zc_Footer = 'true'\n   \t\t zc_SecHeader = 'true'\n   \t\t zc_AddRec = 'true'\n   \t\t zc_EditRec = 'true'\n   \t\t zc_Print = 'true'\n   \t\t zc_Export = 'true'\n   \t\t zc_DelRec = 'true'\n   \t\t zc_DuplRec = 'true'\n   \t\t zc_EditBulkRec = 'true'\n   \t\t zc_SaveRec = 'true'\n   \t\t zc_Filter = 'true'\n   \t\t zc_Search = 'true'\n   \t\t zc_SumRow = 'true'\n   \t\t zc_ColMenu = 'true'\n   \t\t zc_RecSelect = 'true'\n\n\/>\n<\/column><column\n   \t\t width=\"34%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Member_Attendance'\n   \t\t heightType = 'custom'\n   \t\t heightValue = '500'\n   \t\t iszreport = 'true'\n   \t\t zc_Header = 'true'\n   \t\t zc_Footer = 'true'\n   \t\t zc_SecHeader = 'true'\n   \t\t zc_AddRec = 'true'\n   \t\t zc_EditRec = 'true'\n   \t\t zc_Print = 'true'\n   \t\t zc_Export = 'true'\n   \t\t zc_DelRec = 'true'\n   \t\t zc_DuplRec = 'true'\n   \t\t zc_EditBulkRec = 'true'\n   \t\t zc_SaveRec = 'true'\n   \t\t zc_Filter = 'true'\n   \t\t zc_Search = 'true'\n   \t\t zc_SumRow = 'true'\n   \t\t zc_ColMenu = 'true'\n   \t\t zc_RecSelect = 'true'\n\n\/>\n<\/column><column\n   \t\t width=\"33%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Revenues_By_Packages'\n   \t\t heightType = 'custom'\n   \t\t heightValue = '500'\n   \t\t iszreport = 'true'\n   \t\t zc_Header = 'true'\n   \t\t zc_Footer = 'true'\n   \t\t zc_SecHeader = 'true'\n   \t\t zc_AddRec = 'true'\n   \t\t zc_EditRec = 'true'\n   \t\t zc_Print = 'true'\n   \t\t zc_Export = 'true'\n   \t\t zc_DelRec = 'true'\n   \t\t zc_DuplRec = 'true'\n   \t\t zc_EditBulkRec = 'true'\n   \t\t zc_SaveRec = 'true'\n   \t\t zc_Filter = 'true'\n   \t\t zc_Search = 'true'\n   \t\t zc_SumRow = 'true'\n   \t\t zc_ColMenu = 'true'\n   \t\t zc_RecSelect = 'true'\n\n\/>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"25%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#5FCE9B'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Members_Details'\n   \t\t target = 'same-window'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t padding = '5px'\n\n>\n\t<pr \n>\n\t<pc \n>\n\t<image    \t\t color = '#FFFFFF'\n   \t\t bgColor = '#5FCE9B'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'users-single-01'\n   \t\t size = '4'\n   \t\t cornerRadius = '26px'\n   \t\t iconType = 'solid'\n\n\/>\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Trainee.ID.count'\n   \t\t criteria = '(((Member_Status == &quot;Active&quot;)))'\n   \t\t size = '6'\n   \t\t color = '#FFFFFF'\n   \t\t bold = 'true'\n   \t\t marginTop = '3px'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc><pc    \t\t paddingLeft = '10px'\n\n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Members'\n   \t\t size = '3'\n   \t\t color = '#FFFFFF'\n   \t\t fontFamily = 'arial, helvetica, sans-serif'\n   \t\t marginTop = '3px'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"25%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#66B5D6'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Staffs_Trainers'\n   \t\t target = 'same-window'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t padding = '5px'\n\n>\n\t<pr \n>\n\t<pc \n>\n\t<image    \t\t color = '#FFFFFF'\n   \t\t bgColor = '#66B5D6'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'users-network'\n   \t\t size = '4'\n   \t\t cornerRadius = '26px'\n   \t\t iconType = 'solid'\n\n\/>\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Staff_Trainer.ID.count'\n   \t\t size = '8'\n   \t\t color = '#FFFFFF'\n   \t\t bold = 'true'\n   \t\t marginTop = '3px'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc><pc    \t\t paddingLeft = '10px'\n\n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Staffs\/Trainers'\n   \t\t size = '3'\n   \t\t color = '#FFFFFF'\n   \t\t marginTop = '3px'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"25%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#E87352'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'All_Classes'\n   \t\t target = 'same-window'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t padding = '5px'\n\n>\n\t<pr \n>\n\t<pc \n>\n\t<image    \t\t color = '#FFFFFF'\n   \t\t bgColor = '#E87352'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'users-2-meeting'\n   \t\t size = '4'\n   \t\t cornerRadius = '26px'\n   \t\t iconType = 'solid'\n\n\/>\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Class.ID.count'\n   \t\t size = '6'\n   \t\t color = '#FFFFFF'\n   \t\t bold = 'true'\n   \t\t marginTop = '3px'\n   \t\t displayType = 'actual'\n   \t\t decimalSeperator = '.'\n   \t\t numberScale = 'none'\n\n>\n<\/text>\n\n\n<\/pc><pc    \t\t paddingLeft = '10px'\n\n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Classes'\n   \t\t size = '3'\n   \t\t color = '#FFFFFF'\n   \t\t marginTop = '3px'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"25%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#EECA5A'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Awaiting_Payments'\n   \t\t target = 'same-window'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t padding = '5px'\n\n>\n\t<pr \n>\n\t<pc \n>\n\t<image    \t\t color = '#FFFFFF'\n   \t\t bgColor = '#EECA5A'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'business-money-time'\n   \t\t size = '4'\n   \t\t cornerRadius = '26px'\n   \t\t iconType = 'solid'\n\n\/>\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Payment_Form.ID.count'\n   \t\t criteria = '(((Payment_status == &quot;Waiting&quot;)))'\n   \t\t size = '8'\n   \t\t color = '#FFFFFF'\n   \t\t bold = 'true'\n   \t\t marginTop = '3px'\n   \t\t displayType = 'actual'\n   \t\t decimalSeperator = '.'\n   \t\t numberScale = 'none'\n\n>\n<\/text>\n\n\n<\/pc><pc    \t\t paddingLeft = '10px'\n\n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Awaiting Payments'\n   \t\t size = '3'\n   \t\t color = '#FFFFFF'\n   \t\t marginTop = '3px'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Monthly_Payments'\n   \t\t heightType = 'custom'\n   \t\t heightValue = '560'\n   \t\t iszreport = 'true'\n   \t\t zc_Header = 'true'\n   \t\t zc_Footer = 'true'\n   \t\t zc_SecHeader = 'true'\n   \t\t zc_AddRec = 'true'\n   \t\t zc_EditRec = 'true'\n   \t\t zc_Print = 'true'\n   \t\t zc_Export = 'true'\n   \t\t zc_DelRec = 'true'\n   \t\t zc_DuplRec = 'true'\n   \t\t zc_EditBulkRec = 'true'\n   \t\t zc_SaveRec = 'true'\n   \t\t zc_Filter = 'true'\n   \t\t zc_Search = 'true'\n   \t\t zc_SumRow = 'true'\n   \t\t zc_ColMenu = 'true'\n   \t\t zc_RecSelect = 'true'\n\n\/>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dsp id='html_snippet3'>\n\t<![CDATA[htmlpage html_snippet3()\ndisplayname = &quot;html_snippet&quot;\ncontent\n&lt;%{\n\tif(Gym_Details[ID != 0].count() == 0)\n\t{\n\t\topenUrl(&quot;#Form:Gym_Details?zc_NextUrl=#Form:Add_Staff_Trainer&quot;,&quot;same window&quot;);\n\t}\n\t%&gt;\n&lt;style&gt;\n.zc-pb-tile-card {\n\tbox-shadow: unset !important;\n}\n.zc-pb-tile-cnt-wrapper:last-child {\n    border-bottom-right-radius: 0px !important;\n    border-bottom-left-radius: 0px !important;\n    box-shadow: unset !important;\n}\n.zc-pb-elem-title-container {\n    text-align: center;\n}\ndiv[class*=&apos;col-&apos;] {\n    -webkit-box-sizing: border-box;\n    -moz-box-sizing: border-box;\n    box-sizing: border-box;\n    width: 100% !important;\n}\n.view-header&gt;.row h3 {\n    color: #000;\n    font-size: 16px;\n    padding: 5px 15px;\n    font-weight: 700 !important;\n    margin: 0;\n    position: relative;\n}\n.zc-design-switch .view-outer-wrapper .view-header {\n    border-bottom: 1px solid #eee;\n    background-color: white;\n}\n.view-options, .view-edit-options {\n    list-style: none;\n    margin: 0;\n    padding: 6px 0 0 0;\n    float: right;\n    visibility: visible;\n    position: absolute;\n    top: -46px;\n    right: 25px;\n}\n.zc-pb-formreport-placeholder.divEmbedContainer {\n    height: 450px !important;\n}\n.view-outer-wrapper {\n    height: 450px !important;\n}\n\n&lt;\/style&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+		list Trainees_Attendance_Report
+		{
+			displayName = "Trainees Attendance Report"
+   			hide = true
+			show all rows from Check_In_Check_Out_Form1    
+			(
+				Member
+				(
+					view = Trainees
+				)
+				Checked_In_Time as "Checked In Time"
+				Checked_Out_Time as "Checked Out Time"
+				Date_field1 as "Date"
+			)
+			options
+			(
+				icon = "ui-1-check-circle-07"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Member
+							Checked_In_Time as "Checked In Time"
+							Checked_Out_Time as "Checked Out Time"
+							Date_field1 as "Date"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Member
+							Checked_In_Time as "Checked In Time"
+							Checked_Out_Time as "Checked Out Time"
+							Date_field1 as "Date"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Staffs_Trainers
+		{
+			displayName = "Staffs/Trainers"
+			show all rows from Add_Staff_Trainer    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Phone_Number1 as "Phone Number"
+				Email_ID as "Email ID"
+				Photo
+				Classes
+			)
+			options
+			(
+				icon = "users-single-01"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Phone_Number1 as "Phone Number"
+							Email_ID as "Email ID"
+							Photo
+							Classes
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Phone_Number1 as "Phone Number"
+							Email_ID as "Email ID"
+							Photo
+							Classes
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Memberships
+		{
+			displayName = "Memberships"
+			show all rows from Add_Membership    
+			(
+				Membership_Title as "Membership Title"
+				Amount
+				Package
+				Number_Of_Months as "Number Of Months"
+				Description
+				Schedule_Date as "Schedule Date"
+			)
+			group by
+			(
+				Package ascending
+			)
+			options
+			(
+				icon = "shopping-credit-card-in"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Membership_Title as "Membership Title"
+							Amount
+							Package
+							Number_Of_Months as "Number Of Months"
+							Description
+							Schedule_Date as "Schedule Date"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Membership_Title as "Membership Title"
+							Amount
+							Package
+							Number_Of_Months as "Number Of Months"
+							Description
+							Schedule_Date as "Schedule Date"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Classes
+		{
+			displayName = "All Classes"
+			show all rows from Add_Class    
+			(
+				Class_Name as "Class Name"
+				Description
+				Class_Trainer as "Class Trainer"
+				custom action "Add Trainee To Class"
+				(
+	  			workflow = Add_Trainee_Workflow
+				show action in edit record menu = true
+				column header = "Add Trainee To Class"
+				)
+			)
+			options
+			(
+				icon = "users-2-family"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Class_Name as "Class Name"
+							Class_Trainer as "Class Trainer"
+							Description
+				"Add Trainee To Class"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Class_Name as "Class Name"
+							Description
+							Class_Trainer as "Class Trainer"
+						)
+					)
+					datablock2
+					(
+			 			layout type = 19
+		     			title = "Class Trainer"
+		     			related field =  Class_Trainer
+						fields
+						(
+							Photo
+							Name
+							Classes
+							Phone_Number1 as "Phone Number"
+							Email_ID as "Email ID"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Trainees"
+		     			related field =  Trainees
+						fields
+						(
+							Photo
+							Member_ID as "Member ID"
+							Name
+							Email_ID as "Email ID"
+							Phone_Number as "Phone Number"
+							Personal_Trainer as "Personal Trainer"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Today_Attendance_Report
+		{
+			displayName = "Today Attendance Report"
+			show all rows from Check_In_Check_Out_Form1  [Date_field1 is today]  
+			(
+				Member
+				(
+					view = Trainees
+				)
+				Checked_In_Time as "Checked In Time"
+				Checked_Out_Time as "Checked Out Time"
+				Date_field1 as "Date"
+			)
+			options
+			(
+				icon = "arrows-4-system-update"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Member
+							Checked_In_Time as "Checked In Time"
+							Checked_Out_Time as "Checked Out Time"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Member
+							Checked_In_Time as "Checked In Time"
+							Checked_Out_Time as "Checked Out Time"
+							Date_field1 as "Date"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		summary Gym_Details1
+		{
+			displayName = "Gym Details"
+			show all rows from Gym_Details    
+			(
+				Gym_Name as "Gym Name"
+				Gym_Address  as "Gym Address"
+	 			(
+	      			displayformat = [address_line_1+""+address_line_2+""+district_city+""+state_province+""+postal_Code+""+country]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Contact_Number as "Contact Number"
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 1
+				label width = 20%
+				icon = "sport-cardio"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Gym_Name as "Gym Name"
+							Gym_Address as "Gym Address"
+							Contact_Number as "Contact Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Gym_Name as "Gym Name"
+							Gym_Address as "Gym Address"
+							Contact_Number as "Contact Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Members
+	{
+		icon = "users-multiple-11"
+		form Add_Trainee
+		{
+			displayname = "Add Trainee"
+			success message = "Member Added Successfully"
+			field alignment = left
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Member_ID
+			(
+    			type = autonumber
+				displayname = "Member ID"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Date_Of_Birth
+			(
+    			type = date
+				displayname = "Date Of Birth"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Age
+			(
+				type = number
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Membership
+			(
+				type = picklist
+				values  = Add_Membership.ID
+    			displayformat = [Membership_Title]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Next_Payment_Schedule_Date
+			(
+    			type = date
+				displayname = "Next Payment Schedule Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Personal_Trainer
+			(
+				type = picklist
+				displayname = "Personal Trainer"
+				values  = Add_Staff_Trainer.ID
+    			displayformat = [" " + Name.prefix + " " + Name.first_name + " " + Name.last_name + " " + Name.suffix]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Classes
+			(
+				type = list
+				values  = Add_Class.ID
+    			bidirectional = Trainees
+    			displayformat = [Class_Name]
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Member_Status
+			(
+				type = radiobuttons
+				displayname = "Member Status"
+				values = {"Active", "Archive"}
+				initial value = "Active"
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email_ID
+			(
+    			type = email
+				displayname = "Email ID"
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			must have Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			must have Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_1
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_2
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Photo
+			(
+    			type = image
+				source  = file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-2-a-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Trainees
+		{
+			displayName = "Trainees"
+			show all rows from Add_Trainee  [Member_Status == "Active"]  
+			(
+				Personal_Trainer as "Personal Trainer"
+				Membership
+				Date_Of_Birth as "Date Of Birth"
+				Age
+				custom action "Add Trainee To Class"
+				(
+	  			workflow = Add_Trainee_To_Class_Work
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Add Trainee To Class"
+				)
+				Member_ID as "Member ID"
+				Photo
+				Phone_Number as "Phone Number"
+				Email_ID as "Email ID"
+				Address 
+	 			(
+	      			displayformat = [address_line_1+""+address_line_2+""+district_city+""+state_province+""+postal_Code+""+country]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				custom action "Archive"
+				(
+	  			workflow = Archive_Trainee
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Archive"
+				condition = (Member_Status == "Active")
+				confirmation before execution
+				(
+					message for individual record = "Do you Archive this trainee?"
+					confirm button text = "Yes"		
+					cancel button text = "No"
+				)
+				)
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+			)
+			group by
+			(
+				Personal_Trainer ascending
+			)
+			options
+			(
+				icon = "users-multiple-11"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Member_ID as "Member ID"
+							Name
+							Phone_Number as "Phone Number"
+							Email_ID as "Email ID"
+							Personal_Trainer as "Personal Trainer"
+				"Add Trainee To Class"
+				"Archive"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Add Trainee To Class"
+								"Archive"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 19
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Name
+							Address
+							Email_ID as "Email ID"
+							Email_ID as "Email ID"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Membership"
+		     			related field =  Membership[Member_Status == "Active"]
+						fields
+						(
+							Membership_Title as "Membership Title"
+							Package
+							Number_Of_Months as "Number Of Months"
+							Amount
+							Description
+						)
+					)
+					datablock3
+					(
+			 			layout type = 19
+		     			title = "Personal Trainer"
+		     			related field =  Personal_Trainer[Member_Status == "Active"]
+						fields
+						(
+							Photo
+							Name
+							Classes
+							Phone_Number1 as "Phone Number"
+							Email_ID as "Email ID"
+						)
+					)
+					datablock4
+					(
+			 			layout type = -1
+		     			title = "Classes"
+		     			related field =  Classes[Member_Status == "Active"]
+						fields
+						(
+							Class_Name as "Class Name"
+							Description
+							Class_Trainer as "Class Trainer"
+							Trainees
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Add Trainee To Class"
+			 			"Archive"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Dropped_Trainees
+		{
+			displayName = "Dropped Trainees"
+			show all rows from Add_Trainee  [Member_Status == "Archive"]  
+			(
+				Personal_Trainer as "Personal Trainer"
+				Membership
+				Date_Of_Birth as "Date Of Birth"
+				Age
+				Member_ID as "Member ID"
+				Photo
+				Phone_Number as "Phone Number"
+				Email_ID as "Email ID"
+				Address 
+	 			(
+	      			displayformat = [address_line_1+""+address_line_2+""+district_city+""+state_province+""+postal_Code+""+country]
+	      			enable = Show_As_Text
+	 			)
+				custom action "Active"
+				(
+	  			workflow = Active_Trainee
+				show action in view header = true
+				column header = "Active"
+				confirmation before execution
+				(
+					message for individual record = "Execute the Active action for this record?"
+					confirm button text = "Yes"		
+					cancel button text = "No"
+				)
+				)
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+			)
+			group by
+			(
+				Personal_Trainer ascending
+			)
+			options
+			(
+				icon = "location-bookmark-remove"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Member_ID as "Member ID"
+							Name
+							Phone_Number as "Phone Number"
+							Email_ID as "Email ID"
+				"Active"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 19
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Name
+							Address
+							Email_ID as "Email ID"
+							Email_ID as "Email ID"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Membership"
+		     			related field =  Membership[Member_Status == "Archive"]
+						fields
+						(
+							Membership_Title as "Membership Title"
+							Package
+							Number_Of_Months as "Number Of Months"
+							Amount
+							Description
+						)
+					)
+					datablock3
+					(
+			 			layout type = 19
+		     			title = "Personal Trainer"
+		     			related field =  Personal_Trainer[Member_Status == "Archive"]
+						fields
+						(
+							Photo
+							Name
+							Classes
+							Phone_Number1 as "Phone Number"
+							Email_ID as "Email ID"
+						)
+					)
+					datablock4
+					(
+			 			layout type = -1
+		     			title = "Classes"
+		     			related field =  Classes[Member_Status == "Archive"]
+						fields
+						(
+							Class_Name as "Class Name"
+							Description
+							Class_Trainer as "Class Trainer"
+							Trainees
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Active"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		kanban Members_Details
+		{
+			displayName = "Members Details"
+			show all rows from Add_Trainee  [Member_Status == "Active"]  
+			(
+				Date_Of_Birth as "Date Of Birth"
+				Age
+				Membership
+				Personal_Trainer as "Personal Trainer"
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Photo
+				Phone_Number as "Phone Number"
+				Email_ID as "Email ID"
+				Member_ID as "Member ID"
+				Address 
+	 			(
+	      			displayformat = [address_line_1+""+address_line_2+""+district_city+""+state_province+""+postal_Code+""+country]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+			)
+			sort by
+			(
+				Membership ascending
+			)
+			options
+			(
+	 			display field = Personal_Trainer
+				record count  = enable
+				icon = "users-2-contacts-44"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 6
+					datablock1
+					(
+			 			layout type = 19
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Name
+							Member_ID as "Member ID"
+							Email_ID as "Email ID"
+							Phone_Number as "Phone Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 19
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Name
+							Address
+							Email_ID as "Email ID"
+							Email_ID as "Email ID"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Membership"
+		     			related field =  Membership[Member_Status == "Active"]
+						fields
+						(
+							Membership_Title as "Membership Title"
+							Package
+							Number_Of_Months as "Number Of Months"
+							Amount
+							Description
+						)
+					)
+					datablock3
+					(
+			 			layout type = 19
+		     			title = "Personal Trainer"
+		     			related field =  Personal_Trainer[Member_Status == "Active"]
+						fields
+						(
+							Photo
+							Name
+							Classes
+							Phone_Number1 as "Phone Number"
+							Email_ID as "Email ID"
+						)
+					)
+					datablock4
+					(
+			 			layout type = -1
+		     			title = "Classes"
+		     			related field =  Classes[Member_Status == "Active"]
+						fields
+						(
+							Class_Name as "Class Name"
+							Description
+							Class_Trainer as "Class Trainer"
+							Trainees
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		pivotchart Members_By_Package
+		{ 
+			displayname = "Membership Strength"
+			based on Autoview_1557134906675_Add_Member
+					hide = true
+							icon = "business-round-euro"				show all rows from Add_Trainee
+				(
+ 					Personal_Trainer  as "Personal Trainer"
+ 					Address.latitude  as "latitude"
+ 					Name.last_name  as "Name.Last Name"
+ 					Address.country  as "Address.Country"
+ 					Address.address_line_2  as "Address.Address Line 2"
+ 					Name.prefix  as "Name.Prefix"
+ 					Address.district_city  as "Address.City / District"
+ 					Name.suffix  as "Name.Suffix"
+ 					Address.postal_Code  as "Address.Postal Code"
+ 					Date_Of_Birth  as "Date Of Birth"
+ 					Member_Status  as "Member Status"
+ 					Name.first_name  as "Name"
+ 					Email_ID  as "Email ID"
+ 					Address.state_province  as "Address.State / Province"
+ 					Phone_Number  as "Phone Number"
+ 					Address.longitude  as "longitude"
+ 					Address.address_line_1  as "Address"
+ 					Member_ID  as "Member ID"
+ 					Age 
+ 					Membership 
+ 					Next_Payment_Schedule_Date  as "Next Payment Schedule Date"
+				)
+		}
+	}
+	section Trainer
+	{
+		icon = "users-network"
+		form Assign_Workouts
+		{
+			displayname = "Assign Workouts"
+			success message = "Workout Assigned Successfully"
+			field alignment = left
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Assigned_By
+			(
+				type = picklist
+				displayname = "Assigned By"
+				values  = Add_Staff_Trainer.ID
+    			displayformat = [" " + Name.prefix + " " + Name.first_name + " " + Name.last_name + " " + Name.suffix]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Assign_To
+			(
+				type = radiobuttons
+				displayname = "Assign To"
+				values = {"Member", "Class"}
+				layout = 2
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Member
+			(
+				type = picklist
+				values  = Add_Trainee.ID
+    			displayformat = [" " + Name.prefix + " " + Name.first_name + " " + Name.last_name + " " + Name.suffix]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Class
+			(
+				type = picklist
+				values  = Add_Class.ID
+    			displayformat = [Class_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have From_Date
+			(
+    			type = date
+				displayname = "From Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have No_Of_Days_Repeat
+			(
+				type = number
+				displayname = "No Of Days Repeat"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status
+			(
+				type = radiobuttons
+				values = {"Current", "Done"}
+				initial value = "Current"
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Workouts
+			(
+				type = grid
+				auto width = false
+	    
+				must have Days
+				(
+					type = list
+					values = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}
+					height = 60px
+					width = 206px
+				)
+				must have Workout
+				(
+					type = picklist
+					values  = Add_Workout.ID
+    				displayformat = [Workout_Title]
+					allow new entries = true
+					[
+						displayname = "Add New workout"
+					]
+					sortorder = ascending
+					width = 200px
+				)
+				Weight
+				(
+					type = decimal
+					displayname = "Weight (Kg)"
+    				description
+    				[
+    					type = tooltip
+    				 	message = "Weight in Kg"
+    				]
+					width = 115px
+				)
+				must have Sets
+				(
+					type = number
+					maxchar = 1
+    				description
+    				[
+    					type = tooltip
+    				 	message = "No.of sets"
+    				]
+					width = 115px
+				)
+				must have Reps
+				(
+					type = number
+					maxchar = 3
+    				description
+    				[
+    					type = tooltip
+    				 	message = "Repeat times"
+    				]
+					width = 115px
+				)
+				must have Rest
+				(
+					type = decimal
+					displayname = "Rest (min)"
+    				description
+    				[
+    					type = tooltip
+    				 	message = "Time in minutes"
+    				]
+					width = 115px
+				)
+				must have Description
+				(
+    				type = textarea
+					height = 100px
+    				description
+    				[
+    					type = tooltip
+    				 	message = "Give any tips Eg: 1st set 10 reps with 10Kg, 2nd set 8 reps with 8Kg."
+    				]
+					width = 200px
+				)
+				Exercise_Done
+				(
+    				type = checkbox
+					displayname = "Exercise Done "
+					initial value = false
+					width = medium
+				)
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "design-todo"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Assign"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		custom My_Classes
+		{
+			displayName = "My Classes"
+			show all rows from Add_Class  [Class_Trainer.Email_ID == zoho.loginuserid]  
+			(
+				Class_Trainer as "Class Trainer"
+				Class_Name as "Class Name"
+				Description
+			)
+			options
+			(
+				icon = "users-network"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = 1
+		     			title = "Overview"
+						fields
+						(
+							Class_Name as "Class Name"
+							Description
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Class_Name as "Class Name"
+							Description
+							Class_Trainer as "Class Trainer"
+						)
+					)
+					datablock2
+					(
+			 			layout type = 19
+		     			title = "Class Trainer"
+		     			related field =  Class_Trainer[Class_Trainer.Email_ID == zoho.loginuserid]
+						fields
+						(
+							Photo
+							Name
+							Classes
+							Phone_Number1 as "Phone Number"
+							Email_ID as "Email ID"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Trainees"
+		     			related field =  Trainees[Class_Trainer.Email_ID == zoho.loginuserid]
+						fields
+						(
+							Photo
+							Member_ID as "Member ID"
+							Name
+							Age
+							Email_ID as "Email ID"
+							Phone_Number as "Phone Number"
+							Personal_Trainer as "Personal Trainer"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Trainees
+		{
+			displayName = "My Trainees"
+			show all rows from Add_Trainee  [Personal_Trainer.Email_ID == zoho.loginuserid]  
+			(
+				Personal_Trainer as "Personal Trainer"
+				Membership
+				Date_Of_Birth as "Date Of Birth"
+				Age
+				custom action "Add Trainee To Class"
+				(
+	  			workflow = Add_Trainee_To_Class_Work
+				show action in edit record menu = true
+				column header = "Add Trainee To Class"
+				)
+				Member_ID as "Member ID"
+				Photo
+				Phone_Number as "Phone Number"
+				Email_ID as "Email ID"
+				Address 
+	 			(
+	      			displayformat = [address_line_1+""+address_line_2+""+district_city+""+state_province+""+postal_Code+""+country]
+	      			enable = Show_As_Text
+	 			)
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+			)
+			options
+			(
+				icon = "users-multiple-11"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Member_ID as "Member ID"
+							Name
+							Phone_Number as "Phone Number"
+							Email_ID as "Email ID"
+							Personal_Trainer as "Personal Trainer"
+				"Add Trainee To Class"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 19
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Name
+							Address
+							Email_ID as "Email ID"
+							Email_ID as "Email ID"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Membership"
+		     			related field =  Membership[Personal_Trainer.Email_ID == zoho.loginuserid]
+						fields
+						(
+							Membership_Title as "Membership Title"
+							Package
+							Number_Of_Months as "Number Of Months"
+							Amount
+							Description
+						)
+					)
+					datablock4
+					(
+			 			layout type = -1
+		     			title = "Classes"
+		     			related field =  Classes[Personal_Trainer.Email_ID == zoho.loginuserid]
+						fields
+						(
+							Class_Name as "Class Name"
+							Description
+							Class_Trainer as "Class Trainer"
+							Trainees
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Assigned_to_Trainees
+		{
+			displayName = "Assigned to Trainees"
+			show all rows from Assign_Workouts  [Status == "Current" && Assigned_By.Email_ID == zoho.loginuserid]  
+			(
+				From_Date as "From Date"
+				No_Of_Days_Repeat as "No Of Days Repeat"
+				Status
+				Assign_To as "Assign To"
+				Member
+				Class
+				Workouts.Workout as "Workouts"
+				Assigned_By as "Assigned By"
+				custom action "Reassign Workouts"
+				(
+	  			workflow = Reassign_workouts
+				show action in edit record menu = true
+				column header = "Reassign Workouts"
+				)
+			)
+			group by
+			(
+				Member ascending
+			)
+			options
+			(
+				icon = "sport-dumbbells"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							From_Date as "From Date"
+							No_Of_Days_Repeat as "No Of Days Repeat"
+							Status
+							Assign_To as "Assign To"
+							Member
+							Class
+							Workouts.Workout as "Workouts"
+				"Reassign Workouts"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							From_Date as "From Date"
+							No_Of_Days_Repeat as "No Of Days Repeat"
+							Status
+							Assign_To as "Assign To"
+							Member
+							Class
+							Workouts.Workout as "Workouts"
+							Assigned_By as "Assigned By"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Assigned_to_Class
+		{
+			displayName = "Assigned to Class"
+			show all rows from Assign_Workouts  [Status == "Current" && Assign_To == "Class" && Assigned_By.Email_ID == zoho.loginuserid]  
+			(
+				From_Date as "From Date"
+				No_Of_Days_Repeat as "No Of Days Repeat"
+				Status
+				Assign_To as "Assign To"
+				Member
+				Class
+				Workouts.Workout as "Workouts"
+				Assigned_By as "Assigned By"
+				Class.Class_Name as "Class Name"
+				custom action "Reassign Workout"
+				(
+	  			workflow = Reassign_Workout_Scripts
+				show action in edit record menu = true
+				column header = "Reassign Workout"
+				)
+			)
+			group by
+			(
+				Class.Class_Name ascending
+			)
+			options
+			(
+				icon = "design-paper-dev"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							From_Date as "From Date"
+							No_Of_Days_Repeat as "No Of Days Repeat"
+							Status
+							Member
+							Class
+							Workouts.Workout as "Workouts"
+				"Reassign Workout"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							From_Date as "From Date"
+							No_Of_Days_Repeat as "No Of Days Repeat"
+							Status
+							Assign_To as "Assign To"
+							Member
+							Class
+							Workouts.Workout as "Workouts"
+							Assigned_By as "Assigned By"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Workouts
+		{
+			displayName = "All Workouts"
+			show all rows from Add_Workout    
+			(
+				Workout_Title as "Workout Title"
+				Demo_Video as "Demo Video"
+				Demo_Image as "Demo Image"
+				Purpose as "Category"
+			)
+			group by
+			(
+				Purpose ascending
+			)
+			options
+			(
+				icon = "shopping-tag-sale"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Workout_Title as "Workout Title"
+							Demo_Video as "Demo Video"
+							Demo_Image as "Demo Image"
+							Purpose as "Category"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Workout_Title as "Workout Title"
+							Demo_Video as "Demo Video"
+							Demo_Image as "Demo Image"
+							Purpose as "Category"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Classes
+	{
+		icon = "users-2-b-meeting"
+		form Add_Class
+		{
+			displayname = "Add Class"
+			success message = "Class Added Successfully"
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Class_Name
+			(
+    			type = text
+				displayname = "Class Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Class_Trainer
+			(
+				type = picklist
+				displayname = "Class Trainer"
+				values  = Add_Staff_Trainer.ID
+    			bidirectional = Classes
+    			displayformat = [" " + Name.first_name + " " + Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Trainees
+			(
+				type = list
+				values  = Add_Trainee.ID
+    			bidirectional = Classes
+    			displayformat = [Member_ID]
+				allow new entries = true
+				[
+					displayname = "Add New Trainee"
+				]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "education-school"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Add
+	{
+		icon = "tech-2-p-add"
+		form Add_Membership
+		{
+			displayname = "Add Membership"
+			success message = "Data Added Successfully!"
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Membership_Title
+			(
+    			type = text
+				displayname = "Membership Title"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Package
+			(
+				type = picklist
+				values = {"Monthly", "Yearly", "Number Of Months"}
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Number_Of_Months
+			(
+				type = number
+				displayname = "Number Of Months"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Amount
+			(
+				type = decimal
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Schedule_Date
+			(
+    			type = date
+				displayname = "Schedule Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "tech-2-p-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Trainee
+	{
+		icon = "sport-cardio"
+		form Check_In_Check_Out_Form1
+		{
+			displayname = "Check In/Check Out Form"
+			success message = "Data Added Successfully!"
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Member
+			(
+				type = picklist
+				values  = Add_Trainee.ID
+    			displayformat = [" " + Name.prefix + " " + Name.first_name + " " + Name.last_name + " " + Name.suffix]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Date_field1
+			(
+    			type = date
+				displayname = "Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Checked_In_Time
+			(
+    			type = datetime
+				displayname = "Checked In Time"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Checked_Out_Time
+			(
+    			type = datetime
+				displayname = "Checked Out Time"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "shopping-pos"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		pivotchart Member_Attendance
+		{ 
+			displayname = "Attendance Report"
+			based on Autoview_1557219034714_Check_In_Check_Out_Form1
+					hide = true
+							icon = "business-laptop-71"				show all rows from Check_In_Check_Out_Form1
+				(
+ 					Checked_Out_Time  as "Checked Out Time"
+ 					Checked_In_Time  as "Checked In Time"
+ 					Member 
+ 					Date_field1  as "Date"
+				)
+		}
+				 page Today_Workouts(member_ID,d) 
+	 	 { 
+ 	 	 displayname = "Today Workouts" 
+
+ 	 	 icon = "ui-1-check-circle-07" 
+	 	 Content="<zml \n\t\t\tisPdfEnabled='false'\n\t\t\n\t\t\tisPrintEnabled='false'\n\t\t\n\t\t\n\t\t\twebDeviceConfig='{\"layout\":{\"displayType\":\"card\",\"design\":\"fluid\",\"style\":\"padding-right:0px;padding-top:0px;padding-bottom:0px;padding-left:0px;\"}}'\n\t\t\n\t\t\tmobileDeviceConfig='{\"layout\":{\"displayType\":\"card\",\"design\":\"onebyone\",\"forcedOrientation\":false}}'\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dspZml id='zml_snippet'>\n\t<![CDATA[htmlpage zml_snippet(member_ID,d)\ncontent\n&lt;%{\n\tmember = Add_Trainee[Email_ID == zoho.loginuserid];\n\tmemberID = member.ID;\n\tif(member.count() != 0)\n\t{\n\t\tassigned_workouts = Assign_Workouts[Member == member.ID &amp;&amp; Status == &quot;Current&quot;].Workouts;\n\t\t%&gt;\n&lt;panel width=&apos;70%&apos;&gt;\n  &lt;pr height=&apos;fill&apos; width=&apos;fill&apos;&gt;\n    &lt;pc width=&apos;100%&apos; bgColor=&apos;#FFFFFF&apos; padding=&apos;20px&apos; vAlign=&apos;middle&apos;&gt;\n&lt;%\n\t\tattendace_det = Check_In_Check_Out_Form1[Member == member.ID &amp;&amp; Checked_In_Time != null &amp;&amp; Checked_Out_Time == null];\n\t\tif(attendace_det.count() == 0)\n\t\t{\n\t\t\t%&gt;\n&lt;pr height=&apos;auto&apos; width=&apos;auto&apos;&gt;\n        &lt;pc padding=&apos;5px&apos; vAlign=&apos;middle&apos;&gt;\n          &lt;pr&gt;\n            &lt;pc&gt;\n              &lt;image color=&apos;#000000&apos; bgColor=&apos;#FFFFFF&apos; width=&apos;52px&apos; height=&apos;52px&apos; type=&apos;icon&apos; value=&apos;ui-1-calendar-grid-61&apos; size=&apos;4&apos; cornerRadius=&apos;26px&apos; iconType=&apos;solid&apos; \/&gt; &lt;\/pc&gt;\n          &lt;\/pr&gt;\n          &lt;pr&gt;\n            &lt;pc&gt;\n              &lt;text type=&apos;Text&apos; value=&apos;${zoho.currentdate}&apos; size=&apos;4&apos; color=&apos;#000000&apos; bold=&apos;true&apos; marginTop=&apos;3px&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n            &lt;\/pc&gt;\n          &lt;\/pr&gt;\n          &lt;pr&gt;\n            &lt;pc marginTop=&apos;20px&apos; marginBottom=&apos;20px&apos;&gt;\n              &lt;button text=&apos;Check In&apos; size=&apos;3&apos; color=&apos;#FFFFFF&apos; bgColor=&apos;#09B24D&apos; type=&apos;rounded&apos; action=&apos;ExecuteFunction&apos; functionName=&apos;button_functions.checkIn&apos; parameters=&apos;&lt;%=memberID%&gt;&apos; successMsg=&apos;You are checked in now&apos; cornerRadius=&apos;60px&apos; \/&gt;\n\t\t\t&lt;\/pc&gt;\n          &lt;\/pr&gt;\n        &lt;\/pc&gt;\n      &lt;\/pr&gt;\n&lt;%\n\t\t}\n\t\telse\n\t\t{\n\t\t\t%&gt;\n&lt;pr height=&apos;auto&apos; width=&apos;auto&apos;&gt;\n        &lt;pc padding=&apos;5px&apos; vAlign=&apos;middle&apos;&gt;\n\t\t  &lt;pr&gt;\n            &lt;pc&gt;\n              &lt;image color=&apos;#000000&apos; bgColor=&apos;#FFFFFF&apos; width=&apos;52px&apos; height=&apos;52px&apos; type=&apos;icon&apos; value=&apos;ui-1-calendar-grid-61&apos; size=&apos;4&apos; cornerRadius=&apos;26px&apos; iconType=&apos;solid&apos; \/&gt; &lt;\/pc&gt;\n          &lt;\/pr&gt;\n\t\t  &lt;pr&gt;\n            &lt;pc&gt;\n&lt;%\n\t\t\tworkoutTime = (zoho.currenttime - attendace_det.Checked_In_Time);\n\t\t\tinSec = workoutTime \/ 1000;\n\t\t\thours = floor(inSec \/ (60 * 60));\n\t\t\tmin = floor(inSec \/ 60 % 60);\n\t\t\treminSec = floor(inSec % 60);\n\t\t\tworkoutTime_inHours = hours + &quot; : &quot; + min + &quot; : &quot; + reminSec;\n\t\t\t%&gt;\n&lt;text type=&apos;Text&apos; value=&apos;&lt;%=zoho.currentdate%&gt;&apos; size=&apos;5&apos; color=&apos;#000000&apos; bold=&apos;true&apos; marginTop=&apos;3px&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n\t\t\t\n            &lt;\/pc&gt;\n\t\t\t&lt;pc paddingTop=&apos;10px&apos; paddingLeft=&apos;5px&apos;&gt;\n\t\t\t\t&lt;text type=&apos;Text&apos; value=&apos;&apos; size=&apos;2&apos; color=&apos;#000000&apos; bold=&apos;true&apos; textAlign=&apos;center&apos; &gt; &lt;\/text&gt;\n\t\t\t&lt;\/pc&gt;\n          &lt;\/pr&gt;\n          &lt;pr&gt;\n            &lt;pc padding=&apos;20px&apos; paddingBottom=&apos;20px&apos;&gt;\n              &lt;button text=&apos;Check Out&apos; size=&apos;3&apos; color=&apos;#FFFFFF&apos; bgColor=&apos;#F3482C&apos; type=&apos;rounded&apos; action=&apos;ExecuteFunction&apos; functionName=&apos;button_functions.checkOut&apos; parameters=&apos;&lt;%=attendace_det.ID%&gt;&apos; successMsg=&apos;You are checked in now&apos; cornerRadius=&apos;60px&apos; \/&gt;\n\t\t\t&lt;\/pc&gt;\n          &lt;\/pr&gt;\n        &lt;\/pc&gt;\n      &lt;\/pr&gt;\n&lt;%\n\t\t}\n\t\t%&gt;\n&lt;\/pc&gt;\n  &lt;\/pr&gt;\n&lt;\/panel&gt;\n&lt;%\n\t}\n\telse\n\t{\n\t\t%&gt;\n&lt;panel&gt;\n  &lt;pr height=&apos;fill&apos; width=&apos;fill&apos;&gt;\n    &lt;pc width=&apos;100%&apos; bgColor=&apos;#FFFFFF&apos; padding=&apos;20px&apos; hAlign=&apos;center&apos; vAlign=&apos;middle&apos;&gt;\n      &lt;text type=&apos;Text&apos; value=&apos;This page is for trainees&apos; size=&apos;4&apos; color=&apos;#FF4C2F&apos; bold=&apos;false&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n    &lt;\/pc&gt;\n  &lt;\/pr&gt;\n&lt;\/panel&gt;\n&lt;%\n\t}\n\n}%&gt;]]>\n<\/dspZml>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dspZml id='zml_snippet1'>\n\t<![CDATA[htmlpage zml_snippet1(member_ID,d)\ndisplayname = &quot;zml_snippet&quot;\ncontent\n&lt;%{\n\tmember = Add_Trainee[Email_ID == zoho.loginuserid];\n\tif(member.count() != 0)\n\t{\n\t\tassigned_workouts = Assign_Workouts[Member == member.ID &amp;&amp; Status == &quot;Current&quot;];\n\t\t%&gt;\n&lt;panel width=&apos;70%&apos;&gt;\n  &lt;pr height=&apos;fill&apos; width=&apos;fill&apos;&gt;\n    &lt;pc width=&apos;100%&apos; bgColor=&apos;#FFFFFF&apos; padding=&apos;20px&apos; vAlign=&apos;middle&apos;&gt;\n&lt;%\n\t\tattendace_det = Check_In_Check_Out_Form1[Member == member.ID &amp;&amp; Checked_In_Time != null &amp;&amp; Checked_Out_Time == null];\n\t\tif(assigned_workouts.count() != 0)\n\t\t{\n\t\t\t%&gt;\n&lt;pr height=&apos;auto&apos; width=&apos;fill&apos;&gt;\n        &lt;pc padding=&apos;5px&apos; vAlign=&apos;middle&apos;&gt;\n          &lt;pr&gt;\n            &lt;pc&gt;\n              &lt;text type=&apos;Text&apos; value=&apos;Your Workouts&apos; size=&apos;4&apos; color=&apos;#000000&apos; bold=&apos;true&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n\t\t\t&lt;\/pc&gt;\n          &lt;\/pr&gt;\n        &lt;\/pc&gt;\n      &lt;\/pr&gt;\n\t  &lt;pr height=&apos;auto&apos; width=&apos;fill&apos;&gt;\n\t  \t&lt;pc padding=&apos;20px&apos; width=&apos;100%&apos; hAlign=&apos;center&apos; vAlign=&apos;middle&apos; textAlign=&apos;center&apos; &gt;\n&lt;%\n\t\t\tworkoutPendning = 0;\n\t\t\tfor each  workout in assigned_workouts.Workouts\n\t\t\t{\n\t\t\t\tif(workout.Exercise_Done is False)\n\t\t\t\t{\n\t\t\t\t\tworkoutPendning = workoutPendning + 1;\n\t\t\t\t\t%&gt;\n&lt;pr height = &quot;1px&quot; width=&apos;fill&apos;&gt;\n\t\t\t\t\t&lt;pc  height = &quot;fill&quot; width=&apos;100%&apos; hAlign=&apos;center&apos; textAlign=&apos;center&apos; bgColor=&apos;#AAAAAA&apos;&gt;\n\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t&lt;\/pr&gt;\n&lt;pr height = &quot;auto&quot; width=&apos;fill&apos;&gt;\n\t\t\t\t\t&lt;pc width=&apos;80%&apos; hAlign=&apos;center&apos; textAlign=&apos;center&apos; padding=&apos;10px&apos;&gt;\n\t\t\t\t\t\t&lt;text type=&apos;Text&apos; value=&apos;&lt;%=workout.Workout.Workout_Title%&gt;&apos; size=&apos;3&apos; color=&apos;#000000&apos; bold=&apos;true&apos; marginTop=&apos;3px&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t&lt;pr height = &quot;auto&quot; width=&apos;fill&apos;&gt;\n\t\t\t\t\t&lt;pc width=&apos;50%&apos; hAlign=&apos;center&apos; textAlign=&apos;center&apos; padding = &apos;10px&apos;&gt;\n\t\t\t\t\t\t&lt;text type=&apos;Text&apos; value=&apos;Weight : &lt;%=workout.Weight%&gt;&apos; size=&apos;2&apos; color=&apos;#66b5d6&apos; bold=&apos;false&apos; marginTop=&apos;3px&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t&lt;pc width=&apos;50%&apos; hAlign=&apos;center&apos; textAlign=&apos;center&apos; padding = &apos;10px&apos; &gt;\n\t\t\t\t\t\t&lt;text type=&apos;Text&apos; value=&apos;Set : &lt;%=workout.Sets%&gt;&apos; size=&apos;2&apos; color=&apos;#66b5d6&apos; bold=&apos;false&apos; marginTop=&apos;3px&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n\t\t\t\t\t&lt;\/pc&gt;\t\n\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t&lt;pr height = &quot;auto&quot; width=&apos;fill&apos;&gt;\n\t\t\t\t\t&lt;pc width=&apos;50%&apos; hAlign=&apos;center&apos; textAlign=&apos;center&apos; padding = &apos;10px&apos;&gt;\n\t\t\t\t\t\t&lt;text type=&apos;Text&apos; value=&apos;Repeat : &lt;%=workout.Reps%&gt;&apos; size=&apos;2&apos; color=&apos;#66b5d6&apos; bold=&apos;false&apos; marginTop=&apos;3px&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t&lt;pc width=&apos;50%&apos; hAlign=&apos;center&apos; textAlign=&apos;center&apos; padding = &apos;10px&apos; &gt;\n\t\t\t\t\t\t&lt;text type=&apos;Text&apos; value=&apos;Rest : &lt;%=workout.Rest%&gt; min&apos; size=&apos;2&apos; color=&apos;#66b5d6&apos; bold=&apos;false&apos; marginTop=&apos;3px&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n\t\t\t\t\t&lt;\/pc&gt;\t\n\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t&lt;pr height = &quot;auto&quot; width=&apos;fill&apos;&gt;\n\t\t\t\t\t&lt;pc width=&apos;100%&apos; hAlign=&apos;center&apos; textAlign=&apos;center&apos; padding = &apos;10px&apos;&gt;\n\t\t\t\t\t\t&lt;text type=&apos;Text&apos; value=&apos;Description :&apos; size=&apos;2&apos; color=&apos;#66b5d6&apos; bold=&apos;false&apos; marginTop=&apos;3px&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n\t\t\t\n\t\t\t\t\t\t&lt;text type=&apos;Text&apos; value=&apos;&lt;%=workout.Description%&gt;&apos; size=&apos;2&apos; color=&apos;#000000&apos; bold=&apos;false&apos; marginTop=&apos;3px&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n\t\t\t\t\t&lt;\/pc&gt;\t\n\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t&lt;pr height=&apos;auto&apos; width=&apos;auto&apos;&gt;\n&lt;%\n\t\t\t\t\tattendace_det = Check_In_Check_Out_Form1[Member == member.ID &amp;&amp; Checked_In_Time != null &amp;&amp; Checked_Out_Time == null];\n\t\t\t\t\tif(attendace_det.count() != 0)\n\t\t\t\t\t{\n\t\t\t\t\t\t%&gt;\n&lt;pc vAlign=&apos;middle&apos; padding=&quot;20px&quot;&gt;\n\t\t\t\t\t  &lt;button text=&apos;Done&apos; size=&apos;1&apos; fontFamily=&apos;ProximaNova, arial, sans-serif&apos; color=&apos;#FFFFFF&apos; bgColor=&apos;#41BF64&apos; type=&apos;rounded&apos; action=&apos;ExecuteFunction&apos; functionName=&apos;button_functions.workoutDone&apos; parameters=&apos;&lt;%=assigned_workouts.ID%&gt;,&lt;%=workout.Workout.ID%&gt;&apos; successMsg=&apos;Workout Done&apos; cornerRadius=&apos;60px&apos; \/&gt; &lt;\/pc&gt;\n\t\t\t&lt;pc vAlign=&apos;middle&apos; padding=&apos;20px&apos;&gt;\n\t\t\t\t\t  &lt;button text=&apos;Skip&apos; size=&apos;1&apos; fontFamily=&apos;ProximaNova, arial, sans-serif&apos; color=&apos;#FFFFFF&apos; bgColor=&apos;#5e5432&apos; type=&apos;rounded&apos; action=&apos;ExecuteFunction&apos; functionName=&apos;button_functions.workoutDone&apos; parameters=&apos;&lt;%=assigned_workouts.ID%&gt;,&lt;%=workout.Workout.ID%&gt;&apos; successMsg=&apos;Workout Done&apos; cornerRadius=&apos;60px&apos; \/&gt; &lt;\/pc&gt;\n&lt;%\n\t\t\t\t\t}\n\t\t\t\t\t%&gt;\n&lt;\/pr&gt;\n&lt;%\n\t\t\t\t}\n\t\t\t}\n\t\t\tif(workoutPendning == 0)\n\t\t\t{\n\t\t\t\t%&gt;\n&lt;pr height = &quot;1px&quot; width=&apos;fill&apos;&gt;\n\t\t\t&lt;pc  height = &quot;fill&quot; width=&apos;100%&apos; hAlign=&apos;center&apos; textAlign=&apos;center&apos; bgColor=&apos;#AAAAAA&apos;&gt;\n\t\t\t&lt;\/pc&gt;\n\t\t&lt;\/pr&gt;\n\t\t&lt;pr height = &quot;auto&quot; width=&apos;fill&apos;&gt;\n\t\t\t&lt;pc width=&apos;100%&apos; hAlign=&apos;center&apos; textAlign=&apos;center&apos; padding=&apos;50px&apos;&gt;\n\t\t\t\t&lt;text type=&apos;Text&apos; value=&apos;You have done all workouts Today&apos; size=&apos;3&apos; color=&apos;#41BF64&apos; bold=&apos;true&apos; marginTop=&apos;3px&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n\t\t\t&lt;\/pc&gt;\n\t\t&lt;\/pr&gt;\n&lt;%\n\t\t\t}\n\t\t\t%&gt;\n&lt;\/pc&gt;\n\t  &lt;\/pr&gt;\n&lt;%\n\t\t}\n\t\tif(assigned_workouts.count() == 0)\n\t\t{\n\t\t\t%&gt;\n&lt;pr height=&apos;auto&apos; width=&apos;auto&apos;&gt;\n        &lt;pc padding=&apos;30px&apos; vAlign=&apos;middle&apos;&gt;\n\t\t  &lt;pr&gt;\n            &lt;pc&gt;\n\t\t\t\t&lt;text type=&apos;Text&apos; value=&quot;No workouts have been assigned to you. Contact your trainer for further information.&quot; size=&apos;4&apos; color=&apos;#F3482C&apos; bold=&apos;false&apos; marginTop=&apos;3px&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n\t\t\t&lt;\/pc&gt;\n          &lt;\/pr&gt;\n        &lt;\/pc&gt;\n      &lt;\/pr&gt;\n&lt;%\n\t\t}\n\t\t%&gt;\n&lt;\/pc&gt;\n  &lt;\/pr&gt;\n&lt;\/panel&gt;\n&lt;%\n\t}\n\telse\n\t{\n\t\t%&gt;\n&lt;panel&gt;\n&lt;\/panel&gt;\n&lt;%\n\t}\n\n}%&gt;]]>\n<\/dspZml>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+		summary My_Profile
+		{
+			displayName = "My Profile"
+			show all rows from Add_Trainee  [Email_ID == zoho.loginuserid]  
+			(
+				Personal_Trainer as "Personal Trainer"
+				Member_ID as "Member ID"
+				Photo
+				Phone_Number as "Phone Number"
+				Email_ID as "Email ID"
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Classes
+				Membership
+				Date_Of_Birth as "Date Of Birth"
+				Age
+				Address 
+	 			(
+	      			displayformat = [address_line_1+""+address_line_2+""+district_city+""+state_province+""+postal_Code+""+country]
+	      			enable = Show_As_Text
+	 			)
+				Next_Payment_Schedule_Date as "Next Payment Schedule Date"
+			)
+			group by
+			(
+				Personal_Trainer ascending
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 1
+				icon = "users-2-man"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Member_ID as "Member ID"
+							Name
+							Date_Of_Birth as "Date Of Birth"
+							Age
+							Phone_Number as "Phone Number"
+							Email_ID as "Email ID"
+							Address
+							Personal_Trainer as "Personal Trainer"
+							Classes
+							Membership
+							Next_Payment_Schedule_Date as "Next Payment Schedule Date"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 19
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Name
+							Classes
+							Email_ID as "Email ID"
+							Email_ID as "Email ID"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Membership"
+		     			related field =  Membership[Email_ID == zoho.loginuserid]
+						fields
+						(
+							Membership_Title as "Membership Title"
+							Package
+							Number_Of_Months as "Number Of Months"
+							Amount
+							Description
+						)
+					)
+					datablock3
+					(
+			 			layout type = 19
+		     			title = "Personal Trainer"
+		     			related field =  Personal_Trainer[Email_ID == zoho.loginuserid]
+						fields
+						(
+							Photo
+							Name
+							Classes
+							Phone_Number1 as "Phone Number"
+							Email_ID as "Email ID"
+						)
+					)
+					datablock4
+					(
+			 			layout type = -1
+		     			title = "Classes"
+		     			related field =  Classes[Email_ID == zoho.loginuserid]
+						fields
+						(
+							Class_Name as "Class Name"
+							Description
+							Class_Trainer as "Class Trainer"
+							Trainees
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Classes1
+		{
+			displayName = "My Classes"
+			show all rows from Add_Class  [Trainees.Email_ID == zoho.loginuserid]  
+			(
+				Class_Name as "Class Name"
+				Description
+				Class_Trainer as "Class Trainer"
+				custom action "Add Trainee To Class"
+				(
+	  			workflow = Add_Trainee_Workflow
+				show action in edit record menu = true
+				column header = "Add Trainee To Class"
+				)
+			)
+			options
+			(
+				icon = "sport-cardio"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Class_Name as "Class Name"
+							Class_Trainer as "Class Trainer"
+							Description
+				"Add Trainee To Class"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Class_Name as "Class Name"
+							Description
+							Class_Trainer as "Class Trainer"
+						)
+					)
+					datablock2
+					(
+			 			layout type = 19
+		     			title = "Class Trainer"
+		     			related field =  Class_Trainer[Trainees.Email_ID == zoho.loginuserid]
+						fields
+						(
+							Photo
+							Name
+							Classes
+							Phone_Number1 as "Phone Number"
+							Email_ID as "Email ID"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Trainees"
+		     			related field =  Trainees[Trainees.Email_ID == zoho.loginuserid]
+						fields
+						(
+							Photo
+							Member_ID as "Member ID"
+							Name
+							Email_ID as "Email ID"
+							Phone_Number as "Phone Number"
+							Personal_Trainer as "Personal Trainer"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Current_Workouts
+		{
+			displayName = "My Current Workouts"
+			show all rows from Assign_Workouts  [Member.Email_ID == zoho.loginuserid && Status == "Current"]  
+			(
+				Assign_To as "Assign To"
+				Member
+				Class
+				From_Date as "From Date"
+				No_Of_Days_Repeat as "No Of Days Repeat"
+				Status
+				Workouts.Days as "Workouts"
+			)
+			options
+			(
+				icon = "shopping-tag-sale"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Class
+							From_Date as "From Date"
+							No_Of_Days_Repeat as "No Of Days Repeat"
+							Workouts.Days as "Workouts"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Assign_To as "Assign To"
+							Member
+							Class
+							From_Date as "From Date"
+							No_Of_Days_Repeat as "No Of Days Repeat"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Attendance_Report
+		{
+			displayName = "My Attendance Report"
+			show all rows from Check_In_Check_Out_Form1  [Member.Email_ID == zoho.loginuserid]  
+			(
+				Member
+				(
+					view = Trainees
+				)
+				Checked_In_Time as "Checked In Time"
+				Checked_Out_Time as "Checked Out Time"
+				Date_field1 as "Date"
+			)
+			options
+			(
+				icon = "users-2-a-time"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Member
+							Checked_In_Time as "Checked In Time"
+							Checked_Out_Time as "Checked Out Time"
+							Date_field1 as "Date"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Member
+							Checked_In_Time as "Checked In Time"
+							Checked_Out_Time as "Checked Out Time"
+							Date_field1 as "Date"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Payment_History
+		{
+			displayName = "My Payment History"
+			show all rows from Payment_Form  [Member.Email_ID == zoho.loginuserid]  
+			(
+				Member
+				Amount
+				Payment_status as "Payment status"
+				Payment_Date as "Payment Date"
+				Member.Membership
+			)
+			group by
+			(
+				Member.Membership ascending
+			)
+			options
+			(
+				icon = "shopping-receipt"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Member
+							Payment_Date as "Payment Date"
+							Amount
+							Payment_status as "Payment status"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Member
+							Payment_Date as "Payment Date"
+							Amount
+							Payment_status as "Payment status"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Workouts
+	{
+		icon = "sport-cardio"
+		form Add_Workout
+		{
+			displayname = "Add Workout"
+			success message = "Workout Added Successfully"
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Workout_Title
+			(
+    			type = text
+				displayname = "Workout Title"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Purpose
+			(
+				type = picklist
+				displayname = "Category"
+				values = {"Cardio", "Stretching", "Body Building", "Yoga"}
+				sortorder = ascending
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Demo_Image
+			(
+    			type = image
+				displayname = "Demo Image"
+				source  = file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Demo_Video
+			(
+    			type = video
+				displayname = "Demo Video"
+    			duration=30
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "tech-2-p-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Health_Updates
+	{
+		displayname= "Health Updates"
+		icon = "health-woman"
+		form Health_Updates
+		{
+			displayname = "Health Updates"
+			success message = "Health Update Added Successfully"
+			field alignment = left
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Member
+			(
+				type = picklist
+				values  = Add_Trainee.ID
+    			displayformat = [" " + Name.first_name + " " + Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have date_field
+			(
+    			type = date
+				displayname = "Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Height
+			(
+				type = decimal
+    			description
+    			[
+    				type = help_text
+    			 	message = "Height in cm."
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Weight
+			(
+				type = decimal
+    			description
+    			[
+    				type = help_text
+    			 	message = "Weight in Kg."
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "health-notebook"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list All_Health_Updates
+		{
+			displayName = "All Health Updates"
+			show all rows from Health_Updates    
+			(
+				Member
+				date_field as "Date"
+				Weight
+				Height
+			)
+			options
+			(
+				icon = "health-height"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Member
+							date_field as "Date"
+							Weight
+							Height
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Member
+							date_field as "Date"
+							Weight
+							Height
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Health_Updates
+		{
+			displayName = "My Health Updates"
+			show all rows from Health_Updates  [Member.Email_ID == zoho.loginuserid]  
+			(
+				Member
+				date_field as "Date"
+				Weight
+				Height
+			)
+			options
+			(
+				icon = "users-single-body"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Member
+							date_field as "Date"
+							Weight
+							Height
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Member
+							date_field as "Date"
+							Weight
+							Height
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Copy_of_Add_Trainee_To_Class
+	{
+		displayname= "Copy of Add Trainee To Class"
+		form Add_Trainee_To_Class
+		{
+			displayname = "Add Trainee To Class"
+			store data in zc = false
+			success message = ""
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Trainee
+			(
+				type = picklist
+				values  = Add_Trainee.ID
+    			displayformat = [" " + Member_ID + "  - " + Name.first_name + " " + Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			must have Class
+			(
+				type = picklist
+				values  = Add_Class.ID
+    			displayformat = [Class_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				Add
+				(
+   					type = submit
+   					displayname = "Add"
+				)
+				Reset
+				(
+   					type = reset
+   					displayname = "Reset"
+				)
+			}
+		}
+	}
+	section Member_Payments
+	{
+		displayname= "Member Payments"
+		icon = "shopping-credit-card-in"
+		form Payment_Form
+		{
+			displayname = "Payment Form"
+			success message = "Payment Added Successfully"
+			field alignment = left
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Member
+			(
+				type = picklist
+				values  = Add_Trainee.ID
+    			displayformat = [" " + Name.prefix + " " + Name.first_name + " " + Name.last_name + " " + Name.suffix + " " + Name.suffix]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Payment_Date
+			(
+    			type = datetime
+				displayname = "Payment Date"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Amount
+			(
+				type = decimal
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Payment_status
+			(
+				type = radiobuttons
+				displayname = "Payment status"
+				values = {"Waiting", "Paid"}
+				initial value = "Waiting"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "business-payment"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Awaiting_Payments
+		{
+			displayName = "Awaiting Payments"
+			show all rows from Payment_Form  [Payment_status == "Waiting"]  
+			(
+				Member
+				Payment_Date as "Payment Date"
+				Amount
+				Payment_status as "Payment status"
+				custom action "Paid"
+				(
+	  			workflow = Run_Scripts_While_click_P
+				show action in edit record menu = true
+				column header = "Paid"
+				confirmation before execution
+				(
+					message for individual record = "Is this person paid out ?"
+					confirm button text = "Yes"		
+					cancel button text = "No"
+				)
+				)
+			)
+			options
+			(
+				icon = "ui-2-hourglass"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Member
+							Amount
+							Payment_status as "Payment status"
+				"Paid"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Member
+							Payment_Date as "Payment Date"
+							Amount
+							Payment_status as "Payment status"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Payment_History
+		{
+			displayName = "Payment History"
+			show all rows from Payment_Form  [Payment_status == "Paid"]  
+			(
+				Member
+				Amount
+				Payment_status as "Payment status"
+				Payment_Date as "Payment Date"
+				Member.Membership
+			)
+			group by
+			(
+				Member.Membership ascending
+			)
+			options
+			(
+				icon = "arrows-2-reload"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Member
+							Payment_Date as "Payment Date"
+							Amount
+							Payment_status as "Payment status"
+							Member.Membership as "Membership"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Member
+							Payment_Date as "Payment Date"
+							Amount
+							Payment_status as "Payment status"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		pivotchart Monthly_Payments
+		{ 
+			displayname = "Monthly Payments"
+			based on Autoview_1557131987714_Payment_Form
+					hide = true
+							icon = "shopping-credit-card-in"				show all rows from Payment_Form
+				(
+ 					Payment_Date  as "Payment Date"
+ 					Member.Membership  as "Membership"
+ 					Member 
+ 					Amount 
+ 					Payment_status  as "Payment status"
+				)
+		}
+		pivotchart Revenues_By_Packages
+		{ 
+			displayname = "Revenues By Packages"
+			based on Autoview_1557131987714_Payment_Form
+					hide = true
+							icon = "shopping-credit-card-in"				show all rows from Payment_Form
+				(
+ 					Payment_Date  as "Payment Date"
+ 					Member.Membership  as "Membership"
+ 					Member 
+ 					Amount 
+ 					Payment_status  as "Payment status"
+				)
+		}
+	}
+	functions
+	{
+ 			void button_functions.checkIn(int memberID)
+			{
+				member = Add_Trainee[ID == memberID];
+				insert into Check_In_Check_Out_Form1
+				[
+					Added_User=zoho.loginuser
+					Member=member
+					Date_field1=zoho.currentdate
+					Checked_In_Time=zoho.currenttime
+				]
+				openUrl("https://app.zohocreator.com" + zoho.appuri + "#Page:Today_Workouts","same window");
+			}
+ 			void button_functions.checkOut(int CheckedInID)
+			{
+				attendace_det = Check_In_Check_Out_Form1[ID == CheckedInID];
+				attendace_det.Checked_Out_Time=zoho.currenttime;
+				openUrl("https://app.zohocreator.com" + zoho.appuri + "#Page:Today_Workouts","same window");
+			}
+ 			void custom_actions.addTrainee(int trainee_ID)
+			{
+				openUrl(zoho.appuri + "#Form:Add_Trainee_To_Class?Trainee=" + trainee_ID,"popup window");
+			}
+ 			void button_functions.workoutDone(int workoutsetID, int workoutID)
+			{
+				set_of_workouts = Assign_Workouts[ID == workoutsetID];
+				for each  workout in set_of_workouts.Workouts
+				{
+					if(workout.Workout == workoutID)
+					{
+						workout.Exercise_Done="True";
+					}
+				}
+				openUrl("https://app.zohocreator.com" + zoho.appuri + "#Page:Today_Workouts","same window");
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Send_Email_Form_Propertie as "Send Email - Form Properties"
+			{
+				type =  presuccess
+				form = Add_Staff_Trainer
+				on start
+				{
+					actions 
+					{
+						sendmail
+						(
+							from : "zoho.adminuserid"
+							to : "zoho.adminuserid"
+							subject : "Gym Management : New entry added"
+							message : "Hello,<br/><br/>A new entry added in 'Add Staff/Trainer' form of 'Gym Management' application.<br/>"
+							attachments : template : _default as inline
+						)
+					}
+				}
+			}
+			Run_Scripts_While_click_a as "Run Scripts - While click a button"
+			{
+				type =  form
+				form = Add_Trainee_To_Class
+				button = Add
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						trainee_details = Add_Trainee[ID == input.Trainee];
+										list_of_classes = trainee_details.Classes;
+										list_of_classes.add(input.Class);
+										trainee_details.Classes=list_of_classes;
+					)
+					}
+				}
+			}
+			Run_Scripts_On_always1 as "Run Scripts - On always"
+			{
+				type =  form
+				form = Assign_Workouts
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Status,Member,Class;
+						disable Assigned_By;
+					}
+	}
+
+			}
+			Run_Scripts_On_always3 as "Run Scripts - On always"
+			{
+				type =  form
+				form = Assign_Workouts
+				record event = on add or edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Workouts.Exercise_Done;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_always4 as "Run Scripts - On always"
+			{
+				type =  form
+				form = Assign_Workouts
+				record event = on add or edit
+
+	on user input of Assign_To
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Assign_To == "Member")
+										{
+											show Member;
+											hide Class;
+											input.Class = null;
+										}
+										if(input.Assign_To == "Class")
+										{
+											hide Member;
+											show Class;
+											input.Member = null;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_always5 as "Run Scripts - On always"
+			{
+				type =  form
+				form = Assign_Workouts
+				record event = on add or edit
+
+	on add row of Workouts
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											list_of_workouts = Add_Workout[ID != 0].ID.getAll();
+										if(list_of_workouts.size() != 0)
+										{
+											for each  workout_set in Workouts
+											{
+												if(workout_set.Workout != null)
+												{
+													list_of_workouts.removeAll({workout_set.Workout.ID});
+												}
+											}
+											row.Workout:ui.add(list_of_workouts);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_adding_3 as "Run Scripts - While adding a record"
+			{
+				type =  form
+				form = Assign_Workouts
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											trainer = Add_Staff_Trainer[Email_ID == zoho.loginuserid];
+										input.Assigned_By = trainer.ID;
+										if(input.Assign_To == "Member")
+										{
+											show Member;
+											disable Member;
+											disable Assign_To;
+										}
+										else if(input.Assign_To == "Class")
+										{
+											disable Assign_To;
+											show Class;
+											disable Class;
+										}
+										else
+										{
+											trainees = Add_Trainee[Personal_Trainer == input.Assigned_By].ID.getAll();
+											input.Member:ui.add(trainees);
+											classes = Add_Class[Class_Trainer == input.Assigned_By].ID.getAll();
+											input.Class:ui.add(classes);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_adding_4 as "Run Scripts - While adding a record"
+			{
+				type =  form
+				form = Assign_Workouts
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Assign_To == "Member" && input.Member == null)
+										{
+											alert "Select Trainee or class";
+											cancel submit;
+										}
+										if(input.Assign_To == "Class" && input.Class == null)
+										{
+											alert "Select Trainee or class";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_adding_5 as "Run Scripts - While adding a record"
+			{
+				type =  form
+				form = Assign_Workouts
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											old_workout_set = Assign_Workouts[ID != input.ID && Status == "Current"];
+										if(old_workout_set.count() != 0)
+										{
+											old_workout_set.Status="Done";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_adding_6 as "Run Scripts - While adding a record"
+			{
+				type =  form
+				form = Add_Trainee
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide Member_Status;
+						disable Age;
+					}
+	}
+
+			}
+			Run_Scripts_While_adding_7 as "Run Scripts - While adding a record"
+			{
+				type =  form
+				form = Add_Trainee
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						sendmail
+						(
+							from : "zoho.adminuserid"
+							to : Email_ID
+							subject : "Welcome Message"
+							message : "Hi&nbsp;${first_name},<br>&nbsp; &nbsp; &nbsp;&nbsp;<div>&nbsp; &nbsp; &nbsp; You have added as a trainee in our gym. We will give you workouts through our application.</div><div><br></div><div>&nbsp; &nbsp; &nbsp; You can track your workouts, attendance and Payment Details.</div><div><br></div><div>&nbsp; &nbsp; &nbsp; Click <a title=\"Track your Workout details\" href=\"https://app.zohocreator.com/${zoho.appuri}\" target=\"_blank\" rel=\"noopener noreferrer\">Here</a>&nbsp;to access our application.</div>"
+							attachments : template : _default as inline
+						)
+						custom deluge script
+						(
+											thisapp.portal.assignUserInProfile(input.Email_ID,"Trainee");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_adding_8 as "Run Scripts - While adding a record"
+			{
+				type =  form
+				form = Add_Trainee
+				record event = on add
+
+	on user input of Date_Of_Birth
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Date_Of_Birth != null && input.Date_Of_Birth >= zoho.currentdate)
+										{
+											alert "Date of birth should not be the future date. Give the valid past date";
+											input.Date_Of_Birth = null;
+										}
+										else
+										{
+											input.Age = yearsBetween(input.Date_Of_Birth,zoho.currenttime);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Membership
+				record event = on add or edit
+
+	field rules
+	{
+					actions  (Package != "Number Of Months")
+					{
+						hide Number_Of_Months;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always2 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Membership
+				record event = on add or edit
+
+	on validate
+	{
+					actions  (Package != "Number Of Months")
+					{
+						custom deluge script
+						(
+											if(input.Package == "Number Of Months" && input.Number_Of_Months == null)
+										{
+											alert "Give the number of month for the package";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always3 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Membership
+				record event = on add or edit
+
+	on user input of Package
+	{
+					actions  (Package != "Number Of Months")
+					{
+						custom deluge script
+						(
+											input.Number_Of_Months = null;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_When_form_is_1 as "Run Scripts - When form is loading"
+			{
+				type =  form
+				form = Add_Trainee_To_Class
+				record event = on add
+
+	field rules
+	{
+					actions  (Trainee is not null)
+					{
+						disable Trainee;
+					}
+					actions  (Class is not null)
+					{
+						disable Class;
+					}
+	}
+
+			}
+			Run_Scripts_When_form_is_2 as "Run Scripts - When form is loading"
+			{
+				type =  form
+				form = Add_Trainee_To_Class
+				record event = on add
+
+	on load
+	{
+					actions  (Trainee is not null)
+					{
+						custom deluge script
+						(
+											trainee_classes = Add_Trainee[ID == input.Trainee].Classes;
+										classes_to_be_added = Add_Class[ID not in trainee_classes].ID.getAll();
+										input.Class:ui.add(classes_to_be_added);
+						)
+					}
+					actions  (Class is not null)
+					{
+						custom deluge script
+						(
+											class_trainees = Add_Class[ID == input.Class].Trainees;
+										trainee_to_be_added = Add_Class[ID not in class_trainees].ID.getAll();
+										input.Trainee:ui.add(trainee_to_be_added);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_always6 as "Run Scripts - On always"
+			{
+				type =  form
+				form = Health_Updates
+				record event = on add or edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(zoho.loginuserid != zoho.adminuserid)
+										{
+											disable Member;
+											member = Add_Trainee[Email_ID == zoho.loginuserid];
+											input.Member = member.ID;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_adding_9 as "Run Scripts - While adding a record"
+			{
+				type =  form
+				form = Add_Staff_Trainer
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						sendmail
+						(
+							from : "zoho.adminuserid"
+							to : Email_ID
+							subject : "Welcome Message"
+							message : "Hi&nbsp;${first_name},<div><br></div><div>&nbsp; &nbsp; &nbsp; You have added as a trainer in our gym. We have shared our application with you. you can access by click&nbsp;<a href=\"https://app.zohocreator.com/${zoho.appuri}\" target=\"_blank\" rel=\"noopener noreferrer\">here</a>.</div><div><br></div><div>&nbsp; &nbsp; &nbsp; You can assign workouts to your trainee and track their gym activities.</div><div>&nbsp; &nbsp; &nbsp;&nbsp;</div><div>&nbsp; &nbsp; &nbsp; If you have any queries about our application please contact our admin.</div><div><br></div><div>&nbsp; &nbsp; &nbsp; Thank you.</div><div>&nbsp; &nbsp; &nbsp;&nbsp;</div><div>Regards,</div><div>${zoho.adminuserid}<br></div><div><br></div>"
+							attachments : template : _default1 as inline
+						)
+						custom deluge script
+						(
+											thisapp.permissions.assignUserInProfile(input.Email_ID,"Trainer");
+						)
+					}
+	}
+
+			}
+		}
+		schedule
+		{
+			Run_Scripts_Daily as "Run Scripts - Daily"
+			{
+				type =  schedule
+				start = "2019-04-25 12:30:00"
+				frequency = daily
+				time zone = "IST"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						for each  workoutSet in Assign_Workouts[ID != 0]
+										{
+											for each  workout in workoutSet.Workouts
+											{
+												workout.Exercise_Done="true";
+											}
+										}
+					)
+					}
+					actions 
+					{
+					on load
+					(
+						gym_Details = Gym_Details[ID != 0];
+										for each  waiting_payement in Payment_Form[Payment_status == "Waiting"]
+										{
+											member = waiting_payement.Member;
+											membership = Add_Membership[ID == member.Membership];
+											mail_ID = member.Email_ID;
+											if(member.Next_Payment_Schedule_Date == zoho.currentdate)
+											{
+												if(membership.Package == "Monthly")
+												{
+													msg = ("Hi " + member.Name) + ",<br><br> Please Pay your gym fees for this month.<br><br> If you have already paid your dues please inform us.<br><br>Payment Detils: <br> <b>Payment Frequancy: </b>" + membership.Package + "<br> <b>Paymement Date: </b>" + member.Next_Payment_Schedule_Date + "<br><b>Amount: </b>" + membership.Amount + "<br><br> Regards,<br>" + gym_Details.Gym_Name;
+												}
+												else if(membership.Package == "Year")
+												{
+													msg = ("Hi " + member.Name) + ",<br><br> Please Pay your gym fees for this Year.<br><br> If you have already paid your dues please inform us.<br><br>Payment Detils: <br> <b>Payment Frequancy: </b>" + membership.Package + "<br> <b>Paymement Date: </b>" + member.Next_Payment_Schedule_Date + "<br><b>Amount: </b>" + membership.Amount + "<br><br> Regards,<br>" + gym_Details.Gym_Name;
+												}
+												else if(membership.Package == "Number Of Months")
+												{
+													msg = ("Hi " + member.Name) + ",<br><br> Please Pay your gym fees for this Session.<br><br> If you have already paid your dues please inform us.<br><br>Payment Detils: <br> <b>Payment Frequancy: </b> Per" + membership.Number_Of_Months + " once <br> <b>Paymement Date: </b>" + member.Next_Payment_Schedule_Date + "<br><b>Amount: </b>" + membership.Amount + "<br><br> Regards,<br>" + gym_Details.Gym_Name;
+												}
+												sendmail
+												[
+													from :zoho.adminuserid
+													to :mail_ID
+													subject :gym_Details.Gym_Name + ": Fees Payment Reminder "
+													message :msg
+												]
+											}
+										}
+					)
+					}
+				}
+			}
+			payment_reminder as "payment reminder"
+			{
+				type =  schedule
+				form = Add_Trainee
+				start = before 3 days from Next_Payment_Schedule_Date at "06:00:00"
+				end   = Next_Payment_Schedule_Date
+				time zone = "IST"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						gym_Details = Gym_Details[ID != 0];
+										member = Add_Trainee[ID == input.ID];
+										if(input.Member_Status == "active")
+										{
+											mail_ID = member.Email_ID;
+											if(member.Next_Payment_Schedule_Date == zoho.currentdate)
+											{
+												if(member.Membership.Package == "Monthly")
+												{
+													msg = ("Hi " + member.Name) + ",<br><br> Please Pay your gym fees for this month.<br><br> If you have already paid your dues please inform us.<br><br>Payment Detils: <br> <b>Payment Frequancy: </b>" + member.Membership.Package + "<br> <b>Paymement Date: </b>" + member.Next_Payment_Schedule_Date + "<br><b>Amount: </b>" + member.Membership.Amount + "<br><br> Regards,<br>" + gym_Details.Gym_Name;
+												}
+												else if(member.Membership.Package == "Year")
+												{
+													msg = ("Hi " + member.Name) + ",<br><br> Please Pay your gym fees for this Year.<br><br> If you have already paid your dues please inform us.<br><br>Payment Detils: <br> <b>Payment Frequancy: </b>" + member.Membership.Package + "<br> <b>Paymement Date: </b>" + member.Next_Payment_Schedule_Date + "<br><b>Amount: </b>" + member.Membership.Amount + "<br><br> Regards,<br>" + gym_Details.Gym_Name;
+												}
+												else if(member.Membership.Package == "Number Of Months")
+												{
+													msg = ("Hi " + member.Name) + ",<br><br> Please Pay your gym fees for this month.<br><br> If you have already paid your dues please inform us.<br><br>Payment Detils: <br> <b>Payment Frequancy: </b> Per" + member.Membership.Number_Of_Months + "months only<br> <b>Paymement Date: </b>" + member.Next_Payment_Schedule_Date + "<br><b>Amount: </b>" + member.Membership.Amount + "<br><br> Regards,<br>" + gym_Details.Gym_Name;
+												}
+												sendmail
+												[
+													from :zoho.adminuserid
+													to :mail_ID
+													subject :gym_Details.Gym_Name + ": Fees Payment Reminder "
+													message :msg
+												]
+												insert into Payment_Form
+												[
+													Added_User=zoho.loginuser
+													Member=member
+													Amount=member.Membership.Amount
+													Payment_status="Waiting"
+												]
+											}
+										}
+					)
+					}
+				}
+			}
+		}
+		functions
+		{
+			Add_Trainee_Workflow as "Add Trainee Workflow"
+			{
+				type =  functions
+				form = Add_Class
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						openUrl(zoho.appuri + "#Form:Add_Trainee_To_Class?Class=" + input.ID,"popup window");
+					)
+					}
+				}
+			}
+			Add_Trainee_To_Class_Work as "Add Trainee To Class Workflow"
+			{
+				type =  functions
+				form = Add_Trainee
+				on start
+				{
+					actions 
+					{
+					custom_actions.addTrainee(ID);
+					}
+				}
+			}
+			Run_Scripts_While_click_P as "Run Scripts - While click Paid button"
+			{
+				type =  functions
+				form = Payment_Form
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						input.Payment_Date = zoho.currentdate;
+										input.Payment_status = "Paid";
+										member = Add_Trainee[ID == input.Member];
+										if(member.Membership.Package == "Monthly")
+										{
+											schedule_date = member.Next_Payment_Schedule_Date.addMonth(1);
+										}
+										else if(member.Membership.Package == "Yearly")
+										{
+											schedule_date = member.Next_Payment_Schedule_Date.addYear(1);
+										}
+										else if(member.Membership.Package == "Number Of Month")
+										{
+											schedule_date = member.Next_Payment_Schedule_Date.addYear(member.Membership.Number_Of_Months);
+										}
+										member.Next_Payment_Schedule_Date=schedule_date;
+					)
+					}
+				}
+			}
+			Archive_Trainee as "Archive Trainee"
+			{
+				type =  functions
+				form = Add_Trainee
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						input.Member_Status = "Archive";
+					)
+					}
+				}
+			}
+			Active_Trainee as "Active Trainee"
+			{
+				type =  functions
+				form = Add_Trainee
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						input.Member_Status = "Active";
+					)
+					}
+				}
+			}
+			Reassign_workouts as "Reassign workouts"
+			{
+				type =  functions
+				form = Assign_Workouts
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						openUrl(zoho.appuri + "#Form:Assign_Workouts?Assign_To=Member&Member=" + input.Member.ID,"popup window","height=700px,width=1500px");
+					)
+					}
+				}
+			}
+			Reassign_Workout_Scripts as "Reassign Workout Scripts"
+			{
+				type =  functions
+				form = Assign_Workouts
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						openUrl(zoho.appuri + "#Form:Assign_Workouts?Assign_To=Class&Class=" + input.Class.ID,"popup window","height=600px,width=1500px");
+					)
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Read"
+			{
+				name = "Read"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have read permission for all components\n"
+			}
+			"Write"
+			{
+				name = "Write"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have write permission for all components\n"
+			}
+			"Trainer"
+			{
+				name = "Trainer"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "Trainer Profile\n"
+				ModulePermissions
+				{
+					Add_Trainee_To_Class
+					{
+						FieldPermissions
+						{
+							Class{visibility:true,readonly:false}
+							Trainee{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_Trainee
+					{
+						ReportPermissions
+						{
+							My_Trainees={"View"}
+						}
+						FieldPermissions
+						{
+							Next_Payment_Schedule_Date{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Personal_Trainer{visibility:true,readonly:false}
+							Email_ID{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Photo{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Date_Of_Birth{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+							Member_ID{visibility:true,readonly:false}
+							Member_Status{visibility:true,readonly:false}
+							Membership{visibility:true,readonly:false}
+							Age{visibility:true,readonly:false}
+							Classes{visibility:true,readonly:false}
+						}
+					}
+					Add_Workout
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							All_Workouts={"View","Edit"}
+						}
+						FieldPermissions
+						{
+							Demo_Video{visibility:true,readonly:false}
+							Purpose{visibility:true,readonly:false}
+							Workout_Title{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Demo_Image{visibility:true,readonly:false}
+						}
+					}
+					Assign_Workouts
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							Assigned_to_Class={"View","Edit"}
+							Assigned_to_Trainees={"View","Edit"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Assign_To{visibility:true,readonly:false}
+							Assigned_By{visibility:true,readonly:false}
+							From_Date{visibility:true,readonly:false}
+							Class{visibility:true,readonly:false}
+							No_Of_Days_Repeat{visibility:true,readonly:false}
+							Workouts{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Member{visibility:true,readonly:false}
+						}
+					}
+					Add_Membership
+					{
+						FieldPermissions
+						{
+							Description{visibility:true,readonly:false}
+							Amount{visibility:true,readonly:false}
+							Package{visibility:true,readonly:false}
+							Membership_Title{visibility:true,readonly:false}
+							Schedule_Date{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Number_Of_Months{visibility:true,readonly:false}
+						}
+					}
+					Check_In_Check_Out_Form1
+					{
+						FieldPermissions
+						{
+							Checked_Out_Time{visibility:true,readonly:false}
+							Date_field1{visibility:true,readonly:false}
+							Checked_In_Time{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Member{visibility:true,readonly:false}
+						}
+					}
+					Gym_Details
+					{
+						FieldPermissions
+						{
+							Gym_Name{visibility:true,readonly:false}
+							Contact_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Gym_Address{visibility:true,readonly:false}
+						}
+					}
+					Health_Updates
+					{
+						FieldPermissions
+						{
+							Height{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Member{visibility:true,readonly:false}
+							Weight{visibility:true,readonly:false}
+							date_field{visibility:true,readonly:false}
+						}
+					}
+					Add_Class
+					{
+						ReportPermissions
+						{
+							My_Classes={"View"}
+						}
+						FieldPermissions
+						{
+							Class_Name{visibility:true,readonly:false}
+							Trainees{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Class_Trainer{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Payment_Form
+					{
+						FieldPermissions
+						{
+							Payment_status{visibility:true,readonly:false}
+							Payment_Date{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Member{visibility:true,readonly:false}
+							Amount{visibility:true,readonly:false}
+						}
+					}
+					Add_Staff_Trainer
+					{
+						FieldPermissions
+						{
+							Email_ID{visibility:true,readonly:false}
+							Phone_Number1{visibility:true,readonly:false}
+							Photo{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+							Classes{visibility:true,readonly:false}
+						}
+					}
+				}
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Trainee"
+			{
+				name = "Trainee"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "Trainee Profile\n"
+				ModulePermissions
+				{
+					Add_Trainee_To_Class
+					{
+						FieldPermissions
+						{
+							Class{visibility:true,readonly:false}
+							Trainee{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_Trainee
+					{
+						ReportPermissions
+						{
+							My_Profile={"View"}
+						}
+						FieldPermissions
+						{
+							Next_Payment_Schedule_Date{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Personal_Trainer{visibility:true,readonly:false}
+							Email_ID{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Photo{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Date_Of_Birth{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+							Member_ID{visibility:true,readonly:false}
+							Member_Status{visibility:true,readonly:false}
+							Membership{visibility:true,readonly:false}
+							Age{visibility:true,readonly:false}
+							Classes{visibility:true,readonly:false}
+						}
+					}
+					Add_Workout
+					{
+						FieldPermissions
+						{
+							Demo_Video{visibility:true,readonly:false}
+							Purpose{visibility:true,readonly:false}
+							Workout_Title{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Demo_Image{visibility:true,readonly:false}
+						}
+					}
+					Assign_Workouts
+					{
+						ReportPermissions
+						{
+							My_Current_Workouts={"View"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Assign_To{visibility:true,readonly:false}
+							Assigned_By{visibility:true,readonly:false}
+							From_Date{visibility:true,readonly:false}
+							Class{visibility:true,readonly:false}
+							No_Of_Days_Repeat{visibility:true,readonly:false}
+							Workouts{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Member{visibility:true,readonly:false}
+						}
+					}
+					Add_Membership
+					{
+						FieldPermissions
+						{
+							Description{visibility:true,readonly:false}
+							Amount{visibility:true,readonly:false}
+							Package{visibility:true,readonly:false}
+							Membership_Title{visibility:true,readonly:false}
+							Schedule_Date{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Number_Of_Months{visibility:true,readonly:false}
+						}
+					}
+					Check_In_Check_Out_Form1
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							My_Attendance_Report={"View"}
+						}
+						FieldPermissions
+						{
+							Checked_Out_Time{visibility:true,readonly:false}
+							Date_field1{visibility:true,readonly:false}
+							Checked_In_Time{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Member{visibility:true,readonly:false}
+						}
+					}
+					Gym_Details
+					{
+						FieldPermissions
+						{
+							Gym_Name{visibility:true,readonly:false}
+							Contact_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Gym_Address{visibility:true,readonly:false}
+						}
+					}
+					Health_Updates
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							My_Health_Updates={"View"}
+						}
+						FieldPermissions
+						{
+							Height{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Member{visibility:true,readonly:false}
+							Weight{visibility:true,readonly:false}
+							date_field{visibility:true,readonly:false}
+						}
+					}
+					Add_Class
+					{
+						ReportPermissions
+						{
+							My_Classes1={"View"}
+						}
+						FieldPermissions
+						{
+							Class_Name{visibility:true,readonly:false}
+							Trainees{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Class_Trainer{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Payment_Form
+					{
+						ReportPermissions
+						{
+							My_Payment_History={"View"}
+						}
+						FieldPermissions
+						{
+							Payment_status{visibility:true,readonly:false}
+							Payment_Date{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Member{visibility:true,readonly:false}
+							Amount{visibility:true,readonly:false}
+						}
+					}
+					Add_Staff_Trainer
+					{
+						FieldPermissions
+						{
+							Email_ID{visibility:true,readonly:false}
+							Phone_Number1{visibility:true,readonly:false}
+							Photo{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+							Classes{visibility:true,readonly:false}
+						}
+					}
+					Today_Workouts
+					{
+						enabled = tab
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users.\n\n"
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 9
+		new theme color = 2
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-hr-mgmt10"
+    	icon theme = "darkgrey"
+		icons style = outline
+	}
+
+	phone
+	{
+		section  Gym_Details
+		{
+			displayname= "Gym Details"
+			icon = "sport-cardio"
+			form  Gym_Details
+			{
+				layout = auto
+				icon = "sport-cardio"
+				hide = true
+			}
+		}
+		section  Add_Staff_Trainer
+		{
+			displayname= "Add Staff/Trainer"
+			icon = "tech-desktop"
+			form  Add_Staff_Trainer
+			{
+				layout = auto
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Dashboard
+		{
+			page Dashboard
+			{
+				icon = "ui-1-dashboard-half"
+			}
+		}
+		section  Settings
+		{
+			summary Gym_Details1
+			{
+				icon = "sport-cardio"
+			}
+			list Staffs_Trainers
+			{
+				icon = "users-single-01"
+			}
+			list Memberships
+			{
+				icon = "shopping-credit-card-in"
+			}
+			list All_Classes
+			{
+				icon = "users-2-family"
+			}
+		}
+		section  Members
+		{
+			icon = "users-multiple-11"
+			pivotchart Members_By_Package
+			{
+				icon = "business-round-euro"
+				hide = true
+			}
+			form  Add_Trainee
+			{
+				layout = auto
+				icon = "users-2-a-add"
+			}
+			kanban Members_Details
+			{
+				icon = "users-2-contacts-44"
+			}
+			list Trainees
+			{
+				icon = "users-multiple-11"
+			}
+			list Dropped_Trainees
+			{
+				icon = "location-bookmark-remove"
+			}
+		}
+		section  Trainer
+		{
+			icon = "users-network"
+			form  Assign_Workouts
+			{
+				layout = auto
+				icon = "design-todo"
+			}
+			custom My_Classes
+			{
+				icon = "users-2-a-time"
+			}
+			list My_Trainees
+			{
+				icon = "users-2-b-meeting"
+			}
+			list Assigned_to_Trainees
+			{
+				icon = "users-2-family"
+			}
+			list Assigned_to_Class
+			{
+				icon = "users-multiple-11"
+			}
+			list All_Workouts
+			{
+				icon = "sport-cardio"
+			}
+		}
+		section  Classes
+		{
+			icon = "users-2-b-meeting"
+			form  Add_Class
+			{
+				layout = auto
+				icon = "education-school"
+				hide = true
+			}
+		}
+		section  Add
+		{
+			icon = "tech-2-p-add"
+			form  Add_Membership
+			{
+				layout = auto
+				icon = "tech-2-p-add"
+				hide = true
+			}
+		}
+		section  Trainee
+		{
+			icon = "sport-cardio"
+			form  Check_In_Check_Out_Form1
+			{
+				layout = auto
+				icon = "shopping-pos"
+				hide = true
+			}
+			pivotchart Member_Attendance
+			{
+				icon = "business-laptop-71"
+				hide = true
+			}
+			summary My_Profile
+			{
+				icon = "users-2-man"
+			}
+			page Today_Workouts
+			{
+				icon = "ui-1-check-circle-07"
+			}
+			list My_Current_Workouts
+			{
+				icon = "shopping-tag-sale"
+			}
+			list My_Classes1
+			{
+				icon = "sport-cardio"
+			}
+			list My_Attendance_Report
+			{
+				icon = "users-2-a-time"
+			}
+			list My_Payment_History
+			{
+				icon = "shopping-receipt"
+			}
+			list Today_Attendance_Report
+			{
+				icon = "arrows-4-system-update"
+			}
+			list Trainees_Attendance_Report
+			{
+				icon = "ui-1-check-circle-07"
+			}
+		}
+		section  Workouts
+		{
+			icon = "sport-cardio"
+			form  Add_Workout
+			{
+				layout = auto
+				icon = "tech-2-p-add"
+				hide = true
+			}
+		}
+		section  Health_Updates
+		{
+			displayname= "Health Updates"
+			icon = "health-woman"
+			form  Health_Updates
+			{
+				layout = auto
+				icon = "health-notebook"
+			}
+			list All_Health_Updates
+			{
+				icon = "health-height"
+			}
+			list My_Health_Updates
+			{
+				icon = "users-single-body"
+			}
+		}
+		section  Copy_of_Add_Trainee_To_Class
+		{
+			displayname= "Copy of Add Trainee To Class"
+			form  Add_Trainee_To_Class
+			{
+				layout = left
+				hide = true
+			}
+		}
+		section  Member_Payments
+		{
+			displayname= "Member Payments"
+			icon = "shopping-credit-card-in"
+			pivotchart Monthly_Payments
+			{
+				icon = "shopping-credit-card-in"
+				hide = true
+			}
+			pivotchart Revenues_By_Packages
+			{
+				icon = "shopping-credit-card-in"
+				hide = true
+			}
+			form  Payment_Form
+			{
+				layout = auto
+				icon = "business-payment"
+			}
+			list Awaiting_Payments
+			{
+				icon = "ui-2-hourglass"
+			}
+			list Payment_History
+			{
+				icon = "arrows-2-reload"
+			}
+		}
+		customize
+		{
+			colour = yellow
+        	layout = slidingpane
+		 	icons style = outline
+		}
+	}
+	
+	reports configuration
+	{
+	
+		Version = 1251000165802367
+		Key     = "x3aO6OUbOvBepa22m6M7bnuOUvRhj4rbzxH9A8N27DuVMbEuCtmpuvppH45zn3UyeGFYk2KJKwmjrvGzfhqGrVA7b8SxVMRn0hvj"
+	}
+}

@@ -1,0 +1,3227 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 23:30:26
+ * Version      : 1.0
+ */
+ application "Lead Management"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "PST8PDT"
+ 	time format = "24-hr"
+	section Leads
+	{
+		icon = "location-position-user"
+				 page Lead_Tracking 
+	 	 { 
+ 	 	 displayname = "Lead Tracking" 
+
+ 	 	 icon = "users-2-a-search" 
+	 	 Content="<zml \t\t\n\t\t\n\t\t\n\t\t\twebDeviceConfig='{\"layout\":{\"style\":\"padding-right:0px;padding-top:0px;padding-bottom:0px;padding-left:0px;\",\"design\":\"fluid\",\"displayType\":\"plain\"}}'\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dsp id='Lead_Tracking1'>\n\t<![CDATA[htmlpage Lead_Tracking1()\ncontent\n&lt;%{\n\t%&gt;\n&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;\n\t\t\t\t\t\t  &lt;link rel=&quot;stylesheet&quot; href=&quot;https:\/\/maxcdn.bootstrapcdn.com\/bootstrap\/3.3.7\/css\/bootstrap.min.css&quot;&gt;\n\t\t\t\t\t\t  &lt;style&gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  .topbar_dropdown#zc-app-dropdown a{\n\t\t\t\t\t\t  height:100%;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .calcIcon {\n\t\t\t\t\t\t    width: 31px;\n\t\t\t\t\t\t    height: 33px;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t.input-group-addon {\n\t\t\t\t\t\t    border: none;\n\t\t\t\t\t\t    background: none;\n\t\t\t\t\t\t    padding: 8px 8px;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t.input-group .form-control {\n\t\t\t\t\t\t    position: initial;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t  .dropdown-menu\n\t\t\t\t\t\t{\n\t\t\t\t\t\tz-index:1000000\n\t\t\t\t\t\t}\n\t\t\t\t\t\t.row\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  margin-left:0px;\n\t\t\t\t\t\t  margin-right:0px;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  \n\t\t\t\t\t\t\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  .container-fluid\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  padding-top:1%;\n\t\t\t\t\t\t  padding-bottom:0.5%;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  \n\t\t\t\t\t\t  .col-xs-15,\n\t\t\t\t\t\t.col-sm-15,\n\t\t\t\t\t\t.col-md-15,\n\t\t\t\t\t\t.col-lg-15 {\n\t\t\t\t\t\t    position: relative;\n\t\t\t\t\t\t    min-height: 1px;\n\t\t\t\t\t\t    padding-right: 10px;\n\t\t\t\t\t\t    padding-left: 10px;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t\n\t\t\t\t\t\t.col-xs-15 {\n\t\t\t\t\t\t    width: 20%;\n\t\t\t\t\t\t    float: left;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t@media (min-width: 768px) {\n\t\t\t\t\t\t    .col-sm-15 {\n\t\t\t\t\t\t        width: 20%;\n\t\t\t\t\t\t        float: left;\n\t\t\t\t\t\t    }\n\t\t\t\t\t\t}\n\t\t\t\t\t\t@media (min-width: 992px) {\n\t\t\t\t\t\t    .col-md-15 {\n\t\t\t\t\t\t        width: 20%;\n\t\t\t\t\t\t        float: left;\n\t\t\t\t\t\t    }\n\t\t\t\t\t\t}\n\t\t\t\t\t\t@media (min-width: 1200px) {\n\t\t\t\t\t\t    .col-lg-15 {\n\t\t\t\t\t\t        width: 20%;\n\t\t\t\t\t\t        float: left;\n\t\t\t\t\t\t    }\n\t\t\t\t\t\t}\n\t\t\t\t\t\t  .wholeContainer\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  width:100%;\n\t\t\t\t\t\t  \/\/border:1px solid #eee;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .header\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  float:left;\n\t\t\t\t\t\t  width:81%;\n\t\t\t\t\t\t  height:58px;\n\t\t\t\t\t\t  background:#eee;\n\t\t\t\t\t\t  display:flex;\n\t\t\t\t\t\t  align-items:center;\n\t\t\t\t\t\t  justify-content:center;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  \n\t\t\t\t\t\t  .arrow_first\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  border-bottom: 29px solid transparent;\n\t\t\t\t\t\t  border-left: 20px solid #eee;\n\t\t\t\t\t\t  border-top: 29px solid transparent;\n\t\t\t\t\t\t  \/\/float: right;\n\t\t\t\t\t\t  width: 16%;\n\t\t\t\t\t\t  position:absolute;\n\t\t\t\t\t\t  left:97%;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .arrow_second\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  border-bottom: 29px solid #eee;\n\t\t\t\t\t\t  border-left: 20px solid transparent;\n\t\t\t\t\t\t  border-top: 29px solid #eee;\n\t\t\t\t\t\t  width: 16%;\n\t\t\t\t\t\t  float:left;\n\t\t\t\t\t\t  \/\/position: absolute;\n\t\t\t\t\t\t  \/\/left: 88%;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .ContentDiv\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  width:97%;\n\t\t\t\t\t\t  height:630px;\n\t\t\t\t\t\t  border:1px solid #f7f7f7;\n\t\t\t\t\t\t  overflow:auto;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .LeadList\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  border:1px solid #eee;\n\t\t\t\t\t\t  padding: 8px;\n\t\t\t\t\t\t  margin-bottom: 3%;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  ol\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  padding:6px;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .jobTitle\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  color: #bfbfbf;\n\t\t\t\t\t\t  font-size: 13px;\n\t\t\t\t\t\t  width:100%;\n\t\t\t\t\t\t  text-overflow: ellipsis;\n\t\t\t\t\t\t  overflow: hidden;\n\t\t\t\t\t\t  white-space: nowrap;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .iconsDiv\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  width:30%;float:left;white-space: nowrap;text-align:right;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .companyName\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  color:#0b74bd;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;width: 70%;float: left;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .leadName\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  width:100%;\n\t\t\t\t\t\t  text-overflow: ellipsis;\n\t\t\t\t\t\t  overflow: hidden;\n\t\t\t\t\t\t  white-space: nowrap;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .zc-live-primary-btn\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  padding: 5px 6px;\n\t\t\t\t\t\t  margin-right : 6px;\n\t\t\t\t\t\t      border-color: rgba(0,0,0,0.1);\n    \t\t\t\t\t\tcolor: #fff;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  &lt;\/style&gt;\n\t\t\t\t\t\t  &lt;body&gt;\n&lt;%\n\tif(Add_New_Lead[ID != 0].count() == 0 &amp;&amp; Add_Sales_Rep[ID != 0].count() == 0 &amp;&amp; Add_Product[ID != 0].count() == 0)\n\t{\n\t\topenUrl(&quot;#Form:Add_New_Lead&quot;,&quot;popup window&quot;);\n\t}\n\t%&gt;\n&lt;div class=&quot;container-fluid&quot;&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;row&quot; style=&quot;margin-bottom:10px;&quot;&gt;\n\t\t\t\t\t\t  &lt;div &gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  &lt;a href=&quot;#Report:Lost_Leads&quot; target = &quot;_blank&quot; style=&quot;float:right;&quot; &gt;\n\t\t\t\t\t\t  &lt;div class=&quot;zc-live-primary-btn&quot; style=&quot;background: #e0393d;&quot;&gt;\n\t\t\t\t\t\t  Lost Leads \n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/a&gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  &lt;a href=&quot;#Report:Contacts&quot; target = &quot;_blank&quot; style=&quot;float:right;&quot; &gt;\n\t\t\t\t\t\t  &lt;div class=&quot;zc-live-primary-btn&quot; style=&quot;background: #17a086;&quot;&gt;\n\t\t\t\t\t\t  Contacts\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/a&gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  &lt;a href=&quot;#Report:Accounts&quot; target = &quot;_blank&quot; style=&quot;float:right;&quot; &gt;\n\t\t\t\t\t\t  &lt;div class=&quot;zc-live-primary-btn&quot; style=&quot;background: #3394d8;&quot;&gt;\n\t\t\t\t\t\t  Accounts\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/a&gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t   &lt;a href=&quot;#Form:Add_New_Lead?zc_LoadIn=dialog&quot; style=&quot;float:right;&quot;&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;zc-live-primary-btn&quot; style=&quot;background: #75d278;&quot;&gt;\n\t\t\t\t\t\t  Add Lead\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/a&gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;row&quot;&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;col-md-15&quot; style=&quot;padding:0px;&quot;&gt;\n&lt;%\n\tif(zoho.loginuserid == zoho.adminuserid)\n\t{\n\t\tnewLeads = Add_New_Lead[Lead_Status == &quot;New&quot;];\n\t}\n\telse if(Add_Sales_Rep[Email == zoho.loginuserid].count() &gt; 0)\n\t{\n\t\tnewLeads = Add_New_Lead[Lead_Status == &quot;New&quot; &amp;&amp; Lead_Owner == Add_Sales_Rep[Email == zoho.loginuserid].ID];\n\t}\n\t%&gt;\n&lt;div class=&quot;wholeContainer&quot;&gt;\n\t\t\t\t\t\t  &lt;div style=&quot;width:100%;height:58px;&quot;&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;header&quot; style=&quot;width:97%&quot;&gt;\n\t\t\t\t\t\t  New Leads&amp;nbsp;&lt;span style=&quot;color:#3394d8&quot;&gt;(&lt;%=newLeads.count()%&gt;)&lt;\/span&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;arrow_first&quot;&gt;&lt;\/div&gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;ContentDiv&quot;&gt;\n\t\t\t\t\t\t  &lt;ol&gt;\n&lt;%\n\tfor each  lead in newLeads\n\t{\n\t\t%&gt;\n&lt;li class=&quot;LeadList&quot;&gt;\n\t\t\t\t\t\t  &lt;div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;companyName&quot;&gt;&lt;%=lead.Company%&gt;&lt;\/div&gt; \n\t\t\t\t\t\t  &lt;div class=&quot;iconsDiv&quot;&gt;\n\t\t\t\t\t\t  &lt;a href=&quot;#Form:Add_Activity?Lead=&lt;%=lead.ID%&gt;&amp;zc_LoadIn=dialog&quot; title=&quot;Add Activity&quot;&gt;&lt;i class=&quot;fa fa-plus-square&quot; style=&quot;margin-right: 2px;color: #9c9c9c;&quot;&gt;&lt;\/i&gt;&lt;\/a&gt;\n\t\t\t\t\t\t  &lt;a href=&quot;https:\/\/app.zohocreator.com&lt;%=zoho.appuri%&gt;#Form:Add_New_Lead?recLinkID=&lt;%=lead.ID%&gt;&amp;viewLinkName=All_Leads&amp;zc_LoadIn=dialog&quot; title=&quot;Edit&quot;&gt;&lt;i class=&quot;fa fa-pencil&quot; style=&quot;color: #9c9c9c;margin-right: 1px;&quot;&gt;&lt;\/i&gt;&lt;\/a&gt;\n\t\t\t\t\t\t  &lt;a href=&quot;#Form:Update_Status?RecID=&lt;%=lead.ID%&gt;&amp;zc_LoadIn=dialog&quot; title=&quot;Update to Next Stage&quot;&gt;&lt;i class=&quot;fa fa-arrow-right&quot; style=&quot;color: #9c9c9c;&quot;&gt;&lt;\/i&gt;&lt;\/a&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;leadName&quot;&gt;&lt;%=lead.Name.first_name%&gt; &amp;nbsp &lt;%=lead.Name.last_name%&gt;&lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;jobTitle&quot;&gt;&lt;%=lead.Job_Title%&gt;&lt;\/div&gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  &lt;\/li&gt;\n&lt;%\n\t}\n\t%&gt;\n&lt;\/ol&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;col-md-15&quot; style=&quot;padding:0px;&quot;&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;wholeContainer&quot;&gt;\n&lt;%\n\tif(zoho.loginuserid == zoho.adminuserid)\n\t{\n\t\tfollowupLeads = Add_New_Lead[Lead_Status == &quot;Follow up&quot;];\n\t}\n\telse if(Add_Sales_Rep[Email == zoho.loginuserid].count() &gt; 0)\n\t{\n\t\tfollowupLeads = Add_New_Lead[Lead_Status == &quot;Follow up&quot; &amp;&amp; Lead_Owner == Add_Sales_Rep[Email == zoho.loginuserid].ID];\n\t}\n\t%&gt;\n&lt;div style=&quot;width:100%;height:58px;&quot;&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;arrow_second&quot;&gt; &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;header&quot;&gt;\n\t\t\t\t\t\t  Follow ups&amp;nbsp;&lt;span style=&quot;color:#3394d8&quot;&gt;(&lt;%=followupLeads.count()%&gt;)&lt;\/span&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;arrow_first&quot;&gt;&lt;\/div&gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;ContentDiv&quot;&gt;\n\t\t\t\t\t\t  &lt;ol&gt;\n&lt;%\n\tfor each  lead in followupLeads\n\t{\n\t\t%&gt;\n&lt;li class=&quot;LeadList&quot;&gt;\n\t\t\t\t\t\t  &lt;div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;companyName&quot;&gt;&lt;%=lead.Company%&gt;&lt;\/div&gt; \n\t\t\t\t\t\t  &lt;div class=&quot;iconsDiv&quot;&gt;\n\t\t\t\t\t\t  &lt;a href=&quot;#Form:Add_Activity?Lead=&lt;%=lead.ID%&gt;&amp;zc_LoadIn=dialog&quot; title=&quot;Add Activity&quot;&gt;&lt;i class=&quot;fa fa-plus-square&quot; style=&quot;margin-right: 2px;color: #9c9c9c;&quot;&gt;&lt;\/i&gt;&lt;\/a&gt;\n\t\t\t\t\t\t  &lt;a href=&quot;https:\/\/app.zohocreator.com&lt;%=zoho.appuri%&gt;#Form:Add_New_Lead?recLinkID=&lt;%=lead.ID%&gt;&amp;viewLinkName=All_Leads&amp;zc_LoadIn=dialog&quot; title=&quot;Edit&quot;&gt;&lt;i class=&quot;fa fa-pencil&quot; style=&quot;color: #9c9c9c;margin-right: 1px;&quot;&gt;&lt;\/i&gt;&lt;\/a&gt;\n\t\t\t\t\t\t  &lt;a href=&quot;#Form:Update_Status?RecID=&lt;%=lead.ID%&gt;&amp;zc_LoadIn=dialog&quot; title=&quot;Update to Next Stage&quot;&gt;&lt;i class=&quot;fa fa-arrow-right&quot; style=&quot;color: #9c9c9c;&quot;&gt;&lt;\/i&gt;&lt;\/a&gt;&lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;leadName&quot;&gt;&lt;%=lead.Name.first_name%&gt; &amp;nbsp &lt;%=lead.Name.last_name%&gt;&lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;jobTitle&quot;&gt;&lt;%=lead.Job_Title%&gt;&lt;\/div&gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  &lt;\/li&gt;\n&lt;%\n\t}\n\t%&gt;\n&lt;\/ol&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;col-md-15&quot; style=&quot;padding:0px;&quot;&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;wholeContainer&quot;&gt;\n&lt;%\n\tif(zoho.loginuserid == zoho.adminuserid)\n\t{\n\t\tunderReviewLeads = Add_New_Lead[Lead_Status == &quot;Under Review&quot;];\n\t}\n\telse if(Add_Sales_Rep[Email == zoho.loginuserid].count() &gt; 0)\n\t{\n\t\tunderReviewLeads = Add_New_Lead[Lead_Status == &quot;Under Review&quot; &amp;&amp; Lead_Owner == Add_Sales_Rep[Email == zoho.loginuserid].ID];\n\t}\n\t%&gt;\n&lt;div style=&quot;width:100%;height:58px;&quot;&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;arrow_second&quot;&gt; &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;header&quot;&gt;\n\t\t\t\t\t\t  Under Review&amp;nbsp;&lt;span style=&quot;color:#3394d8&quot;&gt;(&lt;%=underReviewLeads.count()%&gt;)&lt;\/span&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t   &lt;div class=&quot;arrow_first&quot;&gt;&lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;ContentDiv&quot;&gt;\n\t\t\t\t\t\t  &lt;ol&gt;\n&lt;%\n\tfor each  lead in underReviewLeads\n\t{\n\t\t%&gt;\n&lt;li class=&quot;LeadList&quot;&gt;\n\t\t\t\t\t\t  &lt;div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;companyName&quot;&gt;&lt;%=lead.Company%&gt;&lt;\/div&gt; \n\t\t\t\t\t\t  &lt;div class=&quot;iconsDiv&quot;&gt;\n\t\t\t\t\t\t  &lt;a href=&quot;#Form:Add_Activity?Lead=&lt;%=lead.ID%&gt;&amp;zc_LoadIn=dialog&quot; title=&quot;Add Activity&quot;&gt;&lt;i class=&quot;fa fa-plus-square&quot; style=&quot;margin-right: 2px;color: #9c9c9c;&quot;&gt;&lt;\/i&gt;&lt;\/a&gt;\n\t\t\t\t\t\t  &lt;a href=&quot;https:\/\/app.zohocreator.com&lt;%=zoho.appuri%&gt;#Form:Add_New_Lead?recLinkID=&lt;%=lead.ID%&gt;&amp;viewLinkName=All_Leads&amp;zc_LoadIn=dialog&quot; title=&quot;Edit&quot;&gt;&lt;i class=&quot;fa fa-pencil&quot; style=&quot;color: #9c9c9c;margin-right: 1px;&quot;&gt;&lt;\/i&gt;&lt;\/a&gt;\n\t\t\t\t\t\t  &lt;a href=&quot;#Form:Update_Status?RecID=&lt;%=lead.ID%&gt;&amp;zc_LoadIn=dialog&quot; title=&quot;Update to Next Stage&quot;&gt;&lt;i class=&quot;fa fa-arrow-right&quot; style=&quot;color: #9c9c9c;&quot;&gt;&lt;\/i&gt;&lt;\/a&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;leadName&quot;&gt;&lt;%=lead.Name.first_name%&gt; &amp;nbsp &lt;%=lead.Name.last_name%&gt;&lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;jobTitle&quot;&gt;&lt;%=lead.Job_Title%&gt;&lt;\/div&gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  &lt;\/li&gt;\n&lt;%\n\t}\n\t%&gt;\n&lt;\/ol&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;col-md-15&quot; style=&quot;padding:0px;&quot;&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;wholeContainer&quot;&gt;\n&lt;%\n\tif(zoho.loginuserid == zoho.adminuserid)\n\t{\n\t\tdemoLeads = Add_New_Lead[Lead_Status == &quot;Demo&quot;];\n\t}\n\telse if(Add_Sales_Rep[Email == zoho.loginuserid].count() &gt; 0)\n\t{\n\t\tdemoLeads = Add_New_Lead[Lead_Status == &quot;Demo&quot; &amp;&amp; Lead_Owner == Add_Sales_Rep[Email == zoho.loginuserid].ID];\n\t}\n\t%&gt;\n&lt;div style=&quot;width:100%;height:58px;&quot;&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;arrow_second&quot;&gt; &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;header&quot;&gt;\n\t\t\t\t\t\t  Demo&amp;nbsp;&lt;span style=&quot;color:#3394d8&quot;&gt;(&lt;%=demoLeads.count()%&gt;)&lt;\/span&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t   &lt;div class=&quot;arrow_first&quot;&gt;&lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;ContentDiv&quot;&gt;\n\t\t\t\t\t\t  &lt;ol&gt;\n&lt;%\n\tfor each  lead in demoLeads\n\t{\n\t\t%&gt;\n&lt;li class=&quot;LeadList&quot;&gt;\n\t\t\t\t\t\t  &lt;div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;companyName&quot;&gt;&lt;%=lead.Company%&gt;&lt;\/div&gt; \n\t\t\t\t\t\t  &lt;div class=&quot;iconsDiv&quot;&gt;\n\t\t\t\t\t\t  &lt;a href=&quot;#Form:Add_Activity?Lead=&lt;%=lead.ID%&gt;&amp;zc_LoadIn=dialog&quot; title=&quot;Add Activity&quot;&gt;&lt;i class=&quot;fa fa-plus-square&quot; style=&quot;margin-right: 2px;color: #9c9c9c;&quot;&gt;&lt;\/i&gt;&lt;\/a&gt;\n\t\t\t\t\t\t  &lt;a href=&quot;https:\/\/app.zohocreator.com&lt;%=zoho.appuri%&gt;#Form:Add_New_Lead?recLinkID=&lt;%=lead.ID%&gt;&amp;viewLinkName=All_Leads&amp;zc_LoadIn=dialog&quot; title=&quot;Edit&quot;&gt;&lt;i class=&quot;fa fa-pencil&quot; style=&quot;color: #9c9c9c;margin-right: 1px;&quot;&gt;&lt;\/i&gt;&lt;\/a&gt;\n\t\t\t\t\t\t  &lt;a href=&quot;#Form:Update_Status?RecID=&lt;%=lead.ID%&gt;&amp;zc_LoadIn=dialog&quot; title=&quot;Update to Next Stage&quot;&gt;&lt;i class=&quot;fa fa-arrow-right&quot; style=&quot;color: #9c9c9c;&quot;&gt;&lt;\/i&gt;&lt;\/a&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;leadName&quot;&gt;&lt;%=lead.Name.first_name%&gt; &amp;nbsp &lt;%=lead.Name.last_name%&gt;&lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;jobTitle&quot;&gt;&lt;%=lead.Job_Title%&gt;&lt;\/div&gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  &lt;\/li&gt;\n&lt;%\n\t}\n\t%&gt;\n&lt;\/ol&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;col-md-15&quot; style=&quot;padding:0px;&quot;&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;wholeContainer&quot;&gt;\n&lt;%\n\tif(zoho.loginuserid == zoho.adminuserid)\n\t{\n\t\tnegotiationLeads = Add_New_Lead[Lead_Status == &quot;Negotiation&quot;];\n\t}\n\telse if(Add_Sales_Rep[Email == zoho.loginuserid].count() &gt; 0)\n\t{\n\t\tnegotiationLeads = Add_New_Lead[Lead_Status == &quot;Negotiation&quot; &amp;&amp; Lead_Owner == Add_Sales_Rep[Email == zoho.loginuserid].ID];\n\t}\n\t%&gt;\n&lt;div style=&quot;width:100%;height:58px;&quot;&gt;\n\t\t\t\t\t\t&lt;div class=&quot;arrow_second&quot;&gt; &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;header&quot;&gt;\n\t\t\t\t\t\t  Negotiation&amp;nbsp;&lt;span style=&quot;color:#3394d8&quot;&gt;(&lt;%=negotiationLeads.count()%&gt;)&lt;\/span&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t   &lt;div class=&quot;arrow_first&quot;&gt;&lt;\/div&gt;\n\t\t\t\t\t\t&lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;ContentDiv&quot;&gt;\n\t\t\t\t\t\t  &lt;ol&gt;\n&lt;%\n\tfor each  lead in negotiationLeads\n\t{\n\t\t%&gt;\n&lt;li class=&quot;LeadList&quot;&gt;\n\t\t\t\t\t\t  &lt;div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;companyName&quot;&gt;&lt;%=lead.Company%&gt;&lt;\/div&gt; \n\t\t\t\t\t\t  &lt;div class=&quot;iconsDiv&quot;&gt;\n\t\t\t\t\t\t  &lt;a href=&quot;#Form:Add_Activity?Lead=&lt;%=lead.ID%&gt;&amp;zc_LoadIn=dialog&quot; title=&quot;Add Activity&quot;&gt;&lt;i class=&quot;fa fa-plus-square&quot; style=&quot;margin-right: 2px;color: #9c9c9c;&quot;&gt;&lt;\/i&gt;&lt;\/a&gt;\n\t\t\t\t\t\t  &lt;a href=&quot;https:\/\/app.zohocreator.com&lt;%=zoho.appuri%&gt;#Form:Add_New_Lead?recLinkID=&lt;%=lead.ID%&gt;&amp;viewLinkName=All_Leads&amp;zc_LoadIn=dialog&quot; title=&quot;Edit&quot;&gt;&lt;i class=&quot;fa fa-pencil&quot; style=&quot;color: #9c9c9c;margin-right: 1px;&quot;&gt;&lt;\/i&gt;&lt;\/a&gt;\n\t\t\t\t\t\t  &lt;a href=&quot;#Form:Update_Status?RecID=&lt;%=lead.ID%&gt;&amp;zc_LoadIn=dialog&quot; title=&quot;Update to Next Stage&quot;&gt;&lt;i class=&quot;fa fa-arrow-right&quot; style=&quot;color: #9c9c9c;&quot;&gt;&lt;\/i&gt;&lt;\/a&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;leadName&quot;&gt;&lt;%=lead.Name.first_name%&gt; &amp;nbsp &lt;%=lead.Name.last_name%&gt;&lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;jobTitle&quot;&gt;&lt;%=lead.Job_Title%&gt;&lt;\/div&gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  &lt;\/li&gt;\n&lt;%\n\t}\n\t%&gt;\n&lt;\/ol&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  \n\t\t\t\t\t\t  \n\t\t\t\t\t\t  \n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/body&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+		list Activities
+		{
+			displayName = "Activities"
+			show all rows from Add_Activity  [Lead.Admin == zoho.loginuserid || Added_User == zoho.loginuser]  
+			(
+				Activity_Type as "Type"
+				Status
+				Date_Time as "Email at"
+				Title
+				Set_Reminder as "Reminder"
+				custom action "Complete"
+				(
+	  			workflow = Complete
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Complete"
+				success message = ""
+				condition = (Status == "Schedule")
+				)
+				Description
+				To
+				From
+				Lead
+			)
+			filters
+			(
+				Activity_Type
+			)
+			group by
+			(
+				Status descending
+			)
+			options
+			(
+				icon = "ui-3-phone-call"
+	 		)
+			custom actions
+			(
+				"Cancel"
+				(
+	  			workflow = Cancel
+				show action in view header = true
+				show action in edit record menu = true
+				success message = ""
+				condition = (Status == "Schedule")
+				)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Lead
+							Activity_Type as "Type"
+							Status
+							From
+							To
+							Date_Time as "Email at"
+							Title
+							Description
+							Set_Reminder as "Reminder"
+				"Complete"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+								"Cancel"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								"Cancel"
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Lead
+							Activity_Type as "Type"
+							Status
+							From
+							To
+							Date_Time as "Email at"
+							Title
+							Description
+							Set_Reminder as "Reminder"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Cancel"
+			 			"Complete"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		custom Accounts
+		{
+			displayName = "Accounts"
+			show all rows from Add_New_Lead  [Lead_Status == "Won" && Admin == zoho.loginuserid || Lead_Owner.Email == zoho.loginuserid]  
+			(
+				Website
+				Fax
+				Lead_Owner as "Account Owner"
+				Interested_Product as "Interested Product(s)"
+				Comments_if_any as "Comments( if any)"
+				Company as "Company Name"
+				No_of_Employees as "No of Employees"
+				Annual_Revenue as "Annual Revenue"
+				Job_Title as "Job Title"
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+			)
+			options
+			(
+				icon = "business-building"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Company as "Company Name"
+							Job_Title as "Job Title"
+							Annual_Revenue as "Annual Revenue"
+							No_of_Employees as "No of Employees"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Job_Title as "Job Title"
+							Company as "Company Name"
+							Annual_Revenue as "Annual Revenue"
+							No_of_Employees as "No of Employees"
+							Website
+							Fax
+							Interested_Product as "Interested Product(s)"
+							Lead_Owner as "Account Owner"
+							Comments_if_any as "Comments( if any)"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		custom Contacts
+		{
+			displayName = "Contacts"
+			show all rows from Add_New_Lead  [Lead_Status == "Won" && Admin == zoho.loginuserid || Lead_Owner.Email == zoho.loginuserid]  
+			(
+				Job_Title as "Job Title"
+				Company as "Company Name"
+				Lead_Owner as "Contact Owner"
+				Comments_if_any as "Comments"
+				Interested_Product as "Interested Product(s)"
+				Mobile_No as "Mobile No"
+				Phone
+				Email
+				Website
+				Address 
+	 			(
+	      			displayformat = [address_line_13+""+address_line_23+""+district_city3+""+state_province3+""+postal_Code3+""+country3]
+	      			enable = Show_As_Text
+	 			)
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+			)
+			options
+			(
+				icon = "location-explore-user"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Address
+							Email
+							Phone
+							Website
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Job_Title as "Job Title"
+							Email
+							Mobile_No as "Mobile No"
+							Phone
+							Company as "Company Name"
+							Interested_Product as "Interested Product(s)"
+							Address
+							Lead_Owner as "Contact Owner"
+							Comments_if_any as "Comments"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		custom Lost_Leads
+		{
+			displayName = "Lost Leads"
+			show all rows from Add_New_Lead  [Lead_Status == "Lost" && Admin == zoho.loginuserid || Lead_Owner.Email == zoho.loginuserid]  
+			(
+				Interested_Product as "Interested Product(s)"
+				Website as "Company Website"
+				Fax
+				Annual_Revenue as "Annual Revenue"
+				No_of_Employees as "No of Employees"
+				Industry_Type as "Industry Type"
+				Lead_Status as "Lead Status"
+				Lead_Source as "Lead Source"
+				Comments_if_any as "Comments"
+				Lead_Owner as "Lead Owner"
+				Address 
+	 			(
+	      			displayformat = [address_line_13+""+address_line_23+""+district_city3+""+state_province3+""+postal_Code3+""+country3]
+	      			enable = Show_As_Text
+	 			)
+				Phone
+				Job_Title as "Job Title"
+				Company as "Company Name"
+				Email
+				Mobile_No as "Mobile No"
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+			)
+			options
+			(
+				icon = "users-2-a-delete"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Company as "Company Name"
+							Job_Title as "Job Title"
+							Email
+							Mobile_No as "Mobile No"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Job_Title as "Job Title"
+							Company as "Company Name"
+							Email
+							Mobile_No as "Mobile No"
+							Phone
+							Address
+							Interested_Product as "Interested Product(s)"
+							Website as "Company Website"
+							Fax
+							Annual_Revenue as "Annual Revenue"
+							No_of_Employees as "No of Employees"
+							Industry_Type as "Industry Type"
+							Lead_Status as "Lead Status"
+							Lead_Source as "Lead Source"
+							Comments_if_any as "Comments"
+							Lead_Owner as "Lead Owner"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		custom All_Leads
+		{
+			displayName = "All Leads"
+			show all rows from Add_New_Lead  [Admin == zoho.loginuserid || Lead_Owner.Email == zoho.loginuserid]  
+			(
+				Interested_Product as "Interested Product(s)"
+				Website as "Company Website"
+				Fax
+				Annual_Revenue as "Annual Revenue"
+				No_of_Employees as "No of Employees"
+				Industry_Type as "Industry Type"
+				Lead_Status as "Lead Status"
+				Lead_Source as "Lead Source"
+				Comments_if_any as "Comments"
+				Lead_Owner as "Lead Owner"
+				Address 
+	 			(
+	      			displayformat = [address_line_13+""+address_line_23+""+district_city3+""+state_province3+""+postal_Code3+""+country3]
+	      			enable = Show_As_Text
+	 			)
+				Mobile_No as "Mobile No"
+				Job_Title as "Job Title"
+				Company as "Company Name"
+				Email
+				Phone
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+			)
+			filters
+			(
+				Lead_Source
+				Lead_Owner
+				Interested_Product
+			)
+			group by
+			(
+				Lead_Status ascending
+			)
+			options
+			(
+				icon = "users-2-multiple"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Company as "Company Name"
+							Job_Title as "Job Title"
+							Phone
+							Email
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Job_Title as "Job Title"
+							Company as "Company Name"
+							Email
+							Mobile_No as "Mobile No"
+							Phone
+							Address
+							Interested_Product as "Interested Product(s)"
+							Website as "Company Website"
+							Fax
+							Annual_Revenue as "Annual Revenue"
+							No_of_Employees as "No of Employees"
+							Industry_Type as "Industry Type"
+							Lead_Status as "Lead Status"
+							Lead_Source as "Lead Source"
+							Comments_if_any as "Comments"
+							Lead_Owner as "Lead Owner"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Admin
+	{
+		icon = "ui-1-lock-circle"
+		custom Sales_Reps
+		{
+			displayName = "Sales Reps"
+			show all rows from Add_Sales_Rep    
+			(
+				Email
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+			)
+			options
+			(
+				icon = "users-2-voice-record"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = 1
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Products
+		{
+			displayName = "Products"
+			show all rows from Add_Product    
+			(
+				Name
+			)
+			options
+			(
+				icon = "shopping-box-3d-67"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Hidden
+	{
+		hide = true
+		form Add_Product
+		{
+			displayname = "Add Product"
+			success message = "Product Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Name
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_New_Lead
+		{
+			displayname = "Add New Lead"
+			success message = "New Lead Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Job_Title
+			(
+    			type = text
+				displayname = "Job Title"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Phone
+			(
+    			type = phonenumber
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_13
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_23
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city3
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province3
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code3
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country3
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude3
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude3
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Mobile_No
+			(
+    			type = phonenumber
+				displayname = "Mobile No"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Comments_if_any
+			(
+    			type = textarea
+				displayname = "Comments( if any)"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Lead_Status
+			(
+				type = picklist
+				displayname = "Lead Status"
+				values = {"New", "Follow up", "Under Review", "Demo", "Negotiation", "Won", "Lost", "Unqualified"}
+				initial value = "New"
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			must have unique Company
+			(
+    			type = text
+				displayname = "Company Name"
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Website
+			(
+    			type = url
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Annual_Revenue
+			(
+				displayname = "Annual Revenue"
+				type = USD
+				maxchar = 15
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			No_of_Employees
+			(
+    			type = text
+				displayname = "No of Employees"
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Industry_Type
+			(
+				type = picklist
+				displayname = "Industry Type"
+				values  = Add_Industry_Type.ID
+    			displayformat = [Industry_Name]
+				allow new entries = true
+				[
+					displayname = "Add New Type"
+				]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Fax
+			(
+				type = number
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			must have Interested_Product
+			(
+				type = list
+				displayname = "Interested Product(s)"
+				values  = Add_Product.ID
+    			displayformat = [Name]
+				allow new entries = true
+				[
+					displayname = "Add New Product"
+				]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Lead_Source
+			(
+				type = picklist
+				displayname = "Lead Source"
+				values = {"Web", "Email", "Chat", "Referral", "Phone", "Blogs", "Social Media", "Display Ads", "Events", "Webinar"}
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			must have Lead_Owner
+			(
+				type = picklist
+				displayname = "Lead Owner"
+				values  = Add_Sales_Rep.ID
+    			displayformat = [Email]
+				allow new entries = true
+				[
+					displayname = "Add Sales Rep"
+				]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Admin
+			(
+    			type = email
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Sales_Rep
+		{
+			displayname = "Add Sales Rep"
+			success message = "New Sales Rep Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Activity
+		{
+			displayname = "Add Activity"
+			success message = "New Activity Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Lead
+			(
+				type = picklist
+				values  = Add_New_Lead.ID
+    			displayformat = [Name.first_name + " - " + Company]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Activity_Type
+			(
+				type = picklist
+				displayname = "Activity Type"
+				values = {"Call", "Meeting", "Email"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Status
+			(
+				type = radiobuttons
+				values = {"Completed", "Schedule"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Date_Time
+			(
+    			type = datetime
+				displayname = "Date-Time"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			From
+			(
+    			type = datetime
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			To
+			(
+    			type = datetime
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Title
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Description
+			(
+    			type = richtext
+				height = 200px
+				toolbar = enable
+				[
+					style, font-color, background-color, alignment, link, table, bullets-and-numbering, 
+					font-size : {1, 2, 3, 4, 5, 6, 7},
+					font-family : {"Serif", "Arial", "Courier New", "Georgia", "Tahoma", "Times New Roman", "Trebuchet", "Verdana", "Comic Sans Ms"}
+				]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Set_Reminder
+			(
+    			type = checkbox
+				displayname = "Set Reminder(Mail will be triggered 1 hour before the specified time)"
+				initial value = false
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Update_Status
+		{
+			displayname = "Update Status"
+			store data in zc = false
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			RecID
+			(
+				type = number
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Status
+			(
+				type = radiobuttons
+				values = {"New", "Follow up", "Under Review", "Demo", "Negotiation", "Won", "Lost", "Unqualified"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = ""
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Comments
+			(
+    			type = textarea
+				displayname = "Comments (if any)"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				Update
+				(
+   					type = button
+   					displayname = "Update"
+				)
+			}
+		}
+		form Add_Industry_Type
+		{
+			displayname = "Add Industry Type"
+			success message = "Industry Type Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Industry_Name
+			(
+    			type = text
+				displayname = "Industry Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Industry_Types
+		{
+			displayName = "Industry Types"
+   			hide = true
+			show all rows from Add_Industry_Type    
+			(
+				Industry_Name as "Industry Name"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Industry_Name as "Industry Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Industry_Name as "Industry Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	functions
+	{
+ 			void Complete(int Id)
+			{
+				activityRec = Add_Activity[ID == input.Id];
+				activityRec.Status="Completed";
+			}
+ 			void Cancel(int Id)
+			{
+				activityRec = Add_Activity[ID == input.Id];
+				activityRec.Status="Cancelled";
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Run_Scripts_On_Update_But1 as "Run Scripts - On Update Button Click"
+			{
+				type =  form
+				form = Update_Status
+				button = Update
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						LeadRec = Add_New_Lead[ID == input.RecID];
+										LeadRec.Lead_Status=input.Status;
+										if(input.Comments != "")
+										{
+											LeadRec.Comments_if_any=LeadRec.Comments_if_any + " " + input.Comments;
+										}
+										openUrl("#Script:page.refresh","same window");
+					)
+					}
+				}
+			}
+			Run_Scripts_While_Adding_4 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_New_Lead
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(zoho.loginuserid != zoho.adminuserid)
+										{
+											input.Lead_Owner = Add_Sales_Rep[Email == zoho.loginuserid].ID;
+											disable Lead_Owner;
+										}
+										input.Admin = zoho.adminuserid;
+										hide Comments_if_any;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing2 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_New_Lead
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(zoho.loginuserid != zoho.adminuserid)
+										{
+											disable Lead_Owner;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_5 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Sales_Rep
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.permissions.assignUserInProfile(input.Email,"Sales Rep");
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Email
+											subject :"Invitation to access Lead Management App"
+											message :"Hi&nbsp;" + input.Name.first_name + ",<div><br></div><div>&nbsp; &nbsp; &nbsp; You can add your leads in this application and track their activities easily.</div><div><br></div><div>Click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "\"" + " target=\"_blank\">here</a> to view the App.</div><div><br></div><div>Regards,</div><div>" + zoho.adminuser + "&nbsp;</div>"
+										]
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing3 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Sales_Rep
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Email != old.Email)
+										{
+											thisapp.permissions.deleteuser(old.Email);
+											thisapp.permissions.assignUserInProfile(input.Email,"Sales Rep");
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :input.Email
+												subject :"Invitation to access Lead Management App"
+												message :"Hi&nbsp;" + input.Name.first_name + ",<div><br></div><div>&nbsp; &nbsp; &nbsp; You can add your leads in this application and track their activities easily.</div><div><br></div><div>Click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "\"" + " target=\"_blank\">here</a> to view the App.</div><div><br></div><div>Regards,</div><div>" + zoho.adminuser + "&nbsp;</div>"
+											]
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin1 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_Sales_Rep
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.permissions.deleteuser(input.Email);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_6 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Activity
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide From,To,Set_Reminder,Date_Time;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_7 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Activity
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Activity_Type == "Call" || input.Activity_Type == "Meeting")
+										{
+											if(input.From == null)
+											{
+												alert "Please enter value for 'From' field!";
+												cancel submit;
+											}
+											if(input.To == null)
+											{
+												alert "Please enter value for 'To' field!";
+												cancel submit;
+											}
+										}
+										if(input.Activity_Type == "Email")
+										{
+											if(input.Date_Time == null)
+											{
+												alert "Please enter value for 'Mail at' field!";
+												cancel submit;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_8 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Activity
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											openUrl("#Script:page.refresh","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always2 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Activity
+				record event = on add or edit
+
+	on user input of To
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.From > input.To)
+										{
+											alert "Please enter a valid time!";
+											input.To = null;
+										}
+										if(input.Status == "Schedule")
+										{
+											if(input.To < zoho.currenttime)
+											{
+												alert "Please enter a valid future date!";
+												input.To = null;
+											}
+										}
+										else if(input.Status == "Completed")
+										{
+											if(input.To > zoho.currenttime)
+											{
+												alert "Sorry! Future dates are not allowed.";
+												input.To = null;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always3 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Activity
+				record event = on add or edit
+
+	on user input of Activity_Type
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Activity_Type == "Call" || input.Activity_Type == "Meeting")
+										{
+											show From;
+											show To;
+											hide Date_Time;
+										}
+										if(input.Activity_Type == "Email")
+										{
+											hide From;
+											hide To;
+											show Date_Time;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always4 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Activity
+				record event = on add or edit
+
+	on user input of From
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.From > input.To)
+										{
+											alert "Please enter a valid time!";
+											input.From = null;
+										}
+										if(input.Status == "Schedule")
+										{
+											if(input.From < zoho.currenttime)
+											{
+												alert "Please enter a valid future date!";
+												input.From = null;
+											}
+										}
+										else if(input.Status == "Completed")
+										{
+											if(input.From > zoho.currenttime)
+											{
+												alert "Sorry! Future dates are not allowed.";
+												input.From = null;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always5 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Activity
+				record event = on add or edit
+
+	on user input of Status
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Status == "Schedule")
+										{
+											show Set_Reminder;
+										}
+										else
+										{
+											hide Set_Reminder;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_9 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Update_Status
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide RecID;
+										statusList = {"New","Follow up","Under Review","Demo","Negotiation","Won"};
+										currentValue = statusList.indexOf(Add_New_Lead[ID == input.RecID].Lead_Status);
+										input.Status = statusList.get(currentValue + 1);
+										hide plain;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_10 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Update_Status
+				record event = on add
+
+	on user input of Status
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Status == "Won")
+										{
+											show plain;
+											input.plain = "<span style='color:#337ab7'>This lead will be converted to Accounts and Contacts!</span>";
+										}
+										else
+										{
+											hide plain;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always6 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_New_Lead
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Admin;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always7 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_New_Lead
+				record event = on add or edit
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											openUrl("#Script:page.refresh","same window");
+						)
+					}
+	}
+
+			}
+		}
+		schedule
+		{
+			Call_Mail_Schedule as "Call & Mail Schedule"
+			{
+				type =  schedule
+				form = Add_Activity
+				start = before 1 hours from From
+				time zone = "PST8PDT"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						leadRec = Add_New_Lead[ID == input.Lead];
+										RepRec = Add_Sales_Rep[ID == leadRec.Lead_Owner];
+										productList = List:String();
+										for each  product in leadRec.Interested_Product
+										{
+											productList.add(Add_Product[ID == product].Name);
+										}
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :RepRec.Email
+											subject :"Gentle Reminder - " + input.Activity_Type + " at " + input.From
+											message :"Hi " + RepRec.Name.first_name + ",<div><br></div><div>You have a&nbsp;" + input.Activity_Type + " with " + leadRec.Name.first_name + " &nbsp;" + leadRec.Name.last_name + "(" + leadRec.Company + ") in an hour.</div><div><br></div><div><b>Lead Details</b></div><div><b><br></b></div><div>Mobile No : " + leadRec.Mobile_No + "</div><div><br></div><div>Status : " + leadRec.Lead_Status + "<br></div><div><br></div><div>Interested Product(s) : " + productList + "</div><div><br></div><div><br></div><div>Regards,</div><div>" + zoho.adminuser + "</div>"
+										]
+					)
+					}
+				}
+			}
+			Mail_Schedule as "Mail Schedule"
+			{
+				type =  schedule
+				form = Add_Activity
+				start = before 1 hours from Date_Time
+				time zone = "PST8PDT"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						leadRec = Add_New_Lead[ID == input.Lead];
+										RepRec = Add_Sales_Rep[ID == leadRec.Lead_Owner];
+										productList = List:String();
+										for each  product in leadRec.Interested_Product
+										{
+											productList.add(Add_Product[ID == product].Name);
+										}
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :RepRec.Email
+											subject :"Gentle Reminder - Email at " + input.Date_Time
+											message :"Hi " + RepRec.Name.first_name + ",<div><br></div><div>You have to send an&nbsp;Email to " + leadRec.Name.first_name + "(" + leadRec.Company + ") in an hour.</div><div><br></div><div><b>Lead Details</b></div><div><b><br></b></div><div>Mobile No : " + leadRec.Mobile_No + "</div><div><br></div><div>Status : " + leadRec.Lead_Status + "<br></div><div><br></div><div>Interested Product(s) : " + productList + "</div><div><br></div><div><br></div><div>Regards,</div><div>" + zoho.adminuser + "</div>"
+										]
+					)
+					}
+				}
+			}
+		}
+		functions
+		{
+			Complete as "Complete"
+			{
+				type =  functions
+				form = Add_Activity
+				on start
+				{
+					actions 
+					{
+					Complete(ID);
+					}
+				}
+			}
+			Cancel as "Cancel"
+			{
+				type =  functions
+				form = Add_Activity
+				on start
+				{
+					actions 
+					{
+					Cancel(ID);
+					}
+				}
+			}
+			Add_Activity as "Add Activity"
+			{
+				type =  functions
+				form = Add_New_Lead
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						openUrl("#Form:Add_Activity?Lead=" + input.ID,"popup window");
+					)
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Sales Rep"
+			{
+				name = "Sales Rep"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "This profile will have sales representative permissions.\n"
+				ModulePermissions
+				{
+					Add_Sales_Rep
+					{
+						FieldPermissions
+						{
+							Email{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Activity
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Activities={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Date_Time{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Activity_Type{visibility:true,readonly:false}
+							Lead{visibility:true,readonly:false}
+							Title{visibility:true,readonly:false}
+							From{visibility:true,readonly:false}
+							To{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Set_Reminder{visibility:true,readonly:false}
+						}
+					}
+					Add_Product
+					{
+						FieldPermissions
+						{
+							Section{visibility:false,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Update_Status
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							RecID{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							plain{visibility:true,readonly:false}
+							Comments{visibility:true,readonly:false}
+						}
+					}
+					Add_Industry_Type
+					{
+						FieldPermissions
+						{
+							Section{visibility:false,readonly:false}
+							Industry_Name{visibility:true,readonly:false}
+						}
+					}
+					Add_New_Lead
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Lost_Leads={"View","Edit","Delete"}
+							All_Leads={"View","Edit","Delete"}
+							Contacts={"View","Edit","Delete"}
+							Accounts={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Company{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Comments_if_any{visibility:true,readonly:false}
+							Website{visibility:true,readonly:false}
+							Lead_Owner{visibility:true,readonly:false}
+							Job_Title{visibility:true,readonly:false}
+							No_of_Employees{visibility:true,readonly:false}
+							Admin{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:true,readonly:false}
+							Lead_Status{visibility:true,readonly:false}
+							Phone{visibility:true,readonly:false}
+							Mobile_No{visibility:true,readonly:false}
+							Interested_Product{visibility:true,readonly:false}
+							Industry_Type{visibility:true,readonly:false}
+							Lead_Source{visibility:true,readonly:false}
+							Annual_Revenue{visibility:true,readonly:false}
+							Fax{visibility:true,readonly:false}
+						}
+					}
+					Lead_Tracking
+					{
+						enabled = tab
+					}
+				}
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users.\n"
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 5
+		new theme color = 1
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-project-mgmt4"
+    	icon theme = "green"
+		icons style = solid
+	}
+
+	phone
+	{
+		section  Leads
+		{
+			icon = "location-position-user"
+			page Lead_Tracking
+			{
+				icon = "users-2-a-search"
+			}
+			list Activities
+			{
+				icon = "ui-3-phone-call"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Lead
+								Description
+								From
+								To
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										"Cancel"
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+										"Complete"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Cancel"
+										"Complete"
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Cancel"
+										"Complete"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Lead
+								Activity_Type as "Type"
+								Status
+								From
+								To
+								Date_Time as "Email at"
+								Title
+								Description
+								Set_Reminder as "Reminder"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Cancel"
+			 				"Complete"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			custom Accounts
+			{
+				icon = "business-building"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Company as "Company Name"
+								Job_Title as "Job Title"
+								Annual_Revenue as "Annual Revenue"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Job_Title as "Job Title"
+								Company as "Company Name"
+								Annual_Revenue as "Annual Revenue"
+								No_of_Employees as "No of Employees"
+								Website
+								Fax
+								Interested_Product as "Interested Product(s)"
+								Lead_Owner as "Account Owner"
+								Comments_if_any as "Comments( if any)"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			custom Contacts
+			{
+				icon = "location-explore-user"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Address
+								Email
+								Phone
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Job_Title as "Job Title"
+								Email
+								Mobile_No as "Mobile No"
+								Phone
+								Company as "Company Name"
+								Interested_Product as "Interested Product(s)"
+								Address
+								Lead_Owner as "Contact Owner"
+								Comments_if_any as "Comments"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			custom Lost_Leads
+			{
+				icon = "users-2-a-delete"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Email
+								Mobile_No as "Mobile No"
+								Company as "Company Name"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Job_Title as "Job Title"
+								Company as "Company Name"
+								Email
+								Mobile_No as "Mobile No"
+								Phone
+								Address
+								Interested_Product as "Interested Product(s)"
+								Website as "Company Website"
+								Fax
+								Annual_Revenue as "Annual Revenue"
+								No_of_Employees as "No of Employees"
+								Industry_Type as "Industry Type"
+								Lead_Status as "Lead Status"
+								Lead_Source as "Lead Source"
+								Comments_if_any as "Comments"
+								Lead_Owner as "Lead Owner"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			custom All_Leads
+			{
+				icon = "users-2-multiple"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Phone
+								Email
+								Company as "Company Name"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Job_Title as "Job Title"
+								Company as "Company Name"
+								Email
+								Mobile_No as "Mobile No"
+								Phone
+								Address
+								Interested_Product as "Interested Product(s)"
+								Website as "Company Website"
+								Fax
+								Annual_Revenue as "Annual Revenue"
+								No_of_Employees as "No of Employees"
+								Industry_Type as "Industry Type"
+								Lead_Status as "Lead Status"
+								Lead_Source as "Lead Source"
+								Comments_if_any as "Comments"
+								Lead_Owner as "Lead Owner"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Admin
+		{
+			icon = "ui-1-lock-circle"
+			custom Sales_Reps
+			{
+				icon = "users-2-voice-record"
+				quickview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = 1
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Email
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Delete   	   
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Email
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Products
+			{
+				icon = "shopping-box-3d-67"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Name
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Hidden
+		{
+			hide = true
+			form  Add_Product
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_New_Lead
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_Sales_Rep
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_Activity
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Update_Status
+			{
+				layout = left
+				hide = true
+			}
+			form  Add_Industry_Type
+			{
+				layout = left
+				hide = true
+			}
+			list Industry_Types
+			{
+				hide = true
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Industry_Name as "Industry Name"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Industry_Name as "Industry Name"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		customize
+		{
+			colour = green
+        	layout = onecolumncard
+		 	icons style = outline
+		}
+	}
+	tablet
+	{
+		section  Leads
+		{
+			icon = "location-position-user"
+			page Lead_Tracking
+			{
+				icon = "users-2-a-search"
+			}
+			list Activities
+			{
+				icon = "ui-3-phone-call"
+			}
+			custom Accounts
+			{
+				icon = "business-building"
+			}
+			custom Contacts
+			{
+				icon = "location-explore-user"
+			}
+			custom Lost_Leads
+			{
+				icon = "users-2-a-delete"
+			}
+			custom All_Leads
+			{
+				icon = "users-2-multiple"
+			}
+		}
+		section  Admin
+		{
+			icon = "ui-1-lock-circle"
+			custom Sales_Reps
+			{
+				icon = "users-2-voice-record"
+			}
+			list Products
+			{
+				icon = "shopping-box-3d-67"
+			}
+		}
+		section  Hidden
+		{
+			hide = true
+			form  Add_Product
+			{
+				layout = auto
+				hide = true
+			}
+			form  Add_New_Lead
+			{
+				layout = auto
+				hide = true
+			}
+			form  Add_Sales_Rep
+			{
+				layout = auto
+				hide = true
+			}
+			form  Add_Activity
+			{
+				layout = auto
+				hide = true
+			}
+			form  Update_Status
+			{
+				layout = auto
+				hide = true
+			}
+			form  Add_Industry_Type
+			{
+				layout = auto
+				hide = true
+			}
+			list Industry_Types
+			{
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = green
+        	layout = onecolumncard
+		 	icons style = outline
+		}
+	}
+	
+}

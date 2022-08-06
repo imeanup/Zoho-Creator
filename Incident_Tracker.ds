@@ -1,0 +1,2884 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 23:52:21
+ * Version      : 1.0
+ */
+ application "Incident Tracker"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+	section Raise_Incident
+	{
+		displayname= "Incidents"
+		icon = "weather-hurricane-45"
+		form Raise_Incident
+		{
+			displayname = "Raise Incident"
+			success message = "Incident has been Added Successfully!"
+			field alignment = left
+			feature property = 40
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Complaint_By
+			(
+				type = picklist
+				displayname = "Complaint By"
+				values  = Add_Employee.ID
+    			displayformat = [" " + Name.first_name + " " + Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Incident_Name
+			(
+    			type = text
+				displayname = "Incident Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Incident_Type
+			(
+				type = picklist
+				displayname = "Incident Type"
+				values  = Add_Incident_Type.ID
+    			displayformat = [Incident_Type]
+				allow new entries = true
+				[
+					displayname = "Add New Type"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Add_Image
+			(
+    			type = image
+				displayname = "Add Image"
+				source  = file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Victim
+			(
+				type = checkboxes
+				values = {"Company Staff", "Visitor"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Number_of_Victims
+			(
+				type = number
+				displayname = "Number of Victims"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Time_of_Event
+			(
+    			type = datetime
+				displayname = "Time of Event"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Location
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Handled_By
+			(
+				type = picklist
+				displayname = "Handled By"
+				values  = Add_Employee.ID
+    			displayformat = [" " + Name.prefix + " " + Name.first_name + " " + Name.last_name + " " + Name.suffix]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status
+			(
+				type = picklist
+				values = {"Request Sent", "Employee Assigned", "Closed"}
+				initial value = "Request Sent"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Investigation_Notes
+			(
+    			type = textarea
+				displayname = "Investigation Notes"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-circle-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Recent_Incidents
+		{
+			displayName = "Recent Incidents"
+			show all rows from Raise_Incident  [Status == "Request Sent"]  
+			(
+				Description
+				Number_of_Victims as "Number of Victims"
+				Handled_By as "Handled By"
+				Status
+				Location
+				custom action "Assign Employee"
+				(
+	  			workflow = Run_Scripts_On_Click_of_P3
+				show action in edit record menu = true
+				column header = "Assign Employee"
+				)
+				Time_of_Event as "Time of Event"
+				Incident_Name as "Incident Name"
+				Complaint_By as "Complaint By"
+				Add_Image as "Image"
+			)
+			options
+			(
+				icon = "ui-3-search"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Complaint_By as "Complaint By"
+							Incident_Name as "Incident Name"
+							Description
+							Time_of_Event as "Time of Event"
+							Location
+							Number_of_Victims as "Number of Victims"
+				"Assign Employee"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Assign Employee"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Complaint_By as "Complaint By"
+							Incident_Name as "Incident Name"
+							Description
+							Number_of_Victims as "Number of Victims"
+							Time_of_Event as "Time of Event"
+							Location
+							Handled_By as "Handled By"
+							Status
+							Add_Image as "Image"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Incidents
+		{
+			displayName = "All Incidents"
+			show all rows from Raise_Incident    
+			(
+				Complaint_By as "Complaint By"
+				Incident_Name as "Incident Name"
+				Time_of_Event as "Time of Event"
+				Description
+				Location
+				Number_of_Victims as "Number of Victims"
+				Handled_By as "Handled By"
+				Status
+				Investigation_Notes as "Investigation Notes"
+				Incident_Type as "Incident Type"
+				Victim
+				Add_Image as "Image"
+			)
+			group by
+			(
+				Status ascending
+			)
+			sort by
+			(
+				Status ascending
+			)
+			options
+			(
+				icon = "ui-2-alert-square-i"
+	 		)
+			custom actions
+			(
+				"Assign Employee"
+				(
+	  			workflow = Run_Scripts_On_Click_of_P2
+				show action in edit record menu = true
+				condition = (Status == "Request Sent" && Handled_By is null)
+				)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Complaint_By as "Complaint By"
+							Incident_Name as "Incident Name"
+							Time_of_Event as "Time of Event"
+							Description
+							Location
+							Number_of_Victims as "Number of Victims"
+							Handled_By as "Handled By"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Assign Employee"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Complaint_By as "Complaint By"
+							Incident_Name as "Incident Name"
+							Time_of_Event as "Time of Event"
+							Description
+							Location
+							Number_of_Victims as "Number of Victims"
+							Handled_By as "Handled By"
+							Status
+							Investigation_Notes as "Investigation Notes"
+							Incident_Type as "Incident Type"
+							Victim
+							Add_Image as "Image"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Assigned_Incidents
+		{
+			displayName = "My Assigned Incidents"
+			show all rows from Raise_Incident  [Status == "Employee Assigned" && Handled_By.Email_Id == zoho.loginuserid]  
+			(
+				Complaint_By as "Complaint By"
+				Incident_Name as "Incident Name"
+				Description
+				Number_of_Victims as "Number of Victims"
+				Time_of_Event as "Time of Event"
+				Location
+				Handled_By as "Handled By"
+				Status
+				custom action "Close Incident"
+				(
+	  			workflow = Run_Scripts_On_Click_of_P4
+				show action in edit record menu = true
+				column header = "Close Incident"
+				)
+			)
+			options
+			(
+				icon = "users-2-a-search"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Complaint_By as "Complaint By"
+							Incident_Name as "Incident Name"
+							Description
+							Number_of_Victims as "Number of Victims"
+				"Close Incident"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Close Incident"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Complaint_By as "Complaint By"
+							Incident_Name as "Incident Name"
+							Description
+							Number_of_Victims as "Number of Victims"
+							Time_of_Event as "Time of Event"
+							Location
+							Handled_By as "Handled By"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Closed_Incidents
+		{
+			displayName = "Closed Incidents"
+			show all rows from Raise_Incident  [Status == "Closed"]  
+			(
+				Description
+				Time_of_Event as "Time of Event"
+				Location
+				Status
+				Handled_By as "Handled By"
+				Investigation_Notes as "Investigation Notes"
+				Number_of_Victims as "Number of Victims"
+				Incident_Name as "Incident Name"
+				Complaint_By as "Complaint By"
+			)
+			options
+			(
+				icon = "business-notes"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Complaint_By as "Complaint By"
+							Incident_Name as "Incident Name"
+							Description
+							Number_of_Victims as "Number of Victims"
+							Handled_By as "Handled By"
+							Investigation_Notes as "Investigation Notes"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Complaint_By as "Complaint By"
+							Incident_Name as "Incident Name"
+							Description
+							Number_of_Victims as "Number of Victims"
+							Time_of_Event as "Time of Event"
+							Location
+							Handled_By as "Handled By"
+							Status
+							Investigation_Notes as "Investigation Notes"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		map Map_View
+		{
+			displayName = "Map View"
+			show all rows from Raise_Incident    
+			(
+				Complaint_By as "Complaint By"
+				Incident_Name as "Incident Name"
+				Incident_Type as "Incident Type"
+				Add_Image as "Add Image"
+				Description
+				Victim
+				Number_of_Victims as "Number of Victims"
+				Time_of_Event as "Time of Event"
+				Location
+				Handled_By as "Handled By"
+				Status
+				Investigation_Notes as "Investigation Notes"
+			)
+			options
+			(
+	 			display field = Added_Location
+	 	 		radius = 100 Miles
+		 		icon = "location-pin"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = 1
+		     			title = "Overview"
+						fields
+						(
+							Complaint_By as "Complaint By"
+							Incident_Name as "Incident Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Complaint_By as "Complaint By"
+							Incident_Name as "Incident Name"
+							Incident_Type as "Incident Type"
+							Add_Image as "Add Image"
+							Description
+							Victim
+							Number_of_Victims as "Number of Victims"
+							Time_of_Event as "Time of Event"
+							Location
+							Handled_By as "Handled By"
+							Status
+							Investigation_Notes as "Investigation Notes"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Types
+	{
+		icon = "media-1-layers"
+		list Incident_Types
+		{
+			displayName = "Incident Types"
+			show all rows from Add_Incident_Type    
+			(
+				Incident_Type as "Incident Type"
+			)
+			options
+			(
+				icon = "business-hierarchy-56"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Incident_Type as "Incident Type"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Incident_Type as "Incident Type"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		pivotchart Type_Wise_Incidents
+		{ 
+			displayname = "Type Wise Incidents"
+			based on Autoview_1546856519418_Raise_Incident
+							icon = "weather-hurricane-45"				show all rows from Raise_Incident
+				(
+ 					Investigation_Notes  as "Investigation Notes"
+ 					Time_of_Event  as "Time of Event"
+ 					Status 
+ 					Number_of_Victims  as "Number of Victims"
+ 					Description 
+ 					Complaint_By  as "Complaint By"
+ 					Incident_Type  as "Incident Type"
+ 					Location 
+ 					Incident_Name  as "Incident Name"
+ 					Handled_By  as "Handled By"
+				)
+		}
+	}
+	section Add_Employees
+	{
+		displayname= "Employees"
+		icon = "users-2-family"
+		form Add_Employee
+		{
+			displayname = "Add Employee"
+			success message = "New Employee has been Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email_Id
+			(
+    			type = email
+				displayname = "Email Id"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Contact_Number
+			(
+    			type = phonenumber
+				displayname = "Contact Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Choose_Category
+			(
+				type = picklist
+				displayname = "Choose Category"
+				values = {"Company Staff", "Management Employee"}
+    			description
+    			[
+    				type = help_text
+    			 	message = "Management Employee : Category for handling and Investing Incidents...\nCompany Staff : Only have permission for raise Incidents..."
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-2-a-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list All_Employees
+		{
+			displayName = "All Employees"
+			show all rows from Add_Employee    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Email_Id as "Email Id"
+				Contact_Number as "Contact Number"
+				Choose_Category as "Category"
+			)
+			group by
+			(
+				Choose_Category ascending
+			)
+			options
+			(
+				icon = "users-multiple-11"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email_Id as "Email Id"
+							Contact_Number as "Contact Number"
+							Choose_Category as "Category"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email_Id as "Email Id"
+							Contact_Number as "Contact Number"
+							Choose_Category as "Category"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Organization
+	{
+		displayname= "Organization"
+		icon = "business-building"
+		form Add_Organization
+		{
+			displayname = "Add Organization"
+			success message = "Organization Details Registered\n Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Organization_Name
+			(
+    			type = text
+				displayname = "Organization Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Contact_Name
+			(
+    			type = name
+				displayname = "Contact Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Email_Id
+			(
+    			type = email
+				displayname = "Email Id"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Contact_Number
+			(
+    			type = phonenumber
+				displayname = "Contact Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		properties
+		{
+			total entries
+			{
+				allowed count = 1
+			}
+		}
+		}
+		summary Organization_Details
+		{
+			displayName = "Organization Details"
+			show all rows from Add_Organization    
+			(
+				Organization_Name as "Organization Name"
+				Contact_Name  as "Name"
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Email_Id as "Email Id"
+				Contact_Number as "Contact Number"
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 2
+				icon = "travel-temple-02"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Organization_Name as "Organization Name"
+							Contact_Name as "Name"
+							Email_Id as "Email Id"
+							Contact_Number as "Contact Number"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Organization_Name as "Organization Name"
+							Contact_Name as "Name"
+							Email_Id as "Email Id"
+							Contact_Number as "Contact Number"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section page
+	{
+		displayname= "Assign Employee"
+		form Assign_Employee
+		{
+			displayname = "Assign Employee"
+			store data in zc = false
+			success message = ""
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Select_Employee
+			(
+				type = picklist
+				displayname = "Select Employee"
+				values  = Add_Employee[Choose_Category == "Management Employee"].ID
+    			displayformat = [" " + Name.first_name + " " + Name.last_name]
+				allow new entries = true
+				[
+					displayname = "Add New Employee"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Incident_Name
+			(
+				type = picklist
+				displayname = "Incident Name"
+				values  = Raise_Incident.ID
+    			displayformat = [Incident_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				Assign
+				(
+   					type = button
+   					displayname = "Assign"
+				)
+				Reset
+				(
+   					type = reset
+   					displayname = "Reset"
+				)
+			}
+		}
+	}
+	section Incident_Reporting
+	{
+		displayname= "Incident Reporting"
+		form Incident_Reporting
+		{
+			displayname = "Incident Reporting"
+			store data in zc = false
+			success message = ""
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Incident_Name
+			(
+				type = picklist
+				displayname = "Incident Name"
+				values  = Raise_Incident.ID
+    			displayformat = [Incident_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Handled_By
+			(
+				type = picklist
+				values  = Add_Employee.ID
+    			displayformat = [" " + Name.first_name + " " + Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Report
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				Submit
+				(
+   					type = button
+   					displayname = "Submit"
+				)
+				Reset
+				(
+   					type = reset
+   					displayname = "Reset"
+				)
+			}
+		}
+	}
+	section Incident_Types
+	{
+		displayname= "Incident Types"
+		form Add_Incident_Type
+		{
+			displayname = "Add Incident Type"
+			success message = "New Incident type has been  Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = "<b>Example:(Accident,Assault,Injury)</b>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Incident_Type
+			(
+    			type = text
+				displayname = "Incident Type"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	functions
+	{
+ 			void Incident.Assigning_Employee(int incident_name)
+			{
+				//Redirects to the employee assigning form
+				url = "#Form:Assign_Employee?Incident_Name=" + incident_name;
+				openUrl(url,"popup window");
+			}
+ 			void Notification.Send_Notification(string userEmail)
+			{
+				appname = zoho.appname;
+				sendmail
+				[
+					from :zoho.adminuserid
+					to :userEmail
+					subject :"Invitation to access '" + zoho.appname + "' "
+					message :"<div style='width:100%;display:inline-block;box-sizing:border-box;border:1px solid #ddd;'><div style='padding:2%;text-align:center;'>You've been invited to use an application built on Zoho Creator by \"" + zoho.adminuserid + "\".</div><div style='background: #efefef; padding: 20.0px;margin: 20.0px 0 10.0px;text-align:center;'><h2>" + appname.toUpperCase() + "</h2><div style='margin: 20.0px 0 10.0px;'><a style='padding:10px;background-color: rgb(62,149,205);text-decoration: none;color: rgb(255,255,255);font-size: 14.0px;' href='https://creator.zoho.com" + zoho.appuri + "' target='_blank'> Go to application </a></div></div></div>"
+				]
+			}
+ 			void Incident.Closing_Incident(int incident_id)
+			{
+				//Redirects to the reporting form
+				employee_id = Raise_Incident[ID == input.incident_id].Handled_By;
+				employee_name = Add_Employee[ID == input.employee_id].ID;
+				url = "#Form:Incident_Reporting?Incident_Name=" + incident_id + "&Handled_By=" + employee_name;
+				openUrl(url,"popup window");
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Run_Scripts_On_Click_of_P as "Run Scripts - On Click of 'Proceed' Button"
+			{
+				type =  form
+				form = Assign_Employee
+				button = Assign
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						//Changing the status as employee assigned and sent him an email about the incident
+										rec_id = Raise_Incident[ID == input.Incident_Name];
+										rec_id.Handled_By=input.Select_Employee;
+										rec_id.Status="Employee Assigned";
+										employee_email_id = Add_Employee[ID == input.Select_Employee].Email_Id;
+										employee_name = Add_Employee[ID == input.Select_Employee].Name;
+										url = "https://app.zohocreator.com" + zoho.appuri + "#Report:My_Assigned_Incidents";
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :employee_email_id
+											subject :"New Incident"
+											message :("Hi " + employee_name) + ",<br></br>A New Incident was assigned to you <br></br><a href=" + url + ">Click here to take action</a>"
+										]
+										openUrl("#Script:page.refresh","same window");
+					)
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_P1 as "Run Scripts - On Click of 'Proceed' Button"
+			{
+				type =  form
+				form = Incident_Reporting
+				button = Submit
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						//Updates the notes to the related incident and changing the status as closed
+										rec_id = Raise_Incident[ID == input.Incident_Name];
+										rec_id.Investigation_Notes=input.Report;
+										rec_id.Status="Closed";
+										openUrl("#Script:page.refresh","same window");
+					)
+					}
+				}
+			}
+			Run_Scripts_On_Always1 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Raise_Incident
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Investigation_Notes,Handled_By,Status;
+						disable Complaint_By;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always2 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Raise_Incident
+				record event = on add or edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Redirects to add organization details
+										detail_rec_count = Add_Organization[ID != 0].count(ID);
+										if(detail_rec_count == 0)
+										{
+											openUrl("#Form:Add_Organization","popup window");
+										}
+										//Adding admin as an user by default
+										if(zoho.loginuserid == zoho.adminuserid)
+										{
+											admin_count = Add_Employee[Email_Id == zoho.adminuserid].count(ID);
+											if(admin_count == 0)
+											{
+												insert into Add_Employee
+												[
+													Email_Id=zoho.adminuserid
+													Choose_Category="Company Staff"
+													Added_User=zoho.loginuser
+													Name.first_name="Admin"
+												]
+											}
+										}
+										//Changing status
+										input.Status = "Request Sent";
+										input.Time_of_Event = zoho.currenttime;
+										employee_count = Add_Employee[ID != 0].count(Name);
+										if(employee_count == 1 && detail_rec_count == 1)
+										{
+											openUrl("#Form:Add_Employee","same window");
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always3 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Raise_Incident
+				record event = on add or edit
+
+	on user input of Time_of_Event
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Check for invalid time
+										if(input.Time_of_Event > zoho.currenttime)
+										{
+											alert "Enter a valid time";
+											input.Time_of_Event = null;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_5 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Redirects to add organization details
+										detail_rec_count = Add_Organization[ID != 0].count(ID);
+										if(detail_rec_count == 0)
+										{
+											openUrl("#Form:Add_Organization","popup window");
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_6 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											user_count = Add_Employee[Email_Id == input.Email_Id].count(ID);
+										if(user_count == 1)
+										{
+											alert "This user account has been already added to employees";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_7 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Sharing the forms to the employees
+										if(input.Email_Id != zoho.adminuserid)
+										{
+											if(Choose_Category == "Company Staff")
+											{
+												thisapp.permissions.assignUserInProfile(input.Email_Id,"Company Staff");
+												thisapp.Notification.Send_Notification(input.Email_Id);
+											}
+											else if(Choose_Category == "Management Employee")
+											{
+												thisapp.permissions.assignUserInProfile(input.Email_Id,"Employee");
+												thisapp.Notification.Send_Notification(input.Email_Id);
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing1 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Removes the user permission from old mail id and gives it to new mail id
+										if(Email_Id != zoho.adminuserid)
+										{
+											if(Choose_Category == "Company Staff")
+											{
+												if(old.Email_Id != input.Email_Id)
+												{
+													thisapp.permissions.deleteuser(old.Email_Id);
+													thisapp.permissions.assignUserInProfile(input.Email_Id,"Company Staff");
+													thisapp.Notification.Send_Notification(input.Email_Id);
+												}
+											}
+											else if(Choose_Category == "Management Employee")
+											{
+												if(old.Email_Id != input.Email_Id)
+												{
+													thisapp.permissions.deleteuser(old.Email_Id);
+													thisapp.permissions.assignUserInProfile(input.Email_Id,"Employee");
+													thisapp.Notification.Send_Notification(input.Email_Id);
+												}
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin1 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Removes the user permisiion from this email id
+										if(Email_Id != zoho.adminuserid)
+										{
+											Assigned_Incidents = Raise_Incident[Handled_By == input.ID && Status != "Closed"].count(ID);
+											if(Assigned_Incidents != 0)
+											{
+												thisapp.permissions.deleteuser(input.Email_Id);
+											}
+											else
+											{
+												info "This employee has assigned incidents you can't delete him right now delete after the incidents were closed";
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_8 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Raise_Incident
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Sets the name of the complainant
+										input.Complaint_By = Add_Employee[Email_Id == zoho.loginuserid].ID;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_9 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Raise_Incident
+				record event = on add
+
+	on success
+	{
+					actions  (Added_User != zoho.adminuser)
+					{
+					pushnotification
+					(
+						sender type : "fields"
+						to : "${zoho.adminuserid}"
+						title : "New Incident "
+						message : "${zoho.loginuserid} has added a New Incident"
+						view : "Recent_Incidents"
+					)
+					}
+					actions 
+					{
+						custom deluge script
+						(
+											url = "https://app.zohocreator.com" + zoho.appuri + "#Report:Recent_Incidents";
+										//Information to admin about the new request
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :zoho.adminuserid
+											subject :"New Incident request"
+											message :"A new incident request was raised.<br></br><a href=" + url + ">Click here to take action</a>"
+										]
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_10 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Assign_Employee
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						disable Incident_Name;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_11 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Assign_Employee
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Listing out the available employees
+										available_employees = Add_Employee[Choose_Category == "Management Employee"].ID.getAll();
+										input.Select_Employee:ui.add(available_employees);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_12 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Organization
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Sets the email as admin email id
+										input.Email_Id = zoho.adminuserid;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_13 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Organization
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						openURL("#Form:Add_Incident_Type","new window");
+						custom deluge script
+						(
+											openUrl("#Script:page.refresh","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_14 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Incident_Reporting
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						disable Incident_Name,Handled_By;
+					}
+	}
+
+			}
+		}
+		functions
+		{
+			Run_Scripts_On_Click_of_P2 as "Run Scripts - On Click of 'Proceed' Button"
+			{
+				type =  functions
+				form = Raise_Incident
+				on start
+				{
+					actions 
+					{
+					Incident.Assigning_Employee(ID);
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_P3 as "Run Scripts - On Click of 'Proceed' Button"
+			{
+				type =  functions
+				form = Raise_Incident
+				on start
+				{
+					actions 
+					{
+					Incident.Assigning_Employee(ID);
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_P4 as "Run Scripts - On Click of 'Proceed' Button"
+			{
+				type =  functions
+				form = Raise_Incident
+				on start
+				{
+					actions 
+					{
+					Incident.Closing_Incident(ID);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Read"
+			{
+				name = "Read"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have read permission for all components\n"
+			}
+			"Write"
+			{
+				name = "Write"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have write permission for all components\n"
+			}
+			"Company Staff"
+			{
+				name = "Company Staff"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "Company Staff Profile\n"
+				ModulePermissions
+				{
+					Add_Organization
+					{
+						FieldPermissions
+						{
+							Address{visibility:true,readonly:false}
+							Organization_Name{visibility:true,readonly:false}
+							Email_Id{visibility:true,readonly:false}
+							Contact_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Contact_Name{visibility:true,readonly:false}
+						}
+					}
+					Raise_Incident
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Complaint_By{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Add_Image{visibility:true,readonly:false}
+							Incident_Name{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Incident_Type{visibility:true,readonly:false}
+							Time_of_Event{visibility:true,readonly:false}
+							Handled_By{visibility:true,readonly:false}
+							Investigation_Notes{visibility:true,readonly:false}
+							Number_of_Victims{visibility:true,readonly:false}
+							Victim{visibility:true,readonly:false}
+							Location{visibility:true,readonly:false}
+						}
+					}
+					Assign_Employee
+					{
+						FieldPermissions
+						{
+							Select_Employee{visibility:true,readonly:false}
+							Incident_Name{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Incident_Reporting
+					{
+						FieldPermissions
+						{
+							Incident_Name{visibility:true,readonly:false}
+							Handled_By{visibility:true,readonly:false}
+							Report{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_Employee
+					{
+						FieldPermissions
+						{
+							Contact_Number{visibility:true,readonly:false}
+							Choose_Category{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Email_Id{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Incident_Type
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Incident_Type{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							plain{visibility:true,readonly:false}
+						}
+					}
+				}
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Employee"
+			{
+				name = "Employee"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "Employee Profile\n"
+				ModulePermissions
+				{
+					Add_Organization
+					{
+						FieldPermissions
+						{
+							Address{visibility:true,readonly:false}
+							Organization_Name{visibility:true,readonly:false}
+							Email_Id{visibility:true,readonly:false}
+							Contact_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Contact_Name{visibility:true,readonly:false}
+						}
+					}
+					Raise_Incident
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							My_Assigned_Incidents={"View"}
+							Closed_Incidents={"View"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Complaint_By{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Add_Image{visibility:true,readonly:false}
+							Incident_Name{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Incident_Type{visibility:true,readonly:false}
+							Time_of_Event{visibility:true,readonly:false}
+							Handled_By{visibility:true,readonly:false}
+							Investigation_Notes{visibility:true,readonly:false}
+							Number_of_Victims{visibility:true,readonly:false}
+							Victim{visibility:true,readonly:false}
+							Location{visibility:true,readonly:false}
+						}
+					}
+					Assign_Employee
+					{
+						FieldPermissions
+						{
+							Select_Employee{visibility:true,readonly:false}
+							Incident_Name{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Incident_Reporting
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Incident_Name{visibility:true,readonly:false}
+							Handled_By{visibility:true,readonly:false}
+							Report{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_Employee
+					{
+						FieldPermissions
+						{
+							Contact_Number{visibility:true,readonly:false}
+							Choose_Category{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Email_Id{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Incident_Type
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Incident_Type{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							plain{visibility:true,readonly:false}
+						}
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users.\n\n\n"
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 3
+		new theme color = 1
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-approval7"
+    	icon theme = "lightred"
+		icons style = solid
+	}
+
+	phone
+	{
+		section  Raise_Incident
+		{
+			displayname= "Incidents"
+			form  Raise_Incident
+			{
+				layout = auto
+				icon = "ui-1-bold-add"
+			}
+			list Recent_Incidents
+			{
+				icon = "design-bullet-list-67"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Complaint_By as "Complaint By"
+								Incident_Name as "Incident Name"
+								Time_of_Event as "Time of Event"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+										"Assign Employee"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Assign Employee"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Complaint_By as "Complaint By"
+								Incident_Name as "Incident Name"
+								Description
+								Number_of_Victims as "Number of Victims"
+								Time_of_Event as "Time of Event"
+								Location
+								Handled_By as "Handled By"
+								Status
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list All_Incidents
+			{
+				icon = "design-bullet-list-67"
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Complaint_By as "Complaint By"
+								Description
+								Incident_Name as "Incident Name"
+								Time_of_Event as "Time of Event"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+										"Assign Employee"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Assign Employee"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Complaint_By as "Complaint By"
+								Incident_Name as "Incident Name"
+								Time_of_Event as "Time of Event"
+								Description
+								Location
+								Number_of_Victims as "Number of Victims"
+								Handled_By as "Handled By"
+								Status
+								Investigation_Notes as "Investigation Notes"
+								Incident_Type as "Incident Type"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list My_Assigned_Incidents
+			{
+				icon = "design-bullet-list-67"
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Complaint_By as "Complaint By"
+								Description
+								Incident_Name as "Incident Name"
+								Number_of_Victims as "Number of Victims"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+										"Close Incident"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Close Incident"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Complaint_By as "Complaint By"
+								Incident_Name as "Incident Name"
+								Description
+								Number_of_Victims as "Number of Victims"
+								Time_of_Event as "Time of Event"
+								Location
+								Handled_By as "Handled By"
+								Status
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Closed_Incidents
+			{
+				icon = "design-bullet-list-67"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Complaint_By as "Complaint By"
+								Incident_Name as "Incident Name"
+								Number_of_Victims as "Number of Victims"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Complaint_By as "Complaint By"
+								Incident_Name as "Incident Name"
+								Description
+								Number_of_Victims as "Number of Victims"
+								Time_of_Event as "Time of Event"
+								Location
+								Handled_By as "Handled By"
+								Status
+								Investigation_Notes as "Investigation Notes"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			map Map_View
+			{
+				icon = "location-pin"
+			}
+		}
+		section  Types
+		{
+			list Incident_Types
+			{
+				icon = "design-bullet-list-67"
+			}
+			pivotchart Type_Wise_Incidents
+			{
+				icon = "weather-hurricane-45"
+			}
+		}
+		section  Add_Employees
+		{
+			displayname= "Employees"
+			form  Add_Employee
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+			}
+			list All_Employees
+			{
+				icon = "design-bullet-list-67"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Email_Id as "Email Id"
+								Contact_Number as "Contact Number"
+								Choose_Category as "Category"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Email_Id as "Email Id"
+								Contact_Number as "Contact Number"
+								Choose_Category as "Category"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Add_Organization
+		{
+			displayname= "Organization"
+			form  Add_Organization
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			summary Organization_Details
+			{
+				icon = "design-bullet-list-67"
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Organization_Name as "Organization Name"
+								Address
+								Contact_Name as "Name"
+								Email_Id as "Email Id"
+								Contact_Number as "Contact Number"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Organization_Name as "Organization Name"
+								Contact_Name as "Name"
+								Email_Id as "Email Id"
+								Contact_Number as "Contact Number"
+								Address
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  page
+		{
+			displayname= "Assign Employee"
+			form  Assign_Employee
+			{
+				layout = left
+				hide = true
+			}
+		}
+		section  Incident_Reporting
+		{
+			displayname= "Incident Reporting"
+			form  Incident_Reporting
+			{
+				layout = left
+				hide = true
+			}
+		}
+		section  Incident_Types
+		{
+			displayname= "Incident Types"
+			form  Add_Incident_Type
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = lightred
+        	layout = onecolumn
+		 	icons style = outline
+		}
+	}
+	translation
+{
+"{\"de\":{\"FormField.Add_Organization.address_line_22\":\" Adresszeile 2 \",\"FormField.Raise_Incident.Added_Location\":\" Standort hinzugefügt \",\"FormButton.Assign_Employee.Reset\":\" Zurücksetzen \",\"FormButton.Incident_Reporting.Submit\":\" einreichen \",\"FormField.Incident_Reporting.ID\":\" ICH WÜRDE \",\"ReportField.Map_View.Location\":\" Ort \",\"Languages List.zh-TW\":\" Chinesische Tradition \",\"PicklistOption.Add_Employee.Choose_Category.1\":\"Angestellte\",\"PicklistOption.Add_Employee.Choose_Category.2\":\"Management-Mitarbeiter\",\"Languages List.ja\":\" japanisch \",\"FormField.Add_Organization.address_line_12\":\" Anschrift Zeile 1 \",\"ReportField.My_Assigned_Incidents.Complaint_By\":\" Beschwerde von \",\"FormField.Incident_Reporting.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Add_Organization.Address\":\" Adresse \",\"FormField.Raise_Incident.postal_Code1\":\" Postleitzahl \",\"CompositeSubFields.Add_Organization.Address.postal_Code2\":\" Postleitzahl \",\"FormField.Raise_Incident.Handled_By\":\" Bearbeitet von \",\"FormField.Raise_Incident.Location\":\" Ort \",\"ReportField.All_Incidents.Incident_Name\":\" Vorfallsname \",\"Languages List.ku\":\" kurdisch \",\"FormField.Add_Incident_Type.Record_Status\":\" Aufnahmestatus \",\"ReportField.My_Assigned_Incidents.Time_of_Event\":\" Zeitpunkt des Ereignisses \",\"Report.Organization_Details\":\" Organisationsdetails \",\"ReportField.Map_View.Incident_Type\":\" Ereignistyp \",\"ReportField.Incident_Types.Incident_Type\":\" Ereignistyp \",\"Report.Incident_Types\":\" Vorfalltypen \",\"Languages List.km\":\" Khmer \",\"App.incident-tracker\":\"Incident Tracker \",\"Languages List.ko\":\" Koreanisch \",\"ReportField.All_Employees.first_name\":\" Name \",\"Languages List.kn\":\" Kannada \",\"Languages List.ka\":\" georgisch \",\"FormField.Assign_Employee.Added_Time\":\" Zeit hinzugefügt \",\"CompositeSubFields.Add_Organization.Address.state_province2\":\" Staat / Provinz \",\"FormButton.Add_Incident_Type.update\":\" Aktualisieren \",\"FormField.Add_Organization.prefix\":\" Präfix \",\"FormField.Raise_Incident.Incident_Type\":\" Ereignistyp \",\"ReportField.Recent_Incidents.Incident_Name\":\" Vorfallsname \",\"CompositeSubFields.Add_Employee.Name.suffix\":\" Suffix \",\"Languages List.hu\":\" ungarisch \",\"FormField.Raise_Incident.Complaint_By\":\" Beschwerde von \",\"Languages List.yi\":\" Jiddisch \",\"FormField.Add_Incident_Type.Modified_Time\":\" Geänderte Zeit \",\"FormField.Assign_Employee.Record_Status\":\" Aufnahmestatus \",\"Languages List.hy\":\" Armenisch \",\"ReportField.My_Assigned_Incidents.Status\":\" Status \",\"FormField.Add_Organization.longitude2\":\" Längengrad \",\"FormField.Add_Organization.Record_Status\":\" Aufnahmestatus \",\"ReportField.Closed_Incidents.Number_of_Victims\":\" Anzahl der Opfer \",\"Languages List.hr\":\" kroatisch \",\"ReportField.My_Assigned_Incidents.Number_of_Victims\":\" Anzahl der Opfer \",\"Form.Add_Incident_Type\":\" Vorfalltyp hinzufügen \",\"Form.Assign_Employee\":\" Mitarbeiter zuordnen \",\"FormField.Incident_Reporting.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Add_Employee.Contact_Number\":\" Kontakt Nummer \",\"Languages List.hi\":\" Hindi \",\"FormField.Assign_Employee.Incident_Name\":\" Vorfallsname \",\"FormButton.Add_Organization.submit\":\" einreichen \",\"FormField.Assign_Employee.Select_Employee\":\" Wählen Sie Mitarbeiter aus \",\"FormField.Raise_Incident.state_province1\":\" Staat / Provinz \",\"FormField.Add_Organization.Added_Time\":\" Zeit hinzugefügt \",\"Languages List.zh\":\" Chinesisch \",\"Languages List.iw\":\" hebräisch \",\"ReportField.All_Incidents.Status\":\" Status \",\"FormField.Raise_Incident.Description\":\" Beschreibung \",\"CompositeSubFields.Add_Organization.Address.district_city2\":\" Stadtteil \",\"FormField.Assign_Employee.Modified_Time\":\" Geänderte Zeit \",\"ReportField.My_Assigned_Incidents.Location\":\" Ort \",\"FormField.Add_Organization.Modified_Time\":\" Geänderte Zeit \",\"Languages List.is\":\" isländisch \",\"FormField.Incident_Reporting.Report\":\" Bericht \",\"ReportField.All_Employees.Contact_Number\":\"Kontakt Nummer\",\"ReportField.All_Incidents.Handled_By\":\" Bearbeitet von \",\"ReportField.Closed_Incidents.Complaint_By\":\" Beschwerde von \",\"Languages List.it\":\" Italienisch \",\"Form.Add_Employee\":\" Mitarbeiter hinzufügen \",\"FormField.Add_Organization.last_name\":\" Familienname, Nachname \",\"FormButton.Raise_Incident.reset\":\" Zurücksetzen \",\"ReportField.All_Incidents.Victim\":\" Opfer \",\"FormField.Raise_Incident.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Employee.Email_Id\":\" E-Mail-ID \",\"CompositeSubFields.Add_Organization.Contact_Name.first_name\":\" Vorname \",\"Form.Add_Organization\":\" Organisation hinzufügen \",\"FormField.Raise_Incident.Number_of_Victims\":\" Anzahl der Opfer \",\"Section.Raise_Incident\":\" Vorfälle \",\"Report.All_Incidents\":\" Alle Vorfälle \",\"PicklistOption.Add_Organization.prefix.2\":\" Frau. \",\"Languages List.nl\":\" Niederländisch \",\"PicklistOption.Add_Organization.prefix.1\":\" Herr. \",\"ReportField.Recent_Incidents.Location\":\" Ort \",\"ReportField.Organization_Details.first_name\":\" Name \",\"PicklistOption.Add_Organization.prefix.3\":\" Frau. \",\"FormField.Add_Incident_Type.Section\":\"Sektion\",\"Languages List.no\":\" norwegisch \",\"FormField.Raise_Incident.Victim\":\" Opfer \",\"FormButton.Add_Organization.cancel\":\" Stornieren \",\"FormField.Add_Employee.Modified_User\":\" Geänderter Benutzer \",\"FormField.Add_Incident_Type.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Add_Organization.suffix\":\" Suffix \",\"FormButton.Add_Organization.update\":\" Aktualisieren \",\"FormField.Raise_Incident.country\":\" Land \",\"ReportField.All_Incidents.Complaint_By\":\" Beschwerde von \",\"FormField.Raise_Incident.Modified_Location\":\" Geänderter Standort \",\"FormField.Add_Employee.last_name\":\" Familienname, Nachname \",\"FormButton.Incident_Reporting.Reset\":\" Zurücksetzen \",\"ReportField.Map_View.Add_Image\":\" Bild hinzufügen \",\"CustomAction.Recent_Incidents.Run_Scripts_On_Click_of_P3\":\" Mitarbeiter zuordnen \",\"FormField.Raise_Incident.Incident_Name\":\" Vorfallsname \",\"FormField.Raise_Incident.Add_Image\":\"Bild hinzufügen\",\"ReportField.Map_View.Status\":\" Status \",\"ReportField.My_Assigned_Incidents.Description\":\" Beschreibung \",\"ReportField.My_Assigned_Incidents.Handled_By\":\" Bearbeitet von \",\"ReportField.All_Employees.Email_Id\":\"E-Mail-ID\",\"Languages List.lt\":\" litauisch \",\"Report.My_Assigned_Incidents\":\" Meine zugewiesenen Vorfälle \",\"Languages List.lv\":\" lettisch \",\"Section.Incident_Types\":\" Vorfalltypen \",\"FormButton.Assign_Employee.Assign\":\" Zuordnen \",\"FormField.Raise_Incident.district_city\":\" Stadtteil \",\"FormField.Raise_Incident.Record_Status\":\" Aufnahmestatus \",\"Section.Add_Employees\":\" Angestellte \",\"Languages List.lo\":\" Laothian \",\"FormField.Add_Employee.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Raise_Incident.longitude\":\" Längengrad \",\"ReportField.Recent_Incidents.Add_Image\":\"Bild\",\"Languages List.la\":\" Latein \",\"FormButton.Raise_Incident.update\":\" Aktualisieren \",\"ReportField.All_Incidents.Number_of_Victims\":\" Anzahl der Opfer \",\"ReportField.Organization_Details.Email_Id\":\" E-Mail-ID \",\"FormField.Raise_Incident.Modified_Time\":\" Geänderte Zeit \",\"FormField.Add_Organization.country2\":\" Land \",\"ReportField.All_Incidents.Time_of_Event\":\" Zeitpunkt des Ereignisses \",\"ReportField.All_Incidents.Investigation_Notes\":\" Untersuchungshinweise \",\"CompositeSubFields.Add_Organization.Address.country2\":\" Land \",\"FormField.Add_Organization.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Add_Employee.first_name\":\" Vorname \",\"Languages List.ms\":\" malaiisch \",\"Languages List.mr\":\" Marathi \",\"Languages List.mt\":\" maltesisch \",\"CompositeSubFields.Add_Employee.Name.first_name\":\" Vorname \",\"ReportField.Map_View.Incident_Name\":\" Vorfallsname \",\"Languages List.mk\":\" mazedonisch \",\"FormButton.Raise_Incident.cancel\":\" Stornieren \",\"Report.Closed_Incidents\":\" Geschlossene Vorfälle \",\"FormField.Add_Organization.Organization_Name\":\" Organisationsname \",\"ReportField.Closed_Incidents.Incident_Name\":\" Vorfallsname \",\"FormButton.Raise_Incident.submit\":\" einreichen \",\"FormField.Add_Organization.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Incident_Reporting.Modified_User\":\" Geänderter Benutzer \",\"Form.Raise_Incident\":\" Incident erhöhen \",\"FormField.Add_Employee.Section\":\"Sektion\",\"PicklistOption.Raise_Incident.country1.2\":\" Beispielland2 \",\"PicklistOption.Raise_Incident.country1.1\":\" Beispielland1 \",\"ReportField.Organization_Details.Organization_Name\":\" Organisationsname \",\"FormButton.Add_Incident_Type.cancel\":\" Stornieren \",\"Report.Recent_Incidents\":\" Aktuelle Vorfälle \",\"Languages List.bg\":\" bulgarisch \",\"FormField.Add_Organization.Email_Id\":\" E-Mail-ID \",\"CustomAction.All_Incidents.Run_Scripts_On_Click_of_P2\":\" Mitarbeiter zuordnen \",\"Languages List.bn\":\" Bengali \",\"FormField.Raise_Incident.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"ReportField.All_Incidents.Add_Image\":\"Bild\",\"Languages List.ro\":\" rumänisch \",\"Section.Incident_Reporting\":\" Schadensbericht \",\"Languages List.be\":\" Belarussisch \",\"Languages List.ru\":\" Russisch \",\"FormField.Raise_Incident.country1\":\" Land \",\"Languages List.az\":\" Aserbaidschanisch \",\"Languages List.ta\":\" Tamilisch \",\"Languages List.cs\":\" Tschechisch \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" Thai \",\"FormButton.Add_Incident_Type.reset\":\" Zurücksetzen \",\"Languages List.sq\":\" albanisch \",\"Languages List.ca\":\" katalanisch \",\"FormField.Add_Incident_Type.Incident_Type\":\" Ereignistyp \",\"ReportField.Map_View.Victim\":\" Opfer \",\"Languages List.sw\":\" Swahili \",\"Languages List.sv\":\" Schwedisch \",\"Languages List.sk\":\" slowakisch \",\"ReportField.Map_View.Complaint_By\":\" Beschwerde von \",\"FormField.Add_Incident_Type.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"Languages List.sl\":\" Slowenisch \",\"FormField.Assign_Employee.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Organization.latitude2\":\" Breite \",\"FormField.Assign_Employee.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Assign_Employee.ID\":\" ICH WÜRDE \",\"FormField.Add_Incident_Type.Modified_User\":\" Geänderter Benutzer \",\"FormField.Add_Organization.ID\":\" ICH WÜRDE \",\"FormField.Raise_Incident.ID\":\" ICH WÜRDE \",\"Report.Map_View\":\" Kartenansicht \",\"CompositeSubFields.Add_Organization.Contact_Name.last_name\":\" Familienname, Nachname \",\"ReportField.Closed_Incidents.Description\":\" Beschreibung \",\"FormField.Raise_Incident.Section\":\" Sektion \",\"FormField.Add_Organization.state_province2\":\" Staat / Provinz \",\"FormField.Incident_Reporting.Section\":\"Sektion\",\"CompositeSubFields.Add_Employee.Name.prefix\":\" Präfix \",\"ReportField.Recent_Incidents.Handled_By\":\" Bearbeitet von \",\"FormButton.Add_Employee.reset\":\" Zurücksetzen \",\"Form.Incident_Reporting\":\" Schadensbericht \",\"FormField.Raise_Incident.longitude1\":\" Längengrad \",\"PicklistOption.Add_Employee.prefix.1\":\" Herr. \",\"ReportField.Closed_Incidents.Investigation_Notes\":\" Untersuchungshinweise \",\"PicklistOption.Add_Employee.prefix.3\":\" Frau. \",\"CompositeSubFields.Add_Organization.Address.address_line_22\":\" Adresszeile 2 \",\"FormField.Raise_Incident.state_province\":\" Staat / Provinz \",\"Languages List.pt\":\" Portugiesisch \",\"PicklistOption.Add_Employee.prefix.2\":\" Frau. \",\"ReportField.Organization_Details.Contact_Number\":\" Kontakt Nummer \",\"FormButton.Add_Employee.update\":\" Aktualisieren \",\"Languages List.pl\":\" Polieren \",\"ReportField.Map_View.Time_of_Event\":\" Zeitpunkt des Ereignisses \",\"PicklistOption.Add_Organization.country2.2\":\" Wahl 2 \",\"CompositeSubFields.Add_Organization.Contact_Name.suffix\":\" Suffix \",\"PicklistOption.Add_Organization.country2.1\":\" Wahl 1 \",\"Languages List.ar\":\" Arabisch \",\"FormField.Add_Employee.Name\":\" Name \",\"ReportField.Map_View.Description\":\" Beschreibung \",\"FormField.Add_Organization.Modified_User\":\" Geänderter Benutzer \",\"Languages List.af\":\" Afrikaans \",\"FormField.Raise_Incident.postal_Code\":\" Postleitzahl \",\"ReportField.Closed_Incidents.Handled_By\":\" Bearbeitet von \",\"FormField.Assign_Employee.Modified_User\":\" Geänderter Benutzer \",\"Report.All_Employees\":\" Alle Angestellten \",\"ReportField.Recent_Incidents.Description\":\" Beschreibung \",\"ReportField.Recent_Incidents.Time_of_Event\":\" Zeitpunkt des Ereignisses \",\"FormField.Add_Employee.suffix\":\" Suffix \",\"CompositeSubFields.Add_Organization.Contact_Name.prefix\":\" Präfix \",\"ReportField.All_Employees.Choose_Category\":\"Kategorie\",\"FormField.Add_Employee.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"CompositeSubFields.Add_Organization.Address.address_line_12\":\" Anschrift Zeile 1 \",\"FormField.Add_Incident_Type.ID\":\" ICH WÜRDE \",\"FormField.Raise_Incident.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Add_Organization.first_name\":\" Vorname \",\"PicklistOption.Raise_Incident.country.2\":\" Beispielland2 \",\"PicklistOption.Raise_Incident.country.1\":\" Beispielland1 \",\"FormField.Add_Employee.prefix\":\" Präfix \",\"FormField.Add_Organization.Added_User\":\" Benutzer hinzugefügt \",\"CompositeSubFields.Add_Employee.Name.last_name\":\" Familienname, Nachname \",\"FormField.Add_Employee.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Raise_Incident.district_city1\":\" Stadtteil \",\"ReportField.Closed_Incidents.Location\":\" Ort \",\"ReportField.All_Incidents.Description\":\" Beschreibung \",\"ReportField.All_Incidents.Incident_Type\":\" Ereignistyp \",\"ReportField.Map_View.Investigation_Notes\":\" Untersuchungshinweise \",\"FormField.Add_Employee.Choose_Category\":\"Kategorie auswählen\",\"ReportField.Recent_Incidents.Complaint_By\":\" Beschwerde von \",\"FormButton.Add_Employee.cancel\":\" Stornieren \",\"ReportField.Map_View.Handled_By\":\" Bearbeitet von \",\"Languages List.fr\":\" Französisch \",\"FormField.Add_Employee.Modified_Time\":\" Geänderte Zeit \",\"Languages List.fi\":\" Finnese \",\"FormField.Raise_Incident.Time_of_Event\":\" Zeitpunkt des Ereignisses \",\"FormField.Assign_Employee.Section\":\"Sektion\",\"Languages List.fa\":\" persisch \",\"Languages List.gu\":\" Gujarati \",\"ReportField.Recent_Incidents.Number_of_Victims\":\" Anzahl der Opfer \",\"FormField.Add_Employee.Record_Status\":\" Aufnahmestatus \",\"FormField.Incident_Reporting.Record_Status\":\" Aufnahmestatus \",\"Languages List.gl\":\" galizisch \",\"FormField.Incident_Reporting.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Add_Incident_Type.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Incident_Type.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Raise_Incident.latitude\":\" Breite \",\"ReportField.Closed_Incidents.Time_of_Event\":\" Zeitpunkt des Ereignisses \",\"ReportField.Map_View.Number_of_Victims\":\" Anzahl der Opfer \",\"ReportField.Organization_Details.address_line_12\":\" Adresse \",\"Languages List.ga\":\" irisch \",\"FormField.Raise_Incident.Status\":\" Status \",\"FormField.Add_Organization.Contact_Name\":\" Kontaktname \",\"FormButton.Add_Incident_Type.submit\":\" einreichen \",\"FormField.Raise_Incident.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"Section.page\":\" Mitarbeiter zuordnen \",\"FormField.Raise_Incident.Investigation_Notes\":\" Untersuchungshinweise \",\"FormButton.Add_Employee.submit\":\" einreichen \",\"PicklistOption.Raise_Incident.Victim.2\":\" Besucher \",\"PicklistOption.Raise_Incident.Victim.1\":\" Angestellte \",\"FormField.Add_Employee.ID\":\" ICH WÜRDE \",\"FormField.Incident_Reporting.Handled_By\":\" Bearbeitet von \",\"FormField.Incident_Reporting.Incident_Name\":\" Vorfallsname \",\"ReportField.Closed_Incidents.Status\":\" Status \",\"Languages List.tr\":\" Türkisch \",\"Languages List.da\":\" dänisch \",\"FormField.Raise_Incident.latitude1\":\" Breite \",\"Languages List.de\":\" Deutsche \",\"Languages List.cy\":\" Walisisch \",\"FormField.Incident_Reporting.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Employee.Added_User\":\" Benutzer hinzugefügt \",\"Languages List.tl\":\" Filipino \",\"Languages List.es\":\" Spanisch \",\"ReportField.Recent_Incidents.Status\":\" Status \",\"Languages List.eu\":\" baskisch \",\"Languages List.et\":\" estnisch \",\"FormField.Raise_Incident.Modified_User\":\" Geänderter Benutzer \",\"FormField.Add_Organization.district_city2\":\" Stadtteil \",\"Languages List.vi\":\" Vietnamesisch \",\"PicklistOption.Raise_Incident.Status.3\":\" Geschlossen \",\"PicklistOption.Raise_Incident.Status.1\":\" Anfrage geschickt \",\"PicklistOption.Raise_Incident.Status.2\":\" Mitarbeiter zugeordnet \",\"Languages List.el\":\" griechisch \",\"Languages List.eo\":\" Esperanto \",\"Languages List.en\":\" Englisch \",\"Languages List.ur\":\" Urdu \",\"FormField.Incident_Reporting.Modified_Time\":\" Geänderte Zeit \",\"FormField.Add_Organization.postal_Code2\":\" Postleitzahl \",\"FormField.Assign_Employee.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Add_Organization.Contact_Number\":\" Kontakt Nummer \",\"ReportField.All_Incidents.Location\":\" Ort \",\"Section.Add_Organization\":\" Organisation \",\"FormButton.Add_Organization.reset\":\" Zurücksetzen \",\"CustomAction.My_Assigned_Incidents.Run_Scripts_On_Click_of_P4\":\" Schließen Sie den Vorfall \",\"FormField.Add_Organization.Section\":\"Sektion\",\"ReportField.My_Assigned_Incidents.Incident_Name\":\" Vorfallsname \"},\"fr\":{\"FormField.Add_Organization.address_line_22\":\" Adresse Ligne 2 \",\"FormField.Raise_Incident.Added_Location\":\" Emplacement ajouté \",\"FormButton.Assign_Employee.Reset\":\" Réinitialiser \",\"FormButton.Incident_Reporting.Submit\":\" Soumettre \",\"FormField.Incident_Reporting.ID\":\" ID \",\"ReportField.Map_View.Location\":\" Emplacement \",\"Languages List.zh-TW\":\" Chinois traditionnel \",\"PicklistOption.Add_Employee.Choose_Category.1\":\"Personelle de l'entreprise\",\"PicklistOption.Add_Employee.Choose_Category.2\":\"Employé de gestion\",\"Languages List.ja\":\" Japonais \",\"FormField.Add_Organization.address_line_12\":\" Adresse 1 \",\"ReportField.My_Assigned_Incidents.Complaint_By\":\" Plainte par \",\"FormField.Incident_Reporting.Added_Time\":\" Temps ajouté \",\"FormField.Add_Organization.Address\":\" Adresse \",\"FormField.Raise_Incident.postal_Code1\":\" code postal \",\"CompositeSubFields.Add_Organization.Address.postal_Code2\":\" code postal \",\"FormField.Raise_Incident.Handled_By\":\" Manipulé par \",\"FormField.Raise_Incident.Location\":\" Emplacement \",\"ReportField.All_Incidents.Incident_Name\":\" Nom de l'incident \",\"Languages List.ku\":\" kurde \",\"FormField.Add_Incident_Type.Record_Status\":\" Statut d'enregistrement \",\"ReportField.My_Assigned_Incidents.Time_of_Event\":\" Heure de l'événement \",\"Report.Organization_Details\":\" Détails de l'organisation \",\"ReportField.Map_View.Incident_Type\":\" Type d'incident \",\"ReportField.Incident_Types.Incident_Type\":\" Type d'incident \",\"Report.Incident_Types\":\" Types d'incidents \",\"Languages List.km\":\" Khmer \",\"App.incident-tracker\":\"Traqueur d'incidents \",\"Languages List.ko\":\" coréen \",\"ReportField.All_Employees.first_name\":\" prénom \",\"Languages List.kn\":\" Kannada \",\"Languages List.ka\":\" géorgien \",\"FormField.Assign_Employee.Added_Time\":\" Temps ajouté \",\"CompositeSubFields.Add_Organization.Address.state_province2\":\" Etat / Province \",\"FormButton.Add_Incident_Type.update\":\" Mettre à jour \",\"FormField.Add_Organization.prefix\":\" Préfixe \",\"FormField.Raise_Incident.Incident_Type\":\" Type d'incident \",\"ReportField.Recent_Incidents.Incident_Name\":\" Nom de l'incident \",\"CompositeSubFields.Add_Employee.Name.suffix\":\" Suffixe \",\"Languages List.hu\":\" hongrois \",\"FormField.Raise_Incident.Complaint_By\":\" Plainte par \",\"Languages List.yi\":\" yiddish \",\"FormField.Add_Incident_Type.Modified_Time\":\" Heure modifiée \",\"FormField.Assign_Employee.Record_Status\":\" Statut d'enregistrement \",\"Languages List.hy\":\" arménien \",\"ReportField.My_Assigned_Incidents.Status\":\" Statut \",\"FormField.Add_Organization.longitude2\":\" longitude \",\"FormField.Add_Organization.Record_Status\":\" Statut d'enregistrement \",\"ReportField.Closed_Incidents.Number_of_Victims\":\" Nombre de victimes \",\"Languages List.hr\":\" croate \",\"ReportField.My_Assigned_Incidents.Number_of_Victims\":\" Nombre de victimes \",\"Form.Add_Incident_Type\":\" Ajouter un type d'incident \",\"Form.Assign_Employee\":\" Assigner un employé \",\"FormField.Incident_Reporting.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Add_Employee.Contact_Number\":\" Numéro de contact \",\"Languages List.hi\":\" hindi \",\"FormField.Assign_Employee.Incident_Name\":\" Nom de l'incident \",\"FormButton.Add_Organization.submit\":\" Soumettre \",\"FormField.Assign_Employee.Select_Employee\":\" Sélectionner un employé \",\"FormField.Raise_Incident.state_province1\":\" Etat / Province \",\"FormField.Add_Organization.Added_Time\":\" Temps ajouté \",\"Languages List.zh\":\" chinois \",\"Languages List.iw\":\" hébreu \",\"ReportField.All_Incidents.Status\":\" Statut \",\"FormField.Raise_Incident.Description\":\" La description \",\"CompositeSubFields.Add_Organization.Address.district_city2\":\" District de la ville \",\"FormField.Assign_Employee.Modified_Time\":\" Heure modifiée \",\"ReportField.My_Assigned_Incidents.Location\":\" Emplacement \",\"FormField.Add_Organization.Modified_Time\":\" Heure modifiée \",\"Languages List.is\":\" islandais \",\"FormField.Incident_Reporting.Report\":\" rapport \",\"ReportField.All_Employees.Contact_Number\":\"Numéro de contact\",\"ReportField.All_Incidents.Handled_By\":\" Manipulé par \",\"ReportField.Closed_Incidents.Complaint_By\":\" Plainte par \",\"Languages List.it\":\" italien \",\"Form.Add_Employee\":\" Ajouter un employé \",\"FormField.Add_Organization.last_name\":\" Nom de famille \",\"FormButton.Raise_Incident.reset\":\" Réinitialiser \",\"ReportField.All_Incidents.Victim\":\" Victime \",\"FormField.Raise_Incident.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Employee.Email_Id\":\" Identifiant Email \",\"CompositeSubFields.Add_Organization.Contact_Name.first_name\":\" Prénom \",\"Form.Add_Organization\":\" Ajouter une organisation \",\"FormField.Raise_Incident.Number_of_Victims\":\" Nombre de victimes \",\"Section.Raise_Incident\":\" Incidents \",\"Report.All_Incidents\":\" Tous les incidents \",\"PicklistOption.Add_Organization.prefix.2\":\" Madame. \",\"Languages List.nl\":\" néerlandais \",\"PicklistOption.Add_Organization.prefix.1\":\" M. \",\"ReportField.Recent_Incidents.Location\":\" Emplacement \",\"ReportField.Organization_Details.first_name\":\" prénom \",\"PicklistOption.Add_Organization.prefix.3\":\" Mme. \",\"FormField.Add_Incident_Type.Section\":\"Section\",\"Languages List.no\":\" norvégien \",\"FormField.Raise_Incident.Victim\":\" Victime \",\"FormButton.Add_Organization.cancel\":\" Annuler \",\"FormField.Add_Employee.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Incident_Type.Added_Time\":\" Temps ajouté \",\"FormField.Add_Organization.suffix\":\" Suffixe \",\"FormButton.Add_Organization.update\":\" Mettre à jour \",\"FormField.Raise_Incident.country\":\" Pays \",\"ReportField.All_Incidents.Complaint_By\":\" Plainte par \",\"FormField.Raise_Incident.Modified_Location\":\" Emplacement modifié \",\"FormField.Add_Employee.last_name\":\" Nom de famille \",\"FormButton.Incident_Reporting.Reset\":\" Réinitialiser \",\"ReportField.Map_View.Add_Image\":\" Ajouter une image \",\"CustomAction.Recent_Incidents.Run_Scripts_On_Click_of_P3\":\" Assigner un employé \",\"FormField.Raise_Incident.Incident_Name\":\" Nom de l'incident \",\"FormField.Raise_Incident.Add_Image\":\"Ajouter une image\",\"ReportField.Map_View.Status\":\" Statut \",\"ReportField.My_Assigned_Incidents.Description\":\" La description \",\"ReportField.My_Assigned_Incidents.Handled_By\":\" Manipulé par \",\"ReportField.All_Employees.Email_Id\":\"Identifiant Email\",\"Languages List.lt\":\" lituanien \",\"Report.My_Assigned_Incidents\":\" Mes incidents assignés \",\"Languages List.lv\":\" letton \",\"Section.Incident_Types\":\" Types d'incidents \",\"FormButton.Assign_Employee.Assign\":\" Attribuer \",\"FormField.Raise_Incident.district_city\":\" District de la ville \",\"FormField.Raise_Incident.Record_Status\":\" Statut d'enregistrement \",\"Section.Add_Employees\":\" Des employés \",\"Languages List.lo\":\" Laothian \",\"FormField.Add_Employee.Added_Time\":\" Temps ajouté \",\"FormField.Raise_Incident.longitude\":\" longitude \",\"ReportField.Recent_Incidents.Add_Image\":\"Image\",\"Languages List.la\":\" Latin \",\"FormButton.Raise_Incident.update\":\" Mettre à jour \",\"ReportField.All_Incidents.Number_of_Victims\":\" Nombre de victimes \",\"ReportField.Organization_Details.Email_Id\":\" Identifiant Email \",\"FormField.Raise_Incident.Modified_Time\":\" Heure modifiée \",\"FormField.Add_Organization.country2\":\" Pays \",\"ReportField.All_Incidents.Time_of_Event\":\" Heure de l'événement \",\"ReportField.All_Incidents.Investigation_Notes\":\" Notes d'enquête \",\"CompositeSubFields.Add_Organization.Address.country2\":\" Pays \",\"FormField.Add_Organization.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Add_Employee.first_name\":\" Prénom \",\"Languages List.ms\":\" malais \",\"Languages List.mr\":\" Marathi \",\"Languages List.mt\":\" maltais \",\"CompositeSubFields.Add_Employee.Name.first_name\":\" Prénom \",\"ReportField.Map_View.Incident_Name\":\" Nom de l'incident \",\"Languages List.mk\":\" Macédonien \",\"FormButton.Raise_Incident.cancel\":\" Annuler \",\"Report.Closed_Incidents\":\" Incidents fermés \",\"FormField.Add_Organization.Organization_Name\":\" nom de l'organisation \",\"ReportField.Closed_Incidents.Incident_Name\":\" Nom de l'incident \",\"FormButton.Raise_Incident.submit\":\" Soumettre \",\"FormField.Add_Organization.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Incident_Reporting.Modified_User\":\" Utilisateur modifié \",\"Form.Raise_Incident\":\" Élever un incident \",\"FormField.Add_Employee.Section\":\"Section\",\"PicklistOption.Raise_Incident.country1.2\":\" SampleCountry2 \",\"PicklistOption.Raise_Incident.country1.1\":\" SampleCountry1 \",\"ReportField.Organization_Details.Organization_Name\":\" nom de l'organisation \",\"FormButton.Add_Incident_Type.cancel\":\" Annuler \",\"Report.Recent_Incidents\":\" Incidents récents \",\"Languages List.bg\":\" bulgare \",\"FormField.Add_Organization.Email_Id\":\" Identifiant Email \",\"CustomAction.All_Incidents.Run_Scripts_On_Click_of_P2\":\" Assigner un employé \",\"Languages List.bn\":\" bengali \",\"FormField.Raise_Incident.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"ReportField.All_Incidents.Add_Image\":\"Image\",\"Languages List.ro\":\" roumain \",\"Section.Incident_Reporting\":\" Rapports d'incidents \",\"Languages List.be\":\" Biélorusse \",\"Languages List.ru\":\" russe \",\"FormField.Raise_Incident.country1\":\" Pays \",\"Languages List.az\":\" azerbaïdjanais \",\"Languages List.ta\":\" Tamil \",\"Languages List.cs\":\" tchèque \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" thaïlandais \",\"FormButton.Add_Incident_Type.reset\":\" Réinitialiser \",\"Languages List.sq\":\" albanais \",\"Languages List.ca\":\" catalan \",\"FormField.Add_Incident_Type.Incident_Type\":\" Type d'incident \",\"ReportField.Map_View.Victim\":\" Victime \",\"Languages List.sw\":\" Swahili \",\"Languages List.sv\":\" suédois \",\"Languages List.sk\":\" slovaque \",\"ReportField.Map_View.Complaint_By\":\" Plainte par \",\"FormField.Add_Incident_Type.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"Languages List.sl\":\" slovène \",\"FormField.Assign_Employee.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Organization.latitude2\":\" latitude \",\"FormField.Assign_Employee.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Assign_Employee.ID\":\" ID \",\"FormField.Add_Incident_Type.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Organization.ID\":\" ID \",\"FormField.Raise_Incident.ID\":\" ID \",\"Report.Map_View\":\" Vue de la carte \",\"CompositeSubFields.Add_Organization.Contact_Name.last_name\":\" Nom de famille \",\"ReportField.Closed_Incidents.Description\":\" La description \",\"FormField.Raise_Incident.Section\":\" Section \",\"FormField.Add_Organization.state_province2\":\" Etat / Province \",\"FormField.Incident_Reporting.Section\":\"Section\",\"CompositeSubFields.Add_Employee.Name.prefix\":\" Préfixe \",\"ReportField.Recent_Incidents.Handled_By\":\" Manipulé par \",\"FormButton.Add_Employee.reset\":\" Réinitialiser \",\"Form.Incident_Reporting\":\" Rapports d'incidents \",\"FormField.Raise_Incident.longitude1\":\" longitude \",\"PicklistOption.Add_Employee.prefix.1\":\" M. \",\"ReportField.Closed_Incidents.Investigation_Notes\":\" Notes d'enquête \",\"PicklistOption.Add_Employee.prefix.3\":\" Mme. \",\"CompositeSubFields.Add_Organization.Address.address_line_22\":\" Adresse Ligne 2 \",\"FormField.Raise_Incident.state_province\":\" Etat / Province \",\"Languages List.pt\":\" Portugais \",\"PicklistOption.Add_Employee.prefix.2\":\" Madame. \",\"ReportField.Organization_Details.Contact_Number\":\" Numéro de contact \",\"FormButton.Add_Employee.update\":\" Mettre à jour \",\"Languages List.pl\":\" polonais \",\"ReportField.Map_View.Time_of_Event\":\" Heure de l'événement \",\"PicklistOption.Add_Organization.country2.2\":\" Choix 2 \",\"CompositeSubFields.Add_Organization.Contact_Name.suffix\":\" Suffixe \",\"PicklistOption.Add_Organization.country2.1\":\" Choix 1 \",\"Languages List.ar\":\" arabe \",\"FormField.Add_Employee.Name\":\" prénom \",\"ReportField.Map_View.Description\":\" La description \",\"FormField.Add_Organization.Modified_User\":\" Utilisateur modifié \",\"Languages List.af\":\" afrikaans \",\"FormField.Raise_Incident.postal_Code\":\" code postal \",\"ReportField.Closed_Incidents.Handled_By\":\" Manipulé par \",\"FormField.Assign_Employee.Modified_User\":\" Utilisateur modifié \",\"Report.All_Employees\":\" Tous les employés \",\"ReportField.Recent_Incidents.Description\":\" La description \",\"ReportField.Recent_Incidents.Time_of_Event\":\" Heure de l'événement \",\"FormField.Add_Employee.suffix\":\" Suffixe \",\"CompositeSubFields.Add_Organization.Contact_Name.prefix\":\" Préfixe \",\"ReportField.All_Employees.Choose_Category\":\"Catégorie\",\"FormField.Add_Employee.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"CompositeSubFields.Add_Organization.Address.address_line_12\":\" Adresse 1 \",\"FormField.Add_Incident_Type.ID\":\" ID \",\"FormField.Raise_Incident.Added_Time\":\" Temps ajouté \",\"FormField.Add_Organization.first_name\":\" Prénom \",\"PicklistOption.Raise_Incident.country.2\":\" SampleCountry2 \",\"PicklistOption.Raise_Incident.country.1\":\" SampleCountry1 \",\"FormField.Add_Employee.prefix\":\" Préfixe \",\"FormField.Add_Organization.Added_User\":\" Utilisateur ajouté \",\"CompositeSubFields.Add_Employee.Name.last_name\":\" Nom de famille \",\"FormField.Add_Employee.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Raise_Incident.district_city1\":\" District de la ville \",\"ReportField.Closed_Incidents.Location\":\" Emplacement \",\"ReportField.All_Incidents.Description\":\" La description \",\"ReportField.All_Incidents.Incident_Type\":\" Type d'incident \",\"ReportField.Map_View.Investigation_Notes\":\" Notes d'enquête \",\"FormField.Add_Employee.Choose_Category\":\"Choisissez une catégorie\",\"ReportField.Recent_Incidents.Complaint_By\":\" Plainte par \",\"FormButton.Add_Employee.cancel\":\" Annuler \",\"ReportField.Map_View.Handled_By\":\" Manipulé par \",\"Languages List.fr\":\" français \",\"FormField.Add_Employee.Modified_Time\":\" Heure modifiée \",\"Languages List.fi\":\" Finnois \",\"FormField.Raise_Incident.Time_of_Event\":\" Heure de l'événement \",\"FormField.Assign_Employee.Section\":\"Section\",\"Languages List.fa\":\" persan \",\"Languages List.gu\":\" Gujarati \",\"ReportField.Recent_Incidents.Number_of_Victims\":\" Nombre de victimes \",\"FormField.Add_Employee.Record_Status\":\" Statut d'enregistrement \",\"FormField.Incident_Reporting.Record_Status\":\" Statut d'enregistrement \",\"Languages List.gl\":\" Galicien \",\"FormField.Incident_Reporting.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Add_Incident_Type.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Incident_Type.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Raise_Incident.latitude\":\" latitude \",\"ReportField.Closed_Incidents.Time_of_Event\":\" Heure de l'événement \",\"ReportField.Map_View.Number_of_Victims\":\" Nombre de victimes \",\"ReportField.Organization_Details.address_line_12\":\" Adresse \",\"Languages List.ga\":\" irlandais \",\"FormField.Raise_Incident.Status\":\" Statut \",\"FormField.Add_Organization.Contact_Name\":\" Nom du contact \",\"FormButton.Add_Incident_Type.submit\":\" Soumettre \",\"FormField.Raise_Incident.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"Section.page\":\" Assigner un employé \",\"FormField.Raise_Incident.Investigation_Notes\":\" Notes d'enquête \",\"FormButton.Add_Employee.submit\":\" Soumettre \",\"PicklistOption.Raise_Incident.Victim.2\":\" Visiteur \",\"PicklistOption.Raise_Incident.Victim.1\":\" Personelle de l'entreprise \",\"FormField.Add_Employee.ID\":\" ID \",\"FormField.Incident_Reporting.Handled_By\":\" Manipulé par \",\"FormField.Incident_Reporting.Incident_Name\":\" Nom de l'incident \",\"ReportField.Closed_Incidents.Status\":\" Statut \",\"Languages List.tr\":\" turc \",\"Languages List.da\":\" danois \",\"FormField.Raise_Incident.latitude1\":\" latitude \",\"Languages List.de\":\" allemand \",\"Languages List.cy\":\" gallois \",\"FormField.Incident_Reporting.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Employee.Added_User\":\" Utilisateur ajouté \",\"Languages List.tl\":\" Philippin \",\"Languages List.es\":\" Espanol \",\"ReportField.Recent_Incidents.Status\":\" Statut \",\"Languages List.eu\":\" basque \",\"Languages List.et\":\" estonien \",\"FormField.Raise_Incident.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Organization.district_city2\":\" District de la ville \",\"Languages List.vi\":\" vietnamien \",\"PicklistOption.Raise_Incident.Status.3\":\" Fermé \",\"PicklistOption.Raise_Incident.Status.1\":\" Demande envoyée \",\"PicklistOption.Raise_Incident.Status.2\":\" Employé assigné \",\"Languages List.el\":\" grec \",\"Languages List.eo\":\" espéranto \",\"Languages List.en\":\" Anglais \",\"Languages List.ur\":\" Urdu \",\"FormField.Incident_Reporting.Modified_Time\":\" Heure modifiée \",\"FormField.Add_Organization.postal_Code2\":\" code postal \",\"FormField.Assign_Employee.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Add_Organization.Contact_Number\":\" Numéro de contact \",\"ReportField.All_Incidents.Location\":\" Emplacement \",\"Section.Add_Organization\":\" Organisation \",\"FormButton.Add_Organization.reset\":\" Réinitialiser \",\"CustomAction.My_Assigned_Incidents.Run_Scripts_On_Click_of_P4\":\" Fermer l'incident \",\"FormField.Add_Organization.Section\":\"Section\",\"ReportField.My_Assigned_Incidents.Incident_Name\":\" Nom de l'incident \"}}"
+}
+	reports configuration
+	{
+	
+		Version = 1251000165802435
+		Key     = "eRzv7sM7rbzghk3SeZ1qfnbrg2wBfDCQ4pAM3OeVGfBaSMzZh6x5B4x3KfQSquNaRRPxmyqazwOwH5E3BT1H44smfNjJj8f9dDJJ"
+	}
+}

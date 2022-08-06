@@ -1,0 +1,7175 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 23:38:51
+ * Version      : 1.0
+ */
+ application "Legal Case Mangement"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "IST"
+ 	time format = "24-hr"
+	section Dashboard
+	{
+		icon = "ui-1-dashboard-half"
+				 page Popup_Loader(caseID) 
+	 	 { 
+ 	 	 displayname = "Popup Loader" 
+
+ 	 	 icon = "loader-refresh" 
+
+ 	 	 hide =  true
+	 	 Content="<zml \n\t\t\tisPdfEnabled='false'\n\t\t\n\t\t\tisPrintEnabled='false'\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dsp id='html_snippet'>\n\t<![CDATA[htmlpage html_snippet(caseID)\ncontent\n&lt;%{\n\tcase_det = Add_Case[ID == caseID.toLong()];\n\tsrc = zoho.appuri + &quot;\/record-summary\/Lawyers\/&quot; + case_det.Lawyer.ID;\n\t%&gt;\n&lt;iframe style = &quot;height:600px;width:800px&quot; src=&quot;&lt;%=src%&gt;&quot; name=&quot;popup-window&quot;&gt;\n\t&lt;\/iframe&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+				 page Dashboard 
+	 	 { 
+ 	 	 displayname = "Dashboard" 
+
+ 	 	 icon = "ui-1-dashboard-half" 
+	 	 Content="<zml \n\t\t\tisPdfEnabled='false'\n\t\t\n\t\t\tisPrintEnabled='false'\n\t\t\n\t\t\n\t\t\twebDeviceConfig='{\"layout\":{\"displayType\":\"card\",\"design\":\"fluid\",\"style\":\"padding-right:0px;padding-top:0px;padding-bottom:0px;padding-left:0px;\"}}'\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<form    \t\t appLinkName = 'thisapp'\n   \t\t urlAppLinkName = 'thisapp'\n   \t\t heightType = 'custom'\n   \t\t heightValue = '100'\n   \t\t linkName = 'Search_Case'\n   \t\t zc_Header = 'false'\n   \t\t urlType = 'none'\n   \t\t zc_OpenUrlIn = 'same window'\n\n\/>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"30%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Lawyers'\n   \t\t target = 'new-window'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t padding = '5px'\n\n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Number Of Lawyers'\n   \t\t size = '3'\n   \t\t color = '#333333'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Lawyer.ID.count'\n   \t\t size = '8'\n   \t\t color = '#FF4C2F'\n   \t\t bold = 'true'\n   \t\t marginTop = '2px'\n   \t\t displayType = 'actual'\n   \t\t decimalSeperator = '.'\n   \t\t numberScale = 'none'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"40%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t paddingTop = '10px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Closed Cases'\n   \t\t size = '3'\n   \t\t color = '#333333'\n\n>\n<\/text>\n\n\n<\/pc><pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Case.Case_Result.count'\n   \t\t criteria = '(((Case_Status == &quot;Close&quot;)))'\n   \t\t size = '6'\n   \t\t color = '#FF8318'\n   \t\t bold = 'true'\n   \t\t marginLeft = '5px'\n   \t\t decimalSeperator = '.'\n   \t\t numberScale = 'none'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Case Won Percentage'\n   \t\t size = '1'\n   \t\t color = '#333333'\n   \t\t marginTop = '15px'\n\n>\n<\/text>\n\n\n<\/pc><pc \n>\n\t<image    \t\t color = '#3F3F3F'\n   \t\t bgColor = '#FFFFFF'\n   \t\t width = '20px'\n   \t\t height = '20px'\n   \t\t type = 'icon'\n   \t\t value = 'ui-1-check-bold'\n   \t\t size = '1'\n   \t\t marginLeft = '5px'\n   \t\t marginTop = '15px'\n   \t\t cornerRadius = '10px'\n   \t\t iconType = 'outline'\n\n\/>\n<\/pc><pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Case.Case_Result.count'\n   \t\t criteria = '(((Case_Status == &quot;Close&quot;)))'\n   \t\t size = '2'\n   \t\t color = '#3F3F3F'\n   \t\t bgColor = '#FFFFFF'\n   \t\t marginLeft = '15px'\n   \t\t marginTop = '15px'\n   \t\t displayType = 'percentage'\n   \t\t decimalSeperator = '.'\n   \t\t numberScale = 'none'\n   \t\t compareTo = 'Won'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"30%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'All_Pending_cases'\n   \t\t target = 'same-window'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t padding = '5px'\n\n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Ongoing Cases'\n   \t\t size = '3'\n   \t\t color = '#333333'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Case.ID.count'\n   \t\t criteria = '((((Case_Status == &quot;Open&quot;)||(Case_Status == &quot;Running&quot;))))'\n   \t\t size = '8'\n   \t\t color = '#FF4C2F'\n   \t\t bold = 'true'\n   \t\t marginTop = '2px'\n   \t\t displayType = 'actual'\n   \t\t decimalSeperator = '.'\n   \t\t numberScale = 'none'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"30%\"\n   \t>\n\t<chart    \t\t type = 'Pie'\n   \t\t appLinkName = 'thisapp'\n   \t\t formLinkName = 'Add_Case'\n   \t\t xtitle = 'Case Type'\n   \t\t xfield = 'Case_Type.Type'\n   \t\t ytitle = 'No Of Cases'\n   \t\t yfields = 'count:Case_Title'\n   \t\t bgColor = 'rgb(255, 255, 255)'\n   \t\t theme = 'theme2'\n   \t\t legendPos = 'center.top'\n   \t\t titleSize = '4'\n   \t\t title = 'Case Types'\n\n\/>\n<\/column><column\n   \t\t width=\"40%\"\n   \t>\n\t<chart    \t\t type = 'Column'\n   \t\t appLinkName = 'thisapp'\n   \t\t formLinkName = 'Add_Hearing_Date'\n   \t\t xtitle = 'Case Name'\n   \t\t xfield = 'Case.Case_Number'\n   \t\t ytitle = 'Number Of Hearings'\n   \t\t yfields = 'count:Hearing_Date'\n   \t\t bgColor = 'rgb(255, 255, 255)'\n   \t\t theme = 'theme1'\n   \t\t legendPos = 'center.top'\n   \t\t titleSize = '4'\n   \t\t title = 'Case Hearings'\n\n\/>\n<\/column><column\n   \t\t width=\"30%\"\n   \t>\n\t<chart    \t\t type = 'Pie'\n   \t\t appLinkName = 'thisapp'\n   \t\t formLinkName = 'Add_Case'\n   \t\t xtitle = 'Result'\n   \t\t xfield = 'Case_Result'\n   \t\t ytitle = 'Case'\n   \t\t yfields = 'count:case_ID'\n   \t\t DelugeCriteria = '(((Case_Status == &quot;Close&quot;)))'\n   \t\t bgColor = 'rgb(255, 255, 255)'\n   \t\t theme = 'theme2'\n   \t\t legendPos = 'center.top'\n   \t\t titleSize = '4'\n   \t\t title = 'Case Results'\n\n\/>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Hearing_Schedules'\n   \t\t heightType = 'auto'\n   \t\t heightValue = '800px'\n   \t\t iszreport = 'false'\n   \t\t zc_Header = 'true'\n   \t\t zc_Footer = 'true'\n   \t\t zc_SecHeader = 'true'\n   \t\t zc_AddRec = 'false'\n   \t\t zc_EditRec = 'false'\n   \t\t zc_Print = 'true'\n   \t\t zc_Export = 'true'\n   \t\t zc_DelRec = 'false'\n   \t\t zc_DuplRec = 'false'\n   \t\t zc_EditBulkRec = 'true'\n   \t\t zc_SaveRec = 'true'\n   \t\t zc_Filter = 'true'\n   \t\t zc_Search = 'false'\n   \t\t zc_SumRow = 'true'\n   \t\t zc_ColMenu = 'true'\n   \t\t zc_RecSelect = 'true'\n\n\/>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dsp id='html_snippet1'>\n\t<![CDATA[htmlpage html_snippet1()\ndisplayname = &quot;html_snippet&quot;\ncontent\n&lt;%{\n\t%&gt;\n&lt;style&gt;\n.zc-pb-tile-card {\n    overflow: hidden !important;\n\tbox-shadow: unset !important;\n}\n.zc-pb-tile-cnt-wrapper:last-child {\n    border-bottom-right-radius: 0px !important;\n    border-bottom-left-radius: 0px !important;\n    box-shadow: unset !important;\n}\n&lt;\/style&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+	}
+	section Cases
+	{
+		icon = "business-books"
+		form Add_Case
+		{
+			displayname = "Add Case"
+			success message = "Case has been Added Successfully"
+			field alignment = left
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			case_ID
+			(
+    			type = autonumber
+				displayname = "case ID"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Associated_Case_Number
+			(
+    			type = text
+				displayname = "Associated Case Number"
+    			description
+    			[
+    				type = help_text
+    			 	message = "The case to be appealed."
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Case_Number
+			(
+    			type = text
+				displayname = "Case Number"
+    			description
+    			[
+    				type = help_text
+    			 	message = "Number has been given by court."
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Case_Title
+			(
+    			type = text
+				displayname = "Case Title"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Case_Type
+			(
+				type = picklist
+				displayname = "Case Type"
+				values  = Case_Lawyer_Type.ID
+    			displayformat = [Type]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Client
+			(
+				type = picklist
+				values  = Add_People[Type == "Client"].ID
+    			displayformat = [" " + Name.first_name + " " + Name.last_name]
+				allow new entries = true
+				[
+					displayname = "Add New client"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Case_Description
+			(
+    			type = textarea
+				displayname = "Case Description"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Lawyer
+			(
+				type = picklist
+				values  = Add_Lawyer.ID
+    			displayformat = [" " + Name.first_name1 + " " + Name.last_name1]
+				sortorder = ascending
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Lawyer_Details
+			(
+    			type = plaintext
+				value = ""
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Starting_Date
+			(
+    			type = date
+				displayname = "Starting Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Opposing_Clients
+			(
+				type = grid
+				displayname = "Opposing Clients"
+				values  = Add_People.ID
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Case_Witness
+			(
+				type = grid
+				displayname = "Case Witness"
+				values  = Add_People.ID
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			Case_Documents
+			(
+				type = grid
+				displayname = "Case Documents"
+				values  = Add_Document.ID
+    			bidirectional = Case
+	 			row = 4
+	 			column = 1   
+				width = medium
+			)
+			Tasks
+			(
+				type = grid
+				values  = Add_Task.ID
+    			bidirectional = Case
+	 			row = 5
+	 			column = 1   
+				width = medium
+			)
+			Case_Points
+			(
+				type = grid
+				displayname = "Case Points"
+				values  = Add_Case_Points.ID
+    			bidirectional = Case
+	 			row = 6
+	 			column = 1   
+				width = medium
+			)
+			Hearing_Details
+			(
+				type = grid
+				displayname = "Hearing Details"
+				values  = Add_Hearing_Date.ID
+	 			row = 7
+	 			column = 1   
+				width = medium
+			)
+			Section1
+			(
+				type = section
+				displayname = "Section"
+	 			row = 8
+	 			column = 0   
+				width = medium
+			)
+			Court
+			(
+				type = picklist
+				values  = Add_Court.ID
+    			displayformat = [Court_Name]
+				sortorder = ascending
+	 			row = 8
+	 			column = 1   
+				width = medium
+			)
+			Case_Status
+			(
+				type = picklist
+				displayname = "Case Status"
+				values = {"Open", "Running", "Close"}
+				initial value = "Open"
+	 			row = 8
+	 			column = 1   
+				width = medium
+			)
+			Case_Result
+			(
+				type = picklist
+				displayname = "Case Result"
+				values = {"Pending", "Won", "Dismissed", "Failure"}
+				initial value = "Pending"
+	 			row = 8
+	 			column = 1   
+				width = medium
+			)
+			Judgement_Date
+			(
+    			type = date
+				displayname = "Judgement Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 8
+	 			column = 1   
+				width = medium
+			)
+			Judgement_In_Brief
+			(
+    			type = textarea
+				displayname = "Judgement In  Brief"
+				height = 100px
+	 			row = 8
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		print template
+			{
+				Case_Summary
+				{
+						displayname = "Case Summary"
+						content = {"layout":"1","pageNumberOption":"false","orientation":"null","isFooterEnabled":false,"mainLayout":[{"elements":[{"type":"text","element":{"id":"elem_169818f341b","fields":[],"content":"<div spellcheck=\"false\" style=\"\"><h1 style=\"text-align: center\"><span><font size=\"3\"><b>Case Summary<\/b><\/font><\/span><\/h1><\/div><div class=\"_1BN1N Kzi1t _2DJZN\" style=\"transform: translate(1279.64px, 177.556px)\"><div class=\"_1HjH7\"><div title=\"Protected by Grammarly\" class=\"_3qe6h\">&nbsp;<\/div><\/div><\/div>"}},{"type":"columns","element":{"split":"100","id":"elem_16980e3ecf71","elemStyle":"","collayouts":[{"colElements":[{"id":"elem_1552656238639","type":"fields","element":{"valueStyle":"width: 50%; background-color: rgb(255, 255, 255)","valueTextStyle":"font-size: 12px","fieldLayoutType":"2","labelText":"Case Title","wrapperStyle":"","labelStyle":"width: 50%; border-color: rgb(243, 243, 243)","Label_Name":"Case_Title","labelTextStyle":"text-align: left; font-size: 14px; font-weight: bold"}},{"id":"elem_1552656238639","type":"fields","element":{"valueStyle":"width: 50%","valueTextStyle":"font-size: 12px","fieldLayoutType":"2","labelText":"case ID","wrapperStyle":"","labelStyle":"width: 50%","Label_Name":"case_ID","labelTextStyle":"font-weight: bold; font-size: 14px"}},{"id":"elem_1552656238639","type":"fields","element":{"valueStyle":"width: 50%","valueTextStyle":"font-size: 12px","fieldLayoutType":"2","labelText":"Case Number","wrapperStyle":"","labelStyle":"width: 50%","Label_Name":"Case_Number","labelTextStyle":"font-size: 14px; font-weight: bold"}},{"id":"elem_1552656238639","type":"fields","element":{"valueStyle":"width: 50%","valueTextStyle":"font-size: 12px","fieldLayoutType":"2","labelText":"Case description","wrapperStyle":"","labelStyle":"width: 50%","Label_Name":"Case_Description","labelTextStyle":"font-weight: bold; font-size: 14px"}},{"id":"elem_1552656238639","type":"fields","element":{"valueStyle":"width: 50%","valueTextStyle":"font-size: 12px","fieldLayoutType":"2","labelText":"Starting Date","wrapperStyle":"","labelStyle":"width: 50%; background-color: rgb(243, 243, 243)","Label_Name":"Starting_Date","labelTextStyle":"font-size: 14px; font-weight: bold"}},{"id":"elem_1552656238639","type":"fields","element":{"valueStyle":"width: 50%","valueTextStyle":"font-size: 12px","fieldLayoutType":"2","labelText":"Case Status","wrapperStyle":"","labelStyle":"width: 50%","Label_Name":"Case_Status","labelTextStyle":"font-weight: bold; font-size: 14px"}},{"id":"elem_1552656238639","type":"lookupfields","element":{"valueStyle":"width: 50%; border-color: rgb(255, 255, 255)","valueTextStyle":"background-color: rgb(255, 255, 255); font-size: 12px","fieldLayoutType":"2","related_Form":"Case_Lawyer_Type","labelText":"Case Type","wrapperStyle":"","labelStyle":"width: 50%; background-color: rgb(243, 243, 243)","Label_Name":"Case_Type","refFields":[{"valueStyle":"font-size: 12px; text-align: left","fieldLayoutType":"2","labelText":"Type","labelStyle":"font-size: 10px; text-align: left; background-color: rgb(243, 243, 243); font-size: 12px","Label_Name":"Type"},{"valueStyle":"text-align: left; font-size: 12px","fieldLayoutType":"2","labelText":"Description","labelStyle":"background-color: rgb(243, 243, 243); font-size: 12px","Label_Name":"Description"}],"labelTextStyle":"font-weight: bold; font-size: 14px"}}]}]}},{"type":"columns","element":{"split":"100","id":"elem_1698118b07f1","elemStyle":"","collayouts":[{"colElements":[{"id":"elem_1552656238639","type":"lookupfields","element":{"valueStyle":"width: 50%","valueTextStyle":"font-size: 10px","fieldLayoutType":"3","related_Form":"Add_People","labelText":"Client","wrapperStyle":"","labelStyle":"width: 50%; background-color: rgb(255, 255, 255)","Label_Name":"Client","refFields":[{"valueStyle":"font-size: 12px; text-align: left","fieldLayoutType":"2","labelText":"Name","labelStyle":"background-color: rgb(243, 243, 243); font-size: 12px","Label_Name":"Name"},{"valueStyle":"font-size: 12px; text-align: left","fieldLayoutType":"2","labelText":"Email","labelStyle":"background-color: rgb(243, 243, 243); font-size: 12px","Label_Name":"Email"},{"valueStyle":"font-size: 12px; text-align: left","fieldLayoutType":"2","labelText":"Mobile Number","labelStyle":"background-color: rgb(243, 243, 243); font-size: 12px","Label_Name":"Mobile_Number"},{"valueStyle":"text-align: left; font-size: 12px","fieldLayoutType":"2","labelText":"Address","labelStyle":"background-color: rgb(243, 243, 243); font-size: 12px","Label_Name":"Address"}],"labelTextStyle":"font-size: 14px; font-weight: bold"}},{"id":"elem_1552656238639","type":"lookupfields","element":{"valueStyle":"width: 50%","valueTextStyle":"font-size: 12px","fieldLayoutType":"3","related_Form":"Add_People","labelText":"Opposing Clients","wrapperStyle":"","labelStyle":"width: 50%; background-color: rgb(255, 255, 255)","Label_Name":"Opposing_Clients","refFields":[{"valueStyle":"font-size: 12px; text-align: left","fieldLayoutType":"2","labelText":"Name","labelStyle":"background-color: rgb(243, 243, 243); font-size: 12px","Label_Name":"Name"},{"valueStyle":"font-size: 12px; text-align: left","fieldLayoutType":"2","labelText":"Email","labelStyle":"background-color: rgb(243, 243, 243); font-size: 12px","Label_Name":"Email"},{"valueStyle":"text-align: left; font-size: 12px","fieldLayoutType":"2","labelText":"Mobile Number","labelStyle":"background-color: rgb(243, 243, 243); font-size: 12px","Label_Name":"Mobile_Number"},{"valueStyle":"font-size: 12px; text-align: left","fieldLayoutType":"2","labelText":"Address","labelStyle":"background-color: rgb(243, 243, 243); font-size: 12px","Label_Name":"Address"}],"labelTextStyle":"font-size: 14px; font-weight: bold"}}]}]}}],"id":1}],"resize":"default","templateStyle":"text-align: left; width: 100%; margin: 0px; padding: 25px; background-color: rgb(255, 255, 255); border-style: solid; border-width: 0px; border-color: rgb(210, 233, 209); background-repeat: repeat","isHeaderEnabled":false}
+				}
+			}
+		}
+		list All_Cases
+		{
+			displayName = "All Cases"
+			show all rows from Add_Case    
+			(
+				Case_Result as "Case Result"
+				Judgement_Date as "Judgement Date"
+				case_ID as "case ID"
+				Case_Description as "Case Description"
+				Case_Title as "Case Title"
+				Case_Number as "Case Number"
+				Lawyer
+				Client
+				Opposing_Clients.Name as "Opposing Clients"
+				Case_Type as "Case Type"
+				Starting_Date as "Starting Date"
+				Case_Status as "Case Status"
+				Case_Type.Type
+				Court
+			)
+			group by
+			(
+				properties
+    			(
+  	    			display record count = true
+   				)
+				Case_Type.Type ascending
+			)
+			options
+			(
+				icon = "business-books"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Case_Number as "Case Number"
+							Court
+							Case_Title as "Case Title"
+							Client
+							Opposing_Clients.Name as "Opposing Clients"
+							Lawyer
+							Starting_Date as "Starting Date"
+							Case_Description as "Case Description"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Case_Number as "Case Number"
+							Case_Title as "Case Title"
+							Lawyer
+							Case_Type as "Case Type"
+							Starting_Date as "Starting Date"
+							Case_Status as "Case Status"
+						)
+					)
+					datablock3
+					(
+			 			layout type = 19
+		     			title = "Client"
+		     			related field =  Client
+						fields
+						(
+							Photo
+							Name
+							Address
+							Mobile_Number as "Mobile Number"
+							Email
+						)
+					)
+					datablock4
+					(
+			 			layout type = -1
+		     			title = "Opposing Clients"
+		     			related field =  Opposing_Clients
+						fields
+						(
+							Photo
+							Name
+							Mobile_Number as "Mobile Number"
+							Email
+							Address
+						)
+					)
+					datablock5
+					(
+			 			layout type = -1
+		     			title = "Case Witness"
+		     			related field =  Case_Witness
+						fields
+						(
+							Photo
+							Name
+							Mobile_Number as "Mobile Number"
+							Email
+							Address
+						)
+					)
+					datablock6
+					(
+			 			layout type = -1
+		     			title = "Case Documents"
+		     			related field =  Case_Documents
+						fields
+						(
+							Document_Name as "Document Name"
+							Document
+							Image
+							Description
+							Amissible_Evidence as "Admissible Evidence"
+						)
+					)
+					datablock7
+					(
+			 			layout type = -1
+		     			title = "Tasks"
+		     			related field =  Tasks
+						fields
+						(
+							Task_Name as "Task Name"
+							Task_Description as "Task Description"
+							Assigned_By as "Assigned By"
+							Assign_To as "Assign To"
+							Priority
+							Status
+						)
+					)
+					datablock8
+					(
+			 			layout type = -1
+		     			title = "Hearing details"
+		     			related field =  Hearing_Details
+						fields
+						(
+							Case
+							Hearing_Date as "Hearing Date"
+							heard_Judges as "Heard Judges"
+							Hearing_Result as "Hearing Result"
+							Hearing_Judgement as "Hearing Judgement"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Pending_cases
+		{
+			displayName = "All Pending cases"
+			show all rows from Add_Case  [Case_Status == "Open" || Case_Status == "Running"]  
+			(
+				Case_Result as "Case Result"
+				Judgement_Date as "Judgement Date"
+				case_ID as "case ID"
+				Case_Description as "Case Description"
+				Case_Title as "Case Title"
+				Case_Number as "Case Number"
+				Lawyer
+				Client
+				Opposing_Clients.Name as "Opposing Clients"
+				Case_Type as "Case Type"
+				Starting_Date as "Starting Date"
+				Case_Status as "Case Status"
+			)
+			group by
+			(
+				properties
+    			(
+  	    			display record count = true
+   				)
+				Lawyer ascending
+			)
+			options
+			(
+				icon = "ui-2-hourglass"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Case_Number as "Case Number"
+							Case_Title as "Case Title"
+							Client
+							Opposing_Clients.Name as "Opposing Clients"
+							Lawyer
+							Starting_Date as "Starting Date"
+							Case_Description as "Case Description"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Case_Number as "Case Number"
+							Case_Title as "Case Title"
+							Lawyer
+							Case_Type as "Case Type"
+							Starting_Date as "Starting Date"
+							Case_Status as "Case Status"
+						)
+					)
+					datablock3
+					(
+			 			layout type = 19
+		     			title = "Client"
+		     			related field =  Client[Case_Status == "Open" || Case_Status == "Running"]
+						fields
+						(
+							Photo
+							Name
+							Address
+							Mobile_Number as "Mobile Number"
+							Email
+						)
+					)
+					datablock4
+					(
+			 			layout type = -1
+		     			title = "Opposing Clients"
+		     			related field =  Opposing_Clients[Case_Status == "Open" || Case_Status == "Running"]
+						fields
+						(
+							Photo
+							Name
+							Mobile_Number as "Mobile Number"
+							Email
+							Address
+						)
+					)
+					datablock5
+					(
+			 			layout type = -1
+		     			title = "Case Witness"
+		     			related field =  Case_Witness[Case_Status == "Open" || Case_Status == "Running"]
+						fields
+						(
+							Photo
+							Name
+							Mobile_Number as "Mobile Number"
+							Email
+							Address
+						)
+					)
+					datablock6
+					(
+			 			layout type = -1
+		     			title = "Case Documents"
+		     			related field =  Case_Documents[Case_Status == "Open" || Case_Status == "Running"]
+						fields
+						(
+							Document_Name as "Document Name"
+							Document
+							Image
+							Description
+							Amissible_Evidence as "Admissible Evidence"
+						)
+					)
+					datablock7
+					(
+			 			layout type = -1
+		     			title = "Tasks"
+		     			related field =  Tasks[Case_Status == "Open" || Case_Status == "Running"]
+						fields
+						(
+							Task_Name as "Task Name"
+							Task_Description as "Task Description"
+							Assigned_By as "Assigned By"
+							Assign_To as "Assign To"
+							Priority
+							Status
+						)
+					)
+					datablock8
+					(
+			 			layout type = -1
+		     			title = "Hearing details"
+		     			related field =  Hearing_Details[Case_Status == "Open" || Case_Status == "Running"]
+						fields
+						(
+							Case
+							Hearing_Date as "Hearing Date"
+							heard_Judges as "Heard Judges"
+							Hearing_Result as "Hearing Result"
+							Hearing_Judgement as "Hearing Judgement"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Case_History
+		{
+			displayName = "All Case History"
+			show all rows from Add_Case  [Case_Status == "Close"]  
+			(
+				Case_Result as "Case Result"
+				Judgement_Date as "Judgement Date"
+				case_ID as "case ID"
+				Case_Description as "Case Description"
+				Case_Title as "Case Title"
+				Case_Number as "Case Number"
+				Lawyer
+				Client
+				Opposing_Clients.Name as "Opposing Clients"
+				Case_Type as "Case Type"
+				Starting_Date as "Starting Date"
+				Case_Status as "Case Status"
+				custom action "Re appeal"
+				(
+	  			workflow = Re_appeal_case_wokflow
+				show action in edit record menu = true
+				column header = "Re appeal"
+				)
+			)
+			group by
+			(
+				properties
+    			(
+  	    			display record count = true
+   				)
+				Lawyer ascending
+			)
+			options
+			(
+				icon = "loader-refresh"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Case_Number as "Case Number"
+							Case_Title as "Case Title"
+							Client
+							Opposing_Clients.Name as "Opposing Clients"
+							Lawyer
+							Starting_Date as "Starting Date"
+							Case_Description as "Case Description"
+				"Re appeal"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Case_Number as "Case Number"
+							Case_Title as "Case Title"
+							Lawyer
+							Case_Type as "Case Type"
+							Starting_Date as "Starting Date"
+							Case_Status as "Case Status"
+						)
+					)
+					datablock3
+					(
+			 			layout type = 19
+		     			title = "Client"
+		     			related field =  Client[Case_Status == "Close"]
+						fields
+						(
+							Photo
+							Name
+							Address
+							Mobile_Number as "Mobile Number"
+							Email
+						)
+					)
+					datablock4
+					(
+			 			layout type = -1
+		     			title = "Opposing Clients"
+		     			related field =  Opposing_Clients[Case_Status == "Close"]
+						fields
+						(
+							Photo
+							Name
+							Mobile_Number as "Mobile Number"
+							Email
+							Address
+						)
+					)
+					datablock5
+					(
+			 			layout type = -1
+		     			title = "Case Witness"
+		     			related field =  Case_Witness[Case_Status == "Close"]
+						fields
+						(
+							Photo
+							Name
+							Mobile_Number as "Mobile Number"
+							Email
+							Address
+						)
+					)
+					datablock6
+					(
+			 			layout type = -1
+		     			title = "Case Documents"
+		     			related field =  Case_Documents[Case_Status == "Close"]
+						fields
+						(
+							Document_Name as "Document Name"
+							Document
+							Image
+							Description
+							Amissible_Evidence as "Admissible Evidence"
+						)
+					)
+					datablock7
+					(
+			 			layout type = -1
+		     			title = "Tasks"
+		     			related field =  Tasks[Case_Status == "Close"]
+						fields
+						(
+							Task_Name as "Task Name"
+							Task_Description as "Task Description"
+							Assigned_By as "Assigned By"
+							Assign_To as "Assign To"
+							Priority
+							Status
+						)
+					)
+					datablock8
+					(
+			 			layout type = -1
+		     			title = "Hearing details"
+		     			related field =  Hearing_Details[Case_Status == "Close"]
+						fields
+						(
+							Case
+							Hearing_Date as "Hearing Date"
+							heard_Judges as "Heard Judges"
+							Hearing_Result as "Hearing Result"
+							Hearing_Judgement as "Hearing Judgement"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Open_cases
+		{
+			displayName = "My Open cases"
+			show all rows from Add_Case  [Lawyer.Email == zoho.loginuserid && Case_Status == "Open"]  
+			(
+				Case_Result as "Case Result"
+				Judgement_Date as "Judgement Date"
+				case_ID as "case ID"
+				Case_Type as "Case Type"
+				Case_Status as "Case Status"
+				Case_Number as "Case Number"
+				Case_Title as "Case Title"
+				Client
+				Opposing_Clients.Name as "Opposing Clients"
+				Lawyer
+				Starting_Date as "Starting Date"
+				custom action "Move To Court"
+				(
+	  			workflow = Accept_the_case_workflow
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Move To Court"
+				)
+			)
+			group by
+			(
+				properties
+    			(
+  	    			display record count = true
+   				)
+				Case_Status ascending
+			)
+			options
+			(
+				icon = "education-book-open"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+				"Move To Court"
+							Case_Number as "Case Number"
+							Case_Title as "Case Title"
+							Client
+							Opposing_Clients.Name as "Opposing Clients"
+							Starting_Date as "Starting Date"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Case_Number as "Case Number"
+							Case_Title as "Case Title"
+							Lawyer
+							Case_Type as "Case Type"
+							Starting_Date as "Starting Date"
+							Case_Status as "Case Status"
+						)
+					)
+					datablock3
+					(
+			 			layout type = 19
+		     			title = "Client"
+		     			related field =  Client[Lawyer.Email == zoho.loginuserid && Case_Status == "Open"]
+						fields
+						(
+							Photo
+							Name
+							Address
+							Mobile_Number as "Mobile Number"
+							Email
+						)
+					)
+					datablock4
+					(
+			 			layout type = -1
+		     			title = "Opposing Clients"
+		     			related field =  Opposing_Clients[Lawyer.Email == zoho.loginuserid && Case_Status == "Open"]
+						fields
+						(
+							Photo
+							Name
+							Mobile_Number as "Mobile Number"
+							Email
+							Address
+						)
+					)
+					datablock5
+					(
+			 			layout type = -1
+		     			title = "Case Witness"
+		     			related field =  Case_Witness[Lawyer.Email == zoho.loginuserid && Case_Status == "Open"]
+						fields
+						(
+							Photo
+							Name
+							Mobile_Number as "Mobile Number"
+							Email
+							Address
+						)
+					)
+					datablock6
+					(
+			 			layout type = -1
+		     			title = "Case Documents"
+		     			related field =  Case_Documents[Lawyer.Email == zoho.loginuserid && Case_Status == "Open"]
+						fields
+						(
+							Document_Name as "Document Name"
+							Document
+							Image
+							Description
+							Amissible_Evidence as "Admissible Evidence"
+						)
+					)
+					datablock7
+					(
+			 			layout type = -1
+		     			title = "Tasks"
+		     			related field =  Tasks[Lawyer.Email == zoho.loginuserid && Case_Status == "Open"]
+						fields
+						(
+							Task_Name as "Task Name"
+							Task_Description as "Task Description"
+							Assigned_By as "Assigned By"
+							Assign_To as "Assign To"
+							Priority
+							Status
+						)
+					)
+					datablock8
+					(
+			 			layout type = -1
+		     			title = "Hearing details"
+		     			related field =  Hearing_Details[Lawyer.Email == zoho.loginuserid && Case_Status == "Open"]
+						fields
+						(
+							Case
+							Hearing_Date as "Hearing Date"
+							heard_Judges as "Heard Judges"
+							Hearing_Result as "Hearing Result"
+							Hearing_Judgement as "Hearing Judgement"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Move To Court"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Pending_cases
+		{
+			displayName = "My Pending cases"
+			show all rows from Add_Case  [Lawyer.Email == zoho.loginuserid && Case_Status == "Running"]  
+			(
+				Case_Result as "Case Result"
+				Judgement_Date as "Judgement Date"
+				case_ID as "case ID"
+				Case_Type as "Case Type"
+				Case_Status as "Case Status"
+				custom action "Add Document"
+				(
+	  			workflow = Add_Document_Scripts
+				show action in view header = true
+				column header = "Add Document"
+				)
+				Case_Number as "Case Number"
+				Case_Title as "Case Title"
+				Client
+				Lawyer
+				Starting_Date as "Starting Date"
+				custom action "Add Hearing"
+				(
+	  			workflow = Add_Hearing_Workflow
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Add Hearing"
+				)
+				custom action "Add Task"
+				(
+	  			workflow = Add_task_Workflow
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Add Task"
+				)
+				custom action "Add Case Point"
+				(
+	  			workflow = Add_Case_Point
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Add Case Point"
+				)
+				custom action "Case Summary"
+				(
+	  			workflow = Case_Summary_Navigation
+				show action in edit record menu = true
+				column header = "Case Summary"
+				)
+			)
+			group by
+			(
+				properties
+    			(
+  	    			display record count = true
+   				)
+				Case_Status ascending
+			)
+			options
+			(
+				icon = "ui-2-hourglass"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+				"Case Summary"
+							Case_Number as "Case Number"
+							Case_Title as "Case Title"
+							Client
+							Starting_Date as "Starting Date"
+				"Add Task"
+				"Add Document"
+				"Add Hearing"
+				"Add Case Point"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Case_Number as "Case Number"
+							Case_Title as "Case Title"
+							Lawyer
+							Case_Type as "Case Type"
+							Starting_Date as "Starting Date"
+							Case_Status as "Case Status"
+						)
+					)
+					datablock3
+					(
+			 			layout type = 19
+		     			title = "Client"
+		     			related field =  Client[Lawyer.Email == zoho.loginuserid && Case_Status == "Running"]
+						fields
+						(
+							Photo
+							Name
+							Address
+							Mobile_Number as "Mobile Number"
+							Email
+						)
+					)
+					datablock4
+					(
+			 			layout type = -1
+		     			title = "Opposing Clients"
+		     			related field =  Opposing_Clients[Lawyer.Email == zoho.loginuserid && Case_Status == "Running"]
+						fields
+						(
+							Photo
+							Name
+							Mobile_Number as "Mobile Number"
+							Email
+							Address
+						)
+					)
+					datablock5
+					(
+			 			layout type = -1
+		     			title = "Case Witness"
+		     			related field =  Case_Witness[Lawyer.Email == zoho.loginuserid && Case_Status == "Running"]
+						fields
+						(
+							Photo
+							Name
+							Mobile_Number as "Mobile Number"
+							Email
+							Address
+						)
+					)
+					datablock6
+					(
+			 			layout type = -1
+		     			title = "Case Documents"
+		     			related field =  Case_Documents[Lawyer.Email == zoho.loginuserid && Case_Status == "Running"]
+						fields
+						(
+							Document_Name as "Document Name"
+							Document
+							Image
+							Description
+							Amissible_Evidence as "Admissible Evidence"
+						)
+					)
+					datablock7
+					(
+			 			layout type = -1
+		     			title = "Tasks"
+		     			related field =  Tasks[Lawyer.Email == zoho.loginuserid && Case_Status == "Running"]
+						fields
+						(
+							Task_Name as "Task Name"
+							Task_Description as "Task Description"
+							Assigned_By as "Assigned By"
+							Assign_To as "Assign To"
+							Priority
+							Status
+						)
+					)
+					datablock8
+					(
+			 			layout type = -1
+		     			title = "Hearing details"
+		     			related field =  Hearing_Details[Lawyer.Email == zoho.loginuserid && Case_Status == "Running"]
+						fields
+						(
+							Case
+							Hearing_Date as "Hearing Date"
+							heard_Judges as "Heard Judges"
+							Hearing_Result as "Hearing Result"
+							Hearing_Judgement as "Hearing Judgement"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Add Task"
+			 			"Add Document"
+			 			"Add Hearing"
+			 			"Add Case Point"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_case_History
+		{
+			displayName = "My case History"
+			show all rows from Add_Case  [Lawyer.Email == zoho.loginuserid && Case_Status == "Close"]  
+			(
+				Case_Result as "Case Result"
+				Judgement_Date as "Judgement Date"
+				case_ID as "case ID"
+				Case_Description as "Case Description"
+				Case_Title as "Case Title"
+				Case_Number as "Case Number"
+				Lawyer
+				Client
+				Opposing_Clients.Name as "Opposing Clients"
+				Case_Type as "Case Type"
+				Starting_Date as "Starting Date"
+				Case_Status as "Case Status"
+				custom action "Case Summary"
+				(
+	  			workflow = Case_Summary_Navigation_2
+				show action in edit record menu = true
+				column header = "Case Summary"
+				)
+			)
+			group by
+			(
+				properties
+    			(
+  	    			display record count = true
+   				)
+				Case_Result ascending
+			)
+			options
+			(
+				icon = "arrows-1-refresh-68"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+				"Case Summary"
+							Case_Number as "Case Number"
+							Case_Title as "Case Title"
+							Client
+							Opposing_Clients.Name as "Opposing Clients"
+							Lawyer
+							Starting_Date as "Starting Date"
+							Case_Description as "Case Description"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Case_Number as "Case Number"
+							Case_Title as "Case Title"
+							Case_Type as "Case Type"
+							Starting_Date as "Starting Date"
+							Case_Status as "Case Status"
+						)
+					)
+					datablock3
+					(
+			 			layout type = 19
+		     			title = "Client"
+		     			related field =  Client[Lawyer.Email == zoho.loginuserid && Case_Status == "Close"]
+						fields
+						(
+							Photo
+							Name
+							Address
+							Mobile_Number as "Mobile Number"
+							Email
+						)
+					)
+					datablock4
+					(
+			 			layout type = -1
+		     			title = "Opposing Clients"
+		     			related field =  Opposing_Clients[Lawyer.Email == zoho.loginuserid && Case_Status == "Close"]
+						fields
+						(
+							Photo
+							Name
+							Mobile_Number as "Mobile Number"
+							Email
+							Address
+						)
+					)
+					datablock5
+					(
+			 			layout type = -1
+		     			title = "Case Witness"
+		     			related field =  Case_Witness[Lawyer.Email == zoho.loginuserid && Case_Status == "Close"]
+						fields
+						(
+							Photo
+							Name
+							Mobile_Number as "Mobile Number"
+							Email
+							Address
+						)
+					)
+					datablock6
+					(
+			 			layout type = -1
+		     			title = "Case Documents"
+		     			related field =  Case_Documents[Lawyer.Email == zoho.loginuserid && Case_Status == "Close"]
+						fields
+						(
+							Document_Name as "Document Name"
+							Document
+							Image
+							Description
+							Amissible_Evidence as "Admissible Evidence"
+						)
+					)
+					datablock7
+					(
+			 			layout type = -1
+		     			title = "Tasks"
+		     			related field =  Tasks[Lawyer.Email == zoho.loginuserid && Case_Status == "Close"]
+						fields
+						(
+							Task_Name as "Task Name"
+							Task_Description as "Task Description"
+							Assigned_By as "Assigned By"
+							Assign_To as "Assign To"
+							Priority
+							Status
+						)
+					)
+					datablock8
+					(
+			 			layout type = -1
+		     			title = "Hearing details"
+		     			related field =  Hearing_Details[Lawyer.Email == zoho.loginuserid && Case_Status == "Close"]
+						fields
+						(
+							Case
+							Hearing_Date as "Hearing Date"
+							heard_Judges as "Heard Judges"
+							Hearing_Result as "Hearing Result"
+							Hearing_Judgement as "Hearing Judgement"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Lawyers
+	{
+		icon = "users-single-04"
+		form Add_Lawyer
+		{
+			displayname = "Add Lawyer"
+			success message = "New lawyer details added successfully."
+			field alignment = left
+			feature property = 32
+			Personal_Details
+			(
+				type = section
+				displayname = "Personal Details"
+				visibility = true
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Registration_ID
+			(
+    			type = autonumber
+				displayname = "Registration ID"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix1
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name1
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name1
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix1
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Gender
+			(
+				type = radiobuttons
+				values = {"Male", "Female"}
+				initial value = "Male"
+				layout = 3
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Date_of_Birth
+			(
+    			type = date
+				displayname = "Date of Birth"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			ErrorText
+			(
+    			type = plaintext
+				value = "<span style=\"color: red\">Please enter a valid date</span>"
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Age
+			(
+				type = number
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Mobile
+			(
+    			type = phonenumber
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_11
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_21
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city1
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province1
+     			(
+	     			  type = state_province
+	     			  displayname = "State Province"
+     			) 
+     			postal_Code1
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country1
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude1
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude1
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Photo
+			(
+    			type = image
+				source  = file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Official_Details
+			(
+				type = section
+				displayname = "Official Details"
+				visibility = true
+	 			row = 2
+	 			column = 0   
+				width = medium
+			)
+			must have Lawyer_Type
+			(
+				type = picklist
+				displayname = "Lawyer Type"
+				values  = Case_Lawyer_Type.ID
+    			displayformat = [Type]
+				allow new entries = true
+				[
+					displayname = "Add New Type"
+				]
+				sortorder = ascending
+    			description
+    			[
+    				type = help_text
+    			 	message = "Select the type of law preferred by the lawyer."
+    			]
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			must have Time_Based_Bill_rate
+			(
+				type = decimal
+				displayname = "Time Based Bill rate"
+				maxchar = 7
+    			description
+    			[
+    				type = help_text
+    			 	message = "Amount for one working hour"
+    			]
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			must have Case_Based_Bill_Rate
+			(
+				type = decimal
+				displayname = "Case Based Bill Rate"
+    			description
+    			[
+    				type = help_text
+    			 	message = "Amount  for one case"
+    			]
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			must have Monthly_Bill_Rate
+			(
+				type = decimal
+				displayname = "Monthly Bill Rate"
+				maxchar = 7
+    			description
+    			[
+    				type = help_text
+    			 	message = "Amount for one month"
+    			]
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			Payment_Details
+			(
+				type = grid
+				displayname = "Payment Details"
+				values  = Add_Payment.ID
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-2-a-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		custom Lawyers
+		{
+			displayName = "Lawyers"
+			show all rows from Add_Lawyer    
+			(
+				Address 
+	 			(
+	      			displayformat = [address_line_11+""+address_line_21+""+district_city1+""+state_province1+""+postal_Code1+""+country1]
+	      			enable = Show_As_Text
+	 			)
+				Registration_ID as "Registration ID"
+				(
+					width = 229px
+				)
+				Gender
+				(
+					width = 161px
+				)
+				Date_of_Birth as "Date of Birth"
+				Time_Based_Bill_rate as "Time Based Bill rate"
+				Lawyer_Type as "Lawyer Type"
+				Photo
+				Name 
+	 			(
+	      			displayformat = [first_name1+""+prefix1+""+last_name1+""+suffix1]
+	 			)
+				Mobile
+				(
+					width = 192px
+				)
+				Email
+			)
+			filters
+			(
+				Gender
+			)
+			group by
+			(
+				Lawyer_Type ascending
+			)
+			options
+			(
+				icon = "users-network"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 6
+					datablock1
+					(
+			 			layout type = 27
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Name
+							Lawyer_Type as "Lawyer Type"
+							Email
+							Mobile
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Personal Details"
+						fields
+						(
+							Photo
+							Registration_ID as "Registration ID"
+							Name
+							Gender
+							Date_of_Birth as "Date of Birth"
+							Mobile
+							Email
+							Address
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Lawyer Type"
+		     			related field =  Lawyer_Type
+						fields
+						(
+							Type
+							Description
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Official details"
+						fields
+						(
+							Time_Based_Bill_rate as "Time Based Bill rate"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section People
+	{
+		icon = "users-2-wc"
+		list People_Linked_With_Case
+		{
+			displayName = "People Linked With Case"
+   			hide = true
+			show all rows from Add_People    
+			(
+				Case
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Type
+				Mobile_Number as "Mobile Number"
+				Email
+				Address 
+	 			(
+	      			displayformat = [address_line_1+""+address_line_2+""+district_city+""+state_province+""+postal_Code+""+country]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Photo
+			)
+			group by
+			(
+				Case ascending
+			)
+			options
+			(
+				icon = "users-2-b-check"
+	 		)
+			conditional formatting
+			(
+				"Clint"
+				{
+				condition = (Type == "Client")
+				fields = [Type]
+				format = "font-weight:bold;color:#19bc9f;"
+				}
+				"Opposite Client"
+				{
+				condition = (Type == "Opposing client")
+				fields = [Type]
+				format = "font-weight:bold;color:#e64d3b;"
+				}
+				"Witness"
+				{
+				condition = (Type == "Witness")
+				fields = [Type]
+				format = "font-weight:bold;color:#bd588b;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Case
+							Photo
+							Name
+							Type
+							Mobile_Number as "Mobile Number"
+							Email
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Case
+							Name
+							Type
+							Mobile_Number as "Mobile Number"
+							Email
+							Address
+							Photo
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		form Add_People
+		{
+			displayname = "Add People"
+			success message = "People Added Successfully"
+			field alignment = left
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Case
+			(
+				type = picklist
+				values  = Add_Case.ID
+    			displayformat = [Case_Number + " - " + Case_Title]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Type
+			(
+				type = picklist
+				values = {"Client", "Opposing client", "Witness"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Mobile_Number
+			(
+    			type = phonenumber
+				displayname = "Mobile Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_1
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_2
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Photo
+			(
+    			type = image
+				source  = file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-2-a-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Clients
+		{
+			displayName = "Clients"
+			show all rows from Add_People  [Type == "Client"]  
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Mobile_Number as "Mobile Number"
+				Address 
+	 			(
+	      			displayformat = [address_line_1+""+address_line_2+""+district_city+""+state_province+""+postal_Code+""+country]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Type
+				Email
+				Photo
+				Case
+			)
+			options
+			(
+				icon = "users-2-wc"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Name
+							Type
+							Mobile_Number as "Mobile Number"
+							Email
+							Address
+							Case
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Mobile_Number as "Mobile Number"
+							Type
+							Email
+							Address
+							Photo
+							Case
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Opposing_Clients
+		{
+			displayName = "Opposing Clients"
+			show all rows from Add_People  [Type == "Opposing client"]  
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Mobile_Number as "Mobile Number"
+				Address 
+	 			(
+	      			displayformat = [address_line_1+""+address_line_2+""+district_city+""+state_province+""+postal_Code+""+country]
+	      			enable = Show_As_Text
+	 			)
+				Type
+				Email
+				Photo
+			)
+			options
+			(
+				icon = "users-multiple-19"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Name
+							Type
+							Mobile_Number as "Mobile Number"
+							Email
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Name
+							Mobile_Number as "Mobile Number"
+							Type
+							Email
+							Address
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Client"
+		     			related field =  Add_Case.Client
+						fields
+						(
+							Case_Number as "Case Number"
+							Case_Title as "Case Title"
+							Case_Type as "Case Type"
+							Case_Description as "Case Description"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Case_Witness
+		{
+			displayName = "Case Witness"
+			show all rows from Add_People  [Type == "Witness"]  
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_1+""+address_line_2+""+district_city+""+state_province+""+postal_Code+""+country]
+	      			enable = Show_As_Text
+	 			)
+				Mobile_Number as "Mobile Number"
+				Type
+				Email
+				Photo
+			)
+			options
+			(
+				icon = "ui-1-eye-17"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Name
+							Type
+							Mobile_Number as "Mobile Number"
+							Email
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Name
+							Mobile_Number as "Mobile Number"
+							Type
+							Email
+							Address
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Case"
+		     			related field =  Add_Case.Client
+						fields
+						(
+							Case_Number as "Case Number"
+							Case_Title as "Case Title"
+							Case_Type as "Case Type"
+							Case_Description as "Case Description"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Documents
+	{
+		icon = "education-paper"
+		form Add_Document
+		{
+			displayname = "Add Document"
+			success message = "Document Added Successfully"
+			field alignment = left
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Case
+			(
+				type = picklist
+				values  = Add_Case.ID
+    			bidirectional = Case_Documents
+    			displayformat = [Case_Number + " - " + Case_Title]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Case_Lawyer
+			(
+				type = picklist
+				displayname = "Case Lawyer"
+				values  = Add_Lawyer.ID
+    			displayformat = [" " + Name.first_name1 + " " + Name.last_name1]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Document_Name
+			(
+    			type = text
+				displayname = "Document Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Document
+			(
+    			type = upload file
+				browse = local_drive
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Image
+			(
+    			type = image
+				source  = file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Amissible_Evidence
+			(
+    			type = checkbox
+				displayname = "Admissible Evidence"
+				initial value = false
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-2-woman-up"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list All_Documents
+		{
+			displayName = "All Documents"
+			show all rows from Add_Document    
+			(
+				Document
+				Image
+				Description
+				Case
+				Document_Name as "Document Name"
+				Amissible_Evidence as "Admissible Evidence"
+				Case_Lawyer as "Case Lawyer"
+			)
+			group by
+			(
+				Case ascending
+			)
+			options
+			(
+				icon = "travel-world"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Document
+							Image
+							Description
+							Case
+							Document_Name as "Document Name"
+							Amissible_Evidence as "Admissible Evidence"
+							Case_Lawyer as "Case Lawyer"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Document_Name as "Document Name"
+							Document
+							Image
+							Description
+							Case
+							Case_Lawyer as "Case Lawyer"
+							Amissible_Evidence as "Admissible Evidence"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Case_Documents
+		{
+			displayName = "My Case Documents"
+			show all rows from Add_Document  [Case_Lawyer.Email == zoho.loginuserid]  
+			(
+				Document
+				Image
+				Description
+				Case
+				Document_Name as "Document Name"
+				Amissible_Evidence as "Admissible Evidence"
+				Case_Lawyer as "Case Lawyer"
+			)
+			group by
+			(
+				Case ascending
+			)
+			options
+			(
+				icon = "tech-print-round"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Document
+							Image
+							Description
+							Case
+							Document_Name as "Document Name"
+							Amissible_Evidence as "Admissible Evidence"
+							Case_Lawyer as "Case Lawyer"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Document_Name as "Document Name"
+							Document
+							Image
+							Description
+							Case
+							Case_Lawyer as "Case Lawyer"
+							Amissible_Evidence as "Admissible Evidence"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Payments
+	{
+		icon = "shopping-credit-card-in"
+		form Add_Payment
+		{
+			displayname = "Add Payment"
+			success message = "Payment Added Successfully"
+			field alignment = left
+					hide = true
+			Section1
+			(
+				type = section
+				displayname = "Section"
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Payment_For
+			(
+				type = radiobuttons
+				displayname = "Payment For"
+				values = {"Case", "Lawyer"}
+				layout = 3
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Section
+			(
+				type = section
+	 			row = 2
+	 			column = 0   
+				width = medium
+			)
+			Case
+			(
+				type = picklist
+				values  = Add_Case.ID
+    			displayformat = [Case_Title]
+				sortorder = ascending
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			must have Bill_Date
+			(
+    			type = date
+				displayname = "Bill Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			must have Paid_Amount
+			(
+				type = decimal
+				displayname = "Paid Amount"
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Lawyer
+			(
+				type = picklist
+				values  = Add_Lawyer.ID
+    			displayformat = [" " + Name.first_name1 + " " + Name.last_name1]
+				sortorder = ascending
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Paid_For_lawyer
+			(
+				type = decimal
+				displayname = "Paid For lawyer"
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Employee_payment_Details
+			(
+    			type = plaintext
+				value = ""
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Section2
+			(
+				type = section
+				displayname = "Section"
+	 			row = 3
+	 			column = 0   
+				width = medium
+			)
+			must have Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "shopping-mobile-card"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list All_Payments
+		{
+			displayName = "All Payments"
+   			hide = true
+			show all rows from Add_Payment    
+			(
+				Case
+				Paid_Amount as "Paid Amount"
+				Description
+				Bill_Date as "Bill Date"
+				Lawyer
+				Paid_For_lawyer as "Paid For lawyer"
+				Payment_For as "Payment For"
+			)
+			options
+			(
+				icon = "shopping-credit-card-in"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Case
+							Paid_Amount as "Paid Amount"
+							Description
+							Bill_Date as "Bill Date"
+							Lawyer
+							Paid_For_lawyer as "Paid For lawyer"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Case
+							Paid_Amount as "Paid Amount"
+							Description
+							Bill_Date as "Bill Date"
+							Lawyer
+							Paid_For_lawyer as "Paid For lawyer"
+							Payment_For as "Payment For"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Case_Points
+	{
+		displayname= "Case Points"
+		icon = "files-question"
+		form Add_Case_Points
+		{
+			displayname = "Add Case Points"
+			success message = "Case Fact Added Successfully"
+			field alignment = left
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Case
+			(
+				type = picklist
+				values  = Add_Case.ID
+    			bidirectional = Case_Points
+    			displayformat = [Case_Number + " - " + Case_Title]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Lawyer
+			(
+				type = picklist
+				values  = Add_Lawyer.ID
+    			displayformat = [" " + Name.first_name1 + " " + Name.last_name1]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Law_Point
+			(
+    			type = text
+				displayname = "Law Point"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Description
+			(
+    			type = textarea
+				displayname = "Description "
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Linked_Document
+			(
+				type = picklist
+				displayname = "Linked Documents"
+				values  = Add_Document.ID
+    			displayformat = [Document_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list All_Case_Points
+		{
+			displayName = "All Case Points"
+			show all rows from Add_Case_Points    
+			(
+				Description as "Description "
+				Linked_Document as "Linked Documents"
+				Law_Point as "Law Point"
+				Lawyer
+				(
+					view = Lawyers
+				)
+				Case
+			)
+			group by
+			(
+				Case ascending
+			)
+			options
+			(
+				icon = "files-question"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Case
+							Law_Point as "Law Point"
+							Description as "Description "
+							Linked_Document as "Linked Documents"
+							Lawyer
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Lawyer
+							Law_Point as "Law Point"
+							Description as "Description "
+							Linked_Document as "Linked Documents"
+							Case
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Case_Points
+		{
+			displayName = "My Case Points"
+			show all rows from Add_Case_Points  [Lawyer.Email == zoho.loginuserid]  
+			(
+				Description as "Description "
+				Linked_Document as "Linked Documents"
+				Law_Point as "Law Point"
+			)
+			options
+			(
+				icon = "shopping-mobile-touch"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Law_Point as "Law Point"
+							Description as "Description "
+							Linked_Document as "Linked Documents"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Law_Point as "Law Point"
+							Description as "Description "
+							Linked_Document as "Linked Documents"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Hearing_Details
+	{
+		displayname= "Hearing Details"
+		icon = "business-scale"
+		calendar Hearing_Schedules
+		{
+			displayName = "Hearing Schedules"
+   			hide = true
+			show all rows from Add_Hearing_Date    
+			(
+				Hearing_Judgement as "Hearing Judgement"
+				Case.Case_Number as "Case Number"
+				Case_Lawyer.Email
+				Case
+				Case_Lawyer as "Case Lawyer"
+				Hearing_Date as "Hearing Date"
+				Hearing_Result as "Hearing Result"
+				Postponed_Date as "Postponed Date"
+				heard_Judges as "Heard Judges"
+			)
+			options
+			(
+				display type = month
+				week start day = sunday
+				display field = Case
+				start date = Hearing_Date
+				default date 
+				(
+	    			day   = Today
+	    			month = Currentmonth
+	    			year  = Currentyear
+				)
+				icon = "social-1-logo-yelp"
+			)
+			conditional formatting
+			(
+				"Old Hearings"
+				{
+				condition = (Case.Case_Status == "Open")
+				format = "color:#ffffff;background-color:#85adf5;"
+				}
+				"Closed Case"
+				{
+				condition = (Case.Case_Status == "Close")
+				format = "color:#ffffff;background-color:#f27d7d;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Case
+							Case.Case_Number as "Case Number"
+							Case_Lawyer as "Case Lawyer"
+							Case_Lawyer.Email as "Email"
+							Hearing_Result as "Hearing Result"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Title"
+						fields
+						(
+							Case
+							Case_Lawyer as "Case Lawyer"
+							Hearing_Date as "Hearing Date"
+							Hearing_Result as "Hearing Result"
+							Postponed_Date as "Postponed Date"
+							heard_Judges as "Heard Judges"
+						)
+					)
+					datablock4
+					(
+			 			layout type = 4
+		     			title = "Case"
+		     			related field =  Case
+						fields
+						(
+							Case_Title as "Case Title"
+							Case_Description as "Case Description"
+							Case_Number as "Case Number"
+							Case_Status as "Case Status"
+							Case_Type as "Case Type"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		form Add_Hearing_Date
+		{
+			displayname = "Add Hearing Date"
+			success message = "Hearing Detail Added Successfully"
+			field alignment = left
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Case
+			(
+				type = picklist
+				values  = Add_Case.ID
+    			displayformat = [Case_Number + " - " + Case_Title]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Case_Lawyer
+			(
+				type = picklist
+				displayname = "Case Lawyer"
+				values  = Add_Lawyer.ID
+    			displayformat = [" " + Name.first_name1 + " " + Name.last_name1]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Email_Address
+			(
+    			type = email
+				displayname = "Email Address"
+    			description
+    			[
+    				type = help_text
+    			 	message = "Reminder message will be sent to this email address"
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Hearing_Date
+			(
+    			type = date
+				displayname = "Hearing Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Hearing_Result
+			(
+				type = radiobuttons
+				displayname = "Hearing Result"
+				values = {"Pending", "Case Closed", "Postponed On date", "Postponed Without Date"}
+				initial value = "Pending"
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Postponed_Date
+			(
+    			type = date
+				displayname = "Postponed Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			heard_Judges
+			(
+				type = list
+				displayname = "Heard Judges"
+				values  = Add_Judge.ID
+    			displayformat = [" " + Judge_Name.prefix + " " + Judge_Name.first_name + " " + Judge_Name.last_name + " " + Judge_Name.suffix]
+				allow new entries = true
+				[
+					displayname = "Add New Judge"
+				]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Hearing_Judgement
+			(
+    			type = textarea
+				displayname = "Hearing Judgement"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-circle-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Upcoming_Hearings
+		{
+			displayName = "Upcoming Hearings"
+			show all rows from Add_Hearing_Date  [Hearing_Result == "Pending"]  
+			(
+				Hearing_Date as "Hearing Date"
+				Case
+				Case_Lawyer as "Case Lawyer"
+				Email_Address as "Email Address"
+			)
+			group by
+			(
+				Case ascending
+			)
+			options
+			(
+				icon = "ui-1-calendar-check-62"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Hearing_Date as "Hearing Date"
+							Case
+							Case_Lawyer as "Case Lawyer"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Case
+							Case_Lawyer as "Case Lawyer"
+							Hearing_Date as "Hearing Date"
+							Email_Address as "Email Address"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Case"
+		     			related field =  Case[Hearing_Result == "Pending"]
+						fields
+						(
+							case_ID as "case ID"
+							Case_Number as "Case Number"
+							Case_Title as "Case Title"
+							Case_Type as "Case Type"
+							Client
+							Case_Description as "Case Description"
+							Lawyer
+							Starting_Date as "Starting Date"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Case Lawyer"
+		     			related field =  Case_Lawyer[Hearing_Result == "Pending"]
+						fields
+						(
+							Registration_ID as "Registration ID"
+							Name
+							Gender
+							Date_of_Birth as "Date of Birth"
+							Age
+							Email
+							Mobile
+							Address
+							Photo
+							Lawyer_Type as "Lawyer Type"
+							Time_Based_Bill_rate as "Time Based Bill rate"
+							Case_Based_Bill_Rate as "Case Based Bill Rate"
+							Monthly_Bill_Rate as "Monthly Bill Rate"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Hearing_History
+		{
+			displayName = "Hearing History"
+			show all rows from Add_Hearing_Date  [Hearing_Result != "Pending"]  
+			(
+				Hearing_Date as "Hearing Date"
+				Case
+				Hearing_Judgement as "Hearing Judgement"
+				Hearing_Result as "Hearing Result"
+				heard_Judges as "Heard Judges"
+				Case_Lawyer as "Case Lawyer"
+			)
+			group by
+			(
+				Case ascending
+			)
+			options
+			(
+				icon = "loader-refresh"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Hearing_Date as "Hearing Date"
+							Case
+							Hearing_Judgement as "Hearing Judgement"
+							Hearing_Result as "Hearing Result"
+							heard_Judges as "Heard Judges"
+							Case_Lawyer as "Case Lawyer"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Case
+							Case_Lawyer as "Case Lawyer"
+							Hearing_Date as "Hearing Date"
+							Hearing_Result as "Hearing Result"
+							heard_Judges as "Heard Judges"
+							Hearing_Judgement as "Hearing Judgement"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Upcoming_Hearings
+		{
+			displayName = "My Upcoming Hearings"
+			show all rows from Add_Hearing_Date  [Hearing_Result == "Pending" && Case_Lawyer.Email == zoho.loginuserid]  
+			(
+				Case_Lawyer as "Case Lawyer"
+				Hearing_Date as "Hearing Date"
+				Case
+				Hearing_Judgement as "Hearing Judgement"
+				heard_Judges as "Heard Judges"
+				Hearing_Result as "Hearing Result"
+				custom action "Case Closed"
+				(
+	  			workflow = Update_Hearing_Result_Wor
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Case Closed"
+				)
+				custom action "Postponed"
+				(
+	  			workflow = Hearing_Postponed_Scripts
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Postponed"
+				)
+			)
+			group by
+			(
+				Case ascending
+			)
+			options
+			(
+				icon = "ui-2-layers"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Case
+							Hearing_Date as "Hearing Date"
+				"Case Closed"
+				"Postponed"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Hearing_Date as "Hearing Date"
+							Case
+							Hearing_Judgement as "Hearing Judgement"
+							Hearing_Result as "Hearing Result"
+							heard_Judges as "Heard Judges"
+							Case_Lawyer as "Case Lawyer"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Case"
+		     			related field =  Case[Hearing_Result == "Pending" && Case_Lawyer.Email == zoho.loginuserid]
+						fields
+						(
+							case_ID as "case ID"
+							Case_Number as "Case Number"
+							Case_Title as "Case Title"
+							Case_Type as "Case Type"
+							Client
+							Case_Description as "Case Description"
+							Lawyer
+							Starting_Date as "Starting Date"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Case Closed"
+			 			"Postponed"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Hearing_History
+		{
+			displayName = "My Hearing History"
+			show all rows from Add_Hearing_Date  [Hearing_Result != "Pending" && Case_Lawyer.Email == zoho.loginuserid]  
+			(
+				Case_Lawyer as "Case Lawyer"
+				Hearing_Date as "Hearing Date"
+				Case
+				Hearing_Judgement as "Hearing Judgement"
+				heard_Judges as "Heard Judges"
+				Hearing_Result as "Hearing Result"
+			)
+			group by
+			(
+				Case ascending
+			)
+			options
+			(
+				icon = "business-progress"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Case
+							Hearing_Date as "Hearing Date"
+							heard_Judges as "Heard Judges"
+							Hearing_Result as "Hearing Result"
+							Hearing_Judgement as "Hearing Judgement"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Hearing_Date as "Hearing Date"
+							Case
+							Hearing_Judgement as "Hearing Judgement"
+							Hearing_Result as "Hearing Result"
+							heard_Judges as "Heard Judges"
+							Case_Lawyer as "Case Lawyer"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Case_Hearings
+		{
+			displayName = "Case Hearings"
+			show all rows from Add_Hearing_Date    
+			(
+				Hearing_Date as "Hearing Date"
+				Case
+				Hearing_Judgement as "Hearing Judgement"
+				Hearing_Result as "Hearing Result"
+				heard_Judges as "Heard Judges"
+				Case_Lawyer as "Case Lawyer"
+			)
+			group by
+			(
+				Case ascending
+			)
+			options
+			(
+				icon = "users-2-contacts-44"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Hearing_Date as "Hearing Date"
+							Case
+							Hearing_Judgement as "Hearing Judgement"
+							Hearing_Result as "Hearing Result"
+							heard_Judges as "Heard Judges"
+							Case_Lawyer as "Case Lawyer"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Case
+							Case_Lawyer as "Case Lawyer"
+							Hearing_Date as "Hearing Date"
+							Hearing_Result as "Hearing Result"
+							heard_Judges as "Heard Judges"
+							Hearing_Judgement as "Hearing Judgement"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Judges
+	{
+		icon = "business-law"
+		form Add_Judge
+		{
+			displayname = "Add Judge"
+			success message = "Judge Added Successfully"
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Judge_Name
+			(
+    			type = name
+				displayname = "Judge Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "business-law"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Tasks
+	{
+		icon = "tech-desktop"
+		form Add_Task
+		{
+			displayname = "Add Task"
+			success message = "Task Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Case
+			(
+				type = picklist
+				values  = Add_Case.ID
+    			bidirectional = Tasks
+    			displayformat = [Case_Title]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Task_Name
+			(
+    			type = text
+				displayname = "Task Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Task_Description
+			(
+    			type = textarea
+				displayname = "Task Description"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Assigned_By
+			(
+				type = picklist
+				displayname = "Assigned By"
+				values  = Add_Lawyer.ID
+    			displayformat = [" " + Name.first_name1 + " " + Name.last_name1]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Assign_To
+			(
+				type = picklist
+				displayname = "Assign To"
+				values  = Add_Lawyer.ID
+    			displayformat = [" " + Name.first_name1 + " " + Name.last_name1]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Priority
+			(
+				type = radiobuttons
+				values = {"High", "Medium", "Low"}
+				layout = 3
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Status
+			(
+				type = picklist
+				values = {"Open", "In Progress", "Timer Running", "Completed"}
+				initial value = "Open"
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list All_Tasks
+		{
+			displayName = "All Tasks"
+			show all rows from Add_Task    
+			(
+				Case
+				(
+					view = All_Cases
+				)
+				Task_Name as "Task Name"
+				Task_Description as "Task Description"
+				Assigned_By as "Assigned By"
+				(
+					view = Lawyers
+				)
+				Assign_To as "Assign To"
+				(
+					view = Lawyers
+				)
+				Priority
+				Status
+			)
+			group by
+			(
+				Priority ascending
+			)
+			options
+			(
+				icon = "shopping-tag-sale"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Case
+							Task_Name as "Task Name"
+							Task_Description as "Task Description"
+							Assigned_By as "Assigned By"
+							Assign_To as "Assign To"
+							Priority
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Case
+							Task_Name as "Task Name"
+							Task_Description as "Task Description"
+							Assigned_By as "Assigned By"
+							Assign_To as "Assign To"
+							Priority
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Open_Tasks
+		{
+			displayName = "My Open Tasks"
+			show all rows from Add_Task  [Assign_To.Email == zoho.loginuserid && Status == "Open"]  
+			(
+				Case
+				(
+					view = All_Cases
+				)
+				Task_Name as "Task Name"
+				Task_Description as "Task Description"
+				Assigned_By as "Assigned By"
+				(
+					view = Lawyers
+				)
+				Assign_To as "Assign To"
+				(
+					view = Lawyers
+				)
+				Priority
+				Status
+				custom action "Start Task"
+				(
+	  			workflow = Close_the_task_scripts
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Start Task"
+				condition = (Status != "Completed")
+				confirmation before execution
+				(
+					message for individual record = "Did you complete the task?"
+					confirm button text = "Yes"		
+					cancel button text = "No"
+				)
+				)
+			)
+			group by
+			(
+				Priority ascending
+			)
+			options
+			(
+				icon = "location-route-open"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Case
+							Task_Name as "Task Name"
+							Task_Description as "Task Description"
+							Assigned_By as "Assigned By"
+							Priority
+							Status
+				"Start Task"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Case
+							Task_Name as "Task Name"
+							Task_Description as "Task Description"
+							Assigned_By as "Assigned By"
+							Assign_To as "Assign To"
+							Priority
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Start Task"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Tasks
+		{
+			displayName = "My Tasks"
+			show all rows from Add_Task  [Assign_To.Email == zoho.loginuserid && Status == "In Progress"]  
+			(
+				Case
+				(
+					view = All_Cases
+				)
+				Task_Name as "Task Name"
+				Task_Description as "Task Description"
+				Assigned_By as "Assigned By"
+				(
+					view = Lawyers
+				)
+				Assign_To as "Assign To"
+				(
+					view = Lawyers
+				)
+				Priority
+				Status
+				custom action "Close Task"
+				(
+	  			workflow = Close_the_task_workflow
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Close Task"
+				)
+			)
+			group by
+			(
+				Priority ascending
+			)
+			options
+			(
+				icon = "travel-world"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Case
+							Task_Name as "Task Name"
+							Task_Description as "Task Description"
+							Assigned_By as "Assigned By"
+							Priority
+							Status
+				"Close Task"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Case
+							Task_Name as "Task Name"
+							Task_Description as "Task Description"
+							Assigned_By as "Assigned By"
+							Assign_To as "Assign To"
+							Priority
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Close Task"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Tasks_History
+		{
+			displayName = "My Tasks History"
+			show all rows from Add_Task  [Assign_To.Email == zoho.loginuserid && Status == "Completed"]  
+			(
+				Case
+				(
+					view = All_Cases
+				)
+				Task_Name as "Task Name"
+				Task_Description as "Task Description"
+				Assigned_By as "Assigned By"
+				(
+					view = Lawyers
+				)
+				Assign_To as "Assign To"
+				(
+					view = Lawyers
+				)
+				Priority
+				Status
+			)
+			group by
+			(
+				Case ascending
+			)
+			options
+			(
+				icon = "business-progress"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Case
+							Task_Name as "Task Name"
+							Task_Description as "Task Description"
+							Assigned_By as "Assigned By"
+							Priority
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Case
+							Task_Name as "Task Name"
+							Task_Description as "Task Description"
+							Assigned_By as "Assigned By"
+							Assign_To as "Assign To"
+							Priority
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Case_Summery
+	{
+		displayname= "Case Summery"
+		icon = "shopping-cash-register"
+				 page Case_Summary(case,url) 
+	 	 { 
+ 	 	 displayname = "Case Summary" 
+
+ 	 	 icon = "shopping-cash-register" 
+
+ 	 	 hide =  true
+	 	 Content="<zml \n\t\t\tisPdfEnabled='false'\n\t\t\n\t\t\tisPrintEnabled='false'\n\t\t\n\t\t\n\t\t\twebDeviceConfig='{\"layout\":{\"style\":\"padding-right:0px;padding-top:0px;padding-bottom:0px;padding-left:0px;\",\"design\":\"fluid\",\"displayType\":\"plain\"}}'\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"30%\"\n   \t>\n\t<dsp id='html_snippet'>\n\t<![CDATA[htmlpage html_snippet(case,url)\ncontent\n&lt;%{\n\tcase_det = Add_Case[Case_Number == case];\n\tif(url == &quot;lawyer&quot;)\n\t{\n\t\topenUrl(zoho.appuri + &quot;#Page:Popup_Loader?caseID=&quot; + case_det.ID,&quot;popup window&quot;);\n\t}\n\t%&gt;\n&lt;link href=&quot;https:\/\/fonts.googleapis.com\/css?family=Muli&quot; rel=&quot;stylesheet&quot;&gt;\n\t&lt;style&gt; \n\t\t.table thead tr td, .table tbody tr td, .table tfoot tr td, .table tbody tr td {\n\t\t\tpadding: 17px 20px;\n\t\t\tvertical-align: middle;\n\t\t\tborder-bottom: none;\n\t\t}\n\t\t.case_con{\n\t\t\t width:100%;\n\t\t\t heiight:auto;\n\t\t }\n\t\t.header {\n\t\t\ttext-align: center;\n\t\t\tpadding: 5%;\n\t\t\tfont-size: 23px;\n\t\t\tfont-weight: 600;\n\t\t}\n\t\t .detailview-table{\n\t\t\t width:99%;\n\t\t\t margin:auto;\n\t\t\t border-collapse: collapse;\n\t\t\t border: 0;\n\t\t }\n\t\t.fieldLabel {\n\t\t\tcolor: #2c3b49;\n\t\t\tline-height: 1;\n\t\t\tborder: 1px solid #ececec;\n\t\t\tbackground: #fbfbfb;\n\t\t\twidth: 35%;\n\t\t\tfont-size: 16px;\n\t\t}\n\t\t.fieldValue {\n\t\t\tline-height: 1.5;\n\t\t\tborder: 1px solid #ececec;\n\t\t\tbackground: white;\n\t\t\tfont-size: 15px;\n\t\t\twidth: 75%;\n\t\t}\n\t&lt;\/style&gt;\n  \t&lt;div class=&apos;case_con&apos;&gt;\n\t\t&lt;div class=&apos;header&apos;style=&quot;text-align:center&quot;&gt;&lt;span&gt;Case Summay&lt;\/span&gt;&lt;\/div&gt;\n\t\t&lt;table class=&quot;table detailview-table no-border&quot; style=&apos;border-bottom:1px solid #ececec;&apos; align=&apos;center&apos;&gt;\n\t\t\t&lt;tbody&gt;\n\t\t\t\t&lt;tr&gt;\n\t\t\t\t\t&lt;td class=&quot;fieldLabel&quot;&gt;Case Number &lt;\/td&gt;\n\t\t\t\t\t&lt;td class=&quot;fieldValue&quot;&gt;&lt;%=case_det.Case_Number%&gt;&lt;\/td&gt;\n\t\t\t\t&lt;\/tr&gt;\n\t\t\t\t&lt;tr&gt;\n\t\t\t\t\t&lt;td class=&quot;fieldLabel&quot;&gt;Case Type&lt;\/td&gt;\n\t\t\t\t\t&lt;td class=&quot;fieldValue&quot;&gt;&lt;%=case_det.Case_Type.Type%&gt;&lt;\/td&gt;\t\t\n\t\t\t\t&lt;\/tr&gt;\n\t\t\t\t&lt;tr&gt;\t\n\t\t\t\t\t&lt;td class=&quot;fieldLabel&quot;&gt;Case Title&lt;\/td&gt;\n\t\t\t\t\t&lt;td class=&quot;fieldValue&quot;&gt;&lt;%=case_det.Case_Title%&gt;\n\t\t\t\t&lt;\/tr&gt;\n\t\t\t\t&lt;tr&gt;\t\n\t\t\t\t\t&lt;td class=&quot;fieldLabel&quot;&gt;Lawyer&lt;\/td&gt;\n\t\t\t\t\t&lt;td class=&quot;fieldValue&quot;&gt;\n\t\t\t\t\t&lt;a href=&quot;&lt;%=zoho.appuri%&gt;#Page:Case_Summary?case=&lt;%=case%&gt;&amp;url=lawyer&quot; target=&quot;_self&quot;&gt;\n\t\t\t\t\t\t\t&lt;%=case_det.Lawyer.Name%&gt;\n\t\t\t\t\t\t&lt;\/a&gt;\n\t\t\t\t\t&lt;\/td&gt;\n\t\t\t\t&lt;\/tr&gt;\n\t\t\t\t&lt;tr&gt;\t\n\t\t\t\t\t&lt;td class=&quot;fieldLabel&quot;&gt;Linked Case&lt;\/td&gt;\n\t\t\t\t\t&lt;td class=&quot;fieldValue&quot;&gt;\n\t\t\t\t\t\t&lt;a href=&quot;&lt;%=zoho.appuri%&gt;#Page:Case_Summary?case=&lt;%=case_det.Associated_Case_Number%&gt;&quot; target=&quot;_blank&quot;&gt;\n\t\t\t\t\t\t\t&lt;%=case_det.Associated_Case_Number%&gt;\n\t\t\t\t\t\t&lt;\/a&gt;\n\t\t\t\t&lt;\/tr&gt;\n\t\t\t\t&lt;tr&gt;\n\t\t\t\t\t&lt;td class=&quot;fieldLabel&quot;&gt;Case Start Date&lt;\/td&gt;\n\t\t\t\t\t&lt;td class=&quot;fieldValue&quot;&gt;&lt;%=case_det.Starting_Date%&gt;&lt;\/td&gt;\n\t\t\t\t&lt;\/tr&gt;\n\t\t\t\t&lt;tr&gt;\t\n\t\t\t\t\t&lt;td class=&quot;fieldLabel&quot;&gt;Case Description&lt;\/td&gt;\n\t\t\t\t\t&lt;td class=&quot;fieldValue&quot;&gt;&lt;%=case_det.Case_Description%&gt;\n\t\t\t\t&lt;\/tr&gt;\n\t\t\t&lt;\/tbody&gt;\n\t\t&lt;\/table&gt;\n&lt;%\n\tif(case_det.Case_Status == &quot;Running&quot;)\n\t{\n\t\t%&gt;\n&lt;div style=&apos;padding: 8%;font-size: 20px;text-align: center;color: #6f6d6d;&apos;&gt;This case is still running in court&lt;\/div&gt;\n&lt;%\n\t}\n\telse\n\t{\n\t\t%&gt;\n&lt;div style=&apos;font-size: 25px;color: red;text-align: center;padding-top: 5%;&apos;&gt;&lt;%=case_det.Case_Result%&gt;&lt;\/div&gt;\n\t\t\t\t&lt;div style=&apos;padding: 7%;font-size: 14px;text-align: justify;&apos;&gt;\n\t\t\t\t\t&lt;div style=&apos;text-align: center;font-size: 17px;padding: 0%;padding-bottom: 3%;font-weight: 600;&apos;&gt;Judgement&lt;\/div&gt;\n\t\t\t\t\t&lt;br&gt;\n\t\t\t\t\t&lt;%=case_det.Judgement_In_Brief%&gt;\n\t\t\t\t&lt;\/div&gt;\n&lt;%\n\t}\n\t%&gt;\n&lt;\/div&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column><column\n   \t\t width=\"70%\"\n   \t>\n\t<dsp id='html_snippet1'>\n\t<![CDATA[htmlpage html_snippet1(case,url)\ndisplayname = &quot;html_snippet&quot;\ncontent\n&lt;%{\n\tcase_det = Add_Case[Case_Number = case];\n\tencoded_case_No = zoho.encryption.urlEncode(case_det.Case_Number);\n\tdocuments_linkName = &quot;All_Documents&quot;;\n\tpeople_linkName = &quot;People_Linked_With_Case&quot;;\n\tcase_points_linkName = &quot;All_Case_Points&quot;;\n\thearing_linkName = &quot;Case_Hearings&quot;;\n\tif(zoho.loginuserid != zoho.adminuserid)\n\t{\n\t\tdocuments_linkName = &quot;My_Case_Documents&quot;;\n\t\tcase_points_linkName = &quot;My_Case_Points&quot;;\n\t\thearing_linkName = &quot;Case_Hearings&quot;;\n\t}\n\t%&gt;\n&lt;style&gt;\n\t\t.report_container{\n\t\t\theight:700px;\n\t\t\twidth:100%;\n\t\t\toverflow:hidden;\n\t\t\tpostion:relative;\n\t\t}\n\t\t.report_container input[type=&apos;radio&apos;] {\n\t\t\tbox-sizing: border-box;\n\t\t\tdisplay: none;\n\t\t}\n\t\t.input_lable {\n\t\t\tcursor: pointer;\n\t\t\tpadding: 1%;\n\t\t\tbackground-color: #eaeaea;\n\t\t\twidth: 13%;\n\t\t\ttext-align: center;\n\t\t\tdisplay: inline-block !important;\n\t\t\tbox-sizing: initial !important;\n\t\t\tfont-size: 13px;\n\t\t\tfont-weight: 500;\n\t\t\tmargin-top:1%;\n\t\t}\n\t\t.report_ebmbed{\n\t\t\twidth:100%;\n\t\t\tposition:absolute;\n\t\t\ttop:8%;\n\t\t\tleft:0%;\n\t\t\tz-index:-1\n\t\t}\n\t\t.addBtn{\n\t\t\tdisplay: inline;\n\t\t\tpadding: 1%;\n\t\t\tbackground-color: #393e44;\n\t\t\tcolor: white;\n\t\t\tfont-size: 12px;\n\t\t\tposition: absolute;\n\t\t\tright: 6%;\n\t\t\ttop: -6.5%;\t\t\t\n\t\t}\n\t\tinput[value=&quot;Documents&quot;]:checked ~ #Documents-label {\n    \t\tcursor: default;\n\t\t\tbackground-color:#b0b0b0;\n\t\t}\n\t\tinput[value=&quot;Documents&quot;]:checked ~ #Documents-content {\n    \t\tz-index:1;\n\t\t}\n\t\t\n\t\tinput[value=&quot;Witness&quot;]:checked ~ #Case-Witness-label {\n    \t\tcursor: default;\n\t\t\tbackground-color:#b0b0b0;\n\t\t}\n\t\tinput[value=&quot;Witness&quot;]:checked ~ #Case-Witness-Content {\n    \t\tz-index:1;\n\t\t}\n\t\t\n\t\tinput[value=&quot;Points&quot;]:checked ~ #Case-Points-label {\n    \t\tcursor: default;\n\t\t\tbackground-color:#b0b0b0;\n\t\t}\n\t\tinput[value=&quot;Points&quot;]:checked ~ #Case-Points-content {\n    \t\tz-index:1;\n\t\t}\n\t\t\n\t\tinput[value=&quot;Hearings&quot;]:checked ~ #Hearing-label {\n    \t\tcursor: default;\n\t\t\tbackground-color:#b0b0b0;\n\t\t}\n\t\tinput[value=&quot;Hearings&quot;]:checked ~ #Case-Hearings-content {\n    \t\tz-index:1;\n\t\t}\n\t\t.view-header {\n\t\t\tdisplay: none;\n\t\t}\n\t&lt;\/style&gt;\n\t&lt;div class=&quot;report_container&quot;&gt;\n\t\t\t&lt;input id=&quot;toggle-Documents&quot; name=&apos;activity&apos; type=&quot;radio&quot; value=&quot;Documents&quot; checked=&apos;checked&apos;&gt;\n\t\t\t&lt;label class=&apos;input_lable&apos; id=&apos;Documents-label&apos;  for=&quot;toggle-Documents&quot;&gt;Documents&lt;\/label&gt;\n\t\t\t&lt;input id=&quot;toggle-Case-Witness&quot; name=&apos;activity&apos; type=&quot;radio&quot; value=&quot;Witness&quot;&gt;\n\t\t\t&lt;label class=&apos;input_lable&apos; id=&apos;Case-Witness-label&apos; for=&quot;toggle-Case-Witness&quot;&gt;People&lt;\/label&gt;\n\t\t\t&lt;input id=&quot;toggle-Case_Points&quot; name=&apos;activity&apos; type=&quot;radio&quot; value=&quot;Points&quot;&gt;\n\t\t\t&lt;label  class=&apos;input_lable&apos; id=&apos;Case-Points-label&apos; for=&quot;toggle-Case_Points&quot;&gt;Case Points&lt;\/label&gt;\n\t\t\t&lt;input id=&quot;toggle-Hearings&quot; name=&apos;activity&apos; type=&quot;radio&quot; value=&quot;Hearings&quot;&gt;\n\t\t\t&lt;label  class=&apos;input_lable&apos; id=&apos;Hearing-label&apos; for=&quot;toggle-Hearings&quot;&gt;Hearing Details&lt;\/label&gt;\n\t\t&lt;div class=&apos;report_ebmbed&apos; id=&apos;Documents-content&apos;&gt;\n\t\t\t&lt;a style=&apos;&apos; class=&quot;&quot; href=&apos;#Form:Add_Document?zc_LoadIn=dialog&amp;Case=&lt;%=case_det.ID.toLong()%&gt;&apos; target=&apos;_self&apos;&gt;\n\t\t\t\t&lt;div class=&apos;addBtn&apos;&gt;Add New Ducument&lt;\/div&gt;\n\t\t\t&lt;\/a&gt;\n\t\t\t&lt;div style=&quot;background: white;height:700px;&quot; elName=&apos;zc-component&apos; viewLinkName=&apos;&lt;%=documents_linkName%&gt;&apos; params=&apos;zc_Header=false&amp;zc_Footer=false&amp;zc_SecHeader=false&amp;zc_AddRec=false&amp;zc_EditRec=false&amp;zc_DelRec=false&amp;zc_DuplRec=false&amp;zc_EditBulkRec=false&amp;zc_Filter=false&amp;zc_Search=false&amp;zc_Paging=false&amp;zc_RecLimit=false&amp;zc_SumRow=false&amp;zc_ColMenu=false&amp;zc_Summary=false&amp;zc_RecSelect=false&amp;zc_AltRowClr=false&amp;zc_SaveRec=false&amp;Case=&lt;%=encoded_case_No%&gt;&apos;&gt;&lt;\/div&gt; \n\t\t&lt;\/div&gt;\n\t\t&lt;div class=&apos;report_ebmbed&apos; id=&apos;Case-Witness-Content&apos;&gt;\n\t\t\t&lt;a style=&apos;&apos; class=&quot;&quot; href=&apos;#Form:Add_People?zc_LoadIn=dialog&amp;Linked_Case=&lt;%=case_det.ID.toLong()%&gt;&apos; target=&apos;_self&apos;&gt;\n\t\t\t\t&lt;div class=&apos;addBtn&apos;&gt;Add New Contact&lt;\/div&gt;\n\t\t\t&lt;\/a&gt;\n\t\t\t&lt;div style=&quot;background: white;height:700px;&quot; elName=&apos;zc-component&apos; viewLinkName=&apos;&lt;%=people_linkName%&gt;&apos; params=&apos;zc_Header=false&amp;zc_Footer=false&amp;zc_SecHeader=false&amp;zc_AddRec=false&amp;zc_EditRec=false&amp;zc_DelRec=false&amp;zc_DuplRec=false&amp;zc_EditBulkRec=false&amp;zc_Filter=false&amp;zc_Search=false&amp;zc_Paging=false&amp;zc_RecLimit=false&amp;zc_SumRow=false&amp;zc_ColMenu=false&amp;zc_Summary=false&amp;zc_RecSelect=false&amp;zc_AltRowClr=false&amp;zc_SaveRec=false&amp;Case=&lt;%=case_det.Case_Number%&gt;&apos;&gt;&lt;\/div&gt; \n\t\t&lt;\/div&gt;  \n\t\t&lt;div class=&apos;report_ebmbed&apos; id=&apos;Case-Points-content&apos;&gt;\n\t\t\t&lt;a style=&apos;&apos; class=&quot;&quot; href=&apos;#Form:Add_Case_Points?zc_LoadIn=dialog&amp;Case=&lt;%=case_det.ID.toLong()%&gt;&apos; target=&apos;_self&apos;&gt;\n\t\t\t\t&lt;div class=&apos;addBtn&apos;&gt;Add Case Point&lt;\/div&gt;\n\t\t\t&lt;\/a&gt;\n\t\t\t&lt;div style=&quot;background: white;height:700px;&quot; elName=&apos;zc-component&apos; viewLinkName=&apos;&lt;%=case_points_linkName%&gt;&apos; params=&apos;zc_Header=false&amp;zc_Footer=false&amp;zc_SecHeader=false&amp;zc_AddRec=false&amp;zc_EditRec=false&amp;zc_DelRec=false&amp;zc_DuplRec=false&amp;zc_EditBulkRec=false&amp;zc_Filter=false&amp;zc_Search=false&amp;zc_Paging=false&amp;zc_RecLimit=false&amp;zc_SumRow=false&amp;zc_ColMenu=false&amp;zc_Summary=false&amp;zc_RecSelect=false&amp;zc_AltRowClr=false&amp;zc_SaveRec=false&amp;Case=&lt;%=case_det.Case_Number%&gt;&apos;&gt;&lt;\/div&gt;   \n\t\t&lt;\/div&gt;\n\t\t&lt;div class=&apos;report_ebmbed&apos; id=&apos;Case-Hearings-content&apos;&gt;\n\t\t\t&lt;div style=&quot;background: white;height:700px;&quot; elName=&apos;zc-component&apos; viewLinkName=&apos;&lt;%=hearing_linkName%&gt;&apos; params=&apos;zc_Header=false&amp;zc_Footer=false&amp;zc_SecHeader=false&amp;zc_AddRec=false&amp;zc_EditRec=false&amp;zc_DelRec=false&amp;zc_DuplRec=false&amp;zc_EditBulkRec=false&amp;zc_Filter=false&amp;zc_Search=false&amp;zc_Paging=false&amp;zc_RecLimit=false&amp;zc_SumRow=false&amp;zc_ColMenu=false&amp;zc_Summary=false&amp;zc_RecSelect=false&amp;zc_AltRowClr=false&amp;zc_SaveRec=false&amp;Case=&lt;%=case_det.Case_Number%&gt;&apos;&gt;&lt;\/div&gt; \n\t\t&lt;\/div&gt;\n\t&lt;\/div&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+	}
+	section Settings
+	{
+		icon = "ui-1-settings-gear-64"
+		form Case_Lawyer_Type
+		{
+			displayname = "Case/Lawyer Type"
+			success message = "Case/Lawyer Type Added Successfully"
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Type
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "tech-2-keyboard-wireless"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list All_Case_Lawyer_Types
+		{
+			displayName = "All Case/Lawyer Types"
+			show all rows from Case_Lawyer_Type    
+			(
+				Type
+				Description
+			)
+			options
+			(
+				icon = "travel-world"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Type
+							Description
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Type
+							Description
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Judges
+		{
+			displayName = "All Judges"
+			show all rows from Add_Judge    
+			(
+				Judge_Name  as "Judge Name"
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+			)
+			options
+			(
+				icon = "business-law"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Judge_Name as "Judge Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Judge_Name as "Judge Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Courts
+		{
+			displayName = "Courts"
+			show all rows from Add_Court    
+			(
+				Court_Name as "Court Name"
+				Court_Address  as "Court Address"
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+			)
+			options
+			(
+				icon = "business-law"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Court_Name as "Court Name"
+							Court_Address as "Court Address"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Court_Name as "Court Name"
+							Court_Address as "Court Address"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Court
+	{
+		displayname= "Add Court"
+		form Add_Court
+		{
+			displayname = "Add Court"
+			success message = "Judge Added Successfully"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Court_Name
+			(
+    			type = text
+				displayname = "Court Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Court_Address
+			(
+    			type = address
+				displayname = "Court Address"
+     			capture_coordinates = true
+     			adjust_using_map = true
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Start_Case
+	{
+		displayname= "Start Case"
+		form Start_Case
+		{
+			displayname = "Start Case"
+			store data in zc = false
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Case
+			(
+				type = picklist
+				values  = Add_Case.ID
+    			displayformat = [Case_Title]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Court
+			(
+				type = picklist
+				values  = Add_Court.ID
+    			displayformat = [Court_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Case_Number_In_Court
+			(
+    			type = text
+				displayname = "Case Number In Court"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Case_Start_Date
+			(
+    			type = date
+				displayname = "Case Start Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				Submit
+				(
+   					type = submit
+   					displayname = "Submit"
+				)
+				Reset
+				(
+   					type = reset
+   					displayname = "Reset"
+				)
+			}
+		}
+	}
+	section Update_Case_Hearing_Result
+	{
+		displayname= "Update Case/Hearing Result"
+		form Update_Case_Hearing_Result
+		{
+			displayname = "Update Case/Hearing Result"
+			store data in zc = false
+			success message = ""
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Hearing
+			(
+				type = picklist
+				values  = Add_Hearing_Date.ID
+    			displayformat = [Hearing_Date]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Judges
+			(
+				type = list
+				values  = Add_Judge.ID
+    			displayformat = [" " + Judge_Name.prefix + " " + Judge_Name.first_name + " " + Judge_Name.last_name]
+				allow new entries = true
+				[
+					displayname = "Add New Judge"
+				]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Hearing_Result
+			(
+				type = radiobuttons
+				values = {"Postponed On Date", "Postponed Without Date", "Case Closed"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Postponed_On_date
+			(
+    			type = date
+				displayname = "Postponed On date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Case_Result
+			(
+				type = radiobuttons
+				displayname = "Case Result"
+				values = {"Won", "Dismissed", "Failure"}
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Case_Judgement
+			(
+    			type = textarea
+				displayname = "Case Judgement"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				Submit
+				(
+   					type = submit
+   					displayname = "Submit"
+				)
+				Reset
+				(
+   					type = reset
+   					displayname = "Reset"
+				)
+			}
+		}
+	}
+	section Copy_of_Search
+	{
+		displayname= "Copy of Search"
+		form Search_Case
+		{
+			displayname = "Search Case"
+			store data in zc = false
+			success message = ""
+			field alignment = labelinplace
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Case_Number
+			(
+				type = picklist
+				displayname = "Case Number"
+				values  = Add_Case[Case_Status != "Open"].ID
+    			displayformat = [Case_Number]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "files-search"
+			)
+		}
+	}
+	functions
+	{
+ 			void custom_actions.taskComplete(int id)
+			{
+				rec = Add_Task[ID == input.id];
+				rec.Status="Completed";
+				openUrl("#Script:page.refresh","same window");
+			}
+ 			void custom_actions.holdTask(int id)
+			{
+				rec = Add_Task[ID == input.id];
+				rec.Status="On Hold";
+			}
+ 			void custom_actions.addDocument(int caseID)
+			{
+				openUrl(zoho.appuri + "#Form:Add_Document?Case=" + caseID,"popup window");
+			}
+ 			void custom_actions.addTask(int caseID)
+			{
+				openUrl(zoho.appuri + "#Form:Add_Task?Case=" + caseID,"popup window");
+			}
+ 			void custom_actions.addHearing(int caseID)
+			{
+				openUrl(zoho.appuri + "#Form:Add_Hearing_Date?Case=" + caseID,"popup window");
+			}
+ 			void custom_actions.startTask(int taskID)
+			{
+				task = Add_Task[ID == taskID];
+				task.Status="In Progress";
+				openUrl("#Script:page.refresh","same window");
+			}
+ 			void custom_actions.startCase(int caseID)
+			{
+				openUrl(zoho.appuri + "#Form:Start_Case?Case=" + caseID,"popup window");
+			}
+ 			void custom_actions.caseClosed(int hearingID)
+			{
+				openUrl(zoho.appuri + "#Form:Update_Case_Hearing_Result?Hearing=" + hearingID + "&Hearing_Result=Case Closed","popup window");
+			}
+ 			void custom_actions.hearingPostpopned(int hearingID)
+			{
+				openUrl(zoho.appuri + "#Form:Update_Case_Hearing_Result?Hearing=" + hearingID + "&Heaing_Result=Hearing Postponed","popup window");
+			}
+ 			void custom_actions.addCasePoint(int caseID)
+			{
+				openUrl(zoho.appuri + "#Form:Add_Case_Points?Case=" + caseID,"popup window");
+			}
+ 			void custom_actions.reappeal(int caseID)
+			{
+				caseID = Add_Case[ID == caseID].Case_Number;
+				openUrl(zoho.appuri + "#Form:Add_Case?Associated_Case_Number=" + caseID,"same window");
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Send_Email_Form_Propertie as "Send Email - Form Properties"
+			{
+				type =  presuccess
+				form = Add_Lawyer
+				on start
+				{
+					actions 
+					{
+						sendmail
+						(
+							from : "zoho.adminuserid"
+							to : "zoho.adminuserid"
+							subject : "Legal Case Management : You Are Added as a Lawyer"
+							message : "Hi ${Name},<br><br>You have added as a lawyer. Now you are the user of Legal Case Management application. Click <a href=\"https://app.zohocreator.com${zoho.appuri}/\" target=\"_blank\" rel=\"noopener noreferrer\">here</a> to track your case details.<br><br><br><div><br></div><div>Thanks.</div><br><b>Lawyer Details: </b><br><br><br><br><br><br><br><br>"
+							attachments : template : _default as inline
+						)
+					}
+				}
+			}
+			Send_Email_Form_Propertie1 as "Send Email - Form Properties"
+			{
+				type =  presuccess
+				form = Add_Case
+				on start
+				{
+					actions 
+					{
+						sendmail
+						(
+							from : "zoho.adminuserid"
+							to : "zoho.adminuserid"
+							subject : "Legal Case Management : New case added"
+							message : "Hello,<br><br>New Case added in Legal Case Management application. Added case details are given below.<br><br><br><br><br><br><br><br><br><br><br>"
+							attachments : template : Case_Summary as pdf
+						)
+					}
+				}
+			}
+			Run_Scripts_when_click_a_ as "Run Scripts - when click a button"
+			{
+				type =  form
+				form = Start_Case
+				button = Submit
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						case_details = Add_Case[ID == input.Case];
+										case_details.Starting_Date=input.Case_Start_Date;
+										case_details.Case_Number=input.Case_Number_In_Court;
+										case_details.Court=input.Court;
+										case_details.Case_Status="Running";
+					)
+					}
+				}
+			}
+			Direct_to_Form_Properties as "Direct to - Form Properties"
+			{
+				type =  presuccess
+				form = Add_Case
+				on start
+				{
+					actions 
+					{
+						openURL("http://","new window");
+					}
+				}
+			}
+			Run_Scripts_While_click_a as "Run Scripts - While click a button"
+			{
+				type =  form
+				form = Update_Case_Hearing_Result
+				button = Submit
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						hearing_details = Add_Hearing_Date[ID == input.Hearing];
+										case_details = Add_Case[ID == hearing_details.Case];
+										if(input.Hearing_Result == "Case Closed")
+										{
+											if(input.Case_Result == null || input.Case_Judgement == null)
+											{
+												alert "Update the Case Result";
+											}
+											else
+											{
+												hearing_details.Hearing_Result=input.Hearing_Result;
+												hearing_details.heard_Judges=input.Judges;
+												case_details = Add_Case[ID == hearing_details.Case];
+												case_details.Case_Status="Close";
+												case_details.Case_Result=input.Case_Result;
+												case_details.Judgement_In_Brief=input.Case_Judgement;
+												case_details.Judgement_Date=hearing_details.Hearing_Date;
+												openUrl("#Scripts:page.refresh","same window");
+											}
+										}
+										else if(input.Hearing_Result == "Postponed Without Date")
+										{
+											hearing_details.Hearing_Result=input.Hearing_Result;
+											hearing_details.heard_Judges=input.Judges;
+											openUrl("#Scripts:page.refresh","same window");
+										}
+										else if(input.Hearing_Result == "Postponed On Date")
+										{
+											hearing_details.Hearing_Result=input.Hearing_Result;
+											hearing_details.heard_Judges=input.Judges;
+											hearing_details.Postponed_Date=input.Postponed_On_date;
+											insert into Add_Hearing_Date
+											[
+												Email_Address=zoho.loginuserid
+												Case=case_details.ID
+												Hearing_Date=input.Postponed_On_date
+												Added_User=zoho.loginuser
+												Hearing_Result="Pending"
+											]
+											openUrl("#Scripts:page.refresh","same window");
+										}
+					)
+					}
+				}
+			}
+			Run_Scripts_While_Adding_1 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Lawyer
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Checking Admin added himself as as a user.
+										lawyers = Add_Lawyer[Email == zoho.adminuserid];
+										if(lawyers.count() == 0)
+										{
+											input.Email = zoho.adminuserid;
+											disable Email;
+											alert "Add yourself first";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_2 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Lawyer
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Email != zoho.adminuserid)
+										{
+											thisapp.permissions.assignUserInProfile(input.Email,"Lawyer");
+										}
+										success message "New Lawyer has been added.";
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always2 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Lawyer
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide ErrorText;
+						disable Age;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always3 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Lawyer
+				record event = on add or edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Validating "Date of Birth" field value
+										if(input.Date_of_Birth >= zoho.currentdate)
+										{
+											alert "Please enter a valid date!";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always4 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Lawyer
+				record event = on add or edit
+
+	on user input of Date_of_Birth
+	{
+					actions  (Date_of_Birth is not null)
+					{
+						custom deluge script
+						(
+											//Here we are calculating the age from 'Date of Birth' value
+										if(input.Date_of_Birth >= zoho.currentdate)
+										{
+											show ErrorText;
+											input.Age = 0;
+										}
+										else
+										{
+											hide ErrorText;
+											input.Age = yearsBetween(input.Date_of_Birth,zoho.currentdate);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always5 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Case
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Tasks,Case_Result,Case_Status,Judgement_In_Brief,Judgement_Date,Hearing_Details,Case_Documents,Case_Points,Court,Case_Number;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always6 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Case
+				record event = on add or edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Opposing_Clients.Type;
+										hide Case_Documents.Case_Lawyer;
+										hide Lawyer_Details;
+										if(input.Associated_Case_Number.toString() != "")
+										{
+											disable Associated_Case_Number;
+											case_det = Add_Case[Case_Number == input.Associated_Case_Number];
+											input.Case_Title = case_det.Case_Title;
+											input.Case_Type = case_det.Case_Type;
+											input.Client = case_det.Client;
+										}
+										else
+										{
+											hide Associated_Case_Number;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always7 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Case
+				record event = on add or edit
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											client = Add_People[ID == input.Client];
+										client.Case=input.ID;
+										for each  oppose_client in Opposing_Clients
+										{
+											oppose_client.Case=input.ID;
+											oppose_client.Type="Opposing client";
+										}
+										for each  witness in Case_Witness
+										{
+											witness.Case=input.ID;
+											witness.Type="Witness";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always8 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Case
+				record event = on add or edit
+
+	on user input of Lawyer
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Lawyer != null)
+										{
+											lawyer_details = Add_Lawyer[ID == input.Lawyer];
+											input.Lawyer_Details = (" <style> .ld_table tr {height: 35px;}</style><table style='margin:auto;text-align: left;width: 80%;' class='ld_table'><tbody><tr><th>Lawyer name:</th><td>" + lawyer_details.Name) + "</td></tr><tr><th>Case preference:</th> <td>" + lawyer_details.Lawyer_Type.Type + "</td></tr></tbody></table>";
+											show Lawyer_Details;
+										}
+										else
+										{
+											input.Lawyer_Details = "";
+											hide Lawyer_Details;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always9 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Case
+				record event = on add or edit
+
+	on add row of Opposing_Clients
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											row.Type="Opposing client";
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_3 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Task
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Case != null)
+										{
+											disable Case;
+										}
+										user = Add_Lawyer[Email == zoho.loginuserid];
+										if(user.count() == 1)
+										{
+											input.Assigned_By = user.ID;
+											disable Assigned_By;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_4 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Task
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											openUrl("#Script:page.refresh","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_always4 as "Run Scripts - On always"
+			{
+				type =  form
+				form = Add_Hearing_Date
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Hearing_Result,Hearing_Judgement,heard_Judges,Postponed_Date;
+					}
+	}
+
+			}
+			Run_Scripts_On_always5 as "Run Scripts - On always"
+			{
+				type =  form
+				form = Add_Hearing_Date
+				record event = on add or edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Case != null)
+										{
+											disable Case;
+											input.Case_Lawyer = input.Case.Lawyer;
+											input.Email_Address = input.Case_Lawyer.Email;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_always6 as "Run Scripts - On always"
+			{
+				type =  form
+				form = Add_Hearing_Date
+				record event = on add or edit
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											openUrl("#Script:page.refresh","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_always7 as "Run Scripts - On always"
+			{
+				type =  form
+				form = Add_Hearing_Date
+				record event = on add or edit
+
+	on user input of Hearing_Result
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Hearing_Result == "Postponed On date")
+										{
+											show Postponed_Date;
+										}
+										else
+										{
+											hide Postponed_Date;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_always8 as "Run Scripts - On always"
+			{
+				type =  form
+				form = Add_Hearing_Date
+				record event = on add or edit
+
+	on user input of Hearing_Date
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Hearing_Date < zoho.currentdate)
+										{
+											show Hearing_Judgement;
+											show heard_Judges;
+											show Hearing_Result;
+										}
+										else
+										{
+											hide Hearing_Judgement;
+											hide heard_Judges;
+											hide Hearing_Result;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_always9 as "Run Scripts - On always"
+			{
+				type =  form
+				form = Add_Document
+				record event = on add or edit
+
+	on load
+	{
+					actions  (Case is not null)
+					{
+						custom deluge script
+						(
+											case = Add_Case[ID == input.Case];
+										input.Case_Lawyer = case.Lawyer;
+										if(input.Case != null)
+										{
+											disable Case;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_always10 as "Run Scripts - On always"
+			{
+				type =  form
+				form = Add_Document
+				record event = on add or edit
+
+	on success
+	{
+					actions  (Case is not null)
+					{
+						custom deluge script
+						(
+											openUrl("#Script:page.refresh","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_always11 as "Run Scripts - On always"
+			{
+				type =  form
+				form = Add_Payment
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						show Bill_Date,Case,Description,Paid_Amount,Lawyer,Paid_For_lawyer,Employee_payment_Details;
+					}
+	}
+
+			}
+			Run_Scrips_When_always1 as "Run Scrips - When always"
+			{
+				type =  form
+				form = Start_Case
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						disable Case;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always10 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Case_Points
+				record event = on add
+
+	field rules
+	{
+					actions  (Case is not null)
+					{
+						disable Case;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always11 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Case_Points
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											openUrl("#Script:page.refresh","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Form_lo1 as "Run Scripts - While Form loading"
+			{
+				type =  form
+				form = Update_Case_Hearing_Result
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						disable Hearing;
+					}
+					actions  (Hearing_Result == "Case Closed")
+					{
+						show Case_Result,Case_Judgement;
+					}
+					actions  (Hearing_Result == "Postponed On Date")
+					{
+						show Postponed_On_date;
+					}
+	}
+
+			}
+			Run_Scripts_While_Form_lo2 as "Run Scripts - While Form loading"
+			{
+				type =  form
+				form = Update_Case_Hearing_Result
+				record event = on add
+
+	on load
+	{
+					actions  (Hearing_Result != "Case Closed")
+					{
+						custom deluge script
+						(
+											input.Hearing_Result:ui.add({"Postponed On Date","postponed Without Date"});
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_always12 as "Run Scripts - On always"
+			{
+				type =  form
+				form = Search_Case
+				record event = on add
+
+	on user input of Case_Number
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											openUrl(zoho.appuri + "#Page:Case_Summary?case=" + input.Case_Number.Case_Number,"same window");
+						)
+					}
+	}
+
+			}
+		}
+		schedule
+		{
+			Hearing_date_reminder as "Hearing date reminder"
+			{
+				type =  schedule
+				form = Add_Hearing_Date
+				start = Hearing_Date at "08:00:00"
+				end   = Hearing_Date
+				time zone = "IST"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Email_Address
+											subject :"Legal Case Management: Hearing Reminder"
+											message :("Hi " + input.Case_Lawyer.Name) + "<br><br>Gentle reminder.<br><br>Your case " + input.Case.Case_Title + " having hearing today. <br><br>Click <a href = 'https://app.zohocreator.com" + zoho.appuri + "#Report:My_Upcoming_Hearings'>Here</a> for more details.<br><br> Thank you."
+										]
+					)
+					}
+				}
+			}
+		}
+		functions
+		{
+			Add_Document_Scripts as "Add Document Scripts"
+			{
+				type =  functions
+				form = Add_Case
+				on start
+				{
+					actions 
+					{
+					custom_actions.addDocument(ID);
+					}
+				}
+			}
+			Add_Hearing_Workflow as "Add Hearing Workflow"
+			{
+				type =  functions
+				form = Add_Case
+				on start
+				{
+					actions 
+					{
+					custom_actions.addHearing(ID);
+					}
+				}
+			}
+			Add_task_Workflow as "Add task Workflow"
+			{
+				type =  functions
+				form = Add_Case
+				on start
+				{
+					actions 
+					{
+					custom_actions.addTask(ID);
+					}
+				}
+			}
+			Close_the_task_workflow as "Close the task workflow"
+			{
+				type =  functions
+				form = Add_Task
+				on start
+				{
+					actions 
+					{
+					custom_actions.taskComplete(ID);
+					}
+				}
+			}
+			Accept_the_case_workflow as "Accept the case workflow"
+			{
+				type =  functions
+				form = Add_Case
+				on start
+				{
+					actions 
+					{
+					custom_actions.startCase(ID);
+					}
+				}
+			}
+			Update_Hearing_Result_Wor as "Update Hearing Result Workflow"
+			{
+				type =  functions
+				form = Add_Hearing_Date
+				on start
+				{
+					actions 
+					{
+					custom_actions.caseClosed(ID);
+					}
+				}
+			}
+			Hearing_Postponed_Scripts as "Hearing Postponed Scripts"
+			{
+				type =  functions
+				form = Add_Hearing_Date
+				on start
+				{
+					actions 
+					{
+					custom_actions.hearingPostpopned(ID);
+					}
+				}
+			}
+			Add_Case_Point as "Add Case Point"
+			{
+				type =  functions
+				form = Add_Case
+				on start
+				{
+					actions 
+					{
+					custom_actions.addCasePoint(ID);
+					}
+				}
+			}
+			Close_the_task_scripts as "Close the task scripts"
+			{
+				type =  functions
+				form = Add_Task
+				on start
+				{
+					actions 
+					{
+					custom_actions.startTask(ID);
+					}
+				}
+			}
+			Re_appeal_case_wokflow as "Re appeal case wokflow"
+			{
+				type =  functions
+				form = Add_Case
+				on start
+				{
+					actions 
+					{
+					custom_actions.reappeal(ID);
+					}
+				}
+			}
+			Case_Summary_Navigation as "Case Summary Navigation"
+			{
+				type =  functions
+				form = Add_Case
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						openUrl(zoho.appuri + "#Page:Case_Summary?case=" + input.Case_Number,"same window");
+					)
+					}
+				}
+			}
+			Case_Summary_Navigation_2 as "Case Summary Navigation 2"
+			{
+				type =  functions
+				form = Add_Case
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						openUrl(zoho.appuri + "#Page:Case_Summary?case=" + input.Case_Number,"same window");
+					)
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Read"
+			{
+				name = "Read"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have read permission for all components\n"
+			}
+			"Write"
+			{
+				name = "Write"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have write permission for all components\n"
+			}
+			"custom action issue"
+			{
+				name = "custom action issue"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "custom action issue Profile\n"
+				ModulePermissions
+				{
+					Add_People
+					{
+						FieldPermissions
+						{
+							Type{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Mobile_Number{visibility:true,readonly:false}
+							Photo{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Case{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Task
+					{
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Task_Description{visibility:true,readonly:false}
+							Assign_To{visibility:true,readonly:false}
+							Assigned_By{visibility:true,readonly:false}
+							Priority{visibility:true,readonly:false}
+							Task_Name{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Case{visibility:true,readonly:false}
+						}
+					}
+					Case_Lawyer_Type
+					{
+						FieldPermissions
+						{
+							Type{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_Document
+					{
+						FieldPermissions
+						{
+							Document_Name{visibility:true,readonly:false}
+							Case_Lawyer{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Document{visibility:true,readonly:false}
+							Image{visibility:true,readonly:false}
+							Amissible_Evidence{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Case{visibility:true,readonly:false}
+						}
+					}
+					Add_Lawyer
+					{
+						FieldPermissions
+						{
+							Lawyer_Type{visibility:true,readonly:false}
+							Date_of_Birth{visibility:true,readonly:false}
+							ErrorText{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Time_Based_Bill_rate{visibility:true,readonly:false}
+							Personal_Details{visibility:true,readonly:false}
+							Photo{visibility:true,readonly:false}
+							Gender{visibility:true,readonly:false}
+							Mobile{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+							Official_Details{visibility:true,readonly:false}
+							Payment_Details{visibility:true,readonly:false}
+							Case_Based_Bill_Rate{visibility:true,readonly:false}
+							Monthly_Bill_Rate{visibility:true,readonly:false}
+							Registration_ID{visibility:true,readonly:false}
+							Age{visibility:true,readonly:false}
+						}
+					}
+					Add_Court
+					{
+						FieldPermissions
+						{
+							Court_Name{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Court_Address{visibility:true,readonly:false}
+						}
+					}
+					Search_Case
+					{
+						FieldPermissions
+						{
+							Modified_User{visibility:false}
+							Added_User_IP_Address{visibility:false}
+							Modified_Time{visibility:false}
+							Case_Number{visibility:false,readonly:false}
+							Added_User{visibility:false}
+							ID{visibility:false}
+							Section{visibility:false,readonly:false}
+							Added_Time{visibility:false}
+							Modified_User_IP_Address{visibility:false}
+						}
+					}
+					Add_Payment
+					{
+						FieldPermissions
+						{
+							Bill_Date{visibility:true,readonly:false}
+							Paid_For_lawyer{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Section1{visibility:true,readonly:false}
+							Section2{visibility:true,readonly:false}
+							Paid_Amount{visibility:true,readonly:false}
+							Employee_payment_Details{visibility:true,readonly:false}
+							Lawyer{visibility:true,readonly:false}
+							Payment_For{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Case{visibility:true,readonly:false}
+						}
+					}
+					Add_Case_Points
+					{
+						FieldPermissions
+						{
+							Law_Point{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Lawyer{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Linked_Document{visibility:true,readonly:false}
+							Case{visibility:true,readonly:false}
+						}
+					}
+					Add_Hearing_Date
+					{
+						FieldPermissions
+						{
+							Case_Lawyer{visibility:true,readonly:false}
+							Hearing_Result{visibility:true,readonly:false}
+							Email_Address{visibility:true,readonly:false}
+							heard_Judges{visibility:true,readonly:false}
+							Hearing_Date{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Hearing_Judgement{visibility:true,readonly:false}
+							Postponed_Date{visibility:true,readonly:false}
+							Case{visibility:true,readonly:false}
+						}
+					}
+					Update_Case_Hearing_Result
+					{
+						FieldPermissions
+						{
+							Modified_User{visibility:false}
+							Modified_Time{visibility:false}
+							Case_Judgement{visibility:false,readonly:false}
+							Case_Result{visibility:false,readonly:false}
+							Section{visibility:false,readonly:false}
+							Postponed_On_date{visibility:false,readonly:false}
+							Modified_User_IP_Address{visibility:false}
+							Added_User_IP_Address{visibility:false}
+							Hearing{visibility:false,readonly:false}
+							Hearing_Result{visibility:false,readonly:false}
+							Added_User{visibility:false}
+							Judges{visibility:false,readonly:false}
+							ID{visibility:false}
+							Added_Time{visibility:false}
+						}
+					}
+					Add_Judge
+					{
+						FieldPermissions
+						{
+							Section{visibility:true,readonly:false}
+							Judge_Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Case
+					{
+						ReportPermissions
+						{
+							My_Open_cases={"View"}
+						}
+						FieldPermissions
+						{
+							Case_Documents{visibility:true,readonly:false}
+							Case_Description{visibility:true,readonly:false}
+							Tasks{visibility:true,readonly:false}
+							Case_Status{visibility:true,readonly:false}
+							Opposing_Clients{visibility:true,readonly:false}
+							Case_Number{visibility:true,readonly:false}
+							Case_Result{visibility:true,readonly:false}
+							Case_Type{visibility:true,readonly:false}
+							Hearing_Details{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Associated_Case_Number{visibility:true,readonly:false}
+							Judgement_Date{visibility:true,readonly:false}
+							Court{visibility:true,readonly:false}
+							Starting_Date{visibility:true,readonly:false}
+							Judgement_In_Brief{visibility:true,readonly:false}
+							Case_Points{visibility:true,readonly:false}
+							Section1{visibility:true,readonly:false}
+							case_ID{visibility:true,readonly:false}
+							Case_Title{visibility:true,readonly:false}
+							Lawyer_Details{visibility:true,readonly:false}
+							Lawyer{visibility:true,readonly:false}
+							Client{visibility:true,readonly:false}
+							Case_Witness{visibility:true,readonly:false}
+						}
+					}
+					Start_Case
+					{
+						FieldPermissions
+						{
+							Case_Number_In_Court{visibility:true,readonly:false}
+							Case_Start_Date{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Case{visibility:true,readonly:false}
+							Court{visibility:true,readonly:false}
+						}
+					}
+				}
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Lawyer"
+			{
+				name = "Lawyer"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "Lawyer Profile\n"
+				ModulePermissions
+				{
+					Add_People
+					{
+						enabled= Create,Viewall,Modifyall,Tab 
+						ReportPermissions
+						{
+							People_Linked_With_Case={"View","Edit"}
+						}
+						FieldPermissions
+						{
+							Type{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Mobile_Number{visibility:true,readonly:false}
+							Photo{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Case{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Task
+					{
+						enabled= Create,Export,Tab 
+						ReportPermissions
+						{
+							My_Open_Tasks={"View","Edit"}
+							My_Tasks_History={"View"}
+							My_Tasks={"View","Edit"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Task_Description{visibility:true,readonly:false}
+							Assign_To{visibility:true,readonly:false}
+							Assigned_By{visibility:true,readonly:false}
+							Priority{visibility:true,readonly:false}
+							Task_Name{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Case{visibility:true,readonly:false}
+						}
+					}
+					Case_Lawyer_Type
+					{
+						FieldPermissions
+						{
+							Type{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_Document
+					{
+						enabled= Create,Export,Tab 
+						ReportPermissions
+						{
+							My_Case_Documents={"View","Edit"}
+						}
+						FieldPermissions
+						{
+							Document_Name{visibility:true,readonly:false}
+							Case_Lawyer{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Document{visibility:true,readonly:false}
+							Image{visibility:true,readonly:false}
+							Amissible_Evidence{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Case{visibility:true,readonly:false}
+						}
+					}
+					Add_Lawyer
+					{
+						FieldPermissions
+						{
+							Lawyer_Type{visibility:true,readonly:false}
+							Date_of_Birth{visibility:true,readonly:false}
+							ErrorText{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Time_Based_Bill_rate{visibility:true,readonly:false}
+							Personal_Details{visibility:true,readonly:false}
+							Photo{visibility:true,readonly:false}
+							Gender{visibility:true,readonly:false}
+							Mobile{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+							Official_Details{visibility:true,readonly:false}
+							Payment_Details{visibility:true,readonly:false}
+							Case_Based_Bill_Rate{visibility:true,readonly:false}
+							Monthly_Bill_Rate{visibility:true,readonly:false}
+							Registration_ID{visibility:true,readonly:false}
+							Age{visibility:true,readonly:false}
+						}
+					}
+					Add_Court
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							Courts={"View"}
+						}
+						FieldPermissions
+						{
+							Court_Name{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Court_Address{visibility:true,readonly:false}
+						}
+					}
+					Search_Case
+					{
+						FieldPermissions
+						{
+							Case_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_Payment
+					{
+						FieldPermissions
+						{
+							Bill_Date{visibility:true,readonly:false}
+							Paid_For_lawyer{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Section1{visibility:true,readonly:false}
+							Section2{visibility:true,readonly:false}
+							Paid_Amount{visibility:true,readonly:false}
+							Employee_payment_Details{visibility:true,readonly:false}
+							Lawyer{visibility:true,readonly:false}
+							Payment_For{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Case{visibility:true,readonly:false}
+						}
+					}
+					Add_Case_Points
+					{
+						enabled= Create,Export,Tab 
+						ReportPermissions
+						{
+							My_Case_Points={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Law_Point{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Lawyer{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Linked_Document{visibility:true,readonly:false}
+							Case{visibility:true,readonly:false}
+						}
+					}
+					Add_Hearing_Date
+					{
+						enabled= Create,Export,Tab 
+						ReportPermissions
+						{
+							Case_Hearings={"View"}
+							My_Hearing_History={"View","Edit"}
+							My_Upcoming_Hearings={"View","Edit"}
+						}
+						FieldPermissions
+						{
+							Case_Lawyer{visibility:true,readonly:false}
+							Hearing_Result{visibility:true,readonly:false}
+							Email_Address{visibility:true,readonly:false}
+							heard_Judges{visibility:true,readonly:false}
+							Hearing_Date{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Hearing_Judgement{visibility:true,readonly:false}
+							Postponed_Date{visibility:true,readonly:false}
+							Case{visibility:true,readonly:false}
+						}
+					}
+					Update_Case_Hearing_Result
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Hearing{visibility:true,readonly:false}
+							Hearing_Result{visibility:true,readonly:false}
+							Case_Judgement{visibility:true,readonly:false}
+							Case_Result{visibility:true,readonly:false}
+							Judges{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Postponed_On_date{visibility:true,readonly:false}
+						}
+					}
+					Add_Judge
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Section{visibility:true,readonly:false}
+							Judge_Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Case
+					{
+						enabled= Export 
+						ReportPermissions
+						{
+							My_Pending_cases={"View","Edit"}
+							My_case_History={"View"}
+							My_Open_cases={"View","Edit"}
+						}
+						FieldPermissions
+						{
+							Case_Documents{visibility:true,readonly:false}
+							Case_Description{visibility:true,readonly:false}
+							Tasks{visibility:true,readonly:false}
+							Case_Status{visibility:true,readonly:false}
+							Opposing_Clients{visibility:true,readonly:false}
+							Case_Number{visibility:true,readonly:false}
+							Case_Result{visibility:true,readonly:false}
+							Case_Type{visibility:true,readonly:false}
+							Hearing_Details{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Associated_Case_Number{visibility:true,readonly:false}
+							Judgement_Date{visibility:true,readonly:false}
+							Court{visibility:true,readonly:false}
+							Starting_Date{visibility:true,readonly:false}
+							Judgement_In_Brief{visibility:true,readonly:false}
+							Case_Points{visibility:true,readonly:false}
+							Section1{visibility:true,readonly:false}
+							case_ID{visibility:true,readonly:false}
+							Case_Title{visibility:true,readonly:false}
+							Lawyer_Details{visibility:true,readonly:false}
+							Lawyer{visibility:true,readonly:false}
+							Client{visibility:true,readonly:false}
+							Case_Witness{visibility:true,readonly:false}
+						}
+					}
+					Start_Case
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Case_Number_In_Court{visibility:true,readonly:false}
+							Case_Start_Date{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Case{visibility:true,readonly:false}
+							Court{visibility:true,readonly:false}
+						}
+					}
+					Popup_Loader
+					{
+						enabled = tab
+					}
+					Case_Summary
+					{
+						enabled = tab
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users.\n\n"
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 9
+		new theme color = 9
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-hr-mgmt1"
+    	icon theme = "blue"
+		icons style = outline
+	}
+
+	
+}

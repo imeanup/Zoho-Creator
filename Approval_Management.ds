@@ -1,0 +1,1838 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 23:56:03
+ * Version      : 1.0
+ */
+ application "Approval Management"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+	section Ideas
+	{
+		icon = "social-1-logo-pinterest"
+		list All_Raised_Ideas
+		{
+			displayName = "All Raised Ideas"
+   			hide = true
+			show all rows from Raise_an_Idea    
+			(
+				Raised_By as "Raised By"
+				Idea
+				Description
+				Approval_Status as "Approval Status"
+				Approver_1 as "Approver 1 "
+				Admin
+				Approver_2 as "Approver 2"
+			)
+			group by
+			(
+				Approval_Status ascending
+			)
+			sort by
+			(
+				Approval_Status ascending
+			)
+			options
+			(
+				icon = "design-todo"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Raised_By as "Raised By"
+							Idea
+							Description
+							Approval_Status as "Approval Status"
+							Approver_1 as "Approver 1 "
+							Approver_2 as "Approver 2"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Raised_By as "Raised By"
+							Idea
+							Description
+							Approval_Status as "Approval Status"
+							Approver_1 as "Approver 1 "
+							Approver_2 as "Approver 2"
+							Admin
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		form Raise_an_Idea
+		{
+			displayname = "Raise an Idea"
+			success message = "Your Request has been raised successfully"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Raised_By
+			(
+				type = picklist
+				displayname = "Raised By"
+				values  = Add_Employee.ID
+    			displayformat = [" " + Name.first_name + " " + Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Idea
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Approval_Status
+			(
+				type = picklist
+				displayname = "Approval Status"
+				values = {"Pending", "Approved by Approver 1", "Approved by Approver 2", "Approved by Admin", "Rejected by Approver 1", "Rejected by Approver 2", "Rejected by Admin"}
+				initial value = "Pending"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Select_First_Approver
+			(
+				type = picklist
+				displayname = "Select First Approver"
+				values = {"Select"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Select_Second_Approver
+			(
+				type = picklist
+				displayname = "Select Second Approver"
+				values = {"Select"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Approver_1
+			(
+    			type = picklist
+				displayname = "Approver 1 "
+				module = users
+				displayformat = [username]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Approver_2
+			(
+    			type = picklist
+				displayname = "Approver 2"
+				module = users
+				displayformat = [username]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Admin
+			(
+    			type = picklist
+				module = users
+				displayformat = [username]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Up_voters_list
+			(
+				type = list
+				displayname = "Up voters list"
+				values  = Add_Employee.ID
+    			displayformat = [" " + Name.first_name + " " + Name.last_name]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Down_voters_list
+			(
+				type = list
+				displayname = "Down voters list"
+				values  = Add_Employee.ID
+    			displayformat = [" " + Name.first_name + " " + Name.last_name]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "holidays-dead-hand"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Ballot
+		{
+			displayName = "Ballot"
+			show all rows from Raise_an_Idea  [Raised_By.Email_Id == zoho.adminuserid || (Raised_By.Select_Privilege == "2nd Approver (Manager)" && Approval_Status == "Rejected by Admin")]  
+			(
+				Approver_2 as "Approver 2"
+				custom action "Vote"
+				(
+	  			workflow = Vote
+				show action in edit record menu = true
+				column header = "Vote"
+				condition = (Raised_By.Select_Privilege == "2nd Approver (Manager)" && Raised_By.Email_Id != zoho.loginuserid)
+				)
+				Raised_By.Select_Privilege as "Select Privilege"
+				Up_voters_list as "Up voters list"
+				Idea
+				Approver_1 as "Approver 1 "
+				Approval_Status as "Approval Status"
+				Raised_By as "Raised By"
+				Description
+				Down_voters_list as "Down voters list"
+			)
+			sort by
+			(
+				Approval_Status ascending
+				Raised_By.Select_Privilege ascending
+			)
+			options
+			(
+				icon = "business-bulb-63"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Raised_By as "Raised By"
+							Idea
+							Description
+				"Vote"
+							Up_voters_list as "Up voters list"
+							Down_voters_list as "Down voters list"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Print   	   
+								Delete   	   
+								"Vote"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Print   	   
+								View Record   	   
+								"Vote"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Raised_By as "Raised By"
+							Idea
+							Description
+							Approver_1 as "Approver 1 "
+							Approver_2 as "Approver 2"
+							Approval_Status as "Approval Status"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Up Voters"
+						fields
+						(
+							Up_voters_list as "Up voters list"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Down Voters"
+						fields
+						(
+							Down_voters_list as "Down voters list"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Employee
+	{
+		displayname= "Employees"
+		icon = "users-2-home"
+		form Add_Employee
+		{
+			displayname = "Add Employee"
+			success message = "New Employee has been Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email_Id
+			(
+    			type = email
+				displayname = "Email Id"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Give_Approval_Privileges
+			(
+    			type = checkbox
+				displayname = "Give Approval Privileges "
+				initial value = false
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Select_Privilege
+			(
+				type = picklist
+				displayname = "Select Privilege"
+				values = {"1st Approver (Lead)", "2nd Approver (Manager)"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-add-27"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list All_Employees
+		{
+			displayName = "All Employees"
+			show all rows from Add_Employee    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Email_Id as "Email Id"
+				Phone_Number as "Phone Number"
+				Give_Approval_Privileges as "Approval Privileges"
+				Select_Privilege as "Select Privilege"
+			)
+			group by
+			(
+				Give_Approval_Privileges descending
+				Select_Privilege ascending
+			)
+			sort by
+			(
+				Give_Approval_Privileges descending
+				Select_Privilege ascending
+			)
+			options
+			(
+				icon = "users-multiple-11"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email_Id as "Email Id"
+							Phone_Number as "Phone Number"
+							Give_Approval_Privileges as "Approval Privileges"
+							Select_Privilege as "Select Privilege"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email_Id as "Email Id"
+							Phone_Number as "Phone Number"
+							Give_Approval_Privileges as "Approval Privileges"
+							Select_Privilege as "Select Privilege"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Company_Details
+	{
+		displayname= "Company Details"
+		icon = "social-1-logo-creative-market"
+		form Add_Company_Detail
+		{
+			displayname = "Add Company Detail"
+			success message = "Company Detail Added Successfully"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Company_Name
+			(
+    			type = text
+				displayname = "Company Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-2-contacts-44"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		properties
+		{
+			total entries
+			{
+				allowed count = 1
+			}
+		}
+		}
+		summary Company_Details
+		{
+			displayName = "Company Details"
+			show all rows from Add_Company_Detail    
+			(
+				Company_Name as "Company Name"
+				Email
+				Phone_Number as "Phone"
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 2
+				icon = "users-2-contacts-44"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Company_Name as "Company Name"
+							Email
+							Phone_Number as "Phone"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Company_Name as "Company Name"
+							Email
+							Phone_Number as "Phone"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Voting_Page
+	{
+		displayname= "Voting Page"
+		icon = "design-design-dev"
+				 page Voting_Page(Idea) 
+	 	 { 
+ 	 	 displayname = "Voting Page" 
+
+ 	 	 icon = "design-design-dev" 
+
+ 	 	 hide =  true
+	 	 Content="<zml \n\t\t\tisPdfEnabled='false'\n\t\t\n\t\t\tisPrintEnabled='false'\n\t\t\n\t\t\n\t\t\n\t\t\tmobileDeviceConfig='{\"layout\":{\"displayType\":\"card\",\"design\":\"onebyone\",\"forcedOrientation\":false}}'\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dspZml id='zml_snippet1'>\n\t<![CDATA[htmlpage zml_snippet1(Idea)\ndisplayname = &quot;zml_snippet&quot;\ncontent\n&lt;%{\n\tif(Idea != null)\n\t{\n\t\trec = Raise_an_Idea[ID == input.Idea.toLong()];\n\t\tidea_name = rec.Idea;\n\t\tdesc = rec.Description;\n\t\traised_by = Add_Employee[ID == rec.Raised_By].Name;\n\t\traised_on = rec.Added_Time.toDate();\n\t\tupvote_count = rec.Up_voters_list.size();\n\t\tdownvote_count = rec.Down_voters_list.size();\n\t\temployee_name = Add_Employee[Email_Id == zoho.loginuserid].ID;\n\t\tif(rec.Up_voters_list.contains(employee_name) || rec.Down_voters_list.contains(employee_name))\n\t\t{\n\t\t\tuservote_count = 1;\n\t\t}\n\t\telse\n\t\t{\n\t\t\tuservote_count = 0;\n\t\t}\n\t\tupvote_text_color = &quot;#656565&quot;;\n\t\tupvote_bg = &quot;#969696&quot;;\n\t\tupvote_msg = &quot;You have upvoted to this Idea&quot;;\n\t\tdownvote_text_color = &quot;#656565&quot;;\n\t\tdownvote_bg = &quot;#969696&quot;;\n\t\tdownvote_msg = &quot;You have downvoted to this Idea&quot;;\n\t\tif(uservote_count == 1)\n\t\t{\n\t\t\tif(rec.Up_voters_list.contains(employee_name))\n\t\t\t{\n\t\t\t\tupvote_text_color = &quot;#00bb53&quot;;\n\t\t\t\tupvote_bg = &quot;#00bb53&quot;;\n\t\t\t\tupvote_msg = &quot;&quot;;\n\t\t\t}\n\t\t\telse if(rec.Down_voters_list.contains(employee_name))\n\t\t\t{\n\t\t\t\tdownvote_text_color = &quot;#FF4C2F&quot;;\n\t\t\t\tdownvote_bg = &quot;#FF4C2F&quot;;\n\t\t\t\tdownvote_msg = &quot;&quot;;\n\t\t\t}\n\t\t}\n\t\t%&gt;\n&lt;panel&gt;\n\t&lt;pr width=&quot;fill&quot; height=&quot;auto&quot;&gt;\n\t&lt;pc width=&quot;100%&quot; height=&quot;auto&quot;&gt;\n\t\t\t&lt;pr width=&quot;fill&quot; height=&quot;auto&quot;&gt;\n\t\t\t\t&lt;pc width=&quot;100%&quot; height=&quot;auto&quot; hAlign=&quot;center&quot; vAlign=&quot;middle&quot; bgColor=&quot;#ffffff&quot; &gt;\n\t\t\t\t\t&lt;pr&gt;\n\t\t\t\t\t\t&lt;pc padding=&quot;20px&quot; width=&quot;100%&quot; bgColor=&quot;#ec6868&quot;&gt;\n\t\t\t\t\t\t\t&lt;text value=&quot;Idea : &lt;%=idea_name%&gt;&quot; size=&quot;4&quot; bold=&quot;true&quot; color=&quot;#FFFFFF&quot;&gt;&lt;\/text&gt;\n\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t\t&lt;pr width=&quot;fill&quot;&gt;\n\t\t\t\t\t\t&lt;pc padding=&quot;20px&quot; width=&quot;100%&quot; vAlign=&quot;middle&quot; hAlign=&quot;left&quot;&gt;\n\t\t\t\t\t\t\t&lt;text value=&quot;Description :&quot; size=&quot;4&quot; bold=&quot;true&quot;&gt;&lt;\/text&gt;\n\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t\t&lt;pr width=&quot;fill&quot; white-space=&quot;normal&quot;&gt;\n\t\t\t\t\t\t&lt;pc padding=&quot;20px&quot; width=&quot;100%&quot; vAlign=&quot;middle&quot; hAlign=&quot;center&quot;&gt;\n\t\t\t\t\t\t\t&lt;text value=&quot;&lt;%=desc%&gt;&quot; size=&quot;4&quot; color=&quot;#2d2d2d&quot;&gt;&lt;\/text&gt;\n\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t\t&lt;pr width=&quot;fill&quot;&gt;\n\t\t\t\t\t\t&lt;pc width=&quot;100%&quot; padding=&quot;0.5px&quot; bgColor=&quot;#777777&quot;&gt;\n\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t\t&lt;pr width=&quot;fill&quot;&gt;\n\t\t\t\t\t\t&lt;pc padding=&quot;10px&quot; width=&quot;100%&quot; hAlign=&quot;right&quot; vAlign=&quot;middle&quot;&gt;\n\t\t\t\t\t\t\t&lt;text value=&quot;Raised By : &lt;%=raised_by%&gt;&quot; size=&quot;2&quot; color=&quot;#2d2d2d&quot;&gt;&lt;\/text&gt;\n\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t\t&lt;pr width=&quot;fill&quot;&gt;\n\t\t\t\t\t\t&lt;pc padding=&quot;10px&quot; width=&quot;100%&quot; hAlign=&quot;right&quot; vAlign=&quot;middle&quot;&gt;\n\t\t\t\t\t\t\t&lt;text value=&quot;Raised On : &lt;%=raised_on%&gt;&quot; size=&quot;2&quot; color=&quot;#2d2d2d&quot;&gt;&lt;\/text&gt;\n\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t\t&lt;pr&gt;\n\t\t\t\t\t\t&lt;pc&gt;\n\t\t\t\t\t\t\t&lt;pr&gt;\n\t\t\t\t\t\t\t\t&lt;pc padding=&quot;10px&quot;&gt;\n\t\t\t\t\t\t\t\t\t&lt;image color=&quot;#FFFFFF&quot; bgColor=&quot;&lt;%=upvote_bg%&gt;&quot; width=&apos;30px&apos; height=&apos;30px&apos; imageType=&apos;icon&apos; value=&apos;zc-li-solid emoticons-like&apos; iconsize=&apos;1&apos; cornerRadius=&apos;15px&apos; unicodeValue=&apos;edc0&apos; action=&apos;Function&apos; functionName=&apos;Vote.upvote&apos; parameters=&apos;Idea&apos; successMsg=&quot;&lt;%=upvote_msg%&gt;&quot; \/&gt;\n\t\t\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t\t\t\t&lt;pc&gt;\n\t\t\t\t\t\t\t\t\t&lt;text value=&quot;&lt;%=upvote_count%&gt;&quot; size=&quot;5&quot; bold=&quot;true&quot; color=&quot;&lt;%=upvote_text_color%&gt;&quot;&gt;&lt;\/text&gt;\n\t\t\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t\t\t\t&lt;pc padding=&quot;10px&quot;&gt;\n\t\t\t\t\t\t\t\t\t&lt;image color=&quot;#FFFFFF&quot; bgColor=&quot;&lt;%=downvote_bg%&gt;&quot; width=&apos;30px&apos; height=&apos;30px&apos; imageType=&apos;icon&apos; value=&apos;zc-li-solid emoticons-like-no&apos; iconsize=&apos;1&apos; cornerRadius=&apos;15px&apos; unicodeValue=&apos;ec03&apos; action=&apos;Function&apos; functionName=&apos;Vote.downvote&apos; parameters=&apos;Idea&apos; successMsg=&quot;&lt;%=downvote_msg%&gt;&quot; \/&gt;\n\t\t\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t\t\t\t&lt;pc&gt;\n\t\t\t\t\t\t\t\t\t&lt;text value=&quot;&lt;%=downvote_count%&gt;&quot; size=&quot;5&quot; bold=&quot;true&quot; color=&quot;&lt;%=downvote_text_color%&gt;&quot;&gt;&lt;\/text&gt;\n\t\t\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t&lt;\/pc&gt;\n\t\t\t&lt;\/pr&gt;\n\t\t&lt;\/pc&gt;\n\t&lt;\/pr&gt;\n&lt;\/panel&gt;\n&lt;%\n\t}\n\telse\n\t{\n\t\t%&gt;\n&lt;panel&gt;\n\t\t&lt;pr width=&quot;fill&quot; height=&quot;auto&quot;&gt;\n\t\t\t&lt;pc width=&quot;100%&quot; height=&quot;auto&quot; padding=&quot;20px&quot;&gt;\n\t\t\t\t&lt;pr&gt;\n\t\t\t\t\t&lt;pc&gt;\n\t\t\t\t\t\t&lt;text value=&quot;Before voting you have to select any Idea&quot; size=&quot;5&quot;&gt;&lt;\/text&gt;\n\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t&lt;pr&gt;\n\t\t\t\t\t&lt;pc&gt;\n\t\t\t\t\t\t&lt;button text=&quot;Click here to select&quot; size=&quot;3&quot; action=&quot;Report&quot; appLinkName=&quot;approval-management&quot; componentLinkName=&quot;Ballot&quot; target=&quot;same-window&quot; bgColor=&quot;#0072F4&quot; color=&quot;#FFFFFF&quot; \/&gt;\n\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t&lt;\/pr&gt;\n\t\t\t&lt;\/pc&gt;\n\t\t&lt;\/pr&gt;\n\t&lt;\/panel&gt;\n&lt;%\n\t}\n\n}%&gt;]]>\n<\/dspZml>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+	}
+	functions
+	{
+ 			void Send_Mail.Send_Notification(string userEmail)
+			{
+				appname = zoho.appname;
+				sendmail
+				[
+					from :zoho.adminuserid
+					to :userEmail
+					subject :"Invitation to access '" + zoho.appname + "' "
+					message :"<div style='width:100%;display:inline-block;box-sizing:border-box;border:1px solid #ddd;'><div style='padding:2%;text-align:center;'>You've been invited to use an application built on Zoho Creator by \"" + zoho.adminuserid + "\".</div><div style='background: #efefef; padding: 20.0px;margin: 20.0px 0 10.0px;text-align:center;'><h2>" + appname.toUpperCase() + "</h2><div style='margin: 20.0px 0 10.0px;'><a style='padding:10px;background-color: rgb(62,149,205);text-decoration: none;color: rgb(255,255,255);font-size: 14.0px;' href='https://creator.zoho.com" + zoho.appuri + "' target='_blank'> Go to application </a></div></div></div>"
+				]
+			}
+ 			void Vote.upvote(string record_id)
+			{
+				employee_Id = Add_Employee[Email_Id == zoho.loginuserid].ID;
+				rec = Raise_an_Idea[ID == record_id.toLong()];
+				if(rec.Up_voters_list.contains(employee_Id))
+				{
+					up_vote_list = rec.Up_voters_list;
+					up_vote_list.removeElement(employee_Id);
+					rec.Up_voters_list=up_vote_list;
+				}
+				else
+				{
+					if(rec.Down_voters_list.contains(employee_Id))
+					{
+						down_vote_list = rec.Down_voters_list;
+						down_vote_list.removeElement(employee_Id);
+						rec.Down_voters_list=down_vote_list;
+					}
+					up_vote_list = List();
+					up_vote_list.addAll(rec.Up_voters_list);
+					up_vote_list.add(employee_Id);
+					rec.Up_voters_list=up_vote_list;
+				}
+				openUrl("#Script:page.refresh","same window");
+			}
+ 			void Vote.downvote(string record_id)
+			{
+				employee_Id = Add_Employee[Email_Id == zoho.loginuserid].ID;
+				rec = Raise_an_Idea[ID == record_id.toLong()];
+				if(rec.Down_voters_list.contains(employee_Id))
+				{
+					down_vote_list = rec.Down_voters_list;
+					down_vote_list.removeElement(employee_Id);
+					rec.Down_voters_list=down_vote_list;
+				}
+				else
+				{
+					if(rec.Up_voters_list.contains(employee_Id))
+					{
+						up_vote_list = rec.Up_voters_list;
+						up_vote_list.removeElement(employee_Id);
+						rec.Up_voters_list=up_vote_list;
+					}
+					down_vote_list = List();
+					down_vote_list.addAll(rec.Down_voters_list);
+					down_vote_list.add(employee_Id);
+					rec.Down_voters_list=down_vote_list;
+				}
+				openUrl("#Script:page.refresh","same window");
+			}
+ 			void Vote.vote(int record_id)
+			{
+				user_count = Add_Employee[Email_Id == zoho.loginuserid].count();
+				if(user_count == 1)
+				{
+					url = "#Page:Voting_Page?Idea=" + record_id;
+					openUrl(url,"new window");
+				}
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Run_Scripts_While_Adding_ as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide Select_Privilege;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_4 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											company_detail_count = Add_Company_Detail[ID != 0].count(ID);
+										if(company_detail_count == 0)
+										{
+											openUrl("#Form:Add_Company_Detail","popup window");
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_5 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Sharing forms and reports to the users
+										if(Email_Id != zoho.adminuserid)
+										{
+											thisapp.permissions.assignUserInProfile(input.Email_Id,"Employee");
+											thisapp.Send_Mail.Send_Notification(input.Email_Id);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing1 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Removing permissions from old email id and giving to new mail_id 
+										if(old.Email_Id != input.Email_Id)
+										{
+											thisapp.permissions.deleteuser(old.Email_Id);
+											thisapp.permissions.assignUserInProfile(input.Email_Id,"Employee");
+											thisapp.Send_Mail.Send_Notification(input.Email_Id);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin1 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Removing permissions from the user
+										if(Email_Id != zoho.adminuserid)
+										{
+											thisapp.permissions.deleteuser(input.Email_Id);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_6 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Add_Company_Detail
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Email = zoho.adminuserid;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_7 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Add_Company_Detail
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											openUrl("#Script:page.refresh","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always as "Run Scripts On Always"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on add or edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Validation check for privileges
+										if(Give_Approval_Privileges == true)
+										{
+											if(Select_Privilege == null)
+											{
+												cancel submit;
+											}
+										}
+										if(Name.isEmpty())
+										{
+											alert "Enter a valid name";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always3 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on add or edit
+
+	on user input of Give_Approval_Privileges
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Give_Approval_Privileges == true)
+										{
+											show Select_Privilege;
+										}
+										else
+										{
+											hide Select_Privilege;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_8 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Raise_an_Idea
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Adding admin as an employee
+										admin_count = Add_Employee[Email_Id == zoho.adminuserid].count(ID);
+										if(admin_count == 0)
+										{
+											insert into Add_Employee
+											[
+												Email_Id=zoho.adminuserid
+												Name.first_name="Admin"
+												Added_User=zoho.loginuser
+												Give_Approval_Privileges=true
+												Select_Privilege="2nd Approver (Manager)"
+											]
+										}
+										//Listing out the managers and leads
+										employee_details = Add_Employee[Email_Id == zoho.loginuserid];
+										if(employee_details.ID != null)
+										{
+											input.Raised_By = employee_details.ID;
+											managers = Add_Employee[Select_Privilege == "2nd Approver (Manager)" && Email_Id != zoho.adminuserid].Email_Id.getAll();
+											leads = Add_Employee[Select_Privilege == "1st Approver (Lead)" && Email_Id != zoho.adminuserid].Email_Id.getAll();
+											if(employee_details.Select_Privilege == null)
+											{
+												input.Select_Second_Approver:ui.add(managers);
+												input.Select_First_Approver:ui.add(leads);
+											}
+											else if(employee_details.Select_Privilege == "1st Approver (Lead)")
+											{
+												input.Select_First_Approver:ui.add(managers);
+											}
+										}
+										if(zoho.loginuserid == zoho.adminuserid)
+										{
+											company_detail_count = Add_Company_Detail[ID != 0].count(ID);
+											if(company_detail_count == 0)
+											{
+												openUrl("#Form:Add_Company_Detail","popup window");
+											}
+											admin_count = Add_Employee[Email_Id == zoho.adminuserid].count(ID);
+											if(admin_count == 0)
+											{
+												insert into Add_Employee
+												[
+													Email_Id=zoho.adminuserid
+													Name.first_name="Admin"
+													Added_User=zoho.loginuser
+													Give_Approval_Privileges=true
+													Select_Privilege="2nd Approver (Manager)"
+												]
+											}
+										}
+										if(zoho.loginuserid != zoho.adminuserid)
+										{
+											input.Admin = zoho.adminuser;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always4 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Raise_an_Idea
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						disable Raised_By,Admin;
+						hide Up_voters_list,Select_First_Approver,Select_Second_Approver,Approver_2,Approver_1,Down_voters_list,Approval_Status;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always5 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Raise_an_Idea
+				record event = on add or edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											employee_details = Add_Employee[Email_Id == zoho.loginuserid];
+										if(employee_details.ID != null)
+										{
+											if(employee_details.Select_Privilege == null)
+											{
+												show Select_First_Approver;
+												show Select_Second_Approver;
+											}
+											else if(employee_details.Select_Privilege == "1st Approver (Lead)")
+											{
+												show Select_First_Approver;
+											}
+											else
+											{
+												hide Select_First_Approver;
+												hide Select_Second_Approver;
+											}
+										}
+										if(zoho.loginuserid == zoho.adminuserid)
+										{
+											hide Admin;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always6 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Raise_an_Idea
+				record event = on add or edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(zoho.loginuserid != zoho.adminuserid)
+										{
+											loginuser = Add_Employee[Email_Id == zoho.loginuserid];
+											if(loginuser.count() == 1)
+											{
+												user_role = loginuser.Select_Privilege;
+												if(user_role == null)
+												{
+													if(Select_First_Approver == null || Select_Second_Approver == null)
+													{
+														alert "Select all the approvers";
+														cancel submit;
+													}
+												}
+												else if(user_role == "1st Approver (Lead)")
+												{
+													if(Select_First_Approver == null)
+													{
+														alert "Select a approver";
+														cancel submit;
+													}
+												}
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always7 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Raise_an_Idea
+				record event = on add or edit
+
+	on user input of Select_Second_Approver
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Getting username of the approver 2 and place it into the field
+										allusers_ids = app.users();
+										allusers_emails = app.userEmailIds();
+										email_count = allusers_emails.indexOf(input.Select_Second_Approver);
+										input.Approver_2 = allusers_ids.get(email_count);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always8 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Raise_an_Idea
+				record event = on add or edit
+
+	on user input of Select_First_Approver
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Getting username and adding it into the field 
+										allusers_ids = app.users();
+										allusers_emails = app.userEmailIds();
+										email_count = allusers_emails.indexOf(input.Select_First_Approver);
+										input.Approver_1 = allusers_ids.get(email_count);
+						)
+					}
+	}
+
+			}
+		}
+		approval
+		{
+			Approval_For_Employees as "Approval For Employees"
+			{
+				type =  approval
+				form = Raise_an_Idea[Approver_1 is not null && Approver_2 is not null]
+				display fields = [Raised_By,Idea,Description,Approver_1,Approver_2]
+				on start
+				{
+				}
+				on level 1
+				{
+					approvers
+					(
+		  				field = Approver_1
+					)
+					on approve 
+					{
+						actions 
+						{
+							sendmail
+							(
+								from : zoho.loginuserid
+								to : approver.submitter
+								subject : "Approval Request"
+								message : "Your request has been approved by your lead."
+							)
+						}
+						actions 
+						{
+						on load
+						(
+							reocrd_id = Raise_an_Idea[ID == input.ID];
+												reocrd_id.Approval_Status="Approved by Approver 1";
+						)
+						}
+					}
+					on reject
+					{
+
+						actions 
+						{
+							sendmail
+							(
+								from : zoho.loginuserid
+								to : approver.submitter
+								subject : "Approval Request"
+								message : "Your request has been rejected by your lead."
+							)
+						}
+						actions 
+						{
+						on load
+						(
+							reocrd_id = Raise_an_Idea[ID == input.ID];
+												reocrd_id.Approval_Status="Rejected by Approver 1";
+						)
+						}
+					}
+				}
+				on level 2
+				{
+					approvers
+					(
+		  				field = Approver_2
+					)
+					on approve 
+					{
+						actions 
+						{
+							sendmail
+							(
+								from : zoho.loginuserid
+								to : approver.submitter
+								subject : "Approval Request"
+								message : "Your request has been approved by your manager."
+							)
+						}
+						actions 
+						{
+						on load
+						(
+							reocrd_id = Raise_an_Idea[ID == input.ID];
+												reocrd_id.Approval_Status="Approved by Approver 2";
+						)
+						}
+					}
+					on reject
+					{
+
+						actions 
+						{
+							sendmail
+							(
+								from : zoho.loginuserid
+								to : approver.submitter
+								subject : "Approval Request"
+								message : "Your request has been rejected by your manager."
+							)
+						}
+						actions 
+						{
+						on load
+						(
+							reocrd_id = Raise_an_Idea[ID == input.ID];
+												reocrd_id.Approval_Status="Rejected by Approver 2";
+						)
+						}
+					}
+				}
+				on level 3
+				{
+					approvers
+					(
+		  				field = Admin
+					)
+					on approve 
+					{
+						actions 
+						{
+							sendmail
+							(
+								from : zoho.loginuserid
+								to : approver.submitter
+								subject : "Approval Request"
+								message : "Your request has been approved by your admin."
+							)
+						}
+						actions 
+						{
+						on load
+						(
+							reocrd_id = Raise_an_Idea[ID == input.ID];
+												reocrd_id.Approval_Status="Approved by Admin";
+						)
+						}
+					}
+					on reject
+					{
+
+						actions 
+						{
+							sendmail
+							(
+								from : zoho.loginuserid
+								to : approver.submitter
+								subject : "Approval Request"
+								message : "Your request has been rejected by your admin."
+							)
+						}
+						actions 
+						{
+						on load
+						(
+							reocrd_id = Raise_an_Idea[ID == input.ID];
+												reocrd_id.Approval_Status="Rejected by Admin";
+						)
+						}
+					}
+				}
+			}
+			Approval_For_Managers as "Approval For Managers"
+			{
+				type =  approval
+				form = Raise_an_Idea[Approver_1 is null && Approver_2 is null && Admin is not null]
+				display fields = [Raised_By,Idea,Description,Admin]
+				on start
+				{
+				}
+				on level 1
+				{
+					approvers
+					(
+		  				field = Admin
+					)
+					on approve 
+					{
+						actions 
+						{
+							sendmail
+							(
+								from : zoho.loginuserid
+								to : approver.submitter
+								subject : "Approval Request"
+								message : "Your request has been approved by your admin."
+							)
+						}
+						actions 
+						{
+						on load
+						(
+							reocrd_id = Raise_an_Idea[ID == input.ID];
+												reocrd_id.Approval_Status="Approved by Admin";
+						)
+						}
+					}
+					on reject
+					{
+
+						actions 
+						{
+							sendmail
+							(
+								from : zoho.loginuserid
+								to : approver.submitter
+								subject : "Approval Request"
+								message : "Your request has been rejected by your admin."
+							)
+						}
+						actions 
+						{
+						on load
+						(
+							reocrd_id = Raise_an_Idea[ID == input.ID];
+												reocrd_id.Approval_Status="Rejected by Admin";
+						)
+						}
+					}
+				}
+			}
+			Approval_For_Leads as "Approval For Leads"
+			{
+				type =  approval
+				form = Raise_an_Idea[Approver_1 is not null && Approver_2 is null]
+				display fields = [Raised_By,Idea,Description,Approval_Status,Approver_1]
+				on start
+				{
+				}
+				on level 1
+				{
+					approvers
+					(
+		  				field = Approver_1
+					)
+					on approve 
+					{
+						actions 
+						{
+							sendmail
+							(
+								from : zoho.loginuserid
+								to : approver.submitter
+								subject : "Approval Request"
+								message : "Your request has been approved by your manager."
+							)
+						}
+						actions 
+						{
+						on load
+						(
+							reocrd_id = Raise_an_Idea[ID == input.ID];
+												reocrd_id.Approval_Status="Approved by Approver 1";
+						)
+						}
+					}
+					on reject
+					{
+
+						actions 
+						{
+							sendmail
+							(
+								from : zoho.loginuserid
+								to : approver.submitter
+								subject : "Approval Request"
+								message : "Your request has been rejected by your manager."
+							)
+						}
+						actions 
+						{
+						on load
+						(
+							reocrd_id = Raise_an_Idea[ID == input.ID];
+												reocrd_id.Approval_Status="Rejected by Approver 1";
+						)
+						}
+					}
+				}
+				on level 2
+				{
+					approvers
+					(
+		  				field = Admin
+					)
+					on approve 
+					{
+						actions 
+						{
+							sendmail
+							(
+								from : zoho.loginuserid
+								to : approver.submitter
+								subject : "Approval Request"
+								message : "Your request has been approved by your admin."
+							)
+						}
+						actions 
+						{
+						on load
+						(
+							reocrd_id = Raise_an_Idea[ID == input.ID];
+												reocrd_id.Approval_Status="Approved by Admin";
+						)
+						}
+					}
+					on reject
+					{
+
+						actions 
+						{
+							sendmail
+							(
+								from : zoho.loginuserid
+								to : approver.submitter
+								subject : "Approval Request"
+								message : "Your request has been rejected by your admin."
+							)
+						}
+						actions 
+						{
+						on load
+						(
+							reocrd_id = Raise_an_Idea[ID == input.ID];
+												reocrd_id.Approval_Status="Rejected by Admin";
+						)
+						}
+					}
+				}
+			}
+		}
+		functions
+		{
+			Vote as "Vote"
+			{
+				type =  functions
+				form = Raise_an_Idea
+				on start
+				{
+					actions 
+					{
+					Vote.vote(ID);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Read"
+			{
+				name = "Read"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have read permission for all components\n"
+			}
+			"Write"
+			{
+				name = "Write"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have write permission for all components\n"
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Employee"
+			{
+				name = "Employee"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "Employee Profile\n"
+				ModulePermissions
+				{
+					Add_Company_Detail
+					{
+						FieldPermissions
+						{
+							Company_Name{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Raise_an_Idea
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							Ballot={"View"}
+							All_Raised_Ideas={"View"}
+						}
+						FieldPermissions
+						{
+							Approver_2{visibility:true,readonly:false}
+							Up_voters_list{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Select_First_Approver{visibility:true,readonly:false}
+							Select_Second_Approver{visibility:true,readonly:false}
+							Admin{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Approval_Status{visibility:true,readonly:false}
+							Approver_1{visibility:true,readonly:false}
+							Idea{visibility:true,readonly:false}
+							Down_voters_list{visibility:true,readonly:false}
+							Raised_By{visibility:true,readonly:false}
+						}
+					}
+					Add_Employee
+					{
+						FieldPermissions
+						{
+							Email_Id{visibility:true,readonly:false}
+							Give_Approval_Privileges{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Select_Privilege{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Voting_Page
+					{
+						enabled = tab
+					}
+				}
+			}
+			roles
+			{
+				"Default"
+				{
+					description = "User belonging to this role can access data of all other users.\n"
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 1
+		new theme color = 4
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-hr-mgmt17"
+    	icon theme = "yellow"
+		icons style = solid
+	}
+
+	translation
+{
+"{\"de\":{\"App.approval-management\":\"Denkfabrik\",\"PicklistOption.Raise_an_Idea.Approval_Status.5\":\"Vom Genehmiger abgelehnt 1\",\"PicklistOption.Raise_an_Idea.Approval_Status.4\":\"Vom Admin genehmigt\",\"PicklistOption.Raise_an_Idea.Approval_Status.3\":\"Vom Genehmiger genehmigt 2\",\"PicklistOption.Raise_an_Idea.Approval_Status.2\":\"Vom Genehmiger genehmigt 1\",\"PicklistOption.Raise_an_Idea.Approval_Status.7\":\"Vom Admin abgelehnt\",\"PicklistOption.Raise_an_Idea.Approval_Status.6\":\"Vom Genehmiger abgelehnt 2\",\"Languages List.bg\":\" bulgarisch \",\"Languages List.bn\":\" Bengali \",\"Languages List.ro\":\" rumänisch \",\"ReportField.All_Raised_Ideas.Raised_By\":\"Aufgezogen von\",\"Languages List.be\":\" Belarussisch \",\"Languages List.ru\":\" Russisch \",\"Languages List.zh-TW\":\" Chinesische Tradition \",\"Languages List.ja\":\" japanisch \",\"Languages List.az\":\" Aserbaidschanisch \",\"FormButton.Raise_an_Idea.reset\":\"Zurücksetzen\",\"FormField.Raise_an_Idea.Select_First_Approver\":\"Wählen Sie Erster Genehmiger aus\",\"Languages List.ta\":\" Tamilisch \",\"Languages List.cs\":\" Tschechisch \",\"FormField.Raise_an_Idea.Approval_Status\":\"Freigabestand\",\"Report.All_Raised_Ideas\":\"Alle aufgestellten Ideen\",\"ReportField.All_Employees.Phone_Number\":\" Telefonnummer \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" Thai \",\"Form.Add_Company_Detail\":\"Unternehmensdetails hinzufügen\",\"ReportField.Ballot.Up_voters_list\":\"Up Wähler Liste\",\"Languages List.ku\":\" kurdisch \",\"Languages List.sq\":\" albanisch \",\"Languages List.ca\":\" katalanisch \",\"FormField.Add_Company_Detail.Section\":\"Sektion\",\"ReportField.Company_Details.Company_Name\":\"Name der Firma\",\"Section.Add_Employee\":\" Angestellte \",\"Languages List.km\":\" Khmer \",\"FormField.Add_Company_Detail.Phone_Number\":\"Telefon\",\"Languages List.ko\":\" Koreanisch \",\"Languages List.sw\":\" Swahili \",\"ReportField.All_Employees.first_name\":\" Name \",\"Languages List.kn\":\" Kannada \",\"Languages List.sv\":\" Schwedisch \",\"Languages List.ka\":\" georgisch \",\"Languages List.sk\":\" slowakisch \",\"Languages List.sl\":\" Slowenisch \",\"ReportField.Ballot.Description\":\"Beschreibung\",\"CompositeSubFields.Add_Employee.Name.suffix\":\" Suffix \",\"Languages List.hu\":\" ungarisch \",\"FormButton.Raise_an_Idea.update\":\"Aktualisieren\",\"Languages List.yi\":\" Jiddisch \",\"FormField.Add_Company_Detail.Company_Name\":\"Name der Firma\",\"Languages List.hy\":\" Armenisch \",\"CompositeSubFields.Add_Employee.Name.prefix\":\" Präfix \",\"Languages List.hr\":\" kroatisch \",\"ReportField.Ballot.Approver_1\":\"Genehmiger 1\",\"FormButton.Add_Employee.reset\":\" Zurücksetzen \",\"PicklistOption.Add_Employee.prefix.1\":\" Herr. \",\"Languages List.hi\":\" Hindi \",\"PicklistOption.Add_Employee.prefix.3\":\" Frau. \",\"Languages List.pt\":\" Portugiesisch \",\"PicklistOption.Add_Employee.prefix.2\":\" Frau. \",\"FormField.Add_Employee.Select_Privilege\":\"Wählen Sie Privileg\",\"Form.Raise_an_Idea\":\"Erhebe eine Idee\",\"FormButton.Add_Employee.update\":\" Aktualisieren \",\"Languages List.pl\":\" Polieren \",\"PicklistOption.Add_Employee.Select_Privilege.1\":\"1. Genehmiger (Leitung)\",\"Languages List.zh\":\" Chinesisch \",\"Languages List.iw\":\" hebräisch \",\"PicklistOption.Add_Employee.Select_Privilege.2\":\"2. Genehmiger (Manager)\",\"Languages List.ar\":\" Arabisch \",\"FormField.Add_Employee.Name\":\"Name\",\"Languages List.af\":\" Afrikaans \",\"Languages List.is\":\" isländisch \",\"FormField.Add_Employee.Phone_Number\":\"Telefonnummer\",\"Report.All_Employees\":\" Alle Angestellten \",\"Languages List.it\":\" Italienisch \",\"FormField.Add_Employee.suffix\":\" Suffix \",\"Form.Add_Employee\":\" Mitarbeiter hinzufügen \",\"FormField.Add_Employee.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"ReportField.All_Employees.Give_Approval_Privileges\":\"Genehmigungsprivilegien\",\"FormField.Add_Employee.prefix\":\" Präfix \",\"CompositeSubFields.Add_Employee.Name.last_name\":\" Familienname, Nachname \",\"FormField.Add_Employee.Email_Id\":\" E-Mail-ID \",\"ReportField.Ballot.Raised_By\":\"Aufgezogen von\",\"ReportField.All_Raised_Ideas.Approver_2\":\"Genehmiger 2\",\"FormField.Add_Employee.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"ReportField.All_Employees.Select_Privilege\":\" Wählen Sie Privileg \",\"FormButton.Add_Employee.cancel\":\" Stornieren \",\"Languages List.fr\":\" Französisch \",\"Languages List.nl\":\" Niederländisch \",\"ReportField.Ballot.Approval_Status\":\"Freigabestand\",\"FormField.Add_Employee.Modified_Time\":\" Geänderte Zeit \",\"Languages List.no\":\" norwegisch \",\"Languages List.fi\":\" Finnese \",\"FormField.Add_Employee.Give_Approval_Privileges\":\" Genehmigungsberechtigungen erteilen \",\"ReportField.Company_Details.Phone_Number\":\"Telefon\",\"FormField.Add_Employee.Modified_User\":\" Geänderter Benutzer \",\"FormButton.Raise_an_Idea.cancel\":\"Stornieren\",\"Languages List.fa\":\" persisch \",\"Languages List.gu\":\" Gujarati \",\"FormField.Add_Employee.Record_Status\":\" Aufnahmestatus \",\"Languages List.gl\":\" galizisch \",\"FormField.Add_Employee.last_name\":\" Familienname, Nachname \",\"PicklistOption.Raise_an_Idea.Select_Second_Approver.1\":\"Wählen\",\"Languages List.ga\":\" irisch \",\"FormField.Add_Company_Detail.Email\":\"Email\",\"FormButton.Add_Employee.submit\":\" einreichen \",\"PicklistOption.Raise_an_Idea.Select_First_Approver.1\":\"Wählen\",\"ReportField.All_Employees.Email_Id\":\" E-Mail-ID \",\"Languages List.lt\":\" litauisch \",\"ReportField.Ballot.Idea\":\"Idee\",\"FormField.Add_Employee.ID\":\" ICH WÜRDE \",\"Languages List.lv\":\" lettisch \",\"Languages List.tr\":\" Türkisch \",\"Languages List.da\":\" dänisch \",\"Languages List.de\":\" Deutsche \",\"Languages List.lo\":\" Laothian \",\"FormButton.Add_Company_Detail.update\":\"Aktualisieren\",\"FormField.Add_Employee.Added_Time\":\" Zeit hinzugefügt \",\"Languages List.cy\":\" Walisisch \",\"Languages List.la\":\" Latein \",\"FormField.Add_Employee.Added_User\":\" Benutzer hinzugefügt \",\"Languages List.tl\":\" Filipino \",\"FormButton.Add_Company_Detail.reset\":\"Zurücksetzen\",\"FormButton.Raise_an_Idea.submit\":\"einreichen\",\"Report.Ballot\":\"Aufgeweckte Ideen (Abstimmung)\",\"Languages List.es\":\" Spanisch \",\"ReportField.Company_Details.Email\":\"Email\",\"Languages List.eu\":\" baskisch \",\"ReportField.Ballot.Down_voters_list\":\"Down Wähler Liste\",\"Languages List.et\":\" estnisch \",\"FormField.Add_Employee.first_name\":\" Vorname \",\"Languages List.vi\":\" Vietnamesisch \",\"FormField.Raise_an_Idea.Select_Second_Approver\":\"Wählen Sie Second Approver aus\",\"Languages List.ms\":\" malaiisch \",\"Languages List.mr\":\" Marathi \",\"Languages List.el\":\" griechisch \",\"Languages List.mt\":\" maltesisch \",\"Languages List.eo\":\" Esperanto \",\"Report.Company_Details\":\"Firmendetails\",\"Languages List.en\":\" Englisch \",\"CompositeSubFields.Add_Employee.Name.first_name\":\" Vorname \",\"FormButton.Add_Company_Detail.submit\":\"Hinzufügen\",\"FormButton.Add_Company_Detail.cancel\":\"Stornieren\",\"Languages List.mk\":\" mazedonisch \",\"Languages List.ur\":\" Urdu \",\"FormField.Add_Employee.Section\":\"Sektion\",\"PicklistOption.Raise_an_Idea.Approval_Status.1\":\"steht aus\"},\"fr\":{\"App.approval-management\":\"Think Tank\",\"PicklistOption.Raise_an_Idea.Approval_Status.5\":\"Rejeté par l'approbateur 1\",\"PicklistOption.Raise_an_Idea.Approval_Status.4\":\"Approuvé par l'administrateur\",\"PicklistOption.Raise_an_Idea.Approval_Status.3\":\"Approuvé par l'approbateur 2\",\"PicklistOption.Raise_an_Idea.Approval_Status.2\":\"Approuvé par l'approbateur 1\",\"PicklistOption.Raise_an_Idea.Approval_Status.7\":\"Rejeté par l'administrateur\",\"PicklistOption.Raise_an_Idea.Approval_Status.6\":\"Rejeté par l'approbateur 2\",\"Languages List.bg\":\" bulgare \",\"Languages List.bn\":\" bengali \",\"Languages List.ro\":\" roumain \",\"ReportField.All_Raised_Ideas.Raised_By\":\"Élevé par\",\"Languages List.be\":\" Biélorusse \",\"Languages List.ru\":\" russe \",\"Languages List.zh-TW\":\" Chinois traditionnel \",\"Languages List.ja\":\" Japonais \",\"Languages List.az\":\" azerbaïdjanais \",\"FormButton.Raise_an_Idea.reset\":\"Réinitialiser\",\"FormField.Raise_an_Idea.Select_First_Approver\":\"Sélectionnez le premier approbateur\",\"Languages List.ta\":\" Tamil \",\"Languages List.cs\":\" tchèque \",\"FormField.Raise_an_Idea.Approval_Status\":\"Statut approuvé\",\"Report.All_Raised_Ideas\":\"Toutes les idées reçues\",\"ReportField.All_Employees.Phone_Number\":\" Numéro de téléphone \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" thaïlandais \",\"Form.Add_Company_Detail\":\"Ajouter un détail de la société\",\"ReportField.Ballot.Up_voters_list\":\"Up liste des électeurs\",\"Languages List.ku\":\" kurde \",\"Languages List.sq\":\" albanais \",\"Languages List.ca\":\" catalan \",\"ReportField.Company_Details.Company_Name\":\"Une seule ligne\",\"Section.Add_Employee\":\" Des employés \",\"Languages List.km\":\" Khmer \",\"FormField.Add_Company_Detail.Phone_Number\":\"Téléphone\",\"Languages List.ko\":\" coréen \",\"Languages List.sw\":\" Swahili \",\"ReportField.All_Employees.first_name\":\" prénom \",\"Languages List.kn\":\" Kannada \",\"Languages List.sv\":\" suédois \",\"Languages List.ka\":\" géorgien \",\"Languages List.sk\":\" slovaque \",\"Languages List.sl\":\" slovène \",\"ReportField.Ballot.Description\":\"La description\",\"CompositeSubFields.Add_Employee.Name.suffix\":\" Suffixe \",\"Languages List.hu\":\" hongrois \",\"FormButton.Raise_an_Idea.update\":\"Mettre à jour\",\"Languages List.yi\":\" yiddish \",\"FormField.Add_Company_Detail.Company_Name\":\"Nom de la compagnie\",\"Languages List.hy\":\" arménien \",\"CompositeSubFields.Add_Employee.Name.prefix\":\" Préfixe \",\"Languages List.hr\":\" croate \",\"ReportField.Ballot.Approver_1\":\"Approbateur 1\",\"FormButton.Add_Employee.reset\":\" Réinitialiser \",\"PicklistOption.Add_Employee.prefix.1\":\" M. \",\"Languages List.hi\":\" hindi \",\"PicklistOption.Add_Employee.prefix.3\":\" Mme. \",\"Languages List.pt\":\" Portugais \",\"PicklistOption.Add_Employee.prefix.2\":\" Madame. \",\"FormField.Add_Employee.Select_Privilege\":\"Sélectionner le privilège\",\"Form.Raise_an_Idea\":\"Élever une idée\",\"FormButton.Add_Employee.update\":\" Mettre à jour \",\"Languages List.pl\":\" polonais \",\"PicklistOption.Add_Employee.Select_Privilege.1\":\"1er approbateur (plomb)\",\"Languages List.zh\":\" chinois \",\"Languages List.iw\":\" hébreu \",\"PicklistOption.Add_Employee.Select_Privilege.2\":\"2e approbateur (gestionnaire)\",\"Languages List.ar\":\" arabe \",\"FormField.Add_Employee.Name\":\"prénom\",\"Languages List.af\":\" afrikaans \",\"Languages List.is\":\" islandais \",\"FormField.Add_Employee.Phone_Number\":\"Numéro de téléphone\",\"Report.All_Employees\":\" Tous les employés \",\"Languages List.it\":\" italien \",\"FormField.Add_Employee.suffix\":\" Suffixe \",\"Form.Add_Employee\":\" Ajouter un employé \",\"FormField.Add_Employee.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"ReportField.All_Employees.Give_Approval_Privileges\":\"Privilèges d'approbation\",\"FormField.Add_Employee.prefix\":\" Préfixe \",\"CompositeSubFields.Add_Employee.Name.last_name\":\" Nom de famille \",\"FormField.Add_Employee.Email_Id\":\" Identifiant Email \",\"ReportField.Ballot.Raised_By\":\"Élevé par\",\"ReportField.All_Raised_Ideas.Approver_2\":\"Approbateur 2\",\"FormField.Add_Employee.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"ReportField.All_Employees.Select_Privilege\":\" Sélectionner le privilège \",\"FormButton.Add_Employee.cancel\":\" Annuler \",\"Languages List.fr\":\" français \",\"Languages List.nl\":\" néerlandais \",\"ReportField.Ballot.Approval_Status\":\"Statut approuvé\",\"FormField.Add_Employee.Modified_Time\":\" Heure modifiée \",\"Languages List.no\":\" norvégien \",\"Languages List.fi\":\" Finnois \",\"FormField.Add_Employee.Give_Approval_Privileges\":\" Accorder des privilèges d'approbation \",\"FormField.Add_Employee.Modified_User\":\" Utilisateur modifié \",\"FormButton.Raise_an_Idea.cancel\":\"Annuler\",\"Languages List.fa\":\" persan \",\"Languages List.gu\":\" Gujarati \",\"FormField.Add_Employee.Record_Status\":\" Statut d'enregistrement \",\"Languages List.gl\":\" Galicien \",\"FormField.Add_Employee.last_name\":\" Nom de famille \",\"PicklistOption.Raise_an_Idea.Select_Second_Approver.1\":\"Sélectionner\",\"Languages List.ga\":\" irlandais \",\"FormField.Add_Company_Detail.Email\":\"Email\",\"FormButton.Add_Employee.submit\":\" Soumettre \",\"PicklistOption.Raise_an_Idea.Select_First_Approver.1\":\"Sélectionner\",\"ReportField.All_Employees.Email_Id\":\" Identifiant Email \",\"Languages List.lt\":\" lituanien \",\"ReportField.Ballot.Idea\":\"Idée\",\"FormField.Add_Employee.ID\":\" ID \",\"Languages List.lv\":\" letton \",\"Languages List.tr\":\" turc \",\"Languages List.da\":\" danois \",\"Languages List.de\":\" allemand \",\"Languages List.lo\":\" Laothian \",\"FormButton.Add_Company_Detail.update\":\"Mettre à jour\",\"FormField.Add_Employee.Added_Time\":\" Temps ajouté \",\"Languages List.cy\":\" gallois \",\"Languages List.la\":\" Latin \",\"FormField.Add_Employee.Added_User\":\" Utilisateur ajouté \",\"Languages List.tl\":\" Philippin \",\"FormButton.Add_Company_Detail.reset\":\"Réinitialiser\",\"FormButton.Raise_an_Idea.submit\":\"Soumettre\",\"Report.Ballot\":\"Idées soulevées (vote)\",\"Languages List.es\":\" Espanol \",\"ReportField.Company_Details.Email\":\"Email\",\"Languages List.eu\":\" basque \",\"ReportField.Ballot.Down_voters_list\":\"Down liste des électeurs\",\"Languages List.et\":\" estonien \",\"FormField.Add_Employee.first_name\":\" Prénom \",\"Languages List.vi\":\" vietnamien \",\"FormField.Raise_an_Idea.Select_Second_Approver\":\"Sélectionner le deuxième approbateur\",\"Languages List.ms\":\" malais \",\"Languages List.mr\":\" Marathi \",\"Languages List.el\":\" grec \",\"Languages List.mt\":\" maltais \",\"Languages List.eo\":\" espéranto \",\"Report.Company_Details\":\"Détails de la société\",\"Languages List.en\":\" Anglais \",\"CompositeSubFields.Add_Employee.Name.first_name\":\" Prénom \",\"FormButton.Add_Company_Detail.submit\":\"Ajouter\",\"FormButton.Add_Company_Detail.cancel\":\"Annuler\",\"Languages List.mk\":\" Macédonien \",\"Languages List.ur\":\" Urdu \",\"FormField.Add_Employee.Section\":\"Section\",\"PicklistOption.Raise_an_Idea.Approval_Status.1\":\"en attendant\"}}"
+}
+}

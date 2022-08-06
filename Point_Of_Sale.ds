@@ -1,0 +1,5840 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 23:32:03
+ * Version      : 1.0
+ */
+ application "Point Of Sale"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "IST"
+ 	time format = "24-hr"
+	section Admin_Dashboard
+	{
+		displayname= "Admin Dashboard"
+		icon = "ui-1-dashboard-half"
+				 page Admin_Dashboard(tes) 
+	 	 { 
+ 	 	 displayname = "Admin Dashboard" 
+
+ 	 	 icon = "" 
+	 	 Content="<zml \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"70%\"\n   \t>\n\t<dsp id='ZMLScript1'>\n\t<![CDATA[htmlpage ZMLScript1(tes)\ndisplayname = &quot;ZMLScript&quot;\ncontent\n&lt;%{\n\tif(Store_Details[ID != 0].count() == 0)\n\t{\n\t\topenUrl(&quot;#Form:Store_Details?zc_NextUrl=#Form:Add_stock&quot;,&quot;popup window&quot;);\n\t}\n\t%&gt;\n&lt;style&gt;\n\t&lt;\/style&gt;\n\t&lt;div style = &quot;width:50%;font-size:18px;&quot;&gt;&lt;b&gt;Monthly Sales&lt;\/b&gt;&lt;\/div&gt;\n&lt;iframe class=&quot;back&quot; name=&apos;chartFrame&apos; allowTransparency=&apos;true&apos; zc_mobileView=&apos;inline&apos; zc_Header=&apos;false&apos; style=&quot;border:none; margin:0px auto; width:100%;box-sizing:border-box; height:400px;&quot; src=&apos;&lt;%=zoho.appuri%&gt;report-embed\/Monthly_Sales?zc_Header=false&apos;&gt;&lt;\/iframe&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column><column\n   \t\t width=\"30%\"\n   \t>\n\t<row>\n\t<column\n   \t\t width=\"50%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#8A3DFB'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Selling_Products_Form.ID.count'\n   \t\t criteria = '(((Quantity == 0)))'\n   \t\t size = '7'\n   \t\t color = '#FFFFFF'\n   \t\t bold = 'true'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Out Of Stock Products'\n   \t\t size = '2'\n   \t\t color = '#FFFFFF'\n   \t\t fontFamily = 'Roboto-regular'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"50%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#8A3DFB'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Customers.ID.count'\n   \t\t size = '7'\n   \t\t color = 'white'\n   \t\t bold = 'true'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'No Of customers'\n   \t\t size = '2'\n   \t\t color = '#FFFFFF'\n   \t\t fontFamily = 'Roboto-regular'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Invoice.Payment.sum'\n   \t\t criteria = '(((Invoice_Date in this month)))'\n   \t\t size = '7'\n   \t\t color = '#089E3C'\n   \t\t bold = 'true'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Invoices'\n   \t\t parameters = 'Bill_Number=${tes}'\n   \t\t target = 'new-window'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'This Month Sales'\n   \t\t size = '2'\n   \t\t color = '#333333'\n   \t\t fontFamily = 'Roboto-regular'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Invoice.Payment.sum'\n   \t\t criteria = '(((Invoice_Date in this week)))'\n   \t\t size = '7'\n   \t\t color = '#FF8318'\n   \t\t bold = 'true'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'This Week Sales'\n   \t\t size = '2'\n   \t\t color = '#333333'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Invoice.Payment.sum'\n   \t\t criteria = '(((Invoice_Date is today)))'\n   \t\t size = '7'\n   \t\t color = '#8A3DFB'\n   \t\t bold = 'true'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Today Sales'\n   \t\t size = '2'\n   \t\t color = '#333333'\n   \t\t fontFamily = 'Roboto-regular'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row>\n<\/column>\n<\/row>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"70%\"\n   \t>\n\t<dsp id='ZMLScript2'>\n\t<![CDATA[htmlpage ZMLScript2(tes)\ndisplayname = &quot;ZMLScript&quot;\ncontent\n&lt;%{\n\t%&gt;\n&lt;div style = &quot;width:50%;font-size:18px;&quot;&gt;&lt;b&gt;Monthly Profit&lt;\/b&gt;&lt;\/div&gt;\n\n&lt;iframe class=&quot;back&quot; name=&apos;chartFrame&apos; allowTransparency=&apos;true&apos; zc_mobileView=&apos;inline&apos; zc_Header=&apos;false&apos; style=&quot;border:none; margin:0px auto; width:100%;box-sizing:border-box; height:400px&quot; src=&apos;&lt;%=zoho.appuri%&gt;report-embed\/Monthly_Profit?zc_Header=false&apos;&gt;&lt;\/iframe&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column><column\n   \t\t width=\"30%\"\n   \t>\n\t<dsp id='ZMLScript3'>\n\t<![CDATA[htmlpage ZMLScript3(tes)\ndisplayname = &quot;ZMLScript&quot;\ncontent\n&lt;%{\n\t%&gt;\n&lt;div style = &quot;width:50%;font-size:18px;&quot;&gt;&lt;b&gt;Most Sold Products&lt;\/b&gt;&lt;\/div&gt;\n&lt;iframe class=&quot;back&quot; name=&apos;chartFrame&apos; allowTransparency=&apos;true&apos; zc_mobileView=&apos;inline&apos; zc_Header=&apos;false&apos; style=&quot;border:none; margin:0px auto; width:100%;box-sizing:border-box; height:400px&quot; src=&apos;&lt;%=zoho.appuri%&gt;report-embed\/Most_Sold_Products?zc_Header=false&apos;&gt;&lt;\/iframe&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Monthly_Sales'\n   \t\t heightType = 'auto'\n   \t\t heightValue = '700'\n   \t\t iszreport = 'true'\n\n\/>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+	}
+	section Stock
+	{
+		icon = "design-app"
+		form Add_stock
+		{
+			displayname = "Add Stock"
+			store data in zc = false
+			success message = "Data Added Successfully!"
+			field alignment = left
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Barcode_Number
+			(
+    			type = text
+				displayname = "Barcode Number"
+				barcode = true
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Cost_Price
+			(
+				displayname = "Cost Price"
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Product
+			(
+				type = picklist
+				values  = add_product.ID
+    			displayformat = [Product_name + " - " + Weight_Volume_Size]
+				allow new entries = true
+				[
+					displayname = "Add New product"
+					alignment = bottom
+				]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Selling_Price
+			(
+				displayname = "Selling Price"
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Quantity
+			(
+				type = number
+				maxchar = 12
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Image_Show
+			(
+    			type = plaintext
+				value = "<div style=\"text-align: center\"><br /></div>"
+	 			row = 1
+	 			column = 2   
+				width = 300px
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				Submit
+				(
+   					type = button
+   					displayname = "Submit"
+				)
+				Reset
+				(
+   					type = reset
+   					displayname = "Reset"
+				)
+			}
+		}
+		custom Current_Stock_Products
+		{
+			displayName = "Current Stock Products"
+			show all rows from Selling_Products_Form  [Quantity != 0]  
+			(
+				Product.Weight_Volume_Size as "Weight/Volume/Size"
+				Product
+				Product_bar_code
+				Bar_code_Image as "Bar code Image"
+				Cost_price as "Cost Price"
+				Selling_price as "Selling price"
+				Quantity
+			)
+			options
+			(
+				icon = "location-route-open"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Product
+							Product.Weight_Volume_Size as "Weight/Volume/Size"
+							Cost_price as "Cost Price"
+							Selling_price as "Selling price"
+							Quantity
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Product
+							Product_bar_code
+							Cost_price as "Cost Price"
+							Selling_price as "Selling price"
+							Quantity
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Product"
+		     			related field =  Product[Quantity != 0]
+						fields
+						(
+							Product_ID as "Product ID"
+							Product_name as "Product Name"
+							Weight_Volume_Size as "Weight/Volume/Size"
+							Sold_quantity_this_month as "Sold quantity this month"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		custom Out_of_stock_Products
+		{
+			displayName = "Out Of Stock Products"
+			show all rows from Selling_Products_Form  [Quantity < 1]  
+			(
+				Product.Category
+				Product.Product_vendor as "Vendor"
+				Product.Weight_Volume_Size as "Weight/Volume/Size"
+				Product
+				Product_bar_code
+				Bar_code_Image as "Bar code Image"
+				Cost_price as "Cost Price"
+				Selling_price as "Selling price"
+				Quantity
+			)
+			options
+			(
+				icon = "location-route-alert"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Product
+							Product.Weight_Volume_Size as "Weight/Volume/Size"
+							Cost_price as "Cost Price"
+							Selling_price as "Selling price"
+							Product.Product_vendor as "Vendor"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Product
+							Product_bar_code
+							Bar_code_Image as "Bar code Image"
+							Cost_price as "Cost Price"
+							Selling_price as "Selling price"
+							Quantity
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Product"
+		     			related field =  Product[Quantity < 1]
+						fields
+						(
+							Product_ID as "Product ID"
+							Product_name as "Product Name"
+							Weight_Volume_Size as "Weight/Volume/Size"
+							Category
+							Product_vendor as "Vendor"
+							Sold_quantity_this_month as "Sold quantity this month"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Product
+		{
+			displayName = "All Products"
+			show all rows from add_product    
+			(
+				Product_vendor as "Vendor"
+				Category.Category
+				Product_ID as "Product ID"
+				Product_name as "Product Name"
+				Weight_Volume_Size as "Weight/Volume/Size"
+				Sold_quantity_this_month as "Sold quantity this month"
+				Category
+			)
+			options
+			(
+				icon = "design-app"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Product_name as "Product Name"
+							Weight_Volume_Size as "Weight/Volume/Size"
+							Category
+							Product_vendor as "Vendor"
+							Sold_quantity_this_month as "Sold quantity this month"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Product_name as "Product Name"
+							Weight_Volume_Size as "Weight/Volume/Size"
+							Category
+							Sold_quantity_this_month as "Sold quantity this month"
+						)
+					)
+					datablock3
+					(
+			 			layout type = 4
+		     			title = "Vendor"
+		     			related field =  Product_vendor
+						fields
+						(
+							Vendor_Name as "Name"
+							Address
+							Email
+							Phone_Number as "Phone Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Bill_form
+	{
+		displayname= "Billing"
+		icon = "business-calculator"
+		form Add_Invoice
+		{
+			displayname = "Add Invoice"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Invoice_Date
+			(
+    			type = date
+				displayname = "Invoice Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Bill_number
+			(
+    			type = autonumber
+				displayname = "Bill No"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Customer
+			(
+				type = picklist
+				values  = Add_Customers.ID
+    			displayformat = [" " + Phone_number + " - " + Name.first_name]
+				allow new entries = true
+				[
+					displayname = "Add New Customer"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Buying_products
+			(
+				type = grid
+				displayname = "Bill Items"
+				defaultrow = 1
+	    
+				must have Bar_code
+				(
+    				type = text
+					displayname = "Barcode"
+					maxchar = 254
+					width = 150px
+				)
+				must have Product
+				(
+					type = picklist
+					values  = add_product.ID
+    				displayformat = [Product_name + " - " + Weight_Volume_Size]
+					searchable = true
+					sortorder = ascending
+					width = 230px
+				)
+				Price
+				(
+					type = USD
+					initial value = 00
+					maxchar = 5
+					width = 150px
+				)
+				must have Quantity
+				(
+					type = number
+					initial value = 0
+					width = 100px
+				)
+				discount_percent
+				(
+    				type = percentage
+					displayname = "Discount"
+					initial value = 0%
+					width = 100px
+				)
+				Subtotal
+				(
+					type = USD
+					initial value = 00
+					width = 150px
+				)
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Amounts
+			(
+				type = section
+	 			row = 3
+	 			column = 0   
+				width = medium
+			)
+			must have Total
+			(
+				type = USD
+				initial value = 00
+				maxchar = 5
+	 			row = 3
+	 			column = 1   
+				width = 200px
+			)
+			Discount_Percentage
+			(
+    			type = percentage
+				displayname = "Discount Percentage"
+				initial value = 0%
+	 			row = 3
+	 			column = 1   
+				width = 200px
+			)
+			Tax
+			(
+    			type = percentage
+				initial value = 0%
+	 			row = 3
+	 			column = 1   
+				width = 200px
+			)
+			must have Payment
+			(
+				type = USD
+				initial value = 00
+				maxchar = 5
+	 			row = 3
+	 			column = 1   
+				width = 200px
+			)
+			Profit
+			(
+				type = USD
+				initial value = 00
+	 			row = 3
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "shopping-bag-add-18"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Invoices
+		{
+			displayName = "Invoices"
+			show all rows from Add_Invoice    
+			(
+				Buying_products.Product as "Bill Items"
+				(
+					isLinkEnabled = true
+				)
+				Added_Time as "Added Time"
+				custom action "View Inoice"
+				(
+	  			workflow = View_Inoice
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "View Inoice"
+				success message = ""
+				)
+				Customer.Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Customer
+				Invoice_Date as "Invoice Date"
+				Profit
+				Buying_products.Bar_code as "Bill Items"
+				Tax
+				Payment
+				Discount_Percentage as "Discount Percentage"
+				Total
+				Bill_number as "Bill No"
+			)
+			group by
+			(
+				Invoice_Date ascending
+			)
+			options
+			(
+				icon = "social-1-logo-shopify"
+	 		)
+			conditional formatting
+			(
+				"current user added bills"
+				{
+				fields = [Buying_products.Product, Added_Time, Customer, Profit, Tax, Payment, Discount_Percentage, Total, Bill_number]
+				format = "font-weight:bold;color:#000000;background-color:#ffffff;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Bill_number as "Bill No"
+							Customer
+							Buying_products.Product as "Bill Items"
+							Total
+							Discount_Percentage as "Discount Percentage"
+							Payment
+							Tax
+							Profit
+							Invoice_Date as "Invoice Date"
+							Added_Time as "Added Time"
+				"View Inoice"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+								"View Inoice"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Bill_number as "Bill No"
+							Customer
+							Buying_products.Product as "Bill Items"
+							Total
+							Discount_Percentage as "Discount Percentage"
+							Payment
+							Tax
+							Profit
+							Invoice_Date as "Invoice Date"
+							Added_Time as "Added Time"
+				"View Inoice"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Members
+	{
+		displayname= "Customers"
+		icon = "users-multiple-11"
+		form Add_Customers
+		{
+			displayname = "Add Customers"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Customer_ID
+			(
+    			type = autonumber
+				displayname = "Customer ID"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Phone_number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Purchased_amount_till_now
+			(
+				displayname = "Purchased amount"
+				type = INR
+				initial value = 00
+				maxchar = 6
+				private = true
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "users-2-a-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Customers
+		{
+			displayName = "Customers"
+			show all rows from Add_Customers    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				custom action "View History"
+				(
+	  			workflow = View_invoice_history_scri
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "View History"
+				)
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	 			)
+				Purchased_amount_till_now as "Purchased amount"
+				Phone_number as "Phone Number"
+				Email
+				Customer_ID as "Customer ID"
+			)
+			options
+			(
+				icon = "users-multiple-19"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Customer_ID as "Customer ID"
+							Name
+							Phone_number as "Phone Number"
+							Email
+							Address
+							Purchased_amount_till_now as "Purchased amount"
+				"View History"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"View History"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Address
+							Customer_ID as "Customer ID"
+							Email
+							Phone_number as "Phone Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+			 			"View History"
+    	 			)
+    			)
+			)
+		}
+	}
+	section Discount
+	{
+		icon = "shopping-discount"
+		form Add_Discount
+		{
+			displayname = "Add Discount"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have From
+			(
+    			type = date
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have To
+			(
+    			type = date
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Discount_Type
+			(
+				type = radiobuttons
+				displayname = "Discount Type"
+				values = {"Product wise discount", "Total price discount"}
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Products
+			(
+				type = list
+				values  = add_product.ID
+    			displayformat = [Product_name + " -" + Weight_Volume_Size]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Click_here_to_give_discount_all_products
+			(
+    			type = checkbox
+				displayname = "Discount for all products"
+				initial value = false
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Click_here_to_quantity_based_discount
+			(
+    			type = checkbox
+				displayname = "Quantity based discount"
+				initial value = false
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Quantity
+			(
+				type = number
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Total_price
+			(
+				displayname = "Total Price"
+				type = INR
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Discount_percent
+			(
+    			type = percentage
+				displayname = "Discount Percent"
+				initial value = 0%
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Product_Wise_Discount
+		{
+			displayName = "Product Wise Discount"
+			show all rows from Add_Discount  [Discount_Type == "Product wise discount"]  
+			(
+				Discount_Type as "Discount Type"
+				Click_here_to_give_discount_all_products as "Discount for all products"
+				From
+				To
+				Quantity
+				Discount_percent as "Discount Percent"
+				Products
+			)
+			group by
+			(
+				Discount_Type ascending
+			)
+			options
+			(
+				icon = "shopping-stock"
+	 		)
+			conditional formatting
+			(
+				"current discouont"
+				{
+				fields = [Click_here_to_give_discount_all_products, From, To, Quantity, Discount_percent, Products]
+				format = "font-weight:bold;color:#000000;background-color:#e8e6e1;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Discount_Type as "Discount Type"
+							Products
+							Click_here_to_give_discount_all_products as "Discount for all products"
+							From
+							To
+							Quantity
+							Discount_percent as "Discount Percent"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Discount Details"
+						fields
+						(
+							Discount_Type as "Discount Type"
+							From
+							To
+							Quantity
+							Discount_percent as "Discount Percent"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Products"
+		     			related field =  Products[Discount_Type == "Product wise discount"]
+						fields
+						(
+							Product_ID as "Product ID"
+							Product_name as "Product Name"
+							Weight_Volume_Size as "Weight/Volume/Size"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Price_Dise_Discount
+		{
+			displayName = "Price Wise Discount"
+			show all rows from Add_Discount  [Discount_Type == "Price wise discount"]  
+			(
+				Discount_Type as "Discount Type"
+				From
+				To
+				Total_price as "Total Price"
+				Discount_percent as "Discount Percent"
+			)
+			group by
+			(
+				Discount_Type ascending
+			)
+			options
+			(
+				icon = "business-currency-dollar"
+	 		)
+			conditional formatting
+			(
+				"curent discount"
+				{
+				fields = [From, To, Total_price, Discount_percent]
+				format = "font-weight:bold;color:#000000;background-color:#f2f2f2;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Discount_Type as "Discount Type"
+							From
+							To
+							Total_price as "Total Price"
+							Discount_percent as "Discount Percent"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Discount_Type as "Discount Type"
+							Total_price as "Total Price"
+							From
+							To
+							Discount_percent as "Discount Percent"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Item_categories
+	{
+		displayname= "Settings"
+		icon = "ui-1-settings-gear-64"
+		list Categories11
+		{
+			displayName = "Categories"
+			show all rows from categories    
+			(
+				Category
+			)
+			options
+			(
+				icon = "design-2-microsoft"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Category
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Category
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Vendors
+		{
+			displayName = "Vendors"
+			show all rows from Add_Vendor    
+			(
+				Vendor_Name  as "Name"
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	 			)
+				Email
+				Phone_Number as "Phone Number"
+			)
+			options
+			(
+				icon = "users-network"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Vendor_Name as "Name"
+							Phone_Number as "Phone Number"
+							Email
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Vendor_Name as "Name"
+							Email
+							Phone_Number as "Phone Number"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Store_Details1
+		{
+			displayName = "Store Details"
+			show all rows from Store_Details    
+			(
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	 			)
+				Email
+				Store_name as "Store Name"
+				Phone_Number as "Phone Number"
+			)
+			options
+			(
+				icon = "business-building"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Store_name as "Store Name"
+							Email
+							Phone_Number as "Phone Number"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Store_name as "Store Name"
+							Email
+							Phone_Number as "Phone Number"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		custom Cashiers
+		{
+			displayName = "Cashiers"
+			show all rows from Add_Cashier    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	 			)
+				Email
+				Mobile_Number as "Mobile Number"
+			)
+			options
+			(
+				icon = "business-coins"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Address
+							Mobile_Number as "Mobile Number"
+							Email
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Mobile_Number as "Mobile Number"
+							Email
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Charts
+	{
+		hide = true
+		icon = "business-chart-pie-36"
+		pivotchart Monthly_Sales
+		{ 
+			displayname = "Monthly Sales"
+			based on Autoview_1501241318421_Add_Invoice
+					hide = true
+							icon = "health-pulse-chart"				show all rows from Add_Invoice
+				(
+ 					Bill_number  as "Bill No"
+ 					Customer 
+ 					Payment 
+ 					Invoice_Date  as "Invoice Date"
+ 					Discount_Percentage  as "Discount Percentage"
+ 					Tax 
+ 					Profit 
+ 					Total 
+				)
+		}
+		pivotchart Monthly_Profit
+		{ 
+			displayname = "Monthly Profit"
+			based on Autoview_1501241318421_Add_Invoice
+					hide = true
+							icon = "ui-3-chart-bars"				show all rows from Add_Invoice
+				(
+ 					Bill_number  as "Bill No"
+ 					Customer 
+ 					Payment 
+ 					Invoice_Date  as "Invoice Date"
+ 					Discount_Percentage  as "Discount Percentage"
+ 					Tax 
+ 					Profit 
+ 					Total 
+				)
+		}
+		pivotchart Most_Sold_Products
+		{ 
+			displayname = "Most Sold Products"
+			based on Autoview_1501241708382_add_product
+					hide = true
+							icon = "business-chart-pie-36"				show all rows from add_product
+				(
+ 					Added_Time  as "Added Time"
+ 					Product_ID  as "Product ID"
+ 					Product_vendor  as "Vendor"
+ 					Sold_quantity_this_month  as "Sold quantity this month"
+ 					Weight_Volume_Size  as "Weight/Volume/Size"
+ 					Category 
+ 					Product_name  as "Product Name"
+				)
+		}
+	}
+	section hidden_contents
+	{
+		displayname= "hidden contents"
+		hide = true
+		icon = "ui-1-eye-ban-20"
+		form add_product
+		{
+			displayname = "Add Product"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Product_ID
+			(
+    			type = autonumber
+				displayname = "Product ID"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Product_name
+			(
+    			type = text
+				displayname = "Product Name"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Weight_Volume_Size
+			(
+    			type = text
+				displayname = "Weight/Volume/Size"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Category
+			(
+				type = picklist
+				values  = categories.ID
+    			displayformat = [Category]
+				allow new entries = true
+				[
+					displayname = "Add New Category"
+					alignment = bottom
+				]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Product_vendor
+			(
+				type = picklist
+				displayname = "Vendor"
+				values  = Add_Vendor.ID
+    			displayformat = [Email + " - " + Vendor_Name.first_name]
+				allow new entries = true
+				[
+					displayname = "Add New Vendor"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Sold_quantity_this_month
+			(
+				type = number
+				displayname = "Sold quantity this month"
+				initial value = 0
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form categories
+		{
+			displayname = "Categories"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			must have Category
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Vendor
+		{
+			displayname = "Add Vendor"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			must have Vendor_Name
+			(
+    			type = name
+				displayname = "Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			unique Email
+			(
+    			type = email
+	 			row = 2
+	 			column = 1   
+				width = 200px
+			)
+			must have Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 5
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Selling_Products_Form
+		{
+			displayname = "Selling Products Form"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Product
+			(
+				type = picklist
+				values  = add_product.ID
+    			displayformat = [Product_name + " - " + Weight_Volume_Size]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have unique Product_bar_code
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Cost_price
+			(
+				displayname = "Cost Price"
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Selling_price
+			(
+				displayname = "Selling price"
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Bar_code_Image
+			(
+    			type = image
+				displayname = "Bar code Image"
+				source  = file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Quantity
+			(
+				type = number
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Store_Details
+		{
+			displayname = "Store  Details"
+			success message = "Store Details Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			must have Store_name
+			(
+    			type = text
+				displayname = "Store Name"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email
+			(
+    			type = email
+	 			row = 3
+	 			column = 1   
+				width = 200px
+			)
+			must have Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 5
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		properties
+		{
+			total entries
+			{
+				allowed count = 1
+			}
+		}
+		}
+		form Add_Cashier
+		{
+			displayname = "Add Cashier"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Mobile_Number
+			(
+    			type = phonenumber
+				displayname = "Mobile Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+				 page Invoice(bill_details) 
+	 	 { 
+ 	 	 displayname = "Invoice" 
+
+ 	 	 icon = "" 
+
+ 	 	 hide =  true
+	 	 Content="<zml \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dsp id='Invoice1'>\n\t<![CDATA[htmlpage Invoice1(bill_details)\ncontent\n&lt;%{\n\tbill = Add_Invoice[Bill_number == bill_details.toLong()];\n\t%&gt;\n&lt;style&gt;\n\t\t\t\t#main_container {\n\t\t\t\t\tposition: relative;\n\t\t\t\t\tmargin: 3% auto;\n\t\t\t\t\tfont-size: 16px;\n\t\t\t\t\tbackground: white;\n\t\t\t\t\tborder:4px double rgba(91, 64, 81, 0.32);\n\t\t\t\t\tpadding:2% 6%;\n\t\t\t\t}\n\t\t\t\t#Customer_details {\n\t\t\t\t\theight: 40%;\n\t\t\t\t\tpadding-bottom: 5px;\n\t\t\t\t\tclear: both;\n\t\t\t\t\tfont-size: 20px;\n\t\t\t\t\tmargin: 1%;\n\t\t\t\t\tcolor: #535353;\n\t\t\t\t}\n\t\t\t\t#Store_details {\n\t\t\t\t\twidth: 40%;\n\t\t\t\t\tbox-sizing: border-box;\n\t\t\t\t\tdisplay: inline-block;\n\t\t\t\t\tmargin: 1% 1%;\n\t\t\t\t\tfont-size: 20px;\n\t\t\t\t\tfloat: left;\n\t\t\t\t}\n\t\t\t\t#bill_details {\n\t\t\t\t\theight: 5%;\n\t\t\t\t\tfloat: right;\n\t\t\t\t\tpadding-bottom: 5px;\n\t\t\t\t\tmargin-top: 1%;\n\t\t\t\t}\n\t\t\t\t#product_list {\n\t\t\t\t\tfont-family: arial, sans-serif;\n\t\t\t\t\tborder-collapse: collapse;\n\t\t\t\t\twidth: 100%;\n\t\t\t\t\t\n\t\t\t\t}\n\t\t\t\tth{\n\t\t\t\t\tbackground-color:  #dddddd;\n\t\t\t\t\t\n\t\t\t\t\tpadding: 8px;\n\t\t\t\t}\n\t\t\t\t#product_list td {\n\t\t\t\t\ttext-align:center;\n\t\t\t\t\theight: 50px;\n\t\t\t\t}\n\t\t\t\t#Payment_process {\n\t\t\t\t\twidth: 30%;\n\t\t\t\t\tfloat: left;\n\t\t\t\t}\n\t\t\t\t#total_no_of_pro{\n\t\t\t\t    padding:3%;\n\t\t\t\t\tfloat:left;\n\t\t\t\t\twidth:30%;\n\t\t\t\t\ttext-align:center;\n\t\t\t\t}\n\t\t\t\t#payment_div{\n\t\t\t\t\tpadding:2%;\n\t\t\t\t\ttext-align:right;\n\t\t\t\t\tfloat:right;\n\t\t\t\t\twidth: 30%;\n\t\t\t\t}\n\t\t\t&lt;\/style&gt;\n\t\t\t\t&lt;div id=&quot;main_container&quot;&gt;\n&lt;%\n\tStore = Store_Details[ID != 0];\n\t%&gt;\n&lt;div id=&quot;Store_details&quot;&gt; &lt;b style=&quot;font-size: 25px;&quot;&gt;&lt;%=Store.Store_name%&gt;&lt;\/b&gt;&lt;br&gt;\n\t\t\t&lt;div style=&quot;font-size: 15px;color: #515151;word-break: initial;display:inline&quot;&gt;\n\t\t\t\t\t\t\t&lt;%=Store.Address%&gt;&lt;\/div&gt;\n\t\t\t\t\t&lt;\/div&gt;\t\n\t\t\t\t\n\t\t\t\t\t&lt;div id=&quot;bill_details&quot;&gt;  &lt;b&gt;Bill No: &lt;\/b&gt;&lt;%=bill.Bill_number%&gt; &lt;div&gt; &lt;%=zoho.currenttime%&gt; &lt;\/div&gt;&lt;\/div&gt;\n\t\t\t\t\n\t\t\t\t\t&lt;div id=&quot;Customer_details&quot;&gt;\n&lt;%\n\tcustomer = Add_Customers[ID == bill.Customer];\n\tif(customer.count() &gt; 0)\n\t{\n\t\t%&gt;\n&lt;%=customer.Name%&gt; -# &lt;%=customer.Customer_ID%&gt;\n&lt;%\n\t}\n\t%&gt;\n&lt;\/div&gt;\n\t\t\t\n\t\t\t\t\t&lt;table id=&quot;product_list&quot;&gt;\n\t\t\t\t\t\t&lt;tr&gt;\n\t\t\t\t\t\t\t&lt;th&gt;&lt;b&gt;S.No&lt;\/b&gt;&lt;\/td&gt;\n\t\t\t\t\t\t\t&lt;th&gt;&lt;b&gt;Product&lt;\/b&gt;&lt;\/th&gt;\n\t\t\t\t\t\t\t&lt;th&gt;&lt;b&gt;Price ( $ )&lt;\/b&gt;&lt;\/th&gt;\n\t\t\t\t\t\t\t&lt;th&gt;&lt;b&gt;Quantity&lt;\/b&gt;&lt;\/th&gt;\n\t\t\t\t\t\t\t&lt;th&gt;&lt;b&gt;Discount ( % )&lt;\/b&gt;&lt;\/th&gt;\n\t\t\t\t\t\t\t&lt;th&gt;&lt;b&gt;Subtotal ( $ )&lt;\/b&gt;&lt;\/th&gt;\n\t\t\t\t\t\t&lt;\/tr&gt;\n&lt;%\n\tproduct_quantity = 0;\n\titems_quantity = 0;\n\tslno = 0;\n\tfor each  Buying_product in bill.Buying_products\n\t{\n\t\tproduct_quantity = product_quantity + 1;\n\t\titems_quantity = items_quantity + Buying_product.Quantity;\n\t\t%&gt;\n&lt;tr&gt;\n&lt;%\n\t\tslno = slno + 1;\n\t\t%&gt;\n&lt;td style = &quot;width=3%&quot;&gt;&lt;%=slno%&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;%=Buying_product.Product.Product_name%&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;%=Buying_product.Price%&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;%=Buying_product.Quantity%&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;%=Buying_product.discount_percent%&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;%=Buying_product.Subtotal%&gt;&lt;\/td&gt;\n\t\t\t\t\t&lt;\/tr&gt;\n&lt;%\n\t}\n\t%&gt;\n&lt;tr&gt;\n\t\t\t\t\t\t&lt;th &gt;&lt;\/th&gt;\n\t\t\t\t\t\t&lt;th &gt;&lt;\/th&gt;\n\t\t\t\t\t\t&lt;th &gt;&lt;\/th&gt;\n\t\t\t\t\t\t&lt;th style = &quot;font-size:90%&quot;&gt;&lt;%=items_quantity%&gt;&lt;\/th&gt;\n\t\t\t\t\t\t&lt;th&gt;&lt;b&gt;Total Amount&lt;\/b&gt;&lt;\/th&gt;\n\t\t\t\t\t\t&lt;th&gt;&lt;b&gt;$&lt;%=bill.Total%&gt; &lt;\/b&gt;&lt;\/th&gt;\n\t\t\t\t\t&lt;\/tr&gt;\n\t\t\t\t\t&lt;tr&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;b&gt;Discount &lt;\/b&gt;( &lt;%=bill.Discount_Percentage%&gt;%)&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt; $&lt;%=bill.Discount_Percentage \/ 100 * bill.Total%&gt;&lt;\/td&gt;\n\t\t\t\t\t&lt;\/tr&gt;\n\t\t\t\t\t&lt;tr&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;b&gt;Tax&lt;\/b&gt; (&lt;%=bill.Tax%&gt;%)&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt; $&lt;%=bill.Tax \/ 100 * bill.Total%&gt;&lt;\/td&gt;\n\t\t\t\t\t&lt;\/tr&gt;\n\t\t\t\t\t&lt;tr&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;td&gt;&lt;\/td&gt;\n\t\t\t\t\t\t&lt;th style = &quot;font-size:150%&quot;&gt;&lt;b&gt;Payment&lt;\/b&gt;&lt;\/th&gt;\n\t\t\t\t\t\t&lt;th style = &quot;font-size:150%&quot;&gt;&lt;b&gt;$&lt;%=bill.Payment%&gt;&lt;\/b&gt;&lt;\/th&gt;\t\n\t\t\t\t\t&lt;\/tr&gt;\n\t\t\t\t&lt;table&gt;\n\t\t\t\t\n\t\t\t\t\n\t\t\t&lt;\/div&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+	}
+	section Sales___Profit
+	{
+		displayname= "Sales & Profit"
+		hide = true
+		icon = "business-chart-bar-33"
+		list This_Month_sale
+		{
+			displayName = "This Month sale"
+   			hide = true
+			show all rows from Add_Invoice  [Added_Time in this month]  
+			(
+				Invoice_Date as "Invoice Date"
+				Discount_Percentage as "Discount Percentage"
+				Total
+				Tax
+				Payment
+				Profit
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Invoice_Date as "Invoice Date"
+							Discount_Percentage as "Discount Percentage"
+							Total
+							Tax
+							Payment
+							Profit
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Invoice_Date as "Invoice Date"
+							Discount_Percentage as "Discount Percentage"
+							Total
+							Tax
+							Payment
+							Profit
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list This_Month_Sales
+		{
+			displayName = "This Month Sales"
+   			hide = true
+			show all rows from Add_Invoice  [Added_Time in this month]  
+			(
+				Invoice_Date as "Invoice Date"
+				Total
+				(
+					display = total	
+				)
+				Discount_Percentage as "Discount Percentage"
+				(
+					display = average	
+				)
+				Tax
+				(
+					display = average	
+				)
+				Payment
+				(
+					display = total	
+				)
+			)
+			group by
+			(
+				Invoice_Date ascending
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Invoice_Date as "Invoice Date"
+							Total
+							Discount_Percentage as "Discount Percentage"
+							Tax
+							Payment
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Invoice_Date as "Invoice Date"
+							Total
+							Discount_Percentage as "Discount Percentage"
+							Tax
+							Payment
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list This_Week_Sales
+		{
+			displayName = "This Week Sales"
+   			hide = true
+			show all rows from Add_Invoice  [Added_Time in this week]  
+			(
+				Invoice_Date as "Invoice Date"
+				Total
+				(
+					display = total	
+				)
+				Discount_Percentage as "Discount Percentage"
+				(
+					display = average	
+				)
+				Tax
+				(
+					display = average	
+				)
+				Payment
+				(
+					display = total	
+				)
+			)
+			group by
+			(
+				Invoice_Date ascending
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Invoice_Date as "Invoice Date"
+							Total
+							Discount_Percentage as "Discount Percentage"
+							Tax
+							Payment
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Invoice_Date as "Invoice Date"
+							Total
+							Discount_Percentage as "Discount Percentage"
+							Tax
+							Payment
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Today_Sales
+		{
+			displayName = "Today Sales"
+   			hide = true
+			show all rows from Add_Invoice  [Added_Time == today]  
+			(
+				Invoice_Date as "Invoice Date"
+				Total
+				(
+					display = total	
+				)
+				Discount_Percentage as "Discount Percentage"
+				(
+					display = average	
+				)
+				Tax
+				(
+					display = average	
+				)
+				Payment
+				(
+					display = total	
+				)
+				Profit
+				(
+					display = total	
+				)
+			)
+			group by
+			(
+				Invoice_Date ascending
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Invoice_Date as "Invoice Date"
+							Total
+							Discount_Percentage as "Discount Percentage"
+							Tax
+							Payment
+							Profit
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Invoice_Date as "Invoice Date"
+							Total
+							Discount_Percentage as "Discount Percentage"
+							Tax
+							Payment
+							Profit
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	functions
+	{
+ 			void CustomAction.viewAction(int thisInvoiceId)
+			{
+				billNo = Add_Invoice[ID = thisInvoiceId].Bill_number;
+				openUrl(zoho.appuri + "#Page:Invoice?bill_details=" + billNo,"popup window","width=900px");
+			}
+ 			void CustomAction.getCustomerBills(int currentCustomerID)
+			{
+				cust = Add_Customers[ID == currentCustomerID];
+				openUrl(zoho.appuri + "#Report:Invoices?Customer=" + encodeUrl(cust.Phone_number) + "&Customer_op=26","popup window");
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Submit_Actions as "Submit"
+			{
+				type =  form
+				form = Add_stock
+				button = Submit
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						current_pro = Selling_Products_Form[Product_bar_code == input.Barcode_Number];
+										if(current_pro.count() == 0)
+										{
+											//Here we are adding the product in 'Selling Products Form' if the selected product is not available
+											insert into Selling_Products_Form
+											[
+												Product_bar_code=input.Barcode_Number
+												Product=input.Product
+												Cost_price=input.Cost_Price
+												Selling_price=input.Selling_Price
+												Quantity=input.Quantity
+												Added_User=zoho.loginuser
+												Bar_code_Image="<img src = 'http://barcodes4.me/barcode/c128a/" + input.Barcode_Number + ".jpg'></img>"
+											]
+										}
+										else
+										{
+											//Here we are updating the product details in 'Selling Products Form' if selected product is already available
+											current_pro.Cost_price=input.Cost_Price;
+											current_pro.Selling_price=input.Selling_Price;
+											current_pro.Quantity=input.Quantity + current_pro.Quantity;
+										}
+					)
+					}
+				}
+			}
+			Product_wise_discount1 as "Product wise discount"
+			{
+				type =  form
+				form = Add_Discount
+				record event = on add or edit
+
+	field rules
+	{
+					actions  (Discount_Type == "Product wise discount")
+					{
+						show Products,Click_here_to_give_discount_all_products,Click_here_to_quantity_based_discount;
+					}
+	}
+
+			}
+			quantity_based_discount1 as "quantity based discount"
+			{
+				type =  form
+				form = Add_Discount
+				record event = on add or edit
+
+	field rules
+	{
+					actions  (Click_here_to_quantity_based_discount == true)
+					{
+						show Quantity;
+					}
+	}
+
+			}
+			Show_total_price_discount1 as "Show total price discount fields"
+			{
+				type =  form
+				form = Add_Discount
+				record event = on add or edit
+
+	field rules
+	{
+					actions  (Discount_Type == "Total price discount")
+					{
+						show Total_price;
+					}
+	}
+
+			}
+			Unassociated_Task as "Unassociated Task"
+			{
+				type =  form
+				form = Add_Discount
+				record event = on add
+					status = inactive
+
+	field rules
+	{
+					actions 
+					{
+						hide Products;
+					}
+	}
+
+			}
+			Create_record_scripts7 as "Create record scripts"
+			{
+				type =  form
+				form = Add_stock
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Image_Show;
+						)
+					}
+	}
+
+			}
+			Field_scripts3 as "Field scripts"
+			{
+				type =  form
+				form = Add_stock
+				record event = on add or edit
+
+	on user input of Barcode_Number
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											bar_code = Selling_Products_Form[Product_bar_code == input.Barcode_Number];
+										if(bar_code.count() != 0)
+										{
+											//Here we are prefilling the fields if the given barcode is already exist
+											input.Product = bar_code.Product;
+											disable Product;
+											input.Cost_Price = bar_code.Cost_price;
+											input.Selling_Price = bar_code.Selling_price;
+										}
+										else
+										{
+											input.Product = null;
+											enable Product;
+											input.Cost_Price = null;
+											input.Selling_Price = null;
+										}
+										//Generating the product barcode
+										input.Image_Show = "Barcode<br><img src = 'http://barcodes4.me/barcode/c128a/" + input.Barcode_Number + ".jpg'></img>";
+										show Image_Show;
+						)
+					}
+	}
+
+			}
+			Create_record_scripts8 as "Create record scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											disable Total;
+										disable Discount_Percentage;
+										disable Payment;
+										disable Buying_products.Subtotal;
+										disable Buying_products.Price;
+										disable Buying_products.discount_percent;
+										input.Invoice_Date = zoho.currentdate;
+										disable Invoice_Date;
+										hide Profit;
+						)
+					}
+	}
+
+			}
+			Create_record_scripts9 as "Create record scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Updating no of products sold in this month to Product form
+										for each  Buying_product in input.Buying_products
+										{
+											stock_product = Selling_Products_Form[Product_bar_code == Buying_product.Bar_code];
+											stock_product.Quantity=stock_product.Quantity - Buying_product.Quantity;
+											add_product = add_product[ID == stock_product.Product];
+											add_product.Sold_quantity_this_month=add_product.Sold_quantity_this_month + Buying_product.Quantity;
+										}
+										//The customers total purchased amount will be updated
+										if(input.Customer != null)
+										{
+											customer = Add_Customers[ID == input.Customer];
+											customer.Purchased_amount_till_now=customer.Purchased_amount_till_now + input.Payment;
+										}
+										openUrl(zoho.appuri + "print/Invoice/?bill_details=" + input.Bill_number,"same window");
+						)
+					}
+	}
+
+			}
+			Edit_record_scripts5 as "Edit record scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											disable Total;
+										disable Discount_Percentage;
+										disable Payment;
+										disable Buying_products.Subtotal;
+										disable Buying_products.Price;
+										disable Buying_products.discount_percent;
+										input.Invoice_Date = zoho.currentdate;
+										disable Invoice_Date;
+										hide Profit;
+						)
+					}
+	}
+
+			}
+			Edit_record_scripts6 as "Edit record scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on edit
+
+	on update of Tax
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Tax calculations
+										if(input.Tax != null)
+										{
+											input.Payment = input.Total + input.Tax / 100 * input.Total - input.Discount_Percentage / 100 * input.Total;
+										}
+										else
+										{
+											input.Tax = 0;
+										}
+						)
+					}
+	}
+
+			}
+			Edit_record_scripts7 as "Edit record scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on edit
+
+	on update of Total
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//enable Discount_Percentage;
+										discount_offer = Add_Discount[Total_price <= input.Total && To >= zoho.currentdate && From <= zoho.currentdate] sort by Total_price desc range from 0 to 0;
+										//gives discouont by amount based
+										if(discount_offer.count() > 0)
+										{
+											input.Discount_Percentage = discount_offer.Discount_percent;
+										}
+										//tax calculation
+										else
+										{
+											input.Payment = input.Total + input.Tax / 100 * input.Total;
+										}
+						)
+					}
+	}
+
+			}
+			Edit_record_scripts8 as "Edit record scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on edit
+
+	on update of Discount_Percentage
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//discount calculations here
+										if(input.Discount_Percentage != null)
+										{
+											input.Payment = input.Total + input.Tax / 100 * input.Total - input.Discount_Percentage / 100 * input.Total;
+										}
+										else
+										{
+											input.Discount_Percentage = 0;
+										}
+						)
+					}
+	}
+
+			}
+			Delete_record_scripts2 as "Delete record scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on delete
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											for each  Buying_product in Buying_products
+										{
+											stock_product = Selling_Products_Form[Product_bar_code == Buying_product.Bar_code];
+											stock_product.Quantity=stock_product.Quantity + Buying_product.Quantity;
+											//The product count will be updated based on monthly selling.
+											add_product = add_product[ID == stock_product.Product];
+											add_product.Sold_quantity_this_month=add_product.Sold_quantity_this_month - Buying_product.Quantity;
+										}
+										//Deducting the deleted invoice amount from customer purchased amount.
+										if(input.Customer != null)
+										{
+											/* 	customer = Add_Customers[ID == Customer.ID];
+																													customer.Purchased_amount_till_now=customer.Purchased_amount_till_now - input.Payment; */
+										}
+						)
+					}
+	}
+
+			}
+			Field_scripts4 as "Field scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+	on user input of Tax
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Tax calculations are here
+										if(input.Tax != null)
+										{
+											input.Payment = input.Total + input.Tax / 100 * input.Total - input.Discount_Percentage / 100 * input.Total;
+										}
+										else
+										{
+											input.Tax = 0;
+										}
+						)
+					}
+	}
+
+			}
+			Field_scripts5 as "Field scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+	on user input of Buying_products.Product
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(row.Product != null)
+										{
+											//here we are validating the 'Product' existence in subform for no duplication 
+											product_added_times = 0;
+											for each  Buying_product in Buying_products
+											{
+												if(Buying_product.Product == row.Product)
+												{
+													product_added_times = product_added_times + 1;
+												}
+											}
+											if(product_added_times <= 1)
+											{
+												product = Selling_Products_Form[Product == row.Product];
+												row.Bar_code=product.Product_bar_code;
+												row.Price=product.Selling_price;
+											}
+											else
+											{
+												alert "This product is already added";
+												row.Product=null;
+												row.Bar_code=null;
+												row.Price=null;
+											}
+										}
+										else
+										{
+											row.Product=null;
+											row.Bar_code=null;
+											row.Price=null;
+										}
+										input.Total = input.Total - row.Subtotal;
+										row.Quantity=0;
+										row.Subtotal=0;
+										row.discount_percent=0;
+						)
+					}
+	}
+
+			}
+			Field_scripts6 as "Field scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+	on user input of Payment
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Profit calculations 
+										input.Profit = input.Profit - (input.Total - input.Payment);
+						)
+					}
+	}
+
+			}
+			Field_scripts7 as "Field scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+	on user input of Buying_products.Bar_code
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(row.Bar_code != null)
+										{
+											//here we are validating the 'Bar_code' existence in subform for no duplication 
+											product_added_times = 0;
+											for each  buying_product in Buying_products
+											{
+												if(buying_product.Bar_code == row.Bar_code)
+												{
+													product_added_times = product_added_times + 1;
+												}
+											}
+											if(product_added_times <= 1)
+											{
+												product = Selling_Products_Form[Product_bar_code == row.Bar_code];
+												if(product.count() != 0)
+												{
+													row.Product=product.Product;
+													row.Price=product.Selling_price;
+												}
+												else
+												{
+													row.Product=null;
+													row.Price=0;
+													row.Quantity=0;
+													row.discount_percent=0;
+													row.Subtotal=0;
+												}
+											}
+											else
+											{
+												alert "This product is already Exist";
+												row.Product=null;
+												row.Bar_code=null;
+												row.Price=0;
+												row.Quantity=0;
+												row.discount_percent=0;
+												row.Subtotal=0;
+											}
+										}
+										else
+										{
+											row.Product=null;
+											row.Quantity=0;
+											row.Price=0;
+											row.discount_percent=0;
+											row.Subtotal=0;
+										}
+										input.Total = input.Total - row.Subtotal;
+										row.Quantity=0;
+										row.Subtotal=0;
+										row.discount_percent=0;
+						)
+					}
+	}
+
+			}
+			Field_scripts8 as "Field scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+	on user input of Total
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//After filling the total field the follwing calculations are going
+										enable Discount_Percentage;
+										discount_offer = Add_Discount[Total_price <= input.Total && To >= zoho.currentdate && From <= zoho.currentdate] sort by Total_price desc range from 0 to 0;
+										//It gives the discount by the amount based.
+										if(discount_offer.count() > 0)
+										{
+											input.Discount_Percentage = discount_offer.Discount_percent;
+										}
+										//tax calculations here
+										else
+										{
+											input.Discount_Percentage = 0;
+										}
+						)
+					}
+	}
+
+			}
+			Field_scripts9 as "Field scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+	on user input of Discount_Percentage
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//discount calculations here
+										if(input.Discount_Percentage != null)
+										{
+											input.Payment = input.Total + input.Tax / 100 * input.Total - input.Discount_Percentage / 100 * input.Total;
+										}
+										else
+										{
+											input.Discount_Percentage = 0;
+										}
+						)
+					}
+	}
+
+			}
+			Field_scripts10 as "Field scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+	on user input of Buying_products.Quantity
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											/*Amount calculations*/
+										if(row.Product != null)
+										{
+											stock_product = Selling_Products_Form[Product == row.Product];
+											//This condition Checks the selected product is available or not in the stock.
+											if(row.Quantity != null && stock_product.Quantity >= row.Quantity)
+											{
+												selling_price = row.Price;
+												quantity = row.Quantity;
+												//gives the discount to the selected product by the quantity based
+												discount_all = Add_Discount[From <= zoho.currentdate && To >= zoho.currentdate && Discount_Type == "Product wise discount" && Click_here_to_give_discount_all_products];
+												if(discount_all.count() > 0)
+												{
+													if(!discount_all.Click_here_to_quantity_based_discount)
+													{
+														row.discount_percent=discount_all.Discount_percent;
+													}
+													if(discount_all.Click_here_to_quantity_based_discount && quantity >= discount_all.Quantity)
+													{
+														row.discount_percent=discount_all.Discount_percent;
+													}
+												}
+												//Gives the special discount to product by the quantity based
+												discount_product = Add_Discount[From <= zoho.currentdate && To >= zoho.currentdate && Discount_Type == "Product wise discount" && Products == row.Product];
+												if(discount_product.count() > 0)
+												{
+													if(!discount_product.Click_here_to_quantity_based_discount)
+													{
+														row.discount_percent=discount_product.Discount_percent;
+													}
+													if(discount_product.Click_here_to_quantity_based_discount && quantity >= discount_product.Quantity)
+													{
+														row.discount_percent=discount_product.Discount_percent;
+													}
+												}
+												row.Subtotal=selling_price * quantity - row.discount_percent / 100 * selling_price * quantity;
+											}
+											//If given product quantity is not available in stock gives the message as alert
+											else
+											{
+												alert "Sorry! Only" + stock_product.Quantity + " quantities available in stock";
+												row.Quantity=null;
+												row.Subtotal=0;
+											}
+											/*The subtotal calculations are here*/
+											//for each product subtotal amount is adding then that amount is filling in total amount field in invoice form. And also calculate the profit and 		fills the profit field
+											var_total = 0.0;
+											var_product_profit = 0.0;
+											for each  Buying_product in Buying_products
+											{
+												if(Buying_product.Product != null && Buying_product.Quantity != null)
+												{
+													var_total = var_total + Buying_product.Subtotal;
+													product_cost = Selling_Products_Form[Product == Buying_product.Product].Cost_price;
+													var_product_profit = var_product_profit + Buying_product.Subtotal - product_cost * Buying_product.Quantity;
+												}
+											}
+											input.Total = var_total;
+											input.Profit = var_product_profit;
+										}
+										//it checks the product field is empty or not. If that is empty gives the alert message
+										else
+										{
+											alert "invalid Entry <br><b> Enter the product with Quantites </b>";
+											row.Quantity=0;
+											row.Price=0;
+										}
+						)
+					}
+	}
+
+			}
+			Field_scripts11 as "Field scripts"
+			{
+				type =  form
+				form = Add_Invoice
+				record event = on add or edit
+
+	on delete row of Buying_products
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(row.Product != null)
+										{
+											input.Total = input.Total - row.Subtotal;
+											product_cost = Selling_Products_Form[Product == row.Product].Cost_price;
+											product_profit = row.Subtotal - product_cost * row.Quantity;
+											input.Profit = input.Profit - product_profit;
+										}
+						)
+					}
+	}
+
+			}
+			Create_record_scripts10 as "Create record scripts"
+			{
+				type =  form
+				form = Add_Customers
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Purchased_amount_till_now;
+						)
+					}
+	}
+
+			}
+			Edit_record_scripts9 as "Edit record scripts"
+			{
+				type =  form
+				form = Add_Customers
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Purchased_amount_till_now;
+						)
+					}
+	}
+
+			}
+			Create_record_scripts11 as "Create record scripts"
+			{
+				type =  form
+				form = Add_Discount
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Product wise discount needs some field data. If that filds are empty we are not allowing the user to add data.
+										if(input.Discount_Type == "Product wise discount")
+										{
+											if(!input.Click_here_to_give_discount_all_products && Products.size() == 0)
+											{
+												alert "Please select Products to add discount";
+												cancel submit;
+											}
+											if(input.Click_here_to_quantity_based_discount && input.Quantity == null)
+											{
+												alert "Give Quantity to add discount";
+												cancel submit;
+											}
+											discounts = Add_Discount[Discount_Type == "Product wise discount" && To >= input.From];
+											if(discounts.count() > 0)
+											{
+												isthere = false;
+												for each  rec in discounts
+												{
+													commonPro = input.Products.intersect(rec.Products);
+													if(commonPro.size() != 0)
+													{
+														isthere = true;
+													}
+												}
+												if(isthere)
+												{
+													alert isthere;
+													alert "The discount for selected product already exists in this time period!";
+													cancel submit;
+												}
+											}
+										}
+										//Total price discount needs some field data. If that filds are empty we are not allowing the user to add data.
+										if(input.Discount_Type == "Total price discount")
+										{
+											if(input.Total_price == null)
+											{
+												alert "Give Total price to add discount";
+												cancel submit;
+											}
+											discoounts = Add_Discount[Discount_Type == "Total price discount" && To >= input.From && Total_price == input.Total_price];
+											if(discoounts.count() > 0)
+											{
+												alert "This discount already exists in this time period!";
+												cancel submit;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Edit_record_scripts10 as "Edit record scripts"
+			{
+				type =  form
+				form = Add_Discount
+				record event = on edit
+
+	on update of To
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//To date must be after the From date
+										if(input.To < input.From)
+										{
+											input.To = null;
+										}
+						)
+					}
+	}
+
+			}
+			Edit_record_scripts11 as "Edit record scripts"
+			{
+				type =  form
+				form = Add_Discount
+				record event = on edit
+
+	on update of Discount_Type
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Clearing the fields that are not related to Total price discount type.
+										if(input.Discount_Type == "Total price discount")
+										{
+											input.Click_here_to_give_discount_all_products = false;
+											input.Click_here_to_quantity_based_discount = false;
+											input.Quantity = null;
+										}
+										//Clearing the fields that are not related to Product wise discount type.
+										if(input.Discount_Type == "Product wise discount")
+										{
+											input.Total_price = null;
+										}
+						)
+					}
+	}
+
+			}
+			Edit_record_scripts12 as "Edit record scripts"
+			{
+				type =  form
+				form = Add_Discount
+				record event = on edit
+
+	on update of From
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//alerts user if from date is less than current date
+										if(input.From > zoho.currentdate)
+										{
+											input.From = null;
+										}
+						)
+					}
+	}
+
+			}
+			Field_scripts12 as "Field scripts"
+			{
+				type =  form
+				form = Add_Discount
+				record event = on add or edit
+
+	on user input of Click_here_to_give_discount_all_products
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Discount_Type == "Product wise discount" && !input.Click_here_to_give_discount_all_products)
+										{
+											show Products;
+										}
+										else
+										{
+											input.Products = null;
+											hide Products;
+										}
+						)
+					}
+	}
+
+			}
+			Field_scripts13 as "Field scripts"
+			{
+				type =  form
+				form = Add_Discount
+				record event = on add or edit
+
+	on user input of To
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//check the to date is empty or not.If that is empty not gives the alert meassage
+										if(input.To != null && input.From == null)
+										{
+											alert "Please enter a 'From' date first!";
+											input.To = null;
+										}
+										else
+										{
+											//Alerts user if to date is less than from date
+											if(input.To < input.From)
+											{
+												alert "Give a valid 'To' date according to 'From' date!";
+												input.To = null;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Field_scripts14 as "Field scripts"
+			{
+				type =  form
+				form = Add_Discount
+				record event = on add or edit
+
+	on user input of Discount_Type
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Clearing the fields that are not related to Total price discount type.
+										if(input.Discount_Type == "Total price discount")
+										{
+											input.Click_here_to_give_discount_all_products = false;
+											input.Click_here_to_quantity_based_discount = false;
+											input.Quantity = null;
+										}
+										//Clearing the fields that are not related to Product wise discount type.
+										if(input.Discount_Type == "Product wise discount")
+										{
+											input.Total_price = null;
+										}
+						)
+					}
+	}
+
+			}
+			Field_scripts15 as "Field scripts"
+			{
+				type =  form
+				form = Add_Discount
+				record event = on add or edit
+
+	on user input of From
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//alerts user if from date is less than current date
+										if(input.From < zoho.currentdate)
+										{
+											alert "Give a valid future date!";
+											input.From = null;
+										}
+						)
+					}
+	}
+
+			}
+			Field_scripts16 as "Field scripts"
+			{
+				type =  form
+				form = Add_Discount
+				record event = on add or edit
+
+	on user input of Click_here_to_quantity_based_discount
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Clearing the fields that are not related to quantity based discount type.
+										if(!input.Click_here_to_quantity_based_discount)
+										{
+											input.Quantity = null;
+										}
+						)
+					}
+	}
+
+			}
+			Create_record_scripts12 as "Create record scripts"
+			{
+				type =  form
+				form = add_product
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Sold_quantity_this_month;
+						)
+					}
+	}
+
+			}
+			Edit_record_scripts13 as "Edit record scripts"
+			{
+				type =  form
+				form = add_product
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Sold_quantity_this_month;
+						)
+					}
+	}
+
+			}
+			Create_record_scripts13 as "Create record scripts"
+			{
+				type =  form
+				form = Store_Details
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Email = zoho.loginuserid;
+										disable Email;
+						)
+					}
+	}
+
+			}
+			Create_record_scripts14 as "Create record scripts"
+			{
+				type =  form
+				form = Store_Details
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											openUrl("#Script:dialog.close","same window");
+						)
+					}
+	}
+
+			}
+			Create_record_scripts15 as "Create record scripts"
+			{
+				type =  form
+				form = Add_Cashier
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Providing invoice related access to cashier
+										thisapp.permissions.assignUserInProfile(input.Email,"Cashier");
+										storeName = Store_Details[ID != 0].Store_name;
+										//Notification mail to the Cashier
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Email
+											subject :"Invitation to access POS applicacation"
+											message :("Hii " + input.Name) + ",<div><br><div>You have been added as a Cashier in " + storeName + ".</div><div><br></div><div>Click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "\"" + " target=\"_blank\">here</a> to access the application.</div><div><br></div><div>Regards,</div><div>" + zoho.adminuser + "</div><div>&nbsp; &nbsp; &nbsp;&nbsp;</div><div>&nbsp; &nbsp; &nbsp;</div></div>"
+										]
+						)
+					}
+	}
+
+			}
+			Edit_record_scripts14 as "Edit record scripts"
+			{
+				type =  form
+				form = Add_Cashier
+				record event = on edit
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Providing invoice related access to cashier
+										thisapp.permissions.assignUserInProfile(input.Email,"Cashier");
+										storeName = Store_Details[ID != 0].Store_name;
+										//Notification mail to the Cashier
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Email
+											subject :"Invitation to access POS applicacation"
+											message :("Hii " + input.Name) + ",<div><br><div>You have been added as a Cashier in " + storeName + ".</div><div><br></div><div>Click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "\"" + " target=\"_blank\">here</a> to access the application.</div><div><br></div><div>Regards,</div><div>" + zoho.adminuser + "</div><div>&nbsp; &nbsp; &nbsp;&nbsp;</div><div>&nbsp; &nbsp; &nbsp;</div></div>"
+										]
+						)
+					}
+	}
+
+			}
+			Delete_record_scripts3 as "Delete record scripts"
+			{
+				type =  form
+				form = Add_Cashier
+				record event = on delete
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//If Admin delete the cashier form the Chashier report, the application access will be removed
+										thisapp.permissions.deleteuser(input.Email);
+										openUrl("","same window");
+						)
+					}
+	}
+
+			}
+		}
+		schedule
+		{
+			Update_Quantity as "Update Quantity"
+			{
+				type =  schedule
+				start = "2017-08-01 12:00:00"
+				frequency = monthly
+				time zone = "IST"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						//Every month this scheduler will update the 'Sold_quantity_this_month' as 0 for generating the monthly chart
+										for each  product in add_product[ID != 0]
+										{
+											product.Sold_quantity_this_month=0;
+										}
+					)
+					}
+				}
+			}
+		}
+		functions
+		{
+			View_Inoice as "View Inoice"
+			{
+				type =  functions
+				form = Add_Invoice
+				on start
+				{
+					actions 
+					{
+					CustomAction.viewAction(ID);
+					}
+				}
+			}
+			View_invoice_history_scri as "View invoice history scripts"
+			{
+				type =  functions
+				form = Add_Customers
+				on start
+				{
+					actions 
+					{
+					CustomAction.getCustomerBills(ID);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"User"
+			{
+				name = "User"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "This profile only have add and view permission.\n"
+				ModulePermissions
+				{
+					add_product
+					{
+						enabled= Create,Viewall,Tab,View,Search 
+						FieldPermissions
+						{
+							Category{visibility:true,readonly:false}
+							Product_ID{visibility:false,readonly:false}
+							Sold_quantity_this_month{visibility:true,readonly:false}
+							Product_name{visibility:true,readonly:false}
+							Product_vendor{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Weight_Volume_Size{visibility:true,readonly:false}
+						}
+					}
+					Add_stock
+					{
+						enabled= Create,Viewall,Tab,View,Search 
+						FieldPermissions
+						{
+							Barcode_Number{visibility:true,readonly:false}
+							Cost_Price{visibility:true,readonly:false}
+							Image_Show{visibility:true,readonly:false}
+							Product{visibility:true,readonly:false}
+							Quantity{visibility:true,readonly:false}
+							Selling_Price{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Add_Invoice
+					{
+						enabled= Create,Viewall,Tab,View,Search 
+						FieldPermissions
+						{
+							Discount_Percentage{visibility:true,readonly:false}
+							Payment{visibility:true,readonly:false}
+							Amounts{visibility:false,readonly:false}
+							Customer{visibility:true,readonly:false}
+							Total{visibility:true,readonly:false}
+							Tax{visibility:true,readonly:false}
+							Profit{visibility:true,readonly:false}
+							Invoice_Date{visibility:true,readonly:false}
+							Buying_products{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Bill_number{visibility:true,readonly:false}
+						}
+					}
+					Add_Discount
+					{
+						enabled= Create,Viewall,Tab,View,Search 
+						FieldPermissions
+						{
+							Products{visibility:true,readonly:false}
+							Click_here_to_quantity_based_discount{visibility:true,readonly:false}
+							Click_here_to_give_discount_all_products{visibility:true,readonly:false}
+							Discount_percent{visibility:true,readonly:false}
+							Quantity{visibility:true,readonly:false}
+							Total_price{visibility:true,readonly:false}
+							From{visibility:true,readonly:false}
+							To{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Discount_Type{visibility:true,readonly:false}
+						}
+					}
+					Add_Customers
+					{
+						enabled= Create,Viewall,Tab,View,Search 
+						FieldPermissions
+						{
+							Phone_number{visibility:false,readonly:false}
+							Email{visibility:true,readonly:false}
+							Address{visibility:false,readonly:false}
+							Customer_ID{visibility:false,readonly:false}
+							Section{visibility:false,readonly:false}
+							Purchased_amount_till_now{visibility:true,readonly:false}
+							Name{visibility:false,readonly:false}
+						}
+					}
+					categories
+					{
+						enabled= Create,Viewall,Tab,View,Search 
+						FieldPermissions
+						{
+							Category{visibility:true,readonly:false}
+						}
+					}
+					Selling_Products_Form
+					{
+						enabled= Create,Viewall,Tab,View,Search 
+						FieldPermissions
+						{
+							Selling_price{visibility:true,readonly:false}
+							Product{visibility:true,readonly:false}
+							Quantity{visibility:true,readonly:false}
+							Product_bar_code{visibility:true,readonly:false}
+							Bar_code_Image{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Cost_price{visibility:true,readonly:false}
+						}
+					}
+					Add_Vendor
+					{
+						enabled= Create,Viewall,Tab,View,Search 
+						FieldPermissions
+						{
+							Phone_Number{visibility:false,readonly:false}
+							Email{visibility:true,readonly:false}
+							Vendor_Name{visibility:false,readonly:false}
+							Address{visibility:false,readonly:false}
+						}
+					}
+					Store_Details
+					{
+						enabled= Create,Viewall,Tab,View,Search 
+						FieldPermissions
+						{
+							Phone_Number{visibility:false,readonly:false}
+							Email{visibility:true,readonly:false}
+							Store_name{visibility:true,readonly:false}
+							Address{visibility:false,readonly:false}
+						}
+					}
+					Add_Cashier
+					{
+						enabled= Create,Viewall,Tab,View,Search 
+						FieldPermissions
+						{
+							Mobile_Number{visibility:false,readonly:false}
+							Email{visibility:false,readonly:false}
+							Address{visibility:false,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:false,readonly:false}
+						}
+					}
+					Invoice
+					{
+						enabled = tab
+					}
+				}
+			}
+			"Customer"
+			{
+				name = "Customer"
+				type = Customer_Portal
+				permissions = {Chat:false, Predefined:true}
+				description = "This is the default profile having only add and view permission.\n"
+			}
+			"Cashier"
+			{
+				name = "Cashier"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "Cashier Permissions\n"
+				ModulePermissions
+				{
+					add_product
+					{
+						FieldPermissions
+						{
+							Category{visibility:true,readonly:false}
+							Product_ID{visibility:true,readonly:false}
+							Sold_quantity_this_month{visibility:true,readonly:false}
+							Product_name{visibility:true,readonly:false}
+							Product_vendor{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Weight_Volume_Size{visibility:true,readonly:false}
+						}
+					}
+					Add_stock
+					{
+						FieldPermissions
+						{
+							Barcode_Number{visibility:true,readonly:false}
+							Cost_Price{visibility:true,readonly:false}
+							Image_Show{visibility:true,readonly:false}
+							Product{visibility:true,readonly:false}
+							Quantity{visibility:true,readonly:false}
+							Selling_Price{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Add_Invoice
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Discount_Percentage{visibility:true,readonly:false}
+							Payment{visibility:true,readonly:false}
+							Amounts{visibility:false,readonly:false}
+							Customer{visibility:true,readonly:false}
+							Total{visibility:true,readonly:false}
+							Tax{visibility:true,readonly:false}
+							Profit{visibility:true,readonly:false}
+							Invoice_Date{visibility:true,readonly:false}
+							Buying_products{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Bill_number{visibility:true,readonly:false}
+						}
+					}
+					Add_Discount
+					{
+						FieldPermissions
+						{
+							Products{visibility:true,readonly:false}
+							Click_here_to_quantity_based_discount{visibility:true,readonly:false}
+							Click_here_to_give_discount_all_products{visibility:true,readonly:false}
+							Discount_percent{visibility:true,readonly:false}
+							Quantity{visibility:true,readonly:false}
+							Total_price{visibility:true,readonly:false}
+							From{visibility:true,readonly:false}
+							To{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Discount_Type{visibility:true,readonly:false}
+						}
+					}
+					Add_Customers
+					{
+						enabled= Create,Viewall,Modifyall,Tab 
+						FieldPermissions
+						{
+							Phone_number{visibility:false,readonly:false}
+							Email{visibility:true,readonly:false}
+							Address{visibility:false,readonly:false}
+							Customer_ID{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Purchased_amount_till_now{visibility:true,readonly:false}
+							Name{visibility:false,readonly:false}
+						}
+					}
+					categories
+					{
+						FieldPermissions
+						{
+							Category{visibility:true,readonly:false}
+						}
+					}
+					Selling_Products_Form
+					{
+						FieldPermissions
+						{
+							Selling_price{visibility:true,readonly:false}
+							Product{visibility:true,readonly:false}
+							Quantity{visibility:true,readonly:false}
+							Product_bar_code{visibility:true,readonly:false}
+							Bar_code_Image{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Cost_price{visibility:true,readonly:false}
+						}
+					}
+					Add_Vendor
+					{
+						FieldPermissions
+						{
+							Phone_Number{visibility:false,readonly:false}
+							Email{visibility:true,readonly:false}
+							Vendor_Name{visibility:false,readonly:false}
+							Address{visibility:false,readonly:false}
+						}
+					}
+					Store_Details
+					{
+						FieldPermissions
+						{
+							Phone_Number{visibility:false,readonly:false}
+							Email{visibility:true,readonly:false}
+							Store_name{visibility:true,readonly:false}
+							Address{visibility:false,readonly:false}
+						}
+					}
+					Add_Cashier
+					{
+						FieldPermissions
+						{
+							Mobile_Number{visibility:false,readonly:false}
+							Email{visibility:false,readonly:false}
+							Address{visibility:false,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:false,readonly:false}
+						}
+					}
+					Invoice
+					{
+						enabled = tab
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users."
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 1
+		new theme color = 7
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-finance1"
+    	icon theme = "lightred"
+		icons style = solid
+	}
+
+	phone
+	{
+		section  Admin_Dashboard
+		{
+			displayname= "Admin Dashboard"
+			page Admin_Dashboard
+			{
+			}
+		}
+		section  Stock
+		{
+			form  Add_stock
+			{
+				layout = left
+			}
+			custom Current_Stock_Products
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Product
+								Product_bar_code
+								Quantity
+								Cost_price as "Cost Price"
+								Selling_price as "Selling price"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Duplicate 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    		 				Edit 
+    	 				)
+									record
+									(
+										Duplicate   	   
+										Print   	   
+										Edit   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 5
+		     				title = "Overview"
+							fields
+							(
+								Product
+								Product_bar_code
+								Cost_price as "Cost Price"
+								Selling_price as "Selling price"
+								Quantity
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			custom Out_of_stock_Products
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Product
+								Product_bar_code
+								Product.Category as "Category"
+								Product.Product_vendor as "Vendor"
+								Quantity
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 5
+		     				title = "Overview"
+							fields
+							(
+								Product
+								Product_bar_code
+								Product.Category as "Category"
+								Product.Product_vendor as "Vendor"
+								Quantity
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list All_Product
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Product_name as "Product Name"
+								Weight_Volume_Size as "Weight/Volume/Size"
+								Product_ID as "Product ID"
+								Category.Category as "Category"
+								Product_vendor as "Vendor"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Duplicate   	   
+										Print   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Delete   	   
+										Edit   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 5
+		     				title = "Overview"
+							fields
+							(
+								Product_name as "Product Name"
+								Weight_Volume_Size as "Weight/Volume/Size"
+								Product_ID as "Product ID"
+								Sold_quantity_this_month as "Sold quantity this month"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Bill_form
+		{
+			displayname= "Billing"
+			form  Add_Invoice
+			{
+				layout = left
+			}
+			list Invoices
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Customer.Name as "Name"
+								Total
+								Discount_Percentage as "Discount Percentage"
+								Tax
+								Payment
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Duplicate   	   
+										Print   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"View Inoice"
+    								)
+									on right swipe
+									(
+										Edit   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 5
+		     				title = "Overview"
+							fields
+							(
+								Bill_number as "Bill No"
+								Total
+								Discount_Percentage as "Discount Percentage"
+								Tax
+								Payment
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+			 				"View Inoice"
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Members
+		{
+			displayname= "Customers"
+			form  Add_Customers
+			{
+				layout = left
+			}
+			list Customers
+			{
+				icon = "design-bullet-list-67"
+			}
+		}
+		section  Discount
+		{
+			form  Add_Discount
+			{
+				layout = left
+			}
+			list Product_Wise_Discount
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Discount_percent as "Discount Percent"
+								From
+								To
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Duplicate   	   
+										Print   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Delete   	   
+										Edit   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 5
+		     				title = "Discount Details"
+							fields
+							(
+								Discount_Type as "Discount Type"
+								Discount_percent as "Discount Percent"
+								Quantity
+								From
+								To
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Price_Dise_Discount
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Discount_percent as "Discount Percent"
+								Total_price as "Total Price"
+								From
+								To
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Duplicate   	   
+										Print   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Delete   	   
+										Edit   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 5
+		     				title = "Discount Details"
+							fields
+							(
+								Discount_Type as "Discount Type"
+								Discount_percent as "Discount Percent"
+								Total_price as "Total Price"
+								From
+								To
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Item_categories
+		{
+			displayname= "Settings"
+			list Categories11
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Category
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Duplicate   	   
+										Print   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Delete   	   
+										Edit   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Category
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Vendors
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Vendor_Name as "Name"
+								Address
+								Phone_Number as "Phone Number"
+								Email
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Duplicate   	   
+										Print   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Delete   	   
+										Edit   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Vendor Details"
+							fields
+							(
+								Vendor_Name as "Name"
+							)
+						)
+						datablock2
+						(
+			 				layout type = -2
+		     				title = "Contact Address"
+							fields
+							(
+								Email
+								Phone_Number as "Phone Number"
+								Address
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Store_Details1
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 5
+		     				title = "Overview"
+							fields
+							(
+								Store_name as "Store Name"
+								Address
+								Email
+								Phone_Number as "Phone Number"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Duplicate   	   
+										Print   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Delete   	   
+										Edit   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Sore Details"
+							fields
+							(
+								Store_name as "Store Name"
+								Email
+								Phone_Number as "Phone Number"
+								Address
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			custom Cashiers
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 5
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Address
+								Mobile_Number as "Mobile Number"
+								Email
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Duplicate   	   
+										Print   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Delete   	   
+										Edit   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Mobile_Number as "Mobile Number"
+								Email
+								Address
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Charts
+		{
+			hide = true
+			pivotchart Monthly_Sales
+			{
+				hide = true
+			}
+			pivotchart Monthly_Profit
+			{
+				hide = true
+			}
+			pivotchart Most_Sold_Products
+			{
+				hide = true
+			}
+		}
+		section  hidden_contents
+		{
+			displayname= "hidden contents"
+			hide = true
+			form  add_product
+			{
+				layout = auto
+				hide = true
+			}
+			form  categories
+			{
+				layout = auto
+				hide = true
+			}
+			form  Add_Vendor
+			{
+				layout = left
+				hide = true
+			}
+			form  Selling_Products_Form
+			{
+				layout = auto
+				hide = true
+			}
+			form  Store_Details
+			{
+				layout = auto
+				hide = true
+			}
+			form  Add_Cashier
+			{
+				layout = left
+				hide = true
+			}
+			page Invoice
+			{
+				hide = true
+			}
+		}
+		section  Sales___Profit
+		{
+			displayname= "Sales & Profit"
+			hide = true
+			list This_Month_sale
+			{
+				hide = true
+			}
+			list This_Month_Sales
+			{
+				hide = true
+			}
+			list This_Week_Sales
+			{
+				hide = true
+			}
+			list Today_Sales
+			{
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = amethyst
+        	layout = slidingpane
+		 	icons style = outline
+		}
+	}
+	tablet
+	{
+		section  Admin_Dashboard
+		{
+			displayname= "Admin Dashboard"
+			page Admin_Dashboard
+			{
+			}
+		}
+		section  Stock
+		{
+			form  Add_stock
+			{
+				layout = left
+			}
+			custom Current_Stock_Products
+			{
+			}
+			custom Out_of_stock_Products
+			{
+			}
+			list All_Product
+			{
+			}
+		}
+		section  Bill_form
+		{
+			displayname= "Billing"
+			form  Add_Invoice
+			{
+				layout = left
+			}
+			list Invoices
+			{
+			}
+		}
+		section  Members
+		{
+			displayname= "Customers"
+			form  Add_Customers
+			{
+				layout = left
+			}
+			list Customers
+			{
+				icon = "design-bullet-list-67"
+			}
+		}
+		section  Discount
+		{
+			form  Add_Discount
+			{
+				layout = left
+			}
+			list Product_Wise_Discount
+			{
+			}
+			list Price_Dise_Discount
+			{
+			}
+		}
+		section  Item_categories
+		{
+			displayname= "Settings"
+			list Categories11
+			{
+			}
+			list Vendors
+			{
+			}
+			list Store_Details1
+			{
+			}
+			custom Cashiers
+			{
+			}
+		}
+		section  Charts
+		{
+			hide = true
+			pivotchart Monthly_Sales
+			{
+				hide = true
+			}
+			pivotchart Monthly_Profit
+			{
+				hide = true
+			}
+			pivotchart Most_Sold_Products
+			{
+				hide = true
+			}
+		}
+		section  hidden_contents
+		{
+			displayname= "hidden contents"
+			hide = true
+			form  add_product
+			{
+				layout = auto
+				hide = true
+			}
+			form  categories
+			{
+				layout = auto
+				hide = true
+			}
+			form  Add_Vendor
+			{
+				layout = left
+				hide = true
+			}
+			form  Selling_Products_Form
+			{
+				layout = auto
+				hide = true
+			}
+			form  Store_Details
+			{
+				layout = auto
+				hide = true
+			}
+			form  Add_Cashier
+			{
+				layout = left
+				hide = true
+			}
+			page Invoice
+			{
+				hide = true
+			}
+		}
+		section  Sales___Profit
+		{
+			displayname= "Sales & Profit"
+			hide = true
+			list This_Month_sale
+			{
+				hide = true
+			}
+			list This_Month_Sales
+			{
+				hide = true
+			}
+			list This_Week_Sales
+			{
+				hide = true
+			}
+			list Today_Sales
+			{
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = blue
+        	layout = slidingpane
+		 	icons style = outline
+		}
+	}
+	translation
+{
+"{\"de\":{\"Form.Add_Cashier\":\" Kassierer hinzufügen \",\"FormField.Add_Invoice.Payment\":\" Zahlung \",\"ReportField.Customers.Customer_ID\":\" Kundennummer \",\"FormField.Add_Invoice.Buying_products.discount_percent\":\" Rabatt \",\"FormButton.Selling_Products_Form.reset\":\" Zurücksetzen \",\"Report.This_Month_sale\":\" Dieser Monat Verkauf \",\"FormButton.Selling_Products_Form.cancel\":\" Stornieren \",\"FormField.add_product.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Add_stock.Section\":\" Sektion \",\"FormButton.Store_Details.cancel\":\" Stornieren \",\"ReportField.This_Week_Sales.Discount_Percentage\":\" Rabatt Prozentsatz \",\"Languages List.zh-TW\":\" Chinesische Tradition \",\"Report.Most_Sold_Products\":\" Meistverkaufte Produkte \",\"Languages List.ja\":\" japanisch \",\"CompositeSubFields.Add_Vendor.Vendor_Name.prefix\":\" Präfix \",\"FormButton.Add_Cashier.cancel\":\" Stornieren \",\"ReportField.Invoices.Invoice_Date\":\" Rechnungsdatum \",\"FormField.Add_Cashier.prefix\":\" Präfix \",\"FormButton.Add_Discount.cancel\":\" Stornieren \",\"Form.Store_Details\":\" Laden Details \",\"FormField.Add_Customers.district_city2\":\" Stadtteil \",\"CompositeSubFields.Add_Vendor.Vendor_Name.first_name\":\" Vorname \",\"ReportField.Store_Details1.address_line_12\":\" Adresse \",\"FormField.Add_Invoice.Customer\":\" Kunde \",\"Languages List.ku\":\" kurdisch \",\"FormField.add_product.Modified_User\":\" Geänderter Benutzer \",\"CompositeSubFields.Add_Cashier.Address.state_province2\":\" Staat / Provinz \",\"FormField.Add_Invoice.Buying_products.Bar_code\":\" Barcode \",\"Languages List.km\":\" Khmer \",\"Languages List.ko\":\" Koreanisch \",\"Languages List.kn\":\" Kannada \",\"Languages List.ka\":\" georgisch \",\"ReportField.This_Month_Sales.Tax\":\" MwSt \",\"FormField.Add_Customers.Modified_Time\":\" Geänderte Zeit \",\"ReportField.This_Month_sale.Invoice_Date\":\" Rechnungsdatum \",\"ReportField.Today_Sales.Profit\":\" Profitieren \",\"Form.Add_stock\":\" Stock hinzufügen \",\"Languages List.hu\":\" ungarisch \",\"FormField.Selling_Products_Form.ID\":\" ICH WÜRDE \",\"Languages List.hy\":\" Armenisch \",\"FormField.Add_Discount.Section\":\"Sektion\",\"FormField.Add_Vendor.postal_Code2\":\" Postleitzahl \",\"Languages List.hr\":\" kroatisch \",\"FormField.Add_Customers.Name\":\" Name \",\"FormField.Add_Vendor.prefix\":\" Präfix \",\"FormField.Add_Vendor.Modified_Time\":\" Geänderte Zeit \",\"FormField.Add_Vendor.longitude2\":\" Längengrad \",\"Languages List.hi\":\" Hindi \",\"ReportField.Price_Dise_Discount.To\":\"Zu\",\"FormField.Add_Invoice.Added_User\":\" Benutzer hinzugefügt \",\"Form.Selling_Products_Form\":\" Verkauf von Produkten Form \",\"ReportField.Vendors.Phone_Number\":\" Telefonnummer \",\"FormField.Selling_Products_Form.Record_Status\":\" Aufnahmestatus \",\"CompositeSubFields.Store_Details.Address.state_province2\":\" Staat / Provinz \",\"FormField.Store_Details.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Add_stock.Record_Status\":\" Aufnahmestatus \",\"Languages List.iw\":\" hebräisch \",\"ReportField.Product_Wise_Discount.Discount_Type\":\" Rabattart \",\"FormField.Add_Vendor.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"Report.Price_Dise_Discount\":\" Preis-weise-Rabatt \",\"FormField.Add_Vendor.district_city2\":\" Stadtteil \",\"Languages List.is\":\" isländisch \",\"FormField.Add_Cashier.first_name\":\" Vorname \",\"Languages List.it\":\" Italienisch \",\"FormField.Add_stock.Cost_Price\":\" Kostenpreis \",\"FormField.Add_Invoice.ID\":\" ICH WÜRDE \",\"ReportField.Invoices.Buying_products.Product\":\" Rechnungsgegenstände \",\"CompositeSubFields.Add_Vendor.Address.district_city2\":\" Stadtteil \",\"FormField.Store_Details.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormButton.Add_Vendor.reset\":\" Zurücksetzen \",\"FormField.Add_Vendor.Email\":\" Email \",\"FormField.Add_Vendor.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Add_Cashier.Modified_Time\":\" Geänderte Zeit \",\"Report.Current_Stock_Products\":\" Aktuelle Lagerware \",\"FormButton.Add_Customers.update\":\" Aktualisieren \",\"CompositeSubFields.Add_Vendor.Vendor_Name.last_name\":\" Familienname, Nachname \",\"FormField.Add_Vendor.country2\":\" Land \",\"FormField.Add_Cashier.Added_User\":\" Benutzer hinzugefügt \",\"FormField.add_product.Product_ID\":\" Produkt ID \",\"FormField.Add_Invoice.Record_Status\":\" Aufnahmestatus \",\"Languages List.nl\":\" Niederländisch \",\"FormField.Selling_Products_Form.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormButton.Add_Invoice.submit\":\" einreichen \",\"FormField.Add_Customers.state_province2\":\" Staat / Provinz \",\"Report.Store_Details1\":\" Laden Details \",\"Languages List.no\":\" norwegisch \",\"CompositeSubFields.Add_Vendor.Vendor_Name.suffix\":\" Suffix \",\"CompositeSubFields.Store_Details.Address.address_line_12\":\" Anschrift Zeile 1 \",\"ReportField.Product_Wise_Discount.From\":\" Von \",\"CompositeSubFields.Add_Vendor.Address.address_line_12\":\" Anschrift Zeile 1 \",\"CompositeSubFields.Add_Cashier.Address.postal_Code2\":\" Postleitzahl \",\"FormField.Add_Cashier.Mobile_Number\":\" Handynummer \",\"FormField.Selling_Products_Form.Section\":\"Sektion\",\"ReportField.Out_of_stock_Products.Quantity\":\"Menge\",\"ReportField.Invoices.Buying_products.Bar_code\":\" Rechnungsgegenstände \",\"FormField.Add_Invoice.Section\":\" Sektion \",\"FormField.Add_Customers.Customer_ID\":\" Kundennummer \",\"PicklistOption.Add_Customers.prefix.3\":\" Frau. \",\"PicklistOption.Add_Customers.prefix.1\":\" Herr. \",\"Form.Add_Vendor\":\" Anbieter hinzufügen \",\"PicklistOption.Add_Customers.prefix.2\":\" Frau. \",\"ReportField.Product_Wise_Discount.Products\":\"Produkte\",\"CompositeSubFields.Add_Vendor.Address.address_line_22\":\" Adresszeile 2 \",\"FormField.Add_Vendor.last_name\":\" Familienname, Nachname \",\"CompositeSubFields.Add_Cashier.Name.last_name\":\" Familienname, Nachname \",\"CompositeSubFields.Add_Customers.Name.prefix\":\" Präfix \",\"ReportField.Product_Wise_Discount.Quantity\":\" Menge \",\"CompositeSubFields.Add_Customers.Address.postal_Code2\":\" Postleitzahl \",\"FormButton.add_product.reset\":\" Zurücksetzen \",\"Report.Vendors\":\" Anbieter \",\"Languages List.lt\":\" litauisch \",\"FormField.Add_stock.Added_User\":\" Benutzer hinzugefügt \",\"Languages List.lv\":\" lettisch \",\"CompositeSubFields.Add_Customers.Name.suffix\":\" Suffix \",\"FormButton.Add_stock.Reset\":\" Zurücksetzen \",\"FormField.Add_Vendor.state_province2\":\" Staat / Provinz \",\"FormField.Add_stock.Selling_Price\":\" Verkaufspreis \",\"FormField.Selling_Products_Form.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Customers.ID\":\" ICH WÜRDE \",\"FormField.Store_Details.Email\":\" Email \",\"Languages List.lo\":\" Laothian \",\"Languages List.la\":\" Latein \",\"FormField.Add_Cashier.ID\":\" ICH WÜRDE \",\"ReportField.Invoices.Customer\":\" Name \",\"CompositeSubFields.Add_Customers.Address.state_province2\":\" Staat / Provinz \",\"FormField.Store_Details.postal_Code2\":\" Postleitzahl \",\"ReportField.Categories11.Category\":\" Kategorie \",\"FormButton.Store_Details.reset\":\" Zurücksetzen \",\"Languages List.ms\":\" malaiisch \",\"Languages List.mr\":\" Marathi \",\"FormField.Add_Discount.From\":\" Von \",\"Languages List.mt\":\" maltesisch \",\"Languages List.mk\":\" mazedonisch \",\"CompositeSubFields.Add_Customers.Address.country2\":\" Land \",\"ReportField.This_Week_Sales.Payment\":\" Zahlung \",\"FormField.Add_Invoice.Buying_products.Subtotal\":\" Zwischensumme \",\"CompositeSubFields.Store_Details.Address.address_line_22\":\" Adresszeile 2 \",\"FormButton.Add_Vendor.submit\":\" einreichen \",\"FormField.Store_Details.district_city2\":\" Stadtteil \",\"FormField.Add_Invoice.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormButton.Add_Invoice.reset\":\" Zurücksetzen \",\"Languages List.bg\":\" bulgarisch \",\"FormField.add_product.Sold_quantity_this_month\":\" Verkaufsmenge in diesem Monat \",\"ReportField.Out_of_stock_Products.Cost_price\":\"Kostenpreis\",\"Languages List.bn\":\" Bengali \",\"CompositeSubFields.Add_Cashier.Address.district_city2\":\" Stadtteil \",\"FormField.Add_Discount.Discount_percent\":\" Rabatt in Prozent \",\"FormButton.Add_Discount.reset\":\" Zurücksetzen \",\"ReportField.Cashiers.Email\":\" Email \",\"Languages List.be\":\" Belarussisch \",\"Languages List.az\":\" Aserbaidschanisch \",\"FormField.Store_Details.ID\":\" ICH WÜRDE \",\"Languages List.cs\":\" Tschechisch \",\"FormField.Add_Cashier.Email\":\" Email \",\"FormField.Add_Invoice.Buying_products.Product\":\" Produkt \",\"FormField.add_product.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Invoice.Tax\":\" MwSt \",\"Languages List.ca\":\" katalanisch \",\"FormField.Add_Cashier.district_city2\":\" Stadtteil \",\"FormField.Add_Vendor.address_line_22\":\" Adresszeile 2 \",\"ReportField.Today_Sales.Payment\":\" Zahlung \",\"ReportField.All_Product.Category\":\"Kategorie\",\"FormField.Store_Details.Store_name\":\" Speichername \",\"FormField.Add_Customers.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Selling_Products_Form.Product\":\" Produkt \",\"FormField.Add_Customers.postal_Code2\":\" Postleitzahl \",\"FormField.Add_Invoice.Buying_products.Price\":\" Preis \",\"FormField.Selling_Products_Form.Modified_User\":\" Geänderter Benutzer \",\"ReportField.All_Product.Product_name\":\" Produktname \",\"FormField.Selling_Products_Form.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Store_Details.Modified_Time\":\" Geänderte Zeit \",\"ReportField.This_Week_Sales.Tax\":\" MwSt \",\"Languages List.ar\":\" Arabisch \",\"CompositeSubFields.Store_Details.Address.postal_Code2\":\" Postleitzahl \",\"Languages List.af\":\" Afrikaans \",\"Report.Cashiers\":\" Kassierer \",\"FormField.Add_Vendor.Vendor_Name\":\" Name \",\"FormField.Store_Details.Record_Status\":\" Aufnahmestatus \",\"CustomAction.Customers.View_invoice_history_scri\":\" Zeigen Sie Rechnungsverlaufsskripts an \",\"FormField.add_product.Product_vendor\":\" Verkäufer \",\"Report.Out_of_stock_Products\":\" Nicht vorrätige Produkte \",\"FormField.Add_Customers.Purchased_amount_till_now\":\" Gekaufter Betrag \",\"PicklistOption.Add_Cashier.prefix.3\":\" Frau. \",\"FormField.Add_Vendor.Address\":\" Adresse \",\"PicklistOption.Add_Cashier.prefix.1\":\" Herr. \",\"Report.Customers\":\" Kunden \",\"PicklistOption.Add_Cashier.prefix.2\":\" Frau. \",\"FormField.Add_Cashier.Added_Time\":\" Zeit hinzugefügt \",\"CompositeSubFields.Store_Details.Address.district_city2\":\" Stadtteil \",\"Languages List.fr\":\" Französisch \",\"FormField.Add_Customers.Added_Time\":\" Zeit hinzugefügt \",\"Languages List.fi\":\" Finnese \",\"ReportField.This_Month_sale.Discount_Percentage\":\" Rabatt Prozentsatz \",\"FormField.Add_Cashier.Name\":\" Name \",\"Languages List.fa\":\" persisch \",\"ReportField.This_Month_Sales.Invoice_Date\":\" Rechnungsdatum \",\"Languages List.gu\":\" Gujarati \",\"ReportField.Price_Dise_Discount.From\":\"Von\",\"Languages List.gl\":\" galizisch \",\"FormField.Add_Cashier.state_province2\":\" Staat / Provinz \",\"ReportField.Store_Details1.Store_name\":\" Speichername \",\"Section.Charts\":\" Diagramme \",\"FormField.Add_Cashier.suffix\":\" Suffix \",\"ReportField.Current_Stock_Products.Quantity\":\"Menge\",\"FormField.Add_Cashier.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"ReportField.Product_Wise_Discount.Click_here_to_give_discount_all_products\":\" Rabatt für alle Produkte \",\"FormField.Add_stock.Modified_User\":\" Geänderter Benutzer \",\"Report.Product_Wise_Discount\":\" Produktweise Rabatt \",\"FormButton.add_product.update\":\" Aktualisieren \",\"FormField.Add_Vendor.ID\":\" ICH WÜRDE \",\"App.point-of-sale\":\"Kasse\",\"FormButton.Selling_Products_Form.update\":\" Aktualisieren \",\"Languages List.ga\":\" irisch \",\"ReportField.Price_Dise_Discount.Discount_percent\":\"Rabatt in Prozent\",\"ReportField.Price_Dise_Discount.Total_price\":\"Gesamtpreis\",\"CompositeSubFields.Add_Cashier.Name.first_name\":\" Vorname \",\"ReportField.Current_Stock_Products.Selling_price\":\"Verkaufspreis\",\"FormField.Add_Invoice.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Add_Discount.ID\":\" ICH WÜRDE \",\"FormField.Add_Invoice.Bill_number\":\" Rechnung Nr \",\"ReportField.This_Month_sale.Total\":\" Gesamt \",\"FormField.Add_Discount.Products\":\" Produkt \",\"Languages List.da\":\" dänisch \",\"ReportField.This_Month_Sales.Total\":\" Gesamt \",\"CompositeSubFields.Add_Cashier.Name.prefix\":\" Präfix \",\"Languages List.de\":\" Deutsche \",\"FormField.Add_Vendor.address_line_12\":\" Anschrift Zeile 1 \",\"FormField.Selling_Products_Form.Added_Time\":\" Zeit hinzugefügt \",\"ReportField.Invoices.Profit\":\" Profitieren \",\"Languages List.cy\":\" Walisisch \",\"Form.Add_Invoice\":\" Rechnung hinzufügen \",\"Languages List.es\":\" Spanisch \",\"Languages List.eu\":\" baskisch \",\"Form.categories\":\" Kategorien \",\"Languages List.et\":\" estnisch \",\"ReportField.Customers.Purchased_amount_till_now\":\" Gekaufter Betrag \",\"FormField.Add_Customers.Section\":\" Sektion \",\"FormField.Add_Discount.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Invoice.Discount_Percentage\":\" Rabatt Prozentsatz \",\"Form.add_product\":\" Produkt hinzufügen \",\"FormField.Add_Customers.prefix\":\" Präfix \",\"ReportField.All_Product.Sold_quantity_this_month\":\" Verkaufsmenge in diesem Monat \",\"Languages List.el\":\" griechisch \",\"Languages List.eo\":\" Esperanto \",\"Languages List.en\":\" Englisch \",\"FormButton.add_product.submit\":\" einreichen \",\"FormField.Selling_Products_Form.Quantity\":\" Menge \",\"FormButton.Selling_Products_Form.submit\":\" einreichen \",\"ReportField.All_Product.Weight_Volume_Size\":\" Gewicht / Volumen / Größe \",\"PicklistOption.Add_Customers.country2.1\":\" Wahl 1 \",\"PicklistOption.Add_Customers.country2.2\":\" Wahl 2 \",\"ReportField.Current_Stock_Products.Bar_code_Image\":\"Barcode-Bild\",\"ReportField.Out_of_stock_Products.Product_bar_code\":\"Produkt_Barcode\",\"FormField.Add_Customers.Record_Status\":\" Aufnahmestatus \",\"FormField.Add_stock.Product\":\" Produkt \",\"FormButton.categories.cancel\":\" Stornieren \",\"FormField.Selling_Products_Form.Selling_price\":\" Verkaufspreis \",\"FormField.Add_Customers.Email\":\" Email \",\"FormField.Add_Cashier.country2\":\" Land \",\"FormField.Add_Discount.Total_price\":\" Gesamtpreis \",\"FormField.Add_Discount.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Add_Vendor.Phone_Number\":\" Telefonnummer \",\"FormField.add_product.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Add_Customers.country2\":\" Land \",\"ReportField.Invoices.Total\":\" Gesamt \",\"FormField.Add_Cashier.Record_Status\":\" Aufnahmestatus \",\"FormField.Add_Invoice.Buying_products\":\" Rechnungsgegenstände \",\"FormField.Store_Details.Modified_User\":\" Geänderter Benutzer \",\"FormButton.Add_Customers.submit\":\" einreichen \",\"FormButton.categories.reset\":\" Zurücksetzen \",\"FormField.Add_Invoice.Buying_products.Quantity\":\" Menge \",\"FormField.Store_Details.state_province2\":\" Staat / Provinz \",\"ReportField.Invoices.Tax\":\" MwSt \",\"CompositeSubFields.Add_Cashier.Address.country2\":\" Land \",\"FormField.Selling_Products_Form.Cost_price\":\" Kostenpreis \",\"FormField.Add_Customers.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"PicklistOption.Add_Discount.Discount_Type.2\":\" Gesamtpreisrabatt \",\"Report.Monthly_Sales\":\" Monatsumsatz \",\"PicklistOption.Add_Discount.Discount_Type.1\":\" Produktweiser Rabatt \",\"ReportField.Current_Stock_Products.Product\":\"Produkt\",\"ReportField.This_Month_sale.Profit\":\" Profitieren \",\"FormField.add_product.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Languages List.yi\":\" Jiddisch \",\"FormField.Add_Customers.Phone_number\":\" Telefonnummer \",\"ReportField.This_Month_sale.Tax\":\" MwSt \",\"CompositeSubFields.Add_Customers.Name.last_name\":\" Familienname, Nachname \",\"FormField.categories.Category\":\" Kategorie \",\"FormField.categories.Added_Time\":\" Zeit hinzugefügt \",\"Section.Item_categories\":\" die Einstellungen \",\"PicklistOption.Store_Details.country2.2\":\" Wahl 2 \",\"ReportField.This_Week_Sales.Invoice_Date\":\" Rechnungsdatum \",\"PicklistOption.Store_Details.country2.1\":\" Wahl 1 \",\"FormField.Store_Details.longitude2\":\" Längengrad \",\"ReportField.Product_Wise_Discount.To\":\" Zu \",\"ReportField.Today_Sales.Total\":\" Gesamt \",\"FormField.add_product.Category\":\" Kategorie \",\"CompositeSubFields.Add_Customers.Name.first_name\":\" Vorname \",\"ReportField.Vendors.Email\":\" Email \",\"CompositeSubFields.Store_Details.Address.country2\":\" Land \",\"Languages List.zh\":\" Chinesisch \",\"FormField.Add_Cashier.postal_Code2\":\" Postleitzahl \",\"FormField.Store_Details.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Add_Cashier.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Selling_Products_Form.Modified_Time\":\" Geänderte Zeit \",\"FormField.Add_stock.Quantity\":\" Menge \",\"FormButton.Add_stock.Submit\":\" einreichen \",\"FormField.Selling_Products_Form.Product_bar_code\":\" Produkt_Barcode \",\"FormField.Store_Details.Phone_Number\":\" Telefonnummer \",\"FormField.Add_Vendor.first_name\":\" Vorname \",\"FormField.Add_stock.Barcode_Number\":\" Barcode \",\"ReportField.Today_Sales.Discount_Percentage\":\" Rabatt Prozentsatz \",\"ReportField.Invoices.Payment\":\" Zahlung \",\"ReportField.Today_Sales.Invoice_Date\":\" Rechnungsdatum \",\"FormField.Add_Customers.address_line_12\":\" Anschrift Zeile 1 \",\"FormField.Add_Invoice.Modified_Time\":\" Geänderte Zeit \",\"FormField.Add_Customers.Added_User\":\" Benutzer hinzugefügt \",\"CompositeSubFields.Add_Vendor.Address.country2\":\" Land \",\"FormField.Add_Cashier.longitude2\":\" Längengrad \",\"ReportField.This_Month_sale.Payment\":\" Zahlung \",\"FormButton.Add_Vendor.update\":\" Aktualisieren \",\"ReportField.Cashiers.Mobile_Number\":\" Handynummer \",\"FormField.Add_Vendor.latitude2\":\" Breite \",\"FormField.Add_Customers.address_line_22\":\" Adresszeile 2 \",\"FormField.Add_stock.Modified_Time\":\" Geänderte Zeit \",\"FormField.Add_Discount.Modified_User\":\" Geänderter Benutzer \",\"FormField.Add_Customers.Address\":\" Adresse \",\"FormField.categories.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"ReportField.Price_Dise_Discount.Discount_Type\":\"Rabattart\",\"Section.Stock\":\" Stock \",\"ReportField.This_Week_Sales.Total\":\" Gesamt \",\"FormButton.Add_Invoice.cancel\":\" Stornieren \",\"FormField.Add_Cashier.latitude2\":\" Breite \",\"FormField.Add_Cashier.Address\":\" Adresse \",\"FormField.Add_Cashier.last_name\":\" Familienname, Nachname \",\"FormField.Add_Invoice.Amounts\":\" Beträge \",\"FormField.Add_Discount.Click_here_to_quantity_based_discount\":\" Mengenrabatt \",\"ReportField.Invoices.Bill_number\":\" Rechnung Nr \",\"ReportField.All_Product.Product_ID\":\" Produkt ID \",\"ReportField.Customers.Email\":\" Email \",\"FormField.Add_Discount.Added_Time\":\" Zeit hinzugefügt \",\"ReportField.Out_of_stock_Products.Product\":\"Produkt\",\"FormField.categories.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Add_Discount.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"CompositeSubFields.Add_Vendor.Address.postal_Code2\":\" Postleitzahl \",\"FormField.Add_Customers.last_name\":\" Familienname, Nachname \",\"FormField.Add_Customers.latitude2\":\" Breite \",\"FormField.Store_Details.latitude2\":\" Breite \",\"Section.Bill_form\":\" Abrechnung \",\"FormButton.Add_Vendor.cancel\":\" Stornieren \",\"FormField.Add_Customers.longitude2\":\" Längengrad \",\"FormField.categories.Modified_User\":\" Geänderter Benutzer \",\"ReportField.Current_Stock_Products.Cost_price\":\"Kostenpreis\",\"PicklistOption.Add_Vendor.prefix.2\":\" Frau. \",\"FormButton.Add_Invoice.update\":\" Aktualisieren \",\"PicklistOption.Add_Vendor.prefix.3\":\" Frau. \",\"FormField.Add_stock.ID\":\" ICH WÜRDE \",\"FormField.add_product.ID\":\" ICH WÜRDE \",\"PicklistOption.Add_Vendor.prefix.1\":\" Herr. \",\"ReportField.Out_of_stock_Products.Bar_code_Image\":\"Barcode-Bild\",\"ReportField.Customers.address_line_12\":\" Adresse \",\"Report.Monthly_Profit\":\" Monatsgewinn \",\"ReportField.Invoices.Added_Time\":\" Zeit hinzugefügt \",\"Languages List.ro\":\" rumänisch \",\"FormField.Store_Details.address_line_22\":\" Adresszeile 2 \",\"CustomAction.Invoices.View_Inoice\":\" Inoice anzeigen \",\"Languages List.ru\":\" Russisch \",\"FormField.Add_Cashier.Section\":\"Sektion\",\"FormButton.Add_Discount.update\":\" Aktualisieren \",\"ReportField.Today_Sales.Tax\":\" MwSt \",\"Languages List.ta\":\" Tamilisch \",\"Form.Add_Discount\":\" Rabatt hinzufügen \",\"ReportField.Product_Wise_Discount.Discount_percent\":\" Rabatt in Prozent \",\"CompositeSubFields.Add_Customers.Address.address_line_22\":\" Adresszeile 2 \",\"FormButton.Store_Details.update\":\" Aktualisieren \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" Thai \",\"FormField.Add_Invoice.Invoice_Date\":\" Rechnungsdatum \",\"FormField.add_product.Modified_Time\":\" Geänderte Zeit \",\"ReportField.Cashiers.address_line_12\":\" Adresse \",\"Languages List.sq\":\" Albalbanisch \",\"ReportField.Store_Details1.Phone_Number\":\" Telefonnummer \",\"Languages List.sw\":\" Swahili \",\"Languages List.sv\":\" Schwedisch \",\"Report.Invoices\":\" Rechnungen \",\"Languages List.sk\":\" slowakisch \",\"FormField.Add_Customers.Modified_User\":\" Geänderter Benutzer \",\"Languages List.sl\":\" Slowenisch \",\"FormButton.categories.submit\":\" einreichen \",\"FormField.Add_Vendor.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.add_product.Record_Status\":\" Aufnahmestatus \",\"FormField.Add_Discount.Quantity\":\" Menge \",\"FormField.Add_Discount.To\":\" Zu \",\"ReportField.Cashiers.first_name\":\" Name \",\"CompositeSubFields.Add_Cashier.Address.address_line_12\":\" Anschrift Zeile 1 \",\"FormField.categories.Added_User\":\" Benutzer hinzugefügt \",\"ReportField.Vendors.first_name\":\" Name \",\"FormButton.Add_Customers.cancel\":\" Stornieren \",\"FormButton.Store_Details.submit\":\" einreichen \",\"Section.hidden_contents\":\" versteckte Inhalte \",\"FormField.Add_Vendor.Modified_User\":\" Geänderter Benutzer \",\"FormField.Add_Invoice.Added_Time\":\" Zeit hinzugefügt \",\"Languages List.pt\":\" Portugiesisch \",\"ReportField.This_Month_Sales.Payment\":\" Zahlung \",\"ReportField.This_Month_Sales.Discount_Percentage\":\" Rabatt Prozentsatz \",\"FormField.Add_Vendor.suffix\":\" Suffix \",\"Languages List.pl\":\" Polieren \",\"FormButton.Add_Cashier.submit\":\" einreichen \",\"ReportField.Vendors.address_line_12\":\" Adresse \",\"FormButton.Add_Cashier.update\":\" Aktualisieren \",\"FormField.add_product.Section\":\"Sektion\",\"FormField.Store_Details.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Discount.Click_here_to_give_discount_all_products\":\" Rabatt für alle Produkte \",\"ReportField.Invoices.Discount_Percentage\":\" Rabatt Prozentsatz \",\"Section.Discount\":\" Rabatt \",\"PicklistOption.Add_Cashier.country2.2\":\" Beispielland2 \",\"PicklistOption.Add_Cashier.country2.1\":\" Beispielland1 \",\"Report.All_Product\":\" Alle Produkte \",\"FormButton.categories.update\":\" Aktualisieren \",\"FormField.Store_Details.address_line_12\":\" Anschrift Zeile 1 \",\"FormField.Add_Vendor.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Cashier.Modified_User\":\" Geänderter Benutzer \",\"Report.Categories11\":\" Kategorien \",\"FormField.Add_Cashier.address_line_12\":\" Anschrift Zeile 1 \",\"FormField.Add_Invoice.Total\":\" Gesamt \",\"ReportField.Store_Details1.Email\":\" Email \",\"FormField.Store_Details.country2\":\" Land \",\"FormField.Add_Invoice.Modified_User\":\" Geänderter Benutzer \",\"FormField.Add_Cashier.address_line_22\":\" Adresszeile 2 \",\"CompositeSubFields.Add_Vendor.Address.state_province2\":\" Staat / Provinz \",\"FormButton.Add_Customers.reset\":\" Zurücksetzen \",\"FormField.Store_Details.Address\":\" Adresse \",\"FormField.categories.Record_Status\":\" Aufnahmestatus \",\"FormButton.Add_Cashier.reset\":\" Zurücksetzen \",\"ReportField.Out_of_stock_Products.Selling_price\":\"Verkaufspreis\",\"ReportField.All_Product.Product_vendor\":\" Verkäufer \",\"CompositeSubFields.Add_Cashier.Address.address_line_22\":\" Adresszeile 2 \",\"ReportField.Customers.first_name\":\" Name \",\"Section.Sales___Profit\":\"Umsatz &amp; Gewinn \",\"FormField.Add_Discount.Modified_Time\":\" Geänderte Zeit \",\"FormButton.Add_Discount.submit\":\" einreichen \",\"FormField.Add_Vendor.Record_Status\":\" Aufnahmestatus \",\"CompositeSubFields.Add_Cashier.Name.suffix\":\" Suffix \",\"CompositeSubFields.Add_Customers.Address.address_line_12\":\" Anschrift Zeile 1 \",\"FormField.Add_Discount.Discount_Type\":\" Rabattart \",\"Section.Members\":\" Kunden \",\"FormField.Add_stock.Added_Time\":\" Zeit hinzugefügt \",\"CompositeSubFields.Add_Customers.Address.district_city2\":\" Stadtteil \",\"PicklistOption.Add_Vendor.country2.1\":\" Beispielland1 \",\"ReportField.Customers.Phone_number\":\" Telefonnummer \",\"PicklistOption.Add_Vendor.country2.2\":\" Beispielland2 \",\"Languages List.tr\":\" Türkisch \",\"ReportField.Current_Stock_Products.Product_bar_code\":\"Produkt_Barcode\",\"Report.This_Month_Sales\":\" Dieser Monat Umsatz \",\"FormField.Add_Customers.first_name\":\" Vorname \",\"FormField.add_product.Weight_Volume_Size\":\" Gewicht / Volumen / Größe \",\"FormField.Selling_Products_Form.Bar_code_Image\":\" Barcode-Bild \",\"Languages List.tl\":\" Filipino \",\"FormField.categories.ID\":\" ICH WÜRDE \",\"Languages List.vi\":\" Vietnamesisch \",\"Form.Add_Customers\":\" Kunden hinzufügen \",\"Report.Today_Sales\":\" Heute Verkauf \",\"FormField.Add_Invoice.Profit\":\" Profitieren \",\"FormField.add_product.Product_name\":\" Produktname \",\"FormButton.add_product.cancel\":\" Stornieren \",\"Report.This_Week_Sales\":\" Diese Woche Verkäufe \",\"FormField.Add_Discount.Record_Status\":\" Aufnahmestatus \",\"FormField.Add_Customers.suffix\":\" Suffix \",\"Languages List.ur\":\" Urdu \",\"Page.Invoice\":\" Rechnung \",\"FormField.categories.Modified_Time\":\" Geänderte Zeit \"},\"fr\":{\"Form.Add_Cashier\":\" Ajouter un caissier \",\"FormField.Add_Invoice.Payment\":\" Paiement \",\"ReportField.Customers.Customer_ID\":\" N ° de client \",\"FormField.Add_Invoice.Buying_products.discount_percent\":\" Remise \",\"FormButton.Selling_Products_Form.reset\":\" Réinitialiser \",\"Report.This_Month_sale\":\" Ce mois-ci \",\"FormButton.Selling_Products_Form.cancel\":\" Annuler \",\"FormField.add_product.Added_Time\":\" Temps ajouté \",\"FormField.Add_stock.Section\":\" Section \",\"FormButton.Store_Details.cancel\":\" Annuler \",\"ReportField.This_Week_Sales.Discount_Percentage\":\" Pourcentage d'escompte \",\"Languages List.zh-TW\":\" Chinois traditionnel \",\"Report.Most_Sold_Products\":\" Produits les plus vendus \",\"Languages List.ja\":\" Japonais \",\"CompositeSubFields.Add_Vendor.Vendor_Name.prefix\":\" Préfixe \",\"FormButton.Add_Cashier.cancel\":\" Annuler \",\"ReportField.Invoices.Invoice_Date\":\" Date de facturation \",\"FormField.Add_Cashier.prefix\":\" Préfixe \",\"FormButton.Add_Discount.cancel\":\" Annuler \",\"Form.Store_Details\":\" Détails du magasin \",\"FormField.Add_Customers.district_city2\":\" District de la ville \",\"CompositeSubFields.Add_Vendor.Vendor_Name.first_name\":\" Prénom \",\"ReportField.Store_Details1.address_line_12\":\" Adresse \",\"FormField.Add_Invoice.Customer\":\" Client \",\"Languages List.ku\":\" kurde \",\"FormField.add_product.Modified_User\":\" Utilisateur modifié \",\"CompositeSubFields.Add_Cashier.Address.state_province2\":\" Etat / Province \",\"FormField.Add_Invoice.Buying_products.Bar_code\":\" code à barre \",\"Languages List.km\":\" Khmer \",\"Languages List.ko\":\" coréen \",\"Languages List.kn\":\" Kannada \",\"Languages List.ka\":\" géorgien \",\"ReportField.This_Month_Sales.Tax\":\" Impôt \",\"FormField.Add_Customers.Modified_Time\":\" Heure modifiée \",\"ReportField.This_Month_sale.Invoice_Date\":\" Date de facturation \",\"ReportField.Today_Sales.Profit\":\" Profit \",\"Form.Add_stock\":\" Ajouter un stock \",\"Languages List.hu\":\" hongrois \",\"FormField.Selling_Products_Form.ID\":\" ID \",\"Languages List.hy\":\" arménien \",\"FormField.Add_Discount.Section\":\"Section\",\"FormField.Add_Vendor.postal_Code2\":\" code postal \",\"Languages List.hr\":\" croate \",\"FormField.Add_Customers.Name\":\" prénom \",\"FormField.Add_Vendor.prefix\":\" Préfixe \",\"FormField.Add_Vendor.Modified_Time\":\" Heure modifiée \",\"FormField.Add_Vendor.longitude2\":\" longitude \",\"Languages List.hi\":\" hindi \",\"ReportField.Price_Dise_Discount.To\":\"À\",\"FormField.Add_Invoice.Added_User\":\" Utilisateur ajouté \",\"Form.Selling_Products_Form\":\" Formulaire de vente de produits \",\"ReportField.Vendors.Phone_Number\":\" Numéro de téléphone \",\"FormField.Selling_Products_Form.Record_Status\":\" Statut d'enregistrement \",\"CompositeSubFields.Store_Details.Address.state_province2\":\" Etat / Province \",\"FormField.Store_Details.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Add_stock.Record_Status\":\" Statut d'enregistrement \",\"Languages List.iw\":\" hébreu \",\"ReportField.Product_Wise_Discount.Discount_Type\":\" Type de remise \",\"FormField.Add_Vendor.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"Report.Price_Dise_Discount\":\" Prix ​​Wise Discount \",\"FormField.Add_Vendor.district_city2\":\" District de la ville \",\"Languages List.is\":\" islandais \",\"FormField.Add_Cashier.first_name\":\" Prénom \",\"Languages List.it\":\" italien \",\"FormField.Add_stock.Cost_Price\":\" Prix ​​de revient \",\"FormField.Add_Invoice.ID\":\" ID \",\"ReportField.Invoices.Buying_products.Product\":\" Articles de facture \",\"CompositeSubFields.Add_Vendor.Address.district_city2\":\" District de la ville \",\"FormField.Store_Details.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormButton.Add_Vendor.reset\":\" Réinitialiser \",\"FormField.Add_Vendor.Email\":\" Email \",\"FormField.Add_Vendor.Added_Time\":\" Temps ajouté \",\"FormField.Add_Cashier.Modified_Time\":\" Heure modifiée \",\"Report.Current_Stock_Products\":\" Produits courants en stock \",\"FormButton.Add_Customers.update\":\" Mettre à jour \",\"CompositeSubFields.Add_Vendor.Vendor_Name.last_name\":\" Nom de famille \",\"FormField.Add_Vendor.country2\":\" Pays \",\"FormField.Add_Cashier.Added_User\":\" Utilisateur ajouté \",\"FormField.add_product.Product_ID\":\" ID de produit \",\"FormField.Add_Invoice.Record_Status\":\" Statut d'enregistrement \",\"Languages List.nl\":\" néerlandais \",\"FormField.Selling_Products_Form.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormButton.Add_Invoice.submit\":\" Soumettre \",\"FormField.Add_Customers.state_province2\":\" Etat / Province \",\"Report.Store_Details1\":\" Détails du magasin \",\"Languages List.no\":\" norvégien \",\"CompositeSubFields.Add_Vendor.Vendor_Name.suffix\":\" Suffixe \",\"CompositeSubFields.Store_Details.Address.address_line_12\":\" Adresse 1 \",\"ReportField.Product_Wise_Discount.From\":\" De \",\"CompositeSubFields.Add_Vendor.Address.address_line_12\":\" Adresse 1 \",\"CompositeSubFields.Add_Cashier.Address.postal_Code2\":\" code postal \",\"FormField.Add_Cashier.Mobile_Number\":\" Numéro de portable \",\"FormField.Selling_Products_Form.Section\":\"Section\",\"ReportField.Out_of_stock_Products.Quantity\":\"Quantité\",\"ReportField.Invoices.Buying_products.Bar_code\":\" Articles de facture \",\"FormField.Add_Invoice.Section\":\" Section \",\"FormField.Add_Customers.Customer_ID\":\" N ° de client \",\"PicklistOption.Add_Customers.prefix.3\":\" Mme. \",\"PicklistOption.Add_Customers.prefix.1\":\" M. \",\"Form.Add_Vendor\":\" Ajouter un fournisseur \",\"PicklistOption.Add_Customers.prefix.2\":\" Madame. \",\"ReportField.Product_Wise_Discount.Products\":\"Des produits\",\"CompositeSubFields.Add_Vendor.Address.address_line_22\":\" Adresse Ligne 2 \",\"FormField.Add_Vendor.last_name\":\" Nom de famille \",\"CompositeSubFields.Add_Cashier.Name.last_name\":\" Nom de famille \",\"CompositeSubFields.Add_Customers.Name.prefix\":\" Préfixe \",\"ReportField.Product_Wise_Discount.Quantity\":\" Quantité \",\"CompositeSubFields.Add_Customers.Address.postal_Code2\":\" code postal \",\"FormButton.add_product.reset\":\" Réinitialiser \",\"Report.Vendors\":\" Vendeurs \",\"Languages List.lt\":\" lituanien \",\"FormField.Add_stock.Added_User\":\" Utilisateur ajouté \",\"Languages List.lv\":\" letton \",\"CompositeSubFields.Add_Customers.Name.suffix\":\" Suffixe \",\"FormButton.Add_stock.Reset\":\" Réinitialiser \",\"FormField.Add_Vendor.state_province2\":\" Etat / Province \",\"FormField.Add_stock.Selling_Price\":\" Prix ​​de vente \",\"FormField.Selling_Products_Form.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Customers.ID\":\" ID \",\"FormField.Store_Details.Email\":\" Email \",\"Languages List.lo\":\" Laothian \",\"Languages List.la\":\" Latin \",\"FormField.Add_Cashier.ID\":\" ID \",\"ReportField.Invoices.Customer\":\" prénom \",\"CompositeSubFields.Add_Customers.Address.state_province2\":\" Etat / Province \",\"FormField.Store_Details.postal_Code2\":\" code postal \",\"ReportField.Categories11.Category\":\" Catégorie \",\"FormButton.Store_Details.reset\":\" Réinitialiser \",\"Languages List.ms\":\" malais \",\"Languages List.mr\":\" Marathi \",\"FormField.Add_Discount.From\":\" De \",\"Languages List.mt\":\" maltais \",\"Languages List.mk\":\" Macédonien \",\"CompositeSubFields.Add_Customers.Address.country2\":\" Pays \",\"ReportField.This_Week_Sales.Payment\":\" Paiement \",\"FormField.Add_Invoice.Buying_products.Subtotal\":\" Total \",\"CompositeSubFields.Store_Details.Address.address_line_22\":\" Adresse Ligne 2 \",\"FormButton.Add_Vendor.submit\":\" Soumettre \",\"FormField.Store_Details.district_city2\":\" District de la ville \",\"FormField.Add_Invoice.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormButton.Add_Invoice.reset\":\" Réinitialiser \",\"Languages List.bg\":\" bulgare \",\"FormField.add_product.Sold_quantity_this_month\":\" Quantité vendue ce mois-ci \",\"ReportField.Out_of_stock_Products.Cost_price\":\"Prix ​​de revient\",\"Languages List.bn\":\" bengali \",\"CompositeSubFields.Add_Cashier.Address.district_city2\":\" District de la ville \",\"FormField.Add_Discount.Discount_percent\":\" Pourcentage d'escompte \",\"FormButton.Add_Discount.reset\":\" Réinitialiser \",\"ReportField.Cashiers.Email\":\" Email \",\"Languages List.be\":\" Biélorusse \",\"Languages List.az\":\" azerbaïdjanais \",\"FormField.Store_Details.ID\":\" ID \",\"Languages List.cs\":\" tchèque \",\"FormField.Add_Cashier.Email\":\" Email \",\"FormField.Add_Invoice.Buying_products.Product\":\" Produit \",\"FormField.add_product.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Invoice.Tax\":\" Impôt \",\"Languages List.ca\":\" catalan \",\"FormField.Add_Cashier.district_city2\":\" District de la ville \",\"FormField.Add_Vendor.address_line_22\":\" Adresse Ligne 2 \",\"ReportField.Today_Sales.Payment\":\" Paiement \",\"ReportField.All_Product.Category\":\"Catégorie\",\"FormField.Store_Details.Store_name\":\" Nom du magasin \",\"FormField.Add_Customers.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Selling_Products_Form.Product\":\" Produit \",\"FormField.Add_Customers.postal_Code2\":\" code postal \",\"FormField.Add_Invoice.Buying_products.Price\":\" Prix \",\"FormField.Selling_Products_Form.Modified_User\":\" Utilisateur modifié \",\"ReportField.All_Product.Product_name\":\" Nom du produit \",\"FormField.Selling_Products_Form.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Store_Details.Modified_Time\":\" Heure modifiée \",\"ReportField.This_Week_Sales.Tax\":\" Impôt \",\"Languages List.ar\":\" arabe \",\"CompositeSubFields.Store_Details.Address.postal_Code2\":\" code postal \",\"Languages List.af\":\" afrikaans \",\"Report.Cashiers\":\" Caissiers \",\"FormField.Add_Vendor.Vendor_Name\":\" prénom \",\"FormField.Store_Details.Record_Status\":\" Statut d'enregistrement \",\"CustomAction.Customers.View_invoice_history_scri\":\" Afficher les scripts d'historique des factures \",\"FormField.add_product.Product_vendor\":\" Vendeur \",\"Report.Out_of_stock_Products\":\" Produits en rupture de stock \",\"FormField.Add_Customers.Purchased_amount_till_now\":\" Montant acheté \",\"PicklistOption.Add_Cashier.prefix.3\":\" Mme. \",\"FormField.Add_Vendor.Address\":\" Adresse \",\"PicklistOption.Add_Cashier.prefix.1\":\" M. \",\"Report.Customers\":\" Les clients \",\"PicklistOption.Add_Cashier.prefix.2\":\" Madame. \",\"FormField.Add_Cashier.Added_Time\":\" Temps ajouté \",\"CompositeSubFields.Store_Details.Address.district_city2\":\" District de la ville \",\"Languages List.fr\":\" français \",\"FormField.Add_Customers.Added_Time\":\" Temps ajouté \",\"Languages List.fi\":\" Finnois \",\"ReportField.This_Month_sale.Discount_Percentage\":\" Pourcentage d'escompte \",\"FormField.Add_Cashier.Name\":\" prénom \",\"Languages List.fa\":\" persan \",\"ReportField.This_Month_Sales.Invoice_Date\":\" Date de facturation \",\"Languages List.gu\":\" Gujarati \",\"ReportField.Price_Dise_Discount.From\":\"De\",\"Languages List.gl\":\" Galicien \",\"FormField.Add_Cashier.state_province2\":\" Etat / Province \",\"ReportField.Store_Details1.Store_name\":\" Nom du magasin \",\"Section.Charts\":\" Graphiques \",\"FormField.Add_Cashier.suffix\":\" Suffixe \",\"ReportField.Current_Stock_Products.Quantity\":\"Quantité\",\"FormField.Add_Cashier.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"ReportField.Product_Wise_Discount.Click_here_to_give_discount_all_products\":\" Remise pour tous les produits \",\"FormField.Add_stock.Modified_User\":\" Utilisateur modifié \",\"Report.Product_Wise_Discount\":\" Produit Wise Discount \",\"FormButton.add_product.update\":\" Mettre à jour \",\"FormField.Add_Vendor.ID\":\" ID \",\"App.point-of-sale\":\"Point de vente\",\"FormButton.Selling_Products_Form.update\":\" Mettre à jour \",\"Languages List.ga\":\" irlandais \",\"ReportField.Price_Dise_Discount.Discount_percent\":\" Pourcentage d'escompte \",\"ReportField.Price_Dise_Discount.Total_price\":\"Prix ​​total\",\"CompositeSubFields.Add_Cashier.Name.first_name\":\" Prénom \",\"ReportField.Current_Stock_Products.Selling_price\":\"Prix ​​de vente\",\"FormField.Add_Invoice.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Add_Discount.ID\":\" ID \",\"FormField.Add_Invoice.Bill_number\":\" Bill No \",\"ReportField.This_Month_sale.Total\":\" Total \",\"FormField.Add_Discount.Products\":\" Produit \",\"Languages List.da\":\" danois \",\"ReportField.This_Month_Sales.Total\":\" Total \",\"CompositeSubFields.Add_Cashier.Name.prefix\":\" Préfixe \",\"Languages List.de\":\" allemand \",\"FormField.Add_Vendor.address_line_12\":\" Adresse 1 \",\"FormField.Selling_Products_Form.Added_Time\":\" Temps ajouté \",\"ReportField.Invoices.Profit\":\" Profit \",\"Languages List.cy\":\" gallois \",\"Form.Add_Invoice\":\" Ajouter une facture \",\"Languages List.es\":\" Espanol \",\"Languages List.eu\":\" basque \",\"Form.categories\":\" Catégories \",\"Languages List.et\":\" estonien \",\"ReportField.Customers.Purchased_amount_till_now\":\" Montant acheté \",\"FormField.Add_Customers.Section\":\" Section \",\"FormField.Add_Discount.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Invoice.Discount_Percentage\":\" Pourcentage d'escompte \",\"Form.add_product\":\" Ajouter un produit \",\"FormField.Add_Customers.prefix\":\" Préfixe \",\"ReportField.All_Product.Sold_quantity_this_month\":\" Quantité vendue ce mois-ci \",\"Languages List.el\":\" grec \",\"Languages List.eo\":\" espéranto \",\"Languages List.en\":\" Anglais \",\"FormButton.add_product.submit\":\" Soumettre \",\"FormField.Selling_Products_Form.Quantity\":\" Quantité \",\"FormButton.Selling_Products_Form.submit\":\" Soumettre \",\"ReportField.All_Product.Weight_Volume_Size\":\" Poids / volume / taille \",\"PicklistOption.Add_Customers.country2.1\":\" Choix 1 \",\"PicklistOption.Add_Customers.country2.2\":\" Choix 2 \",\"ReportField.Current_Stock_Products.Bar_code_Image\":\"Code à barres Image\",\"ReportField.Out_of_stock_Products.Product_bar_code\":\"Product_bar_code\",\"FormField.Add_Customers.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_stock.Product\":\" Produit \",\"FormButton.categories.cancel\":\" Annuler \",\"FormField.Selling_Products_Form.Selling_price\":\" Prix ​​de vente \",\"FormField.Add_Customers.Email\":\" Email \",\"FormField.Add_Cashier.country2\":\" Pays \",\"FormField.Add_Discount.Total_price\":\" Prix ​​total \",\"FormField.Add_Discount.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Add_Vendor.Phone_Number\":\" Numéro de téléphone \",\"FormField.add_product.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Add_Customers.country2\":\" Pays \",\"ReportField.Invoices.Total\":\" Total \",\"FormField.Add_Cashier.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_Invoice.Buying_products\":\" Articles de facture \",\"FormField.Store_Details.Modified_User\":\" Utilisateur modifié \",\"FormButton.Add_Customers.submit\":\" Soumettre \",\"FormButton.categories.reset\":\" Réinitialiser \",\"FormField.Add_Invoice.Buying_products.Quantity\":\" Quantité \",\"FormField.Store_Details.state_province2\":\" Etat / Province \",\"ReportField.Invoices.Tax\":\" Impôt \",\"CompositeSubFields.Add_Cashier.Address.country2\":\" Pays \",\"FormField.Selling_Products_Form.Cost_price\":\" Prix ​​de revient \",\"FormField.Add_Customers.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"PicklistOption.Add_Discount.Discount_Type.2\":\" Remise totale du prix \",\"Report.Monthly_Sales\":\" Ventes mensuelles \",\"PicklistOption.Add_Discount.Discount_Type.1\":\" Produit sage \",\"ReportField.Current_Stock_Products.Product\":\"Produit\",\"ReportField.This_Month_sale.Profit\":\" Profit \",\"FormField.add_product.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Languages List.yi\":\" yiddish \",\"FormField.Add_Customers.Phone_number\":\" Numéro de téléphone \",\"ReportField.This_Month_sale.Tax\":\" Impôt \",\"CompositeSubFields.Add_Customers.Name.last_name\":\" Nom de famille \",\"FormField.categories.Category\":\" Catégorie \",\"FormField.categories.Added_Time\":\" Temps ajouté \",\"Section.Item_categories\":\" Paramètres \",\"PicklistOption.Store_Details.country2.2\":\" Choix 2 \",\"ReportField.This_Week_Sales.Invoice_Date\":\" Date de facturation \",\"PicklistOption.Store_Details.country2.1\":\" Choix 1 \",\"FormField.Store_Details.longitude2\":\" longitude \",\"ReportField.Product_Wise_Discount.To\":\" À \",\"ReportField.Today_Sales.Total\":\" Total \",\"FormField.add_product.Category\":\" Catégorie \",\"CompositeSubFields.Add_Customers.Name.first_name\":\" Prénom \",\"ReportField.Vendors.Email\":\" Email \",\"CompositeSubFields.Store_Details.Address.country2\":\" Pays \",\"Languages List.zh\":\" chinois \",\"FormField.Add_Cashier.postal_Code2\":\" code postal \",\"FormField.Store_Details.Added_Time\":\" Temps ajouté \",\"FormField.Add_Cashier.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Selling_Products_Form.Modified_Time\":\" Heure modifiée \",\"FormField.Add_stock.Quantity\":\" Quantité \",\"FormButton.Add_stock.Submit\":\" Soumettre \",\"FormField.Selling_Products_Form.Product_bar_code\":\" Product_bar_code \",\"FormField.Store_Details.Phone_Number\":\" Numéro de téléphone \",\"FormField.Add_Vendor.first_name\":\" Prénom \",\"FormField.Add_stock.Barcode_Number\":\" Numéro de code barre \",\"ReportField.Today_Sales.Discount_Percentage\":\" Pourcentage d'escompte \",\"ReportField.Invoices.Payment\":\" Paiement \",\"ReportField.Today_Sales.Invoice_Date\":\" Date de facturation \",\"FormField.Add_Customers.address_line_12\":\" Adresse 1 \",\"FormField.Add_Invoice.Modified_Time\":\" Heure modifiée \",\"FormField.Add_Customers.Added_User\":\" Utilisateur ajouté \",\"CompositeSubFields.Add_Vendor.Address.country2\":\" Pays \",\"FormField.Add_Cashier.longitude2\":\" longitude \",\"ReportField.This_Month_sale.Payment\":\" Paiement \",\"FormButton.Add_Vendor.update\":\" Mettre à jour \",\"ReportField.Cashiers.Mobile_Number\":\" Numéro de portable \",\"FormField.Add_Vendor.latitude2\":\" latitude \",\"FormField.Add_Customers.address_line_22\":\" Adresse Ligne 2 \",\"FormField.Add_stock.Modified_Time\":\" Heure modifiée \",\"FormField.Add_Discount.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Customers.Address\":\" Adresse \",\"FormField.categories.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"ReportField.Price_Dise_Discount.Discount_Type\":\"Type de remise\",\"Section.Stock\":\" Stock \",\"ReportField.This_Week_Sales.Total\":\" Total \",\"FormButton.Add_Invoice.cancel\":\" Annuler \",\"FormField.Add_Cashier.latitude2\":\" latitude \",\"FormField.Add_Cashier.Address\":\" Adresse \",\"FormField.Add_Cashier.last_name\":\" Nom de famille \",\"FormField.Add_Invoice.Amounts\":\" Les montants \",\"FormField.Add_Discount.Click_here_to_quantity_based_discount\":\" Remise basée sur la quantité \",\"ReportField.Invoices.Bill_number\":\" Bill No \",\"ReportField.All_Product.Product_ID\":\" ID de produit \",\"ReportField.Customers.Email\":\" Email \",\"FormField.Add_Discount.Added_Time\":\" Temps ajouté \",\"ReportField.Out_of_stock_Products.Product\":\"Produit\",\"FormField.categories.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Add_Discount.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"CompositeSubFields.Add_Vendor.Address.postal_Code2\":\" code postal \",\"FormField.Add_Customers.last_name\":\" Nom de famille \",\"FormField.Add_Customers.latitude2\":\" latitude \",\"FormField.Store_Details.latitude2\":\" latitude \",\"Section.Bill_form\":\" Facturation \",\"FormButton.Add_Vendor.cancel\":\" Annuler \",\"FormField.Add_Customers.longitude2\":\" longitude \",\"FormField.categories.Modified_User\":\" Utilisateur modifié \",\"ReportField.Current_Stock_Products.Cost_price\":\"Prix ​​de revient\",\"PicklistOption.Add_Vendor.prefix.2\":\" Madame. \",\"FormButton.Add_Invoice.update\":\" Mettre à jour \",\"PicklistOption.Add_Vendor.prefix.3\":\" Mme. \",\"FormField.Add_stock.ID\":\" ID \",\"FormField.add_product.ID\":\" ID \",\"PicklistOption.Add_Vendor.prefix.1\":\" M. \",\"ReportField.Out_of_stock_Products.Bar_code_Image\":\"Code à barres Image\",\"ReportField.Customers.address_line_12\":\" Adresse \",\"Report.Monthly_Profit\":\" Bénéfice mensuel \",\"ReportField.Invoices.Added_Time\":\" Temps ajouté \",\"Languages List.ro\":\" roumain \",\"FormField.Store_Details.address_line_22\":\" Adresse Ligne 2 \",\"CustomAction.Invoices.View_Inoice\":\" Voir Inoice \",\"Languages List.ru\":\" russe \",\"FormField.Add_Cashier.Section\":\"Section\",\"FormButton.Add_Discount.update\":\" Mettre à jour \",\"ReportField.Today_Sales.Tax\":\" Impôt \",\"Languages List.ta\":\" Tamil \",\"Form.Add_Discount\":\" Ajouter un rabais \",\"ReportField.Product_Wise_Discount.Discount_percent\":\" Pourcentage d'escompte \",\"CompositeSubFields.Add_Customers.Address.address_line_22\":\" Adresse Ligne 2 \",\"FormButton.Store_Details.update\":\" Mettre à jour \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" thaïlandais \",\"FormField.Add_Invoice.Invoice_Date\":\" Date de facturation \",\"FormField.add_product.Modified_Time\":\" Heure modifiée \",\"ReportField.Cashiers.address_line_12\":\" Adresse \",\"Languages List.sq\":\" Albalbanais \",\"ReportField.Store_Details1.Phone_Number\":\" Numéro de téléphone \",\"Languages List.sw\":\" Swahili \",\"Languages List.sv\":\" suédois \",\"Report.Invoices\":\" Factures \",\"Languages List.sk\":\" slovaque \",\"FormField.Add_Customers.Modified_User\":\" Utilisateur modifié \",\"Languages List.sl\":\" slovène \",\"FormButton.categories.submit\":\" Soumettre \",\"FormField.Add_Vendor.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.add_product.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_Discount.Quantity\":\" Quantité \",\"FormField.Add_Discount.To\":\" À \",\"ReportField.Cashiers.first_name\":\" prénom \",\"CompositeSubFields.Add_Cashier.Address.address_line_12\":\" Adresse 1 \",\"FormField.categories.Added_User\":\" Utilisateur ajouté \",\"ReportField.Vendors.first_name\":\" prénom \",\"FormButton.Add_Customers.cancel\":\" Annuler \",\"FormButton.Store_Details.submit\":\" Soumettre \",\"Section.hidden_contents\":\" contenu caché \",\"FormField.Add_Vendor.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Invoice.Added_Time\":\" Temps ajouté \",\"Languages List.pt\":\" Portugais \",\"ReportField.This_Month_Sales.Payment\":\" Paiement \",\"ReportField.This_Month_Sales.Discount_Percentage\":\" Pourcentage d'escompte \",\"FormField.Add_Vendor.suffix\":\" Suffixe \",\"Languages List.pl\":\" polonais \",\"FormButton.Add_Cashier.submit\":\" Soumettre \",\"ReportField.Vendors.address_line_12\":\" Adresse \",\"FormButton.Add_Cashier.update\":\" Mettre à jour \",\"FormField.add_product.Section\":\"Section\",\"FormField.Store_Details.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Discount.Click_here_to_give_discount_all_products\":\" Remise pour tous les produits \",\"ReportField.Invoices.Discount_Percentage\":\" Pourcentage d'escompte \",\"Section.Discount\":\" Remise \",\"PicklistOption.Add_Cashier.country2.2\":\" SampleCountry2 \",\"PicklistOption.Add_Cashier.country2.1\":\" SampleCountry1 \",\"Report.All_Product\":\" Tous les produits \",\"FormButton.categories.update\":\" Mettre à jour \",\"FormField.Store_Details.address_line_12\":\" Adresse 1 \",\"FormField.Add_Vendor.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Cashier.Modified_User\":\" Utilisateur modifié \",\"Report.Categories11\":\" Catégories \",\"FormField.Add_Cashier.address_line_12\":\" Adresse 1 \",\"FormField.Add_Invoice.Total\":\" Total \",\"ReportField.Store_Details1.Email\":\" Email \",\"FormField.Store_Details.country2\":\" Pays \",\"FormField.Add_Invoice.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Cashier.address_line_22\":\" Adresse Ligne 2 \",\"CompositeSubFields.Add_Vendor.Address.state_province2\":\" Etat / Province \",\"FormButton.Add_Customers.reset\":\" Réinitialiser \",\"FormField.Store_Details.Address\":\" Adresse \",\"FormField.categories.Record_Status\":\" Statut d'enregistrement \",\"FormButton.Add_Cashier.reset\":\" Réinitialiser \",\"ReportField.Out_of_stock_Products.Selling_price\":\"Prix ​​de vente\",\"ReportField.All_Product.Product_vendor\":\" Vendeur \",\"CompositeSubFields.Add_Cashier.Address.address_line_22\":\" Adresse Ligne 2 \",\"ReportField.Customers.first_name\":\" prénom \",\"Section.Sales___Profit\":\"Ventes et profits \",\"FormField.Add_Discount.Modified_Time\":\" Heure modifiée \",\"FormButton.Add_Discount.submit\":\" Soumettre \",\"FormField.Add_Vendor.Record_Status\":\" Statut d'enregistrement \",\"CompositeSubFields.Add_Cashier.Name.suffix\":\" Suffixe \",\"CompositeSubFields.Add_Customers.Address.address_line_12\":\" Adresse 1 \",\"FormField.Add_Discount.Discount_Type\":\" Type de remise \",\"Section.Members\":\" Les clients \",\"FormField.Add_stock.Added_Time\":\" Temps ajouté \",\"CompositeSubFields.Add_Customers.Address.district_city2\":\" District de la ville \",\"PicklistOption.Add_Vendor.country2.1\":\" SampleCountry1 \",\"ReportField.Customers.Phone_number\":\" Numéro de téléphone \",\"PicklistOption.Add_Vendor.country2.2\":\" SampleCountry2 \",\"Languages List.tr\":\" turc \",\"ReportField.Current_Stock_Products.Product_bar_code\":\"Product_bar_code\",\"Report.This_Month_Sales\":\" Ce mois-ci les ventes \",\"FormField.Add_Customers.first_name\":\" Prénom \",\"FormField.add_product.Weight_Volume_Size\":\" Poids / volume / taille \",\"FormField.Selling_Products_Form.Bar_code_Image\":\" Code à barres Image \",\"Languages List.tl\":\" Philippin \",\"FormField.categories.ID\":\" ID \",\"Languages List.vi\":\" vietnamien \",\"Form.Add_Customers\":\" Ajouter des clients \",\"Report.Today_Sales\":\" Aujourd'hui Ventes \",\"FormField.Add_Invoice.Profit\":\" Profit \",\"FormField.add_product.Product_name\":\" Nom du produit \",\"FormButton.add_product.cancel\":\" Annuler \",\"Report.This_Week_Sales\":\" Ventes de cette semaine \",\"FormField.Add_Discount.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_Customers.suffix\":\" Suffixe \",\"Languages List.ur\":\" Urdu \",\"Page.Invoice\":\" Facture d'achat \",\"FormField.categories.Modified_Time\":\" Heure modifiée \"}}"
+}
+	reports configuration
+	{
+	
+		Version = 1251000165802343
+		Key     = "nrmRwMkgCzrRd6DhrbAwzx62jC86pp1egO1N2O10wTKgOmFUsr5v6W7u6ASqRpXzt8Tr28vzp2JyueAEMGHEpuDHXdvUameEgJ1C"
+	}
+}

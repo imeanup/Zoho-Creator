@@ -1,0 +1,1529 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 23:15:29
+ * Version      : 1.0
+ */
+ application "Tasks Done"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+	section Add_Tasklist
+	{
+		displayname= "Hidden"
+		icon = "ui-1-eye-ban-20"
+		form Add_Tasklist
+		{
+			displayname = "Add Tasklist"
+			success message = "Tasklist Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Tasklist
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Comments
+		{
+			displayname = "Add Comments"
+			success message = "Comment/Attachment Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Task_Name
+			(
+				type = picklist
+				displayname = "Task Name"
+				values  = Add_Task.ID
+    			bidirectional = Attachment_Comment
+    			displayformat = [Task_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Commented_By
+			(
+				type = picklist
+				displayname = "Commented By"
+				values  = Add_Contact.ID
+    			displayformat = [" " + Name.first_name + " " + Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Comments
+			(
+    			type = richtext
+				height = 200px
+				toolbar = enable
+				[
+					style, font-color, background-color, alignment, link, table, bullets-and-numbering, 
+					font-size : {1, 2, 3, 4, 5, 6, 7},
+					font-family : {"Serif", "Arial", "Courier New", "Georgia", "Tahoma", "Times New Roman", "Trebuchet", "Verdana", "Comic Sans Ms"}
+				]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Image
+			(
+    			type = image
+				source  = public_url,file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			File_Attachment
+			(
+    			type = upload file
+				displayname = "File Attachment"
+				browse = local_drive, google_docs, zoho_docs
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Add_Task
+	{
+		displayname= "Tasks"
+		icon = "files-archive-3d-check"
+		kanban All_Tasks
+		{
+			displayName = "All Tasks"
+			show all rows from Add_Task  [Co_Owners.Email == zoho.loginuserid || Added_User == zoho.loginuser]  
+			(
+				Co_Owners as "Co Owners"
+				Priority
+				Tasklist
+				Status
+				Task_Name as "Task Name"
+				Starting_Date as "Starting Date"
+				Description
+				Ending_Date as "Ending Date"
+			)
+			sort by
+			(
+				Priority ascending
+			)
+			options
+			(
+	 			display field = Priority
+				record count  = enable
+				icon = "education-notepad"
+	 		)
+			custom actions
+			(
+				"Add Comment"
+				(
+	  			workflow = Add_Comments
+				show action in view header = true
+				show action in edit record menu = true
+				condition = (Status != "Closed")
+				)
+			)
+			conditional formatting
+			(
+				"Open Tasks"
+				{
+				condition = (Status == "Open")
+				fields = [Status]
+				format = "font-style:italic;color:#e64c3b;"
+				}
+				"Closed Tasks"
+				{
+				condition = (Status == "Closed")
+				fields = [Status]
+				format = "font-style:italic;color:#19bc9e;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Task_Name as "Task Name"
+							Tasklist
+							Status
+							Starting_Date as "Starting Date"
+							Priority
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								"Add Comment"
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Task_Name as "Task Name"
+							Description
+							Starting_Date as "Starting Date"
+							Ending_Date as "Ending Date"
+							Status
+							Co_Owners as "Co Owners"
+						)
+					)
+					datablock5
+					(
+			 			layout type = -1
+		     			title = "Attachment/Comment"
+		     			related field =  Attachment_Comment[Co_Owners.Email == zoho.loginuserid || Added_User == zoho.loginuser]
+						fields
+						(
+							Task_Name as "Task Name"
+							Commented_By as "Commented By"
+							Comments
+							Image
+							File_Attachment as "File Attachment"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Add Comment"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		calendar Monthly_Tasks
+		{
+			displayName = "Monthly Tasks"
+			show all rows from Add_Task  [Co_Owners.Email == zoho.loginuserid || Added_User == zoho.loginuser]  
+			(
+				Ending_Date as "Ending Date"
+				Co_Owners as "Co Owners"
+				Tasklist
+				Starting_Date as "Starting Date"
+				Task_Name as "Task Name"
+				Priority
+				Description
+				Status
+				Tasklist.Tasklist
+			)
+			options
+			(
+				display type = month
+				week start day = sunday
+				display field = Task_Name
+				start date = Starting_Date
+				end date = Ending_Date
+				default date 
+				(
+	    			day   = Today
+	    			month = Currentmonth
+	    			year  = Currentyear
+				)
+				icon = "ui-1-calendar-grid-58"
+			)
+			conditional formatting
+			(
+				"Completed Tasks"
+				{
+				condition = (Priority == "Completed")
+				format = "color:#ffffff;background-color:#1fbe9c;"
+				}
+				"Medium Priority"
+				{
+				condition = (Priority == "Medium")
+				format = "color:#ffffff;background-color:#3e8de8;"
+				}
+				"High Priority"
+				{
+				condition = (Priority == "High")
+				format = "color:#ffffff;background-color:#f46273;"
+				}
+				"Low Priority"
+				{
+				condition = (Priority == "Low")
+				format = "color:#ffffff;background-color:#d1d1d1;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Task_Name as "Task Name"
+							Description
+							Tasklist.Tasklist as "Tasklist"
+							Priority
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Task_Name as "Task Name"
+							Tasklist
+							Starting_Date as "Starting Date"
+							Priority
+							Description
+							Status
+							Ending_Date as "Ending Date"
+							Co_Owners as "Co Owners"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		form Add_Task
+		{
+			displayname = "Add Task"
+			success message = "Task Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Task
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Task_Name
+			(
+    			type = text
+				displayname = "Task Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Tasklist
+			(
+				type = picklist
+				values  = Add_Tasklist[Added_User == zoho.loginuser].ID
+    			displayformat = [Tasklist]
+				allow new entries = true
+				[
+					displayname = "Add New Tasklist"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Description
+			(
+    			type = richtext
+				height = 200px
+				toolbar = enable
+				[
+					style, font-color, background-color, alignment, link, table, bullets-and-numbering, 
+					font-size : {1, 2, 3, 4, 5, 6, 7},
+					font-family : {"Serif", "Arial", "Courier New", "Georgia", "Tahoma", "Times New Roman", "Trebuchet", "Verdana", "Comic Sans Ms"}
+				]
+	 			row = 1
+	 			column = 2   
+				width = large
+			)
+			Section
+			(
+				type = section
+	 			row = 2
+	 			column = 0   
+				width = medium
+			)
+			Starting_Date
+			(
+    			type = date
+				displayname = "Starting Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Section1
+			(
+				type = section
+				displayname = "Section"
+	 			row = 2
+	 			column = 0   
+				width = medium
+			)
+			Time_Period
+			(
+				type = section
+				displayname = "Time Period"
+	 			row = 2
+	 			column = 0   
+				width = medium
+			)
+			Ending_Date
+			(
+    			type = date
+				displayname = "Ending Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			Details
+			(
+				type = section
+	 			row = 3
+	 			column = 0   
+				width = medium
+			)
+			must have Priority
+			(
+				type = picklist
+				values = {"Low", "Medium", "High", "Completed"}
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			Status
+			(
+				type = picklist
+				values = {"Open", "Closed"}
+				initial value = "Open"
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			Co_Owners
+			(
+				type = list
+				displayname = "Co Owners"
+				values  = Add_Contact.ID
+    			displayformat = [Name.first_name + Name.last_name]
+				allow new entries = true
+				[
+					displayname = "Add New Contact"
+				]
+				sortorder = ascending
+				height = 60px
+	 			row = 3
+	 			column = 2   
+				width = medium
+			)
+			Attachment_Comment
+			(
+				type = grid
+				displayname = "Attachment/Comment"
+				values  = Add_Comments.ID
+    			bidirectional = Task_Name
+	 			row = 4
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Add_Attachment
+	{
+		displayname= "File Manager"
+		icon = "files-folder-18"
+		list Attachments
+		{
+			displayName = "Attachments"
+			show all rows from Add_Comments  [Added_User == zoho.loginuser]  
+			(
+				Commented_By as "Commented By"
+				Comments
+				Image
+				File_Attachment as "File Attachment"
+				Task_Name as "Task Name"
+				Task_Name.Tasklist
+			)
+			group by
+			(
+				Task_Name.Tasklist ascending
+			)
+			options
+			(
+				icon = "ui-1-attach-86"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Task_Name as "Task Name"
+							Task_Name.Tasklist as "Tasklist"
+							Commented_By as "Commented By"
+							Comments
+							Image
+							File_Attachment as "File Attachment"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Commented_By as "Commented By"
+							Comments
+							Image
+							File_Attachment as "File Attachment"
+							Task_Name as "Task Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Tasklists
+		{
+			displayName = "Tasklists"
+			show all rows from Add_Tasklist  [Added_User == zoho.loginuser]  
+			(
+				Tasklist
+			)
+			options
+			(
+				icon = "design-2-filter-organization"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Tasklist
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Tasklist
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Contact
+	{
+		displayname= "Contacts"
+		icon = "users-circle-08"
+		custom All_Contacts
+		{
+			displayName = "All Contacts"
+			show all rows from Add_Contact    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Email
+				Image
+			)
+			options
+			(
+				icon = "users-2-multiple"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 3
+					datablock1
+					(
+			 			layout type = 7
+		     			title = "Overview"
+						fields
+						(
+							Image
+							Name
+							Email
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Image
+							Name
+							Email
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section New_Section
+	{
+		displayname= "Admin"
+		icon = "ui-1-lock-circle-open"
+		list All_Tasklists
+		{
+			displayName = "All Tasklists"
+			show all rows from Add_Tasklist    
+			(
+				Tasklist
+			)
+			options
+			(
+				icon = "business-hierarchy-56"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Tasklist
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Tasklist
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		form Add_Contact
+		{
+			displayname = "Add Contact"
+			success message = "Contact Invited Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Image
+			(
+    			type = image
+				source  = public_url,file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-add-29"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	functions
+	{
+ 			void customActions.addComment(int taskRecID)
+			{
+				openUrl("#Form:Add_Comments?Task_Name=" + taskRecID,"popup window");
+			}
+ 			void appSharing.shareToUser(string userEmail)
+			{
+				sharingResponse = thisapp.permissions.assignUserInProfile(userEmail,"User Contact");
+				sendmail
+				[
+					from :zoho.adminuserid
+					to :userEmail
+					subject :"Invitation to access '" + zoho.appname + "' "
+					message :"<div style='width:100%;display:inline-block;box-sizing:border-box;border:1px solid #ddd;'><div style='padding:2%;text-align:center;'>You've been invited to use an application built on Zoho Creator by \"" + zoho.adminuserid + "\".</div><div style='background: #efefef; padding: 20.0px;margin: 20.0px 0 10.0px;text-align:center;'><h2>" + zoho.appname.toUpperCase() + "</h2><div style='margin: 20.0px 0 10.0px;'><a style='padding:10px;background-color: rgb(62,149,205);text-decoration: none;color: rgb(255,255,255);font-size: 14.0px;' href='https://creator.zoho.com" + zoho.appuri + "' target='_blank'> Go to application </a></div></div></div>"
+				]
+			}
+ 			void appUnsharing.unshartoUser(string email)
+			{
+				thisapp.permissions.deleteuser(email);
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Run_Scripts_While_Editing1 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Task
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Attachment_Comment;
+										disable Status;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing2 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Task
+				record event = on edit
+
+	on update of Priority
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Priority == "Completed")
+										{
+											input.Status = "Closed";
+										}
+										else
+										{
+											input.Status = "Open";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_3 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Task
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Status;
+										hide Attachment_Comment;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always3 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Comments
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						disable Task_Name,Commented_By;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always4 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Comments
+				record event = on add or edit
+
+	on user input of Task_Name
+	{
+					actions  (Task_Name is not null)
+					{
+						custom deluge script
+						(
+											getTaskDetails = Add_Task[ID == input.Task_Name];
+										getLoginUserDetails = Add_Contact[Email == zoho.loginuserid].ID.getAll();
+										// 	checking whether the login user has access to the task or not
+										setFlag = getTaskDetails.Co_Owners.intersect(getLoginUserDetails);
+										if(setFlag.size() == 0)
+										{
+											alert "Sorry, you're not allowed to comment in this task";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always5 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Task
+				record event = on add or edit
+
+	on user input of Ending_Date
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											// Checking given starting date is greater than ending date or not
+										if(input.Starting_Date != null && input.Ending_Date != null)
+										{
+											if(input.Starting_Date > input.Ending_Date)
+											{
+												alert "End date must be greater than start date";
+												input.Ending_Date = null;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always6 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Task
+				record event = on add or edit
+
+	on user input of Starting_Date
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											// Checking given starting date is greater than ending date or not
+										if(input.Starting_Date != null && input.Ending_Date != null)
+										{
+											if(input.Starting_Date > input.Ending_Date)
+											{
+												alert "End date must be greater than start date";
+												input.Starting_Date = null;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always7 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Contact
+				record event = on add or edit
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.appSharing.shareToUser(input.Email);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin1 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_Contact
+				record event = on delete
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.appUnsharing.unshartoUser(input.Email);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_4 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Comments
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Task_Name != null)
+										{
+											getTaskDetails = Add_Task[ID == input.Task_Name];
+											getLoginUserDetails = Add_Contact[Email == zoho.loginuserid];
+											// 	checking whether the login user has access to the task or not
+											setFlag = getTaskDetails.Co_Owners.contains(getLoginUserDetails.ID) || getTaskDetails.Added_User == zoho.loginuser;
+											if(!setFlag)
+											{
+												alert "Sorry, you're not allowed to comment in this task";
+											}
+											else
+											{
+												input.Commented_By = getLoginUserDetails.ID;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_5 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Comments
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											openUrl("#Script:dialog.close","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_6 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Tasklist
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											getTasklistcount = Add_Task[Tasklist == input.ID];
+										if(getTasklistcount.count() > 0)
+										{
+											alert "Please remove the tasks from this tasklist";
+											cancel delete;
+										}
+						)
+					}
+	}
+
+			}
+		}
+		functions
+		{
+			Add_Comments as "Add Comments"
+			{
+				type =  functions
+				form = Add_Task
+				on start
+				{
+					actions 
+					{
+					customActions.addComment(ID);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"User Contact"
+			{
+				name = "User Contact"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "User Contact Profile\n"
+				ModulePermissions
+				{
+					Add_Tasklist
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							Tasklists={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Tasklist{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_Task
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							All_Tasks={"View","Edit","Delete"}
+							Monthly_Tasks={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Task{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Priority{visibility:true,readonly:false}
+							Task_Name{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Time_Period{visibility:true,readonly:false}
+							Tasklist{visibility:true,readonly:false}
+							Starting_Date{visibility:true,readonly:false}
+							Ending_Date{visibility:true,readonly:false}
+							Details{visibility:true,readonly:false}
+							Section1{visibility:true,readonly:false}
+							Attachment_Comment{visibility:true,readonly:false}
+							Co_Owners{visibility:true,readonly:false}
+						}
+					}
+					Add_Comments
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							Attachments={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Comments{visibility:true,readonly:false}
+							Task_Name{visibility:true,readonly:false}
+							Commented_By{visibility:true,readonly:false}
+							Image{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							File_Attachment{visibility:true,readonly:false}
+						}
+					}
+					Add_Contact
+					{
+						FieldPermissions
+						{
+							Email{visibility:true,readonly:false}
+							Image{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users."
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 1
+		new theme color = 3
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-hr-mgmt7"
+    	icon theme = "green"
+		icons style = outline
+	}
+
+	translation
+{
+"{\"de\":{\"FormField.Add_Contact.Modified_Time\":\" Geänderte Zeit \",\"FormField.Add_Comments.Commented_By\":\" Kommentiert von \",\"Form.Add_Comments\":\"Füge Kommentare hinzu\",\"Report.Tasklists\":\" Aufgabenlisten \",\"FormButton.Add_Comments.cancel\":\" Stornieren \",\"Languages List.zh-TW\":\" Chinesische Tradition \",\"FormField.Add_Contact.Record_Status\":\" Aufnahmestatus \",\"Languages List.ja\":\" japanisch \",\"Report.All_Tasklists\":\" Alle Aufgabenlisten \",\"FormField.Add_Task.Modified_Time\":\" Geänderte Zeit \",\"ReportField.Tasklists.Tasklist\":\" Aufgabenliste \",\"ReportField.Monthly_Tasks.Tasklist\":\" Aufgabenliste \",\"Languages List.ku\":\" kurdisch \",\"FormButton.Add_Tasklist.cancel\":\" Stornieren \",\"ReportField.Attachments.Commented_By\":\"Kommentiert von\",\"Languages List.km\":\" Khmer \",\"FormField.Add_Task.Ending_Date\":\" Ende \",\"Languages List.ko\":\" Koreanisch \",\"Languages List.kn\":\" Kannada \",\"FormField.Add_Contact.Added_Time\":\" Zeit hinzugefügt \",\"Languages List.ka\":\" georgisch \",\"Languages List.hu\":\" ungarisch \",\"FormField.Add_Comments.ID\":\" ICH WÜRDE \",\"Languages List.yi\":\" Jiddisch \",\"Form.Add_Contact\":\" Kontakt hinzufügen \",\"Languages List.hy\":\" Armenisch \",\"ReportField.Attachments.Image\":\"Bild\",\"Languages List.hr\":\" kroatisch \",\"FormField.Add_Task.Task\":\" Aufgabe \",\"FormField.Add_Comments.Comments\":\" Bemerkungen \",\"Languages List.hi\":\" Hindi \",\"FormField.Add_Contact.prefix\":\" Präfix \",\"FormField.Add_Comments.Modified_Time\":\" Geänderte Zeit \",\"ReportField.Monthly_Tasks.Description\":\"Beschreibung\",\"FormField.Add_Tasklist.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Languages List.zh\":\" Chinesisch \",\"Languages List.iw\":\" hebräisch \",\"FormButton.Add_Comments.reset\":\" Zurücksetzen \",\"ReportField.All_Tasks.Description\":\"Beschreibung\",\"FormField.Add_Comments.Added_Time\":\" Zeit hinzugefügt \",\"Languages List.is\":\" isländisch \",\"FormField.Add_Task.Added_Time\":\" Zeit hinzugefügt \",\"Languages List.it\":\" Italienisch \",\"FormButton.Add_Tasklist.reset\":\" Zurücksetzen \",\"FormField.Add_Task.Task_Name\":\" Aufgabennname \",\"FormField.Add_Task.Status\":\" Status \",\"FormField.Add_Comments.Record_Status\":\" Aufnahmestatus \",\"FormField.Add_Contact.Email\":\" Email \",\"FormField.Add_Tasklist.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Contact.Image\":\" Bild \",\"FormField.Add_Contact.first_name\":\" Vorname \",\"ReportField.All_Tasks.Priority\":\"Priorität\",\"ReportField.All_Tasks.Task_Name\":\"Aufgabennname\",\"FormButton.Add_Contact.update\":\" Aktualisieren \",\"FormField.Add_Task.Section\":\"Sektion\",\"Languages List.nl\":\" Niederländisch \",\"ReportField.All_Tasks.Co_Owners\":\" Co-Besitzer \",\"Languages List.no\":\" norwegisch \",\"FormField.Add_Contact.last_name\":\" Familienname, Nachname \",\"FormField.Add_Task.Section1\":\" Sektion \",\"CustomAction.All_Tasks.Add_Comments\":\" Füge Kommentare hinzu \",\"FormField.Add_Contact.Name\":\" Name \",\"FormField.Add_Task.Co_Owners\":\" Co-Besitzer \",\"ReportField.Monthly_Tasks.Task_Name\":\" Aufgabennname \",\"FormButton.Add_Task.update\":\" Aktualisieren \",\"Section.Add_Attachment\":\" Dateimanager \",\"Section.Add_Task\":\" Aufgaben \",\"FormField.Add_Contact.Section\":\" Sektion \",\"FormField.Add_Tasklist.Tasklist\":\" Aufgabenliste \",\"Report.All_Contacts\":\" Alle Kontakte \",\"FormField.Add_Tasklist.Modified_User\":\" Geänderter Benutzer \",\"PicklistOption.Add_Contact.prefix.3\":\" Frau. \",\"ReportField.All_Tasks.Status\":\"Status\",\"PicklistOption.Add_Contact.prefix.2\":\" Frau. \",\"FormButton.Add_Contact.cancel\":\" Stornieren \",\"PicklistOption.Add_Task.Priority.4\":\" Abgeschlossen \",\"PicklistOption.Add_Task.Priority.3\":\" Hoch \",\"PicklistOption.Add_Contact.prefix.1\":\" Herr. \",\"PicklistOption.Add_Task.Priority.2\":\" Mittel \",\"FormField.Add_Comments.Section\":\" Sektion \",\"PicklistOption.Add_Task.Priority.1\":\" Niedrig \",\"ReportField.Monthly_Tasks.Co_Owners\":\" Co-Besitzer \",\"Report.Monthly_Tasks\":\" Monatliche Aufgaben \",\"Languages List.lt\":\" litauisch \",\"Languages List.lv\":\" lettisch \",\"Form.Add_Tasklist\":\" Jobliste hinzufügen \",\"Languages List.lo\":\" Laothian \",\"Languages List.la\":\" Latein \",\"FormField.Add_Task.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Add_Task.Priority\":\" Priorität \",\"Languages List.ms\":\" malaiisch \",\"Report.Attachments\":\"Anlagen\",\"Languages List.mr\":\" Marathi \",\"Languages List.mt\":\" maltesisch \",\"FormField.Add_Task.ID\":\" ICH WÜRDE \",\"FormField.Add_Task.Time_Period\":\" Zeitperiode \",\"Languages List.mk\":\" mazedonisch \",\"FormField.Add_Tasklist.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"ReportField.Attachments.Comments\":\"Bemerkungen\",\"FormButton.Add_Tasklist.update\":\" Aktualisieren \",\"FormButton.Add_Task.cancel\":\" Stornieren \",\"Section.New_Section\":\" Administrator \",\"FormButton.Add_Task.submit\":\" einreichen \",\"FormField.Add_Task.Modified_User\":\" Geänderter Benutzer \",\"FormField.Add_Task.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormButton.Add_Contact.submit\":\" einreichen \",\"FormField.Add_Tasklist.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Add_Contact.Modified_User\":\" Geänderter Benutzer \",\"ReportField.Monthly_Tasks.Status\":\" Status \",\"FormField.Add_Task.Description\":\"Beschreibung\",\"Form.Add_Task\":\" Aufgabe hinzufügen \",\"Languages List.bg\":\" bulgarisch \",\"Languages List.bn\":\" Bengali \",\"Languages List.ro\":\" rumänisch \",\"ReportField.Monthly_Tasks.Starting_Date\":\" Anfangsdatum \",\"ReportField.All_Contacts.Email\":\" Email \",\"FormField.Add_Comments.Image\":\" Bild \",\"Languages List.be\":\" Belarussisch \",\"Languages List.ru\":\" Russisch \",\"FormField.Add_Comments.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Languages List.az\":\" Aserbaidschanisch \",\"ReportField.All_Tasklists.Tasklist\":\" Aufgabenliste \",\"Languages List.ta\":\" Tamilisch \",\"Languages List.cs\":\" Tschechisch \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" Thai \",\"FormField.Add_Contact.Added_User\":\" Benutzer hinzugefügt \",\"FormButton.Add_Tasklist.submit\":\" einreichen \",\"Languages List.sq\":\" albanisch \",\"Languages List.ca\":\" katalanisch \",\"ReportField.All_Tasks.Ending_Date\":\"Ende\",\"ReportField.Monthly_Tasks.Priority\":\" Priorität \",\"Languages List.sw\":\" Swahili \",\"Languages List.sv\":\" Schwedisch \",\"ReportField.Attachments.File_Attachment\":\"Dateianhang\",\"ReportField.Monthly_Tasks.Ending_Date\":\" Ende \",\"Languages List.sk\":\" slowakisch \",\"Languages List.sl\":\" Slowenisch \",\"FormField.Add_Contact.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Add_Contact.suffix\":\" Suffix \",\"CompositeSubFields.Add_Contact.Name.last_name\":\" Familienname, Nachname \",\"FormField.Add_Comments.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Add_Comments.File_Attachment\":\" Dateianhang \",\"Languages List.pt\":\" Portugiesisch \",\"FormField.Add_Comments.Task_Name\":\" Aufgabennname \",\"FormField.Add_Comments.Modified_User\":\" Geänderter Benutzer \",\"Languages List.pl\":\" Polieren \",\"Languages List.ar\":\" Arabisch \",\"Languages List.af\":\" Afrikaans \",\"Section.Add_Contact\":\" Kontakte \",\"FormField.Add_Task.Added_User\":\" Benutzer hinzugefügt \",\"Report.All_Tasks\":\" Alle Aufgaben \",\"FormField.Add_Task.Attachment_Comment\":\" Anhang / Kommentar \",\"FormField.Add_Comments.Added_User\":\" Benutzer hinzugefügt \",\"FormButton.Add_Task.reset\":\" Zurücksetzen \",\"FormField.Add_Task.Details\":\" Einzelheiten \",\"FormField.Add_Tasklist.ID\":\" ICH WÜRDE \",\"ReportField.All_Contacts.Image\":\" Bild \",\"Languages List.fr\":\" Französisch \",\"FormField.Add_Tasklist.Record_Status\":\" Aufnahmestatus \",\"FormButton.Add_Contact.reset\":\" Zurücksetzen \",\"Section.Add_Tasklist\":\" Versteckt \",\"Languages List.fi\":\" Finnese \",\"ReportField.All_Tasks.Tasklist\":\"Aufgabenliste\",\"App.tasks-done\":\"Aufgaben erledigt\",\"Languages List.fa\":\" persisch \",\"Languages List.gu\":\" Gujarati \",\"Languages List.gl\":\" galizisch \",\"FormField.Add_Contact.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Add_Tasklist.Modified_Time\":\" Geänderte Zeit \",\"Languages List.ga\":\" irisch \",\"ReportField.All_Contacts.first_name\":\" Name \",\"ReportField.Attachments.Task_Name\":\"Aufgabennname\",\"FormButton.Add_Comments.submit\":\" einreichen \",\"FormField.Add_Task.Tasklist\":\" Aufgabenliste \",\"Languages List.tr\":\" Türkisch \",\"CompositeSubFields.Add_Contact.Name.suffix\":\" Suffix \",\"Languages List.da\":\" dänisch \",\"CompositeSubFields.Add_Contact.Name.first_name\":\" Vorname \",\"Languages List.de\":\" Deutsche \",\"Languages List.cy\":\" Walisisch \",\"CompositeSubFields.Add_Contact.Name.prefix\":\" Präfix \",\"Languages List.tl\":\" Filipino \",\"Languages List.es\":\" Spanisch \",\"Languages List.eu\":\" baskisch \",\"Languages List.et\":\" estnisch \",\"PicklistOption.Add_Task.Status.1\":\" Öffnen \",\"PicklistOption.Add_Task.Status.2\":\" Geschlossen \",\"Languages List.vi\":\" Vietnamesisch \",\"Languages List.el\":\" griechisch \",\"Languages List.eo\":\" Esperanto \",\"Languages List.en\":\" Englisch \",\"ReportField.All_Tasks.Starting_Date\":\"Anfangsdatum\",\"FormField.Add_Tasklist.Section\":\" Sektion \",\"Languages List.ur\":\" Urdu \",\"FormButton.Add_Comments.update\":\" Aktualisieren \",\"FormField.Add_Task.Starting_Date\":\" Anfangsdatum \",\"FormField.Add_Contact.ID\":\" ICH WÜRDE \",\"FormField.Add_Task.Record_Status\":\" Aufnahmestatus \"},\"fr\":{\"FormField.Add_Contact.Modified_Time\":\" Heure modifiée \",\"FormField.Add_Comments.Commented_By\":\" Commenté par \",\"Form.Add_Comments\":\"Ajoutez des commentaires\",\"Report.Tasklists\":\" Listes de tâches \",\"FormButton.Add_Comments.cancel\":\" Annuler \",\"Languages List.zh-TW\":\" Chinois traditionnel \",\"FormField.Add_Contact.Record_Status\":\" Statut d'enregistrement \",\"Languages List.ja\":\" Japonais \",\"Report.All_Tasklists\":\" Toutes les listes de tâches \",\"FormField.Add_Task.Modified_Time\":\" Heure modifiée \",\"ReportField.Tasklists.Tasklist\":\" Liste de tâches \",\"ReportField.Monthly_Tasks.Tasklist\":\" Liste de tâches \",\"Languages List.ku\":\" kurde \",\"FormButton.Add_Tasklist.cancel\":\" Annuler \",\"ReportField.Attachments.Commented_By\":\"Commenté par\",\"Languages List.km\":\" Khmer \",\"FormField.Add_Task.Ending_Date\":\" Fin \",\"Languages List.ko\":\" coréen \",\"Languages List.kn\":\" Kannada \",\"FormField.Add_Contact.Added_Time\":\" Temps ajouté \",\"Languages List.ka\":\" géorgien \",\"Languages List.hu\":\" hongrois \",\"FormField.Add_Comments.ID\":\" ID \",\"Languages List.yi\":\" yiddish \",\"Form.Add_Contact\":\" Ajouter le contact \",\"Languages List.hy\":\" arménien \",\"ReportField.Attachments.Image\":\"Image\",\"Languages List.hr\":\" croate \",\"FormField.Add_Task.Task\":\" Tâche \",\"FormField.Add_Comments.Comments\":\" commentaires \",\"Languages List.hi\":\" hindi \",\"FormField.Add_Contact.prefix\":\" Préfixe \",\"FormField.Add_Comments.Modified_Time\":\" Heure modifiée \",\"ReportField.Monthly_Tasks.Description\":\"La description\",\"FormField.Add_Tasklist.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Languages List.zh\":\" chinois \",\"Languages List.iw\":\" hébreu \",\"FormButton.Add_Comments.reset\":\" Réinitialiser \",\"ReportField.All_Tasks.Description\":\"La description\",\"FormField.Add_Comments.Added_Time\":\" Temps ajouté \",\"Languages List.is\":\" islandais \",\"FormField.Add_Task.Added_Time\":\" Temps ajouté \",\"Languages List.it\":\" italien \",\"FormButton.Add_Tasklist.reset\":\" Réinitialiser \",\"FormField.Add_Task.Task_Name\":\" Nom de la tâche \",\"FormField.Add_Task.Status\":\" Statut \",\"FormField.Add_Comments.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_Contact.Email\":\" Email \",\"FormField.Add_Tasklist.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Contact.Image\":\" Image \",\"FormField.Add_Contact.first_name\":\" Prénom \",\"ReportField.All_Tasks.Priority\":\"Priorité\",\"ReportField.All_Tasks.Task_Name\":\"Nom de la tâche\",\"FormButton.Add_Contact.update\":\" Mettre à jour \",\"FormField.Add_Task.Section\":\"Section\",\"Languages List.nl\":\" néerlandais \",\"ReportField.All_Tasks.Co_Owners\":\" Propriétaires \",\"Languages List.no\":\" norvégien \",\"FormField.Add_Contact.last_name\":\" Nom de famille \",\"FormField.Add_Task.Section1\":\" Section \",\"CustomAction.All_Tasks.Add_Comments\":\" Ajoutez des commentaires \",\"FormField.Add_Contact.Name\":\" prénom \",\"FormField.Add_Task.Co_Owners\":\" Propriétaires \",\"ReportField.Monthly_Tasks.Task_Name\":\" Nom de la tâche \",\"FormButton.Add_Task.update\":\" Mettre à jour \",\"Section.Add_Attachment\":\" Gestionnaire de fichiers \",\"Section.Add_Task\":\" les tâches \",\"FormField.Add_Contact.Section\":\" Section \",\"FormField.Add_Tasklist.Tasklist\":\" Liste de tâches \",\"Report.All_Contacts\":\" Tous les contacts \",\"FormField.Add_Tasklist.Modified_User\":\" Utilisateur modifié \",\"PicklistOption.Add_Contact.prefix.3\":\" Mme. \",\"ReportField.All_Tasks.Status\":\"Statut\",\"PicklistOption.Add_Contact.prefix.2\":\" Madame. \",\"FormButton.Add_Contact.cancel\":\" Annuler \",\"PicklistOption.Add_Task.Priority.4\":\" Terminé \",\"PicklistOption.Add_Task.Priority.3\":\" Haute \",\"PicklistOption.Add_Contact.prefix.1\":\" M. \",\"PicklistOption.Add_Task.Priority.2\":\" Moyen \",\"FormField.Add_Comments.Section\":\" Section \",\"PicklistOption.Add_Task.Priority.1\":\" Faible \",\"ReportField.Monthly_Tasks.Co_Owners\":\" Propriétaires \",\"Report.Monthly_Tasks\":\" Tâches mensuelles \",\"Languages List.lt\":\" lituanien \",\"Languages List.lv\":\" letton \",\"Form.Add_Tasklist\":\" Ajouter une liste de tâches \",\"Languages List.lo\":\" Laothian \",\"Languages List.la\":\" Latin \",\"FormField.Add_Task.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Add_Task.Priority\":\" Priorité \",\"Languages List.ms\":\" malais \",\"Report.Attachments\":\"Pièces jointes\",\"Languages List.mr\":\" Marathi \",\"Languages List.mt\":\" maltais \",\"FormField.Add_Task.ID\":\" ID \",\"FormField.Add_Task.Time_Period\":\" Période de temps \",\"Languages List.mk\":\" Macédonien \",\"FormField.Add_Tasklist.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"ReportField.Attachments.Comments\":\"commentaires\",\"FormButton.Add_Tasklist.update\":\" Mettre à jour \",\"FormButton.Add_Task.cancel\":\" Annuler \",\"Section.New_Section\":\" Admin \",\"FormButton.Add_Task.submit\":\" Soumettre \",\"FormField.Add_Task.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Task.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormButton.Add_Contact.submit\":\" Soumettre \",\"FormField.Add_Tasklist.Added_Time\":\" Temps ajouté \",\"FormField.Add_Contact.Modified_User\":\" Utilisateur modifié \",\"ReportField.Monthly_Tasks.Status\":\" Statut \",\"FormField.Add_Task.Description\":\"La description\",\"Form.Add_Task\":\" Ajouter une tâche \",\"Languages List.bg\":\" bulgare \",\"Languages List.bn\":\" bengali \",\"Languages List.ro\":\" roumain \",\"ReportField.Monthly_Tasks.Starting_Date\":\" Date de début \",\"ReportField.All_Contacts.Email\":\" Email \",\"FormField.Add_Comments.Image\":\" Image \",\"Languages List.be\":\" Biélorusse \",\"Languages List.ru\":\" russe \",\"FormField.Add_Comments.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Languages List.az\":\" azerbaïdjanais \",\"ReportField.All_Tasklists.Tasklist\":\" Liste de tâches \",\"Languages List.ta\":\" Tamil \",\"Languages List.cs\":\" tchèque \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" thaïlandais \",\"FormField.Add_Contact.Added_User\":\" Utilisateur ajouté \",\"FormButton.Add_Tasklist.submit\":\" Soumettre \",\"Languages List.sq\":\" albanais \",\"Languages List.ca\":\" catalan \",\"ReportField.All_Tasks.Ending_Date\":\"Fin\",\"ReportField.Monthly_Tasks.Priority\":\" Priorité \",\"Languages List.sw\":\" Swahili \",\"Languages List.sv\":\" suédois \",\"ReportField.Attachments.File_Attachment\":\"Pièce jointe\",\"ReportField.Monthly_Tasks.Ending_Date\":\" Fin \",\"Languages List.sk\":\" slovaque \",\"Languages List.sl\":\" slovène \",\"FormField.Add_Contact.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Add_Contact.suffix\":\" Suffixe \",\"CompositeSubFields.Add_Contact.Name.last_name\":\" Nom de famille \",\"FormField.Add_Comments.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Add_Comments.File_Attachment\":\" Pièce jointe \",\"Languages List.pt\":\" Portugais \",\"FormField.Add_Comments.Task_Name\":\" Nom de la tâche \",\"FormField.Add_Comments.Modified_User\":\" Utilisateur modifié \",\"Languages List.pl\":\" polonais \",\"Languages List.ar\":\" arabe \",\"Languages List.af\":\" afrikaans \",\"Section.Add_Contact\":\" Contacts \",\"FormField.Add_Task.Added_User\":\" Utilisateur ajouté \",\"Report.All_Tasks\":\" Toutes les tâches \",\"FormField.Add_Task.Attachment_Comment\":\" Pièce jointe / Commentaire \",\"FormField.Add_Comments.Added_User\":\" Utilisateur ajouté \",\"FormButton.Add_Task.reset\":\" Réinitialiser \",\"FormField.Add_Task.Details\":\" Détails \",\"FormField.Add_Tasklist.ID\":\" ID \",\"ReportField.All_Contacts.Image\":\" Image \",\"Languages List.fr\":\" français \",\"FormField.Add_Tasklist.Record_Status\":\" Statut d'enregistrement \",\"FormButton.Add_Contact.reset\":\" Réinitialiser \",\"Section.Add_Tasklist\":\" Caché \",\"Languages List.fi\":\" Finnois \",\"ReportField.All_Tasks.Tasklist\":\"Liste de tâches\",\"App.tasks-done\":\"Tâches effectuées\",\"Languages List.fa\":\" persan \",\"Languages List.gu\":\" Gujarati \",\"Languages List.gl\":\" Galicien \",\"FormField.Add_Contact.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Add_Tasklist.Modified_Time\":\" Heure modifiée \",\"Languages List.ga\":\" irlandais \",\"ReportField.All_Contacts.first_name\":\" prénom \",\"ReportField.Attachments.Task_Name\":\"Nom de la tâche\",\"FormButton.Add_Comments.submit\":\" Soumettre \",\"FormField.Add_Task.Tasklist\":\" Liste de tâches \",\"Languages List.tr\":\" turc \",\"CompositeSubFields.Add_Contact.Name.suffix\":\" Suffixe \",\"Languages List.da\":\" danois \",\"CompositeSubFields.Add_Contact.Name.first_name\":\" Prénom \",\"Languages List.de\":\" allemand \",\"Languages List.cy\":\" gallois \",\"CompositeSubFields.Add_Contact.Name.prefix\":\" Préfixe \",\"Languages List.tl\":\" Philippin \",\"Languages List.es\":\" Espanol \",\"Languages List.eu\":\" basque \",\"Languages List.et\":\" estonien \",\"PicklistOption.Add_Task.Status.1\":\" Ouvrir \",\"PicklistOption.Add_Task.Status.2\":\" Fermé \",\"Languages List.vi\":\" vietnamien \",\"Languages List.el\":\" grec \",\"Languages List.eo\":\" espéranto \",\"Languages List.en\":\" Anglais \",\"ReportField.All_Tasks.Starting_Date\":\"Date de début\",\"FormField.Add_Tasklist.Section\":\" Section \",\"Languages List.ur\":\" Urdu \",\"FormButton.Add_Comments.update\":\" Mettre à jour \",\"FormField.Add_Task.Starting_Date\":\" Date de début \",\"FormField.Add_Contact.ID\":\" ID \",\"FormField.Add_Task.Record_Status\":\" Statut d'enregistrement \"}}"
+}
+}

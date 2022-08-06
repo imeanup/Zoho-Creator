@@ -1,0 +1,5961 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 23:14:56
+ * Version      : 1.0
+ */
+ application "Donor Management"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+	section Dashboard
+	{
+		icon = "ui-1-dashboard-half"
+				 page Dashboard 
+	 	 { 
+ 	 	 displayname = "Dashboard" 
+
+ 	 	 icon = "ui-1-dashboard-half" 
+	 	 Content="<zml \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"33%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '30%'\n   \t\t bgColor = '#67C2EF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'left'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<image    \t\t color = '#FFFFFF'\n   \t\t bgColor = '#67C2EF'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'zc-li-solid media-1-speaker'\n   \t\t size = '5'\n   \t\t marginRight = '7px'\n   \t\t cornerRadius = '26px'\n\n\/>\n<\/pc>\n<\/pr>\n<\/pc><pc    \t\t width = '70%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'right'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc    \t\t hAlign = 'left'\n\n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.New_Campaign.ID.count'\n   \t\t criteria = '(((Campaign_Status == &quot;Active&quot;)))'\n   \t\t size = '8'\n   \t\t color = '#67C2EF'\n   \t\t bold = 'true'\n   \t\t textAlign = 'left'\n   \t\t displayType = 'actual'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Active_Campaigns'\n   \t\t target = 'new-window'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc    \t\t hAlign = 'left'\n\n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Active Campaigns'\n   \t\t size = '3'\n   \t\t color = '#545454'\n   \t\t textAlign = 'left'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"33%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '30%'\n   \t\t bgColor = '#FABB3D'\n   \t\t padding = '20px'\n   \t\t hAlign = 'left'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<image    \t\t color = '#FFFFFF'\n   \t\t bgColor = '#FABB3D'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'zc-li-solid business-money-coins'\n   \t\t size = '5'\n   \t\t marginRight = '7px'\n   \t\t cornerRadius = '26px'\n\n\/>\n<\/pc>\n<\/pr>\n<\/pc><pc    \t\t width = '70%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'right'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc    \t\t hAlign = 'left'\n\n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Donation.Donation_Amount.sum'\n   \t\t criteria = '(((Added_Time is today)))'\n   \t\t size = '8'\n   \t\t color = '#FABB3D'\n   \t\t bold = 'true'\n   \t\t textAlign = 'left'\n   \t\t displayType = 'actual'\n   \t\t decimalPlaces = '2'\n   \t\t thousandsSeperator = ','\n   \t\t decimalSeperator = '.'\n   \t\t numberScale = 'none'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Donations'\n   \t\t target = 'new-window'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc    \t\t hAlign = 'left'\n\n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Today&apos;s Donation'\n   \t\t size = '3'\n   \t\t color = '#545454'\n   \t\t textAlign = 'left'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"34%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '30%'\n   \t\t bgColor = '#79C447'\n   \t\t padding = '20px'\n   \t\t hAlign = 'left'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<image    \t\t color = '#FFFFFF'\n   \t\t bgColor = '#79C447'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'zc-li-solid users-2-a-share'\n   \t\t size = '5'\n   \t\t marginRight = '7px'\n   \t\t cornerRadius = '26px'\n\n\/>\n<\/pc>\n<\/pr>\n<\/pc><pc    \t\t width = '70%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'right'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t hAlign = 'right'\n\n>\n\t<pr \n>\n\t<pc    \t\t hAlign = 'right'\n\n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Share_Campaign.Recipients_Count.sum'\n   \t\t criteria = '(((Added_Time is today)))'\n   \t\t size = '8'\n   \t\t color = '#79C447'\n   \t\t bold = 'true'\n   \t\t textAlign = 'left'\n   \t\t displayType = 'actual'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Shared'\n   \t\t target = 'new-window'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc    \t\t hAlign = 'left'\n\n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Today&apos;s Share'\n   \t\t size = '3'\n   \t\t color = '#545454'\n   \t\t textAlign = 'left'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"66%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Donations_Chart'\n   \t\t heightType = 'custom'\n   \t\t heightValue = '400'\n   \t\t iszreport = 'true'\n   \t\t title = 'Donations'\n\n\/>\n<\/column><column\n   \t\t width=\"34%\"\n   \t>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n\n>\n\t<pr    \t\t height = '50px'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#00BEB5'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Contacts'\n   \t\t size = '3'\n   \t\t color = '#FFFFFF'\n   \t\t marginLeft = '20px'\n   \t\t marginRight = '20px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '50%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Contact.ID.count'\n   \t\t criteria = '((((Contact_Type == &quot;Volunteer&quot;)&amp;&amp;(Volunteer_Status == &quot;Approved&quot;))))'\n   \t\t size = '8'\n   \t\t color = '#00BEB5'\n   \t\t bold = 'true'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'All_Contacts'\n   \t\t parameters = 'Contact_Type=Volunteer'\n   \t\t target = 'new-window'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Volunteers'\n   \t\t size = '3'\n   \t\t color = '#2D2D2D'\n   \t\t marginTop = '3px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc><pc    \t\t width = '50%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Contact.ID.count'\n   \t\t criteria = '(((Contact_Type == &quot;Visitor&quot;)))'\n   \t\t size = '8'\n   \t\t color = '#00BEB5'\n   \t\t bold = 'true'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'All_Contacts'\n   \t\t parameters = 'Contact_Type=Visitor'\n   \t\t target = 'new-window'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Visitors'\n   \t\t size = '3'\n   \t\t color = '#2D2D2D'\n   \t\t marginTop = '3px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n\n>\n\t<pr    \t\t height = '50px'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#00BEB5'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Pending Request'\n   \t\t size = '3'\n   \t\t color = '#FFFFFF'\n   \t\t marginLeft = '20px'\n   \t\t marginRight = '20px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '50%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.New_Campaign.ID.count'\n   \t\t criteria = '(((Campaign_Status == &quot;Pending&quot;)))'\n   \t\t size = '8'\n   \t\t color = '#00BEB5'\n   \t\t bold = 'true'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Pending_Campaigns'\n   \t\t target = 'new-window'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Campaigns'\n   \t\t size = '3'\n   \t\t color = '#2D2D2D'\n   \t\t marginTop = '3px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc><pc    \t\t width = '50%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Contact.ID.count'\n   \t\t criteria = '(((Volunteer_Status == &quot;Pending&quot;)))'\n   \t\t size = '8'\n   \t\t color = '#00BEB5'\n   \t\t bold = 'true'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Pending_Volunteers'\n   \t\t target = 'new-window'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Volunteers'\n   \t\t size = '3'\n   \t\t color = '#2D2D2D'\n   \t\t marginTop = '3px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Campaigns_Report'\n   \t\t heightType = 'custom'\n   \t\t heightValue = '400'\n   \t\t iszreport = 'true'\n   \t\t title = 'Campaigns Report'\n\n\/>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dspZml id='zml_snippet1'>\n\t<![CDATA[htmlpage zml_snippet1()\ndisplayname = &quot;zml_snippet&quot;\ncontent\n&lt;%{\n\t%&gt;\n&lt;panel&gt;\n&lt;%\n\tif(New_Campaign.count() == 0)\n\t{\n\t\topenUrl(&quot;#Form:New_Campaign&quot;,&quot;same window&quot;);\n\t}\n\t%&gt;\n&lt;\/panel&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dspZml>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+	}
+	section New_Campaign
+	{
+		displayname= "Campaigns"
+		icon = "media-2-speaker-01"
+		list Active_Campaigns
+		{
+			displayName = "Active Campaigns"
+			show all rows from New_Campaign  [Campaign_Status == "Active"]  
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				custom action "Share"
+				(
+	  			workflow = Share
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Share"
+				)
+				Campaign_Status as "Campaign Status"
+				Approver
+				Category
+				Goal_Amount as "Goal Amount"
+				Donated_Amount as "Donated Amount"
+				Deadline
+				Request_Number as "Request Number"
+				Description
+				custom action "Donate"
+				(
+	  			workflow = Donate
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Donate"
+				)
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Related_Image as "Related Image"
+				Title
+				Email
+				Phone_Number as "Phone Number"
+			)
+			options
+			(
+				icon = "ui-1-calendar-grid-58"
+	 		)
+			custom actions
+			(
+				"Deactivate Campaign"
+				(
+	  			workflow = Deactivate_Campaign
+				show action in view header = true
+				show action in edit record menu = true
+				)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Request_Number as "Request Number"
+							Title
+							Category
+							Goal_Amount as "Goal Amount"
+							Name
+							Phone_Number as "Phone Number"
+				"Share"
+				"Donate"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								"Deactivate Campaign"
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								"Deactivate Campaign"
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Request_Number as "Request Number"
+							Title
+							Category
+							Description
+							Related_Image as "Related Image"
+							Goal_Amount as "Goal Amount"
+							Donated_Amount as "Donated Amount"
+							Deadline
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Beneficiary Details"
+						fields
+						(
+							Name
+							Email
+							Phone_Number as "Phone Number"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Share"
+			 			"Donate"
+			 			"Deactivate Campaign"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Pending_Campaigns
+		{
+			displayName = "Pending Request"
+			show all rows from New_Campaign  [Campaign_Status == "Pending"]  
+			(
+				Campaign_Status as "Campaign Status"
+				Donated_Amount as "Donated Amount"
+				Deadline
+				Description
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				custom action "Approve"
+				(
+	  			workflow = Approve_Campaign
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Approve"
+				)
+				custom action "Reject"
+				(
+	  			workflow = Reject_Campaign
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Reject"
+				)
+				Email
+				Phone_Number as "Phone Number"
+				Approver
+				Category
+				Related_Image as "Related Image"
+				Title
+				Request_Number as "Request Number"
+				Organizer
+				Goal_Amount as "Goal Amount"
+			)
+			group by
+			(
+				Category ascending
+			)
+			conditional formatting
+			(
+				"Deadline Alert"
+				{
+				condition = (Deadline is today)
+				fields = [Deadline]
+				format = "color:#e64d3b;background-color:#ffffff;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Request_Number as "Request Number"
+							Organizer
+							Title
+							Goal_Amount as "Goal Amount"
+							Deadline
+				"Approve"
+				"Reject"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Request_Number as "Request Number"
+							Organizer
+							Title
+							Category
+							Description
+							Related_Image as "Related Image"
+							Goal_Amount as "Goal Amount"
+							Deadline
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Beneficiary Details"
+						fields
+						(
+							Name
+							Email
+							Phone_Number as "Phone Number"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Approve"
+			 			"Reject"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Archived_Campaigns
+		{
+			displayName = "Archived Campaigns"
+			show all rows from New_Campaign  [Campaign_Status == "Goal Reached" || Campaign_Status == "Expired" || Campaign_Status == "Deactivated"]  
+			(
+				Donated_Amount as "Donated Amount"
+				Deadline
+				Description
+				Related_Image as "Related Image"
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Email
+				Phone_Number as "Phone Number"
+				Campaign_Status as "Campaign Status"
+				Organizer
+				Goal_Amount as "Goal Amount"
+				Category
+				Title
+				Request_Number as "Campaign Number"
+			)
+			filters
+			(
+				Category
+			)
+			group by
+			(
+				Campaign_Status ascending
+			)
+			options
+			(
+				icon = "files-archive-paper"
+	 		)
+			custom actions
+			(
+				"Activate"
+				(
+	  			workflow = Activate_Campaign
+				show action in view header = true
+				condition = (Campaign_Status == "Deactivated")
+				)
+			)
+			conditional formatting
+			(
+				"Deadline Alert"
+				{
+				condition = (Deadline is today)
+				fields = [Deadline]
+				format = "color:#e64d3b;background-color:#ffffff;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Request_Number as "Campaign Number"
+							Organizer
+							Title
+							Category
+							Goal_Amount as "Goal Amount"
+							Donated_Amount as "Donated Amount"
+							Deadline
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								"Activate"
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								"Activate"
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Request_Number as "Campaign Number"
+							Organizer
+							Title
+							Category
+							Description
+							Related_Image as "Related Image"
+							Goal_Amount as "Goal Amount"
+							Donated_Amount as "Donated Amount"
+							Deadline
+							Campaign_Status as "Campaign Status"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Beneficiary Details"
+						fields
+						(
+							Name
+							Email
+							Phone_Number as "Phone Number"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Activate"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Campaigns
+		{
+			displayName = "All Campaigns"
+			show all rows from New_Campaign    
+			(
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Approver
+				Deadline
+				Donated_Amount as "Donated Amount"
+				Campaign_Status as "Campaign Status"
+				Related_Image as "Related Image"
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Description
+				Email
+				Phone_Number as "Phone Number"
+				Organizer
+				Goal_Amount as "Goal Amount"
+				Category
+				(
+					width = 246px
+				)
+				Title
+				(
+					width = 265px
+				)
+				Request_Number as "Campaign Number"
+			)
+			filters
+			(
+				Category
+			)
+			group by
+			(
+				Campaign_Status ascending
+			)
+			options
+			(
+				icon = "ui-1-database"
+	 		)
+			conditional formatting
+			(
+				"Deadline Alert"
+				{
+				condition = (Deadline is today)
+				fields = [Deadline]
+				format = "color:#e64d3b;background-color:#ffffff;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Request_Number as "Campaign Number"
+							Organizer
+							Title
+							Category
+							Goal_Amount as "Goal Amount"
+							Donated_Amount as "Donated Amount"
+							Deadline
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Request_Number as "Campaign Number"
+							Organizer
+							Title
+							Category
+							Description
+							Related_Image as "Related Image"
+							Goal_Amount as "Goal Amount"
+							Donated_Amount as "Donated Amount"
+							Deadline
+							Campaign_Status as "Campaign Status"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Beneficiary Details"
+						fields
+						(
+							Name
+							Phone_Number as "Phone Number"
+							Email
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		form New_Campaign
+		{
+			displayname = "New Campaign"
+			success message = "Campaign Details Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Request_Number
+			(
+    			type = autonumber
+				displayname = "Request Number"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Organizer
+			(
+				type = picklist
+				values  = Add_Contact.ID
+    			displayformat = [" " + Name.first_name + " " + Name.last_name + " -" + Email]
+				sortorder = ascending
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			must have Title
+			(
+    			type = text
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Related_Image
+			(
+    			type = image
+				displayname = "Related Image"
+				source  = file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			must have Description
+			(
+    			type = richtext
+				height = 150px
+				toolbar = enable
+				[
+					style, font-color, background-color, alignment, link, table, bullets-and-numbering, 
+					font-size : {1, 2, 3, 4, 5, 6, 7},
+					font-family : {"Serif", "Arial", "Courier New", "Georgia", "Tahoma", "Times New Roman", "Trebuchet", "Verdana", "Comic Sans Ms"}
+				]
+	 			row = 3
+	 			column = 1   
+				width = 400px
+			)
+			plain
+			(
+    			type = plaintext
+				value = "<a><font size=\"4\">Beneficiary Details</font></a>"
+	 			row = 4
+	 			column = 1   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 5
+	 			column = 1   
+				width = medium
+			)
+			must have Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 5
+	 			column = 1   
+				width = medium
+			)
+			Donated_Amount
+			(
+				displayname = "Donated Amount"
+				type = USD
+				initial value = 0
+	 			row = 6
+	 			column = 1   
+				width = medium
+			)
+			Campaign_Status
+			(
+				type = picklist
+				displayname = "Campaign Status"
+				values = {"Active", "Pending", "Goal Reached", "Expired", "Deactivated", "Rejected"}
+				initial value = "Active"
+	 			row = 8
+	 			column = 1   
+				width = medium
+			)
+			Approver
+			(
+    			type = email
+	 			row = 9
+	 			column = 1   
+				width = medium
+			)
+			must have Category
+			(
+				type = picklist
+				values = {"MEDICAL EXPENSES", "MEMORIALS AND FUNERALS", "EMERGENCIES AND DISASTERS", "ADOPTION", "KIDS AND FAMILY", "NEIGHBORS AND COMMUNITY", "EDUCATION AND SCHOOLS", "SPORTS AND TEAMS", "PETS AND ANIMALS", "VOLUNTEER AND SERVICE PROJECTS", "NONPROFITS", "MISSION TRIPS", "VETERANS"}
+				others option = true
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			must have Goal_Amount
+			(
+				displayname = "Goal Amount"
+				type = USD
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			Deadline
+			(
+    			type = date
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			must have Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 5
+	 			column = 2   
+				width = medium
+			)
+			Email
+			(
+    			type = email
+	 			row = 5
+	 			column = 2   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		pivotchart Campaigns_Report
+		{ 
+			displayname = "Campaigns Report"
+			based on Autoview_1520914883072_New_Campaign
+					hide = true
+							icon = "sport-tactic"				show all rows from New_Campaign
+				(
+ 					Address.postal_Code2  as "Address.Postal Code"
+ 					Campaign_Status  as "Campaign Status"
+ 					Address.country2  as "Address.Country"
+ 					Deadline 
+ 					Organizer 
+ 					Title 
+ 					Phone_Number  as "Phone Number"
+ 					Approver 
+ 					Name.last_name  as "Name.Last Name"
+ 					Name.first_name  as "Name"
+ 					Email 
+ 					Category 
+ 					Name.suffix  as "Name.Suffix"
+ 					Name.prefix  as "Name.Prefix"
+ 					Address.address_line_12  as "Address"
+ 					Goal_Amount  as "Goal Amount"
+ 					Address.latitude2  as "Address.latitude"
+ 					Address.address_line_22  as "Address.Address Line 2"
+ 					Address.longitude2  as "Address.longitude"
+ 					Address.district_city2  as "Address.City / District"
+ 					Donated_Amount  as "Donated Amount"
+ 					Address.state_province2  as "Address.State / Province"
+ 					Request_Number  as "Request Number"
+				)
+		}
+	}
+	section page
+	{
+		displayname= "Volunteers"
+		icon = "users-multiple-11"
+		list Active_Volunteers
+		{
+			displayName = "Active Volunteers"
+			show all rows from Add_Contact  [Contact_Type == "Volunteer" && Volunteer_Status == "Approved"]  
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Contact_Type as "Contact Type"
+				Email
+				Phone_Number as "Phone Number"
+				Referred_By as "Referred By"
+			)
+			options
+			(
+				icon = "users-2-wc"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Phone_Number as "Phone Number"
+							Email
+							Address
+							Referred_By as "Referred By"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Phone_Number as "Phone Number"
+							Email
+							Address
+							Referred_By as "Referred By"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Pending_Volunteers
+		{
+			displayName = "Pending Request"
+			show all rows from Add_Contact  [Volunteer_Status == "Pending"]  
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				custom action "Approve"
+				(
+	  			workflow = Approve_Volunteer
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Approve"
+				)
+				custom action "Reject"
+				(
+	  			workflow = Reject_Volunteer
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Reject"
+				)
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Referred_By as "Referred By"
+				Phone_Number as "Phone Number"
+				Email
+			)
+			options
+			(
+				icon = "users-2-a-sync"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Phone_Number as "Phone Number"
+							Email
+							Address
+							Referred_By as "Referred By"
+				"Approve"
+				"Reject"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Phone_Number as "Phone Number"
+							Email
+							Address
+							Referred_By as "Referred By"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Approve"
+			 			"Reject"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		form Registration
+		{
+			store data in zc = false
+			success message = ""
+			field alignment = left
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			OTP
+			(
+				type = number
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = ""
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-add-29"
+			)
+			actions
+			{
+				Submit
+				(
+   					type = submit
+   					displayname = "Submit"
+				)
+				Reset
+				(
+   					type = reset
+   					displayname = "Reset"
+				)
+			}
+		}
+	}
+	section New_Section
+	{
+		displayname= "Fund History"
+		icon = "arrows-1-refresh-69"
+		list Donations
+		{
+			displayName = "Donations"
+			show all rows from Donation    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Bank_Name as "Bank Name"
+				Payment_Mode as "Payment Mode"
+				Cheque_DD_Number as "Cheque/DD Number"
+				Include_a_Message_with_Donation as "Include a Message with Donation"
+				Referred_By as "Referred By"
+				Phone_Number as "Phone Number"
+				Email
+				Donation_Amount as "Donation Amount"
+				Campaign_Number as "Campaign Number"
+				Referred_By.Phone_Number as "Phone Number"
+			)
+			options
+			(
+				icon = "business-money-coins"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Campaign_Number as "Campaign Number"
+							Name
+							Phone_Number as "Phone Number"
+							Email
+							Donation_Amount as "Donation Amount"
+							Payment_Mode as "Payment Mode"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Campaign_Number as "Campaign Number"
+							Donation_Amount as "Donation Amount"
+							Payment_Mode as "Payment Mode"
+							Bank_Name as "Bank Name"
+							Cheque_DD_Number as "Cheque/DD Number"
+							Include_a_Message_with_Donation as "Include a Message with Donation"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Donor Details"
+						fields
+						(
+							Name
+							Phone_Number as "Phone Number"
+							Email
+							Address
+							Referred_By as "Referred By"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Shared
+		{
+			displayName = "Shared"
+			show all rows from Share_Campaign    
+			(
+				Campaign
+				Recipients
+				Shared_By as "Shared By"
+			)
+			group by
+			(
+				Campaign ascending
+			)
+			options
+			(
+				icon = "ui-2-share-bold"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Campaign
+							Recipients
+							Shared_By as "Shared By"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Campaign
+							Recipients
+							Shared_By as "Shared By"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Recipients
+		{
+			displayName = "Recipients"
+			show all rows from New_Campaign  [Campaign_Status != "Pending" && Campaign_Status != "Rejected"]  
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Category
+				Goal_Amount as "Goal Amount"
+				(
+					width = 160px
+				)
+				Donated_Amount as "Donated Amount"
+				(
+					width = 326px
+				)
+				Deadline
+				Related_Image as "Related Image"
+				Organizer
+				Description
+				Campaign_Status as "Campaign Status"
+				Request_Number as "Request Number"
+				Title
+				(
+					width = 220px
+				)
+				Phone_Number as "Phone Number"
+				(
+					width = 0px
+				)
+				Email
+				(
+					width = 0px
+				)
+			)
+			options
+			(
+				icon = "users-badge-13"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Request_Number as "Request Number"
+							Title
+							Name
+							Phone_Number as "Phone Number"
+							Email
+							Address
+							Goal_Amount as "Goal Amount"
+							Donated_Amount as "Donated Amount"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Request_Number as "Request Number"
+							Organizer
+							Title
+							Category
+							Description
+							Related_Image as "Related Image"
+							Goal_Amount as "Goal Amount"
+							Donated_Amount as "Donated Amount"
+							Deadline
+							Campaign_Status as "Campaign Status"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Beneficiary Details"
+						fields
+						(
+							Name
+							Phone_Number as "Phone Number"
+							Email
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		pivotchart Donations_Chart
+		{ 
+			displayname = "Donations"
+			based on Autoview_1524054566264_Donation
+					hide = true
+							icon = "business-stock"				show all rows from Donation
+				(
+ 					Payment_Mode  as "Payment Mode"
+ 					Address.latitude2  as "Address.latitude"
+ 					Donation_Amount  as "Donation Amount"
+ 					Name.first_name  as "Name"
+ 					Address.longitude2  as "Address.longitude"
+ 					Email 
+ 					Bank_Name  as "Bank Name"
+ 					Name.last_name  as "Name.Last Name"
+ 					Referred_By  as "Referred By"
+ 					Name.prefix  as "Name.Prefix"
+ 					Phone_Number  as "Phone Number"
+ 					Cheque_DD_Number  as "Cheque/DD Number"
+ 					Name.suffix  as "Name.Suffix"
+ 					Address.address_line_22  as "Address.Address Line 2"
+ 					Address.address_line_12  as "Address"
+ 					Address.state_province2  as "Address.State / Province"
+ 					Address.district_city2  as "Address.City / District"
+ 					Address.country2  as "Address.Country"
+ 					Address.postal_Code2  as "Address.Postal Code"
+ 					Added_Time  as "Added Time"
+ 					Campaign_Number  as "Campaign Number"
+				)
+		}
+	}
+	section Contacts
+	{
+		icon = "users-contacts"
+		form Add_Contact
+		{
+			displayname = "Add Contact"
+			success message = "New Contact Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Contact_Type
+			(
+				type = radiobuttons
+				displayname = "Contact Type"
+				values = {"Administrator", "Volunteer", "Visitor"}
+				initial value = "Volunteer"
+				layout = 3
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Referred_By
+			(
+    			type = email
+				displayname = "Referred By"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Volunteer_Status
+			(
+				type = picklist
+				displayname = "Volunteer Status"
+				values = {"Not a Volunteer", "Pending", "Approved", "Rejected"}
+				initial value = "Not a Volunteer"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Accessible_For
+			(
+    			type = textarea
+				displayname = "Accessible For"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-2-a-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		custom My_Referrals
+		{
+			displayName = "My Referrals"
+			show all rows from Add_Contact  [Referred_By == zoho.loginuserid]  
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Referred_By as "Referred By"
+				Email
+				Phone_Number as "Phone Number"
+				Contact_Type as "Contact Type"
+			)
+			options
+			(
+				icon = "users-2-contacts-44"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Address
+							Email
+							Phone_Number as "Phone Number"
+							Contact_Type as "Contact Type"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Contact_Type as "Contact Type"
+							Name
+							Phone_Number as "Phone Number"
+							Email
+							Address
+							Referred_By as "Referred By"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		custom All_Contacts
+		{
+			displayName = "All Contacts"
+			show all rows from Add_Contact  [Volunteer_Status == "Not a Volunteer" || Volunteer_Status == "Approved" || (Contact_Type != "Volunteer" && Volunteer_Status == "Pending" || Volunteer_Status == "Rejected")]  
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Contact_Type as "Contact Type"
+				Referred_By as "Referred By"
+				Phone_Number as "Phone Number"
+				Email
+			)
+			group by
+			(
+				Contact_Type ascending
+			)
+			options
+			(
+				icon = "users-multiple-11"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Address
+							Phone_Number as "Phone Number"
+							Email
+							Referred_By as "Referred By"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Contact_Type as "Contact Type"
+							Name
+							Phone_Number as "Phone Number"
+							Email
+							Address
+							Referred_By as "Referred By"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Bank_Name
+	{
+		displayname= "Add Bank Name"
+		form Add_Bank_Name
+		{
+			displayname = "Add Bank Name"
+			success message = "New Bank Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Bank_Name
+			(
+    			type = text
+				displayname = "Bank Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "business-bank"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Bank_Names
+		{
+			displayName = "Bank Names"
+   			hide = true
+			show all rows from Add_Bank_Name    
+			(
+				Bank_Name as "Bank Name"
+			)
+			options
+			(
+				icon = "business-bank"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Bank_Name as "Bank Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Bank_Name as "Bank Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Donation
+	{
+		form Donation
+		{
+			success message = "Thanks for your contribution!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Campaign_Number
+			(
+				type = picklist
+				displayname = "Campaign Number"
+				values  = New_Campaign[Campaign_Status == "Active"].ID
+    			displayformat = [Request_Number + " - " + Title]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Notes
+			(
+    			type = plaintext
+				value = ""
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Section1
+			(
+				type = section
+				displayname = "Section"
+	 			row = 2
+	 			column = 0   
+				width = medium
+			)
+			Payment_Mode
+			(
+				type = radiobuttons
+				displayname = "Payment Mode"
+				values = {"Cash", "Cheque", "Demand Draft"}
+				initial value = "Cash"
+				layout = 3
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			must have Donation_Amount
+			(
+				displayname = "Donation Amount"
+				type = INR
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Bank_Name
+			(
+				type = picklist
+				displayname = "Bank Name"
+				values  = Add_Bank_Name.ID
+    			displayformat = [Bank_Name]
+				sortorder = ascending
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			unique Cheque_DD_Number
+			(
+				type = number
+				displayname = "Cheque/DD Number"
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			Donor_Details
+			(
+				type = section
+				displayname = "Donor Details"
+				visibility = true
+	 			row = 3
+	 			column = 0   
+				width = medium
+			)
+			must have Email
+			(
+    			type = email
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			must have Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 3
+	 			column = 2   
+				width = medium
+			)
+			must have Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 3
+	 			column = 2   
+				width = medium
+			)
+			Section2
+			(
+				type = section
+				displayname = "Section"
+	 			row = 4
+	 			column = 0   
+				width = medium
+			)
+			Include_a_Message_with_Donation
+			(
+    			type = textarea
+				displayname = "Include a Message with Donation"
+				height = 100px
+	 			row = 4
+	 			column = 1   
+				width = medium
+			)
+			Referred_By
+			(
+				type = picklist
+				displayname = "Referred By"
+				values  = Add_Contact.ID
+    			displayformat = [" " + Name.first_name + " " + Name.last_name + " -" + Email]
+				sortorder = ascending
+	 			row = 4
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "business-handout"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Share_Campaign
+	{
+		displayname= "Share Campaign"
+		form Share_Campaign
+		{
+			displayname = "Share Campaign"
+			success message = "Campaign Details Shared Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Campaign
+			(
+				type = picklist
+				values  = New_Campaign[Campaign_Status == "Active"].ID
+    			displayformat = [Request_Number + " - " + Title]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Recipients
+			(
+				type = list
+				values  = Add_Contact.ID
+    			displayformat = [" " + Name.first_name + " " + Name.last_name + " -" + Email]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = "<a style=\"padding-left: 110px\" href=\"#Form:Add_Visitor?zc_LoadIn=dialog\"><i style=\"font-style: inherit\" class=\"fa fa-plus\"></i> Add New Visitor</a>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Shared_By
+			(
+				type = picklist
+				displayname = "Shared By"
+				values  = Add_Contact.ID
+    			displayformat = [" " + Name.first_name + " " + Name.last_name + "-" + Email]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Recipients_Count
+			(
+    			type = formula
+				displayname = "Recipients Count"
+				value =  input.Recipients.size()
+				visibility = false
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "social-1-logo-reddit"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section page1
+	{
+		displayname= "Duplicated Add Visitor"
+		form Add_Visitor
+		{
+			displayname = "Add Visitor"
+			store data in zc = false
+			success message = ""
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			ExistenceAlert
+			(
+    			type = plaintext
+				value = ""
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-single-02"
+			)
+			actions
+			{
+				Add
+				(
+   					type = submit
+   					displayname = "Add"
+				)
+				Reset
+				(
+   					type = reset
+   					displayname = "Reset"
+				)
+			}
+		}
+		form OTP_Confirmation
+		{
+			displayname = "OTP Confirmation"
+			store data in zc = false
+			success message = ""
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Encoded_Email
+			(
+    			type = text
+				displayname = "Encoded Email"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			OTPmessage
+			(
+    			type = plaintext
+				value = "<div>A One Time Password will be sent to this email for verification.</div>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "tech-2-vpn"
+			)
+			actions
+			{
+				Proceed
+				(
+   					type = submit
+   					displayname = "Proceed"
+				)
+				Cancel
+				(
+   					type = submit
+   					displayname = "Cancel"
+				)
+			}
+		}
+	}
+	section One_Time_Password
+	{
+		displayname= "One Time Password"
+		form One_Time_Password
+		{
+			displayname = "One Time Password"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			OTP
+			(
+				type = number
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-2-police"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list One_Time_Passwords
+		{
+			displayName = "One Time Passwords"
+   			hide = true
+			show all rows from One_Time_Password    
+			(
+				Email
+				OTP
+				Added_Time as "Added Time"
+			)
+			options
+			(
+				icon = "users-2-b-remove"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Email
+							OTP
+							Added_Time as "Added Time"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Email
+							OTP
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	functions
+	{
+ 			void Volunteer.notifyNewCampaign(int recID)
+			{
+				campaignDetails = New_Campaign[ID == input.recID];
+				if(campaignDetails.Deadline == null)
+				{
+					deadlineDate = "NA";
+				}
+				else
+				{
+					deadlineDate = campaignDetails.Deadline.toString();
+				}
+				for each  eachContact in Add_Contact[Contact_Type == "Volunteer" && Volunteer_Status == "Approved"]
+				{
+					sendmail
+					[
+						from :zoho.adminuserid
+						to :eachContact.Email
+						subject :"[" + campaignDetails.Request_Number + "]New Campaign - " + campaignDetails.Title
+						message :("<font face=\"Arial, Helvetica, sans-serif\">Hi,</font><div><font face=\"Arial, Helvetica, sans-serif\"><br></font></div><div><font face=\"Arial, Helvetica, sans-serif\">New fund request has been raised.</font></div><div><span style=\"font-family: Arial, Helvetica, sans-serif;\"><br></span></div><div><span style=\"font-family: Arial, Helvetica, sans-serif;\">Please find the below details to spread the world.</span></div><div><span style=\"font-family: Arial, Helvetica, sans-serif;\"><br></span></div><blockquote style=\"border: 1px solid rgb(204, 204, 204); padding: 7px; background-color: rgb(245, 245, 245);\"><div><b><font face=\"Arial, Helvetica, sans-serif\" size=\"2\">Title:" + campaignDetails.Title + "</font></b></div><div><b><font face=\"Arial, Helvetica, sans-serif\" size=\"2\">Category:" + campaignDetails.Category + "</font></b></div><div><b><font face=\"Arial, Helvetica, sans-serif\" size=\"2\">Description:" + campaignDetails.Description + "</font></b></div><div><b><font face=\"Arial, Helvetica, sans-serif\" size=\"2\">Goal Amount:" + campaignDetails.Goal_Amount + "</font></b></div><div><b><font face=\"Arial, Helvetica, sans-serif\" size=\"2\">Deadline:" + deadlineDate + "</font></b></div><div><b><font face=\"Arial, Helvetica, sans-serif\" size=\"2\">Beneficiary Name:" + campaignDetails.Name) + "</font></b></div></blockquote><div></div><div><font face=\"Arial, Helvetica, sans-serif\"><br></font></div><div><font face=\"Arial, Helvetica, sans-serif\"><a href=\"https://app.zohocreator.com" + zoho.appuri + "#Report:Active_Campaigns?Request_Number=" + campaignDetails.Request_Number + "\" title=\"Login to Donor Management\" target=\"_blank\">Click Here</a>&nbsp;to&nbsp;</font><span style=\"font-family: Arial, Helvetica, sans-serif;\">donate&nbsp;</span><font face=\"Arial, Helvetica, sans-serif\">or share the details.</font></div><div><font face=\"Arial, Helvetica, sans-serif\"><br></font></div><div><span style=\"font-family: Arial, Helvetica, sans-serif;\">Try to be a rainbow in someone's cloud.</span></div><div><font face=\"Arial, Helvetica, sans-serif\"><br></font></div><div><font face=\"Arial, Helvetica, sans-serif\">Regards,</font></div><div><font face=\"Arial, Helvetica, sans-serif\" size=\"1\">" + zoho.adminuser + "</font><br></div>"
+					]
+				}
+			}
+ 			void Volunteer.shareWithVolunteer(string volunteerMail)
+			{
+				thisapp.permissions.assignUserInProfile(volunteerMail,"Volunteer");
+				sendmail
+				[
+					from :zoho.adminuserid
+					to :volunteerMail
+					subject :"Volunteer Request-Accepted"
+					message :"<div>Congratulations...</div><div><br></div><div>We are very happy to have you as volunteer in our organization.</div><div><br></div><div><a href=\"https://app.zohocreator.com" + zoho.appuri + "\" target=\"_blank\">Click Here</a> to access our application.&nbsp;</div><div></div><div><br></div><div><span style=\"color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; background-color: rgb(255, 255, 255);\">What you do today can improve all your tomorrows.</span></div><div><br></div><div>Thanks,</div><div>" + zoho.adminuser + "<br style=\"box-sizing: border-box; background-color: rgb(255, 255, 255);\"><br></div>"
+				]
+			}
+ 			void Volunteer.volunteerRequest(string volunteerEmail)
+			{
+				volunteersRec = Add_Contact[Email == input.volunteerEmail];
+				//Notify the admin regards new volunteer request
+				sendmail
+				[
+					from :volunteerEmail
+					to :zoho.adminuserid
+					subject :"New Volunteer Request"
+					message :("<div>Hi,</div><div><br></div><div>I am interested to be a volunteer in your organization, Please accept my humble request.</div><div><br></div><div>Please find my details on below link.</div><div><br></div><a href=\"https://app.zohocreator.com" + zoho.appuri + "#Report:Pending_Volunteers?Personal_Email=" + volunteerEmail + "\" target=\"_blank\">Click here</a><div><br></div><div><div>Thanks & Regards,</div><div>" + volunteersRec.Name) + "<br></div><div><br></div></div>"
+				]
+				//Notify the volunteer regards registration pending status
+				sendmail
+				[
+					from :zoho.adminuserid
+					to :volunteerEmail
+					subject :"Registration completed successfully"
+					message :"Hi,<div><br></div><div>Thanks for your interest in extending hands to help others.</div><div><br></div><div>Your details has been received and it is in progress of verification.</div><div><br></div><div>We will send you the confirmation mail shortly.</div><div><br></div><div>Thanks,</div><div>" + zoho.adminuser + "&nbsp;</div>"
+				]
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Run_Scripts_On_Click_of_S as "Run Scripts - On Click of 'Submit' Button"
+			{
+				type =  form
+				form = Registration
+				button = Submit
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						//Updating the registration details in contacts
+										if(zoho.adminuserid == zoho.loginuserid)
+										{
+											volunteerStatus = "Approved";
+											referredBy = zoho.adminuserid;
+											thisapp.Volunteer.shareWithVolunteer(input.Email);
+										}
+										else
+										{
+											volunteerStatus = "Pending";
+											thisapp.Volunteer.volunteerRequest(input.Email);
+											loginContactDetails = Add_Contact[Email == zoho.loginuserid];
+											if(loginContactDetails.Contact_Type == "Volunteer")
+											{
+												referredBy = zoho.loginuserid;
+											}
+											else
+											{
+												referredBy = loginContactDetails.Referred_By;
+											}
+										}
+										contactDetails = Add_Contact[Email == input.Email];
+										if(contactDetails.count() != 0)
+										{
+											if(contactDetails.Contact_Type == "Administrator" || contactDetails.Volunteer_Status == "Approved")
+											{
+												alert "Sorry, The email address is already registered as " + contactDetails.Contact_Type + "!";
+											}
+											else if(contactDetails.Volunteer_Status == "Pending")
+											{
+												alert "Sorry, The email address is already registered and is been waiting for the approval!";
+											}
+											else if(contactDetails.Volunteer_Status == "Rejected" || contactDetails.Volunteer_Status == "Not a Volunteer" && input.Email != zoho.loginuserid)
+											{
+												//Validating the OTP here
+												if(input.OTP != null)
+												{
+													otpDetails = One_Time_Password[Email == input.Email && OTP == input.OTP];
+													if(otpDetails.count() == 0)
+													{
+														alert "Invalid OTP! Please try again.";
+													}
+													else
+													{
+														if(zoho.adminuserid == zoho.loginuserid)
+														{
+															contactDetails.Contact_Type="Volunteer";
+														}
+														contactDetails.Name=input.Name;
+														contactDetails.Phone_Number=input.Phone_Number;
+														contactDetails.Address=input.Address;
+														contactDetails.Volunteer_Status=volunteerStatus;
+													}
+												}
+												else
+												{
+													alert "OTP is required to proceed further, Please enter the OTP!";
+												}
+											}
+										}
+										else
+										{
+											//Validating the OTP here
+											if(input.OTP != null)
+											{
+												otpDetails = One_Time_Password[Email == input.Email && OTP == input.OTP];
+												if(otpDetails.count() == 0)
+												{
+													alert "Invalid OTP! Please try again.";
+												}
+												else
+												{
+													insert into Add_Contact
+													[
+														Contact_Type="Volunteer"
+														Name=input.Name
+														Phone_Number=input.Phone_Number
+														Email=input.Email
+														Address=input.Address
+														Referred_By=referredBy
+														Volunteer_Status=volunteerStatus
+														Added_User=zoho.loginuser
+													]
+												}
+											}
+											else
+											{
+												alert "OTP is required to proceed further, Please enter the OTP!";
+											}
+										}
+					)
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_S1 as "Run Scripts - On Click of 'Submit' Button"
+			{
+				type =  form
+				form = Add_Visitor
+				button = Add
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						//Updating the visitor details in contacts
+										if(zoho.adminuserid == zoho.loginuserid)
+										{
+											referredBy = zoho.adminuserid;
+										}
+										else
+										{
+											loginContactDetails = Add_Contact[Email == zoho.loginuserid];
+											if(loginContactDetails.Contact_Type == "Volunteer")
+											{
+												referredBy = zoho.loginuserid;
+											}
+											else
+											{
+												referredBy = loginContactDetails.Referred_By;
+											}
+										}
+										contactDetails = Add_Contact[Email == input.Email];
+										if(contactDetails.count() != 0)
+										{
+											input.Name = null;
+											input.Phone_Number = null;
+											if(contactDetails.Contact_Type == "Visitor")
+											{
+												accessibleForString = contactDetails.Accessible_For + "," + zoho.loginuserid;
+												accessList = accessibleForString.toList().distinct();
+												contactDetails.Accessible_For=accessList.toString();
+											}
+											else if(contactDetails.Contact_Type == "Volunteer" && contactDetails.Volunteer_Status == "Rejected")
+											{
+												contactDetails.Contact_Type="Visitor";
+												contactDetails.Referred_By=referredBy;
+												contactDetails.Volunteer_Status="Not a Volunteer";
+												contactDetails.Accessible_For=zoho.loginuserid;
+												thisapp.permissions.assignUserInProfile(input.Email,"Visitor");
+											}
+											else
+											{
+												alert "Sorry, The email address you have entered is already registered as " + contactDetails.Contact_Type;
+											}
+										}
+										else
+										{
+											insert into Add_Contact
+											[
+												Added_User=zoho.loginuser
+												Contact_Type="Visitor"
+												Name=input.Name
+												Email=input.Email
+												Phone_Number=input.Phone_Number
+												Referred_By=referredBy
+												Volunteer_Status="Not a Volunteer"
+												Accessible_For=zoho.loginuserid
+											]
+											thisapp.permissions.assignUserInProfile(input.Email,"Visitor");
+										}
+					)
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_P as "Run Scripts - On Click of 'Proceed' Button"
+			{
+				type =  form
+				form = OTP_Confirmation
+				button = Proceed
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						//Decrypting the email
+										decryptedEmail = zoho.encryption.aesDecode(zoho.loginuserid,input.Encoded_Email);
+										//Generating the One Time Password and update the same in database
+										randomNumberFromTime = (zoho.currenttime.toLong() / (zoho.currenttime.getSeconds() * zoho.currenttime.getDayOfYear() * zoho.currenttime.getMinutes() + 1)).toLong();
+										randomNumberFromUser = input.Encoded_Email.getAlphaNumeric().removeAllAlpha().toLong();
+										oneTimePassword = (randomNumberFromTime + randomNumberFromUser) % 10000;
+										otpDetails = One_Time_Password[Email == decryptedEmail];
+										if(otpDetails.count() == 0)
+										{
+											insert into One_Time_Password
+											[
+												Added_User=zoho.loginuser
+												Email=decryptedEmail
+												OTP=oneTimePassword
+											]
+										}
+										else
+										{
+											otpDetails.OTP=oneTimePassword;
+										}
+										//Sending One Time Password in mail
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :decryptedEmail
+											subject :"One Time Password"
+											message :"Your verification code is&nbsp;" + oneTimePassword + "<div><br></div><div>Please use this code to complete your registration process.</div><div><br></div><div>Regards,</div><div>" + zoho.adminuser + "</div>"
+										]
+										openUrl("#Form:Registration?Email=" + decryptedEmail,"same window");
+					)
+					}
+				}
+			}
+			Run_Scripts_While_Adding_7 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Contact
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Dynamically adding contact type here
+										contactType = {"Volunteer","Visitor"};
+										input.Contact_Type:ui.add(contactType);
+										input.Referred_By = zoho.adminuserid;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_8 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Contact
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Mandate the fields in case of 'Volunteer' Contact Type
+										if(Contact_Type == "Volunteer" && input.Phone_Number == null || input.Address.isEmpty())
+										{
+											alert "Kindly check the values in 'Phone number/Address' field!";
+											cancel submit;
+										}
+										if(input.Contact_Type == "Volunteer")
+										{
+											input.Volunteer_Status = "Approved";
+											thisapp.Volunteer.shareWithVolunteer(input.Email);
+										}
+										else if(Contact_Type == "Visitor")
+										{
+											input.Volunteer_Status = "Not a Volunteer";
+											input.Accessible_For = zoho.adminuserid;
+											thisapp.permissions.assignUserInProfile(input.Email,"Visitor");
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing2 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Contact
+				record event = on edit
+
+	field rules
+	{
+					actions 
+					{
+						disable Contact_Type;
+					}
+					actions  (Email == zoho.adminuserid)
+					{
+						disable Email;
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing4 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Contact
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(old.Email != input.Email)
+										{
+											//Share the application with respective contact and unshare the old privileges if the contact email id change
+											if(input.Contact_Type == "Volunteer" && Volunteer_Status == "Approved")
+											{
+												thisapp.permissions.deleteuser(old.Email);
+												thisapp.Volunteer.shareWithVolunteer(input.Email);
+											}
+											else if(Contact_Type == "Visitor")
+											{
+												thisapp.permissions.deleteuser(old.Email);
+												thisapp.permissions.assignUserInProfile(input.Email,"Visitor");
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always4 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = New_Campaign
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Campaign_Status,Approver,Donated_Amount;
+						disable Organizer;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_9 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = New_Campaign
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Add_Contact.count() == 0)
+										{
+											adminID = insert into Add_Contact
+										[
+											Email=zoho.adminuserid
+											Name.first_name=zoho.adminuser
+											Name.last_name=zoho.adminuser
+											Contact_Type="Administrator"
+											Added_User=zoho.loginuser
+											Referred_By=zoho.adminuserid
+											Volunteer_Status="Not a Volunteer"
+										];
+											input.Organizer = adminID;
+										}
+										else
+										{
+											input.Organizer = Add_Contact[Email == zoho.loginuserid].ID;
+										}
+										//Set the status based on logged in user
+										if(zoho.adminuserid == zoho.loginuserid)
+										{
+											input.Campaign_Status = "Active";
+										}
+										else
+										{
+											input.Campaign_Status = "Pending";
+										}
+										input.Approver = zoho.adminuserid;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_10 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = New_Campaign
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Validating deadline field
+										if(input.Deadline <= zoho.currentdate)
+										{
+											alert "Please check the deadline date!";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_11 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = New_Campaign
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(zoho.adminuserid == zoho.loginuserid)
+										{
+											//Notify the volunteer regarding new campaign
+											thisapp.Volunteer.notifyNewCampaign(input.ID);
+										}
+										else
+										{
+											//Send approval request mail
+											sendmail
+											[
+												from :input.Organizer.Email
+												to :zoho.adminuserid
+												subject :"New Campaign Request by Volunteer"
+												message :(("<div>Hi,</div><div><br></div><div>A new campaign request has been raised by&nbsp;" + input.Organizer.Name) + " for&nbsp;" + input.Category + " with the goal amount of&nbsp;" + input.Goal_Amount + ".</div><div><br></div><div><a href=\"https://app.zohocreator.com" + zoho.appuri + "#Report:Pending_Campaigns?Request_Number=" + input.Request_Number + "\" target=\"_blank\">Click Here</a>&nbsp;to view the request.</div><div><br></div><div>Thanks & Regards,</div><div>" + input.Organizer.Name) + "<br></div><div><br></div>"
+											]
+											//Send notification mail with pending status
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :input.Organizer.Email
+												subject :"New Campaign Request-Pending"
+												message :"Hi,<div><br></div><div>Your Campaign request has been received and your Request number is " + input.Request_Number + " .&nbsp;</div><div><br></div><div>We will update you the status shortly.</div><div><br></div><div>Thanks,</div><div>" + zoho.adminuser + "<br></div>"
+											]
+										}
+										if(New_Campaign.count() == 1)
+										{
+											openUrl("#Report:Active_Campaigns","same window");
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing5 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = New_Campaign
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Validating Deadline field
+										if(input.Deadline <= zoho.currentdate && old.Deadline != input.Deadline)
+										{
+											alert "Please check the deadline date!";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_12 as "Run Scripts - While Adding a Records"
+			{
+				type =  form
+				form = Registration
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide OTP,plain;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_13 as "Run Scripts - While Adding a Records"
+			{
+				type =  form
+				form = Registration
+				record event = on add
+
+	on user input of Email
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Email != null)
+										{
+											contactDetails = Add_Contact[Email == input.Email];
+											if(contactDetails.count() != 0)
+											{
+												if(contactDetails.Contact_Type == "Administrator" || contactDetails.Volunteer_Status == "Approved")
+												{
+													alert "Sorry, The email address is already registered as " + contactDetails.Contact_Type + "!";
+												}
+												else if(contactDetails.Volunteer_Status == "Pending")
+												{
+													alert "Sorry, The email address is already registered and is been waiting for the approval!";
+												}
+												else if(contactDetails.Volunteer_Status == "Rejected" || contactDetails.Volunteer_Status == "Not a Volunteer" && input.Email != zoho.loginuserid)
+												{
+													show OTP;
+													show plain;
+													//Encoding the email to pass as parameter
+													encryptedEmail = zoho.encryption.aesEncode(zoho.loginuserid,input.Email);
+													encodedEmail = zoho.encryption.urlEncode(encryptedEmail);
+													//Getting user confirmation to proceed with OTP
+													openUrl("#Form:OTP_Confirmation?zc_Header=false&&Encoded_Email=" + encodedEmail,"popup window");
+													input.plain = "<div style='padding-left: 75px'>Didn't Receive OTP? <a href='#Form:OTP_Confirmation?zc_Header=false&Encoded_Email=" + encodedEmail + "&zc_LoadIn=dialog'>Regenerate OTP</a></div>";
+												}
+											}
+											else
+											{
+												if(input.Email != zoho.loginuserid)
+												{
+													show OTP;
+													show plain;
+													//Encoding the email to pass as parameter
+													encryptedEmail = zoho.encryption.aesEncode(zoho.loginuserid,input.Email);
+													encodedEmail = zoho.encryption.urlEncode(encryptedEmail);
+													//Getting user confirmation to proceed with OTP
+													openUrl("#Form:OTP_Confirmation?zc_Header=false&&Encoded_Email=" + encodedEmail,"popup window");
+													input.plain = "<div style='padding-left: 75px'>Didn't Receive OTP? <a href='#Form:OTP_Confirmation?zc_Header=false&Encoded_Email=" + encodedEmail + "&zc_LoadIn=dialog'>Regenerate OTP</a></div>";
+												}
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always5 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Contact
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Referred_By,Volunteer_Status,Accessible_For;
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin1 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_Contact
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Here we are restricting to delete administrator's record
+										if(input.Email == zoho.adminuserid)
+										{
+											alert "Sorry deletion is not possible for admin record!";
+											cancel delete;
+										}
+										else
+										{
+											//Unshare the privileges
+											thisapp.permissions.deleteuser(input.Email);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_14 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Donation
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide Cheque_DD_Number,Bank_Name,Notes;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_15 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Donation
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											loginContactDetails = Add_Contact[Email == zoho.loginuserid];
+										if(loginContactDetails.Contact_Type == "Visitor")
+										{
+											input.Referred_By = Add_Contact[Email == loginContactDetails.Referred_By].ID;
+										}
+										else
+										{
+											input.Referred_By = loginContactDetails.ID;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_16 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Donation
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											campaignDetails = New_Campaign[ID == input.Campaign_Number];
+										campaignDetails.Donated_Amount=campaignDetails.Donated_Amount + input.Donation_Amount;
+										if(campaignDetails.Donated_Amount >= campaignDetails.Goal_Amount)
+										{
+											campaignDetails.Campaign_Status="Goal Reached";
+										}
+										//Sending thanks mail to donors
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Email
+											subject :"Thanks for your contribution"
+											message :((("Hi,<div><br></div><div>Thank you for your generous donation of " + input.Donation_Amount + "&nbsp;to " + input.Campaign_Number.Name) + "&nbsp;for " + input.Campaign_Number.Title + ".</div><div><br></div><div>With your assistance,over " + input.Campaign_Number.Donated_Amount + " was raised for " + input.Campaign_Number.Title + ".</div><div><br></div><div>Your donation confirmation,</div><div><br></div><div><blockquote style=\"border: 1px solid rgb(204, 204, 204); padding: 7px; background-color: rgb(245, 245, 245);\"><div>Fund Request Number :" + input.Campaign_Number.Request_Number + "</div><div>Donation Amount :&nbsp;" + input.Donation_Amount + "</div><div>Personal Email :&nbsp;" + input.Email + "</div><div>Name:&nbsp;" + input.Name) + "</div><div>Payment Mode :&nbsp;" + input.Payment_Mode + "</div><div>Bank Name :&nbsp;" + input.Bank_Name.Bank_Name + "</div><div>Cheque/DD Number :&nbsp;" + input.Cheque_DD_Number + "</div><div>Phone number :&nbsp;" + input.Phone_Number + "</div><div>Address :&nbsp;" + input.Address) + "</div></blockquote><div><br></div>Again, I thank you for your contribution, time, and effort through serving.</div><div><br></div><div>Most Sincerely,</div><div>" + zoho.adminuser + "<br></div><div><br><br></div><div><br></div><div><br></div><div><br></div>"
+										]
+										//Send thanks mail to volunteer for donation
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Referred_By.Email
+											cc:zoho.adminuserid
+											subject :"New Donor Added Successfully"
+											message :(("<div>Hi,</div><div><br></div><div>Thank you for adding new donor.Keep up the good work.</div><div><br></div><div>Please find the below details here about your added donor,</div><div><br></div><div><blockquote style=\"border: 1px solid rgb(204, 204, 204); padding: 7px; background-color: rgb(245, 245, 245);\"><div>Fund Request Number :&nbsp;" + input.Campaign_Number.Request_Number + "</div><div>Donation Amount :&nbsp;" + input.Donation_Amount + "</div><div>Personal Email :&nbsp;" + input.Email + "</div><div>First Name:&nbsp;" + input.Name) + "</div><div>Payment Mode :&nbsp;" + input.Payment_Mode + "</div><div>Bank Name :&nbsp;" + input.Bank_Name.Bank_Name + "</div><div>Cheque/DD Number :&nbsp;" + input.Cheque_DD_Number + "</div><div>Phone number :&nbsp;" + input.Phone_Number + "</div><div>Address :&nbsp;" + input.Address) + "</blockquote><div><br></div>Thanks,</div><div>" + zoho.adminuser + "<br></div>"
+										]
+										openUrl("#Script:page.refresh","Same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_17 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Donation
+				record event = on add
+
+	on user input of Email
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(zoho.loginuserid == input.Email)
+										{
+											//Autofilling the fields with contact details
+											contactDetails = Add_Contact[Email == input.Email];
+											if(contactDetails.count() != 0)
+											{
+												input.Name = contactDetails.Name;
+												input.Phone_Number = contactDetails.Phone_Number;
+												input.Address = contactDetails.Address;
+											}
+										}
+										else
+										{
+											input.Name = null;
+											input.Phone_Number = null;
+											input.Address = null;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always6 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Donation
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Referred_By;
+					}
+					actions  (Campaign_Number is not null)
+					{
+						show Notes;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always7 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Donation
+				record event = on add or edit
+
+	on load
+	{
+					actions  (Campaign_Number is not null)
+					{
+						custom deluge script
+						(
+											//Display the required balance amount for selected campaign
+										campaignDetails = New_Campaign[ID == input.Campaign_Number];
+										neededAmount = campaignDetails.Goal_Amount - campaignDetails.Donated_Amount;
+										input.Notes = "<a style='opacity:0.7;'>Need " + neededAmount + " $ to reach the goal</a>";
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always8 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Donation
+				record event = on add or edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Payment_Mode != "Cash")
+										{
+											if(Bank_Name == null || Cheque_DD_Number == null)
+											{
+												alert "Please give the payment details!";
+												cancel submit;
+											}
+										}
+										else
+										{
+											input.Bank_Name = null;
+											input.Cheque_DD_Number = null;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always9 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Donation
+				record event = on add or edit
+
+	on user input of Campaign_Number
+	{
+					actions  (Campaign_Number is not null)
+					{
+						custom deluge script
+						(
+											//Display the required balance amount for selected campaign
+										campaignDetails = New_Campaign[ID == input.Campaign_Number];
+										neededAmount = campaignDetails.Goal_Amount - campaignDetails.Donated_Amount;
+										input.Notes = "<a style='opacity:0.7;'>Need " + neededAmount + " $ to reach the goal</a>";
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always10 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Donation
+				record event = on add or edit
+
+	on user input of Payment_Mode
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Displaying the necessary fields according to the user's input
+										if(Payment_Mode == "Cash")
+										{
+											hide Bank_Name;
+											hide Cheque_DD_Number;
+										}
+										else
+										{
+											show Bank_Name;
+											show Cheque_DD_Number;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_18 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Share_Campaign
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Autofilling the "Shared By" field with loginuser data
+										input.Shared_By = Add_Contact[Email == zoho.loginuserid].ID;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_19 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Share_Campaign
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Send mail to all recipients regarding the campaign
+										if(Campaign.Deadline == null)
+										{
+											deadlineStatus = "NA";
+										}
+										else
+										{
+											deadlineStatus = input.Campaign.Deadline.toString();
+										}
+										for each  eachRecipient in input.Recipients
+										{
+											visitorDetails = Add_Contact[ID == eachRecipient];
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :visitorDetails.Email
+												subject :"[" + input.Campaign.Request_Number + "]Donation Request"
+												message :(("<div>Hi,</div><div><br></div><div>With reference of " + input.Shared_By.Name) + ", we are requesting your support to help us extend our alms and contribute for good cause.</div><div><br></div><div><div><span style=\"font-family: Arial, Helvetica, sans-serif;\">Please find the below details to spread the world.</span></div><blockquote style=\"border: 1px solid rgb(204, 204, 204); padding: 7px; background-color: rgb(245, 245, 245);\"><div><b><font face=\"Arial, Helvetica, sans-serif\" size=\"2\">Title:" + input.Campaign.Title + "</font></b></div><div><b><font face=\"Arial, Helvetica, sans-serif\" size=\"2\">Category:" + input.Campaign.Category + "</font></b></div><div><b><font face=\"Arial, Helvetica, sans-serif\" size=\"2\">Description:" + input.Campaign.Description + "</font></b></div><div><b><font face=\"Arial, Helvetica, sans-serif\" size=\"2\">Goal Amount:" + input.Campaign.Goal_Amount + "</font></b></div><div><b><font face=\"Arial, Helvetica, sans-serif\" size=\"2\">Deadline:" + deadlineStatus + "</font></b></div><div><b><font face=\"Arial, Helvetica, sans-serif\" size=\"2\">Beneficiary Name:" + input.Campaign.Name) + "</font></b></div></blockquote><div></div><div><font face=\"Arial, Helvetica, sans-serif\"><br></font></div><div><font face=\"Arial, Helvetica, sans-serif\"><a href=\"https://app.zohocreator.com" + zoho.appuri + "#Report:Active_Campaigns?Request_Number=" + input.Campaign.Request_Number + "\" target=\"_blank\">Click Here</a>&nbsp;to&nbsp;</font><span style=\"font-family: Arial, Helvetica, sans-serif;\">donate&nbsp;</span><font face=\"Arial, Helvetica, sans-serif\">or share the details.</font></div><div><font face=\"Arial, Helvetica, sans-serif\"><br></font></div><div><font face=\"Arial, Helvetica, sans-serif\">Try to be a rainbow in someone's cloud.</font></div><div><font face=\"Arial, Helvetica, sans-serif\"><br></font></div><div><font face=\"Arial, Helvetica, sans-serif\">Regards,</font></div><div><font face=\"Arial, Helvetica, sans-serif\" size=\"1\">" + zoho.adminuserid + "</font></div></div><div><br></div>"
+											]
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_20 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Visitor
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide ExistenceAlert;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_21 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Visitor
+				record event = on add
+
+	on user input of Email
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Displaying the necessary fields according to the user's input
+										contactDetails = Add_Contact[Email == input.Email];
+										if(contactDetails.count() != 0)
+										{
+											hide Name;
+											hide Phone_Number;
+											input.Name = null;
+											input.Phone_Number = null;
+											show ExistenceAlert;
+											//Email existence check
+											if(contactDetails.Contact_Type == "Visitor" || (contactDetails.Contact_Type == "Volunteer" && contactDetails.Volunteer_Status == "Rejected"))
+											{
+												input.ExistenceAlert = "<font color='#ff3333'>The email address you have entered is already registered as " + contactDetails.Contact_Type + "!</font><div><font color='#ff3333'><br></font><div><font color='#ff3333'>Do you wish to add this contact as your visitor?</font></div></div><div><br></div>";
+											}
+											else
+											{
+												input.ExistenceAlert = "<font color='#ff3333'>Sorry, The email address you have entered is already registered as " + contactDetails.Contact_Type + "!</font>";
+											}
+										}
+										else
+										{
+											show Name;
+											show Phone_Number;
+											hide ExistenceAlert;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_22 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = OTP_Confirmation
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide Encoded_Email;
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing6 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Donation
+				record event = on edit
+
+	field rules
+	{
+					actions  (Payment_Mode == "Cash")
+					{
+						hide Cheque_DD_Number,Bank_Name;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always11 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Share_Campaign
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Shared_By;
+					}
+					actions  (Campaign is not null)
+					{
+						disable Campaign;
+					}
+	}
+
+			}
+		}
+		schedule
+		{
+			Remove_One_Time_Password as "Remove_One_Time_Password"
+			{
+				type =  schedule
+				form = One_Time_Password
+				start = after 5 minutes from Modified_Time
+				time zone = "Asia/Kolkata"
+				on start
+				{
+					actions 
+					{
+					delete from One_Time_Password[Email == input.Email];
+					}
+				}
+			}
+		}
+		functions
+		{
+			Activate_Campaign as "Activate Campaign"
+			{
+				type =  functions
+				form = New_Campaign
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						if(input.Donated_Amount >= input.Goal_Amount)
+										{
+											input.Campaign_Status = "Goal Reached";
+										}
+										else if(input.Deadline > zoho.currentdate)
+										{
+											input.Campaign_Status = "Expired";
+										}
+										else
+										{
+											input.Campaign_Status = "Active";
+										}
+					)
+					}
+				}
+			}
+			Share as "Share"
+			{
+				type =  functions
+				form = New_Campaign
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						openUrl("#Form:Share_Campaign?Campaign=" + input.ID,"popup window");
+					)
+					}
+				}
+			}
+			Donate as "Donate"
+			{
+				type =  functions
+				form = New_Campaign
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						openUrl("#Form:Donation?Campaign_Number=" + input.ID,"Popup window");
+					)
+					}
+				}
+			}
+			Deactivate_Campaign as "Deactivate Campaign"
+			{
+				type =  functions
+				form = New_Campaign
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						input.Campaign_Status = "Deactivated";
+					)
+					}
+				}
+			}
+			Approve_Campaign as "Approve Campaign"
+			{
+				type =  functions
+				form = New_Campaign
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						input.Campaign_Status = "Active";
+										thisapp.Volunteer.notifyNewCampaign(input.ID);
+					)
+					}
+				}
+			}
+			Reject_Campaign as "Reject Campaign"
+			{
+				type =  functions
+				form = New_Campaign
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						input.Campaign_Status = "Rejected";
+										sendmail
+										[
+											from :input.Organizer.Email
+											to :zoho.adminuserid
+											subject :"Campaign Request-Rejected"
+											message :"Hi,<div><br></div><div>Sorry your request&nbsp;" + input.Request_Number + " has been rejected.</div><div><br></div><div>Thank you very much for your interest in our organization.</div><div><br></div><div>Thanks,</div><div>" + zoho.adminuser + "<br></div>"
+										]
+					)
+					}
+				}
+			}
+			Approve_Volunteer as "Approve Volunteer"
+			{
+				type =  functions
+				form = Add_Contact
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						input.Volunteer_Status = "Approved";
+										input.Contact_Type = "Volunteer";
+										thisapp.Volunteer.shareWithVolunteer(input.Email);
+					)
+					}
+				}
+			}
+			Reject_Volunteer as "Reject Volunteer"
+			{
+				type =  functions
+				form = Add_Contact
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						input.Volunteer_Status = "Rejected";
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Email
+											subject :"Volunteer Request-Rejected"
+											message :"Hi,<div><br></div><div>Sorry your request has been rejected.</div><div><br></div><div>Thank you very much for your interest in our organization.</div><div><br></div><div>Thanks,</div><div>" + zoho.adminuser + "</div>"
+										]
+					)
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Visitor"
+			{
+				name = "Visitor"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "Visitor Profile\n"
+				ModulePermissions
+				{
+					One_Time_Password
+					{
+						FieldPermissions
+						{
+							OTP{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+						}
+					}
+					OTP_Confirmation
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Encoded_Email{visibility:true,readonly:false}
+							OTPmessage{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Registration
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							plain{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							OTP{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Donation
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Donor_Details{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Payment_Mode{visibility:true,readonly:false}
+							Referred_By{visibility:true,readonly:false}
+							Donation_Amount{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Campaign_Number{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+							Bank_Name{visibility:true,readonly:false}
+							Section1{visibility:true,readonly:false}
+							Cheque_DD_Number{visibility:true,readonly:false}
+							Section2{visibility:true,readonly:false}
+							Include_a_Message_with_Donation{visibility:true,readonly:false}
+							Notes{visibility:true,readonly:false}
+						}
+					}
+					Add_Visitor
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Phone_Number{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							ExistenceAlert{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					New_Campaign
+					{
+						enabled= Viewall,Export 
+						ReportPermissions
+						{
+							Active_Campaigns={"View"}
+						}
+						FieldPermissions
+						{
+							Request_Number{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Donated_Amount{visibility:true,readonly:false}
+							Category{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Organizer{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Goal_Amount{visibility:true,readonly:false}
+							Deadline{visibility:true,readonly:false}
+							Title{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Campaign_Status{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+							plain{visibility:true,readonly:false}
+							Approver{visibility:true,readonly:false}
+							Related_Image{visibility:true,readonly:false}
+						}
+					}
+					Add_Bank_Name
+					{
+						FieldPermissions
+						{
+							Bank_Name{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Share_Campaign
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Campaign{visibility:true,readonly:false}
+							Recipients_Count{visibility:false,readonly:false}
+							Recipients{visibility:true,readonly:false}
+							plain{visibility:true,readonly:false}
+							Shared_By{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Add_Contact
+					{
+						FieldPermissions
+						{
+							Contact_Type{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Referred_By{visibility:true,readonly:false}
+							Volunteer_Status{visibility:true,readonly:false}
+							Accessible_For{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+				}
+			}
+			"Volunteer"
+			{
+				name = "Volunteer"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "Volunteer Profile\n"
+				ModulePermissions
+				{
+					One_Time_Password
+					{
+						FieldPermissions
+						{
+							OTP{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+						}
+					}
+					OTP_Confirmation
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Encoded_Email{visibility:true,readonly:false}
+							OTPmessage{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Registration
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							plain{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							OTP{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Donation
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Donor_Details{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Payment_Mode{visibility:true,readonly:false}
+							Referred_By{visibility:true,readonly:false}
+							Donation_Amount{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Campaign_Number{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+							Bank_Name{visibility:true,readonly:false}
+							Section1{visibility:true,readonly:false}
+							Cheque_DD_Number{visibility:true,readonly:false}
+							Section2{visibility:true,readonly:false}
+							Include_a_Message_with_Donation{visibility:true,readonly:false}
+							Notes{visibility:true,readonly:false}
+						}
+					}
+					Add_Visitor
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Phone_Number{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							ExistenceAlert{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					New_Campaign
+					{
+						enabled= Create,Viewall,Export,Tab 
+						ReportPermissions
+						{
+							Active_Campaigns={"View"}
+						}
+						FieldPermissions
+						{
+							Request_Number{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Donated_Amount{visibility:true,readonly:false}
+							Category{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Organizer{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Goal_Amount{visibility:true,readonly:false}
+							Deadline{visibility:true,readonly:false}
+							Title{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Campaign_Status{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+							plain{visibility:true,readonly:false}
+							Approver{visibility:true,readonly:false}
+							Related_Image{visibility:true,readonly:false}
+						}
+					}
+					Add_Bank_Name
+					{
+						FieldPermissions
+						{
+							Bank_Name{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Share_Campaign
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Campaign{visibility:true,readonly:false}
+							Recipients_Count{visibility:false,readonly:false}
+							Recipients{visibility:true,readonly:false}
+							plain{visibility:true,readonly:false}
+							Shared_By{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Add_Contact
+					{
+						enabled= Viewall,Export 
+						ReportPermissions
+						{
+							My_Referrals={"View"}
+						}
+						FieldPermissions
+						{
+							Contact_Type{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Referred_By{visibility:true,readonly:false}
+							Volunteer_Status{visibility:true,readonly:false}
+							Accessible_For{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users."
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 3
+		new theme color = 2
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-finance5"
+    	icon theme = "lightred"
+		icons style = outline
+	}
+
+	phone
+	{
+		section  Dashboard
+		{
+			page Dashboard
+			{
+				icon = "ui-1-dashboard-half"
+			}
+		}
+		section  New_Campaign
+		{
+			displayname= "Campaigns"
+			pivotchart Campaigns_Report
+			{
+				icon = "business-chart-bar-32"
+				hide = true
+			}
+			list Active_Campaigns
+			{
+				icon = "ui-1-calendar-grid-58"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Phone_Number as "Phone Number"
+								Request_Number as "Request Number"
+								Title
+								Category
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Share"
+										"Donate"
+										"Deactivate Campaign"
+										Duplicate   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Share"
+										"Donate"
+										"Deactivate Campaign"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Request_Number as "Request Number"
+								Title
+								Category
+								Description
+								Related_Image as "Related Image"
+								Goal_Amount as "Goal Amount"
+								Donated_Amount as "Donated Amount"
+								Deadline
+							)
+						)
+						datablock2
+						(
+			 				layout type = -2
+		     				title = "Beneficiary Details"
+							fields
+							(
+								Name
+								Email
+								Phone_Number as "Phone Number"
+								Address
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Share"
+			 				"Donate"
+			 				"Deactivate Campaign"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Pending_Campaigns
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Request_Number as "Request Number"
+								Title
+								Goal_Amount as "Goal Amount"
+								Organizer
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Approve"
+										"Reject"
+										Duplicate   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Approve"
+										"Reject"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Request_Number as "Request Number"
+								Organizer
+								Title
+								Category
+								Description
+								Related_Image as "Related Image"
+								Goal_Amount as "Goal Amount"
+								Deadline
+							)
+						)
+						datablock2
+						(
+			 				layout type = -2
+		     				title = "Beneficiary Details"
+							fields
+							(
+								Name
+								Email
+								Phone_Number as "Phone Number"
+								Address
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Approve"
+			 				"Reject"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Archived_Campaigns
+			{
+				icon = "files-archive-content"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Request_Number as "Campaign Number"
+								Title
+								Category
+								Goal_Amount as "Goal Amount"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Activate"
+										Duplicate   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Activate"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Request_Number as "Campaign Number"
+								Organizer
+								Title
+								Category
+								Description
+								Related_Image as "Related Image"
+								Goal_Amount as "Goal Amount"
+								Donated_Amount as "Donated Amount"
+								Deadline
+								Campaign_Status as "Campaign Status"
+							)
+						)
+						datablock2
+						(
+			 				layout type = -2
+		     				title = "Beneficiary Details"
+							fields
+							(
+								Name
+								Email
+								Phone_Number as "Phone Number"
+								Address
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Activate"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list All_Campaigns
+			{
+				icon = "ui-1-database"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Request_Number as "Campaign Number"
+								Title
+								Category
+								Goal_Amount as "Goal Amount"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Request_Number as "Campaign Number"
+								Organizer
+								Title
+								Category
+								Description
+								Related_Image as "Related Image"
+								Goal_Amount as "Goal Amount"
+								Donated_Amount as "Donated Amount"
+								Deadline
+								Campaign_Status as "Campaign Status"
+							)
+						)
+						datablock2
+						(
+			 				layout type = -2
+		     				title = "Beneficiary Details"
+							fields
+							(
+								Name
+								Phone_Number as "Phone Number"
+								Email
+								Address
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			form  New_Campaign
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+			}
+		}
+		section  page
+		{
+			displayname= "Volunteers"
+			list Active_Volunteers
+			{
+				icon = "users-2-wc"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Address
+								Phone_Number as "Phone Number"
+								Email
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Phone_Number as "Phone Number"
+								Email
+								Address
+								Referred_By as "Referred By"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Pending_Volunteers
+			{
+				icon = "users-2-a-sync"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Address
+								Phone_Number as "Phone Number"
+								Email
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Approve"
+										"Reject"
+										Duplicate   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Approve"
+										"Reject"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Phone_Number as "Phone Number"
+								Email
+								Address
+								Referred_By as "Referred By"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Approve"
+			 				"Reject"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			form  Registration
+			{
+				layout = auto
+				icon = "users-2-a-add"
+			}
+		}
+		section  New_Section
+		{
+			displayname= "Fund History"
+			pivotchart Donations_Chart
+			{
+				icon = "business-stock"
+				hide = true
+			}
+			list Donations
+			{
+				icon = "business-money-coins"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Campaign_Number as "Campaign Number"
+								Name
+								Referred_By.Phone_Number as "Phone Number"
+								Donation_Amount as "Donation Amount"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Campaign_Number as "Campaign Number"
+								Donation_Amount as "Donation Amount"
+								Payment_Mode as "Payment Mode"
+								Bank_Name as "Bank Name"
+								Cheque_DD_Number as "Cheque/DD Number"
+								Include_a_Message_with_Donation as "Include a Message with Donation"
+							)
+						)
+						datablock2
+						(
+			 				layout type = -2
+		     				title = "Donor Details"
+							fields
+							(
+								Name
+								Phone_Number as "Phone Number"
+								Email
+								Address
+								Referred_By as "Referred By"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Shared
+			{
+				icon = "ui-2-share-bold"
+				quickview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = 1
+		     				title = "Overview"
+							fields
+							(
+								Shared_By as "Shared By"
+								Recipients
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Campaign
+								Recipients
+								Shared_By as "Shared By"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Recipients
+			{
+				icon = "users-badge-13"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Title
+								Name
+								Email
+								Phone_Number as "Phone Number"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Request_Number as "Request Number"
+								Organizer
+								Title
+								Category
+								Description
+								Related_Image as "Related Image"
+								Goal_Amount as "Goal Amount"
+								Donated_Amount as "Donated Amount"
+								Deadline
+								Campaign_Status as "Campaign Status"
+							)
+						)
+						datablock2
+						(
+			 				layout type = -2
+		     				title = "Beneficiary Details"
+							fields
+							(
+								Name
+								Phone_Number as "Phone Number"
+								Email
+								Address
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Contacts
+		{
+			form  Add_Contact
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			custom My_Referrals
+			{
+				icon = "users-2-contacts-45"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Address
+								Email
+								Phone_Number as "Phone Number"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Contact_Type as "Contact Type"
+								Name
+								Phone_Number as "Phone Number"
+								Email
+								Address
+								Referred_By as "Referred By"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			custom All_Contacts
+			{
+				icon = "users-multiple-11"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Address
+								Email
+								Phone_Number as "Phone Number"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Contact_Type as "Contact Type"
+								Name
+								Phone_Number as "Phone Number"
+								Email
+								Address
+								Referred_By as "Referred By"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Add_Bank_Name
+		{
+			displayname= "Add Bank Name"
+			form  Add_Bank_Name
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			list Bank_Names
+			{
+				icon = "design-bullet-list-67"
+				hide = true
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Bank_Name as "Bank Name"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Bank_Name as "Bank Name"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Donation
+		{
+			form  Donation
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Share_Campaign
+		{
+			displayname= "Share Campaign"
+			form  Share_Campaign
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  page1
+		{
+			displayname= "Duplicated Add Visitor"
+			form  Add_Visitor
+			{
+				layout = auto
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			form  OTP_Confirmation
+			{
+				layout = auto
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  One_Time_Password
+		{
+			displayname= "One Time Password"
+			form  One_Time_Password
+			{
+				layout = auto
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			list One_Time_Passwords
+			{
+				icon = "design-bullet-list-67"
+				hide = true
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Email
+								OTP
+								Added_Time as "Added Time"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Email
+								OTP
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		customize
+		{
+			colour = lightred
+        	layout = onecolumn
+		 	icons style = outline
+		}
+	}
+	tablet
+	{
+		section  Dashboard
+		{
+			icon = "ui-1-dashboard-half"
+			page Dashboard
+			{
+				icon = "ui-1-dashboard-half"
+			}
+		}
+		section  New_Campaign
+		{
+			displayname= "Campaigns"
+			icon = "media-2-speaker-01"
+			pivotchart Campaigns_Report
+			{
+				icon = "business-chart-bar-32"
+				hide = true
+			}
+			list Active_Campaigns
+			{
+				icon = "ui-1-calendar-grid-58"
+			}
+			list Pending_Campaigns
+			{
+			}
+			list Archived_Campaigns
+			{
+				icon = "files-archive-content"
+			}
+			list All_Campaigns
+			{
+				icon = "ui-1-database"
+			}
+			form  New_Campaign
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+			}
+		}
+		section  page
+		{
+			displayname= "Volunteers"
+			icon = "users-multiple-11"
+			list Active_Volunteers
+			{
+				icon = "users-2-wc"
+			}
+			list Pending_Volunteers
+			{
+				icon = "users-2-a-sync"
+			}
+			form  Registration
+			{
+				layout = auto
+				icon = "users-2-a-add"
+			}
+		}
+		section  New_Section
+		{
+			displayname= "Fund History"
+			icon = "social-1-logo-angellist"
+			pivotchart Donations_Chart
+			{
+				icon = "business-stock"
+				hide = true
+			}
+			list Donations
+			{
+				icon = "business-money-coins"
+			}
+			list Shared
+			{
+				icon = "ui-2-share-bold"
+			}
+			list Recipients
+			{
+				icon = "users-badge-13"
+			}
+		}
+		section  Contacts
+		{
+			icon = "users-contacts"
+			form  Add_Contact
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			custom My_Referrals
+			{
+				icon = "users-2-contacts-45"
+			}
+			custom All_Contacts
+			{
+				icon = "users-multiple-11"
+			}
+		}
+		section  Add_Bank_Name
+		{
+			displayname= "Add Bank Name"
+			icon = "business-bank"
+			form  Add_Bank_Name
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			list Bank_Names
+			{
+				icon = "design-bullet-list-67"
+				hide = true
+			}
+		}
+		section  Donation
+		{
+			icon = "business-handout"
+			form  Donation
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Share_Campaign
+		{
+			displayname= "Share Campaign"
+			icon = "social-1-logo-reddit"
+			form  Share_Campaign
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  page1
+		{
+			displayname= "Duplicated Add Visitor"
+			icon = "users-single-02"
+			form  Add_Visitor
+			{
+				layout = auto
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			form  OTP_Confirmation
+			{
+				layout = auto
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  One_Time_Password
+		{
+			displayname= "One Time Password"
+			icon = "users-2-police"
+			form  One_Time_Password
+			{
+				layout = auto
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			list One_Time_Passwords
+			{
+				icon = "design-bullet-list-67"
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = lightred
+        	layout = slidingpane
+		 	icons style = outline
+		}
+	}
+	
+}

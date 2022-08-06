@@ -1,0 +1,2125 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 07-May-2020 01:38:35
+ * Version      : 1.0
+ */
+ application "Seat Booking"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+	section Seat_Booking
+	{
+		displayname= "Seat Booking"
+		icon = "furniture-armchair"
+		form Pick_Your_Seat
+		{
+			displayname = "Pick Your Seat"
+			success message = "Seat(s) Booked Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Book_For
+			(
+				type = picklist
+				displayname = "Book For"
+				values  = Add_Details[Booking_Status == "Open"].ID
+    			displayformat = [Name]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Mobile_Number
+			(
+    			type = phonenumber
+				displayname = "Mobile Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Date_field
+			(
+    			type = date
+				displayname = "Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			seatStyles
+			(
+    			type = plaintext
+				value = ""
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			seats
+			(
+				type = checkboxes
+				values = {"Choice 1", "2", "3", "4", "5", "1", "6", "7", "8", "9", "44", "17", "18", "12", "13", "23", "24", "32"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			selected_seats
+			(
+    			type = plaintext
+				value = ""
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			details
+			(
+    			type = plaintext
+				value = ""
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list All_Bookings
+		{
+			displayName = "All Bookings"
+			show all rows from Pick_Your_Seat    
+			(
+				Date_field as "Date"
+				Book_For as "Book For"
+				Mobile_Number as "Mobile Number"
+				seats
+				Email
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+			)
+			group by
+			(
+				Book_For ascending
+			)
+			options
+			(
+				icon = "ui-1-database"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Book_For as "Book For"
+							Name
+							Date_field as "Date"
+							seats
+							Mobile_Number as "Mobile Number"
+							Email
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Book_For as "Book For"
+							Name
+							Date_field as "Date"
+							seats
+							Mobile_Number as "Mobile Number"
+							Email
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Today_s_Bookings
+		{
+			displayName = "Today's Bookings"
+			show all rows from Pick_Your_Seat  [(Book_For.Book == "On Daily Basis" && Date_field == today) || (Book_For.Book == "As a Whole Event" && Book_For.From < zoho.currentdate || Book_For.From == zoho.currentdate && Book_For.To > zoho.currentdate || Book_For.To == zoho.currentdate)]  
+			(
+				Book_For as "Book For"
+				Date_field as "Date"
+				seats as "Seats"
+				Email as "Contact Email"
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Mobile_Number as "Contact Number"
+			)
+			group by
+			(
+				Book_For ascending
+			)
+			options
+			(
+				icon = "ui-1-calendar-check-62"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Book_For as "Book For"
+							Name
+							Date_field as "Date"
+							seats as "Seats"
+							Mobile_Number as "Contact Number"
+							Email as "Contact Email"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Book_For as "Book For"
+							Name
+							Date_field as "Date"
+							seats as "Seats"
+							Mobile_Number as "Contact Number"
+							Email as "Contact Email"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Settings
+	{
+		icon = "ui-1-settings-gear-63"
+		form Add_Details
+		{
+			displayname = "Add Details"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Name
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = "<font color=\"#999999\">It can be an event or conference or travels.</font>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Start_Time
+			(
+				type = picklist
+				displayname = "Start Time"
+				values = {"00:00 ", "00:15", "00:30", "00:45", "01:00", "01:15", "01:30", "01:45", "02:00", "02:15", "02:30", "02:45", "03:00", "03:15", "03:30", "03:45", "04:00", "04:15", "04:30", "04:45", "05:00", "05:15", "05:30", "05:45", "06:00", "06:15", "06:30", "06:45", "07:00", "07:15", "07:30", "07:45", "08:00", "08:15", "08:30", "08:45", "09:00", "09:15", "09:30", "09:45", "10:00", "10:15", "10:30", "10:45", "11:00", "11:15", "11:30", "11:45", "12:00", "12:15", "12:30", "12:45", "13:00", "13:15", "13:30", "13:45", "14:00", "14:15", "14:30", "14:45", "15:00", "15:15", "15:30", "15:45", "16:00", "16:15", "16:30", "16:45", "17:00", "17:15", "17:30", "17:45", "18:00", "18:15", "18:30", "18:45", "19:00", "19:15", "19:30", "19:45", "20:00", "20:15", "20:30", "20:45", "21:00", "21:15", "21:30", "21:45", "22:00", "22:15", "22:30", "22:45", "23:00", "23:15", "23:30", "23:45"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have End_Time
+			(
+				type = picklist
+				displayname = "End Time"
+				values = {"00:00 ", "00:15", "00:30", "00:45", "01:00", "01:15", "01:30", "01:45", "02:00", "02:15", "02:30", "02:45", "03:00", "03:15", "03:30", "03:45", "04:00", "04:15", "04:30", "04:45", "05:00", "05:15", "05:30", "05:45", "06:00", "06:15", "06:30", "06:45", "07:00", "07:15", "07:30", "07:45", "08:00", "08:15", "08:30", "08:45", "09:00", "09:15", "09:30", "09:45", "10:00", "10:15", "10:30", "10:45", "11:00", "11:15", "11:30", "11:45", "12:00", "12:15", "12:30", "12:45", "13:00", "13:15", "13:30", "13:45", "14:00", "14:15", "14:30", "14:45", "15:00", "15:15", "15:30", "15:45", "16:00", "16:15", "16:30", "16:45", "17:00", "17:15", "17:30", "17:45", "18:00", "18:15", "18:30", "18:45", "19:00", "19:15", "19:30", "19:45", "20:00", "20:15", "20:30", "20:45", "21:00", "21:15", "21:30", "21:45", "22:00", "22:15", "22:30", "22:45", "23:00", "23:15", "23:30", "23:45"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Book
+			(
+				type = radiobuttons
+				values = {"On Daily Basis", "As a Whole Event"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			plain2
+			(
+    			type = plaintext
+				value = "<a><font size=\"3\">Booking availability</font></a>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have From
+			(
+    			type = date
+				displayname = "From Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have To
+			(
+    			type = date
+				displayname = "To Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			plain1
+			(
+    			type = plaintext
+				value = "<a><font size=\"3\">Seating Details</font></a>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Total_No_of_Seats
+			(
+				type = number
+				displayname = "Total No of Seats"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have No_of_Column
+			(
+				type = number
+				displayname = "No of Columns"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have No_of_Rows
+			(
+				type = number
+				displayname = "No of Rows"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Booking_Status
+			(
+				type = picklist
+				displayname = "Booking Status"
+				values = {"Open", "Closed"}
+				initial value = "Open"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Booking_Closing_Time
+			(
+    			type = datetime
+				displayname = "Booking Closing Time"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Open_Bookings
+		{
+			displayName = "Open Bookings"
+			show all rows from Add_Details  [Booking_Status == "Open"]  
+			(
+				custom action "Close"
+				(
+	  			workflow = Close
+				show action in view header = true
+				column header = "Close"
+				success message = ""
+				)
+				Start_Time as "Start Time"
+				To
+				From
+				Description
+				Name
+				Book
+				End_Time as "End Time"
+				Total_No_of_Seats as "Total No of Seats"
+				No_of_Rows as "No of Rows"
+				No_of_Column as "No of Columns"
+				Booking_Closing_Time as "Booking Closing Time"
+			)
+			options
+			(
+				icon = "ui-1-check-circle-08"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name
+							From
+							To
+							Start_Time as "Start Time"
+							End_Time as "End Time"
+							Book
+							Total_No_of_Seats as "Total No of Seats"
+				"Close"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Description
+							From
+							To
+							Start_Time as "Start Time"
+							End_Time as "End Time"
+							Book
+							Total_No_of_Seats as "Total No of Seats"
+							No_of_Rows as "No of Rows"
+							No_of_Column as "No of Columns"
+							Booking_Closing_Time as "Booking Closing Time"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Booked Customers"
+		     			related field =  Pick_Your_Seat.Book_For
+						fields
+						(
+							Name
+							Date_field as "Date"
+							seats
+							Mobile_Number as "Mobile Number"
+							Email
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Close"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Closed_Bookings
+		{
+			displayName = "Closed Bookings"
+			show all rows from Add_Details  [Booking_Status == "Closed"]  
+			(
+				End_Time as "End Time"
+				Start_Time as "Start Time"
+				To
+				From
+				Description
+				Name
+				Book
+				Total_No_of_Seats as "Total No of Seats"
+				No_of_Column as "No of Columns"
+				No_of_Rows as "No of Rows"
+				Booking_Closing_Time as "Booking Closing Time"
+			)
+			options
+			(
+				icon = "ui-1-circle-remove"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Description
+							From
+							To
+							Start_Time as "Start Time"
+							End_Time as "End Time"
+							Book
+							Total_No_of_Seats as "Total No of Seats"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Description
+							From
+							To
+							Start_Time as "Start Time"
+							End_Time as "End Time"
+							Book
+							Total_No_of_Seats as "Total No of Seats"
+							No_of_Rows as "No of Rows"
+							No_of_Column as "No of Columns"
+							Booking_Closing_Time as "Booking Closing Time"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Booked Customers"
+		     			related field =  Pick_Your_Seat.Book_For
+						fields
+						(
+							Name
+							Date_field as "Date"
+							seats
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	functions
+	{
+ 			void CustomAction.closeBooking(Add_Details recObj)
+			{
+				recObj.Booking_Status="Closed";
+			}
+ 			list ListGeneration.generate_list(int num, list mylist)
+			{
+				//generating list to show the given number of seats
+				if(input.num > 0)
+				{
+					mylist.add(num);
+					thisapp.ListGeneration.generate_list(num - 1,mylist);
+				}
+				return mylist;
+			}
+ 			bool TimeFunctions.checkStartAndEndTime(string startTime, string endTime)
+			{
+				//To ensure that start time is less than end time 
+				startDateTime = (zoho.currentdate + " " + startTime + ":00").toTime();
+				endDateTime = (zoho.currentdate + " " + endTime + ":00").toTime();
+				if(startDateTime < endDateTime)
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Redirection_Task1 as "Redirection Task"
+			{
+				type =  form
+				form = Add_Details
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						openURL("#Report:Open_Bookings","new window");
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_2 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Pick_Your_Seat
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Add_Details[ID != 0].count() == 0)
+										{
+											openUrl("#Form:Add_Details","same window");
+										}
+										hide selected_seats;
+										hide seats;
+										hide details;
+										hide Date_field;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_3 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Pick_Your_Seat
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Mandatory check for Date field if the booking for selected event is on daily basis
+										template_record = Add_Details[ID == input.Book_For];
+										if(template_record.Book == "On Daily Basis" && input.Date_field == null)
+										{
+											alert "Please select a Date to book!";
+											cancel submit;
+										}
+										//Removing already booked seats from currently selected seats
+										booked_seats_list = Pick_Your_Seat[Date_field == input.Date_field && Book_For == input.Book_For].seats.getAll();
+										already_booked_seats = booked_seats_list.intersect(input.seats);
+										input.seats.removeall(already_booked_seats);
+										//User must select atleast one seat to book
+										if(seats.isEmpty())
+										{
+											alert "Select atleast one seat to book!";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_4 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Pick_Your_Seat
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Changing status to closed once all seats gets booked
+										templateRec = Add_Details[ID == input.Book_For];
+										if(templateRec.Book == "On Daily Basis")
+										{
+											noOfDays = days360(templateRec.From,templateRec.To) + 1;
+											loopList = leftpad("",noOfDays).replaceAll(" ","1,").removeLastOccurence(",").toList();
+											fromDate = templateRec.From;
+											boolList = List:String();
+											for each  value in loopList
+											{
+												noOfSeats = Pick_Your_Seat[Book_For == input.Book_For && Date_field == fromDate].seats.getAll().size();
+												if(noOfSeats == templateRec.Total_No_of_Seats)
+												{
+													boolList.add(true);
+												}
+												fromDate = fromDate.addDay(1);
+											}
+											if(boolList.size() == noOfDays)
+											{
+												templateRec.Booking_Status="Closed";
+											}
+										}
+										else if(templateRec.Book == "As a Whole Event")
+										{
+											input.Date_field = input.Book_For.From;
+											noOfSeats = Pick_Your_Seat[Book_For == input.Book_For].seats.getAll().size();
+											if(noOfSeats == templateRec.Total_No_of_Seats)
+											{
+												templateRec.Booking_Status="Closed";
+											}
+										}
+										//Sending confiration mail to user
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Email
+											subject :"Booking Confirmation"
+											message :(("Hi " + input.Name) + ",<div><br></div><div>Thanks for the booking.</div><div><br></div><div>Please find your booking details here,</div><div><br><table cellpadding=\"2\" cellspacing=\"2\" border=\"1\" style=\"width: 100%; font-size: 10pt;\"><tbody><tr><td>Name</td><td>" + input.Name) + "<br></td></tr><tr><td>Mobile</td><td>" + input.Mobile_Number + "<br></td></tr><tr><td>Email</td><td>" + input.Email + "<br></td></tr><tr><td>Date</td><td>" + input.Date_field + "<br></td></tr><tr><td>Booked Seats</td><td>" + input.seats + "<br></td></tr></tbody></table><br>Regards,</div><div>" + zoho.adminuser + "<br><br></div>"
+										]
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always2 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Pick_Your_Seat
+				record event = on add or edit
+
+	on user input of Book_For
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											template_record = Add_Details[ID == input.Book_For];
+										if(template_record.Book == "As a Whole Event")
+										{
+											height = "165px";
+										}
+										else if(template_record.Book == "On Daily Basis")
+										{
+											height = "216px";
+										}
+										//Showing details about the selected event/conference/travels for user reference
+										if(input.Book_For != null)
+										{
+											str = "<div  style=\"padding: 3% 6%;min-width: 500px;border: 1px dotted #e2e6ea;max-height: " + height + ";overflow: auto;\">";
+											templateRec = Add_Details[ID == input.Book_For];
+											input.details = str + "<a><div style=\"border-bottom: 1px solid #e0dede;padding: 1% 2%;width:96%;display:inline-block;padding-right: 6px;font-size:18px;\"><span >" + templateRec.Name + "<span><span style='float:right;    font-size: 20px;padding-top: 3px;' class=\"fa fa-info-circle\"></span></div></a><div style=\"color: #898989;text-align: center;justify-content: center;align-items: center;font-size: 12px;margin: 3% 0;\"><span style='font-size: 14px;'>Timings : <b style='color:#5c5757;'>" + templateRec.Start_Time + " - " + templateRec.End_Time + "</b></span>";
+											if(templateRec.From != templateRec.To)
+											{
+												input.details = input.details + "<br><span style='font-size: 14px;'>Bookings available from <b style='color:#5c5757;'>" + templateRec.From + " </b>to <b style='color:#5c5757;'>" + templateRec.To + "</b></span></div>";
+											}
+											else
+											{
+												input.details = input.details + "<br><span style='font-size: 14px;'>Bookings available only on <b style='color:#5c5757;'>" + templateRec.From + "</b></span></div>";
+											}
+											if(templateRec.Description != "")
+											{
+												input.details = input.details + "<div style='color:#898989;'> " + templateRec.Description + "</div>";
+											}
+											input.details = input.details + "</div>";
+											show details;
+										}
+										else
+										{
+											hide details;
+										}
+										if(templateRec.Book == "On Daily Basis")
+										{
+											show Date_field;
+										}
+										else
+										{
+											hide Date_field;
+										}
+										//Showing seats according to the selectd event
+										template_record = Add_Details[ID == input.Book_For];
+										if(template_record.Book == "As a Whole Event")
+										{
+											booked_seat_list = Pick_Your_Seat[Book_For == input.Book_For].seats.getAll();
+											//Checking whether the selected date corresponds to selected occasion date
+											if(zoho.currenttime <= (template_record.From + " " + template_record.Start_Time + ":00 ").toTime().subHour(1))
+											{
+												hide selected_seats;
+												show seats;
+												str = "";
+												for each  seat in booked_seat_list
+												{
+													str = str + "input[id$=checkboxesEl_zc-seats_" + seat + "] + label { background: url('https://docs.zoho.com/embed/4h1cx8d3cc875397a4aa79b24c08c1eb9cc37'); background-repeat:no-repeat;width: 27.0px;background-position: 15.0px 0.0px;} input[id$=checkboxesEl_zc-Checkbox_" + seat + "]:checked + label {background:url(' https://docs.zoho.com/embed/4h1cx8d3cc875397a4aa79b24c08c1eb9cc37');background-repeat: no-repeat;width: 27.0px;background-position: 15.0px 0.0px;}";
+												}
+												str1 = "";
+												seat_list_desc = thisapp.ListGeneration.generate_list(template_record.Total_No_of_Seats.toLong(),{});
+												seat_list = seat_list_desc.sort(true);
+												input.seats:ui.add(seat_list);
+												if(template_record.No_of_Column % 2 == 1)
+												{
+													add_gap_var = (template_record.No_of_Column / 2).toLong() + 1;
+												}
+												else if(template_record.No_of_Column % 2 == 0)
+												{
+													add_gap_var = (template_record.No_of_Column / 2).toLong();
+												}
+												for each  row_last_seat in seat_list
+												{
+													if(row_last_seat.toLong() == add_gap_var)
+													{
+														str1 = str1 + "input[id$=checkboxesEl_zc-seats_" + row_last_seat + "]+label{margin-right:55px;}";
+														add_gap_var = add_gap_var + template_record.No_of_Column;
+													}
+												}
+												widthlist = {0,106,172,236,300,364,428,492,556,620,684};
+												input.seatStyles = "<style>  .flLeft .tempContDiv .zc-Checkbox { display:block;} .form-field .tempContDiv .choice-table-row {display:none;}.form-field .tempContDiv .choice-table-cell{ display:block;float:left;padding:0px;} .customCheckbox+label, .customRadio+label{ margin-right:0 px;border:none; background:url('https://docs.zoho.com/embed/4h1cxea92cdbbb4474c128af0151300eb8f6f');padding: 12px;background-repeat: no-repeat;   width:27px;  background-position: 15px 0px;} .customCheckbox:checked+label{background:none; border:none;    background-image: url('https://docs.zoho.com/embed/4h1cx3b79141bd8fd4bd497ffc46becaff114');background-repeat: no-repeat;    width: 27px;background-position: 15px 0px;} .customCheckbox:focus+label, .customRadio:focus+label{ border:none;} .choice-label-text { display:none; }  .zc_checkbox:checked + label:after {display: none;} label+label { display:none; }" + str + " .form-field .tempContDiv { display: table; Width:" + widthlist.get(template_record.No_of_Column) + "px;} " + str1 + ".form-group label.zc-seats-label{display:none;} .choice-table-cell span { padding:5px 0 0 0;} </style>";
+											}
+										}
+										else
+										{
+											hide seats;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always3 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Pick_Your_Seat
+				record event = on add or edit
+
+	on user input of seats
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Showing selected seats in notes field for user reference
+										if(seats.size() > 0)
+										{
+											booked_seats_list = Pick_Your_Seat[Date_field == input.Date_field].seats.getAll();
+											already_booked_seats = booked_seats_list.intersect(input.seats);
+											input.seats.removeall(already_booked_seats);
+											if(seats.isEmpty())
+											{
+												hide selected_seats;
+											}
+											else
+											{
+												show selected_seats;
+												input.selected_seats = "Selected Seats-<a >" + input.seats + "</a>";
+											}
+										}
+										else
+										{
+											hide selected_seats;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always4 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Pick_Your_Seat
+				record event = on add or edit
+
+	on user input of Date_field
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Showing seats according to the selectd date
+										template_record = Add_Details[ID == input.Book_For];
+										if(input.Date_field != null)
+										{
+											if(input.Book_For != null)
+											{
+												booked_seat_list = Pick_Your_Seat[Date_field == input.Date_field && Book_For == input.Book_For].seats.getAll();
+												//Checking for seat availability on the selected date
+												if(booked_seat_list.size() < template_record.Total_No_of_Seats)
+												{
+													//Checking whether the selected date corresponds to selected occasion date
+													if(input.Date_field >= template_record.From && input.Date_field <= template_record.To && zoho.currenttime <= (input.Date_field + " " + template_record.Start_Time + ":00 ").toTime().subHour(1))
+													{
+														hide selected_seats;
+														show seats;
+														str = "";
+														for each  seat in booked_seat_list
+														{
+															str = str + "input[id$=checkboxesEl_zc-seats_" + seat + "] + label { background: url('https://docs.zoho.com/embed/4h1cx8d3cc875397a4aa79b24c08c1eb9cc37'); background-repeat:no-repeat;width: 27.0px;background-position: 15.0px 0.0px;} input[id$=checkboxesEl_zc-Checkbox_" + seat + "]:checked + label {background:url(' https://docs.zoho.com/embed/4h1cx8d3cc875397a4aa79b24c08c1eb9cc37');background-repeat: no-repeat;width: 27.0px;background-position: 15.0px 0.0px;}";
+														}
+														str1 = "";
+														seat_list_desc = thisapp.ListGeneration.generate_list(template_record.Total_No_of_Seats.toLong(),{});
+														seat_list = seat_list_desc.sort(true);
+														input.seats:ui.add(seat_list);
+														if(template_record.No_of_Column % 2 == 1)
+														{
+															add_gap_var = (template_record.No_of_Column / 2).toLong() + 1;
+														}
+														else if(template_record.No_of_Column % 2 == 0)
+														{
+															add_gap_var = (template_record.No_of_Column / 2).toLong();
+														}
+														for each  row_last_seat in seat_list
+														{
+															if(row_last_seat.toLong() == add_gap_var)
+															{
+																str1 = str1 + "input[id$=checkboxesEl_zc-seats_" + row_last_seat + "]+label{margin-right:55px;}";
+																add_gap_var = add_gap_var + template_record.No_of_Column;
+															}
+														}
+														widthlist = {0,106,172,236,300,364,428,492,556,620,684};
+														input.seatStyles = "<style>  .flLeft .tempContDiv .zc-Checkbox { display:block;} .form-field .tempContDiv .choice-table-row {display:none;}.form-field .tempContDiv .choice-table-cell{ display:block;float:left;padding:0px;} .customCheckbox+label, .customRadio+label{ margin-right:0 px;border:none; background:url('https://docs.zoho.com/embed/4h1cxea92cdbbb4474c128af0151300eb8f6f');padding: 12px;background-repeat: no-repeat;   width:27px;  background-position: 15px 0px;} .customCheckbox:checked+label{background:none; border:none;    background-image: url('https://docs.zoho.com/embed/4h1cx3b79141bd8fd4bd497ffc46becaff114');background-repeat: no-repeat;    width: 27px;background-position: 15px 0px;} .customCheckbox:focus+label, .customRadio:focus+label{ border:none;} .choice-label-text { display:none; }  .zc_checkbox:checked + label:after {display: none;} label+label { display:none; }" + str + " .form-field .tempContDiv { display: table; Width:" + widthlist.get(template_record.No_of_Column) + "px;} " + str1 + ".form-group label.zc-seats-label{display:none;} .choice-table-cell span { padding:5px 0 0 0;} </style>";
+													}
+													else
+													{
+														seats.deselectall();
+														hide seats;
+														show selected_seats;
+														input.selected_seats = "<p style='color:red'>Please select a valid date!</p>";
+													}
+												}
+												else
+												{
+													hide seats;
+													show selected_seats;
+													input.selected_seats = "<p style='color:red'>No Seats available on this date!Please select another date.</p>";
+												}
+											}
+											else
+											{
+												alert "Please select a value for 'Book For' field!";
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_5 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Details
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Booking_Status;
+										hide Booking_Closing_Time;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_6 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Details
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Allowing only future dates for 'From' and 'To' fields
+										if(input.From < zoho.currentdate)
+										{
+											alert "Please enter valid future date!";
+											cancel submit;
+										}
+										if(input.To < zoho.currentdate)
+										{
+											alert "Please enter valid future date!";
+											cancel submit;
+										}
+										//Check to ensure that the start time is less than end time
+										if(input.Start_Time != "" && input.End_Time != "")
+										{
+											resultVar = thisapp.TimeFunctions.checkStartAndEndTime(input.Start_Time,input.End_Time);
+											if(!resultVar)
+											{
+												alert "Please enter valid Start and End time!";
+												cancel submit;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_7 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Details
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Book == "On Daily Basis")
+										{
+											input.Booking_Closing_Time = (input.To + " " + input.End_Time + ":00").toTime().subHour(1);
+										}
+										else if(input.Book == "As a Whole Event")
+										{
+											input.Booking_Closing_Time = (input.From + " " + input.End_Time + ":00").toTime().subHour(1);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always5 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Details
+				record event = on add or edit
+
+	on user input of Start_Time
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Check to ensure that the start time is less than end time
+										if(input.Start_Time != "" && input.End_Time != "")
+										{
+											resultVar = thisapp.TimeFunctions.checkStartAndEndTime(input.Start_Time,input.End_Time);
+											if(!resultVar)
+											{
+												alert "Please enter valid Start and End time!";
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always6 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Details
+				record event = on add or edit
+
+	on user input of To
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Check to ensure that the given To date is a future date
+										if(input.To < zoho.currentdate)
+										{
+											alert "Please enter valid future date!";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always7 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Details
+				record event = on add or edit
+
+	on user input of No_of_Rows
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Check to allow only positive values to this field
+										if(input.No_of_Rows < 1)
+										{
+											alert "Please enter a valid number!";
+											input.No_of_Rows = null;
+										}
+										//Calculating number of rows based on No of seats and No of columns
+										else if((input.No_of_Rows != null && input.Total_No_of_Seats != null && input.No_of_Column == null) || (input.No_of_Column != null && input.No_of_Column != ceil(input.Total_No_of_Seats / input.No_of_Rows)))
+										{
+											input.No_of_Column = ceil(input.Total_No_of_Seats / input.No_of_Rows);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always8 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Details
+				record event = on add or edit
+
+	on user input of From
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Check to ensure that the given From date is a future date
+										if(input.From < zoho.currentdate)
+										{
+											alert "Please enter valid future date!";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always9 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Details
+				record event = on add or edit
+
+	on user input of No_of_Column
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Check to allow only positive values to this field
+										if(input.No_of_Column < 1)
+										{
+											alert "Please enter a valid number!";
+											input.No_of_Column = null;
+										}
+										//Here we are restricting the no of columns to be less than 10
+										else if(input.No_of_Column > 10)
+										{
+											alert "Upto 10 columns are only allowed! So please enter a value between 1 and 10.";
+											input.No_of_Column = null;
+										}
+										//Calculating number of rows based on No of seats and No of columns
+										else if((input.No_of_Column != null && input.Total_No_of_Seats != null && input.No_of_Rows == null) || (input.No_of_Rows != null && input.No_of_Column != null && input.No_of_Rows != ceil(input.Total_No_of_Seats / input.No_of_Column)))
+										{
+											input.No_of_Rows = ceil(input.Total_No_of_Seats / input.No_of_Column);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always10 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Details
+				record event = on add or edit
+
+	on user input of End_Time
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Check to ensure that the start time is less than end time
+										if(input.Start_Time != "" && input.End_Time != "")
+										{
+											resultVar = thisapp.TimeFunctions.checkStartAndEndTime(input.Start_Time,input.End_Time);
+											if(!resultVar)
+											{
+												alert "Please enter valid Start and End time!";
+											}
+										}
+						)
+					}
+	}
+
+			}
+		}
+		schedule
+		{
+			Close_Booking as "Close_Booking"
+			{
+				type =  schedule
+				form = Add_Details
+				start = Booking_Closing_Time
+				time zone = "Asia/Kolkata"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						input.Booking_Status = "Closed";
+					)
+					}
+				}
+			}
+		}
+		functions
+		{
+			Close as "Close"
+			{
+				type =  functions
+				form = Add_Details
+				on start
+				{
+					actions 
+					{
+					CustomAction.closeBooking(Add_Details);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"User"
+			{
+				name = "User"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "This profile only have add and view permission.\n"
+				ModulePermissions
+				{
+					Pick_Your_Seat
+					{
+						FieldPermissions
+						{
+							Modified_User{visibility:false}
+							Modified_Time{visibility:false}
+							Email{visibility:false,readonly:false}
+							selected_seats{visibility:false,readonly:false}
+							Book_For{visibility:false,readonly:false}
+							Section{visibility:false,readonly:false}
+							seats{visibility:false,readonly:false}
+							Name{visibility:false,readonly:false}
+							Modified_User_IP_Address{visibility:false}
+							Added_User_IP_Address{visibility:false}
+							Date_field{visibility:false,readonly:false}
+							Mobile_Number{visibility:false,readonly:false}
+							seatStyles{visibility:false,readonly:false}
+							Added_User{visibility:false}
+							details{visibility:false,readonly:false}
+							ID{visibility:false}
+							Added_Time{visibility:false}
+						}
+					}
+					Add_Details
+					{
+						enabled= Create,Viewall,Tab,View,Search 
+						FieldPermissions
+						{
+							Total_No_of_Seats{visibility:true,readonly:false}
+							No_of_Column{visibility:true,readonly:false}
+							Description{visibility:false,readonly:false}
+							Booking_Status{visibility:false,readonly:false}
+							From{visibility:false,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:false,readonly:false}
+							Booking_Closing_Time{visibility:false,readonly:false}
+							End_Time{visibility:false,readonly:false}
+							Start_Time{visibility:false,readonly:false}
+							plain{visibility:false,readonly:false}
+							Book{visibility:false,readonly:false}
+							plain2{visibility:false,readonly:false}
+							plain1{visibility:false,readonly:false}
+							To{visibility:false,readonly:false}
+							No_of_Rows{visibility:false,readonly:false}
+						}
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users.\n\n"
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 1
+		new theme color = 3
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-hr-mgmt5"
+    	icon theme = "yellow"
+		icons style = solid
+	}
+
+	phone
+	{
+		section  Seat_Booking
+		{
+			displayname= "Seat Booking"
+			form  Pick_Your_Seat
+			{
+				layout = left
+			}
+			list All_Bookings
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name
+								seats
+								Mobile_Number as "Mobile Number"
+								Email
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Book_For as "Book For"
+								Name
+								Date_field as "Date"
+								seats
+								Mobile_Number as "Mobile Number"
+								Email
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Today_s_Bookings
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name
+								seats as "Seats"
+								Mobile_Number as "Contact Number"
+								Email as "Contact Email"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Book_For as "Book For"
+								Name
+								Date_field as "Date"
+								seats as "Seats"
+								Mobile_Number as "Contact Number"
+								Email as "Contact Email"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Settings
+		{
+			form  Add_Details
+			{
+				layout = left
+			}
+			list Open_Bookings
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Description
+								From
+								To
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Close"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Description
+								From
+								To
+								Start_Time as "Start Time"
+								End_Time as "End Time"
+								Book
+								Total_No_of_Seats as "Total No of Seats"
+								No_of_Rows as "No of Rows"
+								No_of_Column as "No of Columns"
+								Booking_Closing_Time as "Booking Closing Time"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Close"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Closed_Bookings
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Description
+								From
+								To
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Description
+								From
+								To
+								Start_Time as "Start Time"
+								End_Time as "End Time"
+								Book
+								Total_No_of_Seats as "Total No of Seats"
+								No_of_Rows as "No of Rows"
+								No_of_Column as "No of Columns"
+								Booking_Closing_Time as "Booking Closing Time"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		customize
+		{
+			colour = yellow
+        	layout = onecolumncard
+		 	icons style = outline
+		}
+	}
+	tablet
+	{
+		section  Seat_Booking
+		{
+			displayname= "Seat Booking"
+			form  Pick_Your_Seat
+			{
+				layout = left
+			}
+			list All_Bookings
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name
+								seats
+								Mobile_Number as "Mobile Number"
+								Email
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Book_For as "Book For"
+								Name
+								Date_field as "Date"
+								seats
+								Mobile_Number as "Mobile Number"
+								Email
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Today_s_Bookings
+			{
+			}
+		}
+		section  Settings
+		{
+			form  Add_Details
+			{
+				layout = left
+			}
+			list Open_Bookings
+			{
+			}
+			list Closed_Bookings
+			{
+			}
+		}
+		customize
+		{
+			colour = yellow
+        	layout = onecolumncard
+		 	icons style = outline
+		}
+	}
+	
+}

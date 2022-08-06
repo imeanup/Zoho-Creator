@@ -1,0 +1,2556 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 23:21:48
+ * Version      : 1.0
+ */
+ application "Program Manager"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "PST8PDT"
+ 	time format = "24-hr"
+	section Programs
+	{
+		icon = "ui-1-calendar-grid-58"
+		form Add_Program
+		{
+			displayname = "Add Program"
+			success message = "Program Details Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Name
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Type
+			(
+				type = picklist
+				values  = Add_Program_Type.ID
+    			displayformat = [Type]
+				allow new entries = true
+				[
+					displayname = "Add New Type"
+				]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have From
+			(
+    			type = datetime
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have To
+			(
+    			type = datetime
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Manager
+			(
+				type = picklist
+				values  = Add_User.ID
+    			displayformat = [Name1.first_name + Name1.last_name + " - " + Email]
+				allow new entries = true
+				[
+					displayname = "Add New User"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			ManagerEmail
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status
+			(
+				type = picklist
+				values = {"Active", "Cancelled", "Completed"}
+				initial value = "Active"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Add_Tasks
+			(
+				type = grid
+				displayname = "Add Tasks"
+				values  = Add_Task.ID
+    			bidirectional = Program
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Admin
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Users
+			(
+				type = list
+				values  = Add_User.ID
+    			displayformat = [Name1.first_name + Name1.last_name]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-3-calendar-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list All_Programs
+		{
+			displayName = "All Programs"
+			show all rows from Add_Program  [Admin == zoho.loginuserid || Manager.Email == zoho.loginuserid || Users.Email == zoho.loginuserid]  
+			(
+				custom action "Cancel"
+				(
+	  			workflow = Cancel
+				show action in view header = true
+				column header = "Cancel"
+				success message = ""
+				condition = (Status == "Active")
+				)
+				ManagerEmail as "Manager"
+				Name
+				Description
+				Type
+				From
+				To
+				Manager
+				Status
+			)
+			filters
+			(
+				Type
+			)
+			group by
+			(
+				Status ascending
+			)
+			options
+			(
+				icon = "shopping-list"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Description
+							Type
+							From
+							To
+							ManagerEmail as "Manager"
+							Status
+				"Cancel"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Description
+							Type
+							From
+							To
+							Manager
+							Status
+						)
+					)
+					datablock2
+					(
+			 			layout type = 1
+		     			title = "Tasks"
+		     			related field =  Add_Tasks[Admin == zoho.loginuserid || Manager.Email == zoho.loginuserid || Users.Email == zoho.loginuserid]
+						fields
+						(
+							Name
+							Description
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Cancel"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		calendar Program_Schedule
+		{
+			displayName = "Program Schedule"
+			show all rows from Add_Program  [Status == "Active" && Admin == zoho.loginuserid || Manager.Email == zoho.loginuserid || Users.Email == zoho.loginuserid]  
+			(
+				ManagerEmail
+				Name
+				Description
+				Type
+				From
+				To
+				Manager
+				Status
+			)
+			options
+			(
+				display type = month
+				week start day = sunday
+				display field = Name
+				start date = From
+				end date = To
+				default date 
+				(
+	    			day   = Today
+	    			month = Currentmonth
+	    			year  = Currentyear
+				)
+				icon = "ui-1-calendar-check-59"
+			)
+			conditional formatting
+			(
+				"Program Formatting"
+				{
+				format = "color:#ffffff;background-color:#3fc996;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Description
+							ManagerEmail
+							Status
+							Type
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Description
+							Type
+							From
+							To
+							Manager
+							Status
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Tasks"
+		     			related field =  Add_Tasks[Status == "Active" && Admin == zoho.loginuserid || Manager.Email == zoho.loginuserid || Users.Email == zoho.loginuserid]
+						fields
+						(
+							Name
+							Description
+							Assigned_To as "Assigned To"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Tasks
+	{
+		icon = "text-list-bullet"
+		summary Tasks
+		{
+			displayName = "Tasks"
+			show all rows from Add_Task  [Program.Admin == zoho.loginuserid || Program.ManagerEmail == zoho.loginuserid || Assigned_To.Email == zoho.loginuserid]  
+			(
+				Program.From
+				Program
+				Program.Type
+				Name
+				Description
+				Assigned_To as "Assigned To"
+			)
+			group by
+			(
+				Program ascending
+				Program.From ascending
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 2
+				icon = "design-bullet-list-68"
+			)
+			conditional formatting
+			(
+				"New Formatting"
+				{
+				condition = (Program.Status == "Cancelled")
+				fields = [Description, Assigned_To]
+				format = "color:#b3adb3;"
+				}
+				"Cancel Formatting"
+				{
+				condition = (Program.Status == "Cancelled")
+				fields = [Name]
+				format = "text-decoration:line-through;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Description
+							Assigned_To as "Assigned To"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Description
+							Assigned_To as "Assigned To"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Program"
+		     			related field =  Program[Program.Admin == zoho.loginuserid || Program.ManagerEmail == zoho.loginuserid || Assigned_To.Email == zoho.loginuserid]
+						fields
+						(
+							Name
+							Description
+							From
+							To
+						)
+					)
+					datablock3
+					(
+			 			layout type = 4
+		     			title = "Assigned To"
+		     			related field =  Assigned_To[Program.Admin == zoho.loginuserid || Program.ManagerEmail == zoho.loginuserid || Assigned_To.Email == zoho.loginuserid]
+						fields
+						(
+							Name1 as "Name"
+							Address1 as "Address"
+							Email
+							Mobile_No as "Mobile No"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Participants
+	{
+		icon = "users-multiple-19"
+		form Add_Participants
+		{
+			displayname = "Add Participants"
+			success message = "New Participant Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Program
+			(
+				type = picklist
+				values  = Add_Program[Admin == zoho.loginuserid || ManagerEmail == zoho.loginuserid || Users.Email == zoho.loginuserid && Status == "Active"].ID
+    			displayformat = [" " + Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Mobile_No
+			(
+    			type = phonenumber
+				displayname = "Mobile No"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Users
+			(
+				type = list
+				values  = Add_User.ID
+    			displayformat = [Name1.first_name + Name1.last_name]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		custom All_Participants
+		{
+			displayName = "All Participants"
+			show all rows from Add_Participants  [Program.Admin == zoho.loginuserid || Program.ManagerEmail == zoho.loginuserid || Users.Email == zoho.loginuserid]  
+			(
+				Program
+				Email
+				Mobile_No as "Mobile No"
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+			)
+			group by
+			(
+				Program ascending
+			)
+			options
+			(
+				icon = "users-multiple-11"
+	 		)
+			conditional formatting
+			(
+				"New Formatting"
+				{
+				condition = (Program.Status == "Cancelled")
+				fields = [Email]
+				format = "color:#b5b3b5;"
+				}
+				"Cancel Formatting"
+				{
+				condition = (Program.Status == "Cancelled")
+				format = "text-decoration:line-through;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Address
+							Mobile_No as "Mobile No"
+							Email
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Program
+							Name
+							Email
+							Mobile_No as "Mobile No"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Admin
+	{
+		icon = "ui-1-lock-circle"
+		list Users
+		{
+			displayName = "Users"
+			show all rows from Add_User    
+			(
+				Email
+				Name1  as "Name"
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Mobile_No as "Mobile No"
+				Address1  as "Address"
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+			)
+			options
+			(
+				icon = "users-2-contacts-44"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name1 as "Name"
+							Email
+							Mobile_No as "Mobile No"
+							Address1 as "Address"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name1 as "Name"
+							Email
+							Mobile_No as "Mobile No"
+							Address1 as "Address"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Program_Types
+		{
+			displayName = "Program Types"
+			show all rows from Add_Program_Type    
+			(
+				Type
+			)
+			options
+			(
+				icon = "design-2-filter-organization"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Type
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Type
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Hidden
+	{
+		icon = "ui-2-menu-bold"
+		form Add_Task
+		{
+			displayname = "Add Task"
+			success message = "New Task Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Program
+			(
+				type = picklist
+				values  = Add_Program[Admin == zoho.loginuserid || Manager.Email == zoho.loginuserid].ID
+    			bidirectional = Add_Tasks
+    			displayformat = [Name]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Name
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Assigned_To
+			(
+				type = list
+				displayname = "Assigned To"
+				values  = Add_User.ID
+    			displayformat = [Name1.first_name + Name1.last_name]
+				allow new entries = true
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Program_Type
+		{
+			displayname = "Add Program Type"
+			success message = "New Type Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Type
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_User
+		{
+			displayname = "Add User"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Name1
+			(
+    			type = name
+				displayname = "Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Mobile_No
+			(
+    			type = phonenumber
+				displayname = "Mobile No"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Address1
+			(
+    			type = address
+				displayname = "Address"
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	functions
+	{
+ 			void CancelProgram(int Id)
+			{
+				UsersList = List:String();
+				ProgramRec = Add_Program[ID == input.Id];
+				ProgramRec.Status="Cancelled";
+				for each  userId in ProgramRec.Users
+				{
+					UserRec = Add_User[ID == userId];
+					sendmail
+					[
+						from :zoho.adminuserid
+						to :UserRec.Email
+						subject :"Program Cancellation Notification"
+						message :("Hi " + UserRec.Name1) + " ,<div><br></div><div>We regret to inform you that \"" + ProgramRec.Name + "\"" + " program scheduled on" + ProgramRec.From.toDate() + " has been cancelled due to official reasons.</div><div><br></div><div>We sincerely appologize for the inconvenience caused.</div><div><br></div><div>Regards,</div><div>" + zoho.adminuser + "</div>"
+					]
+				}
+				AllParticipants = Add_Participants[Program == input.Id];
+				for each  participant in AllParticipants
+				{
+					sendmail
+					[
+						from :zoho.adminuserid
+						to :participant.Email
+						subject :"Program Cancellation Notification"
+						message :("Hi " + participant.Name) + " ,<div><br></div><div>We regret to inform you that \"" + ProgramRec.Name + "\"" + " program scheduled on" + ProgramRec.From.toDate() + " has been cancelled due to official reasons.</div><div><br></div><div>We sincerely appologize for the inconvenience caused.</div><div><br></div><div>Regards,</div><div>" + zoho.adminuser + "</div>"
+					]
+				}
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Run_Scripts_While_Adding_3 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Program
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						disable Status;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_4 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Program
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(zoho.loginuserid != zoho.adminuserid)
+										{
+											UserID = Add_User[Email == zoho.loginuserid].ID;
+											input.Manager = UserID;
+											disable Manager;
+										}
+										input.Admin = zoho.adminuserid;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing2 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Program
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(zoho.loginuserid != zoho.adminuserid)
+										{
+											disable Manager;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin2 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_Program
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											AllTasks = Add_Task[Program == input.ID];
+										for each  Rec in AllTasks
+										{
+											delete from Add_Task[Program == input.ID];
+										}
+										AllParticipants = Add_Participants[Program == input.ID];
+										for each  eachRec in AllParticipants
+										{
+											delete from Add_Participants[Program == input.ID];
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always3 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Program
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Users,ManagerEmail,Admin;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always4 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Program
+				record event = on add or edit
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											users = List:String();
+										for each  rec in input.Add_Tasks
+										{
+											users.addall(rec.Assigned_To);
+										}
+										input.Users = users.distinct();
+										ParticipantRec = Add_Participants[Program == input.ID];
+										for each  eachRec in ParticipantRec
+										{
+											eachRec.Users=users;
+										}
+										input.ManagerEmail = Add_User[ID == input.Manager].Email;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always5 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Program
+				record event = on add or edit
+
+	on user input of From
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.From >= input.To || input.From <= zoho.currenttime)
+										{
+											alert "Please enter valid Date-Time for 'From' field!";
+											input.From = null;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always6 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Program
+				record event = on add or edit
+
+	on user input of To
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.From >= input.To || input.To <= zoho.currenttime)
+										{
+											alert "Please enter valid Date-Time for 'To' field!";
+											input.To = null;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_5 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Participants
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											ProgramUsers = Add_Program[ID == input.Program];
+										input.Users = ProgramUsers.Users;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_6 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_User
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.permissions.assignUserInProfile(input.Email,"User");
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Email
+											subject :"Invitation to access Program Management App"
+											message :("Hi " + input.Name1) + ",<div><br></div><div>You have been added as a user in Program Management App.</div><div><br></div><div>And here you can manage your programs and its related tasks.</div><div><br></div><div>Click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "\"" + " target=\"_blank\">here</a> to view the Application.</div><div><br></div><div>Regards,</div><div>" + zoho.adminuser + "</div>"
+										]
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing3 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_User
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Email != old.Email)
+										{
+											thisapp.permissions.assignUserInProfile(input.Email,"User");
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :input.Email
+												subject :"Invitation to access Program Management"
+												message :("Hi " + input.Name1) + ",<div><br></div><div>&nbsp; &nbsp; &nbsp; You have been added as a user to access Program Management App.</div><div>You can add new programs and its related tasks and participants.</div><div><br></div><div>Click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "\"" + " target=\"_blank\">here</a> to access this App.</div><div><br></div><div>Regards,</div><div>" + zoho.adminuser + "</div>"
+											]
+											thisapp.permissions.deleteuser(old.Email);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin3 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_User
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.permissions.deleteuser(input.Email);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always7 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Task
+				record event = on add or edit
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											ProgramUsers = Add_Program[ID == input.Program];
+										UsersList = ProgramUsers.Users;
+										UsersList.addall(input.Assigned_To);
+										ProgramUsers.Users=UsersList;
+										ParticipantRec = Add_Participants[Program == input.ID];
+										for each  eachRec in ParticipantRec
+										{
+											eachRec.Users=UsersList;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always8 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Participants
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Users;
+					}
+	}
+
+			}
+		}
+		schedule
+		{
+			CompleteProgram as "CompleteProgram"
+			{
+				type =  schedule
+				form = Add_Program
+				start = To
+				time zone = "PST8PDT"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						input.Status = "Completed";
+					)
+					}
+				}
+			}
+		}
+		functions
+		{
+			Cancel as "Cancel"
+			{
+				type =  functions
+				form = Add_Program
+				on start
+				{
+					actions 
+					{
+					CancelProgram(ID);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"User"
+			{
+				name = "User"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "This profile will have user permissions.\n"
+				ModulePermissions
+				{
+					Add_Task
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Tasks={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Assigned_To{visibility:true,readonly:false}
+							Program{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Program_Type
+					{
+						FieldPermissions
+						{
+							Section{visibility:false,readonly:false}
+							Type{visibility:true,readonly:false}
+						}
+					}
+					Add_Program
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Program_Schedule={"View","Edit"}
+							All_Programs={"View","Edit"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							ManagerEmail{visibility:true,readonly:false}
+							From{visibility:true,readonly:false}
+							Users{visibility:true,readonly:false}
+							Manager{visibility:true,readonly:false}
+							Admin{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:true,readonly:false}
+							Type{visibility:true,readonly:false}
+							To{visibility:true,readonly:false}
+							Add_Tasks{visibility:true,readonly:false}
+						}
+					}
+					Add_Participants
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							All_Participants={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Program{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Address{visibility:false,readonly:false}
+							Mobile_No{visibility:false,readonly:false}
+							Users{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:false,readonly:false}
+						}
+					}
+					Add_User
+					{
+						FieldPermissions
+						{
+							Email{visibility:true,readonly:false}
+							Address1{visibility:false,readonly:false}
+							Section{visibility:false,readonly:false}
+							Mobile_No{visibility:false,readonly:false}
+							Name1{visibility:false,readonly:false}
+						}
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users."
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 2
+		new theme color = 3
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-project-mgmt6"
+    	icon theme = "green"
+		icons style = solid
+	}
+
+	phone
+	{
+		section  Programs
+		{
+			form  Add_Program
+			{
+				layout = left
+			}
+			list All_Programs
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Description
+								From
+								To
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Cancel"
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Cancel"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Description
+								Type
+								From
+								To
+								Manager
+								Status
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Cancel"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			calendar Program_Schedule
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Description
+								From
+								To
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Description
+								Type
+								From
+								To
+								Manager
+								Status
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Tasks
+		{
+			summary Tasks
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Description
+								Program
+								Program.Type as "Type"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Description
+								Assigned_To as "Assigned To"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Participants
+		{
+			form  Add_Participants
+			{
+				layout = left
+			}
+			custom All_Participants
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Address
+								Mobile_No as "Mobile No"
+								Email
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Program
+								Name
+								Email
+								Mobile_No as "Mobile No"
+								Address
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Admin
+		{
+			list Users
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name1 as "Name"
+								Address1 as "Address"
+								Email
+								Mobile_No as "Mobile No"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name1 as "Name"
+								Email
+								Mobile_No as "Mobile No"
+								Address1 as "Address"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Program_Types
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Type
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Type
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Hidden
+		{
+			form  Add_Task
+			{
+				layout = left
+				hide = true
+			}
+			form  Add_Program_Type
+			{
+				layout = auto
+				hide = true
+			}
+			form  Add_User
+			{
+				layout = left
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = green
+        	layout = slidingpane
+		 	icons style = outline
+		}
+	}
+	tablet
+	{
+		section  Programs
+		{
+			form  Add_Program
+			{
+				layout = left
+			}
+			list All_Programs
+			{
+			}
+			calendar Program_Schedule
+			{
+			}
+		}
+		section  Tasks
+		{
+			summary Tasks
+			{
+			}
+		}
+		section  Participants
+		{
+			form  Add_Participants
+			{
+				layout = left
+			}
+			custom All_Participants
+			{
+			}
+		}
+		section  Admin
+		{
+			list Users
+			{
+			}
+			list Program_Types
+			{
+			}
+		}
+		section  Hidden
+		{
+			form  Add_Task
+			{
+				layout = left
+				hide = true
+			}
+			form  Add_Program_Type
+			{
+				layout = auto
+				hide = true
+			}
+			form  Add_User
+			{
+				layout = left
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = green
+        	layout = slidingpane
+		 	icons style = outline
+		}
+	}
+	
+}

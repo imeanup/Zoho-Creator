@@ -1,0 +1,4537 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 23:22:43
+ * Version      : 1.0
+ */
+ application "Employee Onboarding"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+	section Offer_a_job
+	{
+		displayname= "Offer a job"
+		icon = "education-paper"
+		form Details
+		{
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Reference_Number
+			(
+    			type = autonumber
+				displayname = "Reference Number"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Basic
+			(
+    			type = plaintext
+				value = "<a><b>Basic Information</b></a>"
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Gender
+			(
+				type = radiobuttons
+				values = {"Male", "Female"}
+				initial value = "Male"
+				layout = 3
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Personal_Email
+			(
+    			type = email
+				displayname = "Personal Email"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Present_Address
+			(
+    			type = address
+				displayname = "Present Address"
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Personal
+			(
+    			type = plaintext
+				value = "<a><b>Personal Information</b></a>"
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Photo
+			(
+    			type = image
+				source  = public_url,file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Birth_Date
+			(
+    			type = date
+				displayname = "Birth Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Marital_status
+			(
+				type = radiobuttons
+				displayname = "Marital status"
+				values = {"Single", "Married"}
+				initial value = "Single"
+				layout = 2
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Blood_Group
+			(
+				type = picklist
+				displayname = "Blood Group"
+				values = {"O+", "O-", "A+", "A-", "B+", "B-", "AB+", "AB-"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			same_as_Present_Address
+			(
+    			type = checkbox
+				displayname = "Permananet Address is same as Present Address"
+				initial value = false
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Permananet_Address
+			(
+    			type = address
+				displayname = "Permananet Address"
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_13
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_23
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city3
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province3
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code3
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country3
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude3
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude3
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Qualifications
+			(
+    			type = plaintext
+				value = "<a><b>Qualifications</b></a>"
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Experience
+			(
+				type = radiobuttons
+				values = {"Fresher", "Experienced"}
+				initial value = "Fresher"
+				layout = 2
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Work_experience
+			(
+				type = grid
+				displayname = "Work experience"
+	    
+				must have Previous_Company_Name
+				(
+    				type = text
+					displayname = "Previous Company Name"
+					width = medium
+				)
+				must have Designation
+				(
+    				type = text
+					width = medium
+				)
+				must have From_Date
+				(
+    				type = date
+					displayname = "From Date"
+					alloweddays = 0,1,2,3,4,5,6
+					width = medium
+				)
+				must have To_Date
+				(
+    				type = date
+					displayname = "To Date"
+					alloweddays = 0,1,2,3,4,5,6
+					width = medium
+				)
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Education
+			(
+				type = grid
+	    
+				must have Course
+				(
+    				type = text
+					width = medium
+				)
+				must have Institution_Name
+				(
+    				type = text
+					displayname = "Institution Name"
+					width = medium
+				)
+				must have Marks_Scored
+				(
+    				type = percentage
+					displayname = "Marks Scored (in %)"
+					width = medium
+				)
+				must have Year_of_Completion
+				(
+					type = number
+					displayname = "Year of Completion"
+					width = medium
+				)
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Work
+			(
+    			type = plaintext
+				value = "<a><b>Work Information</b></a>"
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Employee_ID
+			(
+    			type = text
+				displayname = "Employee ID"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Offer_Expires_On
+			(
+    			type = date
+				displayname = "Offer Expires On"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Date_Of_Joining
+			(
+    			type = date
+				displayname = "Date Of Joining"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Official_Email
+			(
+    			type = email
+				displayname = "Official Email"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Salary
+			(
+				displayname = "Salary (per annum)"
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Designation
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Employee_Type
+			(
+				type = picklist
+				displayname = "Employee Type"
+				values  = Add_Employee_Type.ID
+    			displayformat = [Employee_Type]
+				allow new entries = true
+				[
+					displayname = "Add Employee Type"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Location
+			(
+				type = picklist
+				values  = Add_Location.ID
+    			displayformat = [Location_Name]
+				allow new entries = true
+				[
+					displayname = "Add Location"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Seat_Location
+			(
+    			type = text
+				displayname = "Seat Location"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Extension
+			(
+				type = number
+				maxchar = 9
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Department
+			(
+				type = picklist
+				values  = Add_Department.ID
+    			displayformat = [Department_Name]
+				allow new entries = true
+				[
+					displayname = "Add Department"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Reporting_To
+			(
+    			type = email
+				displayname = "Reporting To"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Asset_Information
+			(
+				type = grid
+				displayname = "Asset Information"
+	    
+				must have Type
+				(
+					type = picklist
+					values  = Add_Asset_Type.ID
+    				displayformat = [Asset_Type]
+					allow new entries = true
+					[
+						displayname = "Add Ásset Type"
+					]
+					sortorder = ascending
+					width = medium
+				)
+				must have Manufacturer
+				(
+    				type = text
+					width = medium
+				)
+				must have Model
+				(
+    				type = text
+					width = medium
+				)
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Confirmation
+			(
+				type = radiobuttons
+				displayname = "Confirmation on joining"
+				values = {"Yes", "No"}
+				layout = 2
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			reason
+			(
+				type = picklist
+				displayname = "Kindly mention the reason"
+				values = {"Higher Studies", "Better Offer", "Personal Reasons"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Declined_By
+			(
+    			type = email
+				displayname = "Declined By"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status
+			(
+				type = picklist
+				values = {"Offer Letter Rollout", "Onboarding Complete", "Offer Letter Accepted", "Offer Letter Declined"}
+				initial value = "Offer Letter Rollout"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Offer_IssuedBy
+			(
+    			type = email
+				displayname = "Offer IssuedBy"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					Send_Job_Offer
+					(
+   						type = submit
+   						displayname = "Send Job Offer"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Offers
+	{
+		icon = "users-badge-13"
+		list Made
+		{
+			displayName = "Made"
+			show all rows from Details  [Status == "Offer Letter Rollout"]  
+			(
+				custom action "View Offer Letter"
+				(
+	  			workflow = Run_Scripts_On_Click_of_B
+				show action in view header = true
+				column header = "View Offer Letter"
+				success message = ""
+				)
+				custom action "Decline"
+				(
+	  			workflow = Run_Scripts_On_Click_of_B2
+				show action in view header = true
+				column header = "Decline"
+				success message = ""
+				)
+				Gender
+				Present_Address  as "Present Address"
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Date_Of_Joining as "Date Of Joining"
+				Offer_Expires_On as "Offer Expires On"
+				Salary as "Salary (per annum)"
+				Designation
+				Employee_Type as "Employee Type"
+				Location
+				Department
+				Reporting_To as "Reporting To"
+				Phone_Number as "Phone Number"
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Personal_Email as "Personal Email"
+				Reference_Number as "Reference Number"
+			)
+			filters
+			(
+				Employee_Type
+				Department
+				Location
+			)
+			group by
+			(
+				Date_Of_Joining ascending
+			)
+			options
+			(
+				icon = "files-single-paragraph"
+	 		)
+			conditional formatting
+			(
+				"Offer Expires"
+				{
+				condition = (Offer_Expires_On < zoho.currentdate)
+				fields = [Gender, Date_Of_Joining, Designation, Personal_Email, Reference_Number]
+				format = "color:#ff1212;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Reference_Number as "Reference Number"
+							Name
+							Gender
+							Phone_Number as "Phone Number"
+							Personal_Email as "Personal Email"
+							Designation
+							Date_Of_Joining as "Date Of Joining"
+				"View Offer Letter"
+				"Decline"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								"View Offer Letter"
+								"Decline"
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Reference_Number as "Reference Number"
+							Name
+							Gender
+							Phone_Number as "Phone Number"
+							Personal_Email as "Personal Email"
+							Present_Address as "Present Address"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Job Information"
+						fields
+						(
+							Offer_Expires_On as "Offer Expires On"
+							Date_Of_Joining as "Date Of Joining"
+							Salary as "Salary (per annum)"
+							Designation
+							Employee_Type as "Employee Type"
+							Location
+							Department
+							Reporting_To as "Reporting To"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"View Offer Letter"
+			 			"Decline"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Accepted
+		{
+			displayName = "Accepted"
+			show all rows from Details  [Status == "Offer Letter Accepted"]  
+			(
+				custom action "Complete Onboarding"
+				(
+	  			workflow = Run_Scripts_On_Click_of_B3
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Complete Onboarding"
+				success message = ""
+				)
+				Birth_Date as "Birth Date"
+				Marital_status as "Marital status"
+				Blood_Group as "Blood Group"
+				Permananet_Address  as "Permananet Address"
+	 			(
+	      			displayformat = [address_line_13+""+address_line_23+""+district_city3+""+state_province3+""+postal_Code3+""+country3]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Experience
+				Gender
+				Present_Address  as "Present Address"
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Offer_Expires_On as "Offer Expires On"
+				Date_Of_Joining as "Date Of Joining"
+				Salary as "Salary (per annum)"
+				Designation
+				Employee_Type as "Employee Type"
+				Location
+				Department
+				Reporting_To as "Reporting To"
+				Phone_Number as "Phone Number"
+				Personal_Email as "Personal Email"
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Photo
+				Reference_Number as "Reference Number"
+			)
+			filters
+			(
+				Department
+				Location
+				Experience
+			)
+			group by
+			(
+				Date_Of_Joining ascending
+			)
+			options
+			(
+				icon = "emoticons-like"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+				"Complete Onboarding"
+							Reference_Number as "Reference Number"
+							Name
+							Photo
+							Gender
+							Phone_Number as "Phone Number"
+							Personal_Email as "Personal Email"
+							Designation
+							Location
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								"Complete Onboarding"
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								"Complete Onboarding"
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Reference_Number as "Reference Number"
+							Designation
+							Gender
+							Phone_Number as "Phone Number"
+							Personal_Email as "Personal Email"
+							Present_Address as "Present Address"
+							Experience
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Personal Information"
+						fields
+						(
+							Photo
+							Birth_Date as "Birth Date"
+							Marital_status as "Marital status"
+							Blood_Group as "Blood Group"
+							Permananet_Address as "Permananet Address"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Work experience"
+		     			related field =  Work_experience[Status == "Offer Letter Accepted"]
+						fields
+						(
+							Previous_Company_Name as "Previous Company Name"
+							Designation
+							From_Date as "From Date"
+							To_Date as "To Date"
+						)
+					)
+					datablock4
+					(
+			 			layout type = -1
+		     			title = "Education"
+		     			related field =  Education[Status == "Offer Letter Accepted"]
+						fields
+						(
+							Course
+							Institution_Name as "Institution Name"
+							Marks_Scored as "Marks Scored (in %)"
+							Year_of_Completion as "Year of Completion"
+						)
+					)
+					datablock5
+					(
+			 			layout type = -2
+		     			title = "Job Information"
+						fields
+						(
+							Offer_Expires_On as "Offer Expires On"
+							Date_Of_Joining as "Date Of Joining"
+							Salary as "Salary (per annum)"
+							Designation
+							Employee_Type as "Employee Type"
+							Location
+							Department
+							Reporting_To as "Reporting To"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Complete Onboarding"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Declined
+		{
+			displayName = "Declined"
+			show all rows from Details  [Status == "Offer Letter Declined"]  
+			(
+				Gender
+				Present_Address  as "Present Address"
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Offer_Expires_On as "Offer Expires On"
+				Date_Of_Joining as "Date Of Joining"
+				Salary as "Salary (per annum)"
+				Designation
+				Employee_Type as "Employee Type"
+				Location
+				Department
+				Declined_By as "Declined By"
+				reason as "Reason"
+				Reporting_To as "Reporting To"
+				Reference_Number as "Reference Number"
+				Phone_Number as "Phone Number"
+				Personal_Email as "Personal Email"
+				Photo
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+			)
+			filters
+			(
+				Location
+				Employee_Type
+			)
+			group by
+			(
+				Date_Of_Joining ascending
+			)
+			options
+			(
+				icon = "emoticons-like-no"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Reference_Number as "Reference Number"
+							Name
+							Gender
+							Phone_Number as "Phone Number"
+							Personal_Email as "Personal Email"
+							Declined_By as "Declined By"
+							reason as "Reason"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Reference_Number as "Reference Number"
+							Name
+							Gender
+							Phone_Number as "Phone Number"
+							Personal_Email as "Personal Email"
+							Present_Address as "Present Address"
+							Declined_By as "Declined By"
+							reason as "Reason"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Job Information"
+						fields
+						(
+							Offer_Expires_On as "Offer Expires On"
+							Date_Of_Joining as "Date Of Joining"
+							Salary as "Salary (per annum)"
+							Designation
+							Employee_Type as "Employee Type"
+							Location
+							Department
+							Reporting_To as "Reporting To"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Processed_job_offers
+		{
+			displayName = "Processed job offers"
+			show all rows from Details  [Status == "Onboarding Complete"]  
+			(
+				Birth_Date as "Birth Date"
+				Marital_status as "Marital status"
+				Blood_Group as "Blood Group"
+				Permananet_Address  as "Permananet Address"
+	 			(
+	      			displayformat = [address_line_13+""+address_line_23+""+district_city3+""+state_province3+""+postal_Code3+""+country3]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Employee_ID as "Employee ID"
+				Offer_Expires_On as "Offer Expires On"
+				Date_Of_Joining as "Date Of Joining"
+				Salary as "Salary (per annum)"
+				Designation
+				Employee_Type as "Employee Type"
+				Location
+				Seat_Location as "Seat Location"
+				Extension
+				Department
+				Official_Email as "Official Email"
+				Reporting_To as "Reporting To"
+				Photo
+				Offer_IssuedBy as "Offer IssuedBy"
+				Gender
+				Phone_Number as "Phone Number"
+				Personal_Email as "Personal Email"
+				Reference_Number as "Reference Number"
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Present_Address  as "Present Address"
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Experience
+			)
+			filters
+			(
+				Employee_Type
+				Experience
+				Department
+				Location
+			)
+			group by
+			(
+				Date_Of_Joining ascending
+			)
+			options
+			(
+				icon = "ui-3-filter-check"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Reference_Number as "Reference Number"
+							Employee_ID as "Employee ID"
+							Name
+							Photo
+							Gender
+							Phone_Number as "Phone Number"
+							Official_Email as "Official Email"
+							Designation
+							Location
+							Reporting_To as "Reporting To"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Reference_Number as "Reference Number"
+							Designation
+							Name
+							Gender
+							Phone_Number as "Phone Number"
+							Personal_Email as "Personal Email"
+							Present_Address as "Present Address"
+							Experience
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Personal Information"
+						fields
+						(
+							Photo
+							Birth_Date as "Birth Date"
+							Marital_status as "Marital status"
+							Blood_Group as "Blood Group"
+							Permananet_Address as "Permananet Address"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Work experience"
+		     			related field =  Work_experience[Status == "Onboarding Complete"]
+						fields
+						(
+							Previous_Company_Name as "Previous Company Name"
+							Designation
+							From_Date as "From Date"
+							To_Date as "To Date"
+						)
+					)
+					datablock4
+					(
+			 			layout type = -1
+		     			title = "Education"
+		     			related field =  Education[Status == "Onboarding Complete"]
+						fields
+						(
+							Course
+							Institution_Name as "Institution Name"
+							Marks_Scored as "Marks Scored (in %)"
+							Year_of_Completion as "Year of Completion"
+						)
+					)
+					datablock5
+					(
+			 			layout type = -2
+		     			title = "Job Information"
+						fields
+						(
+							Employee_ID as "Employee ID"
+							Offer_Expires_On as "Offer Expires On"
+							Date_Of_Joining as "Date Of Joining"
+							Official_Email as "Official Email"
+							Salary as "Salary (per annum)"
+							Designation
+							Employee_Type as "Employee Type"
+							Location
+							Seat_Location as "Seat Location"
+							Extension
+							Department
+							Reporting_To as "Reporting To"
+						)
+					)
+					datablock6
+					(
+			 			layout type = -1
+		     			title = "Asset Information"
+		     			related field =  Asset_Information[Status == "Onboarding Complete"]
+						fields
+						(
+							Type
+							Manufacturer
+							Model
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Summary
+		{
+			displayName = "Summary"
+			show all rows from Details    
+			(
+				Experience
+				Birth_Date as "Birth Date"
+				Marital_status as "Marital status"
+				Blood_Group as "Blood Group"
+				Permananet_Address  as "Permananet Address"
+	 			(
+	      			displayformat = [address_line_13+""+address_line_23+""+district_city3+""+state_province3+""+postal_Code3+""+country3]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Employee_ID as "Employee ID"
+				Offer_Expires_On as "Offer Expires On"
+				Date_Of_Joining as "Date Of Joining"
+				Salary as "Salary (per annum)"
+				Designation
+				Employee_Type as "Employee Type"
+				Location
+				Seat_Location as "Seat Location"
+				Extension
+				Department
+				Gender
+				Present_Address  as "Present Address"
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Status
+				Offer_IssuedBy as "Offer IssuedBy"
+				Declined_By as "Declined By"
+				reason as "Reason"
+				Official_Email as "Official Email"
+				Reporting_To as "Reporting To"
+				Reference_Number as "Reference Number"
+				Personal_Email as "Personal Email"
+				Photo
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Phone_Number as "Phone Number"
+			)
+			filters
+			(
+				Experience
+				Department
+				Location
+			)
+			group by
+			(
+				Status ascending
+			)
+			options
+			(
+				icon = "ui-1-database"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Reference_Number as "Reference Number"
+							Name
+							Gender
+							Phone_Number as "Phone Number"
+							Personal_Email as "Personal Email"
+							Designation
+							Location
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Reference_Number as "Reference Number"
+							Designation
+							Gender
+							Phone_Number as "Phone Number"
+							Personal_Email as "Personal Email"
+							Present_Address as "Present Address"
+							Experience
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Personal Information"
+						fields
+						(
+							Photo
+							Birth_Date as "Birth Date"
+							Marital_status as "Marital status"
+							Blood_Group as "Blood Group"
+							Permananet_Address as "Permananet Address"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Work experience"
+		     			related field =  Work_experience
+						fields
+						(
+							Previous_Company_Name as "Previous Company Name"
+							Designation
+							From_Date as "From Date"
+							To_Date as "To Date"
+						)
+					)
+					datablock4
+					(
+			 			layout type = -1
+		     			title = "Education"
+		     			related field =  Education
+						fields
+						(
+							Course
+							Institution_Name as "Institution Name"
+							Marks_Scored as "Marks Scored (in %)"
+							Year_of_Completion as "Year of Completion"
+						)
+					)
+					datablock5
+					(
+			 			layout type = -2
+		     			title = "Job Information"
+						fields
+						(
+							Employee_ID as "Employee ID"
+							Offer_Expires_On as "Offer Expires On"
+							Date_Of_Joining as "Date Of Joining"
+							Official_Email as "Official Email"
+							Salary as "Salary (per annum)"
+							Designation
+							Employee_Type as "Employee Type"
+							Location
+							Seat_Location as "Seat Location"
+							Extension
+							Department
+							Reporting_To as "Reporting To"
+						)
+					)
+					datablock6
+					(
+			 			layout type = -1
+		     			title = "Asset Information"
+		     			related field =  Asset_Information
+						fields
+						(
+							Type
+							Manufacturer
+							Model
+						)
+					)
+					datablock7
+					(
+			 			layout type = -2
+		     			title = "Title"
+						fields
+						(
+							Status
+							Offer_IssuedBy as "Offer IssuedBy"
+							Declined_By as "Declined By"
+							reason as "Reason"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Your_offer
+	{
+		displayname= "Your offer"
+		icon = "ui-1-eye-19"
+		list Your_offer
+		{
+			displayName = "Your offer"
+			show all rows from Details  [Personal_Email == zoho.loginuserid]  
+			(
+				custom action "View Offer Letter"
+				(
+	  			workflow = Run_Scripts_On_Click_of_B4
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "View Offer Letter"
+				success message = ""
+				)
+				custom action "Accept"
+				(
+	  			workflow = Run_Scripts_On_Click_of_B5
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Accept"
+				success message = ""
+				condition = (Status == "Offer Letter Rollout")
+				)
+				custom action "Decline"
+				(
+	  			workflow = Run_Scripts_On_Click_of_B6
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Decline"
+				success message = ""
+				condition = (Status == "Offer Letter Rollout")
+				)
+				Present_Address  as "Present Address"
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Gender
+				Offer_Expires_On as "Offer Expires On"
+				Date_Of_Joining as "Date Of Joining"
+				Salary as "Salary (per annum)"
+				Designation
+				Employee_Type as "Employee Type"
+				Location
+				Reference_Number as "Reference Number"
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Phone_Number as "Phone Number"
+				Personal_Email as "Personal Email"
+			)
+			options
+			(
+				icon = "ui-1-eye-19"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Phone_Number as "Phone Number"
+							Personal_Email as "Personal Email"
+							Date_Of_Joining as "Date Of Joining"
+							Offer_Expires_On as "Offer Expires On"
+				"View Offer Letter"
+				"Accept"
+				"Decline"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Print   	   
+								"View Offer Letter"
+								"Accept"
+								"Decline"
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Print   	   
+								"View Offer Letter"
+								"Accept"
+								"Decline"
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Reference_Number as "Reference Number"
+							Name
+							Gender
+							Phone_Number as "Phone Number"
+							Personal_Email as "Personal Email"
+							Present_Address as "Present Address"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Job Information"
+						fields
+						(
+							Offer_Expires_On as "Offer Expires On"
+							Date_Of_Joining as "Date Of Joining"
+							Salary as "Salary (per annum)"
+							Designation
+							Employee_Type as "Employee Type"
+							Location
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Print 
+			 			"View Offer Letter"
+			 			"Accept"
+			 			"Decline"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Settings
+	{
+		icon = "ui-1-settings-gear-63"
+		list Employee_Types
+		{
+			displayName = "Employee Types"
+			show all rows from Add_Employee_Type    
+			(
+				Employee_Type as "Employee type"
+			)
+			options
+			(
+				icon = "business-hierarchy-53"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Employee_Type as "Employee type"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Employee_Type as "Employee type"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Locations
+		{
+			displayName = "Locations"
+			show all rows from Add_Location    
+			(
+				Location_Name as "Location Name"
+			)
+			options
+			(
+				icon = "location-pin-copy"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Location_Name as "Location Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Location_Name as "Location Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Departments
+		{
+			displayName = "Departments"
+			show all rows from Add_Department    
+			(
+				Department_Name as "Department Name"
+			)
+			options
+			(
+				icon = "design-bullet-list-67"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Department_Name as "Department Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Department_Name as "Department Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Asset_Types
+		{
+			displayName = "Asset Types"
+			show all rows from Add_Asset_Type    
+			(
+				Asset_Type as "Asset Type"
+			)
+			options
+			(
+				icon = "tech-computer-old"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Asset_Type as "Asset Type"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Asset_Type as "Asset Type"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Hidden
+	{
+		hide = true
+		icon = "ui-2-menu-bold"
+		form Add_Asset_Type
+		{
+			displayname = "Add Asset Type"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Asset_Type
+			(
+    			type = text
+				displayname = "Asset Type"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Employee_Type
+		{
+			displayname = "Add Employee Type"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Employee_Type
+			(
+    			type = text
+				displayname = "Employee Type"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Department
+		{
+			displayname = "Add Department"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Department_Name
+			(
+    			type = text
+				displayname = "Department Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Location
+		{
+			displayname = "Add Location"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Location_Name
+			(
+    			type = text
+				displayname = "Location Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Decline
+		{
+			store data in zc = false
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			recID
+			(
+				type = number
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have reason
+			(
+				type = picklist
+				displayname = "Kindly mention the reason"
+				values = {"Higher Studies", "Better Offer", "Personal Reasons"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				Confirm
+				(
+   					type = button
+   					displayname = "Confirm"
+				)
+			}
+		}
+				 page Offer_Letter(RecID) 
+	 	 { 
+ 	 	 displayname = "Offer Letter" 
+
+ 	 	 icon = "" 
+
+ 	 	 hide =  true
+	 	 Content="<zml \t\t\n\t\t\tisPrintEnabled='true'\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dsp id='Offer_Letter1'>\n\t<![CDATA[htmlpage Offer_Letter1(RecID)\ncontent\n&lt;%{\n\t%&gt;\n&lt;style&gt;\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t  .OfferPage\n\t\t\t\t\t\t\t\t\t  {\n\t\t\t\t\t\t\t\t\t    padding: 10px;\n\t\t\t\t\t\t\t\t\t    background-color:white;\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t    font-family: &apos;Helvetica Neue&apos;, &apos;Helvetica&apos;, Helvetica, Arial, sans-serif;\n\t\t\t\t\t\t\t\t\t    color: #555;\n\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t  .signDivStyle\n\t\t\t\t\t\t\t\t\t  {\n\t\t\t\t\t\t\t\t\t\t  width:50%;\n\t\t\t\t\t\t\t\t\t\t  float:left;\n\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t  @media (max-width: 500px )\n\t\t\t\t\t\t\t\t\t  {\n\t\t\t\t\t\t\t\t\t\t.signDivStyle{\n\t\t\t\t\t\t\t\t\t  \t\twidth:100%;\n\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t }\n\t\t\t\t\t\t\t\t\t  &lt;\/style&gt;\n&lt;%\n\trecord = Details[ID == RecID.toLong()];\n\tofferIssuedDate = record.Added_Time.toDate();\n\t%&gt;\n&lt;div style=&quot;width:100%&quot;&gt;\n\t\t\t\t\t\t\t\t\t    &lt;div class=&quot;OfferPage&quot;&gt;\n\t\t\t\t\t\t\t\t\t  &lt;div style=&quot;width:100%;height:200px;&quot;&gt;\n\t\t\t\t\t\t\t\t\t  &lt;div style=&quot;margin-top: 25px;width:70%;float:left;&quot;&gt;\n\t\t\t\t\t\t\t\t\t  &lt;p style=&quot;margin: 0 0 5px 0; text-align: justify;font-size:15px;text&quot;&gt;To&lt;\/p&gt;\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t  &lt;p style=&quot;margin: 0px;padding: 0px;padding-left: 20px;line-height: 20px;font-size: 16px;text-align: left;font-weight: bold;&quot;&gt;&lt;%=record.Name%&gt;&lt;\/p&gt;\n\t\t\t\t\t\t\t\t\t  &lt;p style=&quot;margin: 0px;padding: 0px;padding-left: 20px;line-height: 20px;font-size: 15px;text-align: left;&quot;&gt;&lt;%=record.Present_Address.address_line_12%&gt;&lt;\/p&gt;\n\t\t\t\t\t\t\t\t\t  &lt;p style=&quot;margin: 0px;padding: 0px;padding-left: 20px;line-height: 20px;font-size: 15px;text-align: left;&quot;&gt;&lt;%=record.Present_Address.address_line_22%&gt;&lt;\/p&gt;\n\t\t\t\t\t\t\t\t\t  &lt;p style=&quot;margin: 0px;padding: 0px;padding-left: 20px;line-height: 20px;font-size: 15px;text-align: left;&quot;&gt;&lt;%=record.Present_Address.district_city2%&gt;&lt;\/p&gt;\n\t\t\t\t\t\t\t\t\t  &lt;p style=&quot;margin: 0px;padding: 0px;padding-left: 20px;line-height: 20px;font-size: 15px;text-align: left;&quot;&gt;&lt;%=record.Present_Address.state_province2%&gt; - &lt;%=record.Present_Address.postal_Code2%&gt;&lt;\/p&gt;\n\t\t\t\t\t\t\t\t\t  &lt;p style=&quot;margin: 0px;padding: 0px;padding-left: 20px;line-height: 20px;font-size: 15px;text-align: left;&quot;&gt;&lt;%=record.Present_Address.country2%&gt;&lt;\/p&gt;&lt;br&gt;\n\t\t\t\t\t\t\t\t\t  \n\t\t\t\t\t\t\t\t\t  \n\t\t\t\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  &lt;div style=&quot;width:30%;float:right;margin-top: 20px;text-align: right;&quot;&gt;\n\t\t\t\t\t\t\t\t\t  &lt;p style=&quot;margin: 0px;&quot;&gt;&lt;strong&gt;Ref No : &lt;%=record.Reference_Number%&gt;&lt;\/strong&gt;&lt;\/p&gt;\n\t\t\t\t\t\t\t\t\t  &lt;p style=&quot;margin: 0px;&quot;&gt;&lt;strong&gt;Date: &lt;%=offerIssuedDate%&gt;&lt;\/strong&gt;&lt;\/p&gt;\n\t\t\t\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  \n\t\t\t\t\t\t\t\t\t  &lt;div style=&quot;font-size:15px;     float: left;&quot;&gt;  \n\t\t\t\t\t\t\t\t\t  Dear &lt;%=record.Name%&gt;,&lt;br&gt;\n\t\t\t\t\t\t\t\t\t  &lt;br&gt;\n\t\t\t\t\t\t\t\t\tWe\u2019re delighted to extend this offer of employment for the position of &lt;strong&gt;&lt;%=record.Designation%&gt;&lt;\/strong&gt; with our organization. Please review this summary of terms and conditions for your anticipated employment with us.&lt;br&gt;\n\t\t\t\t\t\t\t\t\t  &lt;br&gt;\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\tIf you accept this offer, your start date will be &lt;strong&gt;&lt;%=record.Date_Of_Joining%&gt;&lt;\/strong&gt; or another mutually agreed upon date.&lt;br&gt;\n\t\t\t\t\t\t\t\t\t  &lt;br&gt;\n\t\t\t\t\t\t\t\t\t&lt;strong style=&quot;font-size:16px;&quot;&gt;Terms and Conditions&lt;\/strong&gt;&lt;br&gt;&lt;br&gt;\n\t\t\t\t\t\t\t\t\t  \n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t  &lt;strong style=&quot;font-size:16px;&quot;&gt;Position&lt;\/strong&gt;&lt;br&gt;\n\t\t\t\t\t\t\t\t\t  Your title will be &lt;%=record.Designation%&gt;. This is a &lt;%=record.Employee_Type.Employee_Type%&gt; position.  While you are employed at this Company, you will not engage in any other employment, consulting or other business activity (whether full-time or part-time) that would create a conflict of interest with the Company.  By signing this letter of agreement, you confirm that you have no contractual commitments or other legal obligations that would prohibit you from performing your duties for the Company.&lt;br&gt;&lt;br&gt;\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t&lt;strong style=&quot;font-size:16px;&quot; &gt;Cash Compensation&lt;\/strong&gt;&lt;br&gt;\n\t\t\t\t\t\t\t\t\t  The Company will pay you a starting salary at the rate of &lt;strong&gt;Rs.&lt;%=record.Salary%&gt;&lt;\/strong&gt; per annum, payable in accordance with the Company\u2019s standard payroll schedule. This salary will be subject to adjustment pursuant to the Company\u2019s employee compensation policies in effect from time to time.&lt;br&gt;&lt;br&gt;\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t&lt;strong style=&quot;font-size:16px;&quot;&gt;Bonus (or Commission) potential&lt;\/strong&gt;&lt;br&gt;\n\t\t\t\t\t\t\t\t\t  In addition, you will be eligible to be considered for an incentive bonus for each fiscal year of the Company. The bonus (if any) will be awarded based on objective or subjective criteria established by the Company\u2019s Chief Executive Officer and approved by the Company\u2019s Board of Directors.  Your target bonus will be equal to 20% of your annual base salary.  Any bonus for the fiscal year in which your employment begins will be prorated, based on the number of days you are employed by the Company during that fiscal year.  Any bonus for a fiscal year will be paid within 2 months after the close of that fiscal year, but only if you are still employed by the Company at the time of payment.  The determinations of the Company\u2019s Board of Directors with respect to your bonus will be final and binding.&lt;br&gt;&lt;br&gt;\n\t\t\t\t\t\t\t\t\t  \n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t&lt;strong style=&quot;font-size:16px;&quot;&gt;Employee Benefits&lt;\/strong&gt;&lt;br&gt;  As a regular employee of the Company, you will be eligible to participate in a number of Company-sponsored benefits.  In addition, you will be entitled to paid vacation in accordance with the Company\u2019s vacation policy.&lt;br&gt;&lt;br&gt;\n\t\t\t\t\t\t\t\t\t&lt;strong style=&quot;font-size:16px;&quot;&gt;Termination&lt;\/strong&gt;&lt;br&gt; The Company reserves the right to terminate employment of any employee for just cause at any time without notice and without payment in lieu of notice.  The Company will be entitled to terminate your employment for any reason other than for just cause, upon providing to you such minimum notice as required by law.&lt;br&gt;&lt;br&gt;\n\t\t\t\n\t\t\t\t\t\t\t\t\t&lt;strong style=&quot;font-size:16px;&quot;&gt;Proprietary Information and Inventions Agreement&lt;\/strong&gt;&lt;br&gt;   Like all Company employees, you will be required, as a condition of your employment with the Company, to sign the Company\u2019s standard Proprietary Information and Inventions Agreement.&lt;br&gt;&lt;br&gt;\n\t\t\t\t\t\t\t\t\t &lt;\/div&gt;  \n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t  \n\t\t\t\t\t\t\t\t\t  \n\t\t\t\t\t\t\t\t\t    &lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  &lt;div class=&quot;OfferPage&quot; style=&quot;float: left;&quot;&gt;\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t  &lt;div style=&quot;font-size:15px;&quot;&gt;\n\t\t\t\t\t\t\t\t\t  &lt;strong style=&quot;font-size:16px;&quot;&gt;Employment Relationship&lt;\/strong&gt;&lt;br&gt;  Employment with the Company is for no specific period of time.  Your employment with the Company will be \u201Cat will,\u201D meaning that either you or the Company may terminate your employment at any time and for any reason, with or without cause.  Any contrary representations that may have been made to you are superseded by this letter agreement.  This is the full and complete agreement between you and the Company on this term.  Although your job duties, title, compensation and benefits, as well as the Company\u2019s personnel policies and procedures, may change from time to time, the \u201Cat will\u201D nature of your employment may only be changed in an express written agreement signed by you and a duly authorized officer of the Company (other than you).&lt;br&gt;&lt;br&gt;\n\t\t\t\t\t\t\t\t\t  \n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t&lt;strong style=&quot;font-size:16px;&quot;&gt;Privacy&lt;\/strong&gt;&lt;br&gt;  You are required to observe and uphold all of the Company\u2019s privacy policies and procedures as implemented or varied from time to time. Collection, storage, access to and dissemination of employee personal information will be in accordance with privacy legislation.&lt;br&gt;&lt;br&gt;\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t \n\t\t\t\t\t\t\t\t\tYou may indicate your agreement with these terms and accept this offer by signing and dating this agreement on or before &lt;%=record.Offer_Expires_On%&gt;. Upon your acceptance of this employment offer, Company will provide you with the necessary paperwork and instructions.&lt;br&gt;&lt;br&gt; \n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\tSincerely,&lt;br&gt;\n\t\t\t\t\t\t\t\t\tHR Team&lt;br&gt;\n\t\t\t\t\t\t\t\t\t  &lt;br&gt;\n\t\t\t\t\t\t\t\t\t  &lt;br&gt;\n\t\t\t\t\t\t\t\t\t&lt;strong style=&quot;font-size:16px;&quot;&gt;Signatures:&lt;\/strong&gt;&lt;br&gt;&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t &lt;div style=&quot;display: inline-block;width: 100%;&quot;&gt; &lt;div class=&quot;signDivStyle&quot;&gt;\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t&lt;br&gt;\n\t\t\t\t\t\t\t\t\t_________________________________\n\t\t\t\t\t\t\t\t\t&lt;br&gt;Company Representative (Sign)&lt;br&gt;&lt;br&gt;\n\t\t\t\t\t\t\t\t\t_________________________________\n\t\t\t\t\t\t\t\t\t&lt;br&gt;Company Representative (Print)&lt;br&gt;&lt;br&gt;\n\t\t\t\t\t\t\t\t\t_________________________________\n\t\t\t\t\t\t\t\t\t&lt;br&gt;Date&lt;br&gt;\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t &lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t &lt;div class=&quot;signDivStyle&quot;&gt;\n\t\t\t\t\t\t\t\t\t&lt;br&gt;\n\t\t\t\t\t\t\t\t\t_________________________________\n\t\t\t\t\t\t\t\t\t&lt;br&gt;Applicant (Sign)&lt;br&gt;&lt;br&gt;\n\t\t\t\t\t\t\t\t\t_________________________________\n\t\t\t\t\t\t\t\t\t&lt;br&gt;Applicant (Print)&lt;br&gt;&lt;br&gt;\n\t\t\t\t\t\t\t\t\t_________________________________\n\t\t\t\t\t\t\t\t\t&lt;br&gt;Date&lt;br&gt;\n\t\t\t\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  \n\t\t\t\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t    &lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t \n\t\t\t\t\t\t\t\t\t \n\t\t\t\t\t\t\t\t\t  \n\t\t\t\t\t\t\t\t\t  \n\t\t\t\t\t\t\t\t\t    &lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  &lt;\/div&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+		list All_Job_Offers
+		{
+			displayName = "All Job Offers"
+   			hide = true
+			show all rows from Details    
+			(
+				Reference_Number as "Ref No"
+				Photo
+				Gender
+				Birth_Date as "Birth Date"
+				Marital_status as "Marital status"
+				Blood_Group as "Blood Group"
+				Personal_Email as "Personal Email"
+				Experience
+				Work_experience.Previous_Company_Name as "Work experience"
+				Education.Course as "Education"
+				Date_Of_Joining as "Date Of Joining"
+				Employee_ID as "Employee ID"
+				Official_Email as "Official Email"
+				Salary
+				Designation
+				Employee_Type as "Employee Type"
+				Department
+				Reporting_To as "Reporting To"
+				Location
+				Seat_Location as "Seat Location"
+				Extension
+				Asset_Information.Type as "Asset Information"
+				Confirmation
+				reason as "Reason"
+				Declined_By as "Declined By"
+				Offer_IssuedBy as "Offer IssuedBy"
+				Offer_Expires_On as "Offer Expires On"
+				Status
+			)
+			group by
+			(
+				Status ascending
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Reference_Number as "Ref No"
+							Photo
+							Gender
+							Birth_Date as "Birth Date"
+							Marital_status as "Marital status"
+							Blood_Group as "Blood Group"
+							Personal_Email as "Personal Email"
+							Experience
+							Work_experience.Previous_Company_Name as "Work experience"
+							Education.Course as "Education"
+							Date_Of_Joining as "Date Of Joining"
+							Employee_ID as "Employee ID"
+							Official_Email as "Official Email"
+							Salary
+							Designation
+							Employee_Type as "Employee Type"
+							Department
+							Reporting_To as "Reporting To"
+							Location
+							Seat_Location as "Seat Location"
+							Extension
+							Asset_Information.Type as "Asset Information"
+							Confirmation
+							reason as "Reason"
+							Declined_By as "Declined By"
+							Offer_IssuedBy as "Offer IssuedBy"
+							Offer_Expires_On as "Offer Expires On"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Reference_Number as "Ref No"
+							Photo
+							Gender
+							Birth_Date as "Birth Date"
+							Marital_status as "Marital status"
+							Blood_Group as "Blood Group"
+							Personal_Email as "Personal Email"
+							Experience
+							Work_experience.Previous_Company_Name as "Work experience"
+							Education.Course as "Education"
+							Date_Of_Joining as "Date Of Joining"
+							Employee_ID as "Employee ID"
+							Official_Email as "Official Email"
+							Salary
+							Designation
+							Employee_Type as "Employee Type"
+							Department
+							Reporting_To as "Reporting To"
+							Location
+							Seat_Location as "Seat Location"
+							Extension
+							Asset_Information.Type as "Asset Information"
+							Confirmation
+							reason as "Reason"
+							Declined_By as "Declined By"
+							Offer_IssuedBy as "Offer IssuedBy"
+							Offer_Expires_On as "Offer Expires On"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	functions
+	{
+ 			void CheckOutOffer.DeclineOffer(int recID)
+			{
+				openUrl("#Form:Decline?recID=" + recID,"popup window");
+			}
+ 			void Onboarding.CompleteOnboarding(int recID)
+			{
+				openUrl("#Form:Details?recLinkID=" + recID + "&viewLinkName=All_Job_Offers&Status=Onboarding Complete","popup window");
+			}
+ 			void CheckOutOffer.AcceptOffer(int recID)
+			{
+				openUrl("#Form:Details?recLinkID=" + recID + "&viewLinkName=All_Job_Offers&Confirmation=Yes","popup window");
+			}
+ 			void View_Offer_Letter(int Id)
+			{
+				openUrl("#Page:Offer_Letter?RecID=" + Id,"popup window","width=660px");
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Run_Scripts_On_Click_of_B1 as "Run Scripts On Click of Button Confirm"
+			{
+				type =  form
+				form = Decline
+				button = Confirm
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						empRec = Details[ID == input.recID];
+										empRec.Confirmation="No";
+										empRec.reason=input.reason;
+										empRec.Status="Offer Letter Declined";
+										empRec.Declined_By=zoho.loginuserid;
+										openUrl("#Script:page.refresh","same window");
+					)
+					}
+				}
+			}
+			Run_Scripts_While_Adding_2 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Details
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Offer_IssuedBy;
+										hide Confirmation;
+										hide reason;
+										hide Declined_By;
+										hide Status;
+										//personal info
+										hide Personal;
+										hide Photo;
+										hide Birth_Date;
+										hide Marital_status;
+										hide Blood_Group;
+										hide Permananet_Address;
+										hide same_as_Present_Address;
+										hide Qualifications;
+										hide Experience;
+										hide Work_experience;
+										hide Education;
+										//work info
+										hide Employee_ID;
+										hide Official_Email;
+										hide Seat_Location;
+										hide Extension;
+										hide Asset_Information;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_3 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Details
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Date_Of_Joining <= zoho.currentdate || input.Offer_Expires_On <= zoho.currentdate)
+										{
+											alert "Future dates only acceptable";
+											cancel submit;
+										}
+										if(input.Date_Of_Joining <= input.Offer_Expires_On)
+										{
+											alert "Joining date should be greater than offer expiry date";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_4 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Details
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Offer_IssuedBy = zoho.loginuserid;
+										success message (("The onboarding of " + input.Name) + " is started. " + input.Name) + " will get an email to accept the offer letter.";
+										thisapp.permissions.assignUserInProfile(input.Personal_Email,"Candidate");
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Personal_Email
+											subject :"Offer Letter"
+											message :("Dear&nbsp;" + input.Name) + ",<div><br></div><div>Congratulations!</div><div><br></div><div>We are extremely happy to welcome you and it is our pleasure that you have chosen us.</div><div><br></div><div>Kindly go through the offer letter which is downloadable in below link.</div><div><br></div><div>You are requested to confirm your acceptance of the offer on or before&nbsp;" + input.Offer_Expires_On + ", using this link.</div><div><br></div><div><a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "\"" + " target=\"_blank\">Click here</a> to check out offer.</div><div><br></div><div>Regards,</div><div>HR Team</div><div><br></div>"
+										]
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing1 as "Run Scripts While Editing a Record"
+			{
+				type =  form
+				form = Details
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Offer_IssuedBy;
+										hide Declined_By;
+										if(zoho.loginuserid == input.Personal_Email)
+										{
+											hide Status;
+											disable Personal_Email;
+											hide Confirmation;
+											//work info
+											hide Work;
+											hide Employee_ID;
+											hide Official_Email;
+											hide Designation;
+											hide Date_Of_Joining;
+											hide Salary;
+											hide Employee_Type;
+											hide Location;
+											hide Seat_Location;
+											hide Extension;
+											hide Department;
+											hide Reporting_To;
+											hide Asset_Information;
+											hide Offer_Expires_On;
+										}
+										if(input.Confirmation == "No")
+										{
+											show reason;
+										}
+										else
+										{
+											hide reason;
+										}
+										if(input.Experience == "Fresher")
+										{
+											hide Work_experience;
+										}
+										else
+										{
+											show Work_experience;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing2 as "Run Scripts While Editing a Record"
+			{
+				type =  form
+				form = Details
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Date_Of_Joining <= input.Offer_Expires_On)
+										{
+											alert "Joining date should be greater than offer expiry date";
+											cancel submit;
+										}
+										if(zoho.loginuserid == input.Personal_Email && input.Confirmation == "Yes")
+										{
+											input.Status = "Offer Letter Accepted";
+										}
+										if(input.Status == "Offer Letter Accepted")
+										{
+											educationCount = 0;
+											for each  eachEduRow in Education
+											{
+												educationCount = educationCount + 1;
+											}
+											if(input.Experience == "Experienced")
+											{
+												experienceCount = 0;
+												for each  eachExpRow in Work_experience
+												{
+													experienceCount = experienceCount + 1;
+												}
+											}
+											if(input.Photo == "" || input.Birth_Date == null || input.Blood_Group == null || input.Permananet_Address.isEmpty() || educationCount == 0 || (input.Experience == "Experienced" && experienceCount == 0))
+											{
+												alert "Please give inputs to all the fields";
+												cancel submit;
+											}
+										}
+										else if(input.Status == "Offer Letter Declined")
+										{
+											if(input.reason == null)
+											{
+												alert "Please select the reason for decline";
+												cancel submit;
+											}
+											input.Declined_By = zoho.loginuserid;
+										}
+										else if(input.Status == "Onboarding Complete")
+										{
+											educationCount = 0;
+											for each  eachEduRow in Education
+											{
+												educationCount = educationCount + 1;
+											}
+											if(input.Experience == "Experienced")
+											{
+												experienceCount = 0;
+												for each  eachExpRow in Work_experience
+												{
+													experienceCount = experienceCount + 1;
+												}
+											}
+											if(input.Photo == "" || input.Birth_Date == null || input.Blood_Group == null || input.Permananet_Address.isEmpty() || educationCount == 0 || (input.Experience == "Experienced" && experienceCount == 0) || input.Employee_ID == "" || input.Official_Email == "" || input.Seat_Location == "" || input.Extension == null)
+											{
+												alert "Please give inputs to all the fields";
+												cancel submit;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing3 as "Run Scripts While Editing a Record"
+			{
+				type =  form
+				form = Details
+				record event = on edit
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											openUrl("#Script:page.refresh","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always1 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Details
+				record event = on add or edit
+
+	on user input of Confirmation
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Confirmation == "No")
+										{
+											show reason;
+											input.Status = "Offer Letter Declined";
+										}
+										else
+										{
+											hide reason;
+											input.Status = "Offer Letter Accepted";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always2 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Details
+				record event = on add or edit
+
+	on user input of same_as_Present_Address
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.same_as_Present_Address)
+										{
+											input.Permananet_Address = input.Present_Address;
+											disable Permananet_Address;
+										}
+										else
+										{
+											enable Permananet_Address;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always3 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Details
+				record event = on add or edit
+
+	on user input of Birth_Date
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Birth_Date >= zoho.currentdate)
+										{
+											alert "Please enter a valid birth date";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always4 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Details
+				record event = on add or edit
+
+	on user input of Offer_Expires_On
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Date_Of_Joining <= input.Offer_Expires_On)
+										{
+											alert "Joining date should be greater than offer expiry date";
+										}
+										if(input.Offer_Expires_On <= zoho.currentdate)
+										{
+											alert "Future dates only acceptable";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always5 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Details
+				record event = on add or edit
+
+	on user input of Experience
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Experience == "Fresher")
+										{
+											hide Work_experience;
+										}
+										else
+										{
+											show Work_experience;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always6 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Details
+				record event = on add or edit
+
+	on user input of Date_Of_Joining
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Date_Of_Joining <= zoho.currentdate)
+										{
+											alert "Future dates only acceptable";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_5 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Decline
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide recID;
+						)
+					}
+	}
+
+			}
+		}
+		schedule
+		{
+			Offer_Expire as "Offer_Expire"
+			{
+				type =  schedule
+				form = Details
+				start = Offer_Expires_On at "00:00:00"
+				time zone = "Asia/Kolkata"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Personal_Email
+											subject :"Gentle Reminder - Offer Letter"
+											message :("Dear&nbsp;" + input.Name) + ",<div><br></div><div>You are requested to confirm your acceptance of the offer on or before&nbsp;" + input.Offer_Expires_On + ", using this link.</div><div><br></div><div>Kindly go through the offer letter which is downloadable in below link.</div><div><br></div><div><a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "\"" + " target=\"_blank\">Click here</a> to check out offer.</div><div><br></div><div>Regards,</div><div>HR Team</div><div><br></div>"
+										]
+					)
+					}
+				}
+			}
+		}
+		functions
+		{
+			Run_Scripts_On_Click_of_B as "Run Scripts On Click of Button View Offer Letter"
+			{
+				type =  functions
+				form = Details
+				on start
+				{
+					actions 
+					{
+					View_Offer_Letter(ID);
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_B2 as "Run Scripts On Click of Button Decline"
+			{
+				type =  functions
+				form = Details
+				on start
+				{
+					actions 
+					{
+					CheckOutOffer.DeclineOffer(ID);
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_B3 as "Run Scripts On Click of Button Complete Onboarding"
+			{
+				type =  functions
+				form = Details
+				on start
+				{
+					actions 
+					{
+					Onboarding.CompleteOnboarding(ID);
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_B4 as "Run Scripts On Click of Button View Offer Letter"
+			{
+				type =  functions
+				form = Details
+				on start
+				{
+					actions 
+					{
+					View_Offer_Letter(ID);
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_B5 as "Run Scripts On Click of Button Accept"
+			{
+				type =  functions
+				form = Details
+				on start
+				{
+					actions 
+					{
+					CheckOutOffer.AcceptOffer(ID);
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_B6 as "Run Scripts On Click of Button Decline"
+			{
+				type =  functions
+				form = Details
+				on start
+				{
+					actions 
+					{
+					CheckOutOffer.DeclineOffer(ID);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Candidate"
+			{
+				name = "Candidate"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "This profile will have candidate permissions.\n"
+				ModulePermissions
+				{
+					Decline
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							reason{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							recID{visibility:true,readonly:false}
+						}
+					}
+					Add_Asset_Type
+					{
+						FieldPermissions
+						{
+							Asset_Type{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Add_Department
+					{
+						FieldPermissions
+						{
+							Section{visibility:false,readonly:false}
+							Department_Name{visibility:true,readonly:false}
+						}
+					}
+					Details
+					{
+						enabled= Viewall,Export 
+						ReportPermissions
+						{
+							Your_offer={"View"}
+							All_Job_Offers={"View"}
+						}
+						FieldPermissions
+						{
+							Basic{visibility:true,readonly:false}
+							same_as_Present_Address{visibility:true,readonly:false}
+							Salary{visibility:true,readonly:false}
+							Employee_Type{visibility:true,readonly:false}
+							reason{visibility:true,readonly:false}
+							Birth_Date{visibility:true,readonly:false}
+							Reference_Number{visibility:true,readonly:false}
+							Employee_ID{visibility:true,readonly:false}
+							Phone_Number{visibility:false,readonly:false}
+							Photo{visibility:true,readonly:false}
+							Official_Email{visibility:true,readonly:false}
+							Gender{visibility:true,readonly:false}
+							Marital_status{visibility:true,readonly:false}
+							Name{visibility:false,readonly:false}
+							Present_Address{visibility:false,readonly:false}
+							Department{visibility:true,readonly:false}
+							Blood_Group{visibility:true,readonly:false}
+							Education{visibility:true,readonly:false}
+							Work{visibility:true,readonly:false}
+							Declined_By{visibility:true,readonly:false}
+							Asset_Information{visibility:true,readonly:false}
+							Reporting_To{visibility:true,readonly:false}
+							Seat_Location{visibility:true,readonly:false}
+							Status{visibility:true,readonly:false}
+							Work_experience{visibility:true,readonly:false}
+							Designation{visibility:true,readonly:false}
+							Personal{visibility:true,readonly:false}
+							Offer_IssuedBy{visibility:true,readonly:false}
+							Permananet_Address{visibility:false,readonly:false}
+							Section{visibility:false,readonly:false}
+							Extension{visibility:true,readonly:false}
+							Experience{visibility:true,readonly:false}
+							Date_Of_Joining{visibility:true,readonly:false}
+							Offer_Expires_On{visibility:true,readonly:false}
+							Personal_Email{visibility:true,readonly:false}
+							Confirmation{visibility:true,readonly:false}
+							Qualifications{visibility:true,readonly:false}
+							Location{visibility:true,readonly:false}
+						}
+					}
+					Add_Location
+					{
+						FieldPermissions
+						{
+							Section{visibility:false,readonly:false}
+							Location_Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Employee_Type
+					{
+						FieldPermissions
+						{
+							Employee_Type{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Offer_Letter
+					{
+						enabled = tab
+					}
+				}
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users."
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 3
+		new theme color = 5
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-project-mgmt5"
+    	icon theme = "lightred"
+		icons style = solid
+	}
+
+	phone
+	{
+		section  Offer_a_job
+		{
+			displayname= "Offer a job"
+			icon = "education-paper"
+			form  Details
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+			}
+		}
+		section  Offers
+		{
+			icon = "users-badge-13"
+			list Made
+			{
+				icon = "files-single-paragraph"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Reference_Number as "Reference Number"
+								Name
+								Phone_Number as "Phone Number"
+								Personal_Email as "Personal Email"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"View Offer Letter"
+										"Decline"
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"View Offer Letter"
+										"Decline"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Reference_Number as "Reference Number"
+								Name
+								Gender
+								Phone_Number as "Phone Number"
+								Personal_Email as "Personal Email"
+								Present_Address as "Present Address"
+							)
+						)
+						datablock2
+						(
+			 				layout type = -2
+		     				title = "Job Information"
+							fields
+							(
+								Offer_Expires_On as "Offer Expires On"
+								Date_Of_Joining as "Date Of Joining"
+								Salary as "Salary (per annum)"
+								Designation
+								Employee_Type as "Employee Type"
+								Location
+								Department
+								Reporting_To as "Reporting To"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"View Offer Letter"
+			 				"Decline"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Accepted
+			{
+				icon = "emoticons-like"
+				quickview
+				(
+					layout
+					(
+		 				type = 6
+						datablock1
+						(
+			 				layout type = 19
+		     				title = "Overview"
+							fields
+							(
+								Photo
+								Reference_Number as "Reference Number"
+								Name
+								Phone_Number as "Phone Number"
+								Personal_Email as "Personal Email"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										"Complete Onboarding"
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Complete Onboarding"
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Complete Onboarding"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Reference_Number as "Reference Number"
+								Name
+								Gender
+								Phone_Number as "Phone Number"
+								Personal_Email as "Personal Email"
+								Present_Address as "Present Address"
+								Experience
+							)
+						)
+						datablock2
+						(
+			 				layout type = -2
+		     				title = "Personal Information"
+							fields
+							(
+								Photo
+								Birth_Date as "Birth Date"
+								Marital_status as "Marital status"
+								Blood_Group as "Blood Group"
+								Permananet_Address as "Permananet Address"
+							)
+						)
+						datablock5
+						(
+			 				layout type = -2
+		     				title = "Job Information"
+							fields
+							(
+								Offer_Expires_On as "Offer Expires On"
+								Date_Of_Joining as "Date Of Joining"
+								Salary as "Salary (per annum)"
+								Designation
+								Employee_Type as "Employee Type"
+								Location
+								Department
+								Reporting_To as "Reporting To"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Complete Onboarding"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Declined
+			{
+				icon = "emoticons-like-no"
+				quickview
+				(
+					layout
+					(
+		 				type = 6
+						datablock1
+						(
+			 				layout type = 19
+		     				title = "Overview"
+							fields
+							(
+								Photo
+								Reference_Number as "Reference Number"
+								Name
+								Phone_Number as "Phone Number"
+								Personal_Email as "Personal Email"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Reference_Number as "Reference Number"
+								Name
+								Gender
+								Phone_Number as "Phone Number"
+								Personal_Email as "Personal Email"
+								Present_Address as "Present Address"
+								Declined_By as "Declined By"
+								reason as "Reason"
+							)
+						)
+						datablock2
+						(
+			 				layout type = -2
+		     				title = "Job Information"
+							fields
+							(
+								Offer_Expires_On as "Offer Expires On"
+								Date_Of_Joining as "Date Of Joining"
+								Salary as "Salary (per annum)"
+								Designation
+								Employee_Type as "Employee Type"
+								Location
+								Department
+								Reporting_To as "Reporting To"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Processed_job_offers
+			{
+				icon = "ui-3-filter-check"
+				quickview
+				(
+					layout
+					(
+		 				type = 6
+						datablock1
+						(
+			 				layout type = 19
+		     				title = "Overview"
+							fields
+							(
+								Photo
+								Reference_Number as "Reference Number"
+								Name
+								Phone_Number as "Phone Number"
+								Personal_Email as "Personal Email"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Reference_Number as "Reference Number"
+								Offer_IssuedBy as "Offer IssuedBy"
+								Name
+								Gender
+								Phone_Number as "Phone Number"
+								Personal_Email as "Personal Email"
+								Present_Address as "Present Address"
+								Experience
+							)
+						)
+						datablock2
+						(
+			 				layout type = -2
+		     				title = "Personal Information"
+							fields
+							(
+								Photo
+								Birth_Date as "Birth Date"
+								Marital_status as "Marital status"
+								Blood_Group as "Blood Group"
+								Permananet_Address as "Permananet Address"
+							)
+						)
+						datablock5
+						(
+			 				layout type = -2
+		     				title = "Job Information"
+							fields
+							(
+								Employee_ID as "Employee ID"
+								Offer_Expires_On as "Offer Expires On"
+								Date_Of_Joining as "Date Of Joining"
+								Official_Email as "Official Email"
+								Salary as "Salary (per annum)"
+								Designation
+								Employee_Type as "Employee Type"
+								Location
+								Seat_Location as "Seat Location"
+								Extension
+								Department
+								Reporting_To as "Reporting To"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Summary
+			{
+				icon = "ui-1-database"
+				quickview
+				(
+					layout
+					(
+		 				type = 6
+						datablock1
+						(
+			 				layout type = 19
+		     				title = "Overview"
+							fields
+							(
+								Photo
+								Reference_Number as "Reference Number"
+								Name
+								Phone_Number as "Phone Number"
+								Personal_Email as "Personal Email"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Reference_Number as "Reference Number"
+								Name
+								Gender
+								Phone_Number as "Phone Number"
+								Personal_Email as "Personal Email"
+								Present_Address as "Present Address"
+								Experience
+							)
+						)
+						datablock2
+						(
+			 				layout type = -2
+		     				title = "Personal Information"
+							fields
+							(
+								Photo
+								Birth_Date as "Birth Date"
+								Marital_status as "Marital status"
+								Blood_Group as "Blood Group"
+								Permananet_Address as "Permananet Address"
+							)
+						)
+						datablock5
+						(
+			 				layout type = -2
+		     				title = "Job Information"
+							fields
+							(
+								Employee_ID as "Employee ID"
+								Offer_Expires_On as "Offer Expires On"
+								Date_Of_Joining as "Date Of Joining"
+								Official_Email as "Official Email"
+								Salary as "Salary (per annum)"
+								Designation
+								Employee_Type as "Employee Type"
+								Location
+								Seat_Location as "Seat Location"
+								Extension
+								Department
+								Reporting_To as "Reporting To"
+							)
+						)
+						datablock7
+						(
+			 				layout type = -2
+		     				title = "Title"
+							fields
+							(
+								Status
+								Offer_IssuedBy as "Offer IssuedBy"
+								Declined_By as "Declined By"
+								reason as "Reason"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Your_offer
+		{
+			displayname= "Your offer"
+			icon = "ui-1-eye-19"
+			list Your_offer
+			{
+				icon = "ui-1-eye-19"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Reference_Number as "Reference Number"
+								Name
+								Phone_Number as "Phone Number"
+								Personal_Email as "Personal Email"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Print   	   
+										"View Offer Letter"
+										"Accept"
+										"Decline"
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Print   	   
+										"View Offer Letter"
+										"Accept"
+										"Decline"
+										Duplicate   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"View Offer Letter"
+										"Accept"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Reference_Number as "Reference Number"
+								Name
+								Gender
+								Phone_Number as "Phone Number"
+								Personal_Email as "Personal Email"
+								Present_Address as "Present Address"
+							)
+						)
+						datablock2
+						(
+			 				layout type = -2
+		     				title = "Job Information"
+							fields
+							(
+								Offer_Expires_On as "Offer Expires On"
+								Date_Of_Joining as "Date Of Joining"
+								Salary as "Salary (per annum)"
+								Designation
+								Employee_Type as "Employee Type"
+								Location
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Print 
+			 				"View Offer Letter"
+			 				"Accept"
+			 				"Decline"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Settings
+		{
+			icon = "ui-1-settings-gear-63"
+			list Employee_Types
+			{
+				icon = "business-hierarchy-53"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Employee_Type as "Employee type"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Employee_Type as "Employee type"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Locations
+			{
+				icon = "location-pin-copy"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Location_Name as "Location Name"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Location_Name as "Location Name"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Departments
+			{
+				icon = "design-bullet-list-67"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Department_Name as "Department Name"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Department_Name as "Department Name"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Asset_Types
+			{
+				icon = "tech-computer-old"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Asset_Type as "Asset Type"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Asset_Type as "Asset Type"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Hidden
+		{
+			hide = true
+			icon = "ui-2-menu-bold"
+			form  Add_Asset_Type
+			{
+				layout = auto
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			form  Add_Employee_Type
+			{
+				layout = auto
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_Department
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_Location
+			{
+				layout = auto
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Decline
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			page Offer_Letter
+			{
+				hide = true
+			}
+			list All_Job_Offers
+			{
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = lightred
+        	layout = onecolumn
+		 	icons style = outline
+		}
+	}
+	tablet
+	{
+		section  Offer_a_job
+		{
+			displayname= "Offer a job"
+			form  Details
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+			}
+		}
+		section  Offers
+		{
+			list Made
+			{
+				icon = "files-single-paragraph"
+			}
+			list Accepted
+			{
+				icon = "emoticons-like"
+			}
+			list Declined
+			{
+				icon = "emoticons-like-no"
+			}
+			list Processed_job_offers
+			{
+				icon = "ui-3-filter-check"
+			}
+			list Summary
+			{
+				icon = "ui-1-database"
+			}
+		}
+		section  Your_offer
+		{
+			displayname= "Your offer"
+			list Your_offer
+			{
+			}
+		}
+		section  Settings
+		{
+			list Employee_Types
+			{
+				icon = "business-hierarchy-53"
+			}
+			list Locations
+			{
+				icon = "location-pin-copy"
+			}
+			list Departments
+			{
+				icon = "design-bullet-list-67"
+			}
+			list Asset_Types
+			{
+				icon = "tech-computer-old"
+			}
+		}
+		section  Hidden
+		{
+			hide = true
+			form  Add_Asset_Type
+			{
+				layout = auto
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			form  Add_Employee_Type
+			{
+				layout = auto
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_Department
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_Location
+			{
+				layout = auto
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Decline
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			page Offer_Letter
+			{
+				hide = true
+			}
+			list All_Job_Offers
+			{
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = lightred
+        	layout = onecolumn
+		 	icons style = outline
+		}
+	}
+	
+}

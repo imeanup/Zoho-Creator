@@ -1,0 +1,4112 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 23:26:25
+ * Version      : 1.0
+ */
+ application "Assignment Tracker"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+	section Assignments
+	{
+		icon = "education-book-open"
+		form Create_Assignment
+		{
+			displayname = "Create Assignment"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Title
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Subject_field
+			(
+				type = picklist
+				displayname = "Subject"
+				values  = Add_Subject.ID
+    			displayformat = [" " + Code + "-" + Name]
+				allow new entries = true
+				[
+					displayname = "Add Subject"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Assignment_Type
+			(
+				type = picklist
+				displayname = "Assignment Type"
+				values  = Add_Assignment_Type.ID
+    			displayformat = [Type]
+				allow new entries = true
+				[
+					displayname = "Add Type"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Class
+			(
+				type = picklist
+				values  = Add_Class.ID
+    			displayformat = [Name]
+				allow new entries = true
+				[
+					displayname = "Add Class"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			File_upload
+			(
+    			type = upload file
+				displayname = "File upload"
+				browse = local_drive
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Issued_Date
+			(
+    			type = date
+				displayname = "Issued Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Due_Date
+			(
+    			type = date
+				displayname = "Due Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Priority
+			(
+				type = picklist
+				values = {"Low", "Medium", "High"}
+				initial value = "Medium"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Faculty
+			(
+				type = picklist
+				values  = Add_Teacher[Email == zoho.loginuserid].ID
+    			displayformat = [Name.first_name + Name.last_name + " - " + Teacher_ID]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Allocated_To
+			(
+				type = list
+				displayname = "Allocated To"
+				values  = Add_Student.ID
+    			displayformat = [Name.first_name + Name.last_name + " - " + Student_ID]
+				allow new entries = true
+				[
+					displayname = "Add Student"
+				]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Status
+			(
+				type = picklist
+				values = {"Active", "Inactive"}
+				initial value = "Active"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Submissions
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Active_Assignments
+		{
+			displayName = "Active Assignments"
+			show all rows from Create_Assignment  [Status == "Active"]  
+			(
+				Title
+				Subject_field as "Subject"
+				Assignment_Type as "Assignment Type"
+				Class
+				Issued_Date as "Issued Date"
+				Due_Date as "Due Date"
+				Priority
+				File_upload as "Files"
+				Faculty
+				(
+					view = Teachers
+				)
+				Allocated_To as "Allocated To"
+				(
+					view = Students
+				)
+				Submissions as "Submitted Students"
+			)
+			filters
+			(
+				Class
+				Subject_field
+				Assignment_Type
+				Priority
+				Faculty
+				Allocated_To
+			)
+			group by
+			(
+				Faculty ascending
+			)
+			options
+			(
+				icon = "files-archive-paper"
+	 		)
+			custom actions
+			(
+				"Inactive"
+				(
+	  			workflow = Run_Scripts_On_Click_of_B
+				show action in view header = true
+				show action in edit record menu = true
+				success message = ""
+				)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Title
+							Subject_field as "Subject"
+							Assignment_Type as "Assignment Type"
+							Class
+							Issued_Date as "Issued Date"
+							Due_Date as "Due Date"
+							Priority
+							File_upload as "Files"
+							Faculty
+							Allocated_To as "Allocated To"
+							Submissions as "Submitted Students"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+			 			"Inactive"
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+								"Inactive"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+								"Inactive"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Title
+							Subject_field as "Subject"
+							Assignment_Type as "Assignment Type"
+							Class
+							Issued_Date as "Issued Date"
+							Due_Date as "Due Date"
+							Priority
+							File_upload as "Files"
+							Faculty
+							Allocated_To as "Allocated To"
+							Submissions as "Submitted Students"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Assignments
+		{
+			displayName = "All Assignments"
+			show all rows from Create_Assignment    
+			(
+				Title
+				Subject_field as "Subject"
+				Assignment_Type as "Assignment Type"
+				Class
+				Issued_Date as "Issued Date"
+				Due_Date as "Due Date"
+				Priority
+				Faculty
+				(
+					view = Teachers
+				)
+				File_upload as "Files"
+				Allocated_To as "Allocated To"
+				(
+					view = Students
+				)
+				Status
+				custom action "Active"
+				(
+	  			workflow = Run_Scripts_On_Click_of_B1
+				show action in edit record menu = true
+				column header = "Active"
+				success message = ""
+				condition = (Status == "Inactive")
+				)
+				custom action "Inactive"
+				(
+	  			workflow = Run_Scripts_On_Click_of_B2
+				show action in edit record menu = true
+				column header = "Inactive"
+				success message = ""
+				condition = (Status == "Active")
+				)
+			)
+			filters
+			(
+				Faculty
+				Status
+				Allocated_To
+				Subject_field
+				Priority
+				Assignment_Type
+				Class
+			)
+			group by
+			(
+				Status ascending
+			)
+			options
+			(
+				icon = "files-single-copy-04"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Title
+							Subject_field as "Subject"
+							Assignment_Type as "Assignment Type"
+							Class
+							Issued_Date as "Issued Date"
+							Due_Date as "Due Date"
+							Priority
+							Faculty
+							File_upload as "Files"
+							Allocated_To as "Allocated To"
+							Status
+				"Active"
+				"Inactive"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+								"Active"
+								"Inactive"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+								"Active"
+								"Inactive"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Title
+							Subject_field as "Subject"
+							Assignment_Type as "Assignment Type"
+							Class
+							Issued_Date as "Issued Date"
+							Due_Date as "Due Date"
+							Priority
+							Faculty
+							File_upload as "Files"
+							Allocated_To as "Allocated To"
+							Status
+				"Active"
+				"Inactive"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Active"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+			 			"Inactive"
+    	 			)
+    			)
+			)
+		}
+		list Submissions
+		{
+			displayName = "Submissions"
+			show all rows from Submit_Assignment    
+			(
+				Assignment
+				(
+					view = All_Assignments
+				)
+				Student
+				(
+					view = Students
+				)
+				Submission_On as "Submission Date"
+				File_upload as "Files"
+				Description
+				Note
+				Reviewer
+				Remarks
+				Marks
+				Reviewed_On as "Reviewed On"
+				Status
+				custom action "Review"
+				(
+	  			workflow = Run_Scripts_On_Click_of_B3
+				column header = "Review"
+				success message = ""
+				condition = (Status == "Submitted")
+				)
+			)
+			filters
+			(
+				Assignment
+				Reviewer
+				Status
+				Student
+			)
+			group by
+			(
+				Status ascending
+			)
+			options
+			(
+				icon = "ui-3-filter-check"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Assignment
+							Student
+							Submission_On as "Submission Date"
+							File_upload as "Files"
+							Description
+							Note
+							Reviewer
+							Remarks
+							Marks
+							Reviewed_On as "Reviewed On"
+							Status
+				"Review"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Assignment
+							Student
+							Submission_On as "Submission Date"
+							File_upload as "Files"
+							Description
+							Note
+							Reviewer
+							Remarks
+							Marks
+							Reviewed_On as "Reviewed On"
+							Status
+				"Review"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Student
+	{
+		icon = "users-single-03"
+		list Assignments_StudentsView
+		{
+			displayName = "Assignments"
+			show all rows from Create_Assignment  [Status == "Active" && Allocated_To.Email == zoho.loginuserid && !Submissions.contains(zoho.loginuserid)]  
+			(
+				Title
+				Subject_field as "Subject"
+				Assignment_Type as "Assignment Type"
+				Class
+				Issued_Date as "Issued Date"
+				Due_Date as "Due Date"
+				Priority
+				File_upload as "Files"
+				Faculty
+				custom action "Submission"
+				(
+	  			workflow = Run_Scripts_On_Click_of_B4
+				show action in edit record menu = true
+				column header = "Submission"
+				success message = ""
+				)
+			)
+			filters
+			(
+				Faculty
+				Subject_field
+				Priority
+				Assignment_Type
+			)
+			group by
+			(
+				Assignment_Type ascending
+			)
+			sort by
+			(
+				Due_Date ascending
+			)
+			options
+			(
+				icon = "education-book-open"
+	 		)
+			conditional formatting
+			(
+				"Due"
+				{
+				condition = (Due_Date == tomorrow || Due_Date == today)
+				fields = [Title, Subject_field, Assignment_Type, Class, Issued_Date, Due_Date, Priority, File_upload, Faculty]
+				format = "color:#f7aa03;"
+				}
+				"Over Due"
+				{
+				condition = (Due_Date < zoho.currentdate)
+				fields = [Title, Subject_field, Assignment_Type, Class, Issued_Date, Due_Date, Priority, File_upload, Faculty]
+				format = "color:#ff0000;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Title
+							Subject_field as "Subject"
+							Assignment_Type as "Assignment Type"
+							Class
+							Issued_Date as "Issued Date"
+							Due_Date as "Due Date"
+							Priority
+							File_upload as "Files"
+							Faculty
+				"Submission"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+								"Submission"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+								"Submission"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Title
+							Subject_field as "Subject"
+							Assignment_Type as "Assignment Type"
+							Class
+							Issued_Date as "Issued Date"
+							Due_Date as "Due Date"
+							Priority
+							File_upload as "Files"
+							Faculty
+				"Submission"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Submissions
+		{
+			displayName = "My Submissions"
+			show all rows from Submit_Assignment  [Student.Email == zoho.loginuserid]  
+			(
+				Assignment
+				Submission_On as "Submission On"
+				File_upload as "Files"
+				Description
+				Note
+				Reviewer
+				Remarks
+				Marks
+				Reviewed_On as "Reviewed On"
+				Status
+			)
+			filters
+			(
+				Assignment
+				Reviewer
+				Status
+			)
+			group by
+			(
+				Status ascending
+			)
+			options
+			(
+				icon = "files-single-content-03"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Assignment
+							Submission_On as "Submission On"
+							File_upload as "Files"
+							Description
+							Note
+							Reviewer
+							Remarks
+							Marks
+							Reviewed_On as "Reviewed On"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Assignment
+							Submission_On as "Submission On"
+							File_upload as "Files"
+							Description
+							Note
+							Reviewer
+							Remarks
+							Marks
+							Reviewed_On as "Reviewed On"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		form Submit_Assignment
+		{
+			displayname = "Submit Assignment"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			recID
+			(
+				type = number
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Submitted_By
+			(
+    			type = email
+				displayname = "Submitted By"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Student
+			(
+				type = picklist
+				values  = Add_Student[Email == zoho.loginuserid].ID
+    			displayformat = [Name.first_name + Name.last_name + " - " + Student_ID]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Assignment
+			(
+				type = picklist
+				values  = Create_Assignment.ID
+    			displayformat = [Title + " - " + Issued_Date]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Submission_On
+			(
+    			type = datetime
+				displayname = "Submission On"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			File_upload
+			(
+    			type = upload file
+				displayname = "File upload"
+				browse = local_drive
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Note
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status
+			(
+				type = picklist
+				values = {"Submitted", "Reviewed"}
+				initial value = "Submitted"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Reviewer
+			(
+				type = picklist
+				values  = Add_Teacher.ID
+    			displayformat = ["  " + Name.first_name + "  " + Name.last_name + "-" + Teacher_ID]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Remarks
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Marks
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Reviewed_On
+			(
+    			type = datetime
+				displayname = "Reviewed On"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-3-card-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Settings
+	{
+		icon = "ui-1-settings-gear-63"
+		list Teachers
+		{
+			displayName = "Teachers"
+			show all rows from Add_Teacher    
+			(
+				Teacher_ID as "Teacher ID"
+				Email
+				Photo
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Phone_Number as "Phone Number"
+			)
+			options
+			(
+				icon = "users-multiple-11"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Teacher_ID as "Teacher ID"
+							Name
+							Email
+							Photo
+							Phone_Number as "Phone Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Teacher_ID as "Teacher ID"
+							Name
+							Email
+							Photo
+							Phone_Number as "Phone Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Students
+		{
+			displayName = "Students"
+			show all rows from Add_Student    
+			(
+				Student_ID as "Student ID"
+				Email
+				Photo
+				Class
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Phone_Number as "Phone Number"
+			)
+			filters
+			(
+				Class
+			)
+			options
+			(
+				icon = "users-2-wc"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Student_ID as "Student ID"
+							Name
+							Email
+							Photo
+							Phone_Number as "Phone Number"
+							Class
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Student_ID as "Student ID"
+							Email
+							Photo
+							Class
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Classes
+		{
+			displayName = "Classes"
+			show all rows from Add_Class    
+			(
+				Name
+				Students
+				(
+					view = Students
+				)
+			)
+			options
+			(
+				icon = "business-building"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Students
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Students
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Subjects
+		{
+			displayName = "Subjects"
+			show all rows from Add_Subject    
+			(
+				Name
+				Code
+				Type
+			)
+			filters
+			(
+				Type
+			)
+			options
+			(
+				icon = "files-book-08"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Code
+							Type
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Code
+							Type
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Assignment_Types
+		{
+			displayName = "Assignment Types"
+			show all rows from Add_Assignment_Type    
+			(
+				Type
+			)
+			options
+			(
+				icon = "design-bullet-list-70"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Type
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Type
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Hidden
+	{
+		hide = true
+		icon = "ui-2-menu-bold"
+		form Add_Student
+		{
+			displayname = "Add Student"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Student_ID
+			(
+    			type = text
+				displayname = "Student ID"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Photo
+			(
+    			type = image
+				source  = public_url,file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Class
+			(
+				type = picklist
+				values  = Add_Class.ID
+    			bidirectional = Students
+    			displayformat = [Name]
+				allow new entries = true
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Teacher
+		{
+			displayname = "Add Teacher"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Teacher_ID
+			(
+    			type = text
+				displayname = "Teacher ID"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Photo
+			(
+    			type = image
+				source  = public_url,file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Subject
+		{
+			displayname = "Add Subject"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Name
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Code
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Type
+			(
+				type = picklist
+				values = {"Theory", "Practical", "Both"}
+				initial value = "Theory"
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Class
+		{
+			displayname = "Add Class"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Name
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Students
+			(
+				type = list
+				values  = Add_Student.ID
+    			bidirectional = Class
+    			displayformat = [Name.first_name + Name.last_name + " - " + Student_ID]
+				allow new entries = true
+				[
+					displayname = "Add New"
+				]
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Assignment_Type
+		{
+			displayname = "Add Assignment Type"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Type
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Review
+		{
+			displayname = "Add Review"
+			store data in zc = false
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			recID
+			(
+				type = number
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Reviewer
+			(
+				type = picklist
+				values  = Add_Teacher.ID
+    			displayformat = [Email]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Remarks
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Marks
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Reviewed_On
+			(
+    			type = datetime
+				displayname = "Reviewed On"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				Submit
+				(
+   					type = button
+   					displayname = "Submit"
+				)
+			}
+		}
+	}
+	functions
+	{
+ 			void StatusChange.Inactive(int recID)
+			{
+				assignmentRec = Create_Assignment[ID == input.recID];
+				assignmentRec.Status="Inactive";
+			}
+ 			void StatusChange.Active(int recID)
+			{
+				assignmentRec = Create_Assignment[ID == input.recID];
+				assignmentRec.Status="Active";
+			}
+ 			void OpenForm.Review(int recID)
+			{
+				openUrl("#Form:Add_Review?recID=" + recID,"popup window");
+			}
+ 			void OpenForm.Submission(int recID)
+			{
+				openUrl("#Form:Submit_Assignment?recID=" + recID,"popup window");
+			}
+ 			void Mails.Student(string studentEmail)
+			{
+				studentRec = Add_Student[Email == input.studentEmail];
+				sendmail
+				[
+					from :zoho.adminuserid
+					to :studentEmail
+					subject :"Invitation to access Assignment Tracker"
+					message :("Hi&nbsp;" + studentRec.Name) + ",<div><br></div><div>You have been added as a student to know about your assignments.</div><div><br></div><div>Please click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "\"" + " target=\"_blank\">here</a> to manage all assignments.</div><div><br></div><div>Regards,</div><div>" + zoho.adminuser + "<br></div>"
+				]
+			}
+ 			void Mails.Teacher(string teacherEmail)
+			{
+				teacherRec = Add_Teacher[Email == input.teacherEmail];
+				sendmail
+				[
+					from :zoho.adminuserid
+					to :teacherEmail
+					subject :"Invitation to access Assignment Tracker"
+					message :("Hi&nbsp;" + teacherRec.Name) + ",<div><br></div><div>You have been added as a teacher to track the assignments of your students.</div><div><br></div><div>Please click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "\"" + " target=\"_blank\">here</a> to manage all assignments.</div><div><br></div><div>Regards,</div><div>" + zoho.adminuser + "<br></div>"
+				]
+			}
+ 			void Mails.SendToStudents(int recID, list:int studentsList)
+			{
+				assignment = Create_Assignment[ID == input.recID];
+				dueDate = assignment.Due_Date.toString();
+				if(assignment.Due_Date == null)
+				{
+					dueDate = "-";
+				}
+				for each  eachStudent in studentsList
+				{
+					student = Add_Student[ID == eachStudent];
+					sendmail
+					[
+						from :zoho.loginuserid
+						to :student.Email
+						subject :"New assignment in " + assignment.Subject_field.Name
+						message :(("Hi " + student.Name) + ",<div><br></div><div>New assignment \"" + assignment.Title + "\"" + " is assigned to you.</div><div><br></div><div>Please find the details below,</div><div><br></div><div><table cellpadding=\"2\" cellspacing=\"2\" border=\"1\" style=\"width: 100%; font-size: 10pt;\"><tbody><tr><td>Title</td><td>" + assignment.Title + "<br></td></tr><tr><td>Subject</td><td>" + assignment.Subject_field.Name + "<br></td></tr><tr><td>Assignment Type</td><td>" + assignment.Assignment_Type.Type + "<br></td></tr><tr><td>Issued Date</td><td>" + assignment.Issued_Date + "<br></td></tr><tr><td>Due Date</td><td>" + dueDate + "<br></td></tr><tr><td>Faculty</td><td>" + assignment.Faculty.Name) + "<br></td></tr></tbody></table><br>Click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "#Form:Submit_Assignment?recID=" + recID + "\"" + " target=\"_blank\">here</a> to submit your assignment.<br><br></div>"
+					]
+				}
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Run_Scripts_On_Click_of_P as "Run Scripts On Click of Proceed Button"
+			{
+				type =  form
+				form = Add_Review
+				button = Submit
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						submissionRec = Submit_Assignment[ID == input.recID];
+										if(submissionRec.Submission_On > input.Reviewed_On)
+										{
+											alert "Please check the review date";
+										}
+										else
+										{
+											submissionRec.Reviewer=input.Reviewer;
+											submissionRec.Remarks=input.Remarks;
+											submissionRec.Marks=input.Marks;
+											submissionRec.Reviewed_On=input.Reviewed_On;
+											submissionRec.Status="Reviewed";
+											openUrl("#Script:page.refresh","same window");
+										}
+					)
+					}
+				}
+			}
+			Run_Scripts_While_Adding_3 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Create_Assignment
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide Status;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_6 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Create_Assignment
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											teacherRec = Add_Teacher[ID != 0];
+										if(teacherRec.count() == 0)
+										{
+											insert into Add_Teacher
+											[
+												Email=zoho.loginuserid
+												Teacher_ID="1"
+												Name.first_name=zoho.loginuser
+												Added_User=zoho.loginuser
+											]
+										}
+										Faculty.select(Add_Teacher[Email == zoho.loginuserid].ID);
+										input.Issued_Date = zoho.currentdate;
+										input.Due_Date = zoho.currentdate.addDay(1);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_7 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Create_Assignment
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.Mails.SendToStudents(input.ID,input.Allocated_To);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always3 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Create_Assignment
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Submissions;
+						disable Faculty;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always4 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Create_Assignment
+				record event = on add or edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Issued_Date > input.Due_Date)
+										{
+											alert "Please specify the correct date!";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always5 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Create_Assignment
+				record event = on add or edit
+
+	on user input of Class
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											studentsList = Add_Student[Class == input.Class].ID.getAll();
+										input.Allocated_To:ui.add(studentsList);
+										Allocated_To.selectall();
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_8 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Submit_Assignment
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.recID != null)
+										{
+											Assignment.select(input.recID);
+											disable Assignment;
+										}
+										studentRec = Add_Student[Email == zoho.loginuserid];
+										Student.select(studentRec.ID);
+										assignmentsRec = Create_Assignment[Status == "Active" && Allocated_To.Email == zoho.loginuserid && !Submissions.contains(zoho.loginuserid)].ID.getAll();
+										input.Assignment:ui.add(assignmentsRec);
+										input.Submission_On = zoho.currenttime;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_9 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Submit_Assignment
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											studentRec = Add_Student[ID == input.Student];
+										input.Submitted_By = studentRec.Email;
+										assignmentRec = Create_Assignment[ID == input.Assignment];
+										assignmentRec.Submissions=assignmentRec.Submissions + "," + input.Submitted_By;
+										openUrl("#Script:page.refresh","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing1 as "Run Scripts While Editing a Record"
+			{
+				type =  form
+				form = Submit_Assignment
+				record event = on edit
+
+	field rules
+	{
+					actions 
+					{
+						disable Assignment;
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing3 as "Run Scripts While Editing a Record"
+			{
+				type =  form
+				form = Submit_Assignment
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Status == "Reviewed")
+										{
+											alert "Sorry, Your assignment has been already reviwed.";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin3 as "Run Scripts While Deleting a Record"
+			{
+				type =  form
+				form = Submit_Assignment
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Status == "Reviewed")
+										{
+											alert "Sorry, Your assignment has been already reviwed.";
+											cancel delete;
+										}
+										else
+										{
+											assignmentRec = Create_Assignment[ID == input.Assignment];
+											assignmentRec.Submissions=assignmentRec.Submissions.remove("," + input.Submitted_By);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_10 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Add_Student
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.permissions.assignUserInProfile(input.Email,"Student");
+										thisapp.Mails.Student(input.Email);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing5 as "Run Scripts While Editing a Record"
+			{
+				type =  form
+				form = Add_Student
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(old.Email != input.Email)
+										{
+											thisapp.permissions.deleteuser(old.Email);
+											thisapp.permissions.assignUserInProfile(input.Email,"Student");
+											thisapp.Mails.Student(input.Email);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin4 as "Run Scripts While Deleting a Record"
+			{
+				type =  form
+				form = Add_Student
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.permissions.deleteuser(input.Email);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_11 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Add_Teacher
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.permissions.assignUserInProfile(input.Email,"Teacher");
+										thisapp.Mails.Teacher(input.Email);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing6 as "Run Scripts While Editing a Record"
+			{
+				type =  form
+				form = Add_Teacher
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(old.Email != input.Email)
+										{
+											thisapp.permissions.deleteuser(old.Email);
+											thisapp.permissions.assignUserInProfile(input.Email,"Teacher");
+											thisapp.Mails.Teacher(input.Email);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin5 as "Run Scripts While Deleting a Record"
+			{
+				type =  form
+				form = Add_Teacher
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.permissions.deleteuser(input.Email);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_12 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Add_Review
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide recID;
+						disable Reviewer;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_13 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Add_Review
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											Reviewer.select(Add_Teacher[Email == zoho.loginuserid].ID);
+										input.Reviewed_On = zoho.currenttime;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always6 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Submit_Assignment
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Submitted_By,recID,Reviewer,Reviewed_On,Remarks,Marks,Status;
+						disable Student;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always7 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Add_Class
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Students;
+					}
+	}
+
+			}
+		}
+		schedule
+		{
+			Assignment_Reminder as "Assignment Reminder"
+			{
+				type =  schedule
+				form = Create_Assignment
+				start = before 1 days from Due_Date at "00:00:00"
+				time zone = "Asia/Kolkata"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						for each  eachStudent in input.Allocated_To
+										{
+											student = Add_Student[ID == eachStudent];
+											sendmail
+											[
+												from :zoho.loginuserid
+												to :student.Email
+												subject :"Gentle reminder for assignment submission"
+												message :(("Hi " + student.Name) + ",<div><br></div><div><div>Reminder to submit the " + input.Title + " assignment on/before&nbsp;" + input.Due_Date + ".</div></div><div><br></div><div><br></div><div>Please find the details below,</div><div><br></div><div><table cellpadding=\"2\" cellspacing=\"2\" border=\"1\" style=\"width: 100%; font-size: 10pt;\"><tbody><tr><td>Title</td><td>" + input.Title + "<br></td></tr><tr><td>Subject</td><td>" + input.Subject_field.Name + "<br></td></tr><tr><td>Assignment Type</td><td>" + input.Assignment_Type.Type + "<br></td></tr><tr><td>Issued Date</td><td>" + input.Issued_Date + "<br></td></tr><tr><td>Due Date</td><td>" + input.Due_Date + "<br></td></tr><tr><td>Faculty</td><td>" + input.Faculty.Name) + "<br></td></tr></tbody></table><br>Click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "#Form:Submit_Assignment?recID=" + input.ID + "\"" + " target=\"_blank\">here</a> to submit your assignment.<br><br>Regards,</div><div>" + zoho.adminuser + "<br></div>"
+											]
+										}
+					)
+					}
+				}
+			}
+		}
+		functions
+		{
+			Run_Scripts_On_Click_of_B as "Run Scripts On Click of Button Inactive"
+			{
+				type =  functions
+				form = Create_Assignment
+				on start
+				{
+					actions 
+					{
+					StatusChange.Inactive(ID);
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_B1 as "Run Scripts On Click of Button Active"
+			{
+				type =  functions
+				form = Create_Assignment
+				on start
+				{
+					actions 
+					{
+					StatusChange.Active(ID);
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_B2 as "Run Scripts On Click of Button Inactive"
+			{
+				type =  functions
+				form = Create_Assignment
+				on start
+				{
+					actions 
+					{
+					StatusChange.Inactive(ID);
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_B3 as "Run Scripts On Click of Button Review"
+			{
+				type =  functions
+				form = Submit_Assignment
+				on start
+				{
+					actions 
+					{
+					OpenForm.Review(ID);
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_B4 as "Run Scripts On Click of Button Submission"
+			{
+				type =  functions
+				form = Create_Assignment
+				on start
+				{
+					actions 
+					{
+					OpenForm.Submission(ID);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Teacher"
+			{
+				name = "Teacher"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "This profile will have teacher permissions.\n"
+				ModulePermissions
+				{
+					Add_Subject
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Subjects={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Type{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Code{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Teacher
+					{
+						enabled= Viewall,Export 
+						ReportPermissions
+						{
+							Teachers={"View"}
+						}
+						FieldPermissions
+						{
+							Email{visibility:true,readonly:false}
+							Teacher_ID{visibility:true,readonly:false}
+							Photo{visibility:true,readonly:false}
+							Phone_Number{visibility:false,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:false,readonly:false}
+						}
+					}
+					Add_Assignment_Type
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Assignment_Types={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Section{visibility:false,readonly:false}
+							Type{visibility:true,readonly:false}
+						}
+					}
+					Create_Assignment
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							All_Assignments={"View","Edit","Delete"}
+							Active_Assignments={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Faculty{visibility:true,readonly:false}
+							Status{visibility:true,readonly:false}
+							Due_Date{visibility:true,readonly:false}
+							Priority{visibility:true,readonly:false}
+							Title{visibility:true,readonly:false}
+							Allocated_To{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Assignment_Type{visibility:true,readonly:false}
+							Issued_Date{visibility:true,readonly:false}
+							Subject_field{visibility:true,readonly:false}
+							File_upload{visibility:true,readonly:false}
+							Class{visibility:true,readonly:false}
+							Submissions{visibility:true,readonly:false}
+						}
+					}
+					Submit_Assignment
+					{
+						enabled= Viewall,Export 
+						ReportPermissions
+						{
+							Submissions={"View"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Reviewed_On{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Submitted_By{visibility:true,readonly:false}
+							Student{visibility:true,readonly:false}
+							Marks{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Submission_On{visibility:true,readonly:false}
+							Reviewer{visibility:true,readonly:false}
+							Assignment{visibility:true,readonly:false}
+							File_upload{visibility:true,readonly:false}
+							Remarks{visibility:true,readonly:false}
+							Note{visibility:true,readonly:false}
+							recID{visibility:true,readonly:false}
+						}
+					}
+					Add_Class
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Classes={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Students{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Review
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Reviewed_On{visibility:true,readonly:false}
+							Remarks{visibility:true,readonly:false}
+							Marks{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Reviewer{visibility:true,readonly:false}
+							recID{visibility:true,readonly:false}
+						}
+					}
+					Add_Student
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Students={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Email{visibility:true,readonly:false}
+							Student_ID{visibility:true,readonly:false}
+							Photo{visibility:true,readonly:false}
+							Phone_Number{visibility:false,readonly:false}
+							Class{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:false,readonly:false}
+						}
+					}
+				}
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Student"
+			{
+				name = "Student"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "This profile will have student permissions.\n"
+				ModulePermissions
+				{
+					Add_Subject
+					{
+						FieldPermissions
+						{
+							Type{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Code{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Teacher
+					{
+						FieldPermissions
+						{
+							Email{visibility:true,readonly:false}
+							Teacher_ID{visibility:true,readonly:false}
+							Photo{visibility:true,readonly:false}
+							Phone_Number{visibility:false,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:false,readonly:false}
+						}
+					}
+					Add_Assignment_Type
+					{
+						FieldPermissions
+						{
+							Section{visibility:false,readonly:false}
+							Type{visibility:true,readonly:false}
+						}
+					}
+					Create_Assignment
+					{
+						enabled= Viewall,Export 
+						ReportPermissions
+						{
+							Assignments_StudentsView={"View"}
+						}
+						FieldPermissions
+						{
+							Faculty{visibility:true,readonly:false}
+							Status{visibility:true,readonly:false}
+							Due_Date{visibility:true,readonly:false}
+							Priority{visibility:true,readonly:false}
+							Title{visibility:true,readonly:false}
+							Allocated_To{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Assignment_Type{visibility:true,readonly:false}
+							Issued_Date{visibility:true,readonly:false}
+							Subject_field{visibility:true,readonly:false}
+							File_upload{visibility:true,readonly:false}
+							Class{visibility:true,readonly:false}
+							Submissions{visibility:true,readonly:false}
+						}
+					}
+					Submit_Assignment
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							My_Submissions={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Reviewed_On{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Submitted_By{visibility:true,readonly:false}
+							Student{visibility:true,readonly:false}
+							Marks{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Submission_On{visibility:true,readonly:false}
+							Reviewer{visibility:true,readonly:false}
+							Assignment{visibility:true,readonly:false}
+							File_upload{visibility:true,readonly:false}
+							Remarks{visibility:true,readonly:false}
+							Note{visibility:true,readonly:false}
+							recID{visibility:true,readonly:false}
+						}
+					}
+					Add_Class
+					{
+						FieldPermissions
+						{
+							Students{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Review
+					{
+						FieldPermissions
+						{
+							Reviewed_On{visibility:true,readonly:false}
+							Remarks{visibility:true,readonly:false}
+							Marks{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Reviewer{visibility:true,readonly:false}
+							recID{visibility:true,readonly:false}
+						}
+					}
+					Add_Student
+					{
+						FieldPermissions
+						{
+							Email{visibility:true,readonly:false}
+							Student_ID{visibility:true,readonly:false}
+							Photo{visibility:true,readonly:false}
+							Phone_Number{visibility:false,readonly:false}
+							Class{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:false,readonly:false}
+						}
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users.\n"
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 3
+		new theme color = 4
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-intel-it9"
+    	icon theme = "blue"
+		icons style = outline
+	}
+
+	phone
+	{
+		section  Assignments
+		{
+			icon = "education-book-open"
+			form  Create_Assignment
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+			}
+			list Active_Assignments
+			{
+				icon = "files-archive-paper"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Allocated_To as "Allocated To"
+								Submissions as "Submitted Students"
+								Title
+								Subject_field as "Subject"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+			 				"Inactive"
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Inactive"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Title
+								Subject_field as "Subject"
+								Assignment_Type as "Assignment Type"
+								Class
+								Issued_Date as "Issued Date"
+								Due_Date as "Due Date"
+								Priority
+								File_upload as "Files"
+								Faculty
+								Allocated_To as "Allocated To"
+								Submissions as "Submitted Students"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list All_Assignments
+			{
+				icon = "files-single-copy-04"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Allocated_To as "Allocated To"
+								Title
+								Subject_field as "Subject"
+								Assignment_Type as "Assignment Type"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Active"
+										"Inactive"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Title
+								Subject_field as "Subject"
+								Assignment_Type as "Assignment Type"
+								Class
+								Issued_Date as "Issued Date"
+								Due_Date as "Due Date"
+								Priority
+								Faculty
+								File_upload as "Files"
+								Allocated_To as "Allocated To"
+								Status
+				"Active"
+				"Inactive"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Active"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+			 				"Inactive"
+    	 				)
+    				)
+				)
+			}
+			list Submissions
+			{
+				icon = "ui-3-filter-check"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Assignment
+								Description
+								Student
+								Submission_On as "Submission Date"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Assignment
+								Student
+								Submission_On as "Submission Date"
+								File_upload as "Files"
+								Description
+								Note
+								Reviewer
+								Remarks
+								Marks
+								Reviewed_On as "Reviewed On"
+								Status
+				"Review"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Student
+		{
+			icon = "users-single-03"
+			list Assignments_StudentsView
+			{
+				icon = "education-book-open"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Title
+								Subject_field as "Subject"
+								Class
+								Issued_Date as "Issued Date"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Submission"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Title
+								Subject_field as "Subject"
+								Assignment_Type as "Assignment Type"
+								Class
+								Issued_Date as "Issued Date"
+								Due_Date as "Due Date"
+								Priority
+								File_upload as "Files"
+								Faculty
+				"Submission"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list My_Submissions
+			{
+				icon = "files-single-content-03"
+			}
+			form  Submit_Assignment
+			{
+				layout = left
+				icon = "ui-3-card-add"
+			}
+		}
+		section  Settings
+		{
+			icon = "ui-1-settings-gear-63"
+			list Teachers
+			{
+				icon = "users-multiple-11"
+				quickview
+				(
+					layout
+					(
+		 				type = 6
+						datablock1
+						(
+			 				layout type = 19
+		     				title = "Overview"
+							fields
+							(
+								Photo
+								Teacher_ID as "Teacher ID"
+								Email
+								Phone_Number as "Phone Number"
+								Name
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Teacher_ID as "Teacher ID"
+								Name
+								Email
+								Photo
+								Phone_Number as "Phone Number"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Students
+			{
+				icon = "users-2-wc"
+				quickview
+				(
+					layout
+					(
+		 				type = 6
+						datablock1
+						(
+			 				layout type = 19
+		     				title = "Overview"
+							fields
+							(
+								Photo
+								Student_ID as "Student ID"
+								Email
+								Phone_Number as "Phone Number"
+								Name
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Student_ID as "Student ID"
+								Email
+								Photo
+								Class
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Classes
+			{
+				icon = "business-building"
+				quickview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = 1
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Students
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Students
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Subjects
+			{
+				icon = "files-book-08"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Code
+								Type
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Code
+								Type
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Assignment_Types
+			{
+				icon = "design-bullet-list-70"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Type
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Type
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Hidden
+		{
+			hide = true
+			icon = "ui-2-menu-bold"
+			form  Add_Student
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_Teacher
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_Subject
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			form  Add_Class
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_Assignment_Type
+			{
+				layout = auto
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			form  Add_Review
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = blue
+        	layout = slidingpane
+		 	icons style = outline
+		}
+	}
+	tablet
+	{
+		section  Assignments
+		{
+			form  Create_Assignment
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+			}
+			list Active_Assignments
+			{
+				icon = "files-archive-paper"
+			}
+			list All_Assignments
+			{
+				icon = "files-single-copy-04"
+			}
+			list Submissions
+			{
+				icon = "ui-3-filter-check"
+			}
+		}
+		section  Student
+		{
+			list Assignments_StudentsView
+			{
+				icon = "education-book-open"
+			}
+			list My_Submissions
+			{
+				icon = "files-single-content-03"
+			}
+			form  Submit_Assignment
+			{
+				layout = left
+				icon = "ui-3-card-add"
+			}
+		}
+		section  Settings
+		{
+			list Teachers
+			{
+				icon = "users-multiple-11"
+			}
+			list Students
+			{
+				icon = "users-2-wc"
+			}
+			list Classes
+			{
+				icon = "business-building"
+			}
+			list Subjects
+			{
+				icon = "files-book-08"
+			}
+			list Assignment_Types
+			{
+				icon = "design-bullet-list-70"
+			}
+		}
+		section  Hidden
+		{
+			hide = true
+			form  Add_Student
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_Teacher
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_Subject
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			form  Add_Class
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_Assignment_Type
+			{
+				layout = auto
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			form  Add_Review
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = blue
+        	layout = slidingpane
+		 	icons style = outline
+		}
+	}
+	
+}

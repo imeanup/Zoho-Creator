@@ -1,0 +1,5483 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 07-May-2020 01:42:54
+ * Version      : 1.0
+ */
+ application "Content Review and Release Tracking"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "IST"
+ 	time format = "24-hr"
+	section Release
+	{
+		icon = "media-1-speaker"
+		form New_Release
+		{
+			displayname = "New Release"
+			success message = "New Release Scheduled Successfully!"
+			field alignment = left
+			feature property = 32
+			must have Title
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Release_Type
+			(
+				type = picklist
+				displayname = "Release Type"
+				values  = Add_Release_Type.ID
+    			displayformat = [Release_Type]
+				allow new entries = true
+				[
+					displayname = "Add New Type"
+				]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Contents
+			(
+				type = grid
+				values  = Add_Content.ID
+    			bidirectional = ReleaseID
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Tentative_Release_Date
+			(
+    			type = date
+				displayname = "Tentative Release Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Actual_Release_Date
+			(
+    			type = date
+				displayname = "Actual Release Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status
+			(
+				type = picklist
+				values = {"Scheduled", "Ready for Release", "Released"}
+				initial value = "Scheduled"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Territory
+			(
+				type = picklist
+				values  = Add_Territory.ID
+    			displayformat = [Territory]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Release_Notes
+			(
+    			type = textarea
+				displayname = "Release Notes"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			DateHidden
+			(
+    			type = date
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+				 page Scheduled_Releases_page 
+	 	 { 
+ 	 	 displayname = "Scheduled Releases" 
+
+ 	 	 icon = "ui-1-calendar-check-62" 
+	 	 Content="<zml \t\t\n\t\t\n\t\t\n\t\t\twebDeviceConfig='{\"layout\":{\"style\":\"padding-right:0px;padding-top:0px;padding-bottom:0px;padding-left:0px;\",\"design\":\"fluid\",\"displayType\":\"plain\"}}'\n\t\t\n\t\t\tmobileDeviceConfig='{\"layout\":{\"design\":\"onebyone\",\"displayType\":\"plain\",\"forcedOrientation\":false}}'\n\t\t\n\t\t\ttabletDeviceConfig='{\"layout\":{\"design\":\"onebyone\",\"displayType\":\"plain\",\"forcedOrientation\":false}}'\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dsp id='Scheduled_Releases_page1'>\n\t<![CDATA[htmlpage Scheduled_Releases_page1()\ncontent\n&lt;%{\n\t%&gt;\n&lt;link href=&quot;https:\/\/fonts.googleapis.com\/css?family=Muli&quot; rel=&quot;stylesheet&quot;&gt;\n\t\t\t\t\t\t  &lt;style&gt;\n\t\t\t\t\t\t  .list\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  list-style : decimal;\n\t\t\t\t\t\t  padding-bottom: 2%;\n\t\t\t\t\t\t  margin : 1%;\n\t\t\t\t\t\t  color : #383838;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .headerDiv\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  width: 100%;\n\t\t\t\t\t\t  height:inherit;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .releaseTitle\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  display: flow-root;\n\t\t\t\t\t\t  color : #c3c3c3;\n\t\t\t\t\t\t  font-family: &apos;Muli&apos;, sans-serif;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  .desc\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  display : none;\n\t\t\t\t\t\t  padding: 0 0px 13px 59px;\n\t\t\t\t\t\t  font-family: &apos;Muli&apos;, sans-serif;\n\t\t\t\t\t\t  clear : both;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  .labelStyle1\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  padding: 7px 0;\n\/* \t\t\t\t\t\t    float: left; *\/\n\t\t\t\t\t\t    width: 10%;\n\t\t\t\t\t\t\tdisplay : block;\n\t\t\t\t\t\t  font-family: &apos;Muli&apos;, sans-serif;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  @media(max-width : 992px)\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t\t  .labelStyle1\n\t\t\t\t\t\t\t  {\n\t\t\t\t\t\t\t\t  width : 100px !important;\n\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .contentTable  \n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  border-collapse : collapse;\n\t\t\t\t\t\t  width : 90%;\n\t\t\t\t\t\t  margin : auto;\n\t\t\t\t\t\t  font-family: &apos;Muli&apos;, sans-serif;\n\t\t\t\t\t\t  animation-name: fadeInDown;\n\t\t\t\t\t\t  animation-duration: 0.3s;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  .contentTable td &gt; div\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  font-family: &apos;Muli&apos;, sans-serif;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  .contentTable td\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  padding : 5px;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  label.labelStyle1:before\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  content: &apos;\\f0DA&apos;;\n\t\t\t\t\t\t    display: inline-block;\n\t\t\t\t\t\t    font: normal normal normal 16px\/1 FontAwesome;\n\t\t\t\t\t\t    font-size: 16px;\n\t\t\t\t\t\t    text-rendering: auto;\n\t\t\t\t\t\t    -webkit-font-smoothing: antialiased;\n\t\t\t\t\t\t    -moz-osx-font-smoothing: grayscale;\n\t\t\t\t\t\t    padding: 0 6px;\n\t\t\t\t\t\t    color : #8f9a96;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  labelStyle2\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  font-size : 15px;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  label.labelStyle2:before\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  content: &apos;\\f0d7&apos;;\n\t\t\t\t\t\t    display: inline-block;\n\t\t\t\t\t\t    font: normal normal normal 16px\/1 FontAwesome;\n\t\t\t\t\t\t    font-size: 16px;\n\t\t\t\t\t\t    text-rendering: auto;\n\t\t\t\t\t\t    -webkit-font-smoothing: antialiased;\n\t\t\t\t\t\t    -moz-osx-font-smoothing: grayscale;\n\t\t\t\t\t\t    padding: 0 6px;\n\t\t\t\t\t\t    color : #8f9a96;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .sections{\n\t\t\t\t\t\t\tfont-size: 1em;\n\t\t\t\t\t\t    font-weight: bold;\n\t\t\t\t\t\t    position: relative;\n\t\t\t\t\t\t    width: 90%;\n\t\t\t\t\t\t    display: table;\n\t\t\t\t\t\t    margin: auto;\n\t\t\t\t\t\t    height: 22px;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .section0{\n\t\t\t\t\t\t  height: 22px;\n\t\t\t\t\t\tposition: absolute;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  \n\t\t\t\t\t\t\n\t\t\t\t\t\t  #progressbar {\n\t\t\t\t\t\t     position: relative;\n\t\t\t\t\t\t    height: 2px;\n\t\t\t\t\t\t    background-color: #DFE3E4;\n\t\t\t\t\t\t    margin: 8px auto;\n\t\t\t\t\t\t    border-right: none;\n\t\t\t\t\t\t    border-left: none;\n\t\t\t\t\t\t    clear: both;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t.progress_OuterCircle{\n\t\t\t\t\t\t\t\t\t\twidth: 18px;\n\t\t\t\t\t\t\t\t\t    height: 18px;\n\t\t\t\t\t\t\t\t\t    top: 0px;\n\t\t\t\t\t\t\t\t\t\tbackground: #3fc997;\n\t\t\t\t\t\t\t\t\t\tborder-radius: 50%;\n\t\t\t\t\t\t\t\t\t\tz-index: 1;\n\t\t\t\t\t\t\t\t\t\tposition: absolute;\n\t\t\t\t\t\t\t\t\t\tleft: 99%;\n\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\n\t\t\t\t\t\t\t.progress_InnerCircle{\n\t\t\t\t\t\t\t\t\t color: white;\n\t\t\t\t\t\t\t\t    margin: 2px;\n\t\t\t\t\t\t\t\t    position: relative;\n\t\t\t\t\t\t\t\t    top: -2px;\n\t\t\t\t\t\t\t\t    font-size: 11px;\n\t\t\t\t\t\t\t\t    padding: 2px;\n\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t.progressCurrent{\n\t\t\t\t\t\t\tfont-size: 20px;\n\t\t\t\t\t\t    margin: 0;\n\t\t\t\t\t\t    top: 0;\n\t\t\t\t\t\t    box-sizing: border-box;\n\t\t\t\t\t\t    padding: 1px;\n\t\t\t\t\t\t    border-radius: 50%;\n\t\t\t\t\t\t    height: 22px;\n\t\t\t\t\t\t    width: 22px;\n\t\t\t\t\t\t    color: white;\n\t\t\t\t\t\t    position: relative;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t.progress_OuterCircle_Current{\n\t\t\t\t\t\t    width: 35px;\n\t\t\t\t\t\t    height: 35px;\n\t\t\t\t\t\t    box-sizing: border-box;\n\t\t\t\t\t\t    top: -6px;\n\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t.progress_InnerCircle_Current{\n\t\t\t\t\t\t    width: 12px;\n\t\t\t\t\t\t    height: 12px;\n\t\t\t\t\t\t    margin: 32%;\n\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t.progress_OuterCircle_unVisited{\n\t\t\t\t\t\t\t    background: #cccccc !important;\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t.statusDiv\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  float: right;\n\t\t\t\t\t\t  width: 74%;\n\t\t\t\t\t\t  font-size: 12px;\n\t\t\t\t\t\t  animation-name: fadeInDown;\n\t\t\t\t\t\t  animation-duration: 0.3s;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t.statusDiv\t&gt; div\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\twidth: 18%;\n\t\t\t\t\t\t    float: left;\n\t\t\t\t\t\t    text-align: center;\n\t\t\t\t\t\t    font-size: 12px;\n\t\t\t\t\t\t    position: relative;\t\n\t\t\t\t\t\t\tfont-family: &apos;Muli&apos;, sans-serif;\n\t\t\t\t\t\t\t}\t\n\t\t\t\t\t\t\t.statusDiv\t&gt; div:nth-child(2)\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\tleft :  4%;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t.statusDiv\t&gt; div:nth-child(3)\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\tleft :  8%;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t.statusDiv\t&gt; div:nth-child(4)\n\t\t\t\t\t\t\t{\n\t\t\t\t\t\t\t\tleft :  11%;\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t.mainHeader\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  font-size: 18px;\n\t\t\t\t\t\t    color: #4E5E7A;\n\t\t\t\t\t\t    font-weight: lighter;\n\t\t\t\t\t\t    line-height: 40px;\n\t\t\t\t\t\t  border-bottom: 2px solid #e8e8e8;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  ul &gt; li:last-child\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  border-bottom : none;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .mainDiv\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t\t  padding : 1%;\n\t\t\t\t\t\t\t  font-size : 14px;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .zc-live-primary-btn\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t\t  border-color: rgba(0,0,0,0.03);\n    \t\t\t\t\t\t\tcolor: #fff;\n\t\t\t\t\t\t\t\tmargin-right : 10px;\n\t\t\t\t\t\t\t\tpadding: 5px 10px;\n    \t\t\t\t\t\t\tmin-width: 70px;\n    \t\t\t\t\t\t\tcursor: pointer;\n    \t\t\t\t\t\t\toutline: none;\n    \t\t\t\t\t\t\tfont-weight: normal;\n    \t\t\t\t\t\t\ttext-align: center;\n    \t\t\t\t\t\t\tvertical-align: top;\n    \t\t\t\t\t\t\tbackground-image: none;\n    \t\t\t\t\t\t\tborder: 1px solid transparent;\n    \t\t\t\t\t\t\twhite-space: nowrap;\n    \t\t\t\t\t\t\tfont-size: 13px;\n    \t\t\t\t\t\t\tline-height: 1.5;\n    \t\t\t\t\t\t\tborder-radius: 0;\n    \t\t\t\t\t\t\tdisplay: inline-block;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  a{\n\t\t\t\t\t\t\t  text-decoration: none;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  @media(max-width : 500px)\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t\t  .releaseTitle\n\t\t\t\t\t\t\t  {\n\t\t\t\t\t\t\t  margin: 15px 0 !important;\n\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t  .releaseTitle &gt; span:nth-child(3)\n\t\t\t\t\t\t\t  {\n\t\t\t\t\t\t\t\t  margin-top: 10px !important;\n\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  &lt;\/style&gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  &lt;div class=&quot;mainDiv&quot;&gt;\n&lt;%\n\tstatusMap = {&quot;Submitted&quot;:&quot;1&quot;,&quot;Assigned to Editor&quot;:&quot;2&quot;,&quot;Review in Progress&quot;:&quot;3&quot;,&quot;Approved&quot;:&quot;4&quot;};\n\tstatusList = statusMap.keys();\n\t%&gt;\n&lt;div class=&quot;mainHeader&quot;&gt;Scheduled Releases \n\t\t\t\t\t\t  &lt;a class=&quot;zc-live-primary-btn&quot; style=&quot;float:right;background:#3d566e;&quot; href=&quot;#Form:New_Release?zc_LoadIn=dialog&quot; &gt;&lt;i style=&quot;padding-right: 5px;&quot; class=&quot;fa fa-plus&quot;&gt;&lt;\/i&gt;Add New&lt;\/a&gt;\n\t\t\t\t\t\t   &lt;\/div&gt;\n\t\t\t\t\t\t  &lt;ul style=&quot;padding-left:13px;margin: 0px;border-bottom: 1px solid #eee;&quot;&gt;\n&lt;%\n\tscheduledRecs = New_Release[Status == &quot;Scheduled&quot; || Status == &quot;Ready for Release&quot;];\n\tif(scheduledRecs.count() &gt; 0)\n\t{\n\t\tlistNo = 1;\n\t\tfor each  Rec in scheduledRecs\n\t\t{\n\t\t\t%&gt;\n&lt;li class=&quot;list &quot;&gt;\n\t\t\t\t\t\t  \t&lt;div class=&quot;headerDiv&quot;&gt; \n\t\t\t\t\t\t\t  &lt;div class=&quot;releaseTitle&quot;&gt;\n\t\t\t\t\t\t  \t\t&lt;span style=&quot;font-size: 17px;text-transform: capitalize;color: #1b88de;font-family: &apos;Muli&apos;, sans-serif;&quot;&gt;&lt;%=Rec.Title%&gt;&lt;\/span&gt; &lt;span style=&quot;color: #555;padding-left: 5px;border-left: 1px solid #b7b7b7;&quot;&gt;&lt;%=Rec.Release_Type.Release_Type%&gt;&lt;span style=&quot;color:#c3c3c3;&quot;&gt; scheduled on &lt;\/span&gt;&lt;b&gt;&lt;%=Rec.Tentative_Release_Date%&gt;&lt;\/b&gt;&lt;\/span&gt; \n\t\t\t\t\t\t  &lt;span style=&quot;float: right;&quot;&gt;\n\t\t\t\t\t\t  &lt;a class=&quot;zc-live-primary-btn&quot; style=&quot;background-color: #3fc997;&quot; href=&quot;&lt;%=zoho.appuri%&gt;#Form:Add_Content?ReleaseID=&lt;%=Rec.ID%&gt;&amp;zc_LoadIn=dialog&quot;&gt;Add Content&lt;\/a&gt;\n&lt;%\n\t\t\tif(Rec.Status = &quot;Ready for Release&quot;)\n\t\t\t{\n\t\t\t\t%&gt;\n&lt;a class=&quot;zc-live-primary-btn&quot; href=&quot;#Form:Release_Details?RecID=&lt;%=Rec.ID%&gt;&amp;zc_LoadIn=dialog&quot; &gt;Launch&lt;\/a&gt;\n&lt;%\n\t\t\t}\n\t\t\telse\n\t\t\t{\n\t\t\t\t%&gt;\n&lt;a class=&quot;zc-live-primary-btn&quot; style=&quot;background:rgba(63, 201, 151, 0.52);&quot; title=&quot;Will be enabled once all the contents in this release gets approved&quot;&gt;Launch&lt;\/a&gt;\n&lt;%\n\t\t\t}\n\t\t\t%&gt;\n&lt;\/span&gt;&lt;\/div&gt;\n\t\t\t\t\t\t  &lt;input type=&quot;checkbox&quot; id=&quot;descCheckbox&lt;%=listNo%&gt;&quot; style=&quot;display:none;&quot; &gt;\n\t\t\t\t\t\t  &lt;label class=&quot;labelStyle1&quot; for=&quot;descCheckbox&lt;%=listNo%&gt;&quot;&gt;Description&lt;\/label&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;desc&quot;&gt;&lt;%=Rec.Description%&gt;&lt;\/div&gt;\n\t\t\t\t\t\t  &lt;style&gt;\n\t\t\t\t\t\t  #descCheckbox&lt;%=listNo%&gt;:checked ~ div.desc\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  display : block;\n\t\t\t\t\t\t  animation-name: fadeInDown;\n\t\t\t\t\t\t  animation-duration: 0.3s;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  #descCheckbox&lt;%=listNo%&gt;:checked ~ label:before {\n\t\t\t\t\t\t    content: &apos;\\f0d7&apos;;\n\t\t\t\t\t\t    display: inline-block;\n\t\t\t\t\t\t    font: normal normal normal 16px\/1 FontAwesome;\n\t\t\t\t\t\t    font-size: 16px;\n\t\t\t\t\t\t    text-rendering: auto;\n\t\t\t\t\t\t    -webkit-font-smoothing: antialiased;\n\t\t\t\t\t\t    -moz-osx-font-smoothing: grayscale;\n\t\t\t\t\t\t    padding: 0 6px;\n\t\t\t\t\t\t  color : #8f9a96;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  &lt;\/style&gt;\n\t\t\t\t\t\t  &lt;div style=&quot;font-family: &apos;Muli&apos;, sans-serif;clear:both;&quot;&gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t   &lt;input type=&quot;checkbox&quot; id=&quot;contentCheckbox&lt;%=listNo%&gt;&quot; style=&quot;display:none;&quot; &gt;\n\t\t\t\t\t\t  &lt;label class=&quot;labelStyle2&quot; for=&quot;contentCheckbox&lt;%=listNo%&gt;&quot;&gt;Contents&lt;\/label&gt;\n\t\t\t\t\t\t  &lt;style&gt;\n\t\t\t\t\t\t  #contentCheckbox&lt;%=listNo%&gt;:checked ~ table.contentTable\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  display : none;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  #contentCheckbox&lt;%=listNo%&gt;:checked ~ div.statusDiv\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  display : none;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  #contentCheckbox&lt;%=listNo%&gt;:checked ~ label:before {\n\t\t\t\t\t\t    content: &apos;\\f0DA&apos;;\n\t\t\t\t\t\t    display: inline-block;\n\t\t\t\t\t\t    font: normal normal normal 16px\/1 FontAwesome;\n\t\t\t\t\t\t    font-size: 16px;\n\t\t\t\t\t\t    text-rendering: auto;\n\t\t\t\t\t\t    -webkit-font-smoothing: antialiased;\n\t\t\t\t\t\t    -moz-osx-font-smoothing: grayscale;\n\t\t\t\t\t\t    padding: 0 6px;\n\t\t\t\t\t\t  color : #8f9a96;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  &lt;\/style&gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  \n\t\t\t\t\t\t  &lt;div class=&quot;statusDiv&quot; &gt;\n\t\t\t\t\t\t  &lt;div&gt;Submitted by Writer&lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div&gt;Assigned to Editor&lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div&gt;Review in Progress&lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div&gt;Approved&lt;\/div&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n\t\t\t\t\t\t \n\t\t\t\t\t\t  \t\t\t&lt;table class=&quot;contentTable&quot;&gt;\n&lt;%\n\t\t\tsNo = 1;\n\t\t\tfor each  releaseContent in Add_Content[ReleaseID == Rec.ID]\n\t\t\t{\n\t\t\t\t%&gt;\n&lt;tr&gt;\n\t\t\t\t\t\t\t\t\t\t    \n\t\t\t\t\t\t\t\t\t\t\t&lt;td style=&quot;width:25%;&quot;&gt;\n\t\t\t\t\t\t  \t\t\t\t\t&lt;div style=&quot;font-size:15px;&quot;&gt;&lt;%=releaseContent.Title%&gt;&lt;\/div&gt;\n\t\t\t\t\t\t  &lt;div style=&quot;color:#9a9a9a;font-size:12px;&quot;&gt;&lt;span style=&quot;padding-right:5px;&quot;&gt;Writer : &lt;\/span&gt;&lt;%=releaseContent.Writer.Name%&gt;&lt;\/div&gt;\n\t\t\t\t\t\t  \t\t\t\t\t&lt;\/td&gt;\n\t\t\t\t\t\t\t\t\t\t\t&lt;td style=&quot;width:60%;&quot;&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;sections&quot; style=&quot;&quot; &gt;\n&lt;%\n\t\t\t\tcurrentStatus = Submit_Your_Document[Title == releaseContent.ID].Stage_of_Approval;\n\t\t\t\tif(currentStatus != null)\n\t\t\t\t{\n\t\t\t\t\tcurrentStatusInt = statusMap.get(currentStatus).toLong();\n\t\t\t\t}\n\t\t\t\telse\n\t\t\t\t{\n\t\t\t\t\tcurrentStatusInt = 0;\n\t\t\t\t}\n\t\t\t\tcount = 1;\n\t\t\t\tsectionWidth = 0.0;\n\t\t\t\tprogressWidth = (currentStatusInt - 1) * 33.34;\n\t\t\t\t%&gt;\n&lt;style&gt;\n\t\t\t\t\t\t  #progress_&lt;%=listNo%&gt;_&lt;%=sNo%&gt; {\n\t\t\t\t\t\t    background:#3fc997;\n\t\t\t\t\t\t\theight: 2px;\n\t\t\t\t\t\t    width: &lt;%=progressWidth%&gt;%;\n\t\t\t\t\t\t    max-width: 100%;\n\t\t\t\t\t\t    float: left;\n\t\t\t\t\t\t    animation: progress&lt;%=listNo%&gt;&lt;%=sNo%&gt; 1s 1;\n\t\t\t\t\t\t  \/*transition: 0.4s linear;\n\t\t\t\t\t\t    transition-property: width, background-color;*\/\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t\n\t\t\t\t\t\t  @keyframes progress&lt;%=listNo%&gt;&lt;%=sNo%&gt; { \n\t\t\t\t\t\t    from { width:0; }\n\t\t\t\t\t\t    to { width:  &lt;%=progressWidth%&gt;%; }\n\t\t\t\t\t\t      }\n\t\t\t\t\t\t&lt;\/style&gt;\n&lt;%\n\t\t\t\tfor each  status in statusList\n\t\t\t\t{\n\t\t\t\t\tif(currentStatusInt &gt; count)\n\t\t\t\t\t{\n\t\t\t\t\t\t%&gt;\n&lt;div class=&quot;section0&quot; style=&quot;width:&lt;%=sectionWidth%&gt;%;&quot;&gt; &lt;div class=&quot;progress_OuterCircle&quot;&gt; &lt;div class=&quot;progress_InnerCircle fa fa-check&quot;&gt;&lt;\/div&gt; &lt;\/div&gt;  &lt;\/div&gt;\n&lt;%\n\t\t\t\t\t}\n\t\t\t\t\telse if(currentStatusInt == count)\n\t\t\t\t\t{\n\t\t\t\t\t\t%&gt;\n&lt;div class=&quot;section0&quot; style=&quot;width:&lt;%=sectionWidth%&gt;%;&quot;&gt;  &lt;div class=&quot;progress_OuterCircle&quot; style=&quot;width:22px;height:22px;text-align:Center;top: -2px;&quot;&gt; &lt;div class=&quot;progressCurrent fa fa-check-circle&quot;&gt;&lt;\/div&gt;&lt;\/div&gt; &lt;\/div&gt;\n&lt;%\n\t\t\t\t\t}\n\t\t\t\t\telse if(currentStatusInt &lt; count)\n\t\t\t\t\t{\n\t\t\t\t\t\t%&gt;\n&lt;div class=&quot;section0&quot; style=&quot;width:&lt;%=sectionWidth%&gt;%;&quot;&gt; &lt;div class=&quot;progress_OuterCircle progress_OuterCircle_unVisited&quot;&gt; &lt;div class=&quot;progress_InnerCircle fa fa-close&quot; style=&quot;padding: 2px;font-size: 12px;&quot;&gt;&lt;\/div&gt; &lt;\/div&gt;&lt;\/div&gt;\n&lt;%\n\t\t\t\t\t}\n\t\t\t\t\tcount = count + 1;\n\t\t\t\t\tsectionWidth = sectionWidth + 33.34;\n\t\t\t\t}\n\t\t\t\t%&gt;\n&lt;div id=&quot;progressbar&quot; style=&quot;&quot;&gt; &lt;div id=&quot;progress_&lt;%=listNo%&gt;_&lt;%=sNo%&gt;&quot; style=&quot;&quot;&gt;&lt;\/div&gt; &lt;\/div&gt; &lt;\/div&gt;\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  \t\t\t\t\t&lt;\/td&gt;\n\t\t\t\t\t\t  &lt;td style=&quot;width:12%;&quot;&gt;&lt;\/td&gt;\n\t\t\t\t\t\t  \t\t\t\t&lt;\/tr&gt;\n&lt;%\n\t\t\t\tsNo = sNo + 1;\n\t\t\t}\n\t\t\t%&gt;\n&lt;\/table&gt;\n\t\t\t\t\t\t   \n\t\t\t\t\t\t  \n\t\t\t\t\t\t  \n\t\t\t\t\t\t  &lt;\/li&gt;\n&lt;%\n\t\t\tlistNo = listNo + 1;\n\t\t}\n\t}\n\telse\n\t{\n\t\t%&gt;\n&lt;div style=&quot;padding:100px;text-align:center;&quot;&gt;\n\t\t\t\t\t\t  No Scheduled Releases available!\n\t\t\t\t\t\t  &lt;\/div&gt;\n&lt;%\n\t}\n\t%&gt;\n&lt;\/ul&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+		calendar All_Releases
+		{
+			displayName = "All Releases"
+			show all rows from New_Release    
+			(
+				Release_Type as "Release Type"
+				Tentative_Release_Date as "Tentative Release Date"
+				Actual_Release_Date as "Actual Release Date"
+				Contents.Title as "Contents"
+				Contents.Writer as "Contents.Writer"
+				Release_Notes as "Release Notes"
+				Territory
+				DateHidden
+				Description
+				Title
+			)
+			options
+			(
+				display type = month
+				week start day = sunday
+				display field = Title
+				start date = DateHidden
+				default date 
+				(
+	    			day   = Today
+	    			month = Currentmonth
+	    			year  = Currentyear
+				)
+				icon = "ui-1-calendar-grid-61"
+			)
+			conditional formatting
+			(
+				"Released Contents"
+				{
+				condition = (Status == "Released")
+				format = "color:#23825f;background-color:#9ef0c8;"
+				}
+				"Overdue"
+				{
+				condition = (Tentative_Release_Date < zoho.currentdate && Status != "Released")
+				format = "color:#c23932;background-color:#f59c96;"
+				}
+				"Scheduled Release"
+				{
+				condition = (Tentative_Release_Date > zoho.currentdate && Status != "Released")
+				format = "color:#2f7ba3;background-color:#bbe2fc;"
+				}
+				"Scheduled Release-Today"
+				{
+				condition = (Tentative_Release_Date == zoho.currentdate && Status != "Released")
+				format = "color:#2f7ba3;background-color:#bbe2fc;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = 2
+		     			title = "Overview"
+						fields
+						(
+							Title
+							Description
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Title
+							Description
+							Release_Type as "Release Type"
+							Tentative_Release_Date as "Tentative Release Date"
+							Actual_Release_Date as "Actual Release Date"
+							Contents.Title as "Contents"
+							Contents.Writer as "Contents.Writer"
+							Release_Notes as "Release Notes"
+							Territory
+							DateHidden
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Writer
+	{
+		icon = "users-2-a-edit"
+		form Submit_Your_Document
+		{
+			displayname = "Submit Your Document"
+			success message = "New Document has been submitted Successfully!"
+			field alignment = left
+			feature property = 32
+			must have Title
+			(
+				type = picklist
+				values  = Add_Content[Writer.Email == zoho.loginuserid && ReleaseID.Status == "Scheduled"].ID
+    			displayformat = [Title]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Whole_Content
+			(
+    			type = richtext
+				displayname = "Whole Content"
+				height = 200px
+				toolbar = enable
+				[
+					style, font-color, background-color, alignment, link, table, bullets-and-numbering, 
+					font-size : {1, 2, 3, 4, 5, 6, 7},
+					font-family : {"Serif", "Arial", "Courier New", "Georgia", "Tahoma", "Times New Roman", "Trebuchet", "Verdana", "Comic Sans Ms"}
+				]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Summary
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Document
+			(
+    			type = upload file
+				browse = local_drive
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Priority
+			(
+				type = picklist
+				values = {"High", "Medium", "Low"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Any_Other_Comments
+			(
+    			type = textarea
+				displayname = "Any Other Comments"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Submitter
+			(
+				type = picklist
+				values  = Add_User.ID
+    			displayformat = [Email]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Review_Status
+			(
+				type = picklist
+				displayname = "Review Status"
+				values = {"Reviewed", "Resubmitted", "Review Completed"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Stage_of_Approval
+			(
+				type = picklist
+				displayname = "Stage of Approval"
+				values = {"Submitted", "Assigned to Editor", "Review in Progress", "Approved"}
+				initial value = "Submitted"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Assigned_To
+			(
+				type = picklist
+				displayname = "Assigned To"
+				values  = Add_User.ID
+    			displayformat = [Email]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Conversation
+			(
+				type = grid
+				values  = Add_Conversation.ID
+    			bidirectional = DocumentID
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "files-folder-18"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Documents_In_Progress_Writer
+		{
+			displayName = "Documents In Progress"
+			show all rows from Submit_Your_Document  [Submitter.Email == zoho.loginuserid && Stage_of_Approval != "Approved"]  
+			(
+				Title
+				custom action "Resubmit "
+				(
+	  			workflow = Resubmit_
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Resubmit "
+				success message = ""
+				condition = (Review_Status == "Reviewed")
+				)
+				Priority
+				Stage_of_Approval as "Stage of Approval"
+				Whole_Content as "Whole Content"
+				custom action "View Comments"
+				(
+	  			workflow = View_Comments
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "View Comments"
+				success message = ""
+				)
+				Summary
+				Document
+				Any_Other_Comments as "Your Comments"
+				Assigned_To as "Assigned To"
+			)
+			group by
+			(
+				Stage_of_Approval ascending
+			)
+			options
+			(
+				icon = "files-folder-refresh"
+	 		)
+			conditional formatting
+			(
+				"Medium Priority"
+				{
+				condition = (Priority == "Medium")
+				fields = [Title]
+				format = "color:#fcc734;"
+				}
+				"High Priority"
+				{
+				condition = (Priority == "High")
+				fields = [Title]
+				format = "color:#fc6f6f;"
+				}
+				"Low Priority"
+				{
+				condition = (Priority == "Low")
+				fields = [Title]
+				format = "color:#b2cc0a;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Title
+				"Resubmit "
+							Priority
+				"View Comments"
+							Stage_of_Approval as "Stage of Approval"
+							Whole_Content as "Whole Content"
+							Summary
+							Document
+							Any_Other_Comments as "Your Comments"
+							Assigned_To as "Assigned To"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Title
+				"Resubmit "
+							Priority
+				"View Comments"
+							Stage_of_Approval as "Stage of Approval"
+							Whole_Content as "Whole Content"
+							Summary
+							Document
+							Any_Other_Comments as "Your Comments"
+							Assigned_To as "Assigned To"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Approved_Documents_Writer
+		{
+			displayName = "Approved Documents"
+			show all rows from Submit_Your_Document  [Submitter.Email == zoho.loginuserid && Stage_of_Approval == "Approved"]  
+			(
+				Title
+				Priority
+				Whole_Content as "Whole Content"
+				Summary
+				Document
+				Any_Other_Comments as "Your Comments"
+				Assigned_To as "Editor"
+				custom action "Review History"
+				(
+	  			workflow = Review_History
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Review History"
+				success message = ""
+				)
+			)
+			options
+			(
+				icon = "ui-1-check-square-09"
+	 		)
+			conditional formatting
+			(
+				"Medium Priority"
+				{
+				condition = (Priority == "Medium")
+				fields = [Title]
+				format = "color:#fcc734;"
+				}
+				"High Priority"
+				{
+				condition = (Priority == "High")
+				fields = [Title]
+				format = "color:#fc6f6f;"
+				}
+				"Low Priority"
+				{
+				condition = (Priority == "Low")
+				fields = [Title]
+				format = "color:#b2cc0a;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Title
+							Priority
+							Whole_Content as "Whole Content"
+							Summary
+							Document
+							Any_Other_Comments as "Your Comments"
+							Assigned_To as "Editor"
+				"Review History"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+								"Review History"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+								"Review History"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Title
+							Priority
+							Whole_Content as "Whole Content"
+							Summary
+							Document
+							Any_Other_Comments as "Your Comments"
+							Assigned_To as "Editor"
+				"Review History"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+			 			"Review History"
+    	 			)
+    			)
+			)
+		}
+	}
+	section Chief_Editor
+	{
+		displayname= "Chief Editor"
+		icon = "ui-1-edit-76"
+		list New_Requests
+		{
+			displayName = "New Requests"
+			show all rows from Submit_Your_Document  [Stage_of_Approval == "Submitted"]  
+			(
+				Title
+				Priority
+				Whole_Content as "Whole Content"
+				Summary
+				Document
+				Any_Other_Comments as "Comments"
+				Submitter
+				custom action "Assign Editor"
+				(
+	  			workflow = Assign_Editor
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Assign Editor"
+				success message = ""
+				condition = (Stage_of_Approval == "Submitted")
+				)
+			)
+			filters
+			(
+				Stage_of_Approval
+			)
+			group by
+			(
+				Priority ascending
+			)
+			options
+			(
+				icon = "arrows-1-loop-82"
+	 		)
+			conditional formatting
+			(
+				"Medium Priority"
+				{
+				condition = (Priority == "Medium")
+				fields = [Title]
+				format = "color:#fcc734;"
+				}
+				"High Priority"
+				{
+				condition = (Priority == "High")
+				fields = [Title]
+				format = "color:#fc6f6f;"
+				}
+				"Low Priority"
+				{
+				condition = (Priority == "Low")
+				fields = [Title]
+				format = "color:#b2cc0a;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Title
+							Priority
+							Whole_Content as "Whole Content"
+							Summary
+							Document
+							Any_Other_Comments as "Comments"
+							Submitter
+				"Assign Editor"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Title
+							Priority
+							Whole_Content as "Whole Content"
+							Summary
+							Document
+							Any_Other_Comments as "Comments"
+							Submitter
+				"Assign Editor"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Reviews_In_Progress_Chief_Editor
+		{
+			displayName = "Reviews In Progress"
+			show all rows from Submit_Your_Document  [Assigned_To.Email == zoho.loginuserid && Stage_of_Approval != "Approved"]  
+			(
+				Title
+				Priority
+				custom action "Review"
+				(
+	  			workflow = Review
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Review"
+				success message = ""
+				condition = (Review_Status is null || Review_Status == "Resubmitted")
+				)
+				Stage_of_Approval as "Stage of Approval"
+				Whole_Content as "Whole Content"
+				custom action "Approve"
+				(
+	  			workflow = Approve
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Approve"
+				success message = ""
+				)
+				Summary
+				Document
+				Any_Other_Comments as "Writer's Comments"
+				custom action "View Comments"
+				(
+	  			workflow = View_Comments1
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "View Comments"
+				success message = ""
+				)
+				Submitter
+			)
+			filters
+			(
+				"My Approvals"  :  Assigned_To.Email == zoho.loginuserid
+			)
+			group by
+			(
+				Stage_of_Approval ascending
+			)
+			conditional formatting
+			(
+				"High Priority"
+				{
+				condition = (Priority == "High")
+				format = "color:#fc6f6f;"
+				}
+				"Medium Priority"
+				{
+				condition = (Priority == "Medium")
+				format = "color:#fcc734;"
+				}
+				"Low Priority"
+				{
+				condition = (Priority == "Low")
+				format = "color:#b2cc0a;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Title
+				"Review"
+							Priority
+				"Approve"
+							Stage_of_Approval as "Stage of Approval"
+							Whole_Content as "Whole Content"
+				"View Comments"
+							Summary
+							Document
+							Any_Other_Comments as "Writer's Comments"
+							Submitter
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Title
+				"Review"
+							Priority
+				"Approve"
+							Stage_of_Approval as "Stage of Approval"
+							Whole_Content as "Whole Content"
+				"View Comments"
+							Summary
+							Document
+							Any_Other_Comments as "Writer's Comments"
+							Submitter
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Requests
+		{
+			displayName = "All Requests"
+			show all rows from Submit_Your_Document    
+			(
+				Title
+				Priority
+				Whole_Content as "Whole Content"
+				Summary
+				Document
+				Submitter
+				(
+					view = User_Details
+				)
+				Assigned_To as "Assigned To"
+				Any_Other_Comments as "Other Comments"
+				Stage_of_Approval as "Stage of Approval"
+				custom action "Review History"
+				(
+	  			workflow = Review_History1
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Review History"
+				success message = ""
+				)
+			)
+			group by
+			(
+				Stage_of_Approval ascending
+			)
+			options
+			(
+				icon = "shopping-list"
+	 		)
+			conditional formatting
+			(
+				"Medium Priority"
+				{
+				condition = (Priority == "Medium")
+				fields = [Title]
+				format = "color:#fcc734;"
+				}
+				"High Priority"
+				{
+				condition = (Priority == "High")
+				fields = [Title]
+				format = "color:#fc6f6f;"
+				}
+				"Low Priority"
+				{
+				condition = (Priority == "Low")
+				fields = [Title]
+				format = "color:#b2cc0a;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Title
+							Priority
+							Whole_Content as "Whole Content"
+							Summary
+							Document
+							Submitter
+							Assigned_To as "Assigned To"
+							Any_Other_Comments as "Other Comments"
+							Stage_of_Approval as "Stage of Approval"
+				"Review History"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+								"Review History"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+								"Review History"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Title
+							Priority
+							Whole_Content as "Whole Content"
+							Summary
+							Document
+							Submitter
+							Assigned_To as "Assigned To"
+							Any_Other_Comments as "Other Comments"
+							Stage_of_Approval as "Stage of Approval"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+			 			"Review History"
+    	 			)
+    			)
+			)
+		}
+	}
+	section Editor
+	{
+		icon = "files-edit"
+		list Reviews_In_Progress
+		{
+			displayName = "Reviews In Progress"
+			show all rows from Submit_Your_Document  [Assigned_To.Email == zoho.loginuserid && Stage_of_Approval != "Approved"]  
+			(
+				Title
+				Priority
+				custom action "Review"
+				(
+	  			workflow = Review1
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Review"
+				success message = ""
+				condition = (Review_Status is null || Review_Status == "Resubmitted")
+				)
+				Stage_of_Approval as "Stage of Approval"
+				Whole_Content as "Whole Content"
+				custom action "Approve"
+				(
+	  			workflow = Approve1
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Approve"
+				success message = ""
+				)
+				Summary
+				Document
+				Any_Other_Comments as "Writer's Comments"
+				custom action "View Comments"
+				(
+	  			workflow = View_Comments2
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "View Comments"
+				success message = ""
+				)
+				Submitter
+			)
+			filters
+			(
+				"My Approvals"  :  Assigned_To.Email == zoho.loginuserid
+			)
+			group by
+			(
+				Stage_of_Approval ascending
+			)
+			conditional formatting
+			(
+				"High Priority"
+				{
+				condition = (Priority == "High")
+				format = "color:#fc6f6f;"
+				}
+				"Medium Priority"
+				{
+				condition = (Priority == "Medium")
+				format = "color:#fcc734;"
+				}
+				"Low Priority"
+				{
+				condition = (Priority == "Low")
+				format = "color:#b2cc0a;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Title
+				"Review"
+							Priority
+				"Approve"
+							Stage_of_Approval as "Stage of Approval"
+							Whole_Content as "Whole Content"
+				"View Comments"
+							Summary
+							Document
+							Any_Other_Comments as "Writer's Comments"
+							Submitter
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Title
+				"Review"
+							Priority
+				"Approve"
+							Stage_of_Approval as "Stage of Approval"
+							Whole_Content as "Whole Content"
+				"View Comments"
+							Summary
+							Document
+							Any_Other_Comments as "Writer's Comments"
+							Submitter
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Completed_Reviews
+		{
+			displayName = "Completed Reviews"
+			show all rows from Submit_Your_Document  [Assigned_To.Email == zoho.loginuserid && Stage_of_Approval == "Approved"]  
+			(
+				Title
+				Priority
+				Whole_Content as "Whole Content"
+				Summary
+				Document
+				Any_Other_Comments as "Writer's Comments"
+				Submitter
+				custom action "Review History"
+				(
+	  			workflow = Review_History2
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Review History"
+				success message = ""
+				)
+			)
+			options
+			(
+				icon = "design-todo"
+	 		)
+			conditional formatting
+			(
+				"Medium Priority"
+				{
+				condition = (Priority == "Medium")
+				fields = [Title]
+				format = "color:#fcc734;"
+				}
+				"High Priority"
+				{
+				condition = (Priority == "High")
+				fields = [Title]
+				format = "color:#fc6f6f;"
+				}
+				"Low Priority"
+				{
+				condition = (Priority == "Low")
+				fields = [Title]
+				format = "color:#b2cc0a;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Title
+							Priority
+							Whole_Content as "Whole Content"
+							Summary
+							Document
+							Any_Other_Comments as "Writer's Comments"
+							Submitter
+				"Review History"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+								"Review History"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+								"Review History"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Title
+							Priority
+							Whole_Content as "Whole Content"
+							Summary
+							Document
+							Any_Other_Comments as "Writer's Comments"
+							Submitter
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+			 			"Review History"
+    	 			)
+    			)
+			)
+		}
+	}
+	section Users
+	{
+		icon = "users-multiple-11"
+		form Add_User
+		{
+			displayname = "Add User"
+			success message = "New User Added Successfully! A mail will be sent to the user with application access link."
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Email
+			(
+    			type = email
+				maxchar = 221
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Job_Title
+			(
+				type = picklist
+				displayname = "Job Title"
+				values = {"Writer", "Editor", "Chief Editor"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Mobile_Number
+			(
+    			type = phonenumber
+				displayname = "Mobile Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-2-a-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		custom User_Details
+		{
+			displayName = "User Details"
+			show all rows from Add_User    
+			(
+				Mobile_Number as "Mobile Number"
+				Job_Title as "Job Title"
+				Email
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+			)
+			options
+			(
+				icon = "users-2-contacts-44"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Address
+							Email
+							Mobile_Number as "Mobile Number"
+							Job_Title as "Job Title"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Email
+							Job_Title as "Job Title"
+							Mobile_Number as "Mobile Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Settings
+	{
+		icon = "ui-1-settings-gear-63"
+		summary Release_Territories
+		{
+			displayName = "Release Territories"
+			show all rows from Add_Territory    
+			(
+				Territory
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 2
+				icon = "location-position-pin"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Territory
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Territory
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		summary Release_Types
+		{
+			displayName = "Release Types"
+			show all rows from Add_Release_Type    
+			(
+				Release_Type as "Release Type"
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 2
+				icon = "business-hierarchy-54"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Release_Type as "Release Type"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Release_Type as "Release Type"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Hidden_Items
+	{
+		displayname= "Hidden Items"
+		hide = true
+		icon = "ui-2-menu-bold"
+		form Assign_Editor
+		{
+			displayname = "Assign Editor"
+			store data in zc = false
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			RecID
+			(
+				type = number
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Select_Editor
+			(
+				type = picklist
+				displayname = "Select Editor"
+				values  = Add_User[Job_Title == "Editor" || Job_Title == "Chief Editor"].ID
+    			displayformat = [Email]
+				allow new entries = true
+				[
+					displayname = "Add New Editor"
+				]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "design-code-editor"
+			)
+			actions
+			{
+				Assign
+				(
+   					type = button
+   					displayname = "Assign"
+				)
+			}
+		}
+		form Release_Details
+		{
+			displayname = "Release Details"
+			store data in zc = false
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			RecID
+			(
+				type = number
+				maxchar = 19
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Release_Date
+			(
+    			type = date
+				displayname = "Release Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Territory
+			(
+				type = picklist
+				values  = Add_Territory.ID
+    			displayformat = [Territory]
+				allow new entries = true
+				[
+					displayname = "Add New Territory"
+				]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Release_Notes
+			(
+    			type = textarea
+				displayname = "Release Notes"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "shopping-delivery-time"
+			)
+			actions
+			{
+				Submit
+				(
+   					type = submit
+   					displayname = "Submit"
+				)
+			}
+		}
+		form Add_Conversation
+		{
+			displayname = "Add Conversation"
+			success message = "New Comment Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			DocumentID
+			(
+				type = picklist
+				values  = Submit_Your_Document.ID
+    			bidirectional = Conversation
+    			displayformat = [ID]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Added_By
+			(
+				type = picklist
+				displayname = "Added By"
+				values = {"Writer", "Editor"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Comments
+			(
+    			type = textarea
+				height = 150px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "design-2-3d-29"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Add_Review_Report
+		{
+			displayName = "Add Review Report"
+   			hide = true
+			show all rows from Add_Conversation    
+			(
+				Added_By as "Added By"
+				Comments
+				DocumentID
+			)
+			options
+			(
+				icon = "social-1-logo-yelp"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Added_By as "Added By"
+							Comments
+							DocumentID
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Added_By as "Added By"
+							Comments
+							DocumentID
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		form Add_Content
+		{
+			displayname = "Add Content"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			ReleaseID
+			(
+				type = picklist
+				values  = New_Release.ID
+    			bidirectional = Contents
+    			displayformat = [ID]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Title
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Writer
+			(
+				type = picklist
+				values  = Add_User[Job_Title == "Writer"].ID
+    			displayformat = [Email]
+				allow new entries = true
+				[
+					displayname = "Add New Writer"
+				]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-2-woman-up"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Release_Contents
+		{
+			displayName = "Release Contents"
+   			hide = true
+			show all rows from Add_Content    
+			(
+				Writer
+				Description
+				Title
+				ReleaseID
+			)
+			options
+			(
+				icon = "design-copy"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Title
+							Description
+							Writer
+							ReleaseID
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							ReleaseID
+							Title
+							Description
+							Writer
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		form Add_Territory
+		{
+			displayname = "Add Territory"
+			success message = "New Territory Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			must have unique Territory
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "location-pin-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Release_Type
+		{
+			displayname = "Add Release Type"
+			success message = "New Release Type Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Release_Type
+			(
+    			type = text
+				displayname = "Release Type"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "tech-2-keyboard-wireless"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+				 page Comments_View(docID) 
+	 	 { 
+ 	 	 displayname = "Comments View" 
+
+ 	 	 icon = "" 
+
+ 	 	 hide =  true
+	 	 Content="<zml \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dsp id='Comments_View1'>\n\t<![CDATA[htmlpage Comments_View1(docID)\ncontent\n&lt;%{\n\t%&gt;\n&lt;head&gt;\n\t\t\t\t\t\t  &lt;link href=&quot;https:\/\/fonts.googleapis.com\/css?family=Roboto|Roboto+Mono|Faustina|Josefin+Sans|Titillium+Web&quot; rel=&quot;stylesheet&quot;&gt;\n\t\t\t\t\t\t  &lt;style&gt;\n\t\t\t\t\t\t  .timeline {\n\t\t\t\t\t\t  list-style: none;\n\t\t\t\t\t\t  padding: 15px 35px;\n\t\t\t\t\t\t  position: relative;\n\t\t\t\t\t\t  width : 84%;\n\t\t\t\t\t\t  margin: 0 13px;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\t.timeline &gt; li {\n\t\t\t\t\t\t  margin-bottom: 0px;\n\t\t\t\t\t\t  position: relative;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t\n\t\t\t\t\t\t.timeline &gt; li:before,\n\t\t\t\t\t\t.timeline &gt; li:after {\n\t\t\t\t\t\t  content: &quot;&quot;;\n\t\t\t\t\t\t  display: table;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t\n\t\t\t\t\t\t.timeline &gt; li:after {\n\t\t\t\t\t\t  clear: both;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t\n\t\t\t\t\t\t.timeline &gt; li:before,\n\t\t\t\t\t\t.timeline &gt; li:after {\n\t\t\t\t\t\t  content: &quot;&quot;;\n\t\t\t\t\t\t  display: table;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t\n\t\t\t\t\t\t.timeline &gt; li:after {\n\t\t\t\t\t\t  clear: both;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t\n\t\t\t\t\t\t.timeline &gt; li &gt; .timeline-panel {\n\t\t\t\t\t\t  width: calc(100% - 42px);\n\t\t\t\t\t\t  float: left;\n\t\t\t\t\t\t  border-bottom: 1px solid #f1f1f1;\n\t\t\t\t\t\t  padding: 20px;\n\t\t\t\t\t\t  position: relative;\n\t\t\t\t\t\t  padding-top:0px;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t\n\t\t\t\t\t\t\/*.timeline &gt; li &gt; .timeline-panel:before {\n\t\t\t\t\t\t  position: absolute;\n\t\t\t\t\t\t  top: 26px;\n\t\t\t\t\t\t  right: -15px;\n\t\t\t\t\t\t  display: inline-block;\n\t\t\t\t\t\t  border-top: 15px solid transparent;\n\t\t\t\t\t\t  border-left: 15px solid #ccc;\n\t\t\t\t\t\t  border-right: 0 solid #ccc;\n\t\t\t\t\t\t  border-bottom: 15px solid transparent;\n\t\t\t\t\t\t  content: &quot;&quot;;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t\n\t\t\t\t\t\t.timeline &gt; li &gt; .timeline-panel:after {\n\t\t\t\t\t\t  position: absolute;\n\t\t\t\t\t\t  top: 27px;\n\t\t\t\t\t\t  right: -14px;\n\t\t\t\t\t\t  display: inline-block;\n\t\t\t\t\t\t  border-top: 14px solid transparent;\n\t\t\t\t\t\t  border-left: 14px solid #fff;\n\t\t\t\t\t\t  border-right: 0 solid #fff;\n\t\t\t\t\t\t  border-bottom: 14px solid transparent;\n\t\t\t\t\t\t  content: &quot;&quot;;\n\t\t\t\t\t\t}*\/\n\t\t\t\t\t\t\n\t\t\t\t\t\t.timeline &gt; li &gt; .timeline-badge {\n\t\t\t\t\t\t  color: #fff;\n\t\t\t\t\t\t  width: 50px;\n\t\t\t\t\t\t  height: 50px;\n\t\t\t\t\t\t  line-height: 50px;\n\t\t\t\t\t\t  font-size: 1.4em;\n\t\t\t\t\t\t  text-align: center;\n\t\t\t\t\t\t  position: absolute;\n\t\t\t\t\t\t  top: 16px;\n\t\t\t\t\t\t  left: 50%;\n\t\t\t\t\t\t  margin-left: -25px;\n\t\t\t\t\t\t  background-color: #999999;\n\t\t\t\t\t\t  z-index: 100;\n\t\t\t\t\t\t  border-top-right-radius: 50%;\n\t\t\t\t\t\t  border-top-left-radius: 50%;\n\t\t\t\t\t\t  border-bottom-right-radius: 50%;\n\t\t\t\t\t\t  border-bottom-left-radius: 50%;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\t\/*.timeline &gt; li.timeline-inverted &gt; .timeline-panel:before {\n\t\t\t\t\t\t  border-left-width: 0;\n\t\t\t\t\t\t  border-right-width: 15px;\n\t\t\t\t\t\t  left: -15px;\n\t\t\t\t\t\t  right: auto;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t\n\t\t\t\t\t\t.timeline &gt; li.timeline-inverted &gt; .timeline-panel:after {\n\t\t\t\t\t\t  border-left-width: 0;\n\t\t\t\t\t\t  border-right-width: 14px;\n\t\t\t\t\t\t  left: -14px;\n\t\t\t\t\t\t  right: auto;\n\t\t\t\t\t\t}*\/\n\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\t.timeline-title {\n\t\t\t\t\t\t  margin-top: 0;\n\t\t\t\t\t\t   \/\/color : #319c7a;\n\t\t\t\t\t\t  color: #35bb8a;\n\t\t\t\t\t\t   font-size: 15px;\n\t\t\t\t\t\t    line-height: 26px;\n\t\t\t\t\t\t    \/* font-family: &apos;Roboto Mono&apos;, monospace; *\/\n\t\t\t\t\t\t    font-family: &apos;Roboto&apos;, sans-serif; \n\t\t\t\t\t\t    \/* font-family: &apos;Faustina&apos;, serif; *\/\n\t\t\t\t\t\t    \/* font-family: &apos;Titillium Web&apos;, sans-serif; *\/\n\t\t\t\t\t\t    \/*font-family: &apos;Josefin Sans&apos;, sans-serif;*\/\n\t\t\t\t\t\t}\n\t\t\t\t\t\t\n\t\t\t\t\t\t.timeline-body &gt; p,\n\t\t\t\t\t\t.timeline-body &gt; ul {\n\t\t\t\t\t\t  margin-bottom: 0;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t\n\t\t\t\t\t\t.timeline-body &gt; p + p {\n\t\t\t\t\t\t  margin-top: 5px;\n\t\t\t\t\t\t}\n\t\t\t\t\t\t\n\t\t\t\t\t\t h4\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  font-size: 18px;\n\t\t\t\t\t\t  margin-bottom: 10px;\n\t\t\t\t\t\t \n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .text-muted\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  color: #9a9a9a;\n\t\t\t\t\t\t  float:right;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t   .page-header\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t   width: 90%;\n\t\t\t\t\t\t   margin: 0px 5%;\n\t\t\t\t\t\t   border-bottom: 1px solid #e0e0e0;\n\t\t\t\t\t\t   padding: 7px 0;\n\t\t\t\t\t\t  font-size: 22px;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .container\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  width: 100% !important;\n\t\t\t\t\t\t  padding: 0px;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .timeline-heading\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  display: inline-block;padding: 10px;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  .profilePic\n\t\t\t\t\t\t  {\n\t\t\t\t\t\t  height: 40px;\n\t\t\t\t\t\t    width: 40px;\n\t\t\t\t\t\t    float: left;\n\t\t\t\t\t\t    border-radius: 50%;\n\t\t\t\t\t\t    margin-right: 6px;\n\t\t\t\t\t\t    display: flex;\n\t\t\t\t\t\t    align-items: center;\n\t\t\t\t\t\t    justify-content: center;\n\t\t\t\t\t\t    font-size: 25px;\n\t\t\t\t\t\t    \/\/background: #84c4b0;\n\t\t\t\t\t\t  background: #57cea3;\n\t\t\t\t\t\t    border: 1px solid #47c6a1;  \n\t\t\t\t\t\t  color: white;\n\t\t\t\t\t\t  }\n\t\t\t\t\t\t  \n\t\t\t\t\t\t  \n\t\t\t\t\t\t  \n\t\t\t\t\t\t  \n\t\t\t\t\t\t  \n\t\t\t\t\t\t  &lt;\/style&gt;\n\t\t\t\t\t\t    &lt;\/head&gt;\n&lt;%\n\tconversationRecords = Add_Conversation[DocumentID == docID.toLong()] sort by Added_Time desc;\n\tdocumentRecord = Submit_Your_Document[ID == docID.toLong()];\n\t%&gt;\n&lt;div class=&quot;container&quot;&gt;\n\t\t\t\t\t\t  &lt;div class=&quot;page-header&quot;&gt;\n\t\t\t\t\t\t  &lt;font style=&quot;font-size:18px;font-family: &apos;Roboto&apos;, sans-serif;&quot;&gt;Comments&lt;\/font&gt;\n\t\t\t\t\t\t  &lt;\/div&gt;\n&lt;%\n\tif(conversationRecords.count() == 0)\n\t{\n\t\t%&gt;\n&lt;ul class=&quot;timeline&quot; style=&quot;text-align: center;&quot;&gt; &lt;li&gt;No Comments Available!!&lt;\/li&gt; &lt;\/ul&gt;\n&lt;%\n\t}\n\telse\n\t{\n\t\t%&gt;\n&lt;ul class=&quot;timeline&quot;&gt;\n&lt;%\n\t\tfor each  conversation in conversationRecords\n\t\t{\n\t\t\tif(conversation.Added_By == &quot;Editor&quot;)\n\t\t\t{\n\t\t\t\tName = documentRecord.Assigned_To.Name;\n\t\t\t}\n\t\t\telse\n\t\t\t{\n\t\t\t\tName = documentRecord.Submitter.Name;\n\t\t\t}\n\t\t\t%&gt;\n&lt;li class=&quot;timeline-inverted&quot;&gt;\n\t\t\t\t\t\t      &lt;div class=&quot;timeline-heading&quot;&gt;\n\t\t\t\t\t\t        &lt;div class=&quot;profilePic&quot;&gt;&lt;span&gt;&lt;%=Name.subString(0,1).toUpperCase()%&gt;&lt;\/span&gt;&lt;\/div&gt;\n\t\t\t\t\t\t         &lt;div style=&quot;float: left;&quot;&gt;\n\t\t\t\t\t\t          &lt;div class=&quot;timeline-title&quot;&gt;  &lt;%=Name%&gt;            &lt;\/div&gt;\n\t\t\t\t\t\t          &lt;div style=&quot;font-size: 11px;color: #989898;color: #c3c0c0;line-height: 10px;&quot;&gt;&lt;%=conversation.Added_Time%&gt;&lt;\/div&gt;\n\t\t\t\t\t\t         &lt;\/div&gt;\n\t\t\t\t\t\t      &lt;\/div&gt;\n\t\t\t\t\t\t      &lt;div class=&quot;timeline-panel&quot;&gt;\n\t\t\t\t\t\t        &lt;div class=&quot;timeline-body&quot;&gt;\n\t\t\t\t\t\t          &lt;div style=&quot;font-family: &apos;Faustina&apos;, serif;font-size: 15px;&quot;&gt;&lt;%=conversation.Comments%&gt;&lt;\/div&gt;\n\t\t\t\t\t\t        &lt;\/div&gt;\n\t\t\t\t\t\t      &lt;\/div&gt;\n\t\t\t\t\t\t    &lt;\/li&gt;\n&lt;%\n\t\t}\n\t\t%&gt;\n&lt;\/ul&gt;\n&lt;%\n\t}\n\t%&gt;\n&lt;\/div&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+		list Scheduled_Releases
+		{
+			displayName = "Scheduled Releases"
+   			hide = true
+			show all rows from New_Release  [Status == "Scheduled" || Status == "Ready for Release"]  
+			(
+				Release_Notes as "Release Notes"
+				custom action "Launch"
+				(
+	  			workflow = Launch
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Launch"
+				success message = ""
+				condition = (Status == "Ready for Release")
+				)
+				Territory
+				Actual_Release_Date as "Actual Release Date"
+				Contents.Title as "Contents"
+				ID
+				Release_Type as "Release Type"
+				Tentative_Release_Date as "Tentative Release Date"
+				Description
+				Title
+				Status
+			)
+			options
+			(
+				icon = "tech-disk"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							ID
+				"Launch"
+							Title
+							Description
+							Release_Type as "Release Type"
+							Tentative_Release_Date as "Tentative Release Date"
+							Contents.Title as "Contents"
+							Actual_Release_Date as "Actual Release Date"
+							Release_Notes as "Release Notes"
+							Territory
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+			 			"Launch"
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+								"Launch"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+								"Launch"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Title
+							Title
+							Description
+							Tentative_Release_Date as "Tentative Release Date"
+							Contents.Title as "Contents"
+							Actual_Release_Date as "Actual Release Date"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Contents"
+		     			related field =  Contents[Status == "Scheduled" || Status == "Ready for Release"]
+						fields
+						(
+							ReleaseID
+							Title
+							Description
+							Writer
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+			 			"Launch"
+    	 			)
+    			)
+			)
+		}
+	}
+	functions
+	{
+ 			void CustomAction.assign_editor(int ID)
+			{
+				openUrl("#Form:Assign_Editor?RecID=" + ID,"popup window");
+			}
+ 			void CustomAction.completeRelease(int RecID)
+			{
+				openUrl("#Form:Release_Details?RecID=" + RecID + "&zc_nextUrl=#Script:dialog.close","popup window");
+			}
+ 			void CustomAction.resubmit(int ID)
+			{
+				openUrl("#Form:Add_Conversation?DocumentID=" + ID + "&Added_By=Writer&zc_Header=false","popup window");
+			}
+ 			void CustomAction.review(int ID)
+			{
+				openUrl("#Form:Add_Conversation?DocumentID=" + ID + "&Added_By=Editor&zc_Header=false","popup window");
+			}
+ 			void CustomAction.viewComments(int Id)
+			{
+				openUrl("#Page:Comments_View?docID=" + Id,"popup window","width=600px");
+			}
+ 			void CustomAction.approve(int ID)
+			{
+				record = Submit_Your_Document[ID == input.ID];
+				record.Review_Status="Review Completed";
+				record.Stage_of_Approval="Approved";
+				releaseId = Add_Content[ID == record.Title].ReleaseID;
+				conditionalVariable = true;
+				for each  document in Add_Content[ReleaseID == releaseId]
+				{
+					if(Submit_Your_Document[Title == document.ID].Stage_of_Approval != "Approved")
+					{
+						conditionalVariable = false;
+					}
+				}
+				if(conditionalVariable)
+				{
+					releaseRec = New_Release[ID == releaseId];
+					releaseRec.Status="Ready for Release";
+				}
+				writerRec = Add_User[ID == record.Submitter];
+				sendmail
+				[
+					from :zoho.loginuserid
+					to :writerRec.Email
+					subject :"Your Content Approval-Confirmation"
+					message :("Hi " + writerRec.Name) + ",<div><br></div><div>Congratulations!! This mail is to notify that your document named \"" + record.Title.Title + "\"" + " has been approved successfully.</div><div><div><br></div><div><br></div><div>Regards</div><div>" + zoho.loginuser + "</div></div>"
+				]
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Run_Scripts_On_Button_Cli as "Run Scripts - On Button Click"
+			{
+				type =  form
+				form = Assign_Editor
+				button = Assign
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						//Update the selected editor to the corresponding document
+										record = Submit_Your_Document[ID == input.RecID];
+										record.Assigned_To=input.Select_Editor;
+										record.Stage_of_Approval="Assigned to Editor";
+										editorRec = Add_User[ID == input.Select_Editor];
+										//Notification mail to the Editor 
+										sendmail
+										[
+											from :zoho.loginuserid
+											to :editorRec.Email
+											subject :"New Review Request"
+											message :("Hi " + editorRec.Name) + ",<div><br></div><div>New document-\"" + record.Title + "\"" + " has been assigned to you for approval.</div><div><br></div><div>Please review and update your comments.</div><div><br></div><div>Thanks and Regards</div><div>" + zoho.loginuser + "</div>"
+										]
+										openUrl("#Script:page.refresh","same window");
+					)
+					}
+				}
+			}
+			Run_Scripts_On_Button_Cli1 as "Run Scripts - On Button Click"
+			{
+				type =  form
+				form = Release_Details
+				button = Submit
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						//Updating the release details to the corresponding scheduled release and marking as completed
+										releaseRecord = New_Release[ID == input.RecID];
+										releaseRecord.Actual_Release_Date=input.Release_Date;
+										releaseRecord.Territory=input.Territory;
+										releaseRecord.Release_Notes=input.Release_Notes;
+										releaseRecord.Status="Released";
+										openUrl("#Script:dialog.close","same window");
+					)
+					}
+				}
+			}
+			Run_Scripts_While_Adding_7 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Conversation
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											openUrl("#Script:dialog.close","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_8 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = New_Release
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Add_User[ID != 0].count() == 0)
+										{
+											//Adding Admin as a Manager when he opens the application for the first time
+											insert into Add_User
+											[
+												Email=zoho.adminuserid
+												Job_Title="Manager"
+												Name.first_name=zoho.adminuser
+												Added_User=zoho.loginuser
+											]
+											//Redirecting to Add User form when admin opens application for the first time
+											openUrl("#Form:Add_User?Job_Title=Chief Editor&zc_NextUrl=#Form:New_Release","same window");
+										}
+										hide Actual_Release_Date;
+										hide Release_Notes;
+										hide Territory;
+										hide DateHidden;
+										hide Status;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_9 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = New_Release
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Checking whether tentative release date is a valid future date 
+										if(input.Tentative_Release_Date < zoho.currentdate)
+										{
+											alert "Please enter valid future date for 'Tentative Release Date'!";
+											cancel submit;
+										}
+										input.DateHidden = ifnull(input.Actual_Release_Date,input.Tentative_Release_Date);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_10 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = New_Release
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Redirecting to Scheduled releases on submit of this form 
+										openUrl("#View:Scheduled_Releases_page","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing3 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = New_Release
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide DateHidden;
+										disable Status;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing4 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = New_Release
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Updating value to the hidden field
+										input.DateHidden = ifnull(input.Actual_Release_Date,input.Tentative_Release_Date);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing5 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = New_Release
+				record event = on edit
+
+	on update of Actual_Release_Date
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Giving value to hidden field
+										input.DateHidden = input.Actual_Release_Date;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always1 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = New_Release
+				record event = on add or edit
+
+	on user input of Tentative_Release_Date
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											// Alerts user when he/she enters past date for tentative release date
+										if(input.Tentative_Release_Date < zoho.currentdate)
+										{
+											alert "Please enter valid future date!";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_11 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Submit_Your_Document
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											userRecord = Add_User[Email == zoho.loginuserid];
+										input.Submitter = userRecord.ID;
+										hide Review_Status;
+										hide Stage_of_Approval;
+										hide Assigned_To;
+										hide Conversation;
+										hide Submitter;
+										titleList = List:String();
+										//Adding documents list of the current user to the Title field 
+										for each  Rec in Add_Content[Writer.Email == zoho.loginuserid]
+										{
+											if(Submit_Your_Document[Title == Rec.ID].count() == 0)
+											{
+												titleList.add(Rec.ID);
+											}
+										}
+										input.Title:ui.add(titleList);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing6 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Submit_Your_Document
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											disable Submitter;
+										hide Conversation;
+										hide Stage_of_Approval;
+										hide Review_Status;
+										//Providing profile specific access to fields
+										if(Add_User[Email == zoho.loginuserid].Job_Title == "Writer")
+										{
+											hide Assigned_To;
+											hide Submitter;
+											disable Title;
+										}
+										if(Add_User[Email == zoho.loginuserid].Job_Title == "Editor")
+										{
+											disable Assigned_To;
+											disable Submitter;
+											disable Title;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_12 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_User
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Job_Title != null && input.Job_Title != "")
+										{
+											disable Job_Title;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_13 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_User
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Restricting user to add more than one chief editor
+										if(input.Job_Title == "Chief Editor" && Add_User[Job_Title == "Chief Editor"].count() != 0)
+										{
+											alert "Sorry!Only one Chief Editor is allowed.You can't add more than one Chief Editor";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_14 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_User
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Sharing App and sending notification mail to the users based on their profile
+										thisapp.permissions.assignUserInProfile(input.Email,input.Job_Title);
+										if(input.Job_Title == "Writer")
+										{
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :input.Email
+												subject :"Invitation to access Content Review App"
+												message :"Hi,<div><br></div><div>&nbsp; &nbsp; &nbsp; Here is an application to submit your documents or contents for approval from editors.</div><div><br></div><div>Click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "\"" + " target=\"_blank\">here</a>&nbsp;to access the Application.</div><div><br></div><div>Thanks and Regards</div><div>" + zoho.adminuser + "</div>"
+											]
+										}
+										else if(input.Job_Title == "Editor")
+										{
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :input.Email
+												subject :"Invitation to access Content Review App"
+												message :"Hi,<div><br></div><div>&nbsp; &nbsp; &nbsp; Here is an application to automate the content review processes.</div><div><br></div><div>Click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "\"" + " target=\"_blank\">here</a> to access the application.</div><div><br></div><div>Thanks and Regards</div><div>" + zoho.adminuser + "</div>"
+											]
+										}
+										else if(input.Job_Title == "Chief Editor")
+										{
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :input.Email
+												subject :"Invitation to access Content Review App"
+												message :"Hi,<div><br></div><div>&nbsp; &nbsp; &nbsp; Here is an application to automate the content review processes.</div><div><br></div><div>Click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "\"" + " target=\"_blank\">here</a> to access the application.</div><div><br></div><div>Thanks and Regards</div><div>" + zoho.adminuser + "</div>"
+											]
+										}
+										if(Add_User[ID != 0].count() == 2)
+										{
+											openUrl("#Form:New_Release&zc_NextUrl=#View:Scheduled_Releases_page","same window");
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing7 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_User
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//If the user edits and changes the Email Id or profile, we are unsharing app to the old mail id and sharing it to the new mail based on their profile
+										if(input.Email != old.Email || input.Job_Title != old.Job_Title)
+										{
+											thisapp.permissions.deleteuser(old.Email);
+											thisapp.permissions.assignUserInProfile(input.Email,input.Job_Title);
+											if(input.Job_Title == "Writer")
+											{
+												sendmail
+												[
+													from :zoho.adminuserid
+													to :input.Email
+													subject :"Invitation to access Content Review App"
+													message :"Hi,<div><br></div><div>&nbsp; &nbsp; &nbsp; Here is an application to submit your documents or contents for approval from editors.</div><div><br></div><div>Click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "\"" + " target=\"_blank\">here</a>&nbsp;to access the Application.</div><div><br></div><div>Thanks and Regards</div><div>" + zoho.adminuser + "</div>"
+												]
+											}
+											else if(input.Job_Title == "Editor")
+											{
+												sendmail
+												[
+													from :zoho.adminuserid
+													to :input.Email
+													subject :"Invitation to access Content Review App"
+													message :"Hi,<div><br></div><div>&nbsp; &nbsp; &nbsp; Here is an application to automate the content review processes.</div><div><br></div><div>Click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "\"" + " target=\"_blank\">here</a> to access the application.</div><div><br></div><div>Thanks and Regards</div><div>" + zoho.adminuser + "</div>"
+												]
+											}
+											else if(input.Job_Title == "Chief Editor")
+											{
+												sendmail
+												[
+													from :zoho.adminuserid
+													to :input.Email
+													subject :"Invitation to access Content Review App"
+													message :"Hi,<div><br></div><div>&nbsp; &nbsp; &nbsp; Here is an application to automate the content review processes.</div><div><br></div><div>Click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "\"" + " target=\"_blank\">here</a> to access the application.</div><div><br></div><div>Thanks and Regards</div><div>" + zoho.adminuser + "</div>"
+												]
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin1 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_User
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Unsharing App to the user when we are deleting the user's data   
+										thisapp.permissions.deleteuser(input.Email);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_15 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Assign_Editor
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide RecID;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_16 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Release_Details
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide RecID;
+										input.Release_Date = zoho.currentdate;
+						)
+					}
+	}
+
+			}
+			Create_record_scripts as "Create record scripts"
+			{
+				type =  form
+				form = Add_Conversation
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide DocumentID;
+										hide Added_By;
+						)
+					}
+	}
+
+			}
+			Create_record_scripts1 as "Create record scripts"
+			{
+				type =  form
+				form = Add_Conversation
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Added_By == "Writer")
+										{
+											record = Submit_Your_Document[ID == input.DocumentID];
+											record.Review_Status="Resubmitted";
+											editorRec = Add_User[ID == record.Assigned_To];
+											//Send notification mail to editor if writer resubmits a document
+											sendmail
+											[
+												from :zoho.loginuserid
+												to :editorRec.Email
+												subject :"Document Resubmitted for Review"
+												message :("Hi&nbsp;" + editorRec.Name) + "<div><br></div><div>I have updated the document as per the review comments.</div><div><br></div><div>Please check and let me know if any corrections or suggestions needed.</div><div><br></div><div>Thanks and Regards</div><div>" + zoho.loginuser + "</div><div><div><br></div></div>"
+											]
+										}
+										if(input.Added_By == "Editor")
+										{
+											record = Submit_Your_Document[ID == input.DocumentID];
+											record.Review_Status="Reviewed";
+											writerRec = Add_User[ID == record.Submitter];
+											//Send notification mail to writer if editor adds review to a document
+											sendmail
+											[
+												from :zoho.loginuserid
+												to :writerRec.Email
+												subject :"Document Review Notification"
+												message :("Hi&nbsp;" + writerRec.Name) + "<div><br></div><div>Editor has reviewed your article and added the comments. &nbsp; &nbsp;</div><div><br></div><div>Please update your content and get back to us for approval.</div><div><br></div><div><br></div><div>Regards,</div><div>" + zoho.loginuser + "</div>"
+											]
+										}
+										openUrl("#Script:dialog.close","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_17 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Content
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide ReleaseID;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_18 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Content
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Changing release status to Scheduled when you add a new content
+										releaseDetails = New_Release[ID == input.ReleaseID];
+										releaseDetails.Status="Scheduled";
+										openUrl("#Script:dialog.close","same window");
+						)
+					}
+	}
+
+			}
+		}
+		functions
+		{
+			Resubmit_ as "Resubmit "
+			{
+				type =  functions
+				form = Submit_Your_Document
+				on start
+				{
+					actions 
+					{
+					CustomAction.resubmit(ID);
+					}
+				}
+			}
+			View_Comments as "View Comments"
+			{
+				type =  functions
+				form = Submit_Your_Document
+				on start
+				{
+					actions 
+					{
+					CustomAction.viewComments(ID);
+					}
+				}
+			}
+			Review_History as "Review History"
+			{
+				type =  functions
+				form = Submit_Your_Document
+				on start
+				{
+					actions 
+					{
+					CustomAction.viewComments(ID);
+					}
+				}
+			}
+			Assign_Editor as "Assign Editor"
+			{
+				type =  functions
+				form = Submit_Your_Document
+				on start
+				{
+					actions 
+					{
+					CustomAction.assign_editor(ID);
+					}
+				}
+			}
+			Review as "Review"
+			{
+				type =  functions
+				form = Submit_Your_Document
+				on start
+				{
+					actions 
+					{
+					CustomAction.review(ID);
+					}
+				}
+			}
+			Approve as "Approve"
+			{
+				type =  functions
+				form = Submit_Your_Document
+				on start
+				{
+					actions 
+					{
+					CustomAction.approve(ID);
+					}
+				}
+			}
+			View_Comments1 as "View Comments"
+			{
+				type =  functions
+				form = Submit_Your_Document
+				on start
+				{
+					actions 
+					{
+					CustomAction.viewComments(ID);
+					}
+				}
+			}
+			Review_History1 as "Review History"
+			{
+				type =  functions
+				form = Submit_Your_Document
+				on start
+				{
+					actions 
+					{
+					CustomAction.viewComments(ID);
+					}
+				}
+			}
+			Review1 as "Review"
+			{
+				type =  functions
+				form = Submit_Your_Document
+				on start
+				{
+					actions 
+					{
+					CustomAction.review(ID);
+					}
+				}
+			}
+			Approve1 as "Approve"
+			{
+				type =  functions
+				form = Submit_Your_Document
+				on start
+				{
+					actions 
+					{
+					CustomAction.approve(ID);
+					}
+				}
+			}
+			View_Comments2 as "View Comments"
+			{
+				type =  functions
+				form = Submit_Your_Document
+				on start
+				{
+					actions 
+					{
+					CustomAction.viewComments(ID);
+					}
+				}
+			}
+			Review_History2 as "Review History"
+			{
+				type =  functions
+				form = Submit_Your_Document
+				on start
+				{
+					actions 
+					{
+					CustomAction.viewComments(ID);
+					}
+				}
+			}
+			Launch as "Launch"
+			{
+				type =  functions
+				form = New_Release
+				on start
+				{
+					actions 
+					{
+					CustomAction.completeRelease(ID);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Editor"
+			{
+				name = "Editor"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "This profile will have editor permissions.\n"
+				ModulePermissions
+				{
+					Add_Territory
+					{
+						FieldPermissions
+						{
+							Territory{visibility:true,readonly:false}
+						}
+					}
+					Assign_Editor
+					{
+						FieldPermissions
+						{
+							RecID{visibility:true,readonly:false}
+							Select_Editor{visibility:true,readonly:false}
+						}
+					}
+					Release_Details
+					{
+						FieldPermissions
+						{
+							Release_Notes{visibility:true,readonly:false}
+							RecID{visibility:true,readonly:false}
+							Territory{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Release_Date{visibility:true,readonly:false}
+						}
+					}
+					Add_Content
+					{
+						FieldPermissions
+						{
+							Title{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							ReleaseID{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Writer{visibility:true,readonly:false}
+						}
+					}
+					Add_Release_Type
+					{
+						FieldPermissions
+						{
+							Release_Type{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					New_Release
+					{
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Release_Notes{visibility:true,readonly:false}
+							Territory{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Contents{visibility:true,readonly:false}
+							Actual_Release_Date{visibility:true,readonly:false}
+							Release_Type{visibility:true,readonly:false}
+							Title{visibility:true,readonly:false}
+							Tentative_Release_Date{visibility:true,readonly:false}
+							DateHidden{visibility:true,readonly:false}
+						}
+					}
+					Add_User
+					{
+						FieldPermissions
+						{
+							Email{visibility:true,readonly:false}
+							Address{visibility:false,readonly:false}
+							Mobile_Number{visibility:true,readonly:false}
+							Job_Title{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Submit_Your_Document
+					{
+						enabled= Viewall 
+						ReportPermissions
+						{
+							Completed_Reviews={"View"}
+							Reviews_In_Progress={"View"}
+						}
+						FieldPermissions
+						{
+							Stage_of_Approval{visibility:true,readonly:false}
+							Any_Other_Comments{visibility:true,readonly:false}
+							Assigned_To{visibility:true,readonly:false}
+							Submitter{visibility:true,readonly:false}
+							Priority{visibility:true,readonly:false}
+							Whole_Content{visibility:true,readonly:false}
+							Title{visibility:true,readonly:false}
+							Summary{visibility:true,readonly:false}
+							Conversation{visibility:true,readonly:false}
+							Document{visibility:true,readonly:false}
+							Review_Status{visibility:true,readonly:false}
+						}
+					}
+					Add_Conversation
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							DocumentID{visibility:true,readonly:false}
+							Added_By{visibility:true,readonly:false}
+							Comments{visibility:true,readonly:false}
+						}
+					}
+					Comments_View
+					{
+						enabled = tab
+					}
+				}
+			}
+			"Chief Editor"
+			{
+				name = "Chief Editor"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "This profile will have chief editor permissions.\n"
+				ModulePermissions
+				{
+					Add_Territory
+					{
+						FieldPermissions
+						{
+							Territory{visibility:true,readonly:false}
+						}
+					}
+					Assign_Editor
+					{
+						FieldPermissions
+						{
+							RecID{visibility:true,readonly:false}
+							Select_Editor{visibility:true,readonly:false}
+						}
+					}
+					Release_Details
+					{
+						FieldPermissions
+						{
+							Release_Notes{visibility:true,readonly:false}
+							RecID{visibility:true,readonly:false}
+							Territory{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Release_Date{visibility:true,readonly:false}
+						}
+					}
+					Add_Content
+					{
+						FieldPermissions
+						{
+							Title{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							ReleaseID{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Writer{visibility:true,readonly:false}
+						}
+					}
+					Add_Release_Type
+					{
+						FieldPermissions
+						{
+							Release_Type{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					New_Release
+					{
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Release_Notes{visibility:true,readonly:false}
+							Territory{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Contents{visibility:true,readonly:false}
+							Actual_Release_Date{visibility:true,readonly:false}
+							Release_Type{visibility:true,readonly:false}
+							Title{visibility:true,readonly:false}
+							Tentative_Release_Date{visibility:true,readonly:false}
+							DateHidden{visibility:true,readonly:false}
+						}
+					}
+					Add_User
+					{
+						FieldPermissions
+						{
+							Email{visibility:true,readonly:false}
+							Address{visibility:false,readonly:false}
+							Mobile_Number{visibility:true,readonly:false}
+							Job_Title{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Submit_Your_Document
+					{
+						enabled= Viewall 
+						ReportPermissions
+						{
+							New_Requests={"View"}
+							All_Requests={"View"}
+						}
+						FieldPermissions
+						{
+							Stage_of_Approval{visibility:true,readonly:false}
+							Any_Other_Comments{visibility:true,readonly:false}
+							Assigned_To{visibility:true,readonly:false}
+							Submitter{visibility:true,readonly:false}
+							Priority{visibility:true,readonly:false}
+							Whole_Content{visibility:true,readonly:false}
+							Title{visibility:true,readonly:false}
+							Summary{visibility:true,readonly:false}
+							Conversation{visibility:true,readonly:false}
+							Document{visibility:true,readonly:false}
+							Review_Status{visibility:true,readonly:false}
+						}
+					}
+					Add_Conversation
+					{
+						FieldPermissions
+						{
+							DocumentID{visibility:true,readonly:false}
+							Added_By{visibility:true,readonly:false}
+							Comments{visibility:true,readonly:false}
+						}
+					}
+				}
+			}
+			"Writer"
+			{
+				name = "Writer"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "This profile will have only writer permissions.\n"
+				ModulePermissions
+				{
+					Add_Territory
+					{
+						FieldPermissions
+						{
+							Territory{visibility:true,readonly:false}
+						}
+					}
+					Assign_Editor
+					{
+						FieldPermissions
+						{
+							RecID{visibility:true,readonly:false}
+							Select_Editor{visibility:true,readonly:false}
+						}
+					}
+					Release_Details
+					{
+						FieldPermissions
+						{
+							Release_Notes{visibility:true,readonly:false}
+							RecID{visibility:true,readonly:false}
+							Territory{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Release_Date{visibility:true,readonly:false}
+						}
+					}
+					Add_Content
+					{
+						FieldPermissions
+						{
+							Title{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							ReleaseID{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Writer{visibility:true,readonly:false}
+						}
+					}
+					Add_Release_Type
+					{
+						FieldPermissions
+						{
+							Release_Type{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					New_Release
+					{
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Release_Notes{visibility:true,readonly:false}
+							Territory{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Contents{visibility:true,readonly:false}
+							Actual_Release_Date{visibility:true,readonly:false}
+							Release_Type{visibility:true,readonly:false}
+							Title{visibility:true,readonly:false}
+							Tentative_Release_Date{visibility:true,readonly:false}
+							DateHidden{visibility:true,readonly:false}
+						}
+					}
+					Add_User
+					{
+						FieldPermissions
+						{
+							Email{visibility:true,readonly:false}
+							Address{visibility:false,readonly:false}
+							Mobile_Number{visibility:true,readonly:false}
+							Job_Title{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Submit_Your_Document
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							Documents_In_Progress_Writer={"View","Edit","Delete"}
+							Approved_Documents_Writer={"View"}
+						}
+						FieldPermissions
+						{
+							Stage_of_Approval{visibility:true,readonly:false}
+							Any_Other_Comments{visibility:true,readonly:false}
+							Assigned_To{visibility:true,readonly:false}
+							Submitter{visibility:true,readonly:false}
+							Priority{visibility:true,readonly:false}
+							Whole_Content{visibility:true,readonly:false}
+							Title{visibility:true,readonly:false}
+							Summary{visibility:true,readonly:false}
+							Conversation{visibility:true,readonly:false}
+							Document{visibility:true,readonly:false}
+							Review_Status{visibility:true,readonly:false}
+						}
+					}
+					Add_Conversation
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							DocumentID{visibility:true,readonly:false}
+							Added_By{visibility:true,readonly:false}
+							Comments{visibility:true,readonly:false}
+						}
+					}
+					Comments_View
+					{
+						enabled = tab
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users.\n"
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 2
+		new theme color = 1
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-education-4"
+    	icon theme = "green"
+		icons style = solid
+	}
+
+	phone
+	{
+		section  Release
+		{
+			icon = "media-1-speaker"
+			form  New_Release
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+			}
+			page Scheduled_Releases_page
+			{
+			}
+			calendar All_Releases
+			{
+				icon = "ui-1-calendar-grid-58"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Title
+								Description
+								Release_Type as "Release Type"
+								Tentative_Release_Date as "Tentative Release Date"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Title
+								Description
+								Release_Type as "Release Type"
+								Tentative_Release_Date as "Tentative Release Date"
+								Actual_Release_Date as "Actual Release Date"
+								Contents.Title as "Contents"
+								Contents.Writer as "Contents.Writer"
+								Release_Notes as "Release Notes"
+								Territory
+								DateHidden
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Writer
+		{
+			icon = "users-2-a-edit"
+			form  Submit_Your_Document
+			{
+				layout = left
+				icon = "files-folder-18"
+			}
+			list Documents_In_Progress_Writer
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Title
+								Whole_Content as "Whole Content"
+								Priority
+								Assigned_To as "Assigned To"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+										"Resubmit "
+										"View Comments"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+										"Resubmit "
+										"View Comments"
+    								)
+									on left swipe
+									(
+										"Resubmit "
+										"View Comments"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Title
+				"Resubmit "
+								Priority
+				"View Comments"
+								Stage_of_Approval as "Stage of Approval"
+								Whole_Content as "Whole Content"
+								Summary
+								Document
+								Any_Other_Comments as "Your Comments"
+								Assigned_To as "Assigned To"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+			 				"Resubmit "
+			 				"View Comments"
+    	 				)
+    				)
+				)
+			}
+			list Approved_Documents_Writer
+			{
+				icon = "files-check"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Title
+								Whole_Content as "Whole Content"
+								Priority
+								Assigned_To as "Editor"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+										"Review History"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+										"Review History"
+    								)
+									on left swipe
+									(
+										"Review History"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Title
+								Priority
+								Whole_Content as "Whole Content"
+								Summary
+								Document
+								Any_Other_Comments as "Your Comments"
+								Assigned_To as "Editor"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Review History"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Chief_Editor
+		{
+			displayname= "Chief Editor"
+			icon = "ui-1-edit-76"
+			list New_Requests
+			{
+				icon = "arrows-1-loop-82"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Title
+								Whole_Content as "Whole Content"
+								Submitter
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+										"Assign Editor"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+										"Assign Editor"
+    								)
+									on left swipe
+									(
+										"Assign Editor"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Title
+								Priority
+								Whole_Content as "Whole Content"
+								Summary
+								Document
+								Any_Other_Comments as "Comments"
+								Submitter
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+			 				"Assign Editor"
+    	 				)
+    				)
+				)
+			}
+			list Reviews_In_Progress_Chief_Editor
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Title
+								Whole_Content as "Whole Content"
+								Priority
+								Submitter
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+										"Review"
+										"Approve"
+										"View Comments"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+										"Review"
+										"Approve"
+										"View Comments"
+    								)
+									on left swipe
+									(
+										"View Comments"
+										"Review"
+										"Approve"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Title
+				"Review"
+								Priority
+				"Approve"
+								Stage_of_Approval as "Stage of Approval"
+								Whole_Content as "Whole Content"
+				"View Comments"
+								Summary
+								Document
+								Any_Other_Comments as "Writer's Comments"
+								Submitter
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+			 				"Review"
+			 				"Approve"
+			 				"View Comments"
+    	 				)
+    				)
+				)
+			}
+			list All_Requests
+			{
+				icon = "shopping-list"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Title
+								Whole_Content as "Whole Content"
+								Priority
+								Submitter
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+										"Review History"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+										"Review History"
+    								)
+									on left swipe
+									(
+										"Review History"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Title
+								Priority
+								Whole_Content as "Whole Content"
+								Summary
+								Document
+								Submitter
+								Assigned_To as "Assigned To"
+								Any_Other_Comments as "Other Comments"
+								Stage_of_Approval as "Stage of Approval"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+			 				"Review History"
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Editor
+		{
+			icon = "files-edit"
+			list Reviews_In_Progress
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Title
+								Whole_Content as "Whole Content"
+								Priority
+								Submitter
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+										"Review"
+										"Approve"
+										"View Comments"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+										"Review"
+										"Approve"
+										"View Comments"
+    								)
+									on left swipe
+									(
+										"Review"
+										"Approve"
+										"View Comments"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Title
+				"Review"
+								Priority
+				"Approve"
+								Stage_of_Approval as "Stage of Approval"
+								Whole_Content as "Whole Content"
+				"View Comments"
+								Summary
+								Document
+								Any_Other_Comments as "Writer's Comments"
+								Submitter
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+			 				"Review"
+			 				"Approve"
+			 				"View Comments"
+    	 				)
+    				)
+				)
+			}
+			list Completed_Reviews
+			{
+				icon = "design-todo"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Title
+								Whole_Content as "Whole Content"
+								Priority
+								Submitter
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+										"Review History"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+										"Review History"
+    								)
+									on left swipe
+									(
+										"Review History"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Title
+								Priority
+								Whole_Content as "Whole Content"
+								Summary
+								Document
+								Any_Other_Comments as "Writer's Comments"
+								Submitter
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+			 				"Review History"
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Users
+		{
+			icon = "users-multiple-11"
+			form  Add_User
+			{
+				layout = left
+				icon = "users-2-a-add"
+			}
+			custom User_Details
+			{
+				icon = "users-2-contacts-44"
+			}
+		}
+		section  Settings
+		{
+			icon = "ui-1-settings-gear-63"
+			summary Release_Territories
+			{
+				icon = "location-position-pin"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Territory
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Territory
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			summary Release_Types
+			{
+				icon = "business-hierarchy-54"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Release_Type as "Release Type"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Release_Type as "Release Type"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Hidden_Items
+		{
+			displayname= "Hidden Items"
+			hide = true
+			icon = "ui-2-menu-bold"
+			form  Assign_Editor
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Release_Details
+			{
+				layout = left
+				icon = "shopping-delivery-time"
+				hide = true
+			}
+			form  Add_Conversation
+			{
+				layout = left
+				icon = "design-2-3d-29"
+				hide = true
+			}
+			list Add_Review_Report
+			{
+				icon = "social-1-logo-yelp"
+				hide = true
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Added_By as "Added By"
+								Comments
+								DocumentID
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Added_By as "Added By"
+								Comments
+								DocumentID
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			form  Add_Content
+			{
+				layout = left
+				icon = "users-2-woman-up"
+				hide = true
+			}
+			list Release_Contents
+			{
+				icon = "design-copy"
+				hide = true
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Title
+								Description
+								Writer
+								ReleaseID
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								ReleaseID
+								Title
+								Description
+								Writer
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			form  Add_Territory
+			{
+				layout = left
+				icon = "location-pin-add"
+				hide = true
+			}
+			form  Add_Release_Type
+			{
+				layout = left
+				icon = "tech-2-keyboard-wireless"
+				hide = true
+			}
+			page Comments_View
+			{
+				hide = true
+			}
+			list Scheduled_Releases
+			{
+				icon = "tech-disk"
+				hide = true
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Title
+								Description
+								Tentative_Release_Date as "Tentative Release Date"
+								Status
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+			 				"Launch"
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+										"Launch"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+										"Launch"
+    								)
+									on left swipe
+									(
+										"Launch"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Title
+								Description
+								Release_Type as "Release Type"
+								Tentative_Release_Date as "Tentative Release Date"
+								Contents.Title as "Contents"
+								Actual_Release_Date as "Actual Release Date"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+			 				"Launch"
+    	 				)
+    				)
+				)
+			}
+		}
+		customize
+		{
+			colour = green
+        	layout = onecolumn
+		 	icons style = outline
+		}
+	}
+	tablet
+	{
+		section  Release
+		{
+			icon = "media-1-speaker"
+			form  New_Release
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+			}
+			page Scheduled_Releases_page
+			{
+			}
+			calendar All_Releases
+			{
+				icon = "ui-1-calendar-grid-58"
+			}
+		}
+		section  Writer
+		{
+			icon = "users-2-a-edit"
+			form  Submit_Your_Document
+			{
+				layout = left
+				icon = "files-folder-18"
+			}
+			list Documents_In_Progress_Writer
+			{
+			}
+			list Approved_Documents_Writer
+			{
+				icon = "files-check"
+			}
+		}
+		section  Chief_Editor
+		{
+			displayname= "Chief Editor"
+			icon = "ui-1-edit-77"
+			list New_Requests
+			{
+				icon = "arrows-1-loop-82"
+			}
+			list Reviews_In_Progress_Chief_Editor
+			{
+			}
+			list All_Requests
+			{
+				icon = "shopping-list"
+			}
+		}
+		section  Editor
+		{
+			icon = "files-edit"
+			list Reviews_In_Progress
+			{
+			}
+			list Completed_Reviews
+			{
+				icon = "design-todo"
+			}
+		}
+		section  Users
+		{
+			icon = "users-multiple-11"
+			form  Add_User
+			{
+				layout = left
+				icon = "users-2-a-add"
+			}
+			custom User_Details
+			{
+				icon = "users-2-contacts-44"
+			}
+		}
+		section  Settings
+		{
+			icon = "ui-1-settings-gear-63"
+			summary Release_Territories
+			{
+				icon = "location-position-pin"
+			}
+			summary Release_Types
+			{
+				icon = "business-hierarchy-54"
+			}
+		}
+		section  Hidden_Items
+		{
+			displayname= "Hidden Items"
+			hide = true
+			icon = "shopping-cart-simple"
+			form  Assign_Editor
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Release_Details
+			{
+				layout = left
+				icon = "shopping-delivery-time"
+				hide = true
+			}
+			form  Add_Conversation
+			{
+				layout = left
+				icon = "design-2-3d-29"
+				hide = true
+			}
+			list Add_Review_Report
+			{
+				icon = "social-1-logo-yelp"
+				hide = true
+			}
+			form  Add_Content
+			{
+				layout = left
+				icon = "users-2-woman-up"
+				hide = true
+			}
+			list Release_Contents
+			{
+				icon = "design-copy"
+				hide = true
+			}
+			form  Add_Territory
+			{
+				layout = left
+				icon = "location-pin-add"
+				hide = true
+			}
+			form  Add_Release_Type
+			{
+				layout = left
+				icon = "tech-2-keyboard-wireless"
+				hide = true
+			}
+			page Comments_View
+			{
+				hide = true
+			}
+			list Scheduled_Releases
+			{
+				icon = "tech-disk"
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = green
+        	layout = onecolumn
+		 	icons style = outline
+		}
+	}
+	
+}

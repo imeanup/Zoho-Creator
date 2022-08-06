@@ -1,0 +1,4534 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 23:56:59
+ * Version      : 1.0
+ */
+ application "Property Maintenance Tracker"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+	section Request_For_Maintenance
+	{
+		displayname= "Maintenance Requests"
+		icon = "ui-2-settings-91"
+		form Raise_Maintenance_Request
+		{
+			displayname = "Raise Maintenance Request"
+			success message = "Request has been sent successfully"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Date_field
+			(
+    			type = date
+				displayname = "Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Requester_Name
+			(
+				type = picklist
+				displayname = "Requester Name"
+				values  = Add_Requester.ID
+    			displayformat = [" " + Name.first_name + " " + Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Select_Service
+			(
+				type = picklist
+				displayname = "Select Service"
+				values  = Add_Service.ID
+    			displayformat = [Service_Name]
+				sortorder = ascending
+    			description
+    			[
+    				type = tooltip
+    			 	message = "If your expected service is not here then please contact admin"
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have What_s_The_Issue
+			(
+    			type = text
+				displayname = "What's The Issue?"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Add_Photo
+			(
+    			type = image
+				displayname = "Add Photo"
+				source  = file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Location
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Work_Status
+			(
+				type = picklist
+				displayname = "Work Status"
+				values = {"Request Sent", "Employee Assigned", "In progress", "Closed"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Assigned_Employee
+			(
+				type = picklist
+				displayname = "Assigned Employee"
+				values  = Add_Employee.ID
+    			displayformat = [" " + Employee_Name.first_name + Employee_Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-settings-90"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list New_Requests
+		{
+			displayName = "New Requests"
+			show all rows from Raise_Maintenance_Request  [Work_Status == "Request Sent"]  
+			(
+				Assigned_Employee as "Assigned Employee"
+				custom action "Assign Employee"
+				(
+	  			workflow = Run_Scripts_On_Click_of_P4
+				show action in edit record menu = true
+				column header = "Assign Employee"
+				)
+				Requester_Name.Contact_Number as "Contact Number"
+				Requester_Name.Email_Id as "Email Id"
+				Description
+				Add_Photo as "Add Photo"
+				Select_Service as "Select Service"
+				Requester_Name as "Requester Name"
+				What_s_The_Issue as "Issue"
+				Location
+				Work_Status as "Work Status"
+				Date_field as "Date"
+			)
+			options
+			(
+				icon = "design-newsletter-dev"
+	 		)
+			conditional formatting
+			(
+				"New Requests"
+				{
+				fields = [Work_Status]
+				format = "color:#ffffff;background-color:#765f89;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+				"Assign Employee"
+							Requester_Name as "Requester Name"
+							Select_Service as "Select Service"
+							Add_Photo as "Add Photo"
+							What_s_The_Issue as "Issue"
+							Description
+							Location
+							Date_field as "Date"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Assign Employee"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+								"Assign Employee"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Request"
+						fields
+						(
+							Date_field as "Date"
+							Select_Service as "Select Service"
+							Add_Photo as "Add Photo"
+							Description
+							What_s_The_Issue as "Issue"
+							Location
+							Work_Status as "Work Status"
+						)
+					)
+					datablock2
+					(
+			 			layout type = 4
+		     			title = "Requester Details"
+		     			related field =  Requester_Name[Work_Status == "Request Sent"]
+						fields
+						(
+							Name
+							Contact_Number as "Contact Number"
+							Email_Id as "Email Id"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Requests
+		{
+			displayName = "All Requests"
+			show all rows from Raise_Maintenance_Request    
+			(
+				custom action "Assign Employee"
+				(
+	  			workflow = Run_Scripts_On_Click_of_P1
+				show action in edit record menu = true
+				column header = "Assign Employee"
+				condition = (Work_Status == "Request Sent")
+				)
+				Requester_Name as "Requester Name"
+				Select_Service as "Service"
+				What_s_The_Issue as "Issue"
+				Description
+				Location
+				Work_Status as "Work Status"
+				Assigned_Employee as "Assigned Employee"
+				Add_Photo as "Photo"
+				Date_field as "Date"
+				Added_Time as "Added Time"
+			)
+			sort by
+			(
+				Work_Status ascending
+				Added_Time descending
+			)
+			options
+			(
+				icon = "design-bullet-list-68"
+	 		)
+			conditional formatting
+			(
+				"Active"
+				{
+				condition = (Work_Status == "In progress")
+				fields = [Work_Status]
+				format = "color:#19bc9f;"
+				}
+				"Closed"
+				{
+				condition = (Work_Status == "Closed")
+				fields = [Work_Status]
+				format = "color:#e64d3b;"
+				}
+				"Employee Assigned"
+				{
+				condition = (Work_Status == "Employee Assigned")
+				fields = [Work_Status]
+				format = "color:#f1c50e;"
+				}
+				"Request Sent"
+				{
+				condition = (Work_Status == "Request Sent")
+				fields = [Work_Status]
+				format = "color:#bd588b;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Add_Photo as "Photo"
+							What_s_The_Issue as "Issue"
+							Description
+							Requester_Name as "Requester Name"
+							Select_Service as "Service"
+							Location
+							Work_Status as "Work Status"
+							Assigned_Employee as "Assigned Employee"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Assign Employee"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+								"Assign Employee"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Request"
+						fields
+						(
+							Date_field as "Date"
+							Select_Service as "Service"
+							Add_Photo as "Photo"
+							What_s_The_Issue as "Issue"
+							Description
+							Location
+							Work_Status as "Work Status"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Requester Name"
+		     			related field =  Requester_Name
+						fields
+						(
+							Name
+							Contact_Number as "Contact Number"
+							Email_Id as "Email Id"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Assigned Employee"
+		     			related field =  Assigned_Employee
+						fields
+						(
+							Employee_Name as "Employee Name"
+							Service
+							Contact_Number as "Contact Number"
+							Email_Id as "Email Id"
+							Employee_Status as "Employee Status"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Requests
+		{
+			displayName = "My Requests"
+			show all rows from Raise_Maintenance_Request  [Added_User == zoho.loginuser]  
+			(
+				Requester_Name as "Requester Name"
+				Select_Service as "Service"
+				Add_Photo as "Photo"
+				What_s_The_Issue as "Issue"
+				Description
+				Work_Status as "Work Status"
+				Location
+				Assigned_Employee as "Assigned Employee"
+				Date_field as "Date"
+			)
+			options
+			(
+				icon = "users-2-voice-record"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Requester_Name as "Requester Name"
+							Select_Service as "Service"
+							Add_Photo as "Photo"
+							What_s_The_Issue as "Issue"
+							Description
+							Work_Status as "Work Status"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Request"
+						fields
+						(
+							Date_field as "Date"
+							Select_Service as "Service"
+							What_s_The_Issue as "Issue"
+							Add_Photo as "Photo"
+							Description
+							Work_Status as "Work Status"
+							Location
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Assigned Employee"
+		     			related field =  Assigned_Employee[Added_User == zoho.loginuser]
+						fields
+						(
+							Employee_Name as "Employee Name"
+							Service
+							Contact_Number as "Contact Number"
+							Email_Id as "Email Id"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Employee_View
+	{
+		displayname= "Employee View"
+		icon = "business-business-contact-89"
+		form Assign_Employee
+		{
+			displayname = "Assign Employee"
+			store data in zc = false
+			success message = ""
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Issue_Title
+			(
+				type = picklist
+				displayname = "Issue Title"
+				values  = Raise_Maintenance_Request.ID
+    			displayformat = [What_s_The_Issue]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Service_Type
+			(
+				type = picklist
+				displayname = "Service Type"
+				values  = Add_Service.ID
+    			displayformat = [Service_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Available_Employees
+			(
+				type = picklist
+				displayname = "Available Employees"
+				values  = Add_Employee.ID
+    			displayformat = [" " + Employee_Name.prefix + " " + Employee_Name.first_name + " " + Employee_Name.last_name + " " + Employee_Name.suffix]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				Assign
+				(
+   					type = button
+   					displayname = "Assign"
+				)
+			}
+		}
+		list My_Assigned_Work_Orders
+		{
+			displayName = "My Assigned Work Orders"
+			show all rows from Raise_Maintenance_Request  [Assigned_Employee.Email_Id == zoho.loginuserid && Work_Status == "Employee Assigned"]  
+			(
+				Location
+				Assigned_Employee as "Assigned Employee"
+				Work_Status as "Work Status"
+				Description
+				What_s_The_Issue as "What's The Issue?"
+				Add_Photo as "Photo"
+				Select_Service as "Service"
+				Requester_Name as "Requester Name"
+				custom action "Move to Progress"
+				(
+	  			workflow = Run_Scripts_On_Click_of_P2
+				show action in edit record menu = true
+				column header = "Move to Progress"
+				condition = (Work_Status == "Employee Assigned")
+				)
+			)
+			options
+			(
+				icon = "users-2-a-check"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Requester_Name as "Requester Name"
+							Select_Service as "Service"
+							Add_Photo as "Photo"
+							What_s_The_Issue as "What's The Issue?"
+							Description
+							Work_Status as "Work Status"
+				"Move to Progress"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Move to Progress"
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Select_Service as "Service"
+							Add_Photo as "Photo"
+							What_s_The_Issue as "What's The Issue?"
+							Description
+							Work_Status as "Work Status"
+							Location
+							Assigned_Employee as "Assigned Employee"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		custom My_Current_Works
+		{
+			displayName = "My Current Works"
+			show all rows from Raise_Maintenance_Request  [Work_Status == "In progress" && Assigned_Employee.Email_Id == zoho.loginuserid]  
+			(
+				Work_Status as "Work Status"
+				Assigned_Employee as "Assigned Employee"
+				Requester_Name as "Requester Name"
+				Select_Service as "Service"
+				Add_Photo as "Photo"
+				What_s_The_Issue as "What's The Issue?"
+				Description
+				Location
+				custom action "Close Work"
+				(
+	  			workflow = Run_Scripts_On_Click_of_P3
+				show action in edit record menu = true
+				column header = "Close Work"
+				condition = (Work_Status == "In progress")
+				)
+			)
+			options
+			(
+				icon = "loader-refresh"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 3
+					datablock1
+					(
+			 			layout type = 7
+		     			title = "Overview"
+						fields
+						(
+							Add_Photo as "Photo"
+							What_s_The_Issue as "What's The Issue?"
+							Description
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Close Work"
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Requester_Name as "Requester Name"
+							Select_Service as "Service"
+							Add_Photo as "Photo"
+							What_s_The_Issue as "What's The Issue?"
+							Description
+							Location
+				"Close Work"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Closed_Works
+		{
+			displayName = "My Closed Works"
+			show all rows from Raise_Maintenance_Request  [Assigned_Employee.Email_Id == zoho.loginuserid && Work_Status == "Closed"]  
+			(
+				Requester_Name as "Requester Name"
+				Select_Service as "Service"
+				Add_Photo as "Photo"
+				What_s_The_Issue as "What's The Issue?"
+				Description
+				Work_Status as "Work Status"
+				Location
+				Assigned_Employee as "Assigned Employee"
+			)
+			options
+			(
+				icon = "ui-3-filter-check"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Requester_Name as "Requester Name"
+							Select_Service as "Service"
+							Add_Photo as "Photo"
+							What_s_The_Issue as "What's The Issue?"
+							Description
+							Work_Status as "Work Status"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Requester_Name as "Requester Name"
+							Select_Service as "Service"
+							Add_Photo as "Photo"
+							What_s_The_Issue as "What's The Issue?"
+							Description
+							Work_Status as "Work Status"
+							Location
+							Assigned_Employee as "Assigned Employee"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Employee
+	{
+		displayname= "Employees"
+		icon = "business-badge"
+		form Add_Employee
+		{
+			displayname = "Add Employee"
+			success message = "Employee has been added successfully"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Service
+			(
+				type = picklist
+				values  = Add_Service.ID
+    			displayformat = [Service_Name]
+				allow new entries = true
+				[
+					displayname = "Add New Service"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Employee_Name
+			(
+    			type = name
+				displayname = "Employee Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Contact_Number
+			(
+    			type = phonenumber
+				displayname = "Contact Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email_Id
+			(
+    			type = email
+				displayname = "Email Id"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Employee_Status
+			(
+				type = picklist
+				displayname = "Employee Status"
+				values = {"Active", "Archive"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Notes
+			(
+    			type = plaintext
+				value = ""
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-add-29"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list All_Employees
+		{
+			displayName = "All Employees"
+			show all rows from Add_Employee    
+			(
+				Employee_Name  as "Name"
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				custom action "Change Status"
+				(
+	  			workflow = Run_Scripts_On_Click_of_P5
+				show action in edit record menu = true
+				column header = "Change Status"
+				)
+				Service
+				Contact_Number as "Contact Number"
+				Email_Id as "Email Id"
+				Employee_Status as "Employee Status"
+			)
+			options
+			(
+				icon = "users-multiple-11"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Employee_Name as "Name"
+							Service
+							Contact_Number as "Contact Number"
+							Email_Id as "Email Id"
+							Employee_Status as "Employee Status"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Change Status"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Employee_Name as "Name"
+							Service
+							Contact_Number as "Contact Number"
+							Email_Id as "Email Id"
+							Employee_Status as "Employee Status"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Assigned Requests"
+		     			related field =  Raise_Maintenance_Request.Assigned_Employee
+						fields
+						(
+							Requester_Name as "Requester Name"
+							Date_field as "Date"
+							Select_Service as "Service"
+							Add_Photo as "Photo"
+							What_s_The_Issue as "What's The Issue?"
+							Description
+							Location
+							Work_Status as "Work Status"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Users
+	{
+		displayname= "Requesters"
+		icon = "users-2-wc"
+		form Add_Requester
+		{
+			displayname = "Add Requester"
+			success message = "Requester has been added successfully"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Contact_Number
+			(
+    			type = phonenumber
+				displayname = "Contact Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email_Id
+			(
+    			type = email
+				displayname = "Email Id"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Notes
+			(
+    			type = plaintext
+				value = ""
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-add-29"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Requester_Details
+		{
+			displayName = "Requester Details"
+			show all rows from Add_Requester    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Contact_Number as "Contact Number"
+				Email_Id as "Email Id"
+			)
+			options
+			(
+				icon = "users-2-multiple"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Contact_Number as "Contact Number"
+							Email_Id as "Email Id"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Contact_Number as "Contact Number"
+							Email_Id as "Email Id"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Requests"
+		     			related field =  Raise_Maintenance_Request.Requester_Name
+						fields
+						(
+							Date_field as "Date"
+							Select_Service as "Service"
+							Add_Photo as "Photo"
+							What_s_The_Issue as "What's The Issue?"
+							Description
+							Location
+							Work_Status as "Work Status"
+							Assigned_Employee as "Assigned Employee"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Feedback
+	{
+		icon = "ui-2-chat-content"
+		form Feedback
+		{
+			success message = "Your Feedback has been sent successfully"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Requester_Name
+			(
+				type = picklist
+				displayname = "Requester Name"
+				values  = Add_Requester.ID
+    			displayformat = [" " + Name.first_name + " " + Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Complaint_Title
+			(
+				type = picklist
+				displayname = "Complaint Title"
+				values  = Raise_Maintenance_Request.ID
+    			displayformat = [What_s_The_Issue + " - " + Date_field]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Employee_Name
+			(
+				type = picklist
+				displayname = "Employee Name"
+				values  = Add_Employee.ID
+    			displayformat = [" " + Employee_Name.first_name + " " + Employee_Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Review
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Rating
+			(
+				type = picklist
+				values = {"1", "2", "3", "4", "5"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-favourite-add-32"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		custom My_Feedbacks
+		{
+			displayName = "My Feedbacks"
+			show all rows from Feedback  [Employee_Name.Email_Id == zoho.loginuserid]  
+			(
+				Employee_Name as "Employee Name"
+				Rating
+				Complaint_Title as "Complaint Title"
+				Requester_Name as "Requester Name"
+				Review
+			)
+			options
+			(
+				icon = "users-2-pin"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = 1
+		     			title = "Overview"
+						fields
+						(
+							Requester_Name as "Requester Name"
+							Review
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Requester_Name as "Requester Name"
+							Employee_Name as "Employee Name"
+							Review
+							Rating
+							Complaint_Title as "Complaint Title"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Feedbacks
+		{
+			displayName = "All Feedbacks"
+			show all rows from Feedback    
+			(
+				Complaint_Title as "Complaint Title"
+				Requester_Name as "Requester Name"
+				Employee_Name as "Employee Name"
+				Review
+				Rating
+			)
+			options
+			(
+				icon = "design-bullet-list-67"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Complaint_Title as "Complaint Title"
+							Requester_Name as "Requester Name"
+							Employee_Name as "Employee Name"
+							Review
+							Rating
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Complaint_Title as "Complaint Title"
+							Requester_Name as "Requester Name"
+							Employee_Name as "Employee Name"
+							Review
+							Rating
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Reminders
+	{
+		icon = "media-1-layers"
+		form Set_Reminder
+		{
+			displayname = "Set Reminder"
+			success message = "Reminder Added Successfully"
+			field alignment = left
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Choose_Service
+			(
+				type = picklist
+				displayname = "Choose Service"
+				values  = Add_Service.ID
+    			displayformat = [Service_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Starting_Time
+			(
+    			type = datetime
+				displayname = "Starting Time"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Frequency
+			(
+				type = radiobuttons
+				values = {"Once", "Daily", "Weekly", "Monthly", "Yearly"}
+				initial value = "Once"
+				layout = 3
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Run_This_Schedule
+			(
+				type = radiobuttons
+				displayname = "Run This Schedule"
+				values = {"Forever", "Until a Date", "Number Of Events"}
+				initial value = "Forever"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			End_Date
+			(
+    			type = date
+				displayname = "End Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Number_Of_Events
+			(
+				type = number
+				displayname = "Number Of Events"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Next_Reminder_On
+			(
+    			type = datetime
+				displayname = "Next Reminder On"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "design-2-3d-29"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list All_Reminders
+		{
+			displayName = "All Reminders"
+			show all rows from Set_Reminder    
+			(
+				Choose_Service as "Choose Service"
+				Starting_Time as "Starting Time"
+				Frequency
+				Next_Reminder_On as "Next Reminder On"
+				Run_This_Schedule as "Run This Schedule"
+				End_Date as "End Date"
+				Number_Of_Events as "Number Of Events"
+			)
+			options
+			(
+				icon = "travel-world"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Choose_Service as "Choose Service"
+							Starting_Time as "Starting Time"
+							Frequency
+							Next_Reminder_On as "Next Reminder On"
+							Run_This_Schedule as "Run This Schedule"
+							End_Date as "End Date"
+							Number_Of_Events as "Number Of Events"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Choose_Service as "Choose Service"
+							Starting_Time as "Starting Time"
+							Frequency
+							Next_Reminder_On as "Next Reminder On"
+							Run_This_Schedule as "Run This Schedule"
+							End_Date as "End Date"
+							Number_Of_Events as "Number Of Events"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Services
+	{
+		displayname= "Services"
+		icon = "ui-1-settings-gear-63"
+		form Add_Service
+		{
+			displayname = "Add Service"
+			success message = "New service has been added successfully"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Service_Name
+			(
+    			type = text
+				displayname = "Service Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-circle-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Available_Services
+		{
+			displayName = "Available Services"
+			show all rows from Add_Service    
+			(
+				Service_Name as "Service Name"
+			)
+			options
+			(
+				icon = "files-settings-99"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Service_Name as "Service Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Service_Name as "Service Name"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Employees"
+		     			related field =  Add_Employee.Service
+						fields
+						(
+							Employee_Name as "Name"
+							Contact_Number as "Contact Number"
+							Email_Id as "Email Id"
+							Employee_Status as "Employee Status"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Organization_Details
+	{
+		displayname= "Organization Details"
+		icon = "business-building"
+		form Add_Organization_Details
+		{
+			displayname = "Add Organization Details"
+			success message = "Organization Details has been Registered Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Organization_Name
+			(
+    			type = text
+				displayname = "Organization Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Admin_Name
+			(
+    			type = name
+				displayname = "Admin Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Contact_Number
+			(
+    			type = phonenumber
+				displayname = "Contact Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email_Id
+			(
+    			type = email
+				displayname = "Email Id"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Organization_Address
+			(
+    			type = address
+				displayname = "Organization Address"
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		properties
+		{
+			total entries
+			{
+				allowed count = 1
+			}
+			entries per user
+			{
+				allowed count = 1
+			}
+		}
+		}
+		summary Your_Organization
+		{
+			displayName = "Your Organization"
+			show all rows from Add_Organization_Details    
+			(
+				Admin_Name  as "Name"
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Contact_Number as "Contact Number"
+				Organization_Address  as "Address"
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	 			)
+				Email_Id as "Email Id"
+				Organization_Name as "Organization Name"
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 2
+				icon = "travel-temple-02"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Organization_Name as "Organization Name"
+							Admin_Name as "Name"
+							Contact_Number as "Contact Number"
+							Email_Id as "Email Id"
+							Organization_Address as "Address"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Organization_Name as "Organization Name"
+							Admin_Name as "Name"
+							Contact_Number as "Contact Number"
+							Email_Id as "Email Id"
+							Organization_Address as "Address"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	functions
+	{
+ 			void Employee.Changing_Employee_Status(int record_id)
+			{
+				//Changing Status
+				this_record = Add_Employee[ID == input.record_id];
+				if(this_record.Employee_Status == "Active")
+				{
+					work_count = Raise_Maintenance_Request[Assigned_Employee == this_record.ID && Work_Status != "Closed"].count(ID);
+					if(work_count == 0)
+					{
+						this_record.Employee_Status="Archive";
+					}
+					//Alerts the pending works of the employee
+					else
+					{
+						info "This Employee has " + work_count + " pending works to do ,So please change the status after the works completed";
+					}
+				}
+				else if(this_record.Employee_Status == "Archive")
+				{
+					this_record.Employee_Status="Active";
+				}
+			}
+ 			void Maintenance.Assign_Employee(int record_id)
+			{
+				//Redirects to the employee assigning form
+				url = zoho.appuri + "#Form:Assign_Employee?Issue_Title=" + record_id;
+				openUrl(url,"popup window");
+			}
+ 			void Notification.Send_Notification(string userEmail)
+			{
+				appname = zoho.appname;
+				sendmail
+				[
+					from :zoho.adminuserid
+					to :userEmail
+					subject :"Invitation to access '" + zoho.appname + "' "
+					message :"<div style='width:100%;display:inline-block;box-sizing:border-box;border:1px solid #ddd;'><div style='padding:2%;text-align:center;'>You've been invited to use an application built on Zoho Creator by \"" + zoho.adminuserid + "\".</div><div style='background: #efefef; padding: 20.0px;margin: 20.0px 0 10.0px;text-align:center;'><h2>" + appname.toUpperCase() + "</h2><div style='margin: 20.0px 0 10.0px;'><a style='padding:10px;background-color: rgb(62,149,205);text-decoration: none;color: rgb(255,255,255);font-size: 14.0px;' href='https://creator.zoho.com" + zoho.appuri + "' target='_blank'> Go to application </a></div></div></div>"
+				]
+			}
+ 			void Maintenance.Moving_Request_To_Progress(int record_id)
+			{
+				//Changing the work status as In progress
+				this_record = Raise_Maintenance_Request[ID == input.record_id];
+				this_record.Work_Status="In progress";
+			}
+ 			void Maintenance.Closing_Request(int record_id)
+			{
+				//Changing work status to closed and sent an email to the requester about the work completion
+				this_record = Raise_Maintenance_Request[ID == input.record_id];
+				this_record.Work_Status="Closed";
+				requester_name = Add_Requester[ID == this_record.Requester_Name].Name;
+				requester_email_id = Add_Requester[ID == this_record.Requester_Name].Email_Id;
+				url = "https://app.zohocreator.com" + zoho.appuri + "#Form:Feedback";
+				sendmail
+				[
+					from :zoho.adminuserid
+					to :requester_email_id
+					subject :"Maintenance Closed"
+					message :("Hi " + requester_name) + ",<br></br>Your requested maintenace for " + this_record.What_s_The_Issue + "was closed.<br></br><a href=" + url + ">Click here to give your feedback</a>"
+				]
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Run_Scripts_On_Click_of_P as "Run Scripts - On Click of 'Proceed' Button"
+			{
+				type =  form
+				form = Assign_Employee
+				button = Assign
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						//Assigns the employee to the maintenance and sent an email about the request
+										rec_id = Raise_Maintenance_Request[ID == input.Issue_Title];
+										rec_id.Assigned_Employee=input.Available_Employees;
+										rec_id.Work_Status="Employee Assigned";
+										employee_email_id = Add_Employee[ID == input.Available_Employees].Email_Id;
+										employee_name = Add_Employee[ID == input.Available_Employees].Employee_Name;
+										url = "https://app.zohocreator.com" + zoho.appuri + "#Report:My_Assigned_Work_Orders";
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :employee_email_id
+											subject :"New Request"
+											message :("Hi " + employee_name) + ",<br></br>A new maintenance request assigned to you <br></br><a href=" + url + ">Click here to take action</a>"
+										]
+										openUrl("#Script:page.refresh","same window");
+					)
+					}
+				}
+			}
+			Run_Scripts_While_Adding_6 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Raise_Maintenance_Request
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide Work_Status,Assigned_Employee;
+						disable Requester_Name,Date_field;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_7 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Raise_Maintenance_Request
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Redirects to add organization details form
+										detail_rec_count = Add_Organization_Details[ID != 0].count(ID);
+										if(detail_rec_count == 0)
+										{
+											openUrl("#Form:Add_Organization_Details","same window");
+										}
+										//Adding as an user by default
+										if(zoho.loginuserid == zoho.adminuserid)
+										{
+											user_count = Add_Requester[Email_Id == zoho.adminuserid].count(ID);
+											if(user_count == 0)
+											{
+												//Adding admin as a requester
+												insert into Add_Requester
+												[
+													Name.first_name="Admin"
+													Email_Id=zoho.adminuserid
+													Added_User=zoho.loginuser
+												]
+											}
+										}
+										input.Date_field = zoho.currentdate;
+										input.Requester_Name = Add_Requester[Email_Id == zoho.loginuserid].ID;
+										//Changing work status
+										input.Work_Status = "Request Sent";
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_8 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Raise_Maintenance_Request
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											url = "https://app.zohocreator.com" + zoho.appuri + "#Report:New_Requests";
+										//Sending Information to admin about the new request
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :zoho.adminuserid
+											subject :"New maintenance request"
+											message :"A new maintenance request was raised.<br></br><a href=" + url + ">Click here to take action</a>"
+										]
+						)
+					}
+					actions  (Added_User != zoho.adminuser)
+					{
+					pushnotification
+					(
+						sender type : "fields"
+						to : "${zoho.adminuserid}"
+						title : "New Maintenance Request"
+						message : "${zoho.loginuserid} has added a New Request For Maintenance"
+						view : "New_Requests"
+					)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_9 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide Employee_Status;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_10 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Sets the employee status as active
+										if(Email_Id != zoho.adminuserid)
+										{
+											input.Employee_Status = "Active";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_11 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Sharing user permissions to the employee
+										if(Email_Id != zoho.adminuserid)
+										{
+											requester_count = Add_Requester[Email_Id == input.Email_Id].count(ID);
+											if(requester_count == 1)
+											{
+												thisapp.permissions.deleteuser(input.Email_Id);
+												thisapp.permissions.assignUserInProfile(input.Email_Id,"Both");
+											}
+											else
+											{
+												thisapp.permissions.assignUserInProfile(input.Email_Id,"Employee");
+												thisapp.Notification.Send_Notification(input.Email_Id);
+											}
+										}
+										rec_count = Add_Employee[ID != 0].count(ID);
+										//Redirects to the request form during the submission of first record
+										if(rec_count == 1)
+										{
+											openUrl("#Form:Request_For_Maintenance","same window");
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_12 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Assign_Employee
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						disable Service_Type,Issue_Title;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_13 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Assign_Employee
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Adding available employees
+										input.Service_Type = Raise_Maintenance_Request[ID == input.Issue_Title].Select_Service;
+										active_emps = Add_Employee[Employee_Status == "Active" && Service == input.Service_Type].ID.getAll();
+										input.Available_Employees:ui.add(active_emps);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_14 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Requester
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Email_Id != zoho.adminuserid)
+										{
+											//Validation for contact number and Name
+											if(Contact_Number == null)
+											{
+												alert "Enter a Contact Number";
+												cancel submit;
+											}
+											if(Name.isEmpty())
+											{
+												alert "Enter a Name";
+												cancel submit;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_15 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Requester
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Sharing user permissions for the requesters
+										if(Email_Id != zoho.adminuserid)
+										{
+											employee_count = Add_Employee[Email_Id == input.Email_Id].count(ID);
+											if(employee_count == 1)
+											{
+												thisapp.permissions.deleteuser(input.Email_Id);
+												thisapp.permissions.assignUserInProfile(input.Email_Id,"Both");
+											}
+											else
+											{
+												thisapp.permissions.assignUserInProfile(input.Email_Id,"Requester");
+												thisapp.Notification.Send_Notification(input.Email_Id);
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing3 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Requester
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Email_Id != zoho.adminuserid)
+										{
+											employee_count = Add_Employee[Email_Id == input.Email_Id].count(ID);
+											if(employee_count == 1)
+											{
+												if(old.Email_Id != input.Email_Id)
+												{
+													thisapp.permissions.deleteuser(old.Email_Id);
+												}
+												thisapp.permissions.deleteuser(input.Email_Id);
+												thisapp.permissions.assignUserInProfile(input.Email_Id,"Both");
+											}
+											else
+											{
+												if(old.Email_Id != input.Email_Id)
+												{
+													//Removing permissions from old mail id
+													thisapp.permissions.deleteuser(old.Email_Id);
+													//Sharing permissions to new mail id
+													thisapp.permissions.assignUserInProfile(input.Email_Id,"Requester");
+													thisapp.Notification.Send_Notification(input.Email_Id);
+												}
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing4 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Employee_Status;
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing5 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											requester_count = Add_Requester[Email_Id == input.Email_Id].count(ID);
+										if(requester_count == 1)
+										{
+											if(old.Email_Id != input.Email_Id)
+											{
+												thisapp.permissions.deleteuser(old.Email_Id);
+											}
+											thisapp.permissions.deleteuser(input.Email_Id);
+											thisapp.permissions.assignUserInProfile(input.Email_Id,"Both");
+										}
+										else
+										{
+											if(old.Email_Id != input.Email_Id)
+											{
+												//Removing permissions from the old mail id
+												thisapp.permissions.deleteuser(old.Email_Id);
+												//Sharing permissions to the new mail id
+												thisapp.permissions.assignUserInProfile(input.Email_Id,"Employee");
+												thisapp.Notification.Send_Notification(input.Email_Id);
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin3 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_Requester
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Email_Id != zoho.adminuserid)
+										{
+											work_count = Raise_Maintenance_Request[Requester_Name == input.ID && Work_Status != "Closed"].count(ID);
+											//Alerts the pending works of the deleting user	
+											if(work_count != 0)
+											{
+												alert "There are " + work_count + " more requests pending for this user, After completion you are able to delete this user";
+												cancel delete;
+											}
+											//Removing permissions from the user
+											else
+											{
+												thisapp.permissions.deleteuser(input.Email_Id);
+												employee_count = Add_Employee[Email_Id == input.Email_Id].count(ID);
+												if(employee_count == 1)
+												{
+													thisapp.permissions.assignUserInProfile(input.Email_Id,"Employee");
+												}
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin4 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Email_Id != zoho.adminuserid)
+										{
+											work_count = Raise_Maintenance_Request[Assigned_Employee == input.ID && Work_Status != "Closed"].count(ID);
+											//Alerts the pending works of the employee
+											if(work_count != 0)
+											{
+												alert "There are " + work_count + " more works pending for him, After completion you are able to delete this user";
+												cancel delete;
+											}
+											//Removing permissions from the employee
+											else
+											{
+												thisapp.permissions.deleteuser(input.Email_Id);
+												delete from Feedback[Employee_Name == input.ID];
+												requester_count = Add_Requester[Email_Id == input.Email_Id].count(ID);
+												if(requester_count == 1)
+												{
+													thisapp.permissions.assignUserInProfile(input.Email_Id,"Requester");
+												}
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_16 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Organization_Details
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Sets the email as admin mail id
+										input.Email_Id = zoho.adminuserid;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_17 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Organization_Details
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						openURL("#Form:Add_Employee","new window");
+						custom deluge script
+						(
+											openUrl("#Script:dialog.close","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_18 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Feedback
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Fetching Incident details and showing it
+										input.Requester_Name = Add_Requester[Email_Id == zoho.loginuserid].ID;
+										closed_works = Raise_Maintenance_Request[Added_User == zoho.loginuser && Work_Status == "Closed"].ID.getAll();
+										feedbacks = Feedback[Added_User == zoho.loginuser].Complaint_Title.getAll();
+										clear Complaint_Title;
+										disable Employee_Name;
+										disable Requester_Name;
+										if(closed_works.size() > feedbacks.size())
+										{
+											closed_works.removeAll(feedbacks);
+											input.Complaint_Title:ui.add(closed_works);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always4 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Feedback
+				record event = on add or edit
+
+	on user input of Complaint_Title
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Fetching the assigned employee
+										employee_id = Raise_Maintenance_Request[ID == input.Complaint_Title];
+										input.Employee_Name = employee_id.Assigned_Employee;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing6 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Raise_Maintenance_Request
+				record event = on edit
+
+	field rules
+	{
+					actions 
+					{
+						disable Select_Service,Work_Status,What_s_The_Issue,Requester_Name,Date_field,Location,Assigned_Employee;
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin5 as "Run Scripts While Deleting a Record"
+			{
+				type =  form
+				form = Add_Service
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											employee_count = Add_Employee[Service == input.ID].count(ID);
+										if(employee_count > 0)
+										{
+											alert "You have added " + employee_count + " employees based on this service, So change their services and try again";
+											cancel delete;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always5 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Add_Requester
+				record event = on add or edit
+
+	on user input of Email_Id
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Email_Id != null)
+										{
+											employee_count = Add_Employee[Email_Id == input.Email_Id].count(ID);
+											if(employee_count == 1)
+											{
+												input.Notes = "This user account has already added in employees.<br>If you wish to add this account in requesters then this user account will have both permissions";
+											}
+										}
+										else
+										{
+											input.Notes = "";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always6 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on add or edit
+
+	on user input of Email_Id
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Email_Id != null)
+										{
+											requester_count = Add_Requester[Email_Id == input.Email_Id].count(ID);
+											if(requester_count == 1)
+											{
+												input.Notes = "This user account has already added in requesters.<br>If you wish to add this account in employees then this user account will have both permissions";
+											}
+										}
+										else
+										{
+											input.Notes = "";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always7 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Set_Reminder
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Next_Reminder_On;
+					}
+					actions  (Run_This_Schedule == "Number Of Events")
+					{
+						show Number_Of_Events;
+					}
+					actions  (Run_This_Schedule == "Until a Date")
+					{
+						show End_Date;
+					}
+					actions  (Frequency != "Once")
+					{
+						show Run_This_Schedule;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always8 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Set_Reminder
+				record event = on add or edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Starting_Time <= zoho.currenttime)
+										{
+											alert "Enter a valid future starting date and time";
+											cancel submit;
+										}
+										if(Frequency == "Once" && Run_This_Schedule != "")
+										{
+											input.Run_This_Schedule = "";
+										}
+										if(Run_This_Schedule == "Forever" && End_Date != null)
+										{
+											input.End_Date = null;
+										}
+						)
+					}
+					actions  (Run_This_Schedule == "Number Of Events")
+					{
+						custom deluge script
+						(
+											if(Number_Of_Events == null)
+										{
+											alert "Enter the number of events to complete this schedule";
+											cancel submit;
+										}
+										else if(input.Number_Of_Events <= 0)
+										{
+											alert "Enter a valid number for events";
+											cancel submit;
+										}
+										else
+										{
+											value_map = {"Daily":input.Starting_Time.addDay(input.Number_Of_Events),"Monthly":input.Starting_Time.addMonth(input.Number_Of_Events),"Weekly":input.Starting_Time.addWeek(input.Number_Of_Events),"Yearly":input.Starting_Time.addYear(input.Number_Of_Events)};
+											input.End_Date = value_map.get(input.Frequency).toDate();
+										}
+						)
+					}
+					actions  (Run_This_Schedule == "Until a Date")
+					{
+						custom deluge script
+						(
+											if(End_Date == null)
+										{
+											alert "Enter a valid end date to finish this schedule";
+											cancel submit;
+										}
+										else if(End_Date <= input.Starting_Time.toDate())
+										{
+											alert "End date should be greater than starting date";
+											cancel submit;
+										}
+										if(input.Number_Of_Events != null)
+										{
+											input.Number_Of_Events = null;
+										}
+						)
+					}
+					actions  (Frequency != "Once")
+					{
+						custom deluge script
+						(
+											if(Run_This_Schedule == "" || Run_This_Schedule == null)
+										{
+											alert "Select any format to run this schedule";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always9 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Set_Reminder
+				record event = on add or edit
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Next_Reminder_On = input.Starting_Time;
+						)
+					}
+	}
+
+			}
+		}
+		schedule
+		{
+			Reminder as "Reminder"
+			{
+				type =  schedule
+				form = Set_Reminder
+				start = Starting_Time
+				end   = End_Date
+				frequency = daily
+				time zone = "Asia/Kolkata"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						if(Next_Reminder_On == zoho.currentdate)
+										{
+											mail_content = "Hi , <br> Its time to do ";
+											if(input.Frequency != "Once")
+											{
+												mail_content = mail_content + input.Frequency + " ";
+											}
+											mail_content = mail_content + "maintenance for " + input.Choose_Service.Service_Name;
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :zoho.adminuserid
+												subject :"Maintenance Reminder"
+												message :mail_content
+											]
+											if(input.Frequency != "Once")
+											{
+												if(input.End_Date > zoho.currentdate || input.End_Date == null)
+												{
+													date_value = {"Daily":input.Next_Reminder_On.addDay(1),"Weekly":input.Next_Reminder_On.addWeek(1),"Monthly":input.Next_Reminder_On.addMonth(1),"Yearly":input.Next_Reminder_On.addYear(1)};
+													rec = Set_Reminder[ID == input.ID];
+													rec.Next_Reminder_On=date_value.get(input.Frequency);
+												}
+											}
+										}
+					)
+					}
+				}
+			}
+		}
+		functions
+		{
+			Run_Scripts_On_Click_of_P1 as "Run Scripts - On Click of 'Proceed' Button"
+			{
+				type =  functions
+				form = Raise_Maintenance_Request
+				on start
+				{
+					actions 
+					{
+					Maintenance.Assign_Employee(ID);
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_P2 as "Run Scripts - On Click of 'Proceed' Button"
+			{
+				type =  functions
+				form = Raise_Maintenance_Request
+				on start
+				{
+					actions 
+					{
+					Maintenance.Moving_Request_To_Progress(ID);
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_P3 as "Run Scripts - On Click of 'Proceed' Button"
+			{
+				type =  functions
+				form = Raise_Maintenance_Request
+				on start
+				{
+					actions 
+					{
+					Maintenance.Closing_Request(ID);
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_P5 as "Run Scripts - On Click of 'Proceed' Button"
+			{
+				type =  functions
+				form = Add_Employee
+				on start
+				{
+					actions 
+					{
+					Employee.Changing_Employee_Status(ID);
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_P4 as "Run Scripts - On Click of 'Proceed' Button"
+			{
+				type =  functions
+				form = Raise_Maintenance_Request
+				on start
+				{
+					actions 
+					{
+					Maintenance.Assign_Employee(ID);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Read"
+			{
+				name = "Read"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have read permission for all components\n"
+			}
+			"Write"
+			{
+				name = "Write"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have write permission for all components\n"
+			}
+			"Requester"
+			{
+				name = "Requester"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "This is for Requester\n"
+				ModulePermissions
+				{
+					Add_Requester
+					{
+						FieldPermissions
+						{
+							Contact_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Email_Id{visibility:true,readonly:false}
+							Notes{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Organization_Details
+					{
+						FieldPermissions
+						{
+							Organization_Name{visibility:true,readonly:false}
+							Email_Id{visibility:true,readonly:false}
+							Organization_Address{visibility:true,readonly:false}
+							Contact_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Admin_Name{visibility:true,readonly:false}
+						}
+					}
+					Feedback
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Requester_Name{visibility:true,readonly:false}
+							Rating{visibility:true,readonly:false}
+							Employee_Name{visibility:true,readonly:false}
+							Review{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Complaint_Title{visibility:true,readonly:false}
+						}
+					}
+					Assign_Employee
+					{
+						FieldPermissions
+						{
+							Available_Employees{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Issue_Title{visibility:true,readonly:false}
+							Service_Type{visibility:true,readonly:false}
+						}
+					}
+					Raise_Maintenance_Request
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							My_Requests={"View","Edit"}
+						}
+						FieldPermissions
+						{
+							Date_field{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Assigned_Employee{visibility:true,readonly:false}
+							What_s_The_Issue{visibility:true,readonly:false}
+							Requester_Name{visibility:true,readonly:false}
+							Select_Service{visibility:true,readonly:false}
+							Work_Status{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Add_Photo{visibility:true,readonly:false}
+							Location{visibility:true,readonly:false}
+						}
+					}
+					Add_Employee
+					{
+						FieldPermissions
+						{
+							Employee_Status{visibility:true,readonly:false}
+							Email_Id{visibility:true,readonly:false}
+							Service{visibility:true,readonly:false}
+							Employee_Name{visibility:true,readonly:false}
+							Contact_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Notes{visibility:true,readonly:false}
+						}
+					}
+					Set_Reminder
+					{
+						FieldPermissions
+						{
+							Modified_User{visibility:false}
+							Modified_Time{visibility:false}
+							Run_This_Schedule{visibility:false,readonly:false}
+							Starting_Time{visibility:false,readonly:false}
+							End_Date{visibility:false,readonly:false}
+							Section{visibility:false,readonly:false}
+							Choose_Service{visibility:false,readonly:false}
+							Next_Reminder_On{visibility:false,readonly:false}
+							Frequency{visibility:false,readonly:false}
+							Number_Of_Events{visibility:false,readonly:false}
+							Added_User{visibility:false}
+							ID{visibility:false}
+							Added_Time{visibility:false}
+						}
+					}
+					Add_Service
+					{
+						FieldPermissions
+						{
+							Service_Name{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+				}
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Employee"
+			{
+				name = "Employee"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "This is for Employee\n"
+				ModulePermissions
+				{
+					Add_Requester
+					{
+						FieldPermissions
+						{
+							Contact_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Email_Id{visibility:true,readonly:false}
+							Notes{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Organization_Details
+					{
+						FieldPermissions
+						{
+							Organization_Name{visibility:true,readonly:false}
+							Email_Id{visibility:true,readonly:false}
+							Organization_Address{visibility:true,readonly:false}
+							Contact_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Admin_Name{visibility:true,readonly:false}
+						}
+					}
+					Feedback
+					{
+						ReportPermissions
+						{
+							My_Feedbacks={"View"}
+						}
+						FieldPermissions
+						{
+							Requester_Name{visibility:true,readonly:false}
+							Rating{visibility:true,readonly:false}
+							Employee_Name{visibility:true,readonly:false}
+							Review{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Complaint_Title{visibility:true,readonly:false}
+						}
+					}
+					Assign_Employee
+					{
+						FieldPermissions
+						{
+							Available_Employees{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Issue_Title{visibility:true,readonly:false}
+							Service_Type{visibility:true,readonly:false}
+						}
+					}
+					Raise_Maintenance_Request
+					{
+						ReportPermissions
+						{
+							My_Closed_Works={"View"}
+							My_Current_Works={"View"}
+							My_Assigned_Work_Orders={"View"}
+						}
+						FieldPermissions
+						{
+							Date_field{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Assigned_Employee{visibility:true,readonly:false}
+							What_s_The_Issue{visibility:true,readonly:false}
+							Requester_Name{visibility:true,readonly:false}
+							Select_Service{visibility:true,readonly:false}
+							Work_Status{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Add_Photo{visibility:true,readonly:false}
+							Location{visibility:true,readonly:false}
+						}
+					}
+					Add_Employee
+					{
+						FieldPermissions
+						{
+							Employee_Status{visibility:true,readonly:false}
+							Email_Id{visibility:true,readonly:false}
+							Service{visibility:true,readonly:false}
+							Employee_Name{visibility:true,readonly:false}
+							Contact_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Notes{visibility:true,readonly:false}
+						}
+					}
+					Set_Reminder
+					{
+						FieldPermissions
+						{
+							Modified_User{visibility:false}
+							Modified_Time{visibility:false}
+							Run_This_Schedule{visibility:false,readonly:false}
+							Starting_Time{visibility:false,readonly:false}
+							End_Date{visibility:false,readonly:false}
+							Section{visibility:false,readonly:false}
+							Choose_Service{visibility:false,readonly:false}
+							Next_Reminder_On{visibility:false,readonly:false}
+							Frequency{visibility:false,readonly:false}
+							Number_Of_Events{visibility:false,readonly:false}
+							Added_User{visibility:false}
+							ID{visibility:false}
+							Added_Time{visibility:false}
+						}
+					}
+					Add_Service
+					{
+						FieldPermissions
+						{
+							Service_Name{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+				}
+			}
+			"Both"
+			{
+				name = "Both"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "This profile contains both permission\n"
+				ModulePermissions
+				{
+					Add_Requester
+					{
+						FieldPermissions
+						{
+							Contact_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Email_Id{visibility:true,readonly:false}
+							Notes{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Organization_Details
+					{
+						FieldPermissions
+						{
+							Organization_Name{visibility:true,readonly:false}
+							Email_Id{visibility:true,readonly:false}
+							Organization_Address{visibility:true,readonly:false}
+							Contact_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Admin_Name{visibility:true,readonly:false}
+						}
+					}
+					Feedback
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							My_Feedbacks={"View"}
+						}
+						FieldPermissions
+						{
+							Requester_Name{visibility:true,readonly:false}
+							Rating{visibility:true,readonly:false}
+							Employee_Name{visibility:true,readonly:false}
+							Review{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Complaint_Title{visibility:true,readonly:false}
+						}
+					}
+					Assign_Employee
+					{
+						FieldPermissions
+						{
+							Available_Employees{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Issue_Title{visibility:true,readonly:false}
+							Service_Type{visibility:true,readonly:false}
+						}
+					}
+					Raise_Maintenance_Request
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							My_Closed_Works={"View"}
+							My_Requests={"View","Edit"}
+							My_Current_Works={"View"}
+							My_Assigned_Work_Orders={"View"}
+						}
+						FieldPermissions
+						{
+							Date_field{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Assigned_Employee{visibility:true,readonly:false}
+							What_s_The_Issue{visibility:true,readonly:false}
+							Requester_Name{visibility:true,readonly:false}
+							Select_Service{visibility:true,readonly:false}
+							Work_Status{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Add_Photo{visibility:true,readonly:false}
+							Location{visibility:true,readonly:false}
+						}
+					}
+					Add_Employee
+					{
+						FieldPermissions
+						{
+							Employee_Status{visibility:true,readonly:false}
+							Email_Id{visibility:true,readonly:false}
+							Service{visibility:true,readonly:false}
+							Employee_Name{visibility:true,readonly:false}
+							Contact_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Notes{visibility:true,readonly:false}
+						}
+					}
+					Set_Reminder
+					{
+						FieldPermissions
+						{
+							Modified_User{visibility:false}
+							Modified_Time{visibility:false}
+							Run_This_Schedule{visibility:false,readonly:false}
+							Starting_Time{visibility:false,readonly:false}
+							End_Date{visibility:false,readonly:false}
+							Section{visibility:false,readonly:false}
+							Choose_Service{visibility:false,readonly:false}
+							Next_Reminder_On{visibility:false,readonly:false}
+							Frequency{visibility:false,readonly:false}
+							Number_Of_Events{visibility:false,readonly:false}
+							Added_User{visibility:false}
+							ID{visibility:false}
+							Added_Time{visibility:false}
+						}
+					}
+					Add_Service
+					{
+						FieldPermissions
+						{
+							Service_Name{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+				}
+			}
+			roles
+			{
+				"Default"
+				{
+					description = "User belonging to this role can access data of all other users.\n"
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 5
+		new theme color = 7
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-business-verticals3"
+    	icon theme = "amethyst"
+		icons style = solid
+	}
+
+	tablet
+	{
+		section  Request_For_Maintenance
+		{
+			displayname= "Maintenance Requests"
+			form  Raise_Maintenance_Request
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+			}
+			list New_Requests
+			{
+				icon = "design-bullet-list-67"
+			}
+			list All_Requests
+			{
+				icon = "design-bullet-list-67"
+				quickview
+				(
+					layout
+					(
+		 				type = 3
+						datablock1
+						(
+			 				layout type = 7
+		     				title = "Overview"
+							fields
+							(
+								Add_Photo as "Photo"
+								What_s_The_Issue as "Issue"
+								Description
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Assign Employee"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Requester_Name as "Requester Name"
+								Select_Service as "Service"
+								Add_Photo as "Photo"
+								What_s_The_Issue as "Issue"
+								Description
+								Location
+				"Assign Employee"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list My_Requests
+			{
+				icon = "design-bullet-list-67"
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+			 				layout type = -1
+		     				title = "Overview"
+							fields
+							(
+								Requester_Name as "Requester Name"
+								Select_Service as "Service"
+								Add_Photo as "Photo"
+								What_s_The_Issue as "Issue"
+								Description
+								Work_Status as "Work Status"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Requester_Name as "Requester Name"
+								Select_Service as "Service"
+								Add_Photo as "Photo"
+								What_s_The_Issue as "Issue"
+								Description
+								Work_Status as "Work Status"
+								Location
+								Assigned_Employee as "Assigned Employee"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Employee_View
+		{
+			displayname= "Employee View"
+			form  Assign_Employee
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			list My_Assigned_Work_Orders
+			{
+				icon = "design-bullet-list-67"
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+			 				layout type = -1
+		     				title = "Overview"
+							fields
+							(
+								Add_Photo as "Photo"
+								Requester_Name as "Requester Name"
+								Select_Service as "Service"
+								What_s_The_Issue as "What's The Issue?"
+								Description
+								Work_Status as "Work Status"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Move to Progress"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Requester_Name as "Requester Name"
+								Select_Service as "Service"
+								Add_Photo as "Photo"
+								What_s_The_Issue as "What's The Issue?"
+								Description
+								Work_Status as "Work Status"
+								Location
+								Assigned_Employee as "Assigned Employee"
+				"Move to Progress"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			custom My_Current_Works
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 3
+						datablock1
+						(
+			 				layout type = 7
+		     				title = "Overview"
+							fields
+							(
+								Add_Photo as "Photo"
+								What_s_The_Issue as "What's The Issue?"
+								Description
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Close Work"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Requester_Name as "Requester Name"
+								Select_Service as "Service"
+								Add_Photo as "Photo"
+								What_s_The_Issue as "What's The Issue?"
+								Description
+								Location
+				"Close Work"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list My_Closed_Works
+			{
+			}
+		}
+		section  Add_Employee
+		{
+			displayname= "Employees"
+			list All_Employees
+			{
+				icon = "design-bullet-list-67"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Employee_Name as "Name"
+								Service
+								Contact_Number as "Contact Number"
+								Email_Id as "Email Id"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+										"Change Status"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Change Status"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Employee_Name as "Name"
+								Service
+								Contact_Number as "Contact Number"
+								Email_Id as "Email Id"
+								Employee_Status as "Employee Status"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			form  Add_Employee
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+			}
+		}
+		section  Add_Users
+		{
+			displayname= "Requesters"
+			form  Add_Requester
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+			}
+			list Requester_Details
+			{
+				icon = "design-bullet-list-67"
+			}
+		}
+		section  Feedback
+		{
+			form  Feedback
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+			}
+			custom My_Feedbacks
+			{
+				icon = "design-bullet-list-67"
+				quickview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = 1
+		     				title = "Overview"
+							fields
+							(
+								Requester_Name as "Requester Name"
+								Review
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Requester_Name as "Requester Name"
+								Employee_Name as "Employee Name"
+								Review
+								Rating
+								Complaint_Title as "Complaint Title"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list All_Feedbacks
+			{
+				icon = "design-bullet-list-67"
+			}
+		}
+		section  Add_Services
+		{
+			displayname= "Services"
+			form  Add_Service
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+			}
+			list Available_Services
+			{
+				icon = "design-bullet-list-67"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Service_Name as "Service Name"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Service_Name as "Service Name"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Organization_Details
+		{
+			displayname= "Organization Details"
+			form  Add_Organization_Details
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			summary Your_Organization
+			{
+				icon = "design-bullet-list-67"
+				quickview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = 1
+		     				title = "Overview"
+							fields
+							(
+								Organization_Name as "Organization Name"
+								Organization_Address as "Address"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Organization_Name as "Organization Name"
+								Admin_Name as "Name"
+								Contact_Number as "Contact Number"
+								Email_Id as "Email Id"
+								Organization_Address as "Address"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Reminders
+		{
+			form  Set_Reminder
+			{
+				layout = auto
+				icon = "design-2-3d-29"
+			}
+			list All_Reminders
+			{
+				icon = "travel-world"
+			}
+		}
+		customize
+		{
+			colour = amethyst
+        	layout = onecolumn
+		 	icons style = outline
+		}
+	}
+	translation
+{
+"{\"de\":{\"ReportField.New_Requests.Requester_Name\":\"Kontakt Nummer\",\"CustomAction.All_Employees.Run_Scripts_On_Click_of_P5\":\" Status ändern \",\"CompositeSubFields.Add_Organization_Details.Organization_Address.address_line_12\":\" Anschrift Zeile 1 \",\"ReportField.My_Closed_Works.Assigned_Employee\":\" Zugeordneter Angestellter \",\"FormButton.Add_Organization_Details.submit\":\" einreichen \",\"ReportField.All_Requests.Location\":\" Ort \",\"Section.Employee_View\":\" Zugeordnete Mitarbeiter \",\"PicklistOption.Add_Organization_Details.country2.1\":\" Wahl 1 \",\"ReportField.My_Requests.Date_field\":\"Datum\",\"Report.My_Closed_Works\":\" Meine geschlossenen Werke \",\"CustomAction.My_Assigned_Work_Orders.Run_Scripts_On_Click_of_P2\":\" In den Fortschritt wechseln \",\"Languages List.zh-TW\":\" Chinesische Tradition \",\"Section.Request_For_Maintenance\":\"Wartungsanforderungen \",\"FormField.Add_Organization_Details.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Add_Requester.Contact_Number\":\" Kontakt Nummer \",\"App.property-maintenance-tracker\":\"Wartungsanforderungen \",\"Languages List.ja\":\" japanisch \",\"ReportField.Available_Services.Service_Name\":\"Dienstname\",\"FormField.Add_Requester.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Form.Raise_Maintenance_Request\":\" Bitte um Wartung \",\"ReportField.My_Assigned_Work_Orders.Select_Service\":\"Bedienung\",\"FormField.Add_Service.ID\":\" ICH WÜRDE \",\"FormField.Add_Employee.Employee_Status\":\" Mitarbeiterstatus \",\"ReportField.My_Feedbacks.Requester_Name\":\" Name des Anfragenden \",\"Languages List.ku\":\" kurdisch \",\"FormButton.Add_Service.cancel\":\" Stornieren \",\"FormField.Raise_Maintenance_Request.Assigned_Employee\":\" Zugeordneter Angestellter \",\"PicklistOption.Raise_Maintenance_Request.Work_Status.1\":\" Anfrage geschickt \",\"Section.Add_Employee\":\" Angestellte \",\"ReportField.All_Requests.Select_Service\":\"Bedienung\",\"Languages List.km\":\" Khmer \",\"PicklistOption.Add_Organization_Details.country2.2\":\" Wahl 2 \",\"PicklistOption.Raise_Maintenance_Request.Work_Status.4\":\" Geschlossen \",\"PicklistOption.Raise_Maintenance_Request.Work_Status.3\":\" In Bearbeitung \",\"ReportField.All_Employees.Service\":\"Bedienung\",\"Languages List.ko\":\" Koreanisch \",\"PicklistOption.Raise_Maintenance_Request.Work_Status.2\":\" Mitarbeiter zugeordnet \",\"ReportField.My_Requests.Location\":\" Ort \",\"ReportField.All_Employees.first_name\":\" Name \",\"Languages List.kn\":\" Kannada \",\"Languages List.ka\":\" georgisch \",\"FormField.Assign_Employee.Added_Time\":\" Zeit hinzugefügt \",\"FormButton.Set_Reminder.reset\":\"Zurücksetzen\",\"ReportField.My_Requests.Work_Status\":\" Arbeitsstatus \",\"FormField.Raise_Maintenance_Request.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Add_Requester.Name\":\" Name \",\"Languages List.hu\":\" ungarisch \",\"Languages List.yi\":\" Jiddisch \",\"FormField.Assign_Employee.Record_Status\":\" Aufnahmestatus \",\"FormField.Set_Reminder.Section\":\"Sektion\",\"Languages List.hy\":\" Armenisch \",\"FormField.Add_Organization_Details.latitude2\":\" Breite \",\"Report.All_Feedbacks\":\" Alle Rückmeldungen \",\"FormButton.Add_Service.reset\":\" Zurücksetzen \",\"Languages List.hr\":\" kroatisch \",\"Report.My_Requests\":\" Meine Anfragen \",\"PicklistOption.Add_Requester.prefix.2\":\" Frau. \",\"PicklistOption.Add_Requester.prefix.3\":\" Frau. \",\"FormField.Add_Service.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Feedback.Employee_Name\":\" Mitarbeitername \",\"FormButton.Add_Requester.cancel\":\" Stornieren \",\"Form.Assign_Employee\":\" Mitarbeiter zuordnen \",\"PicklistOption.Set_Reminder.Frequency.1\":\"Einmal\",\"PicklistOption.Set_Reminder.Frequency.2\":\"Täglich\",\"FormField.Add_Employee.Contact_Number\":\" Kontakt Nummer \",\"PicklistOption.Set_Reminder.Frequency.3\":\"Wöchentlich\",\"PicklistOption.Set_Reminder.Frequency.4\":\"Monatlich\",\"Languages List.hi\":\" Hindi \",\"PicklistOption.Set_Reminder.Frequency.5\":\"Jährlich\",\"FormField.Add_Organization_Details.suffix\":\" Suffix \",\"FormField.Feedback.Section\":\"Sektion\",\"ReportField.My_Current_Works.Work_Status\":\" Arbeitsstatus \",\"ReportField.My_Assigned_Work_Orders.Work_Status\":\" Arbeitsstatus \",\"FormField.Add_Organization_Details.Section\":\"Sektion\",\"FormField.Add_Employee.Service\":\" Bedienung \",\"CompositeSubFields.Add_Requester.Name.first_name\":\" Vorname \",\"ReportField.New_Requests.Add_Photo\":\"Foto hinzufügen\",\"Languages List.zh\":\" Chinesisch \",\"Languages List.iw\":\" hebräisch \",\"FormField.Add_Organization_Details.ID\":\" ICH WÜRDE \",\"ReportField.New_Requests.Date_field\":\"Datum\",\"FormField.Feedback.Review\":\" Rezension \",\"CompositeSubFields.Add_Requester.Name.suffix\":\" Suffix \",\"FormField.Assign_Employee.Modified_Time\":\" Geänderte Zeit \",\"FormField.Raise_Maintenance_Request.Record_Status\":\" Aufnahmestatus \",\"ReportField.New_Requests.Description\":\"Beschreibung\",\"Languages List.is\":\" isländisch \",\"FormButton.Set_Reminder.submit\":\"Hinzufügen\",\"ReportField.All_Employees.Contact_Number\":\"Kontakt Nummer\",\"FormField.Add_Requester.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"ReportField.All_Feedbacks.Employee_Name\":\" Mitarbeitername \",\"Languages List.it\":\" Italienisch \",\"PicklistOption.Add_Requester.prefix.1\":\" Herr. \",\"Form.Add_Employee\":\" Mitarbeiter hinzufügen \",\"FormField.Feedback.Record_Status\":\" Aufnahmestatus \",\"FormField.Add_Service.Added_Time\":\" Zeit hinzugefügt \",\"Report.My_Assigned_Work_Orders\":\" Meine zugewiesenen Arbeitsaufträge \",\"FormField.Feedback.Added_Time\":\" Zeit hinzugefügt \",\"CustomAction.New_Requests.Run_Scripts_On_Click_of_P4\":\" Mitarbeiter zuordnen \",\"FormField.Add_Organization_Details.Organization_Address\":\" Organisationsadresse \",\"ReportField.My_Current_Works.Location\":\" Ort \",\"ReportField.My_Requests.What_s_The_Issue\":\" Titel ausgeben \",\"FormField.Add_Organization_Details.district_city2\":\" Stadtteil \",\"FormButton.Add_Organization_Details.update\":\" Aktualisieren \",\"CompositeSubFields.Add_Employee.Employee_Name.prefix\":\" Präfix \",\"FormField.Assign_Employee.Available_Employees\":\" Verfügbare Mitarbeiter \",\"FormField.Add_Employee.Email_Id\":\" E-Mail-ID \",\"ReportField.All_Feedbacks.Review\":\" Rezension \",\"FormField.Feedback.Requester_Name\":\" Name des Anfragenden \",\"ReportField.My_Current_Works.Requester_Name\":\" Name des Anfragenden \",\"PicklistOption.Set_Reminder.Run_This_Schedule.3\":\"Anzahl der Ereignisse\",\"ReportField.My_Closed_Works.Select_Service\":\"Bedienung\",\"PicklistOption.Set_Reminder.Run_This_Schedule.2\":\"Bis zu einem Datum\",\"FormField.Feedback.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"PicklistOption.Set_Reminder.Run_This_Schedule.1\":\"Für immer\",\"FormField.Add_Organization_Details.Modified_User\":\" Geänderter Benutzer \",\"FormField.Feedback.Modified_Time\":\" Geänderte Zeit \",\"FormField.Raise_Maintenance_Request.Location\":\" Ort \",\"Languages List.nl\":\" Niederländisch \",\"FormButton.Raise_Maintenance_Request.cancel\":\" Stornieren \",\"Languages List.no\":\" norwegisch \",\"FormField.Raise_Maintenance_Request.Requester_Name\":\" Name des Anfragenden \",\"FormField.Add_Employee.Modified_User\":\" Geänderter Benutzer \",\"FormField.Add_Organization_Details.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Add_Organization_Details.address_line_12\":\" Anschrift Zeile 1 \",\"FormButton.Add_Organization_Details.reset\":\" Zurücksetzen \",\"CompositeSubFields.Add_Requester.Name.prefix\":\" Präfix \",\"CompositeSubFields.Add_Organization_Details.Admin_Name.first_name\":\" Vorname \",\"ReportField.My_Assigned_Work_Orders.Add_Photo\":\"Foto\",\"Report.New_Requests\":\" Neue Anfragen \",\"ReportField.New_Requests.Assigned_Employee\":\" Zugeordneter Angestellter \",\"ReportField.New_Requests.What_s_The_Issue\":\"Titel ausgeben\",\"FormField.Add_Organization_Details.last_name\":\" Familienname, Nachname \",\"FormField.Set_Reminder.Starting_Time\":\"Anfangszeit\",\"FormField.Add_Requester.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Raise_Maintenance_Request.Added_Time\":\" Zeit hinzugefügt \",\"ReportField.Your_Organization.address_line_12\":\" Adresse \",\"FormField.Add_Employee.last_name\":\" Familienname, Nachname \",\"FormField.Add_Service.Record_Status\":\" Aufnahmestatus \",\"FormField.Raise_Maintenance_Request.Modified_Time\":\" Geänderte Zeit \",\"FormField.Add_Requester.Record_Status\":\" Aufnahmestatus \",\"Report.Available_Services\":\" Verfügbare Dienste \",\"ReportField.My_Requests.Requester_Name\":\" Name des Anfragenden \",\"ReportField.My_Requests.Add_Photo\":\"Foto\",\"Report.My_Feedbacks\":\" Meine Rückmeldungen \",\"Form.Add_Service\":\" Dienst hinzufügen \",\"ReportField.All_Employees.Email_Id\":\"E-Mail-ID\",\"Languages List.lt\":\" litauisch \",\"FormButton.Raise_Maintenance_Request.submit\":\" einreichen \",\"PicklistOption.Add_Employee.Employee_Status.2\":\" Archiv \",\"Languages List.lv\":\" lettisch \",\"PicklistOption.Add_Employee.Employee_Status.1\":\" Aktiv \",\"FormField.Set_Reminder.Number_Of_Events\":\"Anzahl der Ereignisse\",\"FormField.Feedback.ID\":\" ICH WÜRDE \",\"FormButton.Assign_Employee.Assign\":\" Zuordnen \",\"FormField.Add_Requester.first_name\":\" Vorname \",\"FormField.Add_Requester.suffix\":\" Suffix \",\"Languages List.lo\":\" Laothian \",\"FormField.Add_Employee.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Add_Requester.prefix\":\" Präfix \",\"FormField.Add_Requester.last_name\":\" Familienname, Nachname \",\"Languages List.la\":\" Latein \",\"Form.Feedback\":\" Feedback \",\"ReportField.Requester_Details.Email_Id\":\"E-Mail-ID\",\"FormField.Add_Requester.Modified_Time\":\" Geänderte Zeit \",\"FormField.Add_Organization_Details.postal_Code2\":\" Postleitzahl \",\"FormField.Add_Requester.ID\":\" ICH WÜRDE \",\"FormField.Add_Employee.first_name\":\" Vorname \",\"ReportField.My_Assigned_Work_Orders.Requester_Name\":\" Name des Anfragenden \",\"Languages List.ms\":\" malaiisch \",\"CustomAction.My_Current_Works.Run_Scripts_On_Click_of_P3\":\" In den Fortschritt wechseln \",\"Languages List.mr\":\" Marathi \",\"FormField.Add_Service.Service_Name\":\" Dienstname \",\"Languages List.mt\":\" maltesisch \",\"FormField.Raise_Maintenance_Request.Add_Photo\":\"Foto hinzufügen\",\"ReportField.My_Current_Works.Add_Photo\":\"Foto\",\"FormField.Add_Service.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Report.All_Requests\":\" Alle Anfragen \",\"FormField.Add_Service.Modified_Time\":\" Geänderte Zeit \",\"Languages List.mk\":\" mazedonisch \",\"FormField.Add_Employee.Section\":\" Sektion \",\"ReportField.My_Assigned_Work_Orders.Location\":\" Ort \",\"FormField.Add_Organization_Details.address_line_22\":\" Adresszeile 2 \",\"ReportField.My_Closed_Works.Work_Status\":\" Arbeitsstatus \",\"CompositeSubFields.Add_Employee.Employee_Name.last_name\":\" Familienname, Nachname \",\"FormField.Raise_Maintenance_Request.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Add_Organization_Details.Email_Id\":\" E-Mail-ID \",\"ReportField.My_Assigned_Work_Orders.Description\":\" Beschreibung \",\"ReportField.All_Feedbacks.Rating\":\" Bewertung \",\"ReportField.My_Assigned_Work_Orders.What_s_The_Issue\":\" Titel ausgeben \",\"Languages List.bg\":\" bulgarisch \",\"FormButton.Feedback.update\":\" Aktualisieren \",\"Languages List.bn\":\" Bengali \",\"FormField.Assign_Employee.Service_Type\":\" Servicetyp \",\"FormButton.Feedback.reset\":\" Zurücksetzen \",\"Languages List.ro\":\" rumänisch \",\"ReportField.All_Requests.Add_Photo\":\"Foto\",\"ReportField.All_Employees.Employee_Status\":\"Mitarbeiterstatus\",\"FormButton.Add_Requester.submit\":\" einreichen \",\"Languages List.be\":\" Belarussisch \",\"Languages List.ru\":\" Russisch \",\"FormField.Add_Organization_Details.first_name\":\" Vorname \",\"FormField.Raise_Maintenance_Request.What_s_The_Issue\":\"Was ist das Problem?\",\"ReportField.All_Requests.What_s_The_Issue\":\" Titel ausgeben \",\"Languages List.az\":\" Aserbaidschanisch \",\"CompositeSubFields.Add_Organization_Details.Organization_Address.state_province2\":\" Staat / Provinz \",\"Languages List.ta\":\" Tamilisch \",\"FormField.Add_Organization_Details.country2\":\" Land \",\"FormField.Raise_Maintenance_Request.ID\":\" ICH WÜRDE \",\"ReportField.My_Current_Works.What_s_The_Issue\":\" Titel ausgeben \",\"Languages List.cs\":\" Tschechisch \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" Thai \",\"FormField.Raise_Maintenance_Request.Select_Service\":\" Wählen Sie Service \",\"FormField.Add_Organization_Details.prefix\":\" Präfix \",\"Languages List.sq\":\" albanisch \",\"Languages List.ca\":\" katalanisch \",\"CompositeSubFields.Add_Organization_Details.Admin_Name.suffix\":\" Suffix \",\"ReportField.My_Closed_Works.Requester_Name\":\" Name des Anfragenden \",\"Languages List.sw\":\" Swahili \",\"Languages List.sv\":\" Schwedisch \",\"Languages List.sk\":\" slowakisch \",\"CompositeSubFields.Add_Organization_Details.Organization_Address.postal_Code2\":\" Postleitzahl \",\"Languages List.sl\":\" Slowenisch \",\"FormField.Add_Organization_Details.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Assign_Employee.Added_User\":\" Benutzer hinzugefügt \",\"Form.Add_Requester\":\" Anforderer hinzufügen \",\"FormField.Assign_Employee.ID\":\" ICH WÜRDE \",\"ReportField.All_Requests.Requester_Name\":\" Name des Anfragenden \",\"FormField.Add_Employee.Employee_Name\":\"Mitarbeitername\",\"ReportField.All_Requests.Description\":\" Beschreibung \",\"FormField.Set_Reminder.End_Date\":\"Endtermin\",\"FormButton.Add_Organization_Details.cancel\":\" Stornieren \",\"FormButton.Set_Reminder.cancel\":\"Stornieren\",\"FormButton.Add_Employee.reset\":\" Zurücksetzen \",\"FormField.Add_Organization_Details.Contact_Number\":\" Kontakt Nummer \",\"ReportField.My_Current_Works.Description\":\" Beschreibung \",\"ReportField.My_Current_Works.Select_Service\":\"Bedienung\",\"PicklistOption.Add_Employee.prefix.1\":\" Herr. \",\"PicklistOption.Add_Employee.prefix.3\":\" Frau. \",\"FormButton.Raise_Maintenance_Request.update\":\" Aktualisieren \",\"Languages List.pt\":\" Portugiesisch \",\"PicklistOption.Add_Employee.prefix.2\":\" Frau. \",\"FormButton.Add_Requester.reset\":\" Zurücksetzen \",\"FormField.Raise_Maintenance_Request.Description\":\" Beschreibung \",\"FormField.Add_Requester.Section\":\"Sektion\",\"FormButton.Add_Employee.update\":\" Aktualisieren \",\"FormField.Feedback.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Languages List.pl\":\" Polieren \",\"Form.Add_Organization_Details\":\" Organisationsdetails hinzufügen \",\"Languages List.ar\":\" Arabisch \",\"CompositeSubFields.Add_Organization_Details.Organization_Address.district_city2\":\" Stadtteil \",\"ReportField.Your_Organization.Contact_Number\":\" Kontakt Nummer \",\"FormField.Set_Reminder.Frequency\":\"Frequenz\",\"Form.Set_Reminder\":\"Erinnerung hinzufügen\",\"Section.Organization_Details\":\" Organisationsdetails \",\"Languages List.af\":\" Afrikaans \",\"FormField.Raise_Maintenance_Request.Date_field\":\" Datum \",\"FormField.Assign_Employee.Issue_Title\":\" Titel ausgeben \",\"ReportField.My_Current_Works.Assigned_Employee\":\" Zugeordneter Angestellter \",\"FormField.Assign_Employee.Modified_User\":\" Geänderter Benutzer \",\"Report.All_Employees\":\" Alle Angestellten \",\"FormField.Add_Employee.suffix\":\" Suffix \",\"FormField.Add_Organization_Details.Organization_Name\":\" Organisationsname \",\"ReportField.New_Requests.Select_Service\":\"Wählen Sie Service\",\"FormField.Add_Service.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Feedback.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Employee.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"ReportField.All_Requests.Date_field\":\"Datum\",\"CompositeSubFields.Add_Employee.Employee_Name.suffix\":\" Suffix \",\"FormField.Add_Organization_Details.longitude2\":\" Längengrad \",\"Report.My_Current_Works\":\" Meine aktuellen Arbeiten \",\"FormField.Set_Reminder.Next_Reminder_On\":\"Nächste Erinnerung ein\",\"FormField.Feedback.Rating\":\" Bewertung \",\"Section.Add_Services\":\" Dienstleistungen \",\"FormField.Add_Employee.prefix\":\" Präfix \",\"FormField.Add_Organization_Details.state_province2\":\" Staat / Provinz \",\"FormField.Raise_Maintenance_Request.Work_Status\":\" Arbeitsstatus \",\"FormField.Add_Employee.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Add_Service.Section\":\"Sektion\",\"PicklistOption.Feedback.Rating.1\":\" 1 \",\"FormField.Feedback.Modified_User\":\" Geänderter Benutzer \",\"FormButton.Set_Reminder.update\":\"Aktualisieren\",\"ReportField.Your_Organization.first_name\":\" Name \",\"FormButton.Add_Requester.update\":\" Aktualisieren \",\"FormButton.Add_Employee.cancel\":\" Stornieren \",\"Languages List.fr\":\" Französisch \",\"ReportField.My_Requests.Select_Service\":\"Bedienung\",\"FormField.Add_Employee.Modified_Time\":\" Geänderte Zeit \",\"ReportField.All_Requests.Work_Status\":\" Arbeitsstatus \",\"ReportField.All_Requests.Assigned_Employee\":\"Zugeordneter Angestellter\",\"ReportField.My_Feedbacks.Complaint_Title\":\" Beschwerdetitel \",\"Languages List.fi\":\" Finnese \",\"CompositeSubFields.Add_Organization_Details.Admin_Name.last_name\":\" Familienname, Nachname \",\"PicklistOption.Feedback.Rating.5\":\" 5 \",\"PicklistOption.Feedback.Rating.4\":\" 4 \",\"PicklistOption.Feedback.Rating.3\":\" 3 \",\"FormButton.Feedback.submit\":\" einreichen \",\"FormField.Assign_Employee.Section\":\"Sektion\",\"PicklistOption.Feedback.Rating.2\":\" 2 \",\"FormField.Add_Organization_Details.Record_Status\":\" Aufnahmestatus \",\"FormField.Add_Organization_Details.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Feedback.Complaint_Title\":\" Beschwerdetitel \",\"ReportField.My_Requests.Assigned_Employee\":\" Zugeordneter Angestellter \",\"Languages List.fa\":\" persisch \",\"Languages List.gu\":\" Gujarati \",\"FormButton.Add_Service.submit\":\" einreichen \",\"ReportField.New_Requests.Location\":\"Ort\",\"ReportField.My_Feedbacks.Employee_Name\":\" Mitarbeitername \",\"FormField.Add_Employee.Record_Status\":\" Aufnahmestatus \",\"FormButton.Raise_Maintenance_Request.reset\":\" Zurücksetzen \",\"ReportField.Requester_Details.first_name\":\" Name \",\"CompositeSubFields.Add_Organization_Details.Organization_Address.country2\":\" Land \",\"CompositeSubFields.Add_Organization_Details.Admin_Name.prefix\":\" Präfix \",\"ReportField.My_Closed_Works.What_s_The_Issue\":\" Titel ausgeben \",\"Languages List.gl\":\" galizisch \",\"FormField.Add_Requester.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Raise_Maintenance_Request.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Raise_Maintenance_Request.Modified_User\":\" Geänderter Benutzer \",\"Section.Add_Users\":\" Anforderer \",\"ReportField.New_Requests.Work_Status\":\"Arbeitsstatus\",\"Languages List.ga\":\" irisch \",\"FormField.Add_Organization_Details.Admin_Name\":\" Administratorname \",\"FormField.Raise_Maintenance_Request.Section\":\" Sektion \",\"CompositeSubFields.Add_Employee.Employee_Name.first_name\":\" Vorname \",\"ReportField.Your_Organization.Email_Id\":\" E-Mail-ID \",\"FormButton.Add_Employee.submit\":\" einreichen \",\"FormField.Add_Employee.ID\":\" ICH WÜRDE \",\"ReportField.My_Closed_Works.Description\":\" Beschreibung \",\"ReportField.My_Closed_Works.Location\":\" Ort \",\"Report.Your_Organization\":\" Deine Organisation \",\"ReportField.My_Closed_Works.Add_Photo\":\"Foto\",\"Languages List.tr\":\" Türkisch \",\"Languages List.da\":\" dänisch \",\"PicklistOption.Add_Organization_Details.prefix.1\":\" Herr. \",\"FormField.Add_Requester.Email_Id\":\" E-Mail-ID \",\"Languages List.de\":\" Deutsche \",\"PicklistOption.Add_Organization_Details.prefix.2\":\" Frau. \",\"PicklistOption.Add_Organization_Details.prefix.3\":\" Frau. \",\"Languages List.cy\":\" Walisisch \",\"FormField.Add_Employee.Added_User\":\" Benutzer hinzugefügt \",\"FormButton.Feedback.cancel\":\" Stornieren \",\"Languages List.tl\":\" Filipino \",\"FormField.Set_Reminder.Run_This_Schedule\":\"Führen Sie diesen Zeitplan aus\",\"ReportField.My_Assigned_Work_Orders.Assigned_Employee\":\" Zugeordneter Angestellter \",\"FormField.Add_Requester.Modified_User\":\" Geänderter Benutzer \",\"Languages List.es\":\" Spanisch \",\"Languages List.eu\":\" baskisch \",\"Languages List.et\":\" estnisch \",\"ReportField.My_Feedbacks.Rating\":\" Bewertung \",\"CompositeSubFields.Add_Organization_Details.Organization_Address.address_line_22\":\" Adresszeile 2 \",\"ReportField.My_Feedbacks.Review\":\" Rezension \",\"Report.Requester_Details\":\" Anfordererdetails \",\"Languages List.vi\":\" Vietnamesisch \",\"ReportField.Requester_Details.Contact_Number\":\"Kontakt Nummer\",\"Languages List.el\":\" griechisch \",\"Languages List.eo\":\" Esperanto \",\"Languages List.en\":\" Englisch \",\"FormField.Add_Service.Modified_User\":\" Geänderter Benutzer \",\"CompositeSubFields.Add_Requester.Name.last_name\":\" Familienname, Nachname \",\"CustomAction.All_Requests.Run_Scripts_On_Click_of_P1\":\" Mitarbeiter zuordnen \",\"ReportField.All_Feedbacks.Requester_Name\":\" Name des Anfragenden \",\"ReportField.My_Requests.Description\":\" Beschreibung \",\"Languages List.ur\":\" Urdu \",\"FormButton.Add_Service.update\":\" Aktualisieren \",\"FormField.Add_Organization_Details.Modified_Time\":\" Geänderte Zeit \",\"ReportField.All_Feedbacks.Complaint_Title\":\" Beschwerdetitel \",\"ReportField.Your_Organization.Organization_Name\":\" Organisationsname \",\"Section.Feedback\":\" Feedback \"},\"fr\":{\"ReportField.New_Requests.Requester_Name\":\"Numéro de contact\",\"CustomAction.All_Employees.Run_Scripts_On_Click_of_P5\":\" Changer le statut \",\"CompositeSubFields.Add_Organization_Details.Organization_Address.address_line_12\":\" Adresse 1 \",\"ReportField.My_Closed_Works.Assigned_Employee\":\" Employé assigné \",\"FormButton.Add_Organization_Details.submit\":\" Soumettre \",\"ReportField.All_Requests.Location\":\" Emplacement \",\"Section.Employee_View\":\" Employés assignés \",\"PicklistOption.Add_Organization_Details.country2.1\":\" Choix 1 \",\"ReportField.My_Requests.Date_field\":\"Rendez-vous amoureux\",\"Report.My_Closed_Works\":\" Mes œuvres fermées \",\"CustomAction.My_Assigned_Work_Orders.Run_Scripts_On_Click_of_P2\":\" Passer à la progression \",\"Languages List.zh-TW\":\" Chinois traditionnel \",\"Section.Request_For_Maintenance\":\"Demandes de maintenance \",\"FormField.Add_Organization_Details.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Add_Requester.Contact_Number\":\" Numéro de contact \",\"App.property-maintenance-tracker\":\"Demandes de maintenance \",\"Languages List.ja\":\" Japonais \",\"ReportField.Available_Services.Service_Name\":\"Nom du service\",\"FormField.Add_Requester.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Form.Raise_Maintenance_Request\":\" Demande de maintenance \",\"ReportField.My_Assigned_Work_Orders.Select_Service\":\"Un service\",\"FormField.Add_Service.ID\":\" ID \",\"FormField.Add_Employee.Employee_Status\":\" statut de l'employé \",\"ReportField.My_Feedbacks.Requester_Name\":\" Nom du demandeur \",\"Languages List.ku\":\" kurde \",\"FormButton.Add_Service.cancel\":\" Annuler \",\"FormField.Raise_Maintenance_Request.Assigned_Employee\":\" Employé assigné \",\"PicklistOption.Raise_Maintenance_Request.Work_Status.1\":\" Demande envoyée \",\"Section.Add_Employee\":\" Des employés \",\"ReportField.All_Requests.Select_Service\":\"Un service\",\"Languages List.km\":\" Khmer \",\"PicklistOption.Add_Organization_Details.country2.2\":\" Choix 2 \",\"PicklistOption.Raise_Maintenance_Request.Work_Status.4\":\" Fermé \",\"PicklistOption.Raise_Maintenance_Request.Work_Status.3\":\" En cours \",\"ReportField.All_Employees.Service\":\"Un service\",\"Languages List.ko\":\" coréen \",\"PicklistOption.Raise_Maintenance_Request.Work_Status.2\":\" Employé assigné \",\"ReportField.My_Requests.Location\":\" Emplacement \",\"ReportField.All_Employees.first_name\":\" prénom \",\"Languages List.kn\":\" Kannada \",\"Languages List.ka\":\" géorgien \",\"FormField.Assign_Employee.Added_Time\":\" Temps ajouté \",\"FormButton.Set_Reminder.reset\":\"Réinitialiser\",\"ReportField.My_Requests.Work_Status\":\" Statut de travail \",\"FormField.Raise_Maintenance_Request.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Add_Requester.Name\":\" prénom \",\"Languages List.hu\":\" hongrois \",\"Languages List.yi\":\" yiddish \",\"FormField.Assign_Employee.Record_Status\":\" Statut d'enregistrement \",\"FormField.Set_Reminder.Section\":\"Section\",\"Languages List.hy\":\" arménien \",\"FormField.Add_Organization_Details.latitude2\":\" latitude \",\"Report.All_Feedbacks\":\" Tous les commentaires \",\"FormButton.Add_Service.reset\":\" Réinitialiser \",\"Languages List.hr\":\" croate \",\"Report.My_Requests\":\" Mes demandes \",\"PicklistOption.Add_Requester.prefix.2\":\" Madame. \",\"PicklistOption.Add_Requester.prefix.3\":\" Mme. \",\"FormField.Add_Service.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Feedback.Employee_Name\":\" Nom de l'employé \",\"FormButton.Add_Requester.cancel\":\" Annuler \",\"Form.Assign_Employee\":\" Assigner un employé \",\"PicklistOption.Set_Reminder.Frequency.1\":\"Une fois que\",\"PicklistOption.Set_Reminder.Frequency.2\":\"du quotidien\",\"FormField.Add_Employee.Contact_Number\":\" Numéro de contact \",\"PicklistOption.Set_Reminder.Frequency.3\":\"Hebdomadaire\",\"PicklistOption.Set_Reminder.Frequency.4\":\"Mensuel\",\"Languages List.hi\":\" hindi \",\"PicklistOption.Set_Reminder.Frequency.5\":\"Annuel\",\"FormField.Add_Organization_Details.suffix\":\" Suffixe \",\"FormField.Feedback.Section\":\"Section\",\"ReportField.My_Current_Works.Work_Status\":\" Statut de travail \",\"ReportField.My_Assigned_Work_Orders.Work_Status\":\" Statut de travail \",\"FormField.Add_Organization_Details.Section\":\"Section\",\"FormField.Add_Employee.Service\":\" Un service \",\"CompositeSubFields.Add_Requester.Name.first_name\":\" Prénom \",\"ReportField.New_Requests.Add_Photo\":\"Ajouter une photo\",\"Languages List.zh\":\" chinois \",\"Languages List.iw\":\" hébreu \",\"FormField.Add_Organization_Details.ID\":\" ID \",\"ReportField.New_Requests.Date_field\":\"Rendez-vous amoureux\",\"FormField.Feedback.Review\":\" La revue \",\"CompositeSubFields.Add_Requester.Name.suffix\":\" Suffixe \",\"FormField.Assign_Employee.Modified_Time\":\" Heure modifiée \",\"FormField.Raise_Maintenance_Request.Record_Status\":\" Statut d'enregistrement \",\"ReportField.New_Requests.Description\":\"La description\",\"Languages List.is\":\" islandais \",\"FormButton.Set_Reminder.submit\":\"Ajouter\",\"ReportField.All_Employees.Contact_Number\":\"Numéro de contact\",\"FormField.Add_Requester.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"ReportField.All_Feedbacks.Employee_Name\":\" Nom de l'employé \",\"Languages List.it\":\" italien \",\"PicklistOption.Add_Requester.prefix.1\":\" M. \",\"Form.Add_Employee\":\" Ajouter un employé \",\"FormField.Feedback.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_Service.Added_Time\":\" Temps ajouté \",\"Report.My_Assigned_Work_Orders\":\" Mes ordres de travail assignés \",\"FormField.Feedback.Added_Time\":\" Temps ajouté \",\"CustomAction.New_Requests.Run_Scripts_On_Click_of_P4\":\" Assigner un employé \",\"FormField.Add_Organization_Details.Organization_Address\":\" Adresse de l'organisation \",\"ReportField.My_Current_Works.Location\":\" Emplacement \",\"ReportField.My_Requests.What_s_The_Issue\":\" Titre du problème \",\"FormField.Add_Organization_Details.district_city2\":\" District de la ville \",\"FormButton.Add_Organization_Details.update\":\" Mettre à jour \",\"CompositeSubFields.Add_Employee.Employee_Name.prefix\":\" Préfixe \",\"FormField.Assign_Employee.Available_Employees\":\" Employés disponibles \",\"FormField.Add_Employee.Email_Id\":\" Identifiant Email \",\"ReportField.All_Feedbacks.Review\":\" La revue \",\"FormField.Feedback.Requester_Name\":\" Nom du demandeur \",\"ReportField.My_Current_Works.Requester_Name\":\" Nom du demandeur \",\"PicklistOption.Set_Reminder.Run_This_Schedule.3\":\"Nombre d'événements\",\"ReportField.My_Closed_Works.Select_Service\":\"Un service\",\"PicklistOption.Set_Reminder.Run_This_Schedule.2\":\"Jusqu'à une date\",\"FormField.Feedback.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"PicklistOption.Set_Reminder.Run_This_Schedule.1\":\"Pour toujours\",\"FormField.Add_Organization_Details.Modified_User\":\" Utilisateur modifié \",\"FormField.Feedback.Modified_Time\":\" Heure modifiée \",\"FormField.Raise_Maintenance_Request.Location\":\" Emplacement \",\"Languages List.nl\":\" néerlandais \",\"FormButton.Raise_Maintenance_Request.cancel\":\" Annuler \",\"Languages List.no\":\" norvégien \",\"FormField.Raise_Maintenance_Request.Requester_Name\":\" Nom du demandeur \",\"FormField.Add_Employee.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Organization_Details.Added_Time\":\" Temps ajouté \",\"FormField.Add_Organization_Details.address_line_12\":\" Adresse 1 \",\"FormButton.Add_Organization_Details.reset\":\" Réinitialiser \",\"CompositeSubFields.Add_Requester.Name.prefix\":\" Préfixe \",\"CompositeSubFields.Add_Organization_Details.Admin_Name.first_name\":\" Prénom \",\"ReportField.My_Assigned_Work_Orders.Add_Photo\":\"Photo\",\"Report.New_Requests\":\" Nouvelles demandes \",\"ReportField.New_Requests.Assigned_Employee\":\" Employé assigné \",\"ReportField.New_Requests.What_s_The_Issue\":\"Titre du problème\",\"FormField.Add_Organization_Details.last_name\":\" Nom de famille \",\"FormField.Set_Reminder.Starting_Time\":\"Heure de départ\",\"FormField.Add_Requester.Added_Time\":\" Temps ajouté \",\"FormField.Raise_Maintenance_Request.Added_Time\":\" Temps ajouté \",\"ReportField.Your_Organization.address_line_12\":\" Adresse \",\"FormField.Add_Employee.last_name\":\" Nom de famille \",\"FormField.Add_Service.Record_Status\":\" Statut d'enregistrement \",\"FormField.Raise_Maintenance_Request.Modified_Time\":\" Heure modifiée \",\"FormField.Add_Requester.Record_Status\":\" Statut d'enregistrement \",\"Report.Available_Services\":\" Services disponibles \",\"ReportField.My_Requests.Requester_Name\":\" Nom du demandeur \",\"ReportField.My_Requests.Add_Photo\":\"Photo\",\"Report.My_Feedbacks\":\" Mes commentaires \",\"Form.Add_Service\":\" Ajouter un service \",\"ReportField.All_Employees.Email_Id\":\"Identifiant Email\",\"Languages List.lt\":\" lituanien \",\"FormButton.Raise_Maintenance_Request.submit\":\" Soumettre \",\"PicklistOption.Add_Employee.Employee_Status.2\":\" Archiver \",\"Languages List.lv\":\" letton \",\"PicklistOption.Add_Employee.Employee_Status.1\":\" actif \",\"FormField.Set_Reminder.Number_Of_Events\":\"Nombre d'événements\",\"FormField.Feedback.ID\":\" ID \",\"FormButton.Assign_Employee.Assign\":\" Attribuer \",\"FormField.Add_Requester.first_name\":\" Prénom \",\"FormField.Add_Requester.suffix\":\" Suffixe \",\"Languages List.lo\":\" Laothian \",\"FormField.Add_Employee.Added_Time\":\" Temps ajouté \",\"FormField.Add_Requester.prefix\":\" Préfixe \",\"FormField.Add_Requester.last_name\":\" Nom de famille \",\"Languages List.la\":\" Latin \",\"Form.Feedback\":\" Retour d'information \",\"ReportField.Requester_Details.Email_Id\":\"Identifiant Email\",\"FormField.Add_Requester.Modified_Time\":\" Heure modifiée \",\"FormField.Add_Organization_Details.postal_Code2\":\" code postal \",\"FormField.Add_Requester.ID\":\" ID \",\"FormField.Add_Employee.first_name\":\" Prénom \",\"ReportField.My_Assigned_Work_Orders.Requester_Name\":\" Nom du demandeur \",\"Languages List.ms\":\" malais \",\"CustomAction.My_Current_Works.Run_Scripts_On_Click_of_P3\":\" Passer à la progression \",\"Languages List.mr\":\" Marathi \",\"FormField.Add_Service.Service_Name\":\" Nom du service \",\"Languages List.mt\":\" maltais \",\"FormField.Raise_Maintenance_Request.Add_Photo\":\"Ajouter une photo\",\"ReportField.My_Current_Works.Add_Photo\":\"Photo\",\"FormField.Add_Service.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Report.All_Requests\":\" Toutes les demandes \",\"FormField.Add_Service.Modified_Time\":\" Heure modifiée \",\"Languages List.mk\":\" Macédonien \",\"FormField.Add_Employee.Section\":\" Section \",\"ReportField.My_Assigned_Work_Orders.Location\":\" Emplacement \",\"FormField.Add_Organization_Details.address_line_22\":\" Adresse Ligne 2 \",\"ReportField.My_Closed_Works.Work_Status\":\" Statut de travail \",\"CompositeSubFields.Add_Employee.Employee_Name.last_name\":\" Nom de famille \",\"FormField.Raise_Maintenance_Request.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Add_Organization_Details.Email_Id\":\" Identifiant Email \",\"ReportField.My_Assigned_Work_Orders.Description\":\" La description \",\"ReportField.All_Feedbacks.Rating\":\" Évaluation \",\"ReportField.My_Assigned_Work_Orders.What_s_The_Issue\":\" Titre du problème \",\"Languages List.bg\":\" bulgare \",\"FormButton.Feedback.update\":\" Mettre à jour \",\"Languages List.bn\":\" bengali \",\"FormField.Assign_Employee.Service_Type\":\" type de service \",\"FormButton.Feedback.reset\":\" Réinitialiser \",\"Languages List.ro\":\" roumain \",\"ReportField.All_Requests.Add_Photo\":\"Photo\",\"ReportField.All_Employees.Employee_Status\":\"statut de l'employé\",\"FormButton.Add_Requester.submit\":\" Soumettre \",\"Languages List.be\":\" Biélorusse \",\"Languages List.ru\":\" russe \",\"FormField.Add_Organization_Details.first_name\":\" Prénom \",\"FormField.Raise_Maintenance_Request.What_s_The_Issue\":\"Quel est le problème?\",\"ReportField.All_Requests.What_s_The_Issue\":\" Titre du problème \",\"Languages List.az\":\" azerbaïdjanais \",\"CompositeSubFields.Add_Organization_Details.Organization_Address.state_province2\":\" Etat / Province \",\"Languages List.ta\":\" Tamil \",\"FormField.Add_Organization_Details.country2\":\" Pays \",\"FormField.Raise_Maintenance_Request.ID\":\" ID \",\"ReportField.My_Current_Works.What_s_The_Issue\":\" Titre du problème \",\"Languages List.cs\":\" tchèque \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" thaïlandais \",\"FormField.Raise_Maintenance_Request.Select_Service\":\" Sélectionnez le service \",\"FormField.Add_Organization_Details.prefix\":\" Préfixe \",\"Languages List.sq\":\" albanais \",\"Languages List.ca\":\" catalan \",\"CompositeSubFields.Add_Organization_Details.Admin_Name.suffix\":\" Suffixe \",\"ReportField.My_Closed_Works.Requester_Name\":\" Nom du demandeur \",\"Languages List.sw\":\" Swahili \",\"Languages List.sv\":\" suédois \",\"Languages List.sk\":\" slovaque \",\"CompositeSubFields.Add_Organization_Details.Organization_Address.postal_Code2\":\" code postal \",\"Languages List.sl\":\" slovène \",\"FormField.Add_Organization_Details.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Assign_Employee.Added_User\":\" Utilisateur ajouté \",\"Form.Add_Requester\":\" Ajouter un demandeur \",\"FormField.Assign_Employee.ID\":\" ID \",\"ReportField.All_Requests.Requester_Name\":\" Nom du demandeur \",\"FormField.Add_Employee.Employee_Name\":\"Nom de l'employé\",\"ReportField.All_Requests.Description\":\" La description \",\"FormField.Set_Reminder.End_Date\":\"Date de fin\",\"FormButton.Add_Organization_Details.cancel\":\" Annuler \",\"FormButton.Set_Reminder.cancel\":\"Annuler\",\"FormButton.Add_Employee.reset\":\" Réinitialiser \",\"FormField.Add_Organization_Details.Contact_Number\":\" Numéro de contact \",\"ReportField.My_Current_Works.Description\":\" La description \",\"ReportField.My_Current_Works.Select_Service\":\"Un service\",\"PicklistOption.Add_Employee.prefix.1\":\" M. \",\"PicklistOption.Add_Employee.prefix.3\":\" Mme. \",\"FormButton.Raise_Maintenance_Request.update\":\" Mettre à jour \",\"Languages List.pt\":\" Portugais \",\"PicklistOption.Add_Employee.prefix.2\":\" Madame. \",\"FormButton.Add_Requester.reset\":\" Réinitialiser \",\"FormField.Raise_Maintenance_Request.Description\":\" La description \",\"FormField.Add_Requester.Section\":\"Section\",\"FormButton.Add_Employee.update\":\" Mettre à jour \",\"FormField.Feedback.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Languages List.pl\":\" polonais \",\"Form.Add_Organization_Details\":\" Ajouter des détails d'organisation \",\"Languages List.ar\":\" arabe \",\"CompositeSubFields.Add_Organization_Details.Organization_Address.district_city2\":\" District de la ville \",\"ReportField.Your_Organization.Contact_Number\":\" Numéro de contact \",\"FormField.Set_Reminder.Frequency\":\"La fréquence\",\"Form.Set_Reminder\":\"Ajouter un rappel\",\"Section.Organization_Details\":\" Détails de l'organisation \",\"Languages List.af\":\" afrikaans \",\"FormField.Raise_Maintenance_Request.Date_field\":\" Rendez-vous amoureux \",\"FormField.Assign_Employee.Issue_Title\":\" Titre du problème \",\"ReportField.My_Current_Works.Assigned_Employee\":\" Employé assigné \",\"FormField.Assign_Employee.Modified_User\":\" Utilisateur modifié \",\"Report.All_Employees\":\" Tous les employés \",\"FormField.Add_Employee.suffix\":\" Suffixe \",\"FormField.Add_Organization_Details.Organization_Name\":\" nom de l'organisation \",\"ReportField.New_Requests.Select_Service\":\"Sélectionnez le service\",\"FormField.Add_Service.Added_User\":\" Utilisateur ajouté \",\"FormField.Feedback.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Employee.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"ReportField.All_Requests.Date_field\":\"Rendez-vous amoureux\",\"CompositeSubFields.Add_Employee.Employee_Name.suffix\":\" Suffixe \",\"FormField.Add_Organization_Details.longitude2\":\" longitude \",\"Report.My_Current_Works\":\" Mes œuvres actuelles \",\"FormField.Set_Reminder.Next_Reminder_On\":\"Rappel suivant sur\",\"FormField.Feedback.Rating\":\" Évaluation \",\"Section.Add_Services\":\" Prestations de service \",\"FormField.Add_Employee.prefix\":\" Préfixe \",\"FormField.Add_Organization_Details.state_province2\":\" Etat / Province \",\"FormField.Raise_Maintenance_Request.Work_Status\":\" Statut de travail \",\"FormField.Add_Employee.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Add_Service.Section\":\"Section\",\"PicklistOption.Feedback.Rating.1\":\" 1 \",\"FormField.Feedback.Modified_User\":\" Utilisateur modifié \",\"FormButton.Set_Reminder.update\":\"Mettre à jour\",\"ReportField.Your_Organization.first_name\":\" prénom \",\"FormButton.Add_Requester.update\":\" Mettre à jour \",\"FormButton.Add_Employee.cancel\":\" Annuler \",\"Languages List.fr\":\" français \",\"ReportField.My_Requests.Select_Service\":\"Un service\",\"FormField.Add_Employee.Modified_Time\":\" Heure modifiée \",\"ReportField.All_Requests.Work_Status\":\" Statut de travail \",\"ReportField.All_Requests.Assigned_Employee\":\"Employé assigné\",\"ReportField.My_Feedbacks.Complaint_Title\":\" Titre de la plainte \",\"Languages List.fi\":\" Finnois \",\"CompositeSubFields.Add_Organization_Details.Admin_Name.last_name\":\" Nom de famille \",\"PicklistOption.Feedback.Rating.5\":\" 5 \",\"PicklistOption.Feedback.Rating.4\":\" 4 \",\"PicklistOption.Feedback.Rating.3\":\" 3 \",\"FormButton.Feedback.submit\":\" Soumettre \",\"FormField.Assign_Employee.Section\":\"Section\",\"PicklistOption.Feedback.Rating.2\":\" 2 \",\"FormField.Add_Organization_Details.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_Organization_Details.Added_User\":\" Utilisateur ajouté \",\"FormField.Feedback.Complaint_Title\":\" Titre de la plainte \",\"ReportField.My_Requests.Assigned_Employee\":\" Employé assigné \",\"Languages List.fa\":\" persan \",\"Languages List.gu\":\" Gujarati \",\"FormButton.Add_Service.submit\":\" Soumettre \",\"ReportField.New_Requests.Location\":\"Emplacement\",\"ReportField.My_Feedbacks.Employee_Name\":\" Nom de l'employé \",\"FormField.Add_Employee.Record_Status\":\" Statut d'enregistrement \",\"FormButton.Raise_Maintenance_Request.reset\":\" Réinitialiser \",\"ReportField.Requester_Details.first_name\":\" prénom \",\"CompositeSubFields.Add_Organization_Details.Organization_Address.country2\":\" Pays \",\"CompositeSubFields.Add_Organization_Details.Admin_Name.prefix\":\" Préfixe \",\"ReportField.My_Closed_Works.What_s_The_Issue\":\" Titre du problème \",\"Languages List.gl\":\" Galicien \",\"FormField.Add_Requester.Added_User\":\" Utilisateur ajouté \",\"FormField.Raise_Maintenance_Request.Added_User\":\" Utilisateur ajouté \",\"FormField.Raise_Maintenance_Request.Modified_User\":\" Utilisateur modifié \",\"Section.Add_Users\":\" Demandeurs \",\"ReportField.New_Requests.Work_Status\":\"Statut de travail\",\"Languages List.ga\":\" irlandais \",\"FormField.Add_Organization_Details.Admin_Name\":\" Nom de l'administrateur \",\"FormField.Raise_Maintenance_Request.Section\":\" Section \",\"CompositeSubFields.Add_Employee.Employee_Name.first_name\":\" Prénom \",\"ReportField.Your_Organization.Email_Id\":\" Identifiant Email \",\"FormButton.Add_Employee.submit\":\" Soumettre \",\"FormField.Add_Employee.ID\":\" ID \",\"ReportField.My_Closed_Works.Description\":\" La description \",\"ReportField.My_Closed_Works.Location\":\" Emplacement \",\"Report.Your_Organization\":\" Ton organisation \",\"ReportField.My_Closed_Works.Add_Photo\":\"Photo\",\"Languages List.tr\":\" turc \",\"Languages List.da\":\" danois \",\"PicklistOption.Add_Organization_Details.prefix.1\":\" M. \",\"FormField.Add_Requester.Email_Id\":\" Identifiant Email \",\"Languages List.de\":\" allemand \",\"PicklistOption.Add_Organization_Details.prefix.2\":\" Madame. \",\"PicklistOption.Add_Organization_Details.prefix.3\":\" Mme. \",\"Languages List.cy\":\" gallois \",\"FormField.Add_Employee.Added_User\":\" Utilisateur ajouté \",\"FormButton.Feedback.cancel\":\" Annuler \",\"Languages List.tl\":\" Philippin \",\"FormField.Set_Reminder.Run_This_Schedule\":\"Exécuter cette planification\",\"ReportField.My_Assigned_Work_Orders.Assigned_Employee\":\" Employé assigné \",\"FormField.Add_Requester.Modified_User\":\" Utilisateur modifié \",\"Languages List.es\":\" Espanol \",\"Languages List.eu\":\" basque \",\"Languages List.et\":\" estonien \",\"ReportField.My_Feedbacks.Rating\":\" Évaluation \",\"CompositeSubFields.Add_Organization_Details.Organization_Address.address_line_22\":\" Adresse Ligne 2 \",\"ReportField.My_Feedbacks.Review\":\" La revue \",\"Report.Requester_Details\":\" Détails du demandeur \",\"Languages List.vi\":\" vietnamien \",\"ReportField.Requester_Details.Contact_Number\":\"Numéro de contact\",\"Languages List.el\":\" grec \",\"Languages List.eo\":\" espéranto \",\"Languages List.en\":\" Anglais \",\"FormField.Add_Service.Modified_User\":\" Utilisateur modifié \",\"CompositeSubFields.Add_Requester.Name.last_name\":\" Nom de famille \",\"CustomAction.All_Requests.Run_Scripts_On_Click_of_P1\":\" Assigner un employé \",\"ReportField.All_Feedbacks.Requester_Name\":\" Nom du demandeur \",\"ReportField.My_Requests.Description\":\" La description \",\"Languages List.ur\":\" Urdu \",\"FormButton.Add_Service.update\":\" Mettre à jour \",\"FormField.Add_Organization_Details.Modified_Time\":\" Heure modifiée \",\"ReportField.All_Feedbacks.Complaint_Title\":\" Titre de la plainte \",\"ReportField.Your_Organization.Organization_Name\":\" nom de l'organisation \",\"Section.Feedback\":\" Retour d'information \"}}"
+}
+}

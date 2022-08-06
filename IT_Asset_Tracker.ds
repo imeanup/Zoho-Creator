@@ -1,0 +1,3936 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 22:33:05
+ * Version      : 1.0
+ */
+ application "IT Asset Tracker"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "America/Los_Angeles"
+ 	time format = "24-hr"
+	section Dashboard
+	{
+		icon = "ui-1-dashboard-half"
+				 page Dashboard 
+	 	 { 
+ 	 	 displayname = "Dashboard" 
+
+ 	 	 icon = "ui-1-dashboard-half" 
+	 	 Content="<zml \n\t\t\tisPdfEnabled='false'\n\t\t\n\t\t\tisPrintEnabled='false'\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"50%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Statistics_by_Software'\n   \t\t heightType = 'auto'\n   \t\t heightValue = '700'\n   \t\t iszreport = 'true'\n   \t\t zc_Header = 'true'\n   \t\t zc_Footer = 'true'\n   \t\t zc_SecHeader = 'true'\n   \t\t zc_AddRec = 'true'\n   \t\t zc_EditRec = 'true'\n   \t\t zc_Print = 'true'\n   \t\t zc_Export = 'true'\n   \t\t zc_DelRec = 'true'\n   \t\t zc_DuplRec = 'true'\n   \t\t zc_EditBulkRec = 'true'\n   \t\t zc_SaveRec = 'true'\n   \t\t zc_Filter = 'true'\n   \t\t zc_Search = 'true'\n   \t\t zc_SumRow = 'true'\n   \t\t zc_ColMenu = 'true'\n   \t\t zc_RecSelect = 'true'\n   \t\t titleSize = '4'\n   \t\t title = 'Software Management'\n\n\/>\n<\/column><column\n   \t\t width=\"50%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Statistics_by_Software_Type'\n   \t\t heightType = 'auto'\n   \t\t heightValue = '700'\n   \t\t iszreport = 'true'\n   \t\t zc_Header = 'true'\n   \t\t zc_Footer = 'true'\n   \t\t zc_SecHeader = 'true'\n   \t\t zc_AddRec = 'true'\n   \t\t zc_EditRec = 'true'\n   \t\t zc_Print = 'true'\n   \t\t zc_Export = 'true'\n   \t\t zc_DelRec = 'true'\n   \t\t zc_DuplRec = 'true'\n   \t\t zc_EditBulkRec = 'true'\n   \t\t zc_SaveRec = 'true'\n   \t\t zc_Filter = 'true'\n   \t\t zc_Search = 'true'\n   \t\t zc_SumRow = 'true'\n   \t\t zc_ColMenu = 'true'\n   \t\t zc_RecSelect = 'true'\n\n\/>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"50%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Statistics_by_OS1'\n   \t\t heightType = 'auto'\n   \t\t heightValue = '700'\n   \t\t iszreport = 'true'\n   \t\t zc_Header = 'true'\n   \t\t zc_Footer = 'true'\n   \t\t zc_SecHeader = 'true'\n   \t\t zc_AddRec = 'true'\n   \t\t zc_EditRec = 'true'\n   \t\t zc_Print = 'true'\n   \t\t zc_Export = 'true'\n   \t\t zc_DelRec = 'true'\n   \t\t zc_DuplRec = 'true'\n   \t\t zc_EditBulkRec = 'true'\n   \t\t zc_SaveRec = 'true'\n   \t\t zc_Filter = 'true'\n   \t\t zc_Search = 'true'\n   \t\t zc_SumRow = 'true'\n   \t\t zc_ColMenu = 'true'\n   \t\t zc_RecSelect = 'true'\n   \t\t titleSize = '4'\n   \t\t title = 'Machine Management'\n\n\/>\n<\/column><column\n   \t\t width=\"50%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Statistics_By_MachineType'\n   \t\t heightType = 'auto'\n   \t\t heightValue = '700'\n   \t\t iszreport = 'true'\n   \t\t zc_Header = 'true'\n   \t\t zc_Footer = 'true'\n   \t\t zc_SecHeader = 'true'\n   \t\t zc_AddRec = 'true'\n   \t\t zc_EditRec = 'true'\n   \t\t zc_Print = 'true'\n   \t\t zc_Export = 'true'\n   \t\t zc_DelRec = 'true'\n   \t\t zc_DuplRec = 'true'\n   \t\t zc_EditBulkRec = 'true'\n   \t\t zc_SaveRec = 'true'\n   \t\t zc_Filter = 'true'\n   \t\t zc_Search = 'true'\n   \t\t zc_SumRow = 'true'\n   \t\t zc_ColMenu = 'true'\n   \t\t zc_RecSelect = 'true'\n\n\/>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dsp id='html_snippet'>\n\t<![CDATA[htmlpage html_snippet()\ncontent\n&lt;%{\n\t%&gt;\n&lt;style&gt;\n#viewheadername{width:100% !important;}\n#row_3{display:none;}\n#zohoreportel{\theight:400 !important;\t}\n.divEmbedContainer{ height:530px !important; }\n.view-header&gt;.row h3{font-weight:500 !important;}\n&lt;\/style&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+	}
+	section Machines
+	{
+		icon = "tech-laptop"
+		form addmachine
+		{
+			displayname = "Add New Machine"
+			success message = "Machine  Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Type
+			(
+				type = picklist
+				values  = addmachinetype.Machine_Type
+    			displayformat = [Machine_Type]
+				allow new entries = true
+				[
+					displayname = "Add New Machine Type"
+				]
+    			description
+    			[
+    				type = help_text
+    			 	message = "Eg., Laptop, Desktop etc"
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Name
+			(
+    			type = text
+    			description
+    			[
+    				type = help_text
+    			 	message = "Eg., MacBook Pro 256 GB, MacBook Air"
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Operating_System
+			(
+				type = picklist
+				displayname = "Operating System"
+				values  = addos.OS_Name
+    			displayformat = [OS_Name]
+				allow new entries = true
+				[
+					displayname = "Add New OS"
+				]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Manufacturer
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Model_Number
+			(
+    			type = text
+				displayname = "Model"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Serial_Number
+			(
+    			type = text
+				displayname = "Serial Number"
+    			description
+    			[
+    				type = help_text
+    			 	message = "Eg., ABC123-456-78JK"
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Support_Link
+			(
+    			type = url
+				displayname = "Support Link"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Active_Service_Date
+			(
+    			type = date
+				displayname = "Active Service Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status
+			(
+				type = picklist
+				values = {"Active", "Retired", "Ordered", "Provisioned", "In Repair", "Lost"}
+				initial value = "Active"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			User
+			(
+				type = section
+				visibility = true
+	 			row = 2
+	 			column = 0   
+				width = medium
+			)
+			Employee
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+    			description
+    			[
+    				type = tooltip
+    			 	message = "User who is using this device"
+    			]
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Department
+			(
+				type = picklist
+				values = {"Administration", "Engineering", "Marketing", "Sales", "Service", "Support", "Training"}
+				initial value = "Administration"
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "tech-2-l-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add Machine"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list allmachines
+		{
+			displayName = "All Machines"
+			show all rows from addmachine    
+			(
+				Status
+				custom action "Install"
+				(
+	  			workflow = Install
+				column header = "Install"
+				success message = ""
+				)
+				Name
+				custom action "View"
+				(
+	  			workflow = View
+				column header = "View"
+				success message = ""
+				)
+				Type
+				Operating_System as "Operating System"
+				Model_Number as "Model"
+				Active_Service_Date as "Active Service Date"
+			)
+			filters
+			(
+				Status
+			)
+			options
+			(
+				icon = "travel-world"
+	 		)
+			permission
+			(
+				add = true
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Type
+							Operating_System as "Operating System"
+							Status
+							Active_Service_Date as "Active Service Date"
+				"Install"
+				"View"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+								"Install" as "Install Software"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Type
+							Operating_System as "Operating System"
+							Status
+				"Install"
+				"View"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Software
+	{
+		icon = "ui-2-cloud-25"
+		form addsoftware
+		{
+			displayname = "Add New Software"
+			success message = "New Software Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Name
+			(
+    			type = text
+    			description
+    			[
+    				type = help_text
+    			 	message = "Eg., Adobe Photoshop, MS office, CorelDRAW, Android SDK"
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Manufacturer
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Type
+			(
+				type = picklist
+				values = {"Productivity", "Graphics", "Support", "Accounting", "Development", "Others"}
+				initial value = "Productivity"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Version
+			(
+				type = decimal
+				decimalplace = 4
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Add_License
+			(
+    			type = checkbox
+				displayname = "Add License"
+				initial value = false
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "tech-2-l-add"
+			)
+			actions
+			{
+				on add
+				{
+					Submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					Reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					Update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					Cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list allsoftwares
+		{
+			displayName = "All Software"
+			show all rows from addsoftware    
+			(
+				Name
+				Type
+				Version
+				Manufacturer
+			)
+			options
+			(
+				icon = "travel-world"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Type
+							Version
+							Manufacturer
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Type
+							Version
+							Manufacturer
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Hardware
+	{
+		icon = "tech-laptop-1"
+		form addhardware
+		{
+			displayname = "Add New Hardware"
+			success message = "Hardware Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Peripheral_Type
+			(
+				type = picklist
+				displayname = "Peripheral Type"
+				values = {"Monitor", "Copier", "Input Device", "Network", "Printer", "Scanner", "Storage", "Others"}
+				initial value = "Monitor"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Manufacturer
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Model
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Serial_Number
+			(
+    			type = text
+				displayname = "Serial Number"
+    			description
+    			[
+    				type = help_text
+    			 	message = "Eg., ABC123-456-78JK"
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status
+			(
+				type = picklist
+				values = {"Active", "In Repair", "Lost", "Ordered", "Provisioned", "Retired"}
+				initial value = "Active"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Support_Link
+			(
+    			type = url
+				displayname = "Support Link"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Active_Service_Date
+			(
+    			type = date
+				displayname = "Active Service Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "tech-2-l-add"
+			)
+			actions
+			{
+				on add
+				{
+					Submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					Reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					Update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					Cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list allhardwares
+		{
+			displayName = "All Hardware"
+			show all rows from addhardware    
+			(
+				Peripheral_Type as "Type"
+				Manufacturer
+				Model
+				Serial_Number as "Serial Number"
+				Status
+				Active_Service_Date as "Active Service Date"
+				Support_Link as "Support Link"
+				Description
+			)
+			options
+			(
+				icon = "travel-world"
+	 		)
+			permission
+			(
+				add = true
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Peripheral_Type as "Type"
+							Manufacturer
+							Model
+							Serial_Number as "Serial Number"
+							Status
+							Active_Service_Date as "Active Service Date"
+							Support_Link as "Support Link"
+							Description
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Peripheral_Type as "Type"
+							Manufacturer
+							Model
+							Serial_Number as "Serial Number"
+							Status
+							Active_Service_Date as "Active Service Date"
+							Support_Link as "Support Link"
+							Description
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		form addmobiledevice
+		{
+			displayname = "Add New Mobile Device"
+			success message = "Mobile Device  Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Type
+			(
+				type = picklist
+				values = {"Mobile Phone", "Smart Phone", "Email Device", "PDA"}
+				initial value = "Mobile Phone"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Manufacturer
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Model
+			(
+    			type = text
+    			description
+    			[
+    				type = help_text
+    			 	message = "E.g., Iphone XS 64 GB, Iphone XS 128 GB"
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Plan
+			(
+				type = radiobuttons
+				values = {"Corporate", "Individual"}
+				initial value = "Corporate"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status
+			(
+				type = picklist
+				values = {"Active", "Retired", "Ordered", "Provision", "In Repair", "Lost"}
+				initial value = "Active"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Serial_Number
+			(
+    			type = text
+				displayname = "Serial Number"
+    			description
+    			[
+    				type = help_text
+    			 	message = "Eg., ABC123-456-78JK"
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Support_Link
+			(
+    			type = url
+				displayname = "Support Link"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			User
+			(
+				type = section
+				visibility = true
+	 			row = 2
+	 			column = 0   
+				width = medium
+			)
+			Employee
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+    			description
+    			[
+    				type = tooltip
+    			 	message = "User who uses this device"
+    			]
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Department
+			(
+				type = picklist
+				values = {"Administration", "Engineering", "Marketing", "Sales", "Service", "Support", "Training"}
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "tech-2-p-add"
+			)
+			actions
+			{
+				on add
+				{
+					Submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					Reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					Update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					Cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list allmobiledevices
+		{
+			displayName = "All Mobile Devices"
+			show all rows from addmobiledevice    
+			(
+				Type
+				Manufacturer
+				Model
+				Serial_Number as "Serial Number"
+				Status
+				Plan
+				Support_Link as "Support Link"
+				Employee 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+			)
+			options
+			(
+				icon = "shopping-mobile-touch"
+	 		)
+			permission
+			(
+				add = true
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Type
+							Manufacturer
+							Model
+							Serial_Number as "Serial Number"
+							Status
+							Plan
+							Support_Link as "Support Link"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Type
+							Manufacturer
+							Model
+							Employee
+							Serial_Number as "Serial Number"
+							Status
+							Plan
+							Support_Link as "Support Link"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Quick_Links
+	{
+		displayname= "Quick Links"
+		icon = "ui-2-link-69"
+		form installation
+		{
+			displayname = "Install License"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Machine_Name
+			(
+				type = picklist
+				displayname = "Machine Name"
+				values  = addmachine.Name
+    			displayformat = [Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Software
+			(
+				type = picklist
+				values  = addsoftware.ID
+    			displayformat = [Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Installed_On
+			(
+    			type = date
+				displayname = "Installed On"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Expire_On
+			(
+    			type = date
+				displayname = "Expire On"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			msg
+			(
+    			type = plaintext
+				value = ""
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Is_Valid_Installation
+			(
+    			type = checkbox
+				displayname = "Is Valid Installation"
+				initial value = false
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			License_ID
+			(
+				type = picklist
+				displayname = "License ID"
+				values  = addlicense.ID
+    			displayformat = [Key]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "business-award-49"
+			)
+			actions
+			{
+				on add
+				{
+					Submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					Reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					Update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					Cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form addlicense
+		{
+			displayname = "Add New License"
+			success message = "License Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Vendor
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Software
+			(
+				type = picklist
+				values  = addsoftware.ID
+    			displayformat = [Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Key
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			License_Type
+			(
+				type = radiobuttons
+				displayname = "License Type"
+				values = {"Free", "Licensed"}
+				initial value = "Free"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			No_of_Licenses
+			(
+				type = number
+				displayname = "No of Licenses"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Usage_Count
+			(
+				type = number
+				displayname = "Usage Count"
+				initial value = 0
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Purchased_On
+			(
+    			type = date
+				displayname = "Purchased On"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Expire_On
+			(
+    			type = date
+				displayname = "Expire On"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Remarks
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			More_Details
+			(
+    			type = formula
+				value =  "<a class='zc-formbutton' style='padding: 2px 8px;font-size:10px;' href='#View:alllicenses_fulldetails?ID=" + input.ID + "&zc_LoadIn=dialog&zc_SecHeader=false'>More Details</a>"
+				visibility = false
+				format = plaintext
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = ""
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "tech-2-l-add"
+			)
+			actions
+			{
+				on add
+				{
+					Submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					Reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					Update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					Cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form addos
+		{
+			displayname = "Add New Operating System"
+			success message = "New Operating System  Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique OS_Name
+			(
+    			type = text
+				displayname = "OS Name"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "tech-2-l-add"
+			)
+			actions
+			{
+				on add
+				{
+					Submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					Reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					Update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					Cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form addmachinetype
+		{
+			displayname = "Add New Machine Type"
+			success message = "Machine Type Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Machine_Type
+			(
+    			type = text
+				displayname = "Machine Type"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+	
+			customize
+			(
+				icon = "tech-2-l-add"
+			)
+			actions
+			{
+				on add
+				{
+					Submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					Reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					Update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					Cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		kanban All_Licenses
+		{
+			displayName = "All Licenses"
+			show all rows from addlicense    
+			(
+				Usage_Count as "Usage Count"
+				No_of_Licenses as "No of Licenses"
+				Key
+				License_Type as "License Type"
+				Purchased_On as "Purchased On"
+				Expire_On as "Expire On"
+				Remarks
+				Vendor
+				Software
+			)
+			filters
+			(
+				Purchased_On
+				Expire_On
+			)
+			options
+			(
+	 			display field = License_Type
+				record count  = enable
+				icon = "travel-world"
+	 		)
+			conditional formatting
+			(
+				"Purchased Date Formatting"
+				{
+				fields = [Purchased_On]
+				format = "color:#19bc9f;background-color:#ffffff;"
+				}
+				"Expiry Date Formatting"
+				{
+				fields = [Expire_On]
+				format = "color:#e64d3b;background-color:#ffffff;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Software
+							Remarks
+							Purchased_On as "Purchased On"
+							Expire_On as "Expire On"
+							Vendor
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							License_Type as "License Type"
+							Vendor
+							No_of_Licenses as "No of Licenses"
+							Purchased_On as "Purchased On"
+							Expire_On as "Expire On"
+							Usage_Count as "Usage Count"
+							Key
+							Remarks
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list alllicenses
+		{
+			displayName = "All Licenses"
+			show all rows from addlicense    
+			(
+				Usage_Count as "Usage Count"
+				Vendor
+				Key
+				Remarks
+				License_Type as "License Type"
+				No_of_Licenses as "No of Licenses"
+				Purchased_On as "Purchased On"
+				Expire_On as "Expires On"
+				Software
+			)
+			filters
+			(
+				License_Type
+				Purchased_On
+				Expire_On
+			)
+			options
+			(
+				icon = "travel-world"
+	 		)
+			conditional formatting
+			(
+				"Expire Date Formatting"
+				{
+				fields = [Expire_On]
+				format = "color:#ffffff;background-color:#e84c3d;"
+				}
+				"Purchase Date Formatting"
+				{
+				fields = [Purchased_On]
+				format = "color:#000000;background-color:#1bbc9b;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							License_Type as "License Type"
+							Software
+							Purchased_On as "Purchased On"
+							Expire_On as "Expires On"
+							No_of_Licenses as "No of Licenses"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							License_Type as "License Type"
+							Vendor
+							No_of_Licenses as "No of Licenses"
+							Purchased_On as "Purchased On"
+							Expire_On as "Expires On"
+							Usage_Count as "Usage Count"
+							Key
+							Key
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		summary All_Machine_Types
+		{
+			displayName = "All Machine Types"
+			show all rows from addmachinetype    
+			(
+				Machine_Type as "Machine Type"
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 2
+				icon = "travel-world"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Machine_Type as "Machine Type"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Machine_Type as "Machine Type"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		summary All_Operating_Systems
+		{
+			displayName = "All Operating Systems"
+			show all rows from addos    
+			(
+				OS_Name as "OS Name"
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 2
+				icon = "tech-laptop"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							OS_Name as "OS Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							OS_Name as "OS Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list installations
+		{
+			displayName = "All Installations"
+			show all rows from installation    
+			(
+				Machine_Name as "Machine Name"
+				Installed_On as "Installed On"
+				License_ID.Expire_On as "Expire On"
+			)
+			filters
+			(
+				Machine_Name
+				Installed_On
+				Expire_On
+			)
+			options
+			(
+				icon = "travel-world"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Machine_Name as "Machine Name"
+							Installed_On as "Installed On"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Machine_Name as "Machine Name"
+							Installed_On as "Installed On"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		pivotchart Statistics_by_Software
+		{ 
+			displayname = "Statistics by Software"
+			based on Autoview_1551439508743_installation
+					hide = true
+							icon = "ui-1-database"				show all rows from installation
+				(
+ 					Expire_On  as "Expire On"
+ 					Installed_On  as "Installed On"
+ 					Software 
+ 					Machine_Name  as "Machine Name"
+ 					License_ID  as "License ID"
+ 					Is_Valid_Installation  as "Is Valid Installation"
+				)
+		}
+	}
+	section Invisible_Components
+	{
+		displayname= "Invisible Components"
+		hide = true
+		icon = "ui-2-menu-bold"
+		pivotchart Statistics_by_Software_Type
+		{ 
+			displayname = "Statistics by Software Type"
+			based on Autoview_1464944633489_addsoftware
+					hide = true
+							icon = "tech-2-l-search"				show all rows from addsoftware
+				(
+ 					Manufacturer 
+ 					Name 
+ 					Type 
+ 					Add_License  as "Add License"
+ 					Version 
+				)
+		}
+		summary alllicenses_fulldetails
+		{
+			displayName = "All Licenses with FullDetails"
+   			hide = true
+			show all rows from addlicense    
+			(
+				ID
+				Key as "License Key"
+				License_Type as "License Type"
+				Vendor
+				No_of_Licenses as "No of Licenses"
+				Purchased_On as "Purchased On"
+				Expire_On as "Expire On"
+				Usage_Count as "Usage Count"
+				Remarks
+			)
+			filters
+			(
+				License_Type
+				Purchased_On
+				Expire_On
+			)
+			group by
+			(
+				ID ascending
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 2
+				icon = "travel-world"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							ID
+							Key as "License Key"
+							License_Type as "License Type"
+							Vendor
+							No_of_Licenses as "No of Licenses"
+							Purchased_On as "Purchased On"
+							Expire_On as "Expire On"
+							Usage_Count as "Usage Count"
+							Remarks
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							ID
+							Key as "License Key"
+							License_Type as "License Type"
+							Vendor
+							No_of_Licenses as "No of Licenses"
+							Purchased_On as "Purchased On"
+							Expire_On as "Expire On"
+							Usage_Count as "Usage Count"
+							Remarks
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list allfreesoftwares
+		{
+			displayName = "Free Software"
+   			hide = true
+			show all rows from addlicense  [License_Type == "Free"]  
+			(
+				Purchased_On as "Purchased On"
+				Vendor
+				Usage_Count as "Usage Count"
+				Software
+				Software.Version
+			)
+			filters
+			(
+				License_Type
+				Purchased_On
+				Expire_On
+			)
+			options
+			(
+				icon = "business-net"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Software
+							Software.Version as "Version"
+							Purchased_On as "Purchased On"
+							Vendor
+							Usage_Count as "Usage Count"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Purchased_On as "Purchased On"
+							Vendor
+							Usage_Count as "Usage Count"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Exceeded_Licenses
+		{
+			displayName = "All Exceeded Licenses"
+   			hide = true
+			show all rows from addlicense  [Expire_On < zoho.currentdate]  
+			(
+				License_Type as "License Type"
+				Expire_On as "Expired On"
+				Usage_Count as "Usage Count"
+				(
+					width = 100px
+				)
+				Vendor
+				(
+					width = 25%
+				)
+				No_of_Licenses as "No of Licenses"
+				(
+					width = 115px
+				)
+				Purchased_On as "Purchased On"
+				Software
+			)
+			filters
+			(
+				License_Type
+				Purchased_On
+				Expire_On
+			)
+			group by
+			(
+				License_Type ascending
+			)
+			options
+			(
+				icon = "travel-world"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							License_Type as "License Type"
+							Software
+							Vendor
+							No_of_Licenses as "No of Licenses"
+							Purchased_On as "Purchased On"
+							Expire_On as "Expired On"
+							Usage_Count as "Usage Count"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							License_Type as "License Type"
+							Software
+							No_of_Licenses as "No of Licenses"
+							Purchased_On as "Purchased On"
+							Expire_On as "Expired On"
+							Usage_Count as "Usage Count"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list installedsoftwares
+		{
+			displayName = "Installed Software"
+   			hide = true
+			show all rows from installation    
+			(
+				Installed_On as "Installed On"
+				Expire_On as "Expire On"
+				Machine_Name as "Machine Name"
+			)
+			filters
+			(
+				Machine_Name
+				Installed_On
+				Expire_On
+			)
+			options
+			(
+				icon = "tech-laptop"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Installed_On as "Installed On"
+							Expire_On as "Expire On"
+							Machine_Name as "Machine Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Installed_On as "Installed On"
+							Expire_On as "Expire On"
+							Machine_Name as "Machine Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list alllicensedsoftwares
+		{
+			displayName = "Licensed Software"
+   			hide = true
+			show all rows from addlicense  [License_Type != "Free"]  
+			(
+				Purchased_On as "Purchased On"
+				Expire_On as "Expire On"
+				Vendor
+				No_of_Licenses as "No of Licenses"
+				Usage_Count as "Usage Count"
+				Software
+				Software.Version
+			)
+			filters
+			(
+				License_Type
+				Purchased_On
+				Expire_On
+			)
+			options
+			(
+				icon = "tech-laptop"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Software
+							Software.Version as "Version"
+							Purchased_On as "Purchased On"
+							Expire_On as "Expire On"
+							Vendor
+							No_of_Licenses as "No of Licenses"
+							Usage_Count as "Usage Count"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Purchased_On as "Purchased On"
+							Expire_On as "Expire On"
+							Vendor
+							No_of_Licenses as "No of Licenses"
+							Usage_Count as "Usage Count"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Installed_Machines
+		{
+			displayName = "Installed Machines"
+   			hide = true
+			show all rows from installation    
+			(
+				Machine_Name as "Name"
+				Machine_Name.Type
+				Machine_Name.Operating_System as "Operating System"
+				Machine_Name.Status
+			)
+			filters
+			(
+				Machine_Name
+				Installed_On
+				Expire_On
+			)
+			options
+			(
+				icon = "furniture-wash"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Machine_Name as "Name"
+							Machine_Name as "Name"
+							Machine_Name as "Name"
+							Machine_Name as "Name"
+							Machine_Name as "Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Machine_Name as "Name"
+							Machine_Name as "Name"
+							Machine_Name as "Name"
+							Machine_Name as "Name"
+							Machine_Name as "Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Machine_Management_Report
+		{
+			displayName = "Machine Management Report"
+   			hide = true
+			show all rows from addmachine    
+			(
+				Type
+				Operating_System as "Operating System"
+			)
+			filters
+			(
+				Active_Service_Date
+				Status
+				Department
+			)
+			options
+			(
+				icon = "social-1-logo-evernote"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Type
+							Operating_System as "Operating System"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Type
+							Operating_System as "Operating System"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Statistics_by_licenses_Report
+		{
+			displayName = "Statistics by licenses Report"
+   			hide = true
+			show all rows from installation    
+			(
+				License_ID as "License ID"
+			)
+			filters
+			(
+				Installed_On
+				Expire_On
+			)
+			options
+			(
+				icon = "business-laptop-71"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							License_ID as "License ID"
+							License_ID as "License ID"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							License_ID as "License ID"
+							License_ID as "License ID"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		summary allmachines_fulldetails
+		{
+			displayName = "All Machines with FullDetails"
+   			hide = true
+			show all rows from addmachine    
+			(
+				Name
+				ID
+				Manufacturer
+				Model_Number as "Model"
+				Serial_Number as "Serial Number"
+				Support_Link as "Support Link"
+				Status
+				Active_Service_Date as "Active Service Date"
+				Department
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 2
+				icon = "travel-world"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							ID
+							Manufacturer
+							Model_Number as "Model"
+							Serial_Number as "Serial Number"
+							Support_Link as "Support Link"
+							Status
+							Active_Service_Date as "Active Service Date"
+							Department
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							ID
+							Manufacturer
+							Model_Number as "Model"
+							Serial_Number as "Serial Number"
+							Support_Link as "Support Link"
+							Status
+							Active_Service_Date as "Active Service Date"
+							Department
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		pivotchart Statistics_By_MachineType
+		{ 
+			displayname = "Statistics By Machine Type"
+			based on Autoview_1464943891764_addmachine
+					hide = true
+							icon = "tech-2-l-check"				show all rows from addmachine
+				(
+ 					Serial_Number  as "Serial Number"
+ 					Manufacturer 
+ 					Employee.prefix  as "Name.Prefix"
+ 					Employee.first_name  as "Name"
+ 					Type 
+ 					Active_Service_Date  as "Active Service Date"
+ 					Name 
+ 					Department 
+ 					Operating_System  as "Operating System"
+ 					Employee.last_name  as "Name.Last Name"
+ 					Employee.suffix  as "Name.Suffix"
+ 					Status 
+ 					Model_Number  as "Model"
+				)
+		}
+		pivotchart Statistics_by_OS1
+		{ 
+			displayname = "Statistics by OS"
+			based on Autoview_1464943891764_addmachine
+					hide = true
+							icon = "ui-1-database"				show all rows from addmachine
+				(
+ 					Serial_Number  as "Serial Number"
+ 					Manufacturer 
+ 					Employee.prefix  as "Name.Prefix"
+ 					Employee.first_name  as "Name"
+ 					Type 
+ 					Active_Service_Date  as "Active Service Date"
+ 					Name 
+ 					Department 
+ 					Operating_System  as "Operating System"
+ 					Employee.last_name  as "Name.Last Name"
+ 					Employee.suffix  as "Name.Suffix"
+ 					Status 
+ 					Model_Number  as "Model"
+				)
+		}
+	}
+	section Help
+	{
+		icon = "travel-info"
+				 page Help 
+	 	 { 
+ 	 	 displayname = "Help" 
+
+ 	 	 icon = "travel-info" 
+	 	 Content="<zml \n\t\t\tisPdfEnabled='false'\n\t\t\n\t\t\tisPrintEnabled='false'\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dsp id='Help1'>\n\t<![CDATA[htmlpage Help1()\ncontent\n&lt;%{\n\t%&gt;\n&lt;div class=&quot;form-header&quot;&gt;&lt;span class=&quot;form-title&quot;&gt;Application Training Video&lt;\/span&gt;&lt;\/div&gt;\n\t\t\t\t\t\t  &lt;table align=&apos;center&apos; cellpadding=&quot;5&quot; style= &quot;margin:50px;float:left;&quot;&gt;\n\t\t\t\t\t\t          &lt;tr&gt;\n\t\t\t\t\t\t                  &lt;td valign=&quot;top&quot;&gt;&lt;iframe width=&quot;640&quot; height=&quot;360&quot; src=&quot;https:\/\/www.youtube.com\/embed\/Z7rOJYktO2w&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;\/iframe&gt;&lt;\/td&gt;\n\t\t\t\t\t\t          &lt;\/tr&gt;\n\t\t\t\t\t\t\n\t\t\t\t\t\t  &lt;\/table&gt;\n\t\t\t\t\t\t\n\t\t\t\t\t\t  &lt;div style=&quot;text-align: center;margin-top: 50px;padding-top:115px;line-height: 3;float: left;width: 40%;height: 245px;&quot;&gt; &lt;div&gt;&lt;font style=&quot;font-size: 25px;font-weight: bold;padding-right: 5px;color:#4E4E4E;\/* font-family: Comic Sans MS; *\/\/* float: left; *\/text-align: center;&quot;&gt;Want to customize this application?&lt;\/font&gt;&lt;\/div&gt; &lt;div&gt;&lt;a href=&quot;https:\/\/www.zoho.com\/creator\/partners\/work-with-a-partner.html&quot; target=&quot;_blank&quot; class=&quot;zc-formbutton&quot; style=&quot;cursor:pointer;background-color: green;font-size: 20px;&quot;&gt;Hire an expert&lt;\/a&gt;&lt;\/div&gt; &lt;\/div&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Run_Scripts_While_Adding_1 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = addhardware
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Active_Service_Date = zoho.currentdate;
+						)
+					}
+	}
+
+			}
+			Field_scripts as "Field scripts"
+			{
+				type =  form
+				form = installation
+				record event = on add or edit
+
+	on user input of Software
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											isfree = true;
+										isexpired = false;
+										total_licenses_count = 0;
+										usage_count = 0;
+										exceeded_licenses_count = 0;
+										for each  license in addlicense[Software == input.Software]
+										{
+											if(license.License_Type != "Free")
+											{
+												isexpired = false;
+												isfree = false;
+												total_licenses_count = total_licenses_count + license.No_of_Licenses;
+												if(license.Expire_On != null)
+												{
+													if((zoho.currentdate - license.Expire_On) > 0)
+													{
+														isexpired = true;
+														exceeded_licenses_count = exceeded_licenses_count + license.No_of_Licenses;
+													}
+												}
+												if(!isexpired)
+												{
+													usage_count = usage_count + license.Usage_Count;
+													if(license.No_of_Licenses > usage_count)
+													{
+														input.License_ID = license.ID;
+													}
+												}
+											}
+											else
+											{
+												input.License_ID = license.ID;
+											}
+										}
+										if(input.License_ID == null)
+										{
+											input.msg = "<font size='2' color='#ff6600'><strong>No License configured for this Software.</strong></font>";
+											input.Is_Valid_Installation = false;
+										}
+										else if(isfree)
+										{
+											input.Is_Valid_Installation = true;
+										}
+										else
+										{
+											remaining_count = total_licenses_count - (exceeded_licenses_count + usage_count);
+											input.msg = "<font size='2'><strong>Total Licenses : <font color='#ff6600'>" + total_licenses_count + "</font></strong></font><br> <font size='2'><strong>Exceeded Licenses : <font color='#ff6600'>" + exceeded_licenses_count + "</font></strong></font><br><font size='2'><strong>Licenses Used : <font color='#ff6600'>" + usage_count + "</font></strong></font><br><font size='2'><strong>Remaining Licenses : <font color='#ff6600'>" + remaining_count + "</font></strong></font><br>";
+											if(remaining_count <= 0)
+											{
+												input.Is_Valid_Installation = false;
+											}
+											else
+											{
+												input.Is_Valid_Installation = true;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Field_scripts3 as "Field scripts"
+			{
+				type =  form
+				form = addlicense
+				record event = on add or edit
+
+	on user input of License_Type
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.License_Type == "Free")
+										{
+											hide No_of_Licenses;
+											hide Expire_On;
+										}
+										else
+										{
+											show No_of_Licenses;
+											show Expire_On;
+										}
+						)
+					}
+	}
+
+			}
+			Edit_record_scripts as "Edit record scripts"
+			{
+				type =  form
+				form = addlicense
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Usage_Count;
+										disable Software;
+										if(input.License_Type != "Free")
+										{
+											show No_of_Licenses;
+											show Expire_On;
+										}
+										else
+										{
+											hide No_of_Licenses;
+											hide Expire_On;
+										}
+						)
+					}
+	}
+
+			}
+			Create_record_scripts1 as "Create record scripts"
+			{
+				type =  form
+				form = installation
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//You can drag and drop tasks from the immediate left pane
+										//Below is the SAMPLE script that hide fields while loading a form.
+										hide Expire_On;
+										hide Is_Valid_Installation;
+										hide License_ID;
+										input.Installed_On = zoho.currentdate;
+						)
+					}
+	}
+
+			}
+			Create_record_scripts4 as "Create record scripts"
+			{
+				type =  form
+				form = installation
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Is_Valid_Installation != true)
+										{
+											alert "<font size='2'><strong>" + input.Software.Name + " doesn't have any remaining License.</strong></font>";
+											cancel submit;
+										}
+										installs_count = installation[Software == input.Software && Machine_Name == input.Machine_Name].count();
+										if(installs_count > 0)
+										{
+											alert "<font size='2'><strong>" + input.Software + " is already installed in the selected machine.</strong></font>";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Create_record_scripts5 as "Create record scripts"
+			{
+				type =  form
+				form = installation
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Is_Valid_Installation == true)
+										{
+											if(input.License_ID != null)
+											{
+												license = addlicense[ID == input.License_ID];
+												license.Usage_Count=license.Usage_Count + 1;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Create_record_scripts6 as "Create record scripts"
+			{
+				type =  form
+				form = addlicense
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide No_of_Licenses;
+										hide Expire_On;
+										hide Usage_Count;
+										input.Purchased_On = zoho.currentdate;
+										if(input.Software != null)
+										{
+											disable Software;
+										}
+						)
+					}
+	}
+
+			}
+			Create_record_scripts7 as "Create record scripts"
+			{
+				type =  form
+				form = addlicense
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.License_Type == "Licensed" && input.No_of_Licenses == null)
+										{
+											alert "No of Licenses cannot be empty.";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Create_record_scripts8 as "Create record scripts"
+			{
+				type =  form
+				form = addsoftware
+				record event = on add
+
+	on success
+	{
+					actions  (Add_License == true)
+					{
+						custom deluge script
+						(
+											openUrl("#Form:addlicense?Software=" + input.ID,"same window");
+						)
+					}
+	}
+
+			}
+		}
+		functions
+		{
+			Install as "Install"
+			{
+				type =  functions
+				form = addmachine
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						openUrl("#Form:installation?Machine_Name=" + input.ID,"popup window","height=<height>,width=<width>");
+					)
+					}
+				}
+			}
+			View as "View"
+			{
+				type =  functions
+				form = addmachine
+				on start
+				{
+					actions 
+					{
+					on click
+					(
+						openUrl("#Report:installedsoftwares?Machine_Name=" + input.Name,"Same Window");
+					)
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"User"
+			{
+				name = "User"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:true}
+				description = "This profile only have add and view permission.\n"
+			}
+			"Member"
+			{
+				name = "Member"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:true}
+				description = "This profile will not have administrative permissions.\n"
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users.\n\n\n"
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "drop down menu"
+		color = "black"
+		base theme = "professional"
+		new theme = 9
+		new theme color = 10
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-intel-it1"
+    	icon theme = "green"
+		icons style = solid
+	}
+
+	phone
+	{
+		section  Dashboard
+		{
+			icon = "ui-1-dashboard-half"
+			page Dashboard
+			{
+				icon = "ui-1-dashboard-half"
+			}
+		}
+		section  Machines
+		{
+			icon = "tech-laptop"
+			form  addmachine
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+			}
+			list allmachines
+			{
+				icon = "ui-1-database"
+			}
+		}
+		section  Softwares
+		{
+			icon = "ui-2-cloud-25"
+			form  addsoftware
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+			}
+			list allsoftwares
+			{
+				icon = "ui-1-database"
+			}
+		}
+		section  Hardwares
+		{
+			icon = "tech-laptop-1"
+			form  addhardware
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+			}
+			list allhardwares
+			{
+				icon = "ui-2-grid-49"
+			}
+			form  addmobiledevice
+			{
+				layout = left
+				icon = "tech-mobile"
+			}
+			list allmobiledevices
+			{
+				icon = "tech-tablet"
+			}
+		}
+		section  Quick_Links
+		{
+			displayname= "Quick Links"
+			icon = "ui-2-link-69"
+			form  installation
+			{
+				layout = auto
+				icon = "arrows-2-file-download-89"
+			}
+			form  addlicense
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+			}
+			form  addos
+			{
+				layout = auto
+				icon = "ui-2-square-add-11"
+			}
+			form  addmachinetype
+			{
+				layout = auto
+				icon = "ui-2-square-add-11"
+			}
+			kanban All_Licenses
+			{
+				icon = "ui-2-fat-add"
+			}
+			list alllicenses
+			{
+				icon = "ui-1-database"
+			}
+			summary All_Machine_Types
+			{
+				icon = "ui-2-grid-49"
+			}
+			summary All_Operating_Systems
+			{
+				icon = "ui-1-database"
+			}
+			list installations
+			{
+				icon = "ui-2-grid-49"
+			}
+			pivotchart Statistics_by_Software
+			{
+				icon = "ui-1-database"
+				hide = true
+			}
+		}
+		section  Invisible_Components
+		{
+			displayname= "Invisible Components"
+			hide = true
+			icon = "ui-2-menu-bold"
+			pivotchart Statistics_by_Software_Type
+			{
+				icon = "tech-2-l-search"
+				hide = true
+			}
+			summary alllicenses_fulldetails
+			{
+				icon = "ui-1-database"
+				hide = true
+			}
+			list allfreesoftwares
+			{
+				icon = "ui-1-database"
+				hide = true
+			}
+			list All_Exceeded_Licenses
+			{
+				icon = "ui-2-grid-49"
+				hide = true
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Software
+								Vendor
+								No_of_Licenses as "No of Licenses"
+								Purchased_On as "Purchased On"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								License_Type as "License Type"
+								Software
+								No_of_Licenses as "No of Licenses"
+								Purchased_On as "Purchased On"
+								Expire_On as "Expired On"
+								Usage_Count as "Usage Count"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list installedsoftwares
+			{
+				icon = "ui-2-grid-49"
+				hide = true
+			}
+			list alllicensedsoftwares
+			{
+				icon = "ui-1-database"
+				hide = true
+			}
+			list Installed_Machines
+			{
+				icon = "ui-1-database"
+				hide = true
+			}
+			list Machine_Management_Report
+			{
+				icon = "ui-2-grid-49"
+				hide = true
+			}
+			list Statistics_by_licenses_Report
+			{
+				icon = "ui-2-grid-49"
+				hide = true
+			}
+			summary allmachines_fulldetails
+			{
+				icon = "ui-2-grid-49"
+				hide = true
+			}
+			pivotchart Statistics_By_MachineType
+			{
+				icon = "tech-2-l-check"
+				hide = true
+			}
+			pivotchart Statistics_by_OS1
+			{
+				icon = "ui-1-database"
+				hide = true
+			}
+		}
+		section  Help
+		{
+			icon = "travel-info"
+			page Help
+			{
+				icon = "travel-info"
+			}
+		}
+		customize
+		{
+			colour = green
+        	layout = tabbar
+		 	icons style = outline
+		}
+	}
+	tablet
+	{
+		section  Dashboard
+		{
+			icon = "ui-1-dashboard-half"
+			page Dashboard
+			{
+				icon = "ui-1-dashboard-half"
+			}
+		}
+		section  Machines
+		{
+			icon = "tech-laptop"
+			form  addmachine
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+			}
+			list allmachines
+			{
+				icon = "ui-1-database"
+			}
+		}
+		section  Softwares
+		{
+			icon = "ui-2-cloud-25"
+			form  addsoftware
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+			}
+			list allsoftwares
+			{
+				icon = "ui-1-database"
+			}
+		}
+		section  Hardwares
+		{
+			icon = "tech-laptop-1"
+			form  addhardware
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+			}
+			list allhardwares
+			{
+				icon = "ui-2-grid-49"
+			}
+			form  addmobiledevice
+			{
+				layout = left
+				icon = "tech-2-p-add"
+			}
+			list allmobiledevices
+			{
+				icon = "tech-2-p-settings"
+			}
+		}
+		section  Quick_Links
+		{
+			displayname= "Quick Links"
+			icon = "ui-2-link-68"
+			form  installation
+			{
+				layout = auto
+				icon = "arrows-2-file-download-89"
+			}
+			form  addlicense
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+			}
+			form  addos
+			{
+				layout = auto
+				icon = "ui-2-square-add-11"
+			}
+			form  addmachinetype
+			{
+				layout = auto
+				icon = "ui-2-square-add-11"
+			}
+			kanban All_Licenses
+			{
+				icon = "ui-2-fat-add"
+			}
+			list alllicenses
+			{
+				icon = "ui-1-database"
+			}
+			summary All_Machine_Types
+			{
+				icon = "ui-2-grid-49"
+			}
+			summary All_Operating_Systems
+			{
+				icon = "ui-1-database"
+			}
+			list installations
+			{
+				icon = "ui-2-grid-49"
+			}
+			pivotchart Statistics_by_Software
+			{
+				icon = "ui-1-database"
+				hide = true
+			}
+		}
+		section  Invisible_Components
+		{
+			displayname= "Invisible Components"
+			hide = true
+			icon = "tech-2-pci-card"
+			pivotchart Statistics_by_Software_Type
+			{
+				icon = "tech-2-l-search"
+				hide = true
+			}
+			summary alllicenses_fulldetails
+			{
+				icon = "ui-1-database"
+				hide = true
+			}
+			list allfreesoftwares
+			{
+				icon = "ui-1-database"
+				hide = true
+			}
+			list All_Exceeded_Licenses
+			{
+				icon = "ui-2-grid-49"
+				hide = true
+			}
+			list installedsoftwares
+			{
+				icon = "ui-2-grid-49"
+				hide = true
+			}
+			list alllicensedsoftwares
+			{
+				icon = "ui-1-database"
+				hide = true
+			}
+			list Installed_Machines
+			{
+				icon = "ui-1-database"
+				hide = true
+			}
+			list Machine_Management_Report
+			{
+				icon = "ui-2-grid-49"
+				hide = true
+			}
+			list Statistics_by_licenses_Report
+			{
+				icon = "ui-2-grid-49"
+				hide = true
+			}
+			summary allmachines_fulldetails
+			{
+				icon = "ui-2-grid-49"
+				hide = true
+			}
+			pivotchart Statistics_By_MachineType
+			{
+				icon = "tech-2-l-check"
+				hide = true
+			}
+			pivotchart Statistics_by_OS1
+			{
+				icon = "ui-1-database"
+				hide = true
+			}
+		}
+		section  Help
+		{
+			icon = "travel-info"
+			page Help
+			{
+				icon = "travel-info"
+			}
+		}
+		customize
+		{
+			colour = green
+        	layout = tabbar
+		 	icons style = outline
+		}
+	}
+	translation
+{
+"{\"de\":{\"ReportField.allfreesoftwares.Purchased_On\":\" Gekauft am \",\"FormField.addhardware.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormButton.addmachine.cancel\":\" Stornieren \",\"FormButton.addmachinetype.Reset\":\" Zurücksetzen \",\"FormButton.addhardware.Reset\":\" Zurücksetzen \",\"FormField.addmachine.Status\":\" Status \",\"ReportField.All_Licenses.Usage_Count\":\" Nutzungszähler \",\"ReportField.allmachines.Active_Service_Date\":\" Aktives Service-Datum \",\"ReportField.alllicenses.Key\":\" Schlüssel \",\"ReportField.alllicenses_fulldetails.Usage_Count\":\" Nutzungszähler \",\"ReportField.allmachines_fulldetails.Active_Service_Date\":\" Aktives Service-Datum \",\"Languages List.zh-TW\":\" Chinesische Tradition \",\"Languages List.ja\":\" japanisch \",\"ReportField.installedsoftwares.Machine_Name\":\" Maschinenname \",\"FormField.installation.Machine_Name\":\" Maschinenname \",\"ReportField.All_Machine_Types.Machine_Type\":\" Maschinentyp \",\"Page.Dashboard\":\" Instrumententafel \",\"FormField.addlicense.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormButton.installation.Cancel\":\" Stornieren \",\"FormField.addsoftware.ID\":\" ICH WÜRDE \",\"Languages List.ku\":\" kurdisch \",\"FormField.addmachine.Added_Time\":\" Zeit hinzugefügt \",\"PicklistOption.addmachine.Department.7\":\" Ausbildung \",\"Languages List.km\":\" Khmer \",\"PicklistOption.addmachine.Department.6\":\" Unterstützung \",\"Languages List.ko\":\" Koreanisch \",\"Languages List.kn\":\" Kannada \",\"PicklistOption.addmachine.Department.3\":\" Marketing \",\"Languages List.ka\":\" georgisch \",\"PicklistOption.addmachine.Department.2\":\" Ingenieurwesen \",\"PicklistOption.addmachine.Department.5\":\" Bedienung \",\"ReportField.alllicenses.Remarks\":\" Bemerkungen \",\"PicklistOption.addmachine.Department.4\":\" Der Umsatz \",\"FormField.addsoftware.Version\":\" Ausführung \",\"PicklistOption.addmachine.Department.1\":\" Verwaltung \",\"Section.Quick_Links\":\" Schnelle Links \",\"FormField.addmobiledevice.Record_Status\":\" Aufnahmestatus \",\"Languages List.hu\":\" ungarisch \",\"Languages List.hy\":\" Armenisch \",\"CompositeSubFields.addmobiledevice.Employee.suffix\":\" Suffix \",\"FormButton.addos.Submit\":\" einreichen \",\"ReportField.allmachines_fulldetails.Department\":\" Abteilung \",\"FormField.installation.Section\":\" Sektion \",\"Languages List.hr\":\" kroatisch \",\"PicklistOption.addsoftware.Type.3\":\" Unterstützung \",\"PicklistOption.addsoftware.Type.2\":\" Grafik \",\"PicklistOption.addsoftware.Type.1\":\" Produktivität \",\"ReportField.allhardwares.Support_Link\":\" Unterstützungslink \",\"Languages List.hi\":\" Hindi \",\"ReportField.alllicensedsoftwares.Expire_On\":\" Läuft ab am \",\"ReportField.All_Exceeded_Licenses.Usage_Count\":\" Nutzungszähler \",\"FormField.addlicense.Added_User\":\" Benutzer hinzugefügt \",\"FormButton.addmachinetype.Submit\":\" einreichen \",\"FormField.addhardware.Peripheral_Type\":\" Peripherietyp \",\"Languages List.iw\":\" hebräisch \",\"FormField.addmobiledevice.Status\":\" Status \",\"Report.All_Machine_Types\":\" Alle Maschinentypen \",\"FormField.installation.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Languages List.is\":\" isländisch \",\"Languages List.it\":\" Italienisch \",\"FormButton.addos.Reset\":\" Zurücksetzen \",\"Form.addlicense\":\" Neue Lizenz hinzufügen \",\"CompositeSubFields.addmobiledevice.Employee.prefix\":\" Präfix \",\"FormField.addmachine.last_name\":\" Familienname, Nachname \",\"FormField.installation.Expire_On\":\" Läuft ab am \",\"ReportField.allsoftwares.Manufacturer\":\" Hersteller \",\"FormField.addmobiledevice.Added_Time\":\" Zeit hinzugefügt \",\"Languages List.nl\":\" Niederländisch \",\"FormField.addmachinetype.Record_Status\":\" Aufnahmestatus \",\"Report.All_Operating_Systems\":\" Alle Betriebssysteme \",\"FormField.addos.Modified_Time\":\" Geänderte Zeit \",\"Languages List.no\":\" norwegisch \",\"FormField.installation.Added_Time\":\" Zeit hinzugefügt \",\"FormField.addlicense.More_Details\":\" Mehr Details \",\"FormButton.addhardware.Submit\":\" einreichen \",\"ReportField.alllicenses.Vendor\":\" Verkäufer \",\"CompositeSubFields.addmobiledevice.Employee.first_name\":\" Vorname \",\"Section.Hardware\":\" Hardware \",\"Report.All_Licenses\":\" Alle Lizenzen \",\"FormField.addhardware.Description\":\" Beschreibung \",\"PicklistOption.addmobiledevice.Type.3\":\" E-Mail-Gerät \",\"PicklistOption.addmobiledevice.Type.4\":\" PDA \",\"PicklistOption.addsoftware.Type.6\":\" Andere \",\"PicklistOption.addmobiledevice.Type.1\":\" Mobiltelefon \",\"PicklistOption.addsoftware.Type.5\":\" Entwicklung \",\"FormField.addmachine.Name\":\" Name \",\"PicklistOption.addmobiledevice.Type.2\":\" Smartphone \",\"PicklistOption.addsoftware.Type.4\":\" Buchhaltung \",\"ReportField.All_Exceeded_Licenses.No_of_Licenses\":\" Anzahl der Lizenzen \",\"Report.alllicensedsoftwares\":\" Lizenzierte Software \",\"PicklistOption.addmobiledevice.Status.1\":\" Aktiv \",\"FormField.installation.License_ID\":\" Lizenz-ID \",\"PicklistOption.addmobiledevice.Status.2\":\" Im Ruhestand \",\"PicklistOption.addmobiledevice.Status.3\":\" Bestellt \",\"PicklistOption.addmobiledevice.Status.4\":\" Bereitstellung \",\"FormField.addmachine.Record_Status\":\" Aufnahmestatus \",\"PicklistOption.addmobiledevice.Status.5\":\" In Reparatur \",\"PicklistOption.addmobiledevice.Status.6\":\" Hat verloren \",\"FormField.addmobiledevice.ID\":\" ICH WÜRDE \",\"FormField.addsoftware.Added_Time\":\" Zeit hinzugefügt \",\"FormField.addhardware.Modified_User\":\" Geänderter Benutzer \",\"Languages List.lt\":\" litauisch \",\"Languages List.lv\":\" lettisch \",\"ReportField.Installed_Machines.Machine_Name\":\" Art \",\"Languages List.lo\":\" Laothian \",\"FormField.addhardware.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.installation.Modified_Time\":\" Geänderte Zeit \",\"Languages List.la\":\" Latein \",\"Report.installedsoftwares\":\" Installierte Software \",\"FormField.addsoftware.Record_Status\":\" Aufnahmestatus \",\"ReportField.alllicenses_fulldetails.Expire_On\":\" Läuft ab am \",\"FormField.addlicense.Modified_Time\":\" Geänderte Zeit \",\"ReportField.alllicenses_fulldetails.Key\":\" Lizenzschlüssel \",\"Languages List.ms\":\" malaiisch \",\"FormButton.addmobiledevice.Submit\":\" einreichen \",\"Languages List.mr\":\" Marathi \",\"FormButton.addlicense.Submit\":\" einreichen \",\"Languages List.mt\":\" maltesisch \",\"FormButton.addmobiledevice.Cancel\":\" Stornieren \",\"Languages List.mk\":\" mazedonisch \",\"ReportField.alllicensedsoftwares.Vendor\":\" Verkäufer \",\"FormButton.addlicense.Cancel\":\" Stornieren \",\"FormField.addmobiledevice.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"ReportField.alllicenses.Usage_Count\":\" Nutzungszähler \",\"FormButton.addmachinetype.Cancel\":\" Stornieren \",\"ReportField.allmachines_fulldetails.Manufacturer\":\" Hersteller \",\"ReportField.alllicenses_fulldetails.ID\":\" ICH WÜRDE \",\"Languages List.bg\":\" bulgarisch \",\"FormButton.addlicense.Reset\":\" Zurücksetzen \",\"Languages List.bn\":\" Bengali \",\"CompositeSubFields.addmachine.Employee.prefix\":\" Präfix \",\"Languages List.be\":\" Belarussisch \",\"FormField.addmobiledevice.last_name\":\" Familienname, Nachname \",\"ReportField.All_Licenses.Expire_On\":\" Läuft ab am \",\"Languages List.az\":\" Aserbaidschanisch \",\"Section.Help\":\" Hilfe \",\"PicklistOption.addmachine.Status.3\":\" Bestellt \",\"PicklistOption.addmachine.Status.2\":\" Im Ruhestand \",\"PicklistOption.addmachine.Status.5\":\" In Reparatur \",\"Languages List.cs\":\" Tschechisch \",\"Form.addmachine\":\" Neue Maschine hinzufügen \",\"PicklistOption.addmachine.Status.4\":\" Bereitgestellt \",\"PicklistOption.addmachine.Status.1\":\" Aktiv \",\"Report.allmachines\":\" Alle Maschinen \",\"FormButton.installation.Submit\":\" einreichen \",\"PicklistOption.addmachine.Status.6\":\" Hat verloren \",\"FormButton.addsoftware.Reset\":\" Zurücksetzen \",\"CustomAction.allmachines.View\":\" Aussicht \",\"Languages List.ca\":\" katalanisch \",\"ReportField.allmachines.Name\":\" Name \",\"ReportField.installedsoftwares.Expire_On\":\" Läuft ab am \",\"FormField.addmachine.Section\":\" Sektion \",\"ReportField.allmobiledevices.Support_Link\":\" Unterstützungslink \",\"FormField.addsoftware.Name\":\" Name \",\"FormField.addmachine.Serial_Number\":\" Ordnungsnummer \",\"FormButton.addmachine.submit\":\" Maschine hinzufügen \",\"ReportField.allmobiledevices.Manufacturer\":\" Hersteller \",\"Report.All_Exceeded_Licenses\":\" Alle Lizenzen wurden überschritten \",\"FormField.addmachine.Manufacturer\":\" Hersteller \",\"Report.allhardwares\":\" Alle Hardware \",\"FormField.addos.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormButton.addhardware.Cancel\":\" Stornieren \",\"Form.addmobiledevice\":\" Neues Mobilgerät hinzufügen \",\"FormField.addmobiledevice.Support_Link\":\" Unterstützungslink \",\"PicklistOption.addmachine.prefix.1\":\" Herr. \",\"ReportField.alllicenses_fulldetails.Purchased_On\":\" Gekauft am \",\"FormField.addmachine.Support_Link\":\" Unterstützungslink \",\"Languages List.ar\":\" Arabisch \",\"PicklistOption.addmachine.prefix.3\":\" Frau. \",\"PicklistOption.addmachine.prefix.2\":\" Frau. \",\"ReportField.allsoftwares.Type\":\" Art \",\"Languages List.af\":\" Afrikaans \",\"Section.Invisible_Components\":\" Unsichtbare Komponenten \",\"FormField.addmachinetype.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.installation.ID\":\" ICH WÜRDE \",\"ReportField.alllicenses.License_Type\":\" Lizenz-Typ \",\"FormField.addmachine.Department\":\" Abteilung \",\"FormField.addmobiledevice.prefix\":\" Präfix \",\"FormButton.addos.Cancel\":\" Stornieren \",\"Report.Installed_Machines\":\" Installierte Maschinen \",\"FormField.addmachine.first_name\":\" Vorname \",\"Section.Software\":\" Software \",\"Languages List.fr\":\" Französisch \",\"PicklistOption.addhardware.Peripheral_Type.8\":\" Andere \",\"FormField.addmachine.Modified_User\":\" Geänderter Benutzer \",\"CompositeSubFields.addmobiledevice.Employee.last_name\":\" Familienname, Nachname \",\"Languages List.fi\":\" Finnese \",\"PicklistOption.addhardware.Peripheral_Type.1\":\" Kopierer \",\"PicklistOption.addhardware.Peripheral_Type.2\":\" Eingabegerät \",\"FormField.addhardware.Status\":\" Status \",\"PicklistOption.addhardware.Peripheral_Type.3\":\" Monitor \",\"PicklistOption.addhardware.Peripheral_Type.4\":\" Netzwerk \",\"ReportField.allhardwares.Description\":\" Beschreibung \",\"PicklistOption.addhardware.Peripheral_Type.5\":\" Drucker \",\"FormField.addlicense.Purchased_On\":\" Gekauft am \",\"PicklistOption.addhardware.Peripheral_Type.6\":\" Scanner \",\"PicklistOption.addhardware.Peripheral_Type.7\":\" Lager \",\"Languages List.fa\":\" persisch \",\"Languages List.gu\":\" GujGujarati \",\"ReportField.Machine_Management_Report.Type\":\" Art \",\"FormButton.addsoftware.Submit\":\" einreichen \",\"Languages List.gl\":\" galizisch \",\"FormButton.installation.Reset\":\" Zurücksetzen \",\"ReportField.alllicenses_fulldetails.Remarks\":\" Bemerkungen \",\"ReportField.allsoftwares.Version\":\" Ausführung \",\"FormField.addlicense.Remarks\":\" Bemerkungen \",\"FormField.addmachine.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.addmobiledevice.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"ReportField.All_Exceeded_Licenses.License_Type\":\" Lizenz-Typ \",\"ReportField.allmachines_fulldetails.Model_Number\":\" Modell-Nr \",\"ReportField.allmachines_fulldetails.Support_Link\":\" Unterstützungslink \",\"Languages List.ga\":\" irisch \",\"FormField.addmachinetype.Added_Time\":\" Zeit hinzugefügt \",\"PicklistOption.addlicense.License_Type.2\":\" Lizenziert \",\"FormField.addlicense.Usage_Count\":\" Nutzungszähler \",\"ReportField.allhardwares.Serial_Number\":\" Ordnungsnummer \",\"FormField.addsoftware.Manufacturer\":\" Hersteller \",\"FormButton.addmachine.update\":\" Aktualisieren \",\"ReportField.All_Licenses.Purchased_On\":\" Gekauft am \",\"FormField.addhardware.Active_Service_Date\":\" Aktives Service-Datum \",\"ReportField.installations.Machine_Name\":\" Maschinenname \",\"ReportField.alllicenses_fulldetails.Vendor\":\" Verkäufer \",\"Languages List.da\":\" dänisch \",\"Languages List.de\":\" Deutsche \",\"Languages List.cy\":\" Walisisch \",\"FormField.installation.Modified_User\":\" Geänderter Benutzer \",\"PicklistOption.addlicense.License_Type.1\":\" Frei \",\"FormButton.installation.Update\":\" Aktualisieren \",\"ReportField.allfreesoftwares.Usage_Count\":\" Nutzungszähler \",\"Languages List.es\":\" Spanisch \",\"Languages List.eu\":\" baskisch \",\"Languages List.et\":\" estnisch \",\"FormField.addlicense.Modified_User\":\" Geänderter Benutzer \",\"FormField.addsoftware.Type\":\" Art \",\"ReportField.allmachines.Type\":\" Art \",\"Languages List.el\":\" griechisch \",\"FormField.addlicense.No_of_Licenses\":\" Anzahl der Lizenzen \",\"Languages List.eo\":\" Esperanto \",\"Languages List.en\":\" Englisch \",\"FormField.addmachine.prefix\":\" Präfix \",\"FormField.addmobiledevice.Type\":\" Art \",\"FormField.addlicense.Expire_On\":\" Läuft ab am \",\"ReportField.allmobiledevices.first_name\":\" Mitarbeiter \",\"FormField.addmobiledevice.Plan\":\" Planen \",\"Form.addsoftware\":\" Neue Software hinzufügen \",\"FormButton.addsoftware.Update\":\" Aktualisieren \",\"ReportField.allhardwares.Active_Service_Date\":\" Aktives Service-Datum \",\"FormButton.addhardware.Update\":\" Aktualisieren \",\"FormField.addmobiledevice.first_name\":\" Vorname \",\"FormButton.addlicense.Update\":\" Aktualisieren \",\"FormField.addsoftware.Modified_User\":\" Geänderter Benutzer \",\"CompositeSubFields.addmachine.Employee.last_name\":\" Familienname, Nachname \",\"Languages List.yi\":\" Jiddisch \",\"FormButton.addmachinetype.Update\":\" Aktualisieren \",\"Report.alllicenses_fulldetails\":\" Alle Lizenzen mit FullDetails \",\"FormButton.addmachine.reset\":\" Zurücksetzen \",\"ReportField.All_Licenses.No_of_Licenses\":\" Anzahl der Lizenzen \",\"FormField.addhardware.Model\":\" Modell \",\"FormField.addmobiledevice.Manufacturer\":\" Hersteller \",\"ReportField.allhardwares.Manufacturer\":\" Hersteller \",\"Report.installations\":\" Alle Installationen \",\"FormField.addhardware.Support_Link\":\" Unterstützungslink \",\"Languages List.zh\":\" Chinesisch \",\"ReportField.allmobiledevices.Serial_Number\":\" Ordnungsnummer \",\"FormField.addmachinetype.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"CompositeSubFields.addmachine.Employee.first_name\":\" Vorname \",\"FormField.addmobiledevice.Model\":\" Modell \",\"FormField.addhardware.Added_User\":\" Benutzer hinzugefügt \",\"Report.Machine_Management_Report\":\" Maschinen-Management-Bericht \",\"FormField.addos.Record_Status\":\" Aufnahmestatus \",\"ReportField.alllicensedsoftwares.No_of_Licenses\":\" Anzahl der Lizenzen \",\"ReportField.Machine_Management_Report.Operating_System\":\" Betriebssystem \",\"ReportField.allsoftwares.Name\":\" Name \",\"FormField.addmachine.Model_Number\":\" Modell-Nr \",\"ReportField.allmachines.Status\":\" Status \",\"ReportField.Statistics_by_licenses_Report.License_ID\":\" Lizenz-ID \",\"FormField.addmachine.Modified_Time\":\" Geänderte Zeit \",\"FormField.addos.Added_User\":\" Benutzer hinzugefügt \",\"ReportField.allmachines.Operating_System\":\" Betriebssystem \",\"ReportField.All_Licenses.Remarks\":\" Bemerkungen \",\"FormButton.addmobiledevice.Update\":\" Aktualisieren \",\"Form.addos\":\" Neues Betriebssystem hinzufügen \",\"ReportField.installations.Installed_On\":\" Installiert auf \",\"FormField.addmachinetype.Machine_Type\":\" Maschinentyp \",\"FormField.addlicense.Vendor\":\" Verkäufer \",\"Section.Dashboard\":\" Instrumententafel \",\"FormField.addmachinetype.Modified_Time\":\" Geänderte Zeit \",\"FormField.addmobiledevice.Modified_Time\":\" Geänderte Zeit \",\"FormField.addmachinetype.Added_User\":\" Benutzer hinzugefügt \",\"FormField.addmachine.ID\":\" ICH WÜRDE \",\"FormField.installation.Record_Status\":\" Aufnahmestatus \",\"ReportField.allhardwares.Status\":\" Status \",\"FormField.addmachine.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.addos.ID\":\" ICH WÜRDE \",\"FormField.addlicense.Record_Status\":\" Aufnahmestatus \",\"FormField.addsoftware.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.addmachine.Employee\":\" Mitarbeiter \",\"ReportField.allhardwares.Peripheral_Type\":\" Art \",\"Form.addhardware\":\" Neue Hardware hinzufügen \",\"ReportField.All_Exceeded_Licenses.Expire_On\":\" Abgelaufen am \",\"FormField.addlicense.Key\":\" Schlüssel \",\"ReportField.All_Licenses.Vendor\":\" Verkäufer \",\"ReportField.installedsoftwares.Installed_On\":\" Installiert auf \",\"FormField.addmobiledevice.Employee\":\" Mitarbeiter \",\"FormField.addos.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"ReportField.allmobiledevices.Type\":\" Art \",\"Languages List.ro\":\" rumänisch \",\"ReportField.allfreesoftwares.Vendor\":\" Verkäufer \",\"Languages List.ru\":\" Russisch \",\"FormField.addmachine.Active_Service_Date\":\" Aktives Service-Datum \",\"ReportField.All_Operating_Systems.OS_Name\":\" Betriebssystemname \",\"Languages List.ta\":\" Tamilisch \",\"ReportField.allhardwares.Model\":\" Modell \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" Thai \",\"CustomAction.allmachines.Install\":\" Installieren \",\"PicklistOption.addmobiledevice.Plan.1\":\" Unternehmen \",\"PicklistOption.addmobiledevice.Plan.2\":\" Individuell \",\"FormField.addhardware.Record_Status\":\" Aufnahmestatus \",\"Languages List.sq\":\" albanisch \",\"FormField.addmachinetype.ID\":\" ICH WÜRDE \",\"FormField.installation.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"Report.Statistics_By_MachineType\":\" Statistiken nach Maschinentyp \",\"FormField.addmachine.Added_User\":\" Benutzer hinzugefügt \",\"FormButton.addsoftware.Cancel\":\" Stornieren \",\"Languages List.sw\":\" Swahili \",\"Languages List.sv\":\" Schwedisch \",\"FormField.addhardware.Serial_Number\":\" Ordnungsnummer \",\"Report.alllicenses\":\" Alle Lizenzen \",\"Languages List.sk\":\" slowakisch \",\"ReportField.allmobiledevices.Plan\":\" Planen \",\"FormField.addsoftware.Modified_Time\":\" Geänderte Zeit \",\"Languages List.sl\":\" Slowenisch \",\"FormField.addhardware.ID\":\" ICH WÜRDE \",\"PicklistOption.addhardware.Status.2\":\" In Reparatur \",\"PicklistOption.addhardware.Status.1\":\" Aktiv \",\"PicklistOption.addhardware.Status.4\":\" Bestellt \",\"PicklistOption.addhardware.Status.3\":\" Hat verloren \",\"FormButton.addos.Update\":\" Aktualisieren \",\"ReportField.allmobiledevices.Status\":\" Status \",\"PicklistOption.addhardware.Status.6\":\" Im Ruhestand \",\"PicklistOption.addhardware.Status.5\":\" Bereitgestellt \",\"FormField.addhardware.Manufacturer\":\" Hersteller \",\"ReportField.alllicenses.No_of_Licenses\":\" Anzahl der Lizenzen \",\"Languages List.pt\":\" Portugiesisch \",\"FormField.addlicense.Added_Time\":\" Zeit hinzugefügt \",\"Languages List.pl\":\" Polieren \",\"Report.Statistics_by_licenses_Report\":\" Statistiken nach Lizenzen Bericht \",\"ReportField.alllicensedsoftwares.Purchased_On\":\" Gekauft am \",\"Report.allmachines_fulldetails\":\" Alle Maschinen mit FullDetails \",\"ReportField.alllicensedsoftwares.Usage_Count\":\" Nutzungszähler \",\"FormField.addmobiledevice.suffix\":\" Suffix \",\"FormButton.addmobiledevice.Reset\":\" Zurücksetzen \",\"FormField.addlicense.ID\":\" ICH WÜRDE \",\"FormField.addmachine.Type\":\" Art \",\"FormField.addhardware.Added_Time\":\" Zeit hinzugefügt \",\"ReportField.All_Licenses.License_Type\":\" Lizenz-Typ \",\"FormField.addmobiledevice.Added_User\":\" Benutzer hinzugefügt \",\"Report.allsoftwares\":\" Alle Software \",\"Section.Machines\":\" Maschinen \",\"ReportField.alllicenses.Purchased_On\":\" Gekauft am \",\"FormField.addsoftware.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.addos.OS_Name\":\" Betriebssystemname \",\"ReportField.allmachines.Model_Number\":\" Modell-Nr \",\"FormField.addos.Added_Time\":\" Zeit hinzugefügt \",\"FormField.installation.Added_User\":\" Benutzer hinzugefügt \",\"FormField.addos.Modified_User\":\" Geänderter Benutzer \",\"CompositeSubFields.addmachine.Employee.suffix\":\" Suffix \",\"Report.allmobiledevices\":\" Alle mobilen Geräte \",\"ReportField.allmachines_fulldetails.ID\":\" ICH WÜRDE \",\"ReportField.allmachines_fulldetails.Status\":\" Status \",\"FormField.addmachinetype.Modified_User\":\" Geänderter Benutzer \",\"ReportField.alllicenses_fulldetails.License_Type\":\" Lizenz-Typ \",\"Form.addmachinetype\":\" Neuen Maschinentyp hinzufügen \",\"ReportField.alllicenses.Expire_On\":\" Läuft aus am \",\"Report.Statistics_by_Software_Type\":\" Statistiken nach Softwaretyp \",\"FormField.installation.Installed_On\":\" Installiert auf \",\"FormField.addmobiledevice.Modified_User\":\" Geänderter Benutzer \",\"FormField.addsoftware.Added_User\":\" Benutzer hinzugefügt \",\"FormField.addlicense.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"Form.installation\":\" Lizenz installieren \",\"FormField.addhardware.Modified_Time\":\" Geänderte Zeit \",\"Languages List.tr\":\" Türkisch \",\"ReportField.All_Exceeded_Licenses.Vendor\":\" Verkäufer \",\"Languages List.tl\":\" Filipino \",\"App.it-asset-tracker\":\"IT-Asset-Tracker \",\"ReportField.allmobiledevices.Model\":\" Modell \",\"Report.Statistics_by_OS1\":\" Statistiken nach Betriebssystem \",\"ReportField.allmachines_fulldetails.Name\":\" Name \",\"ReportField.allmachines_fulldetails.Serial_Number\":\" Ordnungsnummer \",\"Languages List.vi\":\" Vietnamesisch \",\"PicklistOption.addmobiledevice.prefix.3\":\" Frau. \",\"Report.allfreesoftwares\":\" Gratis Software \",\"ReportField.alllicenses_fulldetails.No_of_Licenses\":\" Anzahl der Lizenzen \",\"PicklistOption.addmobiledevice.prefix.1\":\" Herr. \",\"FormField.addmobiledevice.Serial_Number\":\" Ordnungsnummer \",\"PicklistOption.addmobiledevice.prefix.2\":\" Frau. \",\"FormField.addlicense.License_Type\":\" Lizenz-Typ \",\"ReportField.All_Licenses.Key\":\" Schlüssel \",\"Languages List.ur\":\" Urdu \",\"ReportField.All_Exceeded_Licenses.Purchased_On\":\" Gekauft am \",\"FormField.addmachine.suffix\":\" Suffix \",\"FormField.addmachine.Operating_System\":\" Betriebssystem \"},\"fr\":{\"ReportField.allfreesoftwares.Purchased_On\":\" Acheté le \",\"FormField.addhardware.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormButton.addmachine.cancel\":\" Annuler \",\"FormButton.addmachinetype.Reset\":\" Réinitialiser \",\"FormButton.addhardware.Reset\":\" Réinitialiser \",\"FormField.addmachine.Status\":\" Statut \",\"ReportField.All_Licenses.Usage_Count\":\" Nombre d'utilisations \",\"ReportField.allmachines.Active_Service_Date\":\" Date de service actif \",\"ReportField.alllicenses.Key\":\" Clé \",\"ReportField.alllicenses_fulldetails.Usage_Count\":\" Nombre d'utilisations \",\"ReportField.allmachines_fulldetails.Active_Service_Date\":\" Date de service actif \",\"Languages List.zh-TW\":\" Chinois traditionnel \",\"Languages List.ja\":\" Japonais \",\"ReportField.installedsoftwares.Machine_Name\":\" Nom de la machine \",\"FormField.installation.Machine_Name\":\" Nom de la machine \",\"ReportField.All_Machine_Types.Machine_Type\":\" Type de machine \",\"Page.Dashboard\":\" Tableau de bord \",\"FormField.addlicense.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormButton.installation.Cancel\":\" Annuler \",\"FormField.addsoftware.ID\":\" ID \",\"Languages List.ku\":\" kurde \",\"FormField.addmachine.Added_Time\":\" Temps ajouté \",\"PicklistOption.addmachine.Department.7\":\" Entraînement \",\"Languages List.km\":\" Khmer \",\"PicklistOption.addmachine.Department.6\":\" Soutien \",\"Languages List.ko\":\" coréen \",\"Languages List.kn\":\" Kannada \",\"PicklistOption.addmachine.Department.3\":\" Commercialisation \",\"Languages List.ka\":\" géorgien \",\"PicklistOption.addmachine.Department.2\":\" Ingénierie \",\"PicklistOption.addmachine.Department.5\":\" Un service \",\"ReportField.alllicenses.Remarks\":\" Remarques \",\"PicklistOption.addmachine.Department.4\":\" Ventes \",\"FormField.addsoftware.Version\":\" Version \",\"PicklistOption.addmachine.Department.1\":\" Administration \",\"Section.Quick_Links\":\" Liens rapides \",\"FormField.addmobiledevice.Record_Status\":\" Statut d'enregistrement \",\"Languages List.hu\":\" hongrois \",\"Languages List.hy\":\" arménien \",\"CompositeSubFields.addmobiledevice.Employee.suffix\":\" Suffixe \",\"FormButton.addos.Submit\":\" Soumettre \",\"ReportField.allmachines_fulldetails.Department\":\" département \",\"FormField.installation.Section\":\" Section \",\"Languages List.hr\":\" croate \",\"PicklistOption.addsoftware.Type.3\":\" Soutien \",\"PicklistOption.addsoftware.Type.2\":\" Graphique \",\"PicklistOption.addsoftware.Type.1\":\" Productivité \",\"ReportField.allhardwares.Support_Link\":\" Lien de soutien \",\"Languages List.hi\":\" hindi \",\"ReportField.alllicensedsoftwares.Expire_On\":\" Expire le \",\"ReportField.All_Exceeded_Licenses.Usage_Count\":\" Nombre d'utilisations \",\"FormField.addlicense.Added_User\":\" Utilisateur ajouté \",\"FormButton.addmachinetype.Submit\":\" Soumettre \",\"FormField.addhardware.Peripheral_Type\":\" Type périphérique \",\"Languages List.iw\":\" hébreu \",\"FormField.addmobiledevice.Status\":\" Statut \",\"Report.All_Machine_Types\":\" Tous les types de machines \",\"FormField.installation.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Languages List.is\":\" islandais \",\"Languages List.it\":\" italien \",\"FormButton.addos.Reset\":\" Réinitialiser \",\"Form.addlicense\":\" Ajouter une nouvelle licence \",\"CompositeSubFields.addmobiledevice.Employee.prefix\":\" Préfixe \",\"FormField.addmachine.last_name\":\" Nom de famille \",\"FormField.installation.Expire_On\":\" Expire le \",\"ReportField.allsoftwares.Manufacturer\":\" Fabricant \",\"FormField.addmobiledevice.Added_Time\":\" Temps ajouté \",\"Languages List.nl\":\" néerlandais \",\"FormField.addmachinetype.Record_Status\":\" Statut d'enregistrement \",\"Report.All_Operating_Systems\":\" Tous les systèmes d'exploitation \",\"FormField.addos.Modified_Time\":\" Heure modifiée \",\"Languages List.no\":\" norvégien \",\"FormField.installation.Added_Time\":\" Temps ajouté \",\"FormField.addlicense.More_Details\":\" Plus de détails \",\"FormButton.addhardware.Submit\":\" Soumettre \",\"ReportField.alllicenses.Vendor\":\" Vendeur \",\"CompositeSubFields.addmobiledevice.Employee.first_name\":\" Prénom \",\"Section.Hardware\":\" Matériel \",\"Report.All_Licenses\":\" Toutes les licences \",\"FormField.addhardware.Description\":\" La description \",\"PicklistOption.addmobiledevice.Type.3\":\" Appareil de messagerie \",\"PicklistOption.addmobiledevice.Type.4\":\" PDA \",\"PicklistOption.addsoftware.Type.6\":\" Autres \",\"PicklistOption.addmobiledevice.Type.1\":\" Téléphone portable \",\"PicklistOption.addsoftware.Type.5\":\" Développement \",\"FormField.addmachine.Name\":\" prénom \",\"PicklistOption.addmobiledevice.Type.2\":\" Téléphone intelligent \",\"PicklistOption.addsoftware.Type.4\":\" Comptabilité \",\"ReportField.All_Exceeded_Licenses.No_of_Licenses\":\" Nombre de licences \",\"Report.alllicensedsoftwares\":\" Logiciels sous licence \",\"PicklistOption.addmobiledevice.Status.1\":\" actif \",\"FormField.installation.License_ID\":\" ID de licence \",\"PicklistOption.addmobiledevice.Status.2\":\" Retraité \",\"PicklistOption.addmobiledevice.Status.3\":\" Commandé \",\"PicklistOption.addmobiledevice.Status.4\":\" Disposition \",\"FormField.addmachine.Record_Status\":\" Statut d'enregistrement \",\"PicklistOption.addmobiledevice.Status.5\":\" Dans la réparation \",\"PicklistOption.addmobiledevice.Status.6\":\" Perdu \",\"FormField.addmobiledevice.ID\":\" ID \",\"FormField.addsoftware.Added_Time\":\" Temps ajouté \",\"FormField.addhardware.Modified_User\":\" Utilisateur modifié \",\"Languages List.lt\":\" lituanien \",\"Languages List.lv\":\" letton \",\"ReportField.Installed_Machines.Machine_Name\":\" Type \",\"Languages List.lo\":\" Laothian \",\"FormField.addhardware.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.installation.Modified_Time\":\" Heure modifiée \",\"Languages List.la\":\" Latin \",\"Report.installedsoftwares\":\" Logiciels installés \",\"FormField.addsoftware.Record_Status\":\" Statut d'enregistrement \",\"ReportField.alllicenses_fulldetails.Expire_On\":\" Expire le \",\"FormField.addlicense.Modified_Time\":\" Heure modifiée \",\"ReportField.alllicenses_fulldetails.Key\":\" Clé de licence \",\"Languages List.ms\":\" malais \",\"FormButton.addmobiledevice.Submit\":\" Soumettre \",\"Languages List.mr\":\" Marathi \",\"FormButton.addlicense.Submit\":\" Soumettre \",\"Languages List.mt\":\" maltais \",\"FormButton.addmobiledevice.Cancel\":\" Annuler \",\"Languages List.mk\":\" Macédonien \",\"ReportField.alllicensedsoftwares.Vendor\":\" Vendeur \",\"FormButton.addlicense.Cancel\":\" Annuler \",\"FormField.addmobiledevice.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"ReportField.alllicenses.Usage_Count\":\" Nombre d'utilisations \",\"FormButton.addmachinetype.Cancel\":\" Annuler \",\"ReportField.allmachines_fulldetails.Manufacturer\":\" Fabricant \",\"ReportField.alllicenses_fulldetails.ID\":\" ID \",\"Languages List.bg\":\" bulgare \",\"FormButton.addlicense.Reset\":\" Réinitialiser \",\"Languages List.bn\":\" bengali \",\"CompositeSubFields.addmachine.Employee.prefix\":\" Préfixe \",\"Languages List.be\":\" Biélorusse \",\"FormField.addmobiledevice.last_name\":\" Nom de famille \",\"ReportField.All_Licenses.Expire_On\":\" Expire le \",\"Languages List.az\":\" azerbaïdjanais \",\"Section.Help\":\" Aidez-moi \",\"PicklistOption.addmachine.Status.3\":\" Commandé \",\"PicklistOption.addmachine.Status.2\":\" Retraité \",\"PicklistOption.addmachine.Status.5\":\" Dans la réparation \",\"Languages List.cs\":\" tchèque \",\"Form.addmachine\":\" Ajouter une nouvelle machine \",\"PicklistOption.addmachine.Status.4\":\" Provisionné \",\"PicklistOption.addmachine.Status.1\":\" actif \",\"Report.allmachines\":\" Toutes les machines \",\"FormButton.installation.Submit\":\" Soumettre \",\"PicklistOption.addmachine.Status.6\":\" Perdu \",\"FormButton.addsoftware.Reset\":\" Réinitialiser \",\"CustomAction.allmachines.View\":\" Vue \",\"Languages List.ca\":\" catalan \",\"ReportField.allmachines.Name\":\" prénom \",\"ReportField.installedsoftwares.Expire_On\":\" Expire le \",\"FormField.addmachine.Section\":\" Section \",\"ReportField.allmobiledevices.Support_Link\":\" Lien de soutien \",\"FormField.addsoftware.Name\":\" prénom \",\"FormField.addmachine.Serial_Number\":\" Numéro de série \",\"FormButton.addmachine.submit\":\" Ajouter une machine \",\"ReportField.allmobiledevices.Manufacturer\":\" Fabricant \",\"Report.All_Exceeded_Licenses\":\" Toutes les licences dépassées \",\"FormField.addmachine.Manufacturer\":\" Fabricant \",\"Report.allhardwares\":\" Tout le matériel \",\"FormField.addos.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormButton.addhardware.Cancel\":\" Annuler \",\"Form.addmobiledevice\":\" Ajouter un nouvel appareil mobile \",\"FormField.addmobiledevice.Support_Link\":\" Lien de soutien \",\"PicklistOption.addmachine.prefix.1\":\" M. \",\"ReportField.alllicenses_fulldetails.Purchased_On\":\" Acheté le \",\"FormField.addmachine.Support_Link\":\" Lien de soutien \",\"Languages List.ar\":\" arabe \",\"PicklistOption.addmachine.prefix.3\":\" Mme. \",\"PicklistOption.addmachine.prefix.2\":\" Madame. \",\"ReportField.allsoftwares.Type\":\" Type \",\"Languages List.af\":\" afrikaans \",\"Section.Invisible_Components\":\" Composants invisibles \",\"FormField.addmachinetype.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.installation.ID\":\" ID \",\"ReportField.alllicenses.License_Type\":\" Type de licence \",\"FormField.addmachine.Department\":\" département \",\"FormField.addmobiledevice.prefix\":\" Préfixe \",\"FormButton.addos.Cancel\":\" Annuler \",\"Report.Installed_Machines\":\" Machines installées \",\"FormField.addmachine.first_name\":\" Prénom \",\"Section.Software\":\" Logiciel \",\"Languages List.fr\":\" français \",\"PicklistOption.addhardware.Peripheral_Type.8\":\" Autres \",\"FormField.addmachine.Modified_User\":\" Utilisateur modifié \",\"CompositeSubFields.addmobiledevice.Employee.last_name\":\" Nom de famille \",\"Languages List.fi\":\" Finnois \",\"PicklistOption.addhardware.Peripheral_Type.1\":\" Photocopieuse \",\"PicklistOption.addhardware.Peripheral_Type.2\":\" Dispositif d'entrée \",\"FormField.addhardware.Status\":\" Statut \",\"PicklistOption.addhardware.Peripheral_Type.3\":\" Moniteur \",\"PicklistOption.addhardware.Peripheral_Type.4\":\" Réseau \",\"ReportField.allhardwares.Description\":\" La description \",\"PicklistOption.addhardware.Peripheral_Type.5\":\" Imprimante \",\"FormField.addlicense.Purchased_On\":\" Acheté le \",\"PicklistOption.addhardware.Peripheral_Type.6\":\" Scanner \",\"PicklistOption.addhardware.Peripheral_Type.7\":\" Espace de rangement \",\"Languages List.fa\":\" persan \",\"Languages List.gu\":\" GujGujarati \",\"ReportField.Machine_Management_Report.Type\":\" Type \",\"FormButton.addsoftware.Submit\":\" Soumettre \",\"Languages List.gl\":\" Galicien \",\"FormButton.installation.Reset\":\" Réinitialiser \",\"ReportField.alllicenses_fulldetails.Remarks\":\" Remarques \",\"ReportField.allsoftwares.Version\":\" Version \",\"FormField.addlicense.Remarks\":\" Remarques \",\"FormField.addmachine.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.addmobiledevice.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"ReportField.All_Exceeded_Licenses.License_Type\":\" Type de licence \",\"ReportField.allmachines_fulldetails.Model_Number\":\" Numéro de modèle \",\"ReportField.allmachines_fulldetails.Support_Link\":\" Lien de soutien \",\"Languages List.ga\":\" irlandais \",\"FormField.addmachinetype.Added_Time\":\" Temps ajouté \",\"PicklistOption.addlicense.License_Type.2\":\" Autorisé \",\"FormField.addlicense.Usage_Count\":\" Nombre d'utilisations \",\"ReportField.allhardwares.Serial_Number\":\" Numéro de série \",\"FormField.addsoftware.Manufacturer\":\" Fabricant \",\"FormButton.addmachine.update\":\" Mettre à jour \",\"ReportField.All_Licenses.Purchased_On\":\" Acheté le \",\"FormField.addhardware.Active_Service_Date\":\" Date de service actif \",\"ReportField.installations.Machine_Name\":\" Nom de la machine \",\"ReportField.alllicenses_fulldetails.Vendor\":\" Vendeur \",\"Languages List.da\":\" danois \",\"Languages List.de\":\" allemand \",\"Languages List.cy\":\" gallois \",\"FormField.installation.Modified_User\":\" Utilisateur modifié \",\"PicklistOption.addlicense.License_Type.1\":\" Gratuit \",\"FormButton.installation.Update\":\" Mettre à jour \",\"ReportField.allfreesoftwares.Usage_Count\":\" Nombre d'utilisations \",\"Languages List.es\":\" Espanol \",\"Languages List.eu\":\" basque \",\"Languages List.et\":\" estonien \",\"FormField.addlicense.Modified_User\":\" Utilisateur modifié \",\"FormField.addsoftware.Type\":\" Type \",\"ReportField.allmachines.Type\":\" Type \",\"Languages List.el\":\" grec \",\"FormField.addlicense.No_of_Licenses\":\" Nombre de licences \",\"Languages List.eo\":\" espéranto \",\"Languages List.en\":\" Anglais \",\"FormField.addmachine.prefix\":\" Préfixe \",\"FormField.addmobiledevice.Type\":\" Type \",\"FormField.addlicense.Expire_On\":\" Expire le \",\"ReportField.allmobiledevices.first_name\":\" Employé \",\"FormField.addmobiledevice.Plan\":\" Plan \",\"Form.addsoftware\":\" Ajouter un nouveau logiciel \",\"FormButton.addsoftware.Update\":\" Mettre à jour \",\"ReportField.allhardwares.Active_Service_Date\":\" Date de service actif \",\"FormButton.addhardware.Update\":\" Mettre à jour \",\"FormField.addmobiledevice.first_name\":\" Prénom \",\"FormButton.addlicense.Update\":\" Mettre à jour \",\"FormField.addsoftware.Modified_User\":\" Utilisateur modifié \",\"CompositeSubFields.addmachine.Employee.last_name\":\" Nom de famille \",\"Languages List.yi\":\" yiddish \",\"FormButton.addmachinetype.Update\":\" Mettre à jour \",\"Report.alllicenses_fulldetails\":\" Toutes les licences avec FullDetails \",\"FormButton.addmachine.reset\":\" Réinitialiser \",\"ReportField.All_Licenses.No_of_Licenses\":\" Nombre de licences \",\"FormField.addhardware.Model\":\" Modèle \",\"FormField.addmobiledevice.Manufacturer\":\" Fabricant \",\"ReportField.allhardwares.Manufacturer\":\" Fabricant \",\"Report.installations\":\" Toutes les installations \",\"FormField.addhardware.Support_Link\":\" Lien de soutien \",\"Languages List.zh\":\" chinois \",\"ReportField.allmobiledevices.Serial_Number\":\" Numéro de série \",\"FormField.addmachinetype.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"CompositeSubFields.addmachine.Employee.first_name\":\" Prénom \",\"FormField.addmobiledevice.Model\":\" Modèle \",\"FormField.addhardware.Added_User\":\" Utilisateur ajouté \",\"Report.Machine_Management_Report\":\" Rapport de gestion de la machine \",\"FormField.addos.Record_Status\":\" Statut d'enregistrement \",\"ReportField.alllicensedsoftwares.No_of_Licenses\":\" Nombre de licences \",\"ReportField.Machine_Management_Report.Operating_System\":\" Système opérateur \",\"ReportField.allsoftwares.Name\":\" prénom \",\"FormField.addmachine.Model_Number\":\" Numéro de modèle \",\"ReportField.allmachines.Status\":\" Statut \",\"ReportField.Statistics_by_licenses_Report.License_ID\":\" ID de licence \",\"FormField.addmachine.Modified_Time\":\" Heure modifiée \",\"FormField.addos.Added_User\":\" Utilisateur ajouté \",\"ReportField.allmachines.Operating_System\":\" Système opérateur \",\"ReportField.All_Licenses.Remarks\":\" Remarques \",\"FormButton.addmobiledevice.Update\":\" Mettre à jour \",\"Form.addos\":\" Ajouter un nouveau système d'exploitation \",\"ReportField.installations.Installed_On\":\" Installé sur \",\"FormField.addmachinetype.Machine_Type\":\" Type de machine \",\"FormField.addlicense.Vendor\":\" Vendeur \",\"Section.Dashboard\":\" Tableau de bord \",\"FormField.addmachinetype.Modified_Time\":\" Heure modifiée \",\"FormField.addmobiledevice.Modified_Time\":\" Heure modifiée \",\"FormField.addmachinetype.Added_User\":\" Utilisateur ajouté \",\"FormField.addmachine.ID\":\" ID \",\"FormField.installation.Record_Status\":\" Statut d'enregistrement \",\"ReportField.allhardwares.Status\":\" Statut \",\"FormField.addmachine.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.addos.ID\":\" ID \",\"FormField.addlicense.Record_Status\":\" Statut d'enregistrement \",\"FormField.addsoftware.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.addmachine.Employee\":\" Employé \",\"ReportField.allhardwares.Peripheral_Type\":\" Type \",\"Form.addhardware\":\" Ajouter un nouveau matériel \",\"ReportField.All_Exceeded_Licenses.Expire_On\":\" A expiré le \",\"FormField.addlicense.Key\":\" Clé \",\"ReportField.All_Licenses.Vendor\":\" Vendeur \",\"ReportField.installedsoftwares.Installed_On\":\" Installé sur \",\"FormField.addmobiledevice.Employee\":\" Employé \",\"FormField.addos.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"ReportField.allmobiledevices.Type\":\" Type \",\"Languages List.ro\":\" roumain \",\"ReportField.allfreesoftwares.Vendor\":\" Vendeur \",\"Languages List.ru\":\" russe \",\"FormField.addmachine.Active_Service_Date\":\" Date de service actif \",\"ReportField.All_Operating_Systems.OS_Name\":\" Nom de l'OS \",\"Languages List.ta\":\" Tamil \",\"ReportField.allhardwares.Model\":\" Modèle \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" thaïlandais \",\"CustomAction.allmachines.Install\":\" Installer \",\"PicklistOption.addmobiledevice.Plan.1\":\" Entreprise \",\"PicklistOption.addmobiledevice.Plan.2\":\" Individuel \",\"FormField.addhardware.Record_Status\":\" Statut d'enregistrement \",\"Languages List.sq\":\" albanais \",\"FormField.addmachinetype.ID\":\" ID \",\"FormField.installation.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"Report.Statistics_By_MachineType\":\" Statistiques par type de machine \",\"FormField.addmachine.Added_User\":\" Utilisateur ajouté \",\"FormButton.addsoftware.Cancel\":\" Annuler \",\"Languages List.sw\":\" Swahili \",\"Languages List.sv\":\" suédois \",\"FormField.addhardware.Serial_Number\":\" Numéro de série \",\"Report.alllicenses\":\" Toutes les licences \",\"Languages List.sk\":\" slovaque \",\"ReportField.allmobiledevices.Plan\":\" Plan \",\"FormField.addsoftware.Modified_Time\":\" Heure modifiée \",\"Languages List.sl\":\" slovène \",\"FormField.addhardware.ID\":\" ID \",\"PicklistOption.addhardware.Status.2\":\" Dans la réparation \",\"PicklistOption.addhardware.Status.1\":\" actif \",\"PicklistOption.addhardware.Status.4\":\" Commandé \",\"PicklistOption.addhardware.Status.3\":\" Perdu \",\"FormButton.addos.Update\":\" Mettre à jour \",\"ReportField.allmobiledevices.Status\":\" Statut \",\"PicklistOption.addhardware.Status.6\":\" Retraité \",\"PicklistOption.addhardware.Status.5\":\" Provisionné \",\"FormField.addhardware.Manufacturer\":\" Fabricant \",\"ReportField.alllicenses.No_of_Licenses\":\" Nombre de licences \",\"Languages List.pt\":\" Portugais \",\"FormField.addlicense.Added_Time\":\" Temps ajouté \",\"Languages List.pl\":\" polonais \",\"Report.Statistics_by_licenses_Report\":\" Statistiques par licences Rapport \",\"ReportField.alllicensedsoftwares.Purchased_On\":\" Acheté le \",\"Report.allmachines_fulldetails\":\" Toutes les machines avec FullDetails \",\"ReportField.alllicensedsoftwares.Usage_Count\":\" Nombre d'utilisations \",\"FormField.addmobiledevice.suffix\":\" Suffixe \",\"FormButton.addmobiledevice.Reset\":\" Réinitialiser \",\"FormField.addlicense.ID\":\" ID \",\"FormField.addmachine.Type\":\" Type \",\"FormField.addhardware.Added_Time\":\" Temps ajouté \",\"ReportField.All_Licenses.License_Type\":\" Type de licence \",\"FormField.addmobiledevice.Added_User\":\" Utilisateur ajouté \",\"Report.allsoftwares\":\" Tous les logiciels \",\"Section.Machines\":\" Machines \",\"ReportField.alllicenses.Purchased_On\":\" Acheté le \",\"FormField.addsoftware.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.addos.OS_Name\":\" Nom de l'OS \",\"ReportField.allmachines.Model_Number\":\" Numéro de modèle \",\"FormField.addos.Added_Time\":\" Temps ajouté \",\"FormField.installation.Added_User\":\" Utilisateur ajouté \",\"FormField.addos.Modified_User\":\" Utilisateur modifié \",\"CompositeSubFields.addmachine.Employee.suffix\":\" Suffixe \",\"Report.allmobiledevices\":\" Tous les appareils mobiles \",\"ReportField.allmachines_fulldetails.ID\":\" ID \",\"ReportField.allmachines_fulldetails.Status\":\" Statut \",\"FormField.addmachinetype.Modified_User\":\" Utilisateur modifié \",\"ReportField.alllicenses_fulldetails.License_Type\":\" Type de licence \",\"Form.addmachinetype\":\" Ajouter un nouveau type de machine \",\"ReportField.alllicenses.Expire_On\":\" Expire le \",\"Report.Statistics_by_Software_Type\":\" Statistiques par type de logiciel \",\"FormField.installation.Installed_On\":\" Installé sur \",\"FormField.addmobiledevice.Modified_User\":\" Utilisateur modifié \",\"FormField.addsoftware.Added_User\":\" Utilisateur ajouté \",\"FormField.addlicense.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"Form.installation\":\" Installer la licence \",\"FormField.addhardware.Modified_Time\":\" Heure modifiée \",\"Languages List.tr\":\" turc \",\"ReportField.All_Exceeded_Licenses.Vendor\":\" Vendeur \",\"Languages List.tl\":\" Philippin \",\"App.it-asset-tracker\":\"Suivi des actifs informatiques \",\"ReportField.allmobiledevices.Model\":\" Modèle \",\"Report.Statistics_by_OS1\":\" Statistiques par OS \",\"ReportField.allmachines_fulldetails.Name\":\" prénom \",\"ReportField.allmachines_fulldetails.Serial_Number\":\" Numéro de série \",\"Languages List.vi\":\" vietnamien \",\"PicklistOption.addmobiledevice.prefix.3\":\" Mme. \",\"Report.allfreesoftwares\":\" Logiciel gratuit \",\"ReportField.alllicenses_fulldetails.No_of_Licenses\":\" Nombre de licences \",\"PicklistOption.addmobiledevice.prefix.1\":\" M. \",\"FormField.addmobiledevice.Serial_Number\":\" Numéro de série \",\"PicklistOption.addmobiledevice.prefix.2\":\" Madame. \",\"FormField.addlicense.License_Type\":\" Type de licence \",\"ReportField.All_Licenses.Key\":\" Clé \",\"Languages List.ur\":\" Urdu \",\"ReportField.All_Exceeded_Licenses.Purchased_On\":\" Acheté le \",\"FormField.addmachine.suffix\":\" Suffixe \",\"FormField.addmachine.Operating_System\":\" Système opérateur \"}}"
+}
+	reports configuration
+	{
+	
+		Version = 1251000165802141
+		Key     = "BHZ42fG8hOpuB0F4ZdE8ZDg9FknWx6bNP22OJuXdzaSW1r3h05eeTH75s54SNs7J3KrKJQAeW8Y0gR3fzTAC4mVPZ3pvU4EGSyQr"
+	}
+}

@@ -1,0 +1,3350 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 23:50:06
+ * Version      : 1.0
+ */
+ application "Personal Finance Tracker"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+	section Transactions
+	{
+		icon = "shopping-credit-card-in"
+				 page Transactions 
+	 	 { 
+ 	 	 displayname = "Transactions" 
+
+ 	 	 icon = "" 
+	 	 Content="<zml \n\t\t\tisPdfEnabled='true'\n\t\t\n\t\t\tisPrintEnabled='false'\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"25%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<image    \t\t color = '#FFFFFF'\n   \t\t bgColor = '#41BF64'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'zc-li-solid files-money'\n   \t\t size = '4'\n   \t\t cornerRadius = '26px'\n\n\/>\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Current Balance'\n   \t\t size = '4'\n   \t\t color = '#333333'\n   \t\t fontFamily = 'lato, arial, sans-serif'\n   \t\t marginTop = '5px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_An_Account.Current_Balance.sum'\n   \t\t criteria = '(((Status == &quot;Active&quot;)))'\n   \t\t size = '6'\n   \t\t color = '#41BF64'\n   \t\t fontFamily = 'lato, arial, sans-serif'\n   \t\t bold = 'true'\n   \t\t marginTop = '2px'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n   \t\t decimalPlaces = '2'\n   \t\t thousandsSeperator = ','\n   \t\t decimalSeperator = '.'\n   \t\t numberScale = 'none'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"25%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<image    \t\t color = '#FFFFFF'\n   \t\t bgColor = '#FF3F5E'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'zc-li-solid business-handout'\n   \t\t size = '4'\n   \t\t cornerRadius = '26px'\n\n\/>\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Liabilities'\n   \t\t size = '4'\n   \t\t color = '#333333'\n   \t\t fontFamily = 'lato, arial, sans-serif'\n   \t\t marginTop = '5px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_An_Account.Liabilities.sum'\n   \t\t size = '6'\n   \t\t color = '#FF3F5E'\n   \t\t fontFamily = 'lato, arial, sans-serif'\n   \t\t bold = 'true'\n   \t\t marginTop = '2px'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"25%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'All_Incomes'\n   \t\t target = 'new-window'\n   \t\t parameters = 'Date_field_op=45'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<image    \t\t color = '#FFFFFF'\n   \t\t bgColor = '#4C7DE8'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'zc-li-solid business-money-bag'\n   \t\t size = '4'\n   \t\t cornerRadius = '26px'\n\n\/>\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'This'\n   \t\t size = '2'\n   \t\t color = '#333333'\n   \t\t fontFamily = 'lato, arial, sans-serif'\n   \t\t marginTop = '5px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Month&apos;s Income'\n   \t\t size = '4'\n   \t\t color = '#333333'\n   \t\t fontFamily = 'lato, arial, sans-serif'\n   \t\t marginTop = '5px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Income.Amount.sum'\n   \t\t criteria = '((((Account.Status == &quot;Active&quot;)&amp;&amp;(Date_field in this month))))'\n   \t\t size = '6'\n   \t\t color = '#4C7DE8'\n   \t\t fontFamily = 'lato, arial, sans-serif'\n   \t\t bold = 'true'\n   \t\t marginTop = '2px'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"25%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Expenses'\n   \t\t target = 'new-window'\n   \t\t parameters = 'Date_field_op=45'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<image    \t\t color = '#FFFFFF'\n   \t\t bgColor = '#FF8D45'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'zc-li-solid business-chart-pie-36'\n   \t\t size = '4'\n   \t\t cornerRadius = '26px'\n\n\/>\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'This'\n   \t\t size = '2'\n   \t\t color = '#333333'\n   \t\t fontFamily = 'lato, arial, sans-serif'\n   \t\t marginTop = '5px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Month&apos;s Expense'\n   \t\t size = '4'\n   \t\t color = '#333333'\n   \t\t fontFamily = 'lato, arial, sans-serif'\n   \t\t marginTop = '5px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Expenses.Total_Amount.sum'\n   \t\t criteria = '((((Account.Status == &quot;Active&quot;)&amp;&amp;(Date_field in this month))))'\n   \t\t size = '6'\n   \t\t color = '#FF8D45'\n   \t\t fontFamily = 'lato, arial, sans-serif'\n   \t\t bold = 'true'\n   \t\t marginTop = '2px'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n   \t\t decimalPlaces = '0'\n   \t\t decimalSeperator = '.'\n   \t\t numberScale = 'none'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<row>\n\t<column\n   \t\t width=\"75%\"\n   \t>\n\t<chart    \t\t type = 'Column'\n   \t\t appLinkName = 'thisapp'\n   \t\t formLinkName = 'Add_An_Account'\n   \t\t xtitle = 'Account'\n   \t\t xfield = 'Name'\n   \t\t ytitle = 'Values'\n   \t\t yfields = 'value:Liabilities,value:Current_Balance'\n   \t\t DelugeCriteria = '(((Status == &quot;Active&quot;)))'\n   \t\t bgColor = '#FFFFFF'\n   \t\t theme = 'theme1'\n   \t\t legendPos = 'center.top'\n   \t\t titleSize = '5'\n   \t\t boldTitle = '400'\n   \t\t title = 'Balance And Liabilities'\n   \t\t titleColor = '#444444'\n   \t\t titleFontFamily = 'lato, arial, sans-serif'\n\n\/>\n<\/column><column\n   \t\t width=\"25%\"\n   \t>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Accounts'\n   \t\t target = 'new-window'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<image    \t\t color = '#FFFFFF'\n   \t\t bgColor = '#000000'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'zc-li-solid gestures-active-38'\n   \t\t size = '4'\n   \t\t cornerRadius = '26px'\n\n\/>\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Active Accounts'\n   \t\t size = '4'\n   \t\t color = '#000000'\n   \t\t fontFamily = 'lato, arial, sans-serif'\n   \t\t marginTop = '5px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_An_Account.ID.count'\n   \t\t criteria = '(((Status == &quot;Active&quot;)))'\n   \t\t size = '6'\n   \t\t color = '#000000'\n   \t\t fontFamily = 'lato, arial, sans-serif'\n   \t\t bold = 'true'\n   \t\t marginTop = '2px'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Archived_Accounts'\n   \t\t target = 'new-window'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<image    \t\t color = '#000000'\n   \t\t bgColor = '#BCBCBC'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'zc-li-solid arrows-4-invert'\n   \t\t size = '4'\n   \t\t cornerRadius = '26px'\n\n\/>\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Archive Accounts'\n   \t\t size = '4'\n   \t\t color = '#000000'\n   \t\t fontFamily = 'lato, arial, sans-serif'\n   \t\t marginTop = '5px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_An_Account.ID.count'\n   \t\t criteria = '(((Status == &quot;Archive&quot;)))'\n   \t\t size = '6'\n   \t\t color = '#AAAAAA'\n   \t\t fontFamily = 'lato, arial, sans-serif'\n   \t\t bold = 'true'\n   \t\t marginTop = '2px'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"75%\"\n   \t>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Income_Chart'\n   \t\t heightType = 'custom'\n   \t\t heightValue = '600'\n   \t\t iszreport = 'true'\n   \t\t zc_Header = 'false'\n   \t\t zc_Footer = 'false'\n   \t\t zc_SecHeader = 'false'\n   \t\t zc_AddRec = 'false'\n   \t\t zc_EditRec = 'false'\n   \t\t zc_Print = 'true'\n   \t\t zc_Export = 'true'\n   \t\t zc_DelRec = 'false'\n   \t\t zc_DuplRec = 'true'\n   \t\t zc_EditBulkRec = 'true'\n   \t\t zc_SaveRec = 'true'\n   \t\t zc_Filter = 'false'\n   \t\t zc_Search = 'false'\n   \t\t zc_SumRow = 'false'\n   \t\t zc_ColMenu = 'false'\n   \t\t zc_RecSelect = 'false'\n   \t\t titleSize = '5'\n   \t\t title = 'Income'\n   \t\t titleColor = '#444444'\n   \t\t titleFontFamily = 'lato, arial, sans-serif'\n\n\/>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Expense_Chart'\n   \t\t heightType = 'custom'\n   \t\t heightValue = '600'\n   \t\t iszreport = 'true'\n   \t\t zc_Header = 'false'\n   \t\t zc_Footer = 'false'\n   \t\t zc_SecHeader = 'false'\n   \t\t zc_AddRec = 'false'\n   \t\t zc_EditRec = 'false'\n   \t\t zc_Print = 'true'\n   \t\t zc_Export = 'true'\n   \t\t zc_DelRec = 'false'\n   \t\t zc_DuplRec = 'true'\n   \t\t zc_EditBulkRec = 'true'\n   \t\t zc_SaveRec = 'true'\n   \t\t zc_Filter = 'false'\n   \t\t zc_Search = 'false'\n   \t\t zc_SumRow = 'false'\n   \t\t zc_ColMenu = 'false'\n   \t\t zc_RecSelect = 'false'\n   \t\t titleSize = '5'\n   \t\t title = 'Expense'\n   \t\t titleFontFamily = 'lato, arial, sans-serif'\n\n\/>\n<\/column>\n<\/row>\n<\/column><column\n   \t\t width=\"25%\"\n   \t>\n\t<dspZml id='zml_snippet1'>\n\t<![CDATA[htmlpage zml_snippet1()\ndisplayname = &quot;zml_snippet&quot;\ncontent\n&lt;%{\n\t%&gt;\n&lt;panel&gt;\n&lt;pr width=&quot;fill&quot; height=&quot;auto&quot;&gt;\n&lt;pc width=&quot;100%&quot;  hAlign=&quot;left&quot; vAlign=&quot;top&quot;&gt;\n&lt;pr width=&quot;fill&quot; height=&quot;400px&quot;&gt;\n&lt;pc padding=&quot;20px&quot; hAlign=&quot;left&quot; vAlign=&quot;top&quot;&gt;\n&lt;pr height=&quot;auto&quot;&gt;\n&lt;pc hAlign=&quot;left&quot; vAlign=&quot;top&quot;&gt;\n&lt;text value=&quot;Recent Incomes&quot; size=&quot;5&quot; color=&quot;#444444&quot;&gt;\n&lt;\/text&gt;\n&lt;\/pc&gt;\n&lt;\/pr&gt;\n&lt;%\n\tIncome_count = Add_Income[ID != 0].count(ID);\n\tif(Income_count != 0)\n\t{\n\t\tfor each  reco in Add_Income[ID != 0] sort by Added_Time desc range from 0 to 4\n\t\t{\n\t\t\t%&gt;\n&lt;pr width=&quot;fill&quot; height=&quot;70px&quot;&gt;\n\t\t&lt;pc paddingLeft=&quot;20px&quot; paddingTop=&quot;10px&quot; vAlign=&quot;top&quot;&gt;\n\t\t&lt;pr width=&quot;fill&quot; height=&quot;60px&quot;&gt;\n\t\t&lt;pc hAlign=&quot;left&quot; width=&quot;1%&quot; bgColor=&quot;#4C7DE8&quot;&gt;\n\t\t&lt;text value=&quot;.&quot; size=&quot;3&quot; color=&quot;#4C7DE8&quot;&gt;&lt;\/text&gt;\n\t\t&lt;\/pc&gt;\n\t\t&lt;pc hAlign=&quot;left&quot; width=&quot;99%&quot;&gt;\n\t\t&lt;pr width=&quot;fill&quot; height=&quot;30px&quot;&gt;\n\t\t&lt;pc hAlign=&quot;left&quot; width=&quot;50%&quot; padding=&quot;5px&quot;&gt;\n\t\t&lt;text value=&quot;&lt;%=reco.Amount%&gt;&quot; size=&quot;3&quot; bold=&quot;true&quot;&gt;&lt;\/text&gt;\n\t\t&lt;\/pc&gt;\n\t\t&lt;pc hAlign=&quot;right&quot; width=&quot;50%&quot; &gt;\n\t\t&lt;text value=&quot;&lt;%=reco.Date_field%&gt;&quot; size=&quot;1&quot;&gt;&lt;\/text&gt;\n\t\t&lt;\/pc&gt;\n\t\t&lt;\/pr&gt;\n\t\t&lt;pr height=&quot;30px&quot;&gt;\n\t\t&lt;pc hAlign=&quot;left&quot; padding=&quot;5px&quot;&gt;\n\t\t&lt;text value=&quot;&lt;%=reco.Account.Name%&gt;&quot; size=&quot;2&quot;&gt;&lt;\/text&gt;\n\t\t&lt;\/pc&gt;\n\t\t&lt;pc padding=&quot;5px&quot;&gt;\n\t\t&lt;image color=&quot;#656565&quot;  imageType=&quot;icon&quot; value=&quot;zc-li-solid arrows-2-small-right&quot; iconsize=&quot;2&quot; unicodeValue=&quot;ee7c&quot; width=&quot;25px&quot; height=&quot;25px&quot; cornerRadius=&quot;15px&quot; \/&gt; \n\t\t&lt;\/pc&gt;\n\t\t&lt;pc padding=&quot;5px&quot;&gt;\n\t\t&lt;text value=&quot;&lt;%=reco.Source.Source_Name%&gt;&quot;&gt;&lt;\/text&gt;\n\t\t&lt;\/pc&gt;\n\t\t&lt;\/pr&gt;\n\t\t&lt;\/pc&gt;\n\t\t&lt;\/pr&gt;\n\t\t&lt;\/pc&gt;\n\t\t&lt;\/pr&gt;\n\t\t&lt;pr width=&quot;fill&quot; height=&quot;2px&quot;&gt;\n\t\t&lt;pc bgColor=&quot;#eaeaea&quot;&gt; \n\t\t&lt;\/pc&gt;\n\t\t&lt;\/pr&gt;\n&lt;%\n\t\t}\n\t}\n\telse\n\t{\n\t\t%&gt;\n&lt;pr width=&quot;fill&quot; height=&quot;fill&quot;&gt;\n\t\t\t&lt;pc hAlign=&quot;center&quot; vAlign=&quot;middle&quot; padding=&quot;50px&quot;&gt;\n\t\t\t&lt;pr&gt;\n\t\t\t&lt;pc paddingTop=&quot;60px&quot;&gt;\n\t\t\t&lt;text value=&quot;No Incomes&quot; size=&quot;6&quot; color=&quot;#4C7DE8&quot;&gt;\n\t\t\t&lt;\/text&gt;\n\t\t\t&lt;\/pc&gt;\n\t\t\t&lt;\/pr&gt;\n\t\t\t&lt;pr&gt;\n\t\t\t&lt;pc&gt;\n\t\t\t&lt;button action=&quot;Form&quot; appLinkName=&quot;personal-finance-tracker&quot; componentLinkName=&quot;Add_Income&quot; btnType=&quot;flat&quot; text=&quot;Add Income&quot; color=&quot;#ffffff&quot; size=&quot;4&quot; bgColor=&quot;#4C7DE8&quot;&gt;\n\t\t\t&lt;\/button&gt;\n\t\t\t&lt;\/pc&gt;\n\t\t\t&lt;\/pr&gt;\n\t\t\t&lt;\/pc&gt;\n\t\t\t&lt;\/pr&gt;\n&lt;%\n\t}\n\t%&gt;\n&lt;\/pc&gt;\n\t\t\t&lt;\/pr&gt;\n\t\t\t&lt;pr width=&quot;fill&quot; height=&quot;5px&quot;&gt;\n\t\t\t&lt;pc width=&quot;100%&quot; bgColor=&quot;#eaeaea&quot;&gt;&lt;\/pc&gt;\n\t\t\t&lt;\/pr&gt;\n\t\t\t&lt;pr width=&quot;fill&quot; height=&quot;400px&quot;&gt;\n\t\t\t&lt;pc padding=&quot;20px&quot; hAlign=&quot;left&quot; vAlign=&quot;top&quot;&gt;\n\t\t\t&lt;pr height=&quot;auto&quot;&gt;\n\t\t\t&lt;pc hAlign=&quot;left&quot; vAlign=&quot;top&quot;&gt;\n\t\t\t&lt;text value=&quot;Recent Expenses&quot; size=&quot;5&quot; color=&quot;#444444&quot;&gt;\n\t\t\t&lt;\/text&gt;\n\t\t\t&lt;\/pc&gt;\n\t\t\t&lt;\/pr&gt;\n&lt;%\n\tExpense_count = Expense[ID != 0].count(ID);\n\tif(Expense_count != 0)\n\t{\n\t\tfor each  rec in Expense[ID != 0] sort by Added_Time desc range from 0 to 4\n\t\t{\n\t\t\t%&gt;\n&lt;pr width=&quot;fill&quot; height=&quot;70px&quot;&gt;\n\t\t\t\t\t&lt;pc paddingLeft=&quot;20px&quot; paddingTop=&quot;10px&quot;&gt;\n\t\t\t\t\t&lt;pr width=&quot;fill&quot; height=&quot;60px&quot;&gt;\n\t\t\t\t\t&lt;pc hAlign=&quot;left&quot; width=&quot;1%&quot; bgColor=&quot;#FF8D45&quot;&gt;\n\t\t\t\t\t&lt;text value=&quot;.&quot; size=&quot;3&quot; color=&quot;#FF8D45&quot;&gt;\n\t\t\t\t\t&lt;\/text&gt;\n\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t&lt;pc hAlign=&quot;left&quot; width=&quot;99%&quot;&gt;\n\t\t\t\t\t&lt;pr width=&quot;fill&quot; height=&quot;30px&quot;&gt;\n\t\t\t\t\t&lt;pc hAlign=&quot;left&quot; width=&quot;50%&quot; padding=&quot;5px&quot;&gt;\n\t\t\t\t\t&lt;text value=&quot;&lt;%=rec.Amount%&gt;&quot; size=&quot;3&quot; bold=&quot;true&quot;&gt;\n\t\t\t\t\t&lt;\/text&gt;\n\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t&lt;pc hAlign=&quot;right&quot; width=&quot;50%&quot; &gt;\n\t\t\t\t\t&lt;text value=&quot;&lt;%=rec.Date_field.Date_field%&gt;&quot; size=&quot;1&quot;&gt;\n\t\t\t\t\t&lt;\/text&gt;\n\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t\t&lt;pr height=&quot;30px&quot;&gt;\n\t\t\t\t\t&lt;pc hAlign=&quot;left&quot; padding=&quot;5px&quot;&gt;\n\t\t\t\t\t&lt;text value=&quot;&lt;%=rec.Date_field.Account.Name%&gt;&quot; size=&quot;2&quot;&gt;\n\t\t\t\t\t&lt;\/text&gt;\n\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t&lt;pc padding=&quot;5px&quot;&gt;\n\t\t\t\t\t&lt;image color=&quot;#656565&quot;  imageType=&quot;icon&quot; value=&quot;zc-li-solid arrows-2-small-right&quot; iconsize=&quot;2&quot; unicodeValue=&quot;ee7c&quot; width=&quot;25px&quot; height=&quot;25px&quot; cornerRadius=&quot;15px&quot; \/&gt; \n\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t&lt;pc padding=&quot;5px&quot;&gt;\n\t\t\t\t\t&lt;text value=&quot;&lt;%=rec.Category.Name%&gt;&quot;&gt;\n\t\t\t\t\t&lt;\/text&gt;\n\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t\t&lt;pr width=&quot;fill&quot; height=&quot;2px&quot;&gt;\n\t\t\t\t\t&lt;pc bgColor=&quot;#eaeaea&quot;&gt; \n\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t&lt;\/pr&gt;\n&lt;%\n\t\t}\n\t}\n\telse\n\t{\n\t\t%&gt;\n&lt;pr width=&quot;fill&quot; height=&quot;fill&quot;&gt;\n\t\t\t\t\t\t&lt;pc hAlign=&quot;center&quot; vAlign=&quot;middle&quot; padding=&quot;50px&quot;&gt;\n\t\t\t\t\t\t&lt;pr height=&quot;auto&quot;&gt;\n\t\t\t\t\t\t&lt;pc paddingTop=&quot;60px&quot;&gt;\n\t\t\t\t\t\t&lt;text value=&quot;No Expenses&quot; size=&quot;6&quot; color=&quot;#FF8D45&quot;&gt;\n\t\t\t\t\t\t&lt;\/text&gt;\n\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t\t\t&lt;pr height=&quot;auto&quot;&gt;\n\t\t\t\t\t\t&lt;pc&gt;\n\t\t\t\t\t\t&lt;button action=&quot;Form&quot; appLinkName=&quot;personal-finance-tracker&quot; componentLinkName=&quot;Add_Expenses&quot; btnType=&quot;flat&quot; text=&quot;Add Expense&quot; color=&quot;#ffffff&quot; size=&quot;4&quot; bgColor=&quot;#FF8D45&quot;&gt;\n\t\t\t\t\t\t&lt;\/button&gt;\n\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t\t&lt;\/pr&gt;\n&lt;%\n\t}\n\t%&gt;\n&lt;\/pc&gt;\n\t\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t\t\t&lt;pr width=&quot;fill&quot; height=&quot;5px&quot;&gt;\n\t\t\t\t\t\t&lt;pc width=&quot;100%&quot; bgColor=&quot;#eaeaea&quot;&gt;&lt;\/pc&gt;\n\t\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t\t\t&lt;pr width=&quot;fill&quot; height=&quot;400px&quot;&gt;\n\t\t\t\t\t\t&lt;pc padding=&quot;20px&quot; hAlign=&quot;left&quot; vAlign=&quot;top&quot;&gt;\n\t\t\t\t\t\t&lt;pr height=&quot;auto&quot;&gt;\n\t\t\t\t\t\t&lt;pc hAlign=&quot;left&quot; vAlign=&quot;top&quot;&gt;\n\t\t\t\t\t\t&lt;text value=&quot;Recent Transfers&quot; size=&quot;5&quot; color=&quot;#444444&quot;&gt;\n\t\t\t\t\t\t&lt;\/text&gt;\n\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t\t&lt;\/pr&gt;\n&lt;%\n\tTransfers_count = Transfer_An_Amount[ID != 0].count(ID);\n\tif(Transfers_count != 0)\n\t{\n\t\tfor each  recod in Transfer_An_Amount[ID != 0] sort by Added_Time desc range from 0 to 4\n\t\t{\n\t\t\t%&gt;\n&lt;pr width=&quot;fill&quot; height=&quot;70px&quot;&gt;\n\t\t\t\t\t\t\t\t&lt;pc paddingLeft=&quot;20px&quot; paddingTop=&quot;10px&quot; hAlign=&quot;left&quot; vAlign=&quot;top&quot;&gt;\n\t\t\t\t\t\t\t\t&lt;pr width=&quot;fill&quot; height=&quot;60px&quot;&gt;\n\t\t\t\t\t\t\t\t&lt;pc hAlign=&quot;left&quot; width=&quot;1%&quot; bgColor=&quot;#000000&quot;&gt;\n\t\t\t\t\t\t\t\t&lt;text value=&quot;.&quot; size=&quot;3&quot; color=&quot;#000000&quot;&gt;\n\t\t\t\t\t\t\t\t&lt;\/text&gt;\n\t\t\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t\t\t\t&lt;pc hAlign=&quot;left&quot; width=&quot;99%&quot;&gt;\n\t\t\t\t\t\t\t\t&lt;pr width=&quot;fill&quot; height=&quot;30px&quot;&gt;\n\t\t\t\t\t\t\t\t&lt;pc hAlign=&quot;left&quot; width=&quot;50%&quot; padding=&quot;5px&quot;&gt;\n\t\t\t\t\t\t\t\t&lt;text value=&quot;&lt;%=recod.Amount%&gt;&quot; size=&quot;3&quot;&gt;\n\t\t\t\t\t\t\t\t&lt;\/text&gt;\n\t\t\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t\t\t\t&lt;pc hAlign=&quot;right&quot; width=&quot;50%&quot; &gt;\n\t\t\t\t\t\t\t\t&lt;text value=&quot;&lt;%=recod.Date_field%&gt;&quot; size=&quot;1&quot;&gt;\n\t\t\t\t\t\t\t\t&lt;\/text&gt;\n\t\t\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t\t\t\t\t&lt;pr height=&quot;30px&quot;&gt;\n\t\t\t\t\t\t\t\t&lt;pc hAlign=&quot;left&quot; padding=&quot;5px&quot;&gt;\n\t\t\t\t\t\t\t\t&lt;text value=&quot;&lt;%=recod.From.Name%&gt;&quot; size=&quot;2&quot;&gt;\n\t\t\t\t\t\t\t\t&lt;\/text&gt;\n\t\t\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t\t\t\t&lt;pc padding=&quot;5px&quot;&gt;\n\t\t\t\t\t\t\t\t&lt;image color=&quot;#656565&quot;  imageType=&quot;icon&quot; value=&quot;zc-li-solid arrows-2-small-right&quot; iconsize=&quot;2&quot; unicodeValue=&quot;ee7c&quot; width=&quot;25px&quot; height=&quot;25px&quot; cornerRadius=&quot;15px&quot; \/&gt; \n\t\t\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t\t\t\t&lt;pc padding=&quot;5px&quot;&gt;\n\t\t\t\t\t\t\t\t&lt;text value=&quot;&lt;%=recod.To.Name%&gt;&quot;&gt;\n\t\t\t\t\t\t\t\t&lt;\/text&gt;\n\t\t\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t\t\t\t\t&lt;pr width=&quot;fill&quot; height=&quot;2px&quot;&gt;\n\t\t\t\t\t\t\t\t&lt;pc bgColor=&quot;#eaeaea&quot;&gt; \n\t\t\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t\t\t\t&lt;\/pr&gt;\n&lt;%\n\t\t}\n\t}\n\telse\n\t{\n\t\t%&gt;\n&lt;pr width=&quot;fill&quot; height=&quot;fill&quot;&gt;\n\t\t\t\t\t\t\t\t\t&lt;pc hAlign=&quot;center&quot; vAlign=&quot;middle&quot; padding=&quot;50px&quot;&gt;\n\t\t\t\t\t\t\t\t\t&lt;pr height=&quot;auto&quot;&gt;\n\t\t\t\t\t\t\t\t\t&lt;pc paddingTop=&quot;60px&quot;&gt;\n\t\t\t\t\t\t\t\t\t&lt;text value=&quot;No Transfers&quot; size=&quot;6&quot; color=&quot;#000000&quot;&gt;\n\t\t\t\t\t\t\t\t\t&lt;\/text&gt;\n\t\t\t\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t\t\t\t\t\t&lt;pr height=&quot;auto&quot;&gt;\n\t\t\t\t\t\t\t\t\t&lt;pc&gt;\n\t\t\t\t\t\t\t\t\t&lt;button action=&quot;Form&quot; appLinkName=&quot;personal-finance-tracker&quot; componentLinkName=&quot;Transfer_An_Amount&quot; btnType=&quot;flat&quot; text=&quot;Transfer Now&quot; color=&quot;#ffffff&quot; size=&quot;4&quot; bgColor=&quot;#000000&quot;&gt;\n\t\t\t\t\t\t\t\t\t&lt;\/button&gt;\n\t\t\t\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t\t\t\t\t&lt;\/pr&gt;\n&lt;%\n\t}\n\t%&gt;\n&lt;\/pc&gt;\n\t\t\t\t\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t\t\t\t\t\t\t&lt;\/pr&gt;\n\t\t\t\t\t\t\t\t\t&lt;\/panel&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dspZml>\n<\/column>\n<\/row>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+	}
+	section Accounts
+	{
+		icon = "business-calculator"
+		form Add_An_Account
+		{
+			displayname = "Add An Account"
+			success message = "Your New Account Added Successfully"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Group
+			(
+				type = picklist
+				values  = Add_a_Group.ID
+    			displayformat = [Group_Name]
+				allow new entries = true
+				[
+					displayname = "Add New Group"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Name
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = "<b>For Ex : My Wallet, Bank Account</b>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Status
+			(
+				type = picklist
+				values = {"Active", "Archive"}
+				initial value = "Active"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			plain1
+			(
+    			type = plaintext
+				value = "<b>Active : It means that you can add any transactions like Income, Expense and transfers to this account..</b><div><br /></div><div><b>Archive : Once you changed the status into archive means, You can&#39;t add or edit any transactions of this account..</b></div>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Liabilities
+			(
+				type = USD
+				initial value = 0.00
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Current_Balance
+			(
+				displayname = "Current Balance"
+				type = USD
+				initial value = 0.00
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "shopping-cart-simple-in"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Groups
+		{
+			displayName = "Groups"
+			show all rows from Add_a_Group    
+			(
+				Group_Name as "Group Name"
+			)
+			options
+			(
+				icon = "business-laptop-71"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Group_Name as "Group Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Group_Name as "Group Name"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Accounts"
+		     			related field =  Add_An_Account.Group
+						fields
+						(
+							Name
+							Status
+							Liabilities
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Accounts
+		{
+			displayName = "Accounts"
+			show all rows from Add_An_Account  [Status == "Active"]  
+			(
+				Group
+				Name
+				Liabilities
+				custom action "Archive Account"
+				(
+	  			workflow = Archive_Account
+				show action in edit record menu = true
+				column header = "Archive Account"
+				)
+				Current_Balance as "Current Balance"
+			)
+			options
+			(
+				icon = "business-calculator"
+	 		)
+			conditional formatting
+			(
+				"Amount"
+				{
+				format = "color:#2f78d0;"
+				}
+				"Liabilities"
+				{
+				fields = [Liabilities]
+				format = "color:#cc1111;"
+				}
+				"Balance"
+				{
+				condition = (Current_Balance >= 0.00)
+				format = "color:#2f78d0;"
+				}
+				"Balance(Minus)"
+				{
+				condition = (Current_Balance < 0.00)
+				format = "color:#cc1111;"
+				}
+				"Balance"
+				{
+				condition = (Current_Balance >= 0.00)
+				fields = [Current_Balance]
+				format = "color:#398ef3;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Group
+							Name
+							Liabilities
+							Current_Balance as "Current Balance"
+				"Archive Account"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    	 			)
+							record
+							(
+								Edit   	   
+								"Archive Account"
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								View Record   	   
+								"Archive Account"
+								Delete   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Group
+							Name
+							Liabilities
+							Current_Balance as "Current Balance"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Incomes"
+		     			related field =  Add_Income.Account
+						fields
+						(
+							Date_field as "Date"
+							Source
+							Amount
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Expenses"
+		     			related field =  Add_Expenses.Account
+						fields
+						(
+							Date_field as "Date"
+							Total_Amount as "Total Amount"
+						)
+					)
+					datablock4
+					(
+			 			layout type = -1
+		     			title = "Money Transfer From This Account"
+		     			related field =  Transfer_An_Amount.From
+						fields
+						(
+							Date_field as "Date"
+							From
+							To
+							Amount
+						)
+					)
+					datablock5
+					(
+			 			layout type = -1
+		     			title = "Money Transfer To This Account"
+		     			related field =  Transfer_An_Amount.To
+						fields
+						(
+							Date_field as "Date"
+							To
+							From
+							Amount
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    	 			)
+    			)
+			)
+		}
+		list Archived_Accounts
+		{
+			displayName = "Archived Accounts"
+			show all rows from Add_An_Account  [Status == "Archive"]  
+			(
+				Group
+				Name
+				Status
+				Liabilities
+				custom action "Unarchive Account"
+				(
+	  			workflow = Unarchive_Account
+				show action in edit record menu = true
+				column header = "Unarchive Account"
+				condition = (Status == "Archive")
+				)
+				Current_Balance as "Current Balance"
+			)
+			options
+			(
+				icon = "design-webpage"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Group
+							Name
+							Status
+							Liabilities
+							Current_Balance as "Current Balance"
+				"Unarchive Account"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    	 			)
+							record
+							(
+								Edit   	   
+								"Unarchive Account"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								View Record   	   
+								"Unarchive Account"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Group
+							Name
+							Status
+							Liabilities
+							Current_Balance as "Current Balance"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Income"
+		     			related field =  Add_Income.Account
+						fields
+						(
+							Date_field as "Date"
+							Source
+							Amount
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Expense"
+		     			related field =  Add_Expenses.Account
+						fields
+						(
+							Date_field as "Date"
+							Total_Amount as "Total Amount"
+						)
+					)
+					datablock4
+					(
+			 			layout type = -1
+		     			title = "Money Transfer From This Account"
+		     			related field =  Transfer_An_Amount.From
+						fields
+						(
+							Date_field as "Date"
+							From
+							To
+							Amount
+						)
+					)
+					datablock5
+					(
+			 			layout type = -1
+		     			title = "Money Transfers To This Account"
+		     			related field =  Transfer_An_Amount.To
+						fields
+						(
+							Date_field as "Date"
+							From
+							To
+							Amount
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_a_Group
+	{
+		displayname= "Add a Group"
+		icon = "design-2-3d-29"
+		form Add_a_Group
+		{
+			displayname = "Add a Group"
+			success message = "Your New Group Added Successfully"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Group_Name
+			(
+    			type = text
+				displayname = "Group Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = "<b>For Ex : Cash, Savings, Account, Debit Card...</b>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "design-2-3d-29"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Incomes
+	{
+		icon = "shopping-tag"
+		form Add_Income
+		{
+			displayname = "Add Income"
+			success message = "Income Added Successfully"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Date_field
+			(
+    			type = date
+				displayname = "Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Account
+			(
+				type = picklist
+				values  = Add_An_Account[Status == "Active"].ID
+    			displayformat = [Name]
+				allow new entries = true
+				[
+					displayname = "Add New Account"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Source
+			(
+				type = picklist
+				values  = Income_Sources.ID
+    			displayformat = [Source_Name]
+				allow new entries = true
+				[
+					displayname = "Add New Source"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Amount
+			(
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "shopping-mobile-card"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list All_Incomes
+		{
+			displayName = "All Incomes"
+			show all rows from Add_Income  [Account.Status == "Active"]  
+			(
+				Account
+				Source
+				Amount
+				(
+					display = total	
+				)
+				Date_field as "Date"
+			)
+			options
+			(
+				icon = "shopping-credit-card-in"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Account
+							Source
+							Amount
+							Date_field as "Date"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Account
+							Source
+							Amount
+							Date_field as "Date"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Income_Sources1
+		{
+			displayName = "Income Sources"
+			show all rows from Income_Sources    
+			(
+				Source_Name as "Source Name"
+			)
+			options
+			(
+				icon = "business-calculator"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Source_Name as "Source Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Source_Name as "Source Name"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Incomes"
+		     			related field =  Add_Income.Source
+						fields
+						(
+							Date_field as "Date"
+							Account
+							Amount
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		pivotchart Income_Chart
+		{ 
+			displayname = "Income Chart"
+			based on Autoview_1525410312548_Add_Income
+							icon = "shopping-credit-card-in"				show all rows from Add_Income
+				(
+ 					Account 
+ 					Date_field  as "Date"
+ 					Amount 
+ 					Source 
+				)
+		}
+	}
+	section Income_Sources
+	{
+		displayname= "Income Sources"
+		icon = "business-money-growth"
+		form Income_Sources
+		{
+			displayname = "Income Sources"
+			success message = "Income Source Added Successfully"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Source_Name
+			(
+    			type = text
+				displayname = "Source Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Notes
+			(
+    			type = plaintext
+				value = "<b>For Ex : Salary, Allowances</b>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "business-money-growth"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Expenses
+	{
+		icon = "shopping-credit-card-in"
+		form Expense
+		{
+			success message = "Expense Added Successfully"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Notes
+			(
+    			type = plaintext
+				value = ""
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Date_field
+			(
+				type = picklist
+				displayname = "Date"
+				values  = Add_Expenses.ID
+    			bidirectional = Expenses
+    			displayformat = [Date_field]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Category
+			(
+				type = picklist
+				values  = Expense_Category.ID
+    			displayformat = [Name]
+				allow new entries = true
+				[
+					displayname = "Add New Category"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Amount
+			(
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Bill_Image
+			(
+    			type = image
+				displayname = "Bill/Image"
+				source  = file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "business-currency-dollar"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Expenses_Details
+		{
+			displayName = "Expense Details"
+   			hide = true
+			show all rows from Expense    
+			(
+				Amount
+				Bill_Image as "Bill/Image"
+				Category
+				Date_field as "Date"
+			)
+			options
+			(
+				icon = "shopping-credit-card-in"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Date_field as "Date"
+							Amount
+							Bill_Image as "Bill/Image"
+							Category
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Amount
+							Bill_Image as "Bill/Image"
+							Category
+							Date_field as "Date"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		form Add_Expenses
+		{
+			displayname = "Add Expenses"
+			success message = "Expense Added Successfully"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Date_field
+			(
+    			type = date
+				displayname = "Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Account
+			(
+				type = picklist
+				values  = Add_An_Account[Status == "Active"].ID
+    			displayformat = [Name]
+				allow new entries = true
+				[
+					displayname = "Add New Account"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Expenses
+			(
+				type = grid
+				values  = Expense.ID
+    			bidirectional = Date_field
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Section1
+			(
+				type = section
+				displayname = "Section"
+	 			row = 3
+	 			column = 0   
+				width = medium
+			)
+			must have Total_Amount
+			(
+				displayname = "Total Amount"
+				type = USD
+				initial value = 0.00
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "business-currency-dollar"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Expenses
+		{
+			displayName = "Expenses"
+			show all rows from Add_Expenses  [Account.Status == "Active"]  
+			(
+				Date_field as "Date"
+				Account
+				Total_Amount as "Total Amount"
+				(
+					display = total	
+				)
+			)
+			options
+			(
+				icon = "shopping-credit-card-in"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Date_field as "Date"
+							Account
+							Total_Amount as "Total Amount"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Date_field as "Date"
+							Account
+							Total_Amount as "Total Amount"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Expense"
+		     			related field =  Expense.Date_field
+						fields
+						(
+							Date_field as "Date"
+							Category
+							Amount
+							Bill_Image as "Bill/Image"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Expense_Categories
+		{
+			displayName = "Expense Categories"
+			show all rows from Expense_Category    
+			(
+				Name
+			)
+			options
+			(
+				icon = "food-microwave"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Expenses"
+		     			related field =  Expense.Category
+						fields
+						(
+							Date_field as "Date"
+							Amount
+							Bill_Image as "Bill/Image"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		pivotchart Expense_Chart
+		{ 
+			displayname = "Expense Chart"
+			based on Autoview_1525409868735_Add_Expenses
+							icon = "business-currency-dollar"				show all rows from Add_Expenses
+				(
+ 					Account 
+ 					Date_field  as "Date"
+ 					Total_Amount  as "Total Amount"
+				)
+		}
+	}
+	section Expense_Categories
+	{
+		displayname= "Expense Categories"
+		icon = "business-currency-dollar"
+		form Expense_Category
+		{
+			displayname = "Expense Category"
+			success message = "Expense Category Added Successfully"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Name
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Notes
+			(
+    			type = plaintext
+				value = "<b>For Ex : Food, Rent, Clothes</b>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "business-currency-dollar"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Amount_Transfers
+	{
+		displayname= "Amount Transfers"
+		icon = "shopping-cash-register"
+		form Transfer_An_Amount
+		{
+			displayname = "Transfer An Amount"
+			success message = "Amount Transferred Successfully"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Date_field
+			(
+    			type = date
+				displayname = "Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have From
+			(
+				type = picklist
+				values  = Add_An_Account[Status == "Active"].ID
+    			displayformat = [Name]
+				allow new entries = true
+				[
+					displayname = "Add New Account"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = ""
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have To
+			(
+				type = picklist
+				values  = Add_An_Account[Status == "Active"].ID
+    			displayformat = [Name]
+				allow new entries = true
+				[
+					displayname = "Add New Account"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Amount
+			(
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "shopping-cash-register"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Fund_Transfers
+		{
+			displayName = "Fund Transfers"
+			show all rows from Transfer_An_Amount  [From.Status == "Active" && To.Status == "Active"]  
+			(
+				From
+				To
+				Amount
+				Date_field as "Date"
+			)
+			options
+			(
+				icon = "business-laptop-71"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							From
+							To
+							Amount
+							Date_field as "Date"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							From
+							To
+							Amount
+							Date_field as "Date"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Reminders
+	{
+		icon = "design-2-3d-29"
+		form Add_a_Reminder
+		{
+			displayname = "Add a Reminder"
+			success message = "Reminder Added Successfullly"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have For_What
+			(
+				type = radiobuttons
+				displayname = "For What"
+				values = {"Income", "Expense"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Select_Income_Source
+			(
+				type = picklist
+				displayname = "Select Income Source"
+				values  = Income_Sources.ID
+    			displayformat = [Source_Name]
+				allow new entries = true
+				[
+					displayname = "Add New Source"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Select_Expense_Category
+			(
+				type = picklist
+				displayname = "Select Expense Category"
+				values  = Expense_Category.ID
+    			displayformat = [Name]
+				allow new entries = true
+				[
+					displayname = "Add New Category"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Reminder_Start_Date_Time
+			(
+    			type = datetime
+				displayname = "Reminder Start Date/Time"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Next_Reminder_On
+			(
+    			type = datetime
+				displayname = "Next Reminder On"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Frequency
+			(
+				type = radiobuttons
+				values = {"Once", "Daily", "Weekly", "Monthly", "Yearly"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Run_This_Schedule
+			(
+				type = radiobuttons
+				displayname = "Run This Schedule"
+				values = {"Forever", "Until a Date", "Number Of Events"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Number_Of_Events
+			(
+				type = number
+				displayname = "Number Of Events"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			End_Date
+			(
+    			type = date
+				displayname = "End Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "design-2-3d-29"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		custom Reminders
+		{
+			displayName = "Reminders"
+			show all rows from Add_a_Reminder    
+			(
+				Number_Of_Events as "Number Of Events"
+				End_Date as "End Date"
+				Select_Expense_Category as "Select Expense Category"
+				Select_Income_Source as "Select Income Source"
+				For_What as "For What"
+				Frequency
+				Run_This_Schedule as "Run This Schedule"
+				Reminder_Start_Date_Time as "Reminder Start Date/Time"
+				Next_Reminder_On as "Next Reminder On"
+			)
+			options
+			(
+				icon = "business-laptop-71"
+	 		)
+			conditional formatting
+			(
+				"Income"
+				{
+				condition = (For_What == "Income")
+				fields = [For_What]
+				format = "color:#398ef3;background-color:#ffffff;"
+				}
+				"Expense"
+				{
+				condition = (For_What == "Expense")
+				fields = [For_What]
+				format = "color:#ef1616;background-color:#ffffff;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							For_What as "For What"
+							Run_This_Schedule as "Run This Schedule"
+							Reminder_Start_Date_Time as "Reminder Start Date/Time"
+							Frequency
+							Next_Reminder_On as "Next Reminder On"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							For_What as "For What"
+							Select_Income_Source as "Select Income Source"
+							Select_Expense_Category as "Select Expense Category"
+							Frequency
+							Run_This_Schedule as "Run This Schedule"
+							Number_Of_Events as "Number Of Events"
+							End_Date as "End Date"
+							Reminder_Start_Date_Time as "Reminder Start Date/Time"
+							Next_Reminder_On as "Next Reminder On"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Archive_Account
+	{
+		displayname= "Archive Account"
+		form Archive_Account
+		{
+			displayname = "Archive Account"
+			store data in zc = false
+			success message = "Data Added Successfully!"
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Account_Name
+			(
+				type = picklist
+				displayname = "Account Name"
+				values  = Add_An_Account.ID
+    			displayformat = [Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Notes
+			(
+    			type = plaintext
+				value = "<br />"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Transfer_Balance
+			(
+    			type = checkbox
+				displayname = "Transfer Balance"
+				initial value = false
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			To_Which_Account
+			(
+				type = picklist
+				displayname = "To Which Account"
+				values  = Add_An_Account.ID
+    			displayformat = [Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				Archive
+				(
+   					type = submit
+   					displayname = "Archive"
+				)
+				Cancel
+				(
+   					type = button
+   					displayname = "Cancel"
+				)
+			}
+		}
+	}
+	section Add_Expense
+	{
+		displayname= "Add Expense"
+		form Add_Expense
+		{
+			displayname = "Add Expense"
+			store data in zc = false
+			success message = "Data Added Successfully!"
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Date_field
+			(
+    			type = date
+				displayname = "Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Category
+			(
+				type = picklist
+				values  = Expense_Category.ID
+    			displayformat = [Name]
+				allow new entries = true
+				[
+					displayname = "Add New Category"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Account
+			(
+				type = picklist
+				values  = Add_An_Account[Status == "Active"].ID
+    			displayformat = [Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Amount
+			(
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Bill_Image
+			(
+    			type = image
+				displayname = "Bill/Image"
+				source  = public_url
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				Add
+				(
+   					type = submit
+   					displayname = "Add"
+				)
+				Reset
+				(
+   					type = reset
+   					displayname = "Reset"
+				)
+			}
+		}
+	}
+	functions
+	{
+ 			void Account.Balance_Calculation(int Account_id)
+			{
+				Income = Add_Income[Account == input.Account_id].sum(Amount);
+				Expense = Add_Expenses[Account == input.Account_id].sum(Total_Amount);
+				Transfers_from = Transfer_An_Amount[From == input.Account_id].sum(Amount);
+				Transfers_to = Transfer_An_Amount[To == input.Account_id].sum(Amount);
+				total_income = ifnull(Income,0) + ifnull(Transfers_to,0);
+				total_expense = ifnull(Expense,0) + ifnull(Transfers_from,0);
+				balance = total_income - total_expense;
+				rec = Add_An_Account[ID == input.Account_id];
+				if(balance > 0.00)
+				{
+					rec.Liabilities=0.00;
+					rec.Current_Balance=balance;
+				}
+				else
+				{
+					rec.Liabilities=-1 * balance;
+					rec.Current_Balance=0.00;
+				}
+			}
+ 			void Account.Archive_Account(int record_id)
+			{
+				openUrl("#Form:Archive_Account?Account_Name=" + record_id,"popup window");
+			}
+ 			void Account.Unarchive_Account(int record_id)
+			{
+				rec = Add_An_Account[ID == input.record_id];
+				rec.Status="Active";
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Run_Scripts_While_button_ as "Run Scripts While button click of Archive"
+			{
+				type =  form
+				form = Archive_Account
+				button = Archive
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						//Transfers Amount For Selected Account
+										if(Transfer_Balance == true)
+										{
+											if(To_Which_Account == null)
+											{
+												alert "Please select one account to transfer money";
+											}
+											else
+											{
+												insert into Transfer_An_Amount
+												[
+													Added_User=zoho.loginuser
+													From=input.Account_Name
+													To=input.To_Which_Account
+													Amount=input.Account_Name.Current_Balance
+													Date_field=zoho.currentdate
+												]
+												thisapp.Account.Balance_Calculation(input.Account_Name);
+												thisapp.Account.Balance_Calculation(input.To_Which_Account);
+												rec = Add_An_Account[ID == input.Account_Name];
+												rec.Status="Archive";
+												openUrl("#Script:page.refresh","same window");
+											}
+										}
+										else
+										{
+											rec = Add_An_Account[ID == input.Account_Name];
+											rec.Status="Archive";
+											openUrl("#Script:page.refresh","same window");
+										}
+					)
+					}
+				}
+			}
+			Run_Scripts_While_button_1 as "Run Scripts While button click of Cancel"
+			{
+				type =  form
+				form = Archive_Account
+				button = Cancel
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						//Back To Page
+										openUrl("#Script:page.refresh","same window");
+					)
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_A as "Run Scripts On Click of Add button"
+			{
+				type =  form
+				form = Add_Expense
+				button = Add
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						//Inserts Record To The Expense Form
+										if(Date_field != null && Amount != null && Category != null && Account != null)
+										{
+											rec_id = insert into Add_Expenses
+										[
+											Added_User=zoho.loginuser
+											Date_field=input.Date_field
+											Account=input.Account
+											Total_Amount=input.Amount
+										];
+											insert into Expense
+											[
+												Added_User=zoho.loginuser
+												Date_field=rec_id
+												Amount=input.Amount
+												Bill_Image=input.Bill_Image
+												Category=input.Category
+											]
+										}
+										else
+										{
+											alert "Please fill the required fields";
+										}
+					)
+					}
+				}
+			}
+			Run_Scripts_While_Adding_8 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Add_An_Account
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						disable Status;
+						hide Liabilities,Current_Balance;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_9 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Add_An_Account
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											openUrl("#Script:page.refresh","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing1 as "Run Scripts While Editing a Record"
+			{
+				type =  form
+				form = Add_An_Account
+				record event = on edit
+
+	field rules
+	{
+					actions 
+					{
+						disable Status;
+						hide Liabilities,Current_Balance;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always3 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Add_Income
+				record event = on add or edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Check For Valid Amount
+										if(input.Amount <= 0.00)
+										{
+											alert "Enter a valid amount";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always5 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Add_Income
+				record event = on add or edit
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Calling Function For Accountings
+										thisapp.Account.Balance_Calculation(input.Account);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always6 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Add_Expenses
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						disable Total_Amount;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always7 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Add_Expenses
+				record event = on add or edit
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Calling Function For Accountings
+										thisapp.Account.Balance_Calculation(input.Account);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always8 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Add_Expenses
+				record event = on add or edit
+
+	on user input of Expenses.Amount
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Check For Valid Amount 
+										//Adding Amount To Total
+										if(row.Amount <= 0.00)
+										{
+											alert "Enter a valid amount";
+											row.Amount=null;
+										}
+										else
+										{
+											total = 0.00;
+											for each  eachrow in input.Expenses
+											{
+												total = ifnull(total,0) + ifnull(eachrow.Amount,0);
+											}
+											input.Total_Amount = total;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always9 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Add_Expenses
+				record event = on add or edit
+
+	on delete row of Expenses
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Subracts Deleted Amount From Total
+										input.Total_Amount = ifnull(input.Total_Amount,0) - ifnull(row.Amount,0);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_10 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Expense
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Fetching Account Name
+										account_id = input.Date_field.Account;
+										account_name = Add_An_Account[ID == account_id].Name;
+										input.Notes = "Account : " + account_name;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_11 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Expense
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Check For Valid Amount
+										if(Amount <= 0.00)
+										{
+											alert "Enter a valid amount";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_12 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Expense
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Updating Total Amount
+										//Calling Function For Accountings
+										rec = Add_Expenses[ID == input.Date_field];
+										rec.Total_Amount=rec.Total_Amount + input.Amount;
+										thisapp.Account.Balance_Calculation(rec.Account);
+										openUrl("#Script:page.refresh","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_13 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Add_Income
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Fills Current Date
+										input.Date_field = zoho.currentdate;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_14 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Add_Expenses
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Date_field = zoho.currentdate;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_15 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Transfer_An_Amount
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Fills Current Date
+										input.Date_field = zoho.currentdate;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always10 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Transfer_An_Amount
+				record event = on add or edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Listing Out Remaining Accounts Except Selected Account
+										if(From != null)
+										{
+											all_accounts = Add_An_Account[ID != 0].ID.getAll();
+											index_of_element = all_accounts.indexOf(input.From);
+											all_accounts.remove(index_of_element);
+											input.To:ui.add(all_accounts);
+										}
+										else if(To != null)
+										{
+											all_accounts = Add_An_Account[ID != 0].ID.getAll();
+											index_of_element = all_accounts.indexOf(input.To);
+											all_accounts.remove(index_of_element);
+											input.From:ui.add(all_accounts);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always11 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Transfer_An_Amount
+				record event = on add or edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Check For Valid Amount And Account Balance
+										if(Amount <= 0.00)
+										{
+											alert "Enter a valid amount";
+											cancel submit;
+										}
+										account = Add_An_Account[ID == input.From];
+										if(account.Current_Balance < Amount)
+										{
+											if(account.Current_Balance == 0.00)
+											{
+												alert "Your balance was 0.00 So first add income and try again";
+												cancel submit;
+											}
+											else
+											{
+												alert "Your balance was " + account.Current_Balance + " So please add less than this amount";
+												cancel submit;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always12 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Transfer_An_Amount
+				record event = on add or edit
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Calling Function For Accountings(Both Accounts)
+										thisapp.Account.Balance_Calculation(input.From);
+										thisapp.Account.Balance_Calculation(input.To);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always13 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Transfer_An_Amount
+				record event = on add or edit
+
+	on user input of To
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Alert Message
+										if(input.From == null && input.To != null)
+										{
+											alert "First you have to select From Account then choose To Account";
+											input.To = null;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always14 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Transfer_An_Amount
+				record event = on add or edit
+
+	on user input of From
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Listing Out Remaining Accounts Except Selected Account
+										//And Check For Account Balance
+										all_accounts = Add_An_Account[Status == "Active"].ID.getAll();
+										if(From != null)
+										{
+											index_of_element = all_accounts.indexOf(input.From);
+											all_accounts.remove(index_of_element);
+											input.To:ui.add(all_accounts);
+											account = Add_An_Account[ID == input.From];
+											if(account.Current_Balance <= 0.00)
+											{
+												alert "Your balance in this account is " + account.Current_Balance + " please add income and try again";
+												input.plain = "";
+											}
+											else
+											{
+												input.plain = "<b>Available balance in this account " + account.Current_Balance + "<br> So you can transfer amount less than this amount</b>";
+											}
+										}
+										else
+										{
+											input.To:ui.add(all_accounts);
+											input.plain = "";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always15 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Add_a_Reminder
+				record event = on add or edit
+
+	field rules
+	{
+					actions  (For_What == "Expense")
+					{
+						show Select_Expense_Category;
+					}
+					actions  (Run_This_Schedule == "Number Of Events")
+					{
+						show Number_Of_Events;
+					}
+					actions 
+					{
+						hide Next_Reminder_On;
+					}
+					actions  (Run_This_Schedule == "Until a Date")
+					{
+						show End_Date;
+					}
+					actions  (For_What == "Income")
+					{
+						show Select_Income_Source;
+					}
+					actions  (Frequency != "Once" && Frequency is not null)
+					{
+						show Run_This_Schedule;
+					}
+					actions  (For_What is not null)
+					{
+						show Frequency,Reminder_Start_Date_Time;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always16 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Add_a_Reminder
+				record event = on add or edit
+
+	on validate
+	{
+					actions  (For_What == "Expense")
+					{
+						custom deluge script
+						(
+											//Check For Valid Category
+										if(Select_Expense_Category == null)
+										{
+											alert "Select any expense category for reminder";
+											cancel submit;
+										}
+										else
+										{
+											input.Select_Income_Source = null;
+										}
+										reminder_count = Add_a_Reminder[Select_Expense_Category == input.Select_Expense_Category && Reminder_Start_Date_Time == input.Reminder_Start_Date_Time].count(ID);
+										//Check For Duplicate Reminders
+										if(reminder_count == 1)
+										{
+											alert "You have already added this expense reminder for this time";
+											cancel submit;
+										}
+						)
+					}
+					actions  (Run_This_Schedule == "Number Of Events")
+					{
+						custom deluge script
+						(
+											//Check For Valid Count
+										if(Number_Of_Events == null || Number_Of_Events <= 0)
+										{
+											alert "Enter a vaild count for number of events";
+											cancel submit;
+										}
+										//Fills End Date
+										else
+										{
+											date_map = {"Daily":input.Reminder_Start_Date_Time.addDay(input.Number_Of_Events),"Weekly":input.Reminder_Start_Date_Time.addWeek(input.Number_Of_Events),"Monthly":input.Reminder_Start_Date_Time.addMonth(input.Number_Of_Events),"Yearly":input.Reminder_Start_Date_Time.addYear(input.Number_Of_Events)};
+											input.End_Date = date_map.get(input.Frequency).toDate();
+										}
+						)
+					}
+					actions 
+					{
+						custom deluge script
+						(
+											//Removing Unnecessary Field Values
+										if(Frequency == "Once")
+										{
+											input.Number_Of_Events = null;
+											input.Run_This_Schedule = "";
+											input.End_Date = input.Reminder_Start_Date_Time.toDate();
+										}
+										if(Run_This_Schedule == "Forever")
+										{
+											input.End_Date = null;
+											input.Number_Of_Events = null;
+										}
+						)
+					}
+					actions  (Run_This_Schedule == "Until a Date")
+					{
+						custom deluge script
+						(
+											//Check For End Date
+										if(End_Date == null || End_Date <= Reminder_Start_Date_Time)
+										{
+											alert "Select a valid End Date";
+											cancel submit;
+										}
+						)
+					}
+					actions  (For_What == "Income")
+					{
+						custom deluge script
+						(
+											//Check For Valid Income source
+										if(Select_Income_Source == null)
+										{
+											alert "Select any Income source to reminder";
+											cancel submit;
+										}
+										else
+										{
+											input.Select_Expense_Category = null;
+										}
+										reminder_count = Add_a_Reminder[Select_Income_Source == input.Select_Income_Source && Reminder_Start_Date_Time == input.Reminder_Start_Date_Time].count(ID);
+										//Check For Duplicate Reminders
+										if(reminder_count == 1)
+										{
+											alert "You have already added this Income reminder for this time";
+											cancel submit;
+										}
+						)
+					}
+					actions  (Frequency != "Once" && Frequency is not null)
+					{
+						custom deluge script
+						(
+											//Check For Format
+										if(Run_This_Schedule == "")
+										{
+											alert "Select any format for run this schedule";
+											cancel submit;
+										}
+						)
+					}
+					actions  (For_What is not null)
+					{
+						custom deluge script
+						(
+											//Check For Valid Date And Frequency
+										if(Frequency == "")
+										{
+											alert "Select a valid frequency";
+											cancel submit;
+										}
+										if(Reminder_Start_Date_Time == null || Reminder_Start_Date_Time <= zoho.currenttime)
+										{
+											alert "Select any upcoming date time for reminder";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always17 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Add_a_Reminder
+				record event = on add or edit
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Fills Next Reminder Date
+										input.Next_Reminder_On = input.Reminder_Start_Date_Time;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_16 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Add_a_Reminder
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide Select_Income_Source,Select_Expense_Category,Frequency,Run_This_Schedule,Number_Of_Events,Reminder_Start_Date_Time,End_Date;
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin6 as "Run Scripts While Deleting a Record"
+			{
+				type =  form
+				form = Transfer_An_Amount
+				record event = on delete
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.Account.Balance_Calculation(input.From);
+										thisapp.Account.Balance_Calculation(input.To);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin7 as "Run Scripts While Deleting a Record"
+			{
+				type =  form
+				form = Add_Expenses
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Deleting Related Expenses
+										delete from Expense[Date_field == input.ID];
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin8 as "Run Scripts While Deleting a Record"
+			{
+				type =  form
+				form = Add_Expenses
+				record event = on delete
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Calling Function For Accountings
+										thisapp.Account.Balance_Calculation(input.Account);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin9 as "Run Scripts While Deleting a Record"
+			{
+				type =  form
+				form = Add_Income
+				record event = on delete
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.Account.Balance_Calculation(input.Account);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_17 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Archive_Account
+				record event = on add
+
+	field rules
+	{
+					actions  (Transfer_Balance == true)
+					{
+						show To_Which_Account;
+					}
+					actions 
+					{
+						hide Account_Name,To_Which_Account,Transfer_Balance;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_18 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Archive_Account
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Fetching Account Details
+										total_Income = Add_Income[Account == input.Account_Name].sum(Amount);
+										total_Expenses = Add_Expenses[Account == input.Account_Name].sum(Total_Amount);
+										link_content = "";
+										if(input.Account_Name.Current_Balance > 0.00)
+										{
+											link_content = link_content + "If you need your remaining balance in this account, you have to transfer this balance to another account";
+											show Transfer_Balance;
+										}
+										else
+										{
+											hide Transfer_Balance;
+										}
+										content = "<div><center><p style='color:#000000;'>Account Name : " + input.Account_Name.Name + "</p><p style='color:#4C7DE8;'>Income : " + ifnull(total_Income,0) + "</p><p style='color:#FF8D45;'>Expenses : " + ifnull(total_Expenses,0) + "</p><p style='color:#FF3F5E;'>Liabilities : " + input.Account_Name.Liabilities + "</p><p style='color:#41BF64;'>Balance : " + input.Account_Name.Current_Balance + "</p><br>If you archive this account, you can't add, edit and delete these above transactions<br>" + link_content + "</center></div>";
+										input.Notes = content;
+										all_accounts = Add_An_Account[Status == "Active"].ID.getAll();
+										index_of_element = all_accounts.indexOf(input.Account_Name);
+										all_accounts.remove(index_of_element);
+										input.To_Which_Account:ui.add(all_accounts);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin10 as "Run Scripts While Deleting a Record"
+			{
+				type =  form
+				form = Add_An_Account
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Alert Message
+										alert "If you delete this account you can't add, edit or delete any of these transactions like incomes and expenses, otherwise you can archive this account";
+										cancel delete;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_19 as "Run Scripts While Adding a Record"
+			{
+				type =  form
+				form = Add_Expense
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Fills Current Date
+										input.Date_field = zoho.currentdate;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin11 as "Run Scripts While Deleting a Record"
+			{
+				type =  form
+				form = Income_Sources
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Check For Added Incomes
+										Income_count = Add_Income[Source == input.ID].count(ID);
+										if(Income_count != 0)
+										{
+											alert "You have added Incomes related to this category, So try again after delete all those Incomes";
+											cancel delete;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin12 as "Run Scripts While Deleting a Record"
+			{
+				type =  form
+				form = Expense_Category
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Check For Added Expenses
+										expense_count = Expense[Category == input.ID].count(ID);
+										if(expense_count != 0)
+										{
+											alert "You have added expenses related to this category, So try again after delete all those expenses";
+											cancel delete;
+										}
+						)
+					}
+	}
+
+			}
+		}
+		schedule
+		{
+			Schedule_Scripts as "Schedule Scripts"
+			{
+				type =  schedule
+				form = Add_a_Reminder
+				start = Reminder_Start_Date_Time
+				end   = End_Date
+				frequency = daily
+				time zone = "Asia/Kolkata"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						if(Next_Reminder_On == zoho.currentdate)
+										{
+											mail_content = "Hi , <br> Its time to add your ";
+											if(Frequency != "Once")
+											{
+												mail_content = mail_content + input.Frequency;
+											}
+											mail_content = mail_content + input.For_What;
+											if(For_What == "Income")
+											{
+												mail_content = mail_content + " <br>For " + input.Select_Income_Source.Source_Name;
+												link = "https://app.zohocreator.com" + zoho.appuri + "#Form:Add_Income";
+											}
+											else
+											{
+												mail_content = mail_content + "<br> For " + input.Select_Expense_Category.Name;
+												link = "https://app.zohocreator.com" + zoho.appuri + "#Add_Expense?Category=" + input.Select_Expense_Category;
+											}
+											mail_content = mail_content + "<a href=" + link + ">Click here</a> to add";
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :zoho.adminuserid
+												subject :"Reminder"
+												message :mail_content
+											]
+											if(Frequency != "Once")
+											{
+												if(End_Date != zoho.currentdate || End_Date == null)
+												{
+													date_map = {"Daily":input.Next_Reminder_On.addDay(1),"Weekly":input.Next_Reminder_On.addWeek(1),"Monthly":input.Next_Reminder_On.addMonth(1),"Yearly":input.Next_Reminder_On.addYear(1)};
+													rec = Add_a_Reminder[ID == input.ID];
+													rec.Next_Reminder_On=date_map.get(input.Frequency);
+												}
+											}
+										}
+					)
+					}
+				}
+			}
+		}
+		functions
+		{
+			Archive_Account as "Archive Account"
+			{
+				type =  functions
+				form = Add_An_Account
+				on start
+				{
+					actions 
+					{
+					Account.Archive_Account(ID);
+					}
+				}
+			}
+			Unarchive_Account as "Unarchive Account"
+			{
+				type =  functions
+				form = Add_An_Account
+				on start
+				{
+					actions 
+					{
+					Account.Unarchive_Account(ID);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Read"
+			{
+				name = "Read"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have read permission for all components\n"
+			}
+			"Write"
+			{
+				name = "Write"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have write permission for all components\n"
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users.\n"
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 4
+		new theme color = 1
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-finance3"
+    	icon theme = "darkgrey"
+		icons style = outline
+	}
+
+	
+	reports configuration
+	{
+	
+		Version = 1251000165802425
+		Key     = "2uuGH1kCUbCz0UsNZjnT7RxEFTVOjCY8SAASREZrqsU4vFE5h1AbVzfJpuah7hTvDCX9bzVX3vXOAP3x5CdqAenJVXQ0ZMqXrwpZ"
+	}
+}

@@ -1,0 +1,7199 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 07-May-2020 00:01:30
+ * Version      : 1.0
+ */
+ application "Facilities Management"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "IST"
+ 	time format = "24-hr"
+	section Company_Details
+	{
+		displayname= "Company Details"
+		icon = "social-1-logo-creative-market"
+		form Add_Company_Details
+		{
+			displayname = "Add Company Details"
+			success message = "Company Detail Added Successfully"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Company_Name
+			(
+    			type = text
+				displayname = "Company Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Company_Email
+			(
+    			type = email
+				displayname = "Company Email"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Phone_Number
+			(
+				type = number
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Mobile_Number
+			(
+    			type = phonenumber
+				displayname = "Mobile Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Branches
+			(
+				type = grid
+				values  = Add_Site.ID
+    			bidirectional = Company
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Branches
+	{
+		icon = "objects-leaf-38"
+		form Add_Site
+		{
+			displayname = "Add Site"
+			success message = "Branch Added Successfully"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Company
+			(
+				type = picklist
+				values  = Add_Company_Details.ID
+    			bidirectional = Branches
+    			displayformat = [Company_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Branch_Site_Name
+			(
+    			type = text
+				displayname = "Branch/Site Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Contact_Email
+			(
+    			type = email
+				displayname = "Contact Email"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Mobile_Number
+			(
+    			type = phonenumber
+				displayname = "Mobile Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Landline_Number
+			(
+				type = number
+				displayname = "Landline Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Branch_Site_Address
+			(
+    			type = address
+				displayname = "Branch/Site Address"
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_1
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_2
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Site_In_charge
+			(
+				type = picklist
+				displayname = "Site In-charge "
+				values  = Add_Employee.ID
+    			displayformat = [" " + Employee_Name.first_name + " " + Employee_Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Buildings
+			(
+				type = grid
+				values  = Add_Building.ID
+    			bidirectional = Associated_Site
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Dashboards
+	{
+		icon = "ui-1-dashboard-half"
+				 page Admin_Dashboard 
+	 	 { 
+ 	 	 displayname = "Admin Dashboard" 
+
+ 	 	 icon = "ui-1-dashboard-half" 
+	 	 Content="<zml \n\t\t\tisPdfEnabled='false'\n\t\t\n\t\t\tisPrintEnabled='false'\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"60%\"\n   \t>\n\t<row>\n\t<column\n   \t\t width=\"33%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n\n>\n\t<pr    \t\t height = '70%'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '35%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '10px'\n   \t\t hAlign = 'right'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<image    \t\t color = '#FFFFFF'\n   \t\t bgColor = '#3BA6F3'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'location-position-pin'\n   \t\t size = '3'\n   \t\t marginRight = '7px'\n   \t\t cornerRadius = '26px'\n   \t\t iconType = 'solid'\n\n\/>\n<\/pc>\n<\/pr>\n<\/pc><pc    \t\t width = '65%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '10px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Branches'\n   \t\t target = 'new-window'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t hAlign = 'left'\n\n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Site.ID.count'\n   \t\t size = '6'\n   \t\t color = '#3BA6F3'\n   \t\t bold = 'true'\n   \t\t textAlign = 'left'\n   \t\t displayType = 'actual'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Branches'\n   \t\t target = 'new-window'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'No Of Sites'\n   \t\t size = '2'\n   \t\t color = '#333333'\n   \t\t marginTop = '1px'\n   \t\t textAlign = 'left'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr><pr    \t\t height = '1px'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#DFDFDF'\n\n>\n\t<text    \t\t type = 'Text'\n   \t\t value = '-'\n   \t\t size = '1'\n   \t\t color = '#5F5F5F'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr    \t\t height = '30%'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#3BA6F3'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = 'auto'\n   \t\t padding = '5px'\n   \t\t hAlign = 'right'\n   \t\t vAlign = 'middle'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Company_Details'\n   \t\t target = 'new-window'\n\n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Companies'\n   \t\t size = '2'\n   \t\t color = '#FFFFFF'\n   \t\t marginTop = '1px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc><pc    \t\t width = 'auto'\n   \t\t padding = '5px'\n   \t\t hAlign = 'left'\n   \t\t vAlign = 'middle'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Company_Details'\n   \t\t target = 'new-window'\n\n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Company_Details.ID.count'\n   \t\t size = '3'\n   \t\t color = '#FFFFFF'\n   \t\t bold = 'true'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Branches'\n   \t\t target = 'new-window'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"34%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = '70%'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '35%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '10px'\n   \t\t hAlign = 'right'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<image    \t\t color = '#FFFFFF'\n   \t\t bgColor = '#5AC374'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'tech-computer-monitor'\n   \t\t size = '3'\n   \t\t marginRight = '7px'\n   \t\t cornerRadius = '26px'\n   \t\t iconType = 'solid'\n\n\/>\n<\/pc>\n<\/pr>\n<\/pc><pc    \t\t width = '65%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '10px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Assets_In_Stock'\n   \t\t target = 'same-window'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t hAlign = 'left'\n\n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Assets_In_inventory.Quantity.sum'\n   \t\t size = '6'\n   \t\t color = '#41BF64'\n   \t\t bold = 'true'\n   \t\t textAlign = 'left'\n   \t\t displayType = 'actual'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Branches'\n   \t\t target = 'new-window'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Assets In stock'\n   \t\t size = '2'\n   \t\t color = '#333333'\n   \t\t marginTop = '1px'\n   \t\t textAlign = 'left'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr><pr    \t\t height = '1px'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#DFDFDF'\n\n>\n\t<text    \t\t type = 'Text'\n   \t\t value = '-'\n   \t\t size = '1'\n   \t\t color = '#5F5F5F'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr    \t\t height = '30%'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#5AC374'\n\n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = 'auto'\n   \t\t padding = '5px'\n   \t\t hAlign = 'right'\n   \t\t vAlign = 'middle'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'All_Assets'\n   \t\t target = 'new-window'\n\n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Assets'\n   \t\t size = '2'\n   \t\t color = '#FFFFFF'\n   \t\t marginTop = '1px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc><pc    \t\t width = 'auto'\n   \t\t padding = '5px'\n   \t\t hAlign = 'left'\n   \t\t vAlign = 'middle'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'All_Assets'\n   \t\t target = 'new-window'\n\n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Asset.ID.count'\n   \t\t size = '3'\n   \t\t color = '#FFFFFF'\n   \t\t bold = 'true'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Branches'\n   \t\t target = 'new-window'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"33%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = '70%'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '35%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '10px'\n   \t\t hAlign = 'right'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<image    \t\t color = '#FFFFFF'\n   \t\t bgColor = '#FF965C'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'ui-2-time-alarm'\n   \t\t size = '3'\n   \t\t marginRight = '7px'\n   \t\t cornerRadius = '26px'\n   \t\t iconType = 'solid'\n\n\/>\n<\/pc>\n<\/pr>\n<\/pc><pc    \t\t width = '65%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '10px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Open_Incidents'\n   \t\t target = 'same-window'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc    \t\t hAlign = 'left'\n\n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_An_Incident.ID.count'\n   \t\t criteria = '(((Troubleshoot_Status == &quot;Open&quot;)))'\n   \t\t size = '6'\n   \t\t color = '#FF965C'\n   \t\t bold = 'true'\n   \t\t textAlign = 'left'\n   \t\t displayType = 'actual'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Branches'\n   \t\t target = 'new-window'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Open Incidents'\n   \t\t size = '2'\n   \t\t color = '#333333'\n   \t\t marginTop = '1px'\n   \t\t textAlign = 'left'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr><pr    \t\t height = '1px'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#DFDFDF'\n\n>\n\t<text    \t\t type = 'Text'\n   \t\t value = '-'\n   \t\t size = '1'\n   \t\t color = '#5F5F5F'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr    \t\t height = '30%'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FF965C'\n\n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = 'auto'\n   \t\t padding = '5px'\n   \t\t hAlign = 'right'\n   \t\t vAlign = 'middle'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Working_Incidents'\n   \t\t target = 'same-window'\n\n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Current Incidents'\n   \t\t size = '2'\n   \t\t color = '#FFFFFF'\n   \t\t marginTop = '1px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc><pc    \t\t width = 'auto'\n   \t\t padding = '5px'\n   \t\t hAlign = 'left'\n   \t\t vAlign = 'middle'\n\n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_An_Incident.ID.count'\n   \t\t criteria = '(((Troubleshoot_Status != &quot;Closed&quot;)))'\n   \t\t size = '3'\n   \t\t color = '#FFFFFF'\n   \t\t bold = 'true'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Branches'\n   \t\t target = 'new-window'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"50%\"\n   \t>\n\t<chart    \t\t type = 'Pie'\n   \t\t appLinkName = 'thisapp'\n   \t\t formLinkName = 'Add_Expense'\n   \t\t xtitle = 'Date'\n   \t\t xfield = 'Expense_Date'\n   \t\t ytitle = 'Expense Amount'\n   \t\t yfields = 'sum:Expense_Amount'\n   \t\t DelugeCriteria = '(((Expense_Date in this week)))'\n   \t\t bgColor = 'rgb(255, 255, 255)'\n   \t\t theme = 'theme1'\n   \t\t legendPos = 'center.bottom'\n   \t\t titleSize = '4'\n   \t\t boldTitle = '400'\n   \t\t title = 'This Week Expense'\n   \t\t titleFontFamily = 'lato, arial, sans-serif'\n\n\/>\n<\/column><column\n   \t\t width=\"50%\"\n   \t>\n\t<chart    \t\t type = 'Pie'\n   \t\t appLinkName = 'thisapp'\n   \t\t formLinkName = 'Add_Expense'\n   \t\t xtitle = 'Expense Type'\n   \t\t xfield = 'Expense_Type'\n   \t\t ytitle = 'Expense Amount'\n   \t\t yfields = 'sum:Expense_Amount'\n   \t\t DelugeCriteria = '(((Expense_Date in this week)))'\n   \t\t bgColor = 'rgb(255, 255, 255)'\n   \t\t theme = 'theme2'\n   \t\t legendPos = 'center.bottom'\n   \t\t titleSize = '4'\n   \t\t boldTitle = '400'\n   \t\t title = 'This Week Expenses For'\n   \t\t titleFontFamily = 'lato, arial, sans-serif'\n\n\/>\n<\/column>\n<\/row>\n<\/column><column\n   \t\t width=\"40%\"\n   \t>\n\t<dsp id='html_snippet'>\n\t<![CDATA[htmlpage html_snippet()\ncontent\n&lt;%{\n\tif(Add_Employee[ID != 0].count() == 0)\n\t{\n\t\topenUrl(&quot;#Form:Add_Employee&quot;,&quot;same window&quot;);\n\t}\n\tstatusColor = Map();\n\tstatusColor = {&quot;High&quot;:&quot;#fe8e87&quot;,&quot;Low&quot;:&quot;#62e392&quot;,&quot;Medium&quot;:&quot;#f7c87b&quot;};\n\t%&gt;\n&lt;style&gt;\n\t\t\t.headerDiv \n\t\t\t  {\n\t\t\t    width: 100%;\n\t\t\t    height: 52px;\n\t\t\t    padding-left: 15px;\n\t\t\t    padding-right: 15px;\n\t\t\t    box-sizing: border-box;\n\t\t\t    border-bottom: 1px solid #eaeaea;\n\t\t\t  }\n\t\t\t  .headerText\n\t\t\t  {\n\t\t\t\t  float: left;\n\t\t\t\t  font-size: 18px;\n\t\t\t\t  padding-top: 15px;\n\t\t\t\t  color: #000;\n\t\t\t\t  font-family: lato;\n\t\t\t  }\n&lt;\/style&gt;\n&lt;div class=&quot;headerDiv&quot;&gt;\n&lt;div class=&quot;headerText&quot;&gt;Recent Incidents&lt;\/div&gt;\n&lt;\/div&gt;\n&lt;%\n\teach_incident = Add_An_Incident[ID != 0 &amp;&amp; Troubleshoot_Status == &quot;Open&quot;] sort by Added_Time desc range from 0 to 4;\n\tif(each_incident.count() &gt; 0)\n\t{\n\t\t%&gt;\n&lt;ul style=&quot;list-style: none;padding: 0;&quot;&gt;\n&lt;%\n\t\tfor each  incident in each_incident\n\t\t{\n\t\t\t%&gt;\n&lt;li style=&quot;border-bottom: 0.5px solid #eaeaea;margin: 0 15px;&quot;&gt;\n&lt;div style=&quot;margin-top: 8px;&quot;&gt;\n&lt;span style=&quot;font-size: 15px;&quot;&gt;&lt;%=incident.Issue_Name%&gt;&lt;\/span&gt;\n&lt;div style=&quot;float: right;font-size: 12px;font-weight: bold;padding: 3px 0px;width: 80px;text-align: center;position: relative; height: 50px;position: relative&quot;&gt;\n\t&lt;div style=&quot;font-size: 12px;font-weight: bold;padding: 3px 0px;background-color:&lt;%=statusColor.get(incident.Priority)%&gt;;width: 60px;text-align: center;&quot;&gt;\t\t&lt;%=incident.Priority%&gt;&lt;\/div&gt;\n\t&lt;div style=&quot;font-size: 10px;font-weight: bold;color: #888888;font-weight: bold;width: 60px;text-align: center;position: absolute;bottom: 0%;&quot;&gt;&lt;%=incident.Deadline%&gt;&lt;\/div&gt;\n&lt;\/div&gt;\n&lt;div style=&quot;font-size: 12px;margin: 8px 0px;    width: 70%;&quot;&gt;Failur Object: &lt;%=incident.Failure_Object.Asset_Name%&gt;&lt;\/div&gt;\n&lt;div style=&quot;font-size: 12px;margin: 8px 0px;    width: 70%;&quot;&gt; &lt;%=incident.Description%&gt;&lt;\/div&gt;\n&lt;\/li&gt;\n&lt;%\n\t\t}\n\t\t%&gt;\n&lt;\/ul&gt;\n&lt;%\n\t}\n\telse\n\t{\n\t\t%&gt;\n&lt;div style=&quot;padding-top: 40%;color: red;font-size: 20px;text-align: center;&quot;&gt;No Alarms Available&lt;\/div&gt;\n&lt;%\n\t}\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"51%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Weekly_Incidents'\n   \t\t heightType = 'custom'\n   \t\t heightValue = '500'\n   \t\t iszreport = 'true'\n   \t\t zc_Header = 'true'\n   \t\t zc_Footer = 'true'\n   \t\t zc_SecHeader = 'true'\n   \t\t zc_AddRec = 'true'\n   \t\t zc_EditRec = 'true'\n   \t\t zc_Print = 'true'\n   \t\t zc_Export = 'true'\n   \t\t zc_DelRec = 'true'\n   \t\t zc_DuplRec = 'true'\n   \t\t zc_EditBulkRec = 'true'\n   \t\t zc_SaveRec = 'true'\n   \t\t zc_Filter = 'true'\n   \t\t zc_Search = 'true'\n   \t\t zc_SumRow = 'true'\n   \t\t zc_ColMenu = 'true'\n   \t\t zc_RecSelect = 'true'\n\n\/>\n<\/column><column\n   \t\t width=\"49%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Priority_Incidents'\n   \t\t heightType = 'custom'\n   \t\t heightValue = '500'\n   \t\t iszreport = 'true'\n   \t\t zc_Header = 'true'\n   \t\t zc_Footer = 'true'\n   \t\t zc_SecHeader = 'true'\n   \t\t zc_AddRec = 'true'\n   \t\t zc_EditRec = 'true'\n   \t\t zc_Print = 'true'\n   \t\t zc_Export = 'true'\n   \t\t zc_DelRec = 'true'\n   \t\t zc_DuplRec = 'true'\n   \t\t zc_EditBulkRec = 'true'\n   \t\t zc_SaveRec = 'true'\n   \t\t zc_Filter = 'true'\n   \t\t zc_Search = 'true'\n   \t\t zc_SumRow = 'true'\n   \t\t zc_ColMenu = 'true'\n   \t\t zc_RecSelect = 'true'\n\n\/>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+				 page Work_Orders_Dashboard 
+	 	 { 
+ 	 	 displayname = "Work Orders Dashboard" 
+
+ 	 	 icon = "" 
+	 	 Content="<zml \n\t\t\tisPdfEnabled='false'\n\t\t\n\t\t\tisPrintEnabled='false'\n\t\t\n\t\t\n\t\t\twebDeviceConfig='{\"layout\":{\"displayType\":\"card\",\"design\":\"fluid\",\"style\":\"padding-right:0px;padding-top:0px;padding-bottom:0px;padding-left:0px;\"}}'\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"25%\"\n   \t>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<image    \t\t color = '#FFFFFF'\n   \t\t bgColor = '#5AC374'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'ui-1-calendar-check-62'\n   \t\t size = '4'\n   \t\t cornerRadius = '26px'\n   \t\t iconType = 'solid'\n\n\/>\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_An_Incident.ID.count'\n   \t\t criteria = '((((Deadline is today)&amp;&amp;(Assigned_To.Contact_Email == zoho.loginuserid))))'\n   \t\t size = '8'\n   \t\t color = '#09B24D'\n   \t\t bold = 'true'\n   \t\t marginTop = '3px'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Work Orders Today'\n   \t\t size = '3'\n   \t\t color = '#333333'\n   \t\t marginTop = '3px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<image    \t\t color = '#FFFFFF'\n   \t\t bgColor = '#9B69FB'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'arrows-4-priority-high'\n   \t\t size = '4'\n   \t\t cornerRadius = '26px'\n   \t\t iconType = 'solid'\n\n\/>\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_An_Incident.ID.count'\n   \t\t criteria = '((((Assigned_To.Contact_Email == zoho.loginuserid)&amp;&amp;(Priority == &quot;High&quot;))))'\n   \t\t size = '8'\n   \t\t color = '#9357FB'\n   \t\t bold = 'true'\n   \t\t marginTop = '3px'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'High Priority Work-Orders'\n   \t\t size = '3'\n   \t\t color = '#333333'\n   \t\t marginTop = '3px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row>\n<\/column><column\n   \t\t width=\"30%\"\n   \t>\n\t<dspZml id='zml_snippet'>\n\t<![CDATA[htmlpage zml_snippet()\ncontent\n&lt;%{\n\t%&gt;\n&lt;panel&gt; \n\t&lt;pr height=&apos;auto&apos; width=&apos;fill&apos;&gt;\n\t\t&lt;pc width=&apos;100%&apos; bgColor=&apos;#FFFFFF&apos; padding=&apos;15px&apos; hAlign=&apos;center&apos; vAlign=&apos;middle&apos;&gt;\n\t\t  &lt;pr height=&apos;auto&apos; width=&apos;fill&apos;&gt;\n\t\t\t&lt;pc width=&apos;30%&apos; paddingTop=&apos;20px&apos;&gt;\n\t\t\t  &lt;image color=&apos;#FFFFFF&apos; bgColor=&apos;#59DDBB&apos; width=&apos;52px&apos; height=&apos;52px&apos; imageType=&apos;icon&apos; value=&apos;zc-li-solid furniture-door&apos; iconsize=&apos;3&apos; marginRight=&apos;7px&apos; cornerRadius=&apos;26px&apos; unicodeValue=&apos;e8f2&apos; \/&gt; \t\t\t\t\t\t\t\t&lt;\/pc&gt;\n\t\t\t&lt;pc width=&apos;50%&apos; hAlign=&apos;left&apos; paddingTop=&apos;20px&apos;&gt;\n\t\t\t  &lt;pr&gt;\n\t\t\t\t&lt;pc hAlign=&apos;left&apos; &gt;\n\t\t\t\t  &lt;text type=&apos;Text&apos; value=&apos;My Open Incidents&apos; size=&apos;3&apos; color=&apos;#000000&apos; textAlign=&apos;left&apos;&gt; &lt;\/text&gt;\n\t\t\t\t&lt;\/pc&gt;\n\t\t\t  &lt;\/pr&gt;\n\t\t\t  &lt;pr&gt;\n\t\t\t\t&lt;pc hAlign=&apos;left&apos;&gt;\n\t\t\t\t  &lt;text type=&apos;Form Data&apos; value=&apos;thisapp.Add_An_Incident.ID.count&apos; criteria=&apos;((((Troubleshoot_Status == &amp;quot;Open&amp;quot;)||((Troubleshoot_Status == &amp;quot;Assigned&amp;quot;)&amp;amp;&amp;amp;(Assigned_To.Contact_Email == zoho.loginuserid)))))&apos; size=&apos;8&apos; color=&apos;#3FDBB6&apos; bold=&apos;true&apos; marginTop=&apos;2px&apos; textAlign=&apos;left&apos; displayType=&apos;actual&apos;&gt; &lt;\/text&gt;\n\t\t\t\t&lt;\/pc&gt;\n\t\t\t  &lt;\/pr&gt;\n\t\t\t&lt;\/pc&gt;\n\t\t  &lt;\/pr&gt;\n\t\t  &lt;pr height=&apos;auto&apos; width=&apos;fill&apos;&gt;\n\t\t\t&lt;pc width=&apos;90%&apos; bgColor=&apos;#d8d8d8&apos; marginTop=&apos;20px&apos; padding=&apos;1px&apos; paddingTop=&apos;0px&apos;&gt;\n\t\t\t&lt;\/pc&gt;\n\t\t  &lt;\/pr&gt;\n\t\t  &lt;pr height=&apos;auto&apos; width=&apos;fill&apos;&gt;\n\t\t\t&lt;pc width=&apos;30%&apos; paddingTop=&apos;20px&apos;&gt;\n\t\t\t  &lt;image color=&apos;#FFFFFF&apos; bgColor=&apos;#FF7163&apos; width=&apos;52px&apos; height=&apos;52px&apos; imageType=&apos;icon&apos; value=&apos;zc-li-solid loader-dots-06 spin&apos; iconsize=&apos;3&apos; marginRight=&apos;7px&apos; cornerRadius=&apos;26px&apos; unicodeValue=&apos;ee1b&apos; \/&gt; &lt;\/pc&gt;\n\t\t\t&lt;pc hAlign=&apos;left&apos; paddingTop=&apos;20px&apos;&gt;\n\t\t\t  &lt;pr&gt;\n\t\t\t\t&lt;pc hAlign=&apos;left&apos;&gt;\n\t\t\t\t  &lt;text type=&apos;Text&apos; value=&apos;My Working Incidents&apos; size=&apos;3&apos; color=&apos;#000000&apos; textAlign=&apos;left&apos;&gt; &lt;\/text&gt;\n\t\t\t\t&lt;\/pc&gt;\n\t\t\t  &lt;\/pr&gt;\n\t\t\t  &lt;pr&gt;\n\t\t\t\t&lt;pc hAlign=&apos;left&apos;&gt;\n\t\t\t\t  &lt;text type=&apos;Form Data&apos; value=&apos;thisapp.Add_An_Incident.ID.count&apos; criteria=&apos;((((Assigned_To.Contact_Email == zoho.loginuserid)&amp;amp;&amp;amp;(Troubleshoot_Status == &amp;quot;In Progress&amp;quot;))))&apos; size=&apos;8&apos; color=&apos;#FF614E&apos; bold=&apos;true&apos; marginTop=&apos;2px&apos; textAlign=&apos;left&apos; displayType=&apos;actual&apos;&gt; &lt;\/text&gt;\n\t\t\t\t&lt;\/pc&gt;\n\t\t\t  &lt;\/pr&gt;\n\t\t\t&lt;\/pc&gt;\n\t\t  &lt;\/pr&gt;\n\t\t  &lt;pr height=&apos;auto&apos; width=&apos;fill&apos;&gt;\n\t\t\t&lt;pc width=&apos;90%&apos; bgColor=&apos;#d8d8d8&apos; marginTop=&apos;20px&apos; padding=&apos;1px&apos; paddingTop=&apos;0px&apos;&gt;\n\t\t\t&lt;\/pc&gt;\n\t\t  &lt;\/pr&gt;\n\t\t  &lt;pr height=&apos;auto&apos; width=&apos;fill&apos;&gt;\n\t\t\t&lt;pc width=&apos;30%&apos; paddingTop=&apos;20px&apos;&gt;\n\t\t\t  &lt;image color=&apos;#FFFFFF&apos; bgColor=&apos;#CC81EC&apos; width=&apos;52px&apos; height=&apos;52px&apos; imageType=&apos;icon&apos; value=&apos;zc-li-solid ui-1-check-bold&apos; iconsize=&apos;3&apos; marginRight=&apos;7px&apos; cornerRadius=&apos;26px&apos; unicodeValue=&apos;ed3b&apos; \/&gt; &lt;\/pc&gt;\n\t\t\t&lt;pc hAlign=&apos;left&apos; paddingTop=&apos;20px&apos;&gt;\n\t\t\t  &lt;pr&gt;\n\t\t\t\t&lt;pc hAlign=&apos;left&apos;&gt;\n\t\t\t\t  &lt;text type=&apos;Text&apos; value=&apos;My Overdue Incidents&apos; size=&apos;3&apos; color=&apos;#000000&apos; textAlign=&apos;left&apos;&gt; &lt;\/text&gt;\n\t\t\t\t&lt;\/pc&gt;\n\t\t\t  &lt;\/pr&gt;\n\t\t\t  &lt;pr&gt;\n\t\t\t\t&lt;pc hAlign=&apos;left&apos;&gt;\n\t\t\t\t  &lt;text type=&apos;Form Data&apos; value=&apos;thisapp.Add_An_Incident.ID.count&apos; criteria=&apos;(((((Troubleshoot_Status != &amp;quot;Closed&amp;quot;)&amp;amp;&amp;amp;(Assigned_To.Contact_Email == zoho.loginuserid))&amp;amp;&amp;amp;(Deadline &amp;gt; today))))&apos; size=&apos;8&apos; color=&apos;#C462EA&apos; bold=&apos;true&apos; marginTop=&apos;2px&apos; textAlign=&apos;left&apos; displayType=&apos;actual&apos;&gt; &lt;\/text&gt;\n\t\t\t\t&lt;\/pc&gt;\n\t\t\t  &lt;\/pr&gt;\n\t\t\t&lt;\/pc&gt;\n\t\t  &lt;\/pr&gt;\n\t\t&lt;\/pc&gt;\n\t&lt;\/pr&gt;\n&lt;\/panel&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dspZml>\n<\/column><column\n   \t\t width=\"45%\"\n   \t>\n\t<dsp id='html_snippet'>\n\t<![CDATA[htmlpage html_snippet()\ncontent\n&lt;%{\n\tstatusColor = Map();\n\tstatusColor = {&quot;High&quot;:&quot;#fe8e87&quot;,&quot;Low&quot;:&quot;#ffc772&quot;,&quot;Medium&quot;:&quot;#fffb76&quot;};\n\t%&gt;\n&lt;style&gt;\n\t\t\t\n\t\t\t.headerDiv \n\t\t\t  {\n\t\t\t    width: 100%;\n\t\t\t    height: 52px;\n\t\t\t    padding-left: 15px;\n\t\t\t    padding-right: 15px;\n\t\t\t    box-sizing: border-box;\n\t\t\t    border-bottom: 1px solid #eaeaea;\n\t\t\t  }\n\t\t\t  .headerText\n\t\t\t  {\n\t\t\t  float:left;\n\t\t\t  font-size: 18px;\n\t\t\t  padding-top: 15px;\n\t\t\t  color: #000;\n    \t\t  font-weight: 700;\n\t\t\t  }\n\t\t\t  .incident_list{\n\t\t\t\t     height: 275px;\n\t\t\t\t\t overflow: auto;\n\t\t\t  }\n&lt;\/style&gt;\n&lt;div class=&quot;headerDiv&quot;&gt;\n&lt;div class=&quot;headerText&quot;&gt;Recent Incidents&lt;\/div&gt;\n&lt;\/div&gt;\n&lt;%\n\teach_incident = Add_An_Incident[Troubleshoot_Status != &quot;Closed&quot; &amp;&amp; Assigned_To.Contact_Email == zoho.loginuserid] sort by Added_Time desc range from 0 to 4;\n\tif(each_incident.count() &gt; 0)\n\t{\n\t\t%&gt;\n&lt;div class=&apos;incident_list&apos;&gt;\n&lt;ul style=&quot;list-style: none;padding: 0;&quot;&gt;\n&lt;%\n\t\tfor each  incident in each_incident\n\t\t{\n\t\t\t%&gt;\n&lt;li style=&quot;border-bottom: 0.5px solid #eaeaea;margin: 0 15px;&quot;&gt;\n&lt;div style=&quot;margin-top: 8px;&quot;&gt;\n&lt;span style=&quot;font-size: 15px;&quot;&gt;&lt;%=incident.Issue_Name%&gt;&lt;\/span&gt;\n&lt;div style=&quot;float: right;font-size: 12px;font-weight: bold;padding: 3px 0px;width: 80px;text-align: center;position: relative; height: 50px;position: relative&quot;&gt;\n\t&lt;div style=&quot;font-size: 12px;font-weight: bold;padding: 3px 0px;background-color:&lt;%=statusColor.get(incident.Priority)%&gt;;width: 60px;text-align: center;&quot;&gt;\t\t&lt;%=incident.Priority%&gt;&lt;\/div&gt;\n\t&lt;div style=&quot;font-size: 10px;font-weight: bold;color: #888888;font-weight: bold;width: 60px;text-align: center;position: absolute;bottom: 0%;&quot;&gt;&lt;%=incident.Deadline%&gt;&lt;\/div&gt;\n&lt;\/div&gt;\n&lt;div style=&quot;font-size: 12px;margin: 8px 0px;    width: 70%;&quot;&gt;Failur Object: &lt;%=incident.Failure_Object.Asset_Name%&gt;&lt;\/div&gt;\n&lt;div style=&quot;font-size: 12px;margin: 8px 0px;    width: 70%;&quot;&gt; &lt;%=incident.Description%&gt;&lt;\/div&gt;\n&lt;\/li&gt;\n&lt;%\n\t\t}\n\t\t%&gt;\n&lt;\/ul&gt;\n&lt;\/div&gt;\n&lt;%\n\t}\n\telse\n\t{\n\t\t%&gt;\n&lt;div style=&quot;padding-top: 30%;color: red;font-size: 20px;text-align: center;&quot;&gt;No Alarms Available&lt;\/div&gt;\n&lt;%\n\t}\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"25%\"\n   \t>\n\t<chart    \t\t type = 'Pie'\n   \t\t appLinkName = 'thisapp'\n   \t\t formLinkName = 'Add_An_Incident'\n   \t\t xtitle = 'Priority'\n   \t\t xfield = 'Priority'\n   \t\t ytitle = 'Count Of Priority'\n   \t\t yfields = 'count:Priority'\n   \t\t bgColor = 'rgb(255, 255, 255)'\n   \t\t theme = 'theme1'\n   \t\t legendPos = 'center.top'\n   \t\t titleSize = '4'\n   \t\t title = 'Priority Work-orders'\n\n\/>\n<\/column><column\n   \t\t width=\"50%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Scheduled_Incidents'\n   \t\t criteriaString = '(((Assigned_To.Contact_Email == zoho.loginuserid)))'\n   \t\t heightType = 'custom'\n   \t\t heightValue = '400'\n   \t\t iszreport = 'false'\n   \t\t zc_Header = 'false'\n   \t\t zc_Footer = 'true'\n   \t\t zc_SecHeader = 'true'\n   \t\t zc_AddRec = 'false'\n   \t\t zc_EditRec = 'false'\n   \t\t zc_Print = 'false'\n   \t\t zc_Export = 'false'\n   \t\t zc_DelRec = 'false'\n   \t\t zc_DuplRec = 'false'\n   \t\t zc_EditBulkRec = 'true'\n   \t\t zc_SaveRec = 'true'\n   \t\t zc_Filter = 'true'\n   \t\t zc_Search = 'false'\n   \t\t zc_SumRow = 'true'\n   \t\t zc_ColMenu = 'true'\n   \t\t zc_RecSelect = 'true'\n   \t\t titleSize = '4'\n   \t\t title = 'Scheduled Work-Orders'\n\n\/>\n<\/column><column\n   \t\t width=\"25%\"\n   \t>\n\t<chart    \t\t type = 'Funnel'\n   \t\t appLinkName = 'thisapp'\n   \t\t formLinkName = 'Add_An_Incident'\n   \t\t xtitle = 'incident Status'\n   \t\t xfield = 'Troubleshoot_Status'\n   \t\t ytitle = 'Incident Count'\n   \t\t yfields = 'count:Troubleshoot_Status'\n   \t\t bgColor = 'rgb(255, 255, 255)'\n   \t\t theme = 'theme1'\n   \t\t legendPos = 'center.top'\n   \t\t titleSize = '4'\n   \t\t title = 'My Performance'\n\n\/>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+	}
+	section Facilities1
+	{
+		displayname= "Facilities"
+		icon = "tech-2-l-settings"
+		custom All_Facilities
+		{
+			displayName = "All Facilities"
+			show all rows from Facility    
+			(
+				Facility_Name as "Facility Name"
+				Description
+			)
+			options
+			(
+				icon = "weather-hurricane-44"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = 2
+		     			title = "Overview"
+						fields
+						(
+							Facility_Name as "Facility Name"
+							Description
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Facility_Name as "Facility Name"
+							Description
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Assets
+		{
+			displayName = "All Assets"
+			show all rows from Add_Asset    
+			(
+				Asset_Name as "Asset Name"
+				For_Facility as "For Facility"
+				Measurement_Method as "Measurement Method"
+			)
+			options
+			(
+				icon = "social-1-logo-reddit"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Asset_Name as "Asset Name"
+							For_Facility as "For Facility"
+							Measurement_Method as "Measurement Method"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Asset_Name as "Asset Name"
+							For_Facility as "For Facility"
+							Measurement_Method as "Measurement Method"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Metrics
+		{
+			displayName = "All Metrics"
+			show all rows from Metrics    
+			(
+				Metrics_Name as "Metrics Name"
+				Metric_Display_Name as "Metric Display Name"
+			)
+			options
+			(
+				icon = "design-measure-big"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Metrics_Name as "Metrics Name"
+							Metric_Display_Name as "Metric Display Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Metrics_Name as "Metrics Name"
+							Metric_Display_Name as "Metric Display Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list List_Of_Maintenance_Works
+		{
+			displayName = "List Of Maintenance Works"
+			show all rows from Add_Maintenance_Work    
+			(
+				Work
+				Description
+			)
+			options
+			(
+				icon = "tech-laptop"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Work
+							Description
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Work
+							Description
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Site_Configurations
+	{
+		displayname= "Site Configurations"
+		icon = "location-pin-copy"
+		summary Company_Details
+		{
+			displayName = "Company Details"
+			show all rows from Add_Company_Details    
+			(
+				Branches.Branch_Site_Name as "Branches"
+				(
+					view = Branches
+				)
+				Company_Name as "Company Name"
+				Phone_Number as "Phone Number"
+				Mobile_Number as "Mobile Number"
+				Company_Email as "Company Email"
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 2
+				icon = "business-factory"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Company_Name as "Company Name"
+							Company_Email as "Company Email"
+							Phone_Number as "Phone Number"
+							Mobile_Number as "Mobile Number"
+							Branches.Branch_Site_Name as "Branches"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 5
+		     			title = "Company"
+						fields
+						(
+							Company_Name as "Company Name"
+							Company_Email as "Company Email"
+							Mobile_Number as "Mobile Number"
+							Phone_Number as "Phone Number"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Branches"
+		     			related field =  Branches
+						fields
+						(
+							Branch_Site_Name as "Branch/Site Name"
+							Contact_Email as "Contact Email"
+							Mobile_Number as "Mobile Number"
+							Landline_Number as "Landline Number"
+							Branch_Site_Address as "Branch/Site Address"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Branches
+		{
+			displayName = "Branches"
+			show all rows from Add_Site    
+			(
+				Branch_Site_Name as "Branch/Site Name"
+				Contact_Email as "Contact Email"
+				Company
+				Landline_Number as "Landline Number"
+				Mobile_Number as "Mobile Number"
+				custom action "Add Building"
+				(
+	  			workflow = Add_Building_Workflow
+				show action in view header = true
+				column header = "Add Building"
+				)
+				Branch_Site_Address  as "Branch/Site Address"
+	 			(
+	      			displayformat = [address_line_1+""+address_line_2+""+district_city+""+state_province+""+postal_Code+""+country]
+	      			enable = Show_As_Text
+	 			)
+				Site_In_charge as "Site In-charge "
+			)
+			group by
+			(
+				Company ascending
+			)
+			sort by
+			(
+				Company ascending
+				Branch_Site_Name ascending
+			)
+			options
+			(
+				icon = "business-hierarchy-53"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Branch_Site_Name as "Branch/Site Name"
+							Contact_Email as "Contact Email"
+							Mobile_Number as "Mobile Number"
+							Landline_Number as "Landline Number"
+							Branch_Site_Address as "Branch/Site Address"
+							Site_In_charge as "Site In-charge "
+				"Add Building"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock2
+					(
+			 			layout type = 5
+		     			title = "Company"
+		     			related field =  Company
+						fields
+						(
+							Company_Name as "Company Name"
+							Company_Email as "Company Email"
+							Mobile_Number as "Mobile Number"
+							Phone_Number as "Phone Number"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Branch Details"
+						fields
+						(
+							Branch_Site_Name as "Branch/Site Name"
+							Contact_Email as "Contact Email"
+							Mobile_Number as "Mobile Number"
+							Landline_Number as "Landline Number"
+							Branch_Site_Address as "Branch/Site Address"
+						)
+					)
+					datablock4
+					(
+			 			layout type = -1
+		     			title = "Buildings"
+		     			related field =  Buildings
+						fields
+						(
+							Building_Name as "Building Name"
+							Total_Number_Of_Floors as "Total Number Of Floors"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Add Building"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		map Site_Locations
+		{
+			displayName = "Site Locations"
+			show all rows from Add_Site    
+			(
+				Company.Company_Email as "Company Email"
+				Company
+				Landline_Number as "Landline Number"
+				Mobile_Number as "Mobile Number"
+				Contact_Email as "Contact Email"
+				Branch_Site_Name as "Branch/Site Name"
+				Branch_Site_Address  as "Branch/Site Address"
+	 			(
+	      			displayformat = [address_line_1+""+address_line_2+""+district_city+""+state_province+""+postal_Code+""+country]
+	      			enable = Show_As_Text
+	 			)
+			)
+			options
+			(
+	 			display field = Branch_Site_Address
+	 	 		radius = 100 Miles
+		 		icon = "location-pin-copy"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = 1
+		     			title = "Overview"
+						fields
+						(
+							Company
+							Branch_Site_Name as "Branch/Site Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock2
+					(
+			 			layout type = 5
+		     			title = "Company"
+		     			related field =  Company
+						fields
+						(
+							Company_Name as "Company Name"
+							Company_Email as "Company Email"
+							Mobile_Number as "Mobile Number"
+							Phone_Number as "Phone Number"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Site Details"
+						fields
+						(
+							Branch_Site_Name as "Branch/Site Name"
+							Contact_Email as "Contact Email"
+							Mobile_Number as "Mobile Number"
+							Landline_Number as "Landline Number"
+							Branch_Site_Address as "Branch/Site Address"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		summary All_Buildings
+		{
+			displayName = "All Buildings"
+			show all rows from Add_Building    
+			(
+				Building_Name as "Building Name"
+				Associated_Site as "Associated Site"
+				(
+					view = Site_Locations
+				)
+				Total_Number_Of_Floors as "Total Number Of Floors"
+				Gateways.Spot_Name as "Gateways"
+				custom action "Add Gateway"
+				(
+	  			workflow = Add_Gateway_Workflow
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Add Gateway"
+				)
+			)
+			group by
+			(
+				Associated_Site ascending
+			)
+			sort by
+			(
+				Associated_Site ascending
+				Building_Name ascending
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 2
+				icon = "business-building"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Associated_Site as "Associated Site"
+							Building_Name as "Building Name"
+							Total_Number_Of_Floors as "Total Number Of Floors"
+							Gateways.Spot_Name as "Gateways"
+				"Add Gateway"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Building Details"
+						fields
+						(
+							Building_Name as "Building Name"
+							Associated_Site as "Associated Site"
+							Total_Number_Of_Floors as "Total Number Of Floors"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Gateways"
+		     			related field =  Gateways
+						fields
+						(
+							Spot_Name as "Spot Name"
+							Display_Name as "Display Name"
+							Floor
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Add Gateway"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		summary Gateways_Of_Buildings
+		{
+			displayName = "Gateways Of Buildings"
+			show all rows from Add_Gateway    
+			(
+				Spot_Name as "Spot Name"
+				Site
+				(
+					view = Branches
+				)
+				Display_Name as "Display Name"
+				Assets_With_Quantity.Gateway as "Assets"
+				Building
+				(
+					view = All_Buildings
+				)
+				Floor
+				custom action "Add Asset"
+				(
+	  			workflow = Add_Asset_To_the_Gateway
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Add Asset"
+				)
+			)
+			group by
+			(
+				Site ascending
+				Building ascending
+			)
+			sort by
+			(
+				Site ascending
+				Building ascending
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 2
+				icon = "location-crosshair"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Site
+							Spot_Name as "Spot Name"
+							Display_Name as "Display Name"
+							Building
+							Floor
+							Assets_With_Quantity.Gateway as "Assets"
+				"Add Asset"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Spot_Name as "Spot Name"
+							Display_Name as "Display Name"
+							Site
+							Floor
+							Building
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Site"
+		     			related field =  Site
+						fields
+						(
+							Company
+							Branch_Site_Name as "Branch/Site Name"
+							Contact_Email as "Contact Email"
+							Mobile_Number as "Mobile Number"
+							Landline_Number as "Landline Number"
+							Branch_Site_Address as "Branch/Site Address"
+							Site_In_charge as "Site In-charge "
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Building"
+		     			related field =  Building
+						fields
+						(
+							Associated_Site as "Associated Site"
+							Building_Name as "Building Name"
+							Total_Number_Of_Floors as "Total Number Of Floors"
+						)
+					)
+					datablock4
+					(
+			 			layout type = -1
+		     			title = "Assets With Quantity"
+		     			related field =  Assets_With_Quantity
+						fields
+						(
+							Asset
+							Quantity
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+			 			"Add Asset"
+    	 			)
+    			)
+			)
+		}
+	}
+	section Buildings
+	{
+		icon = "business-building"
+		form Add_Building
+		{
+			displayname = "Add Building"
+			success message = "Building Added Successfully"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Associated_Site
+			(
+				type = picklist
+				displayname = "Associated Site"
+				values  = Add_Site.ID
+    			bidirectional = Buildings
+    			displayformat = [Branch_Site_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Building_Name
+			(
+    			type = text
+				displayname = "Building Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Total_Number_Of_Floors
+			(
+				type = number
+				displayname = "Total Number Of Floors"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Gateways
+			(
+				type = grid
+				values  = Add_Gateway.ID
+    			bidirectional = Building
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Gateways
+	{
+		icon = "tech-wifi-router"
+		form Add_Gateway
+		{
+			displayname = "Add Gateway"
+			success message = "Gateway Added Successfully"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Spot_Name
+			(
+    			type = text
+				displayname = "Spot Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Site
+			(
+				type = picklist
+				values  = Add_Site.ID
+    			displayformat = [Branch_Site_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Building
+			(
+				type = picklist
+				values  = Add_Building.ID
+    			bidirectional = Gateways
+    			displayformat = [Building_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Floor
+			(
+				type = number
+				maxchar = 3
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Display_Name
+			(
+    			type = text
+				displayname = "Display Name"
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Assets_With_Quantity
+			(
+				type = grid
+				displayname = "Assets With Quantity"
+				values  = Add_Asset_To_Gateway.ID
+    			bidirectional = Gateway
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "design-2-3d-29"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Employees_Configuration
+	{
+		displayname= "Employees Configuration"
+		icon = "users-single-04"
+		custom All_Employees
+		{
+			displayName = "All Employees"
+			show all rows from Add_Employee    
+			(
+				Team
+				Employee_Designation as "Employee Designation"
+				Give_Access_To_Application as "Give Access To Application"
+				Marital_Status as "Marital Status "
+				Gender
+				Contact_Number as "Contact Number"
+				Contact_Email as "Contact Email"
+				Employee_Name  as "Employee Name"
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Contact_Address  as "Contact Address"
+	 			(
+	      			displayformat = [address_line_1+""+address_line_2+""+district_city+""+state_province+""+postal_Code+""+country]
+	      			enable = Show_As_Text
+	 			)
+			)
+			options
+			(
+				icon = "users-2-multiple"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Employee_Name as "Employee Name"
+							Contact_Address as "Contact Address"
+							Contact_Number as "Contact Number"
+							Contact_Email as "Contact Email"
+							Gender
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Employee_Name as "Employee Name"
+							Contact_Number as "Contact Number"
+							Contact_Email as "Contact Email"
+							Contact_Address as "Contact Address"
+							Marital_Status as "Marital Status "
+							Gender
+							Team
+							Employee_Designation as "Employee Designation"
+							Give_Access_To_Application as "Give Access To Application"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Team"
+		     			related field =  Team
+						fields
+						(
+							Team_Name as "Team Name"
+							Description
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Employee Designation"
+		     			related field =  Employee_Designation
+						fields
+						(
+							Designation
+							Description
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Teams
+		{
+			displayName = "All Teams"
+			show all rows from Add_Team    
+			(
+				Team_Name as "Team Name"
+				Description
+			)
+			options
+			(
+				icon = "users-network"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Team_Name as "Team Name"
+							Description
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Team_Name as "Team Name"
+							Description
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Designations
+		{
+			displayName = "All Designations"
+			show all rows from Employee_Designation    
+			(
+				Designation
+				Description
+			)
+			options
+			(
+				icon = "users-single-position"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Designation
+							Description
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Designation
+							Description
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Facilities
+	{
+		icon = "travel-hotel-symbol"
+		form Facility
+		{
+			success message = "Facility Added Successfully"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Facility_Name
+			(
+    			type = text
+				displayname = "Facility Name"
+    			description
+    			[
+    				type = help_text
+    			 	message = "E.g: Lighting,Environment,Water,Energy and others"
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "social-1-logo-trello"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Assets
+	{
+		icon = "social-1-logo-envato"
+		form Add_Asset
+		{
+			displayname = "Add Asset"
+			success message = "Asset Added Successfully"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Asset_Name
+			(
+    			type = text
+				displayname = "Asset Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have For_Facility
+			(
+				type = picklist
+				displayname = "For Facility"
+				values  = Facility.ID
+    			displayformat = [Facility_Name]
+				allow new entries = true
+				[
+					displayname = "Add New Facility"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Measurement_Method
+			(
+				type = picklist
+				displayname = "Measurement Method"
+				values  = Metrics.ID
+    			displayformat = [Metric_Display_Name]
+				allow new entries = true
+				[
+					displayname = "Add New Measurement Method"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "shopping-mobile-card"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Metrics
+	{
+		icon = "food-temperature"
+		form Metrics
+		{
+			success message = "Metric Added Successfully"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Metrics_Name
+			(
+    			type = text
+				displayname = "Metrics Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Metric_Display_Name
+			(
+    			type = text
+				displayname = "Metric Display Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "food-temperature"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Vendors
+	{
+		icon = "users-2-woman"
+		form Add_Vendor
+		{
+			displayname = "Add Vendor"
+			success message = "Vendor Added Successfully"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Vendor_Name
+			(
+    			type = name
+				displayname = "Vendor Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Mobile_Number
+			(
+    			type = phonenumber
+				displayname = "Mobile Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Contact_Email
+			(
+    			type = email
+				displayname = "Contact Email"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_1
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_2
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-2-woman-up"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Employees
+	{
+		icon = "users-single-04"
+		form Add_Employee
+		{
+			displayname = "Add Employee"
+			success message = "Employee Added Successfully"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Personal_Details
+			(
+				type = section
+				displayname = "Personal Details"
+				visibility = true
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Employee_Name
+			(
+    			type = name
+				displayname = "Employee Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Contact_Number
+			(
+    			type = phonenumber
+				displayname = "Contact Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Contact_Email
+			(
+    			type = email
+				displayname = "Contact Email"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Gender
+			(
+				type = radiobuttons
+				values = {"Male", "Female"}
+				layout = 2
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Marital_Status
+			(
+				type = radiobuttons
+				displayname = "Marital Status "
+				values = {"Married", "Unmarried"}
+				layout = 2
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Contact_Address
+			(
+    			type = address
+				displayname = "Contact Address"
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_1
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_2
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Official_Details
+			(
+				type = section
+				displayname = "Official Details"
+				visibility = true
+	 			row = 2
+	 			column = 0   
+				width = medium
+			)
+			Team
+			(
+				type = picklist
+				values  = Add_Team.ID
+    			displayformat = [Team_Name]
+				allow new entries = true
+				[
+					displayname = "Add New Team"
+				]
+				sortorder = ascending
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Employee_Designation
+			(
+				type = picklist
+				displayname = "Employee Designation"
+				values  = Employee_Designation.ID
+    			displayformat = [Designation]
+				allow new entries = true
+				[
+					displayname = "Add New Designation"
+				]
+				sortorder = ascending
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Give_Access_To_Application
+			(
+    			type = checkbox
+				displayname = "Give Access To Application"
+				initial value = false
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Teams
+	{
+		icon = "social-1-logo-slack"
+		form Add_Team
+		{
+			displayname = "Add Team"
+			success message = "Team Added Successfully"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Team_Name
+			(
+    			type = text
+				displayname = "Team Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Designations
+	{
+		icon = "design-window-paragraph"
+		form Employee_Designation
+		{
+			displayname = "Employee Designation"
+			success message = "Designation Added Successfully"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Designation
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Inventory
+	{
+		icon = "shopping-stock"
+		form Assets_In_inventory
+		{
+			displayname = "Assets In inventory"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Asset
+			(
+				type = picklist
+				values  = Add_Asset.ID
+    			displayformat = [Asset_Name]
+				allow new entries = true
+				[
+					displayname = "Add New Asset"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Quantity
+			(
+				type = number
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Last_Update_Date
+			(
+    			type = date
+				displayname = "Last Update Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "shopping-cart-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_asset_to_Inventory
+		{
+			displayname = "Add asset to Inventory"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Inventory_Details
+			(
+				type = section
+				displayname = "Inventory Details"
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Asset
+			(
+				type = picklist
+				values  = Add_Asset.ID
+    			displayformat = [Asset_Name]
+				allow new entries = true
+				[
+					displayname = "Add New Asset"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Quantity
+			(
+				type = number
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Asset_Refill_Date
+			(
+    			type = date
+				displayname = "Added On"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Vendor
+			(
+				type = picklist
+				values  = Add_Vendor.ID
+    			displayformat = [" " + Vendor_Name.first_name + " " + Vendor_Name.last_name]
+				allow new entries = true
+				[
+					displayname = "Add New Vendor"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Expense_Details
+			(
+				type = section
+				displayname = "Expense Details"
+				visibility = true
+	 			row = 2
+	 			column = 0   
+				width = medium
+			)
+			Expense_Amount
+			(
+				type = number
+				displayname = "Expense Amount"
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Notes
+			(
+    			type = textarea
+				height = 100px
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Receipt
+			(
+    			type = upload file
+				browse = local_drive, google_docs, zoho_docs
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Assets_In_Stock
+		{
+			displayName = "Assets In Stock"
+			show all rows from Assets_In_inventory    
+			(
+				Asset
+				Quantity
+				Last_Update_Date as "Last Update Date"
+				custom action "Update Quantity"
+				(
+	  			workflow = Update_Inventory_Quantity
+				show action in edit record menu = true
+				column header = "Update Quantity"
+				)
+			)
+			options
+			(
+				icon = "shopping-stock"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Asset
+							Quantity
+							Last_Update_Date as "Last Update Date"
+				"Update Quantity"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Asset
+							Quantity
+							Last_Update_Date as "Last Update Date"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Assets_Added_History
+		{
+			displayName = "Assets Added History"
+			show all rows from Add_asset_to_Inventory    
+			(
+				Asset
+				Asset_Refill_Date as "Added On"
+				Quantity
+				Vendor
+				Expense_Amount as "Expense Amount"
+				Notes
+				Receipt
+			)
+			options
+			(
+				icon = "arrows-1-bold-direction"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Asset
+							Asset_Refill_Date as "Added On"
+							Quantity
+							Vendor
+							Expense_Amount as "Expense Amount"
+							Notes
+							Receipt
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Asset
+							Asset_Refill_Date as "Added On"
+							Quantity
+							Vendor
+							Expense_Amount as "Expense Amount"
+							Notes
+							Receipt
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Asset_requests
+		{
+			displayName = "Asset requests"
+			show all rows from Raise_Asset_Request    
+			(
+				Order_Number as "Order Number"
+				Asset
+				For_Site as "For Site"
+				For_Building as "For Building"
+				For_Gateway as "For Gateway"
+				Quantity
+				Reason
+				Request_Status as "Request Status"
+				Submitted_By as "Submitted By"
+				custom action "Order To Vendor"
+				(
+	  			workflow = Order_To_Vendor_Workfow
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Order To Vendor"
+				)
+				custom action "Movie To Gateway"
+				(
+	  			workflow = Movie_To_Gateway_Workflow1
+				show action in edit record menu = true
+				column header = "Movie To Gateway"
+				condition = (Request_Status == "Received To Inventory ")
+				)
+			)
+			group by
+			(
+				Request_Status ascending
+			)
+			options
+			(
+				icon = "shopping-newsletter"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+				"Order To Vendor"
+				"Movie To Gateway"
+							Order_Number as "Order Number"
+							Asset
+							For_Site as "For Site"
+							For_Building as "For Building"
+							For_Gateway as "For Gateway"
+							Quantity
+							Reason
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Order_Number as "Order Number"
+							Asset
+							For_Site as "For Site"
+							For_Building as "For Building"
+							For_Gateway as "For Gateway"
+							Quantity
+							Reason
+							Request_Status as "Request Status"
+							Submitted_By as "Submitted By"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Order To Vendor"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Assets_Ordered_To_Vendor
+		{
+			displayName = "Assets Ordered To Vendor"
+			show all rows from Order_To_Vendor    
+			(
+				Order_Number as "Order Number"
+				Asset
+				Quantity
+				Reason
+				Order_Status as "Order Status"
+				For_Request as "For Request"
+				Vendor
+				custom action "Received"
+				(
+	  			workflow = Receive_Asset_Workflow
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Received"
+				)
+			)
+			options
+			(
+				icon = "shopping-cart-simple-remove"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+				"Received"
+							Order_Number as "Order Number"
+							Asset
+							Quantity
+							Reason
+							Order_Status as "Order Status"
+							For_Request as "For Request"
+							Vendor
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Order_Number as "Order Number"
+							Asset
+							Quantity
+							Reason
+							Order_Status as "Order Status"
+							For_Request as "For Request"
+							Vendor
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Received"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Vendors
+		{
+			displayName = "All Vendors"
+			show all rows from Add_Vendor    
+			(
+				Vendor_Name  as "Vendor Name"
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_1+""+address_line_2+""+district_city+""+state_province+""+postal_Code+""+country]
+	      			enable = Show_As_Text
+	 			)
+				Mobile_Number as "Mobile Number"
+				Contact_Email as "Contact Email"
+			)
+			options
+			(
+				icon = "users-2-woman"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Vendor_Name as "Vendor Name"
+							Mobile_Number as "Mobile Number"
+							Contact_Email as "Contact Email"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Vendor_Name as "Vendor Name"
+							Mobile_Number as "Mobile Number"
+							Contact_Email as "Contact Email"
+							Address
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Updates
+	{
+		icon = "arrows-1-loop-83"
+		form Add_Maintenance_Work
+		{
+			displayname = "Add Maintenance Work"
+			success message = "Maintenance Work Added Successfully"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Work
+			(
+    			type = text
+    			description
+    			[
+    				type = help_text
+    			 	message = "Include House Keeping, Equipment Repair, Replace, Housekeeping, Etc"
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "tech-laptop"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Site_Inspections
+	{
+		displayname= "Site Inspections"
+		icon = "location-crosshair"
+		form Raise_Asset_Request
+		{
+			displayname = "Raise Asset Request"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Order_Number
+			(
+    			type = autonumber
+				displayname = "Order Number"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Submitted_By
+			(
+				type = picklist
+				displayname = "Submitted By"
+				values  = Add_Employee.ID
+    			displayformat = [" " + Employee_Name.first_name + " " + Employee_Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			For_Site
+			(
+				type = picklist
+				displayname = "For Site"
+				values  = Add_Site.ID
+    			displayformat = [Branch_Site_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			For_Building
+			(
+				type = picklist
+				displayname = "For Building"
+				values  = Add_Building.ID
+    			displayformat = [Building_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			For_Gateway
+			(
+				type = picklist
+				displayname = "For Gateway"
+				values  = Add_Gateway.ID
+    			displayformat = [Display_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Asset
+			(
+				type = picklist
+				values  = Add_Asset.ID
+    			displayformat = [Asset_Name]
+				allow new entries = true
+				[
+					displayname = "Add New Asset"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Quantity
+			(
+				type = number
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Reason
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Request_Status
+			(
+				type = radiobuttons
+				displayname = "Request Status"
+				values = {"Requested", "Ordered To Vendor", "Received To Inventory ", "Moved To Gateway", "Cancelled"}
+				initial value = "Requested"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Update_The_Stats
+		{
+			displayname = "Update The Stats"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Update_Type
+			(
+				type = radiobuttons
+				displayname = "Update Type"
+				values = {"Gateway States", "Asset States"}
+				layout = 2
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Site
+			(
+				type = picklist
+				values  = Add_Site.ID
+    			displayformat = [Branch_Site_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Building
+			(
+				type = picklist
+				values  = Add_Building.ID
+    			displayformat = [Building_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Gateway
+			(
+				type = picklist
+				values  = Add_Gateway.ID
+    			displayformat = [Display_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Asset
+			(
+				type = picklist
+				values  = Add_Asset.ID
+    			displayformat = [Asset_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status_Description
+			(
+    			type = textarea
+				displayname = "Status Description"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Submitted_By
+			(
+				type = picklist
+				displayname = "Submitted By"
+				values  = Add_Employee.ID
+    			displayformat = [" " + Employee_Name.first_name + "-" + Contact_Email]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "tech-2-p-system-update"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Asset_States
+		{
+			displayName = "Asset States"
+			show all rows from Update_The_Stats  [Update_Type == "Asset States"]  
+			(
+				Building
+				Gateway
+				Submitted_By as "Submitted By"
+				Asset
+				Status_Description as "Status Description"
+				Site
+			)
+			options
+			(
+				icon = "social-1-logo-envato"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Submitted_By as "Submitted By"
+							Site
+							Building
+							Gateway
+							Asset
+							Status_Description as "Status Description"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Site
+							Building
+							Gateway
+							Asset
+							Status_Description as "Status Description"
+							Submitted_By as "Submitted By"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Gateway_States
+		{
+			displayName = "Gateway States"
+			show all rows from Update_The_Stats  [Update_Type == "Gateway States"]  
+			(
+				Building
+				Gateway
+				Submitted_By as "Submitted By"
+				Status_Description as "Status Description"
+				Site
+			)
+			options
+			(
+				icon = "business-hierarchy-53"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Submitted_By as "Submitted By"
+							Site
+							Building
+							Gateway
+							Status_Description as "Status Description"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Site
+							Building
+							Gateway
+							Status_Description as "Status Description"
+							Submitted_By as "Submitted By"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Incident_Tracking
+	{
+		displayname= "Incident Tracking"
+		icon = "shopping-delivery-track"
+		calendar Scheduled_Incidents
+		{
+			displayName = "Scheduled Incidents"
+   			hide = true
+			show all rows from Add_An_Incident    
+			(
+				Gateway
+				Failure_Object as "Failure Object"
+				Image
+				Priority
+				Troubleshoot_Status as "Troubleshoot Status"
+				Status_Updated_On as "Status Updated On"
+				Submitted_By as "Submitted By"
+				Submitted_By.Contact_Number as "Contact Number"
+				Submitted_By.Contact_Email as "Contact Email"
+				Site.Contact_Email as "Contact Email"
+				Description
+				Assigned_To as "Assigned To"
+				Deadline
+				Site
+				Issue_Name as "Issue Name"
+			)
+			options
+			(
+				display type = month
+				week start day = sunday
+				display field = Issue_Name
+				start date = Deadline
+				default date 
+				(
+	    			day   = Today
+	    			month = Currentmonth
+	    			year  = Currentyear
+				)
+				icon = "ui-1-calendar-grid-61"
+			)
+			conditional formatting
+			(
+				"High Priority"
+				{
+				condition = (Priority == "High")
+				fields = [Issue_Name]
+				format = "color:#000000;background-color:#fe8e87;"
+				}
+				"Medium Priority"
+				{
+				fields = [Issue_Name]
+				format = "color:#000000;background-color:#fffb76;"
+				}
+				"Low Priority"
+				{
+				fields = [Issue_Name]
+				format = "color:#000000;background-color:#ffc772;"
+				}
+				"High Priority"
+				{
+				condition = (Priority == "High")
+				format = "color:#000000;background-color:#fe8e87;"
+				}
+				"Medium Priority"
+				{
+				condition = (Priority == "Medium")
+				format = "color:#000000;background-color:#fffb76;"
+				}
+				"Low Priority"
+				{
+				condition = (Priority == "Low")
+				format = "color:#000000;background-color:#ffc772;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Issue_Name as "Issue Name"
+							Description
+							Site
+							Assigned_To as "Assigned To"
+							Deadline
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Submitted_By as "Submitted By"
+							Issue_Name as "Issue Name"
+							Site
+							Gateway
+							Failure_Object as "Failure Object"
+							Deadline
+							Description
+							Image
+							Assigned_To as "Assigned To"
+							Priority
+							Troubleshoot_Status as "Troubleshoot Status"
+							Status_Updated_On as "Status Updated On"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		form Add_An_Incident
+		{
+			displayname = "Add An Incident"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Submitted_By
+			(
+				type = picklist
+				displayname = "Submitted By"
+				values  = Add_Employee.ID
+    			displayformat = [" " + Employee_Name.first_name + " " + Employee_Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Issue_Name
+			(
+    			type = text
+				displayname = "Issue Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Site
+			(
+				type = picklist
+				values  = Add_Site.ID
+    			displayformat = [Branch_Site_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Gateway
+			(
+				type = picklist
+				values  = Add_Gateway.ID
+    			displayformat = [Display_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Failure_Object
+			(
+				type = picklist
+				displayname = "Failure Object"
+				values  = Add_Asset.ID
+    			displayformat = [Asset_Name]
+				sortorder = ascending
+    			description
+    			[
+    				type = help_text
+    			 	message = "Select Object If know the failure object"
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Deadline
+			(
+    			type = date
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Image
+			(
+    			type = image
+				source  = file
+				aspect ratio = original
+				camera = primary
+				preview duration = 0
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Priority
+			(
+				type = radiobuttons
+				values = {"High", "Medium", "Low"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Working_Details
+			(
+				type = section
+				displayname = "Working Details"
+				visibility = true
+	 			row = 2
+	 			column = 0   
+				width = medium
+			)
+			Assigned_To
+			(
+				type = picklist
+				displayname = "Assigned To"
+				values  = Add_Employee.ID
+    			displayformat = [" " + Employee_Name.first_name + " " + Employee_Name.last_name]
+				sortorder = ascending
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Troubleshoot_Status
+			(
+				type = radiobuttons
+				displayname = "Troubleshoot Status"
+				values = {"Open", "Assigned", "In Progress", "Closed"}
+				initial value = "Open"
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Status_Updated_On
+			(
+    			type = datetime
+				displayname = "Status Updated On"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Open_Incidents
+		{
+			displayName = "Open Incidents"
+			show all rows from Add_An_Incident  [Troubleshoot_Status == "Open" || Troubleshoot_Status == "Assigned"]  
+			(
+				Status_Updated_On as "Status Updated On"
+				Assigned_To as "Assigned To"
+				(
+					view = All_Employees
+				)
+				Site
+				Gateway
+				(
+					view = Gateways_Of_Buildings
+				)
+				Issue_Name as "Issue Name"
+				Description
+				Submitted_By as "Submitted By"
+				(
+					view = All_Employees
+				)
+				Priority
+				Deadline
+				Troubleshoot_Status as "Troubleshoot Status"
+				Failure_Object as "Failure Object"
+				(
+					view = All_Assets
+				)
+				custom action "Assign Employee"
+				(
+	  			workflow = Assign_Employee_Workflow
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Assign Employee"
+				)
+			)
+			group by
+			(
+				Priority ascending
+				Troubleshoot_Status ascending
+			)
+			options
+			(
+				icon = "furniture-door"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+				"Assign Employee"
+							Submitted_By as "Submitted By"
+							Issue_Name as "Issue Name"
+							Site
+							Gateway
+							Failure_Object as "Failure Object"
+							Description
+							Assigned_To as "Assigned To"
+							Deadline
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Site"
+		     			related field =  Site[Troubleshoot_Status == "Open" || Troubleshoot_Status == "Assigned"]
+						fields
+						(
+							Company
+							Branch_Site_Name as "Branch/Site Name"
+							Branch_Site_Address as "Branch/Site Address"
+							Site_In_charge as "Site In-charge "
+						)
+					)
+					datablock4
+					(
+			 			layout type = -2
+		     			title = "Title"
+						fields
+						(
+							Submitted_By as "Submitted By"
+							Issue_Name as "Issue Name"
+							Gateway
+							Failure_Object as "Failure Object"
+							Deadline
+							Description
+							Assigned_To as "Assigned To"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Assign Employee"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		pivotchart Priority_Incidents
+		{ 
+			displayname = "Priority Incidents"
+			based on Autoview_1547629286779_Add_An_Incident
+					hide = true
+							icon = "shopping-credit-card-in"				show all rows from Add_An_Incident
+				(
+ 					Failure_Object  as "Failure Object"
+ 					Assigned_To  as "Assigned To"
+ 					Deadline 
+ 					Submitted_By  as "Submitted By"
+ 					Issue_Name  as "Issue Name"
+ 					Description 
+ 					Troubleshoot_Status  as "Troubleshoot Status"
+ 					Priority 
+ 					Site 
+ 					Status_Updated_On  as "Status Updated On"
+ 					Gateway 
+				)
+		}
+		pivotchart Weekly_Incidents
+		{ 
+			displayname = "Weekly Incidents"
+			based on Autoview_1547629286779_Add_An_Incident
+					hide = true
+							icon = "transportation-light-traffic"				show all rows from Add_An_Incident
+				(
+ 					Failure_Object  as "Failure Object"
+ 					Assigned_To  as "Assigned To"
+ 					Deadline 
+ 					Submitted_By  as "Submitted By"
+ 					Issue_Name  as "Issue Name"
+ 					Description 
+ 					Troubleshoot_Status  as "Troubleshoot Status"
+ 					Priority 
+ 					Site 
+ 					Status_Updated_On  as "Status Updated On"
+ 					Gateway 
+				)
+		}
+		list Working_Incidents
+		{
+			displayName = "Working Incidents"
+			show all rows from Add_An_Incident  [Troubleshoot_Status == "In Progress" || Troubleshoot_Status == "Assigned"]  
+			(
+				Status_Updated_On as "Status Updated On"
+				Assigned_To as "Assigned To"
+				(
+					view = All_Employees
+				)
+				Site
+				Gateway
+				(
+					view = Gateways_Of_Buildings
+				)
+				Issue_Name as "Issue Name"
+				Description
+				Submitted_By as "Submitted By"
+				(
+					view = All_Employees
+				)
+				Deadline
+				Failure_Object as "Failure Object"
+				(
+					view = All_Assets
+				)
+			)
+			group by
+			(
+				Assigned_To ascending
+			)
+			options
+			(
+				icon = "location-appointment"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Submitted_By as "Submitted By"
+							Issue_Name as "Issue Name"
+							Site
+							Gateway
+							Failure_Object as "Failure Object"
+							Description
+							Assigned_To as "Assigned To"
+							Deadline
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Site"
+		     			related field =  Site[Troubleshoot_Status == "In Progress" || Troubleshoot_Status == "Assigned"]
+						fields
+						(
+							Company
+							Branch_Site_Name as "Branch/Site Name"
+							Branch_Site_Address as "Branch/Site Address"
+							Site_In_charge as "Site In-charge "
+						)
+					)
+					datablock4
+					(
+			 			layout type = -2
+		     			title = "Title"
+						fields
+						(
+							Submitted_By as "Submitted By"
+							Issue_Name as "Issue Name"
+							Gateway
+							Failure_Object as "Failure Object"
+							Deadline
+							Description
+							Assigned_To as "Assigned To"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Closed_Incidents
+		{
+			displayName = "Closed Incidents"
+			show all rows from Add_An_Incident  [Troubleshoot_Status == "Close"]  
+			(
+				Status_Updated_On as "Status Updated On"
+				Assigned_To as "Assigned To"
+				(
+					view = All_Employees
+				)
+				Site
+				Gateway
+				(
+					view = Gateways_Of_Buildings
+				)
+				Issue_Name as "Issue Name"
+				Description
+				Submitted_By as "Submitted By"
+				(
+					view = All_Employees
+				)
+				Deadline
+				Failure_Object as "Failure Object"
+				(
+					view = All_Assets
+				)
+			)
+			group by
+			(
+				Assigned_To ascending
+			)
+			options
+			(
+				icon = "location-route-close"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Submitted_By as "Submitted By"
+							Issue_Name as "Issue Name"
+							Site
+							Gateway
+							Failure_Object as "Failure Object"
+							Description
+							Assigned_To as "Assigned To"
+							Deadline
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Site"
+		     			related field =  Site[Troubleshoot_Status == "Close"]
+						fields
+						(
+							Company
+							Branch_Site_Name as "Branch/Site Name"
+							Branch_Site_Address as "Branch/Site Address"
+							Site_In_charge as "Site In-charge "
+						)
+					)
+					datablock4
+					(
+			 			layout type = -2
+		     			title = "Title"
+						fields
+						(
+							Submitted_By as "Submitted By"
+							Issue_Name as "Issue Name"
+							Gateway
+							Failure_Object as "Failure Object"
+							Deadline
+							Description
+							Assigned_To as "Assigned To"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Open_Issue
+		{
+			displayName = "My Open Issue"
+			show all rows from Add_An_Incident  [Troubleshoot_Status == "Open" || Troubleshoot_Status == "Assigned" && Assigned_To.Contact_Email == zoho.loginuserid]  
+			(
+				Status_Updated_On as "Status Updated On"
+				Assigned_To as "Assigned To"
+				(
+					view = All_Employees
+				)
+				Site
+				Gateway
+				(
+					view = Gateways_Of_Buildings
+				)
+				Issue_Name as "Issue Name"
+				Description
+				Submitted_By as "Submitted By"
+				(
+					view = All_Employees
+				)
+				Priority
+				Deadline
+				Troubleshoot_Status as "Troubleshoot Status"
+				Failure_Object as "Failure Object"
+				(
+					view = All_Assets
+				)
+				custom action "Accept Issue"
+				(
+	  			workflow = Accept_Issue_Workflow
+				show action in edit record menu = true
+				column header = "Accept Issue"
+				)
+			)
+			group by
+			(
+				Priority ascending
+				Troubleshoot_Status ascending
+			)
+			options
+			(
+				icon = "furniture-door"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+				"Accept Issue"
+							Issue_Name as "Issue Name"
+							Site
+							Gateway
+							Failure_Object as "Failure Object"
+							Description
+							Assigned_To as "Assigned To"
+							Deadline
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Site"
+		     			related field =  Site[Troubleshoot_Status == "Open" || Troubleshoot_Status == "Assigned" && Assigned_To.Contact_Email == zoho.loginuserid]
+						fields
+						(
+							Company
+							Branch_Site_Name as "Branch/Site Name"
+							Branch_Site_Address as "Branch/Site Address"
+							Site_In_charge as "Site In-charge "
+						)
+					)
+					datablock4
+					(
+			 			layout type = -2
+		     			title = "Title"
+						fields
+						(
+							Submitted_By as "Submitted By"
+							Issue_Name as "Issue Name"
+							Gateway
+							Failure_Object as "Failure Object"
+							Deadline
+							Description
+							Assigned_To as "Assigned To"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Working_Incidents
+		{
+			displayName = "My Working Incidents"
+			show all rows from Add_An_Incident  [Troubleshoot_Status == "In Progress" && Assigned_To.Contact_Email == zoho.loginuserid]  
+			(
+				Status_Updated_On as "Status Updated On"
+				Assigned_To as "Assigned To"
+				(
+					view = All_Employees
+				)
+				Site
+				Gateway
+				(
+					view = Gateways_Of_Buildings
+				)
+				Issue_Name as "Issue Name"
+				Description
+				Submitted_By as "Submitted By"
+				(
+					view = All_Employees
+				)
+				Deadline
+				Failure_Object as "Failure Object"
+				(
+					view = All_Assets
+				)
+				custom action "Close issue"
+				(
+	  			workflow = Close_Issue_Workflow
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Close issue"
+				)
+			)
+			group by
+			(
+				Assigned_To ascending
+			)
+			options
+			(
+				icon = "social-1-logo-buffer"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+				"Close issue"
+							Submitted_By as "Submitted By"
+							Issue_Name as "Issue Name"
+							Site
+							Gateway
+							Failure_Object as "Failure Object"
+							Description
+							Assigned_To as "Assigned To"
+							Deadline
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Site"
+		     			related field =  Site[Troubleshoot_Status == "In Progress" && Assigned_To.Contact_Email == zoho.loginuserid]
+						fields
+						(
+							Company
+							Branch_Site_Name as "Branch/Site Name"
+							Branch_Site_Address as "Branch/Site Address"
+							Site_In_charge as "Site In-charge "
+						)
+					)
+					datablock4
+					(
+			 			layout type = -2
+		     			title = "Title"
+						fields
+						(
+							Submitted_By as "Submitted By"
+							Issue_Name as "Issue Name"
+							Gateway
+							Failure_Object as "Failure Object"
+							Deadline
+							Description
+							Assigned_To as "Assigned To"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Close issue"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Closed_Incidents
+		{
+			displayName = "My Closed Incidents"
+			show all rows from Add_An_Incident  [Troubleshoot_Status == "Close" && Assigned_To.Contact_Email == zoho.loginuserid]  
+			(
+				Status_Updated_On as "Status Updated On"
+				Assigned_To as "Assigned To"
+				(
+					view = All_Employees
+				)
+				Site
+				Gateway
+				(
+					view = Gateways_Of_Buildings
+				)
+				Issue_Name as "Issue Name"
+				Description
+				Submitted_By as "Submitted By"
+				(
+					view = All_Employees
+				)
+				Deadline
+				Failure_Object as "Failure Object"
+				(
+					view = All_Assets
+				)
+			)
+			group by
+			(
+				Assigned_To ascending
+			)
+			options
+			(
+				icon = "location-route-close"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Submitted_By as "Submitted By"
+							Issue_Name as "Issue Name"
+							Site
+							Gateway
+							Failure_Object as "Failure Object"
+							Description
+							Assigned_To as "Assigned To"
+							Deadline
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Site"
+		     			related field =  Site[Troubleshoot_Status == "Close" && Assigned_To.Contact_Email == zoho.loginuserid]
+						fields
+						(
+							Company
+							Branch_Site_Name as "Branch/Site Name"
+							Branch_Site_Address as "Branch/Site Address"
+							Site_In_charge as "Site In-charge "
+						)
+					)
+					datablock4
+					(
+			 			layout type = -2
+		     			title = "Title"
+						fields
+						(
+							Submitted_By as "Submitted By"
+							Issue_Name as "Issue Name"
+							Gateway
+							Failure_Object as "Failure Object"
+							Deadline
+							Description
+							Assigned_To as "Assigned To"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Order_To_Vendor
+	{
+		displayname= "Order To Vendor"
+		form Order_To_Vendor
+		{
+			displayname = "Order To Vendor"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Order_Number
+			(
+    			type = autonumber
+				displayname = "Order Number"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			For_Request
+			(
+				type = picklist
+				displayname = "For Request"
+				values  = Raise_Asset_Request.ID
+    			displayformat = [Order_Number + " - " + Added_User]
+				sortorder = ascending
+    			description
+    			[
+    				type = tooltip
+    			 	message = "Optional"
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Asset
+			(
+				type = picklist
+				values  = Add_Asset.ID
+    			displayformat = [Asset_Name]
+				allow new entries = true
+				[
+					displayname = "Add New Asset"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Quantity
+			(
+				type = number
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Vendor
+			(
+				type = picklist
+				values  = Add_Vendor.ID
+    			displayformat = [" " + Vendor_Name.first_name + " " + Vendor_Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Reason
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Order_Status
+			(
+				type = radiobuttons
+				displayname = "Order Status"
+				values = {"Ordered To Vendor", "Received To Inventory ", "Cancelled"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Expenses
+	{
+		icon = "shopping-credit-card-in"
+		form Add_Expense
+		{
+			displayname = "Add Expense"
+			success message = "Expense Added Successfully"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Submitted_By
+			(
+				type = picklist
+				displayname = "Submitted By"
+				values  = Add_Employee.ID
+    			displayformat = [" " + Employee_Name.first_name + " " + Employee_Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			For_Incident
+			(
+				type = picklist
+				displayname = "For Incident"
+				values  = Add_An_Incident.ID
+    			displayformat = [ID + " - " + Issue_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Expense_Type
+			(
+				type = picklist
+				displayname = "Expense Type"
+				values = {"Assets Purchase", "Other Things Purchase", "Maintenance Work", "Other Expense"}
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Expense_Date
+			(
+    			type = date
+				displayname = "Expense Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Expense_Amount
+			(
+				type = number
+				displayname = "Expense Amount"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Notes
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Receipt
+			(
+    			type = upload file
+				browse = local_drive
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "business-currency-dollar"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list All_Expenses
+		{
+			displayName = "All Expenses"
+			show all rows from Add_Expense    
+			(
+				Expense_Amount as "Expense Amount"
+				Notes
+				Submitted_By as "Submitted By"
+				Expense_Date as "Expense Date"
+				Receipt
+				Expense_Type as "Expense Type"
+				For_Incident as "For Incident"
+			)
+			group by
+			(
+				Expense_Type ascending
+			)
+			options
+			(
+				icon = "shopping-credit-card-in"
+	 		)
+			conditional formatting
+			(
+				"Expense Amount"
+				{
+				fields = [Expense_Amount]
+				format = "font-weight:bold;color:#2f78d0;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							For_Incident as "For Incident"
+							Expense_Date as "Expense Date"
+							Expense_Amount as "Expense Amount"
+							Notes
+							Receipt
+							Submitted_By as "Submitted By"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Submitted_By as "Submitted By"
+							Expense_Date as "Expense Date"
+							Expense_Type as "Expense Type"
+							Expense_Amount as "Expense Amount"
+							Notes
+							Receipt
+							Submitted_By as "Submitted By"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "For Incident"
+		     			related field =  For_Incident
+						fields
+						(
+							Submitted_By as "Submitted By"
+							Issue_Name as "Issue Name"
+							Site
+							Gateway
+							Failure_Object as "Failure Object"
+							Deadline
+							Description
+							Image
+							Assigned_To as "Assigned To"
+							Priority
+							Troubleshoot_Status as "Troubleshoot Status"
+							Status_Updated_On as "Status Updated On"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Update_the_Current_Quantity_Of_Assets
+	{
+		displayname= "Update the Current Quantity Of Assets"
+		icon = "social-1-logo-envato"
+		form Add_Asset_To_Gateway
+		{
+			displayname = "Add Asset To Gateway"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Gateway
+			(
+				type = picklist
+				values  = Add_Gateway.ID
+    			bidirectional = Assets_With_Quantity
+    			displayformat = [Display_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Asset
+			(
+				type = picklist
+				values  = Add_Asset.ID
+    			displayformat = [Asset_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Quantity
+			(
+				type = number
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "social-1-logo-envato"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Current_Asset_Quantity_Of_The_Gateway
+		{
+			displayName = "Current Asset Quantity Of The Gateway"
+   			hide = true
+			show all rows from Add_Asset_To_Gateway    
+			(
+				Gateway
+				Asset
+				Quantity
+			)
+			options
+			(
+				icon = "business-laptop-71"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Gateway
+							Asset
+							Quantity
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Gateway
+							Asset
+							Quantity
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Assign_Employee
+	{
+		displayname= "Assign Employee"
+		form Assign_Employee
+		{
+			displayname = "Assign Employee"
+			store data in zc = false
+			success message = ""
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Issue
+			(
+				type = picklist
+				values  = Add_An_Incident.ID
+    			displayformat = [Issue_Name + " - " + Deadline]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Employee
+			(
+				type = picklist
+				values  = Add_Employee.ID
+    			displayformat = [" " + Employee_Name.first_name + " " + Employee_Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				Submit
+				(
+   					type = submit
+   					displayname = "Submit"
+				)
+			}
+		}
+	}
+	functions
+	{
+ 			void custom_action.add_asset_to_gateway(int gateway)
+			{
+				openUrl(zoho.appuri + "#Form:Add_Asset_To_Gateway?Gateway=" + gateway,"popup window");
+			}
+ 			void custom_action.open_add_gateway_form(int building)
+			{
+				openUrl(zoho.appuri + "#Form:Add_Gateway?Building=" + building,"popup window");
+			}
+ 			void custom_action.open_add_building_form(int site)
+			{
+				openUrl(zoho.appuri + "#Form:Add_Building?Associated_Site=" + site,"popup window");
+			}
+ 			void custom_action.update_asset_quantity_in_inventory(int asset_in_inventory)
+			{
+				openUrl(zoho.appuri + "Assets_In_inventory/record-edit/Assets_In_Stock/" + asset_in_inventory,"popup window");
+			}
+ 			void notification_nction.send_mail(string toMailId, string sub, string msg)
+			{
+				sendmail
+				[
+					from :zoho.adminuserid
+					to :toMailId
+					subject :sub
+					message :msg
+				]
+			}
+ 			void custom_action.assign_employee(int issueID)
+			{
+				openUrl(zoho.appuri + "#Form:Assign_Employee?Issue=" + issueID,"popup window");
+			}
+ 			void custom_action.accept_Issue(int issue_id)
+			{
+				issue = Add_An_Incident[ID == issue_id];
+				issue.Troubleshoot_Status="In Progress";
+			}
+ 			void custom_action.close_issue(int issue_id)
+			{
+				issue = Add_An_Incident[ID == issue_id];
+				issue.Troubleshoot_Status="Closed";
+			}
+ 			void custom_action.order_to_vendor(int request_ID)
+			{
+				openUrl(zoho.appuri + "#Form:Order_To_Vendor?For_Request=" + request_ID,"popup window");
+			}
+ 			void custom_action.move_to_gateway(int order_ID)
+			{
+				request = Raise_Asset_Request[ID = order_ID];
+				request = "Moved To Gateway";
+			}
+ 			void custom_action.receive_asset(int order_ID)
+			{
+				order = Order_To_Vendor[ID == order_ID];
+				order.Order_Status="Received To Inventory";
+				asset_in_inverntory = Assets_In_inventory[Asset == order.Asset];
+				asset_in_inverntory.Quantity=order.Quantity;
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Run_Scripts_On_click_a_bu as "Run Scripts - On click a button"
+			{
+				type =  form
+				form = Assign_Employee
+				button = Submit
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						issue = Add_An_Incident[ID == input.Issue];
+										issue.Assigned_To=input.Employee;
+										issue.Troubleshoot_Status="Assigned";
+										issue.Status_Updated_On=zoho.currenttime;
+										msg = "There is an issue has been assigned to you. <br><br><br> Issue Details below here, <br><br> <b>Issue Name: </b>" + issue.Issue_Name + "(<span style='color:#58CFFB'>Priority: " + issue.Priority + "</span>)<br><b>Site: </b>" + issue.Site.Branch_Site_Name + "<br><b>Building: </b>" + issue.Site.Branch_Site_Name + "<br><b>Gateway: </b>" + issue.Site.Branch_Site_Name;
+										if(issue.Failure_Object != null)
+										{
+											msg = msg + "<br><b>Failure Object: </b>" + issue.Failure_Object.Asset_Name + "<br><b>Description: </b>" + issue.Description + "<br><b>Deadline: </b>" + issue.Deadline + "<br><br>To track your work oreder click <a href='https://app.zohocreator.com/" + zoho.appuri + "#Report:My_Work_Orders'>here</a>";
+										}
+										msg = msg + "<br><b>Failure Object: </b>" + issue.Failure_Object.Asset_Name + "<br><b>Deadline: </b>" + issue.Deadline;
+										sub = zoho.appname + "Issue Assinged";
+										toMailID = input.Employee.Contact_Email;
+										thisapp.notification_nction.send_mail(toMailID,sub,msg);
+					)
+					}
+				}
+			}
+			Run_Scripts_On_Always2 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Building
+				record event = on add or edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide Gateways.Site;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always3 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Building
+				record event = on add or edit
+
+	on success
+	{
+					actions 
+					{
+						openURL("https://app.zohocreator.com${zoho.appuri}#Report:Gateways_Of_Buildings?Building=${Building_Name}","new window");
+					}
+	}
+
+			}
+			Run_Scripts_On_Always4 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Building
+				record event = on add or edit
+
+	on user input of Associated_Site
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											for each  gateway in input.Gateways
+										{
+											gateway.Site=input.Associated_Site;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always5 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Building
+				record event = on add or edit
+
+	on add row of Gateways
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											row.Site=input.Associated_Site;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always6 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Gateway
+				record event = on add or edit
+
+	field rules
+	{
+					actions  (Site is null)
+					{
+						hide Building;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always7 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Gateway
+				record event = on add or edit
+
+	on user input of Floor
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Building.Total_Number_Of_Floors < input.Floor && input.Floor != null)
+										{
+											input.Floor = null;
+											alert input.Building.Building_Name + " have only " + input.Building.Total_Number_Of_Floors;
+										}
+										if(input.Building.Total_Number_Of_Floors == null && input.Floor != null)
+										{
+											input.Floor = null;
+											alert "Select building First";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always8 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Gateway
+				record event = on add or edit
+
+	on user input of Building
+	{
+					actions  (Site is null)
+					{
+						custom deluge script
+						(
+											input.Floor = null;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always9 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Gateway
+				record event = on add or edit
+
+	on user input of Site
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Site != null)
+										{
+											buildings = Add_Building[Associated_Site == input.Site].ID.getAll();
+											input.Building:ui.add(buildings);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always10 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Gateway
+				record event = on add or edit
+
+	on add row of Assets_With_Quantity
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											assets = Add_Asset[ID != 0].ID.getAll();
+										if(assets.size() != 0)
+										{
+											for each  _row_ in Assets_With_Quantity
+											{
+												if(_row_.Asset != null)
+												{
+													assets.remove(_row_.Asset);
+												}
+											}
+										}
+										row.Asset:ui.add(assets);
+						)
+					}
+	}
+
+			}
+			Run_scripts_on_always1 as "Run scripts on always"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on add or edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											employee = Add_Employee[Contact_Email == zoho.adminuserid];
+										if(employee.count() == 0)
+										{
+											alert "Add admin details first";
+											input.Contact_Email = zoho.adminuserid;
+											disable Contact_Email;
+											hide Give_Access_To_Application;
+										}
+						)
+					}
+	}
+
+			}
+			Run_scripts_on_always2 as "Run scripts on always"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on add or edit
+
+	on success
+	{
+					actions  (Contact_Email == zoho.adminuserid)
+					{
+						openURL("#Form:Add_Company_Details","new window");
+					}
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Give_Access_To_Application == true)
+										{
+											//Sharing some forms and reports to added employee with their email ID
+											thisapp.permissions.assignUserInProfile(input.Contact_Email,"Employee");
+											if(input.Contact_Email != zoho.adminuserid)
+											{
+												sendmail
+												[
+													from :zoho.adminuserid
+													to :input.Contact_Email
+													subject :"Application Has been shared with you"
+													message :("Hii " + input.Employee_Name) + ",<br><br>You have added as an employee in our Application. Your designation is " + input.Employee_Designation + ". And you are an application user now. Click <a href='https://app.zohocreator.com" + zoho.appuri + "'>here</a> to track your work orders.<br><br> Regards,<br>" + zoho.adminuserid
+												]
+											}
+										}
+										else
+										{
+											if(input.Contact_Email != zoho.adminuserid)
+											{
+												sendmail
+												[
+													from :zoho.adminuserid
+													to :input.Contact_Email
+													subject :"Application Has been shared with you"
+													message :("Hii " + input.Employee_Name) + ",<br><br>You have added as an employee in our Application. Your designation is " + input.Employee_Designation + ".<br><br> Regards,<br>" + zoho.adminuserid
+												]
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_scripts_While_adding_2 as "Run scripts - While adding a record"
+			{
+				type =  form
+				form = Add_Asset
+				record event = on add
+
+	on success
+	{
+	}
+
+			}
+			Run_scripts_While_adding_3 as "Run scripts - While adding a record"
+			{
+				type =  form
+				form = Add_asset_to_Inventory
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Expense_Amount != null && input.Notes == null)
+										{
+											alert "Give some notes for this expense";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_scripts_While_adding_4 as "Run scripts - While adding a record"
+			{
+				type =  form
+				form = Add_asset_to_Inventory
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											asset_in_stock = Assets_In_inventory[Asset == input.Asset];
+										if(asset_in_stock.count() == 0)
+										{
+											insert into Assets_In_inventory
+											[
+												Quantity=input.Quantity
+												Asset=input.Asset
+												Last_Update_Date=input.Asset_Refill_Date
+												Added_User=zoho.loginuser
+											]
+										}
+										else
+										{
+											asset_in_stock.Quantity=asset_in_stock.Quantity + input.Quantity;
+											asset_in_stock.Last_Update_Date=(asset_in_stock.Last_Update_Date + input.Asset_Refill_Date);
+										}
+										if(input.Expense_Amount != null)
+										{
+											user = Add_Employee[Contact_Email == zoho.loginuserid];
+											insert into Add_Expense
+											[
+												Expense_Type="Asset Purchase"
+												Added_User=zoho.loginuser
+												Expense_Amount=input.Expense_Amount
+												Expense_Date=input.Asset_Refill_Date
+												Notes=input.Notes
+												Receipt=input.Receipt
+												Submitted_By=user
+											]
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_adding_3 as "Run Scripts - While adding a record"
+			{
+				type =  form
+				form = Raise_Asset_Request
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide Request_Status;
+						disable Submitted_By;
+					}
+	}
+
+			}
+			Run_Scripts_While_adding_4 as "Run Scripts - While adding a record"
+			{
+				type =  form
+				form = Raise_Asset_Request
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											employee = Add_Employee[Contact_Email == zoho.loginuserid];
+										input.Submitted_By = employee.ID;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_always1 as "Run Scripts - On always"
+			{
+				type =  form
+				form = Update_The_Stats
+				record event = on add or edit
+
+	field rules
+	{
+					actions  (Update_Type == "Asset States")
+					{
+						show Asset;
+					}
+					actions 
+					{
+						show Asset;
+					}
+	}
+
+			}
+			Run_Scripts_On_always2 as "Run Scripts - On always"
+			{
+				type =  form
+				form = Update_The_Stats
+				record event = on add or edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Submitted_By = Add_Employee[Contact_Email == zoho.loginuserid].ID;
+										disable Submitted_By;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_always3 as "Run Scripts - On always"
+			{
+				type =  form
+				form = Update_The_Stats
+				record event = on add or edit
+
+	on user input of Update_Type
+	{
+					actions  (Update_Type == "Asset States")
+					{
+						custom deluge script
+						(
+											input.Asset = null;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_always4 as "Run Scripts - On always"
+			{
+				type =  form
+				form = Update_The_Stats
+				record event = on add or edit
+
+	on user input of Gateway
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Gateway != null)
+										{
+											gateway_assets = Add_Asset_To_Gateway[Gateway == input.Gateway].Asset.getAll();
+											input.Gateway:ui.add(gateway_assets);
+										}
+										else
+										{
+											input.Asset = null;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_always5 as "Run Scripts - On always"
+			{
+				type =  form
+				form = Update_The_Stats
+				record event = on add or edit
+
+	on user input of Building
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Building != null)
+										{
+											gateways = Add_Gateway[Building == input.Building].ID.getAll();
+											input.Gateway:ui.add(gateways);
+										}
+										else
+										{
+											input.Gateway = null;
+											input.Asset = null;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_always6 as "Run Scripts - On always"
+			{
+				type =  form
+				form = Update_The_Stats
+				record event = on add or edit
+
+	on user input of Site
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Site != null)
+										{
+											buildings = Add_Building[Associated_Site == input.Site].ID.getAll();
+											input.Building:ui.add(buildings);
+										}
+										else
+										{
+											input.Building = null;
+											input.Gateway = null;
+											input.Asset = null;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_loading1 as "Run Scripts - While loading a form"
+			{
+				type =  form
+				form = Assign_Employee
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						disable Issue;
+					}
+	}
+
+			}
+			Run_Scripts_While_adding_5 as "Run Scripts - While adding a record"
+			{
+				type =  form
+				form = Order_To_Vendor
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.For_Request != null)
+										{
+											input.Asset = input.For_Request.Asset;
+											disable For_Request;
+											disable Asset;
+										}
+										else
+										{
+											input.Asset = null;
+											enable Asset;
+										}
+										hide Order_Status;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_adding_6 as "Run Scripts - While adding a record"
+			{
+				type =  form
+				form = Order_To_Vendor
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.For_Request != null)
+										{
+											input.Order_Status = "Ordered To Vendor";
+											request = Raise_Asset_Request[ID == input.For_Request];
+											request.Request_Status="Ordered To Vendor";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_adding_7 as "Run Scripts - While adding a record"
+			{
+				type =  form
+				form = Order_To_Vendor
+				record event = on add
+
+	on user input of For_Request
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.For_Request != null)
+										{
+											input.Asset = input.For_Request.Asset;
+											disable Asset;
+										}
+										else
+										{
+											input.Asset = null;
+											enable Asset;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_adding_8 as "Run Scripts - While adding a record"
+			{
+				type =  form
+				form = Add_Company_Details
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											companies = Add_Company_Details[ID != 0];
+										if(companies.count() == 1)
+										{
+											openUrl(zoho.appuri + "#Form:Add_Building","same window");
+										}
+						)
+					}
+	}
+
+			}
+		}
+		functions
+		{
+			Add_Asset_To_the_Gateway as "Add Asset To the Gateway"
+			{
+				type =  functions
+				form = Add_Gateway
+				on start
+				{
+					actions 
+					{
+					custom_action.add_asset_to_gateway(ID);
+					}
+				}
+			}
+			Add_Building_Workflow as "Add Building Workflow"
+			{
+				type =  functions
+				form = Add_Site
+				on start
+				{
+					actions 
+					{
+					custom_action.open_add_building_form(ID);
+					}
+				}
+			}
+			Add_Gateway_Workflow as "Add Gateway Workflow"
+			{
+				type =  functions
+				form = Add_Building
+				on start
+				{
+					actions 
+					{
+					custom_action.open_add_gateway_form(ID);
+					}
+				}
+			}
+			Update_Inventory_Quantity as "Update Inventory  Quantity"
+			{
+				type =  functions
+				form = Assets_In_inventory
+				on start
+				{
+					actions 
+					{
+					custom_action.update_asset_quantity_in_inventory(ID);
+					}
+				}
+			}
+			Assign_Employee_Workflow as "Assign Employee Workflow"
+			{
+				type =  functions
+				form = Add_An_Incident
+				on start
+				{
+					actions 
+					{
+					custom_action.assign_employee(ID);
+					}
+				}
+			}
+			Close_Issue_Workflow as "Close Issue Workflow"
+			{
+				type =  functions
+				form = Add_An_Incident
+				on start
+				{
+					actions 
+					{
+					custom_action.close_issue(ID);
+					}
+				}
+			}
+			Accept_Issue_Workflow as "Accept Issue Workflow"
+			{
+				type =  functions
+				form = Add_An_Incident
+				on start
+				{
+					actions 
+					{
+					custom_action.accept_Issue(ID);
+					}
+				}
+			}
+			Order_To_Vendor_Workfow as "Order To Vendor Workfow"
+			{
+				type =  functions
+				form = Raise_Asset_Request
+				on start
+				{
+					actions 
+					{
+					custom_action.order_to_vendor(ID);
+					}
+				}
+			}
+			Receive_Asset_Workflow as "Receive Asset Workflow"
+			{
+				type =  functions
+				form = Order_To_Vendor
+				on start
+				{
+					actions 
+					{
+					custom_action.receive_asset(ID);
+					}
+				}
+			}
+			Movie_To_Gateway_Workflow1 as "Movie To Gateway Workflow"
+			{
+				type =  functions
+				form = Raise_Asset_Request
+				on start
+				{
+					actions 
+					{
+					custom_action.move_to_gateway(ID);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Read"
+			{
+				name = "Read"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have read permission for all components\n"
+			}
+			"Write"
+			{
+				name = "Write"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have write permission for all components\n"
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Employee"
+			{
+				name = "Employee"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "Employee Profile\n"
+				ModulePermissions
+				{
+					Raise_Asset_Request
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							For_Building{visibility:true,readonly:false}
+							For_Gateway{visibility:true,readonly:false}
+							Submitted_By{visibility:true,readonly:false}
+							Order_Number{visibility:true,readonly:false}
+							Asset{visibility:true,readonly:false}
+							Quantity{visibility:true,readonly:false}
+							Request_Status{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							For_Site{visibility:true,readonly:false}
+							Reason{visibility:true,readonly:false}
+						}
+					}
+					Update_The_Stats
+					{
+						FieldPermissions
+						{
+							Site{visibility:true,readonly:false}
+							Building{visibility:true,readonly:false}
+							Status_Description{visibility:true,readonly:false}
+							Gateway{visibility:true,readonly:false}
+							Submitted_By{visibility:true,readonly:false}
+							Asset{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Update_Type{visibility:true,readonly:false}
+						}
+					}
+					Add_Expense
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						ReportPermissions
+						{
+							All_Expenses={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Expense_Type{visibility:true,readonly:false}
+							Receipt{visibility:true,readonly:false}
+							Submitted_By{visibility:true,readonly:false}
+							For_Incident{visibility:true,readonly:false}
+							Expense_Amount{visibility:true,readonly:false}
+							Expense_Date{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Notes{visibility:true,readonly:false}
+						}
+					}
+					Add_An_Incident
+					{
+						enabled= Create,Import,Tab 
+						ReportPermissions
+						{
+							My_Closed_Incidents={"View"}
+							My_Open_Issue={"View"}
+							My_Working_Incidents={"View"}
+							Scheduled_Incidents={"View"}
+						}
+						FieldPermissions
+						{
+							Site{visibility:true,readonly:false}
+							Status_Updated_On{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Submitted_By{visibility:true,readonly:false}
+							Priority{visibility:true,readonly:false}
+							Deadline{visibility:true,readonly:false}
+							Image{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Failure_Object{visibility:true,readonly:false}
+							Working_Details{visibility:true,readonly:false}
+							Assigned_To{visibility:true,readonly:false}
+							Gateway{visibility:true,readonly:false}
+							Issue_Name{visibility:true,readonly:false}
+							Troubleshoot_Status{visibility:true,readonly:false}
+						}
+					}
+					Add_Company_Details
+					{
+						FieldPermissions
+						{
+							Branches{visibility:true,readonly:false}
+							Mobile_Number{visibility:true,readonly:false}
+							Company_Name{visibility:true,readonly:false}
+							Company_Email{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_Site
+					{
+						FieldPermissions
+						{
+							Company{visibility:true,readonly:false}
+							Contact_Email{visibility:true,readonly:false}
+							Buildings{visibility:true,readonly:false}
+							Branch_Site_Address{visibility:true,readonly:false}
+							Mobile_Number{visibility:true,readonly:false}
+							Site_In_charge{visibility:true,readonly:false}
+							Branch_Site_Name{visibility:true,readonly:false}
+							Landline_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_Building
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						ReportPermissions
+						{
+							All_Buildings={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Section{visibility:true,readonly:false}
+							Associated_Site{visibility:true,readonly:false}
+							Building_Name{visibility:true,readonly:false}
+							Gateways{visibility:true,readonly:false}
+							Total_Number_Of_Floors{visibility:true,readonly:false}
+						}
+					}
+					Add_Maintenance_Work
+					{
+						FieldPermissions
+						{
+							Work{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_Vendor
+					{
+						FieldPermissions
+						{
+							Mobile_Number{visibility:true,readonly:false}
+							Contact_Email{visibility:true,readonly:false}
+							Vendor_Name{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_Employee
+					{
+						FieldPermissions
+						{
+							Official_Details{visibility:true,readonly:false}
+							Contact_Email{visibility:true,readonly:false}
+							Personal_Details{visibility:true,readonly:false}
+							Marital_Status{visibility:true,readonly:false}
+							Contact_Address{visibility:true,readonly:false}
+							Employee_Designation{visibility:true,readonly:false}
+							Give_Access_To_Application{visibility:true,readonly:false}
+							Employee_Name{visibility:true,readonly:false}
+							Contact_Number{visibility:true,readonly:false}
+							Team{visibility:true,readonly:false}
+							Gender{visibility:true,readonly:false}
+						}
+					}
+					Assets_In_inventory
+					{
+						FieldPermissions
+						{
+							Last_Update_Date{visibility:true,readonly:false}
+							Asset{visibility:true,readonly:false}
+							Quantity{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_Asset_To_Gateway
+					{
+						enabled= Create,Viewall,Modifyall,Export,Tab 
+						ReportPermissions
+						{
+							Current_Asset_Quantity_Of_The_Gateway={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Asset{visibility:true,readonly:false}
+							Quantity{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Gateway{visibility:true,readonly:false}
+						}
+					}
+					Metrics
+					{
+						FieldPermissions
+						{
+							Metric_Display_Name{visibility:true,readonly:false}
+							Metrics_Name{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Employee_Designation
+					{
+						FieldPermissions
+						{
+							Designation{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_asset_to_Inventory
+					{
+						FieldPermissions
+						{
+							Receipt{visibility:true,readonly:false}
+							Expense_Amount{visibility:true,readonly:false}
+							Asset{visibility:true,readonly:false}
+							Quantity{visibility:true,readonly:false}
+							Inventory_Details{visibility:true,readonly:false}
+							Vendor{visibility:true,readonly:false}
+							Expense_Details{visibility:true,readonly:false}
+							Asset_Refill_Date{visibility:true,readonly:false}
+							Notes{visibility:true,readonly:false}
+						}
+					}
+					Add_Gateway
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Gateways_Of_Buildings={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Site{visibility:true,readonly:false}
+							Building{visibility:true,readonly:false}
+							Assets_With_Quantity{visibility:true,readonly:false}
+							Spot_Name{visibility:true,readonly:false}
+							Floor{visibility:true,readonly:false}
+							Display_Name{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_Asset
+					{
+						FieldPermissions
+						{
+							Measurement_Method{visibility:true,readonly:false}
+							Asset_Name{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							For_Facility{visibility:true,readonly:false}
+						}
+					}
+					Add_Team
+					{
+						FieldPermissions
+						{
+							Team_Name{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Order_To_Vendor
+					{
+						FieldPermissions
+						{
+							Order_Status{visibility:true,readonly:false}
+							Order_Number{visibility:true,readonly:false}
+							For_Request{visibility:true,readonly:false}
+							Asset{visibility:true,readonly:false}
+							Quantity{visibility:true,readonly:false}
+							Vendor{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Reason{visibility:true,readonly:false}
+						}
+					}
+					Facility
+					{
+						FieldPermissions
+						{
+							Description{visibility:true,readonly:false}
+							Facility_Name{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Assign_Employee
+					{
+						FieldPermissions
+						{
+							Issue{visibility:true,readonly:false}
+							Employee{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Work_Orders_Dashboard
+					{
+						enabled = tab
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users.\n\n"
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 5
+		new theme color = 4
+		icons = true
+		icons style = outline
+	}
+
+	phone
+	{
+		section  Company_Details
+		{
+			displayname= "Company Details"
+			icon = "social-1-logo-creative-market"
+			form  Add_Company_Details
+			{
+				layout = auto
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Branches
+		{
+			icon = "objects-leaf-38"
+			form  Add_Site
+			{
+				layout = auto
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Dashboard
+		{
+			page Admin_Dashboard
+			{
+			}
+			page Work_Orders_Dashboard
+			{
+			}
+		}
+		section  Facilities
+		{
+			icon = "travel-hotel-symbol"
+			form  Facility
+			{
+				layout = auto
+				icon = "social-1-logo-trello"
+				hide = true
+			}
+			custom All_Facilities
+			{
+				icon = "weather-hurricane-44"
+			}
+			list All_Assets
+			{
+				icon = "social-1-logo-reddit"
+			}
+			list All_Metrics
+			{
+				icon = "design-measure-big"
+			}
+			list List_Of_Maintenance_Works
+			{
+				icon = "tech-laptop"
+			}
+		}
+		section  Site_Configuration
+		{
+			displayname= "Site Configuration"
+			summary Company_Details
+			{
+				icon = "business-factory"
+			}
+			list Branches
+			{
+				icon = "business-hierarchy-53"
+			}
+			map Site_Locations
+			{
+				icon = "location-pin-copy"
+			}
+			summary All_Buildings
+			{
+				icon = "business-building"
+			}
+			summary Gateways_Of_Buildings
+			{
+				icon = "location-crosshair"
+			}
+		}
+		section  Buildings
+		{
+			icon = "business-building"
+			form  Add_Building
+			{
+				layout = auto
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Gateways
+		{
+			icon = "tech-wifi-router"
+			form  Add_Gateway
+			{
+				layout = auto
+				icon = "design-2-3d-29"
+				hide = true
+			}
+		}
+		section  Assets
+		{
+			icon = "social-1-logo-envato"
+			form  Add_Asset
+			{
+				layout = auto
+				icon = "shopping-mobile-card"
+				hide = true
+			}
+		}
+		section  Metrics
+		{
+			icon = "food-temperature"
+			form  Metrics
+			{
+				layout = auto
+				icon = "food-temperature"
+				hide = true
+			}
+		}
+		section  Inventory1
+		{
+			displayname= "Inventory"
+			icon = "users-2-woman"
+			form  Add_Vendor
+			{
+				layout = auto
+				icon = "users-2-woman-up"
+				hide = true
+			}
+			form  Add_asset_to_Inventory
+			{
+				layout = auto
+				icon = "ui-1-bold-add"
+			}
+			list Assets_In_Stock
+			{
+				icon = "shopping-stock"
+			}
+			list Assets_Added_History
+			{
+				icon = "arrows-1-bold-direction"
+			}
+			list Asset_requests
+			{
+				icon = "shopping-newsletter"
+			}
+			list Assets_Ordered_To_Vendor
+			{
+				icon = "shopping-cart-simple-remove"
+			}
+			list All_Vendors
+			{
+				icon = "users-2-woman"
+			}
+		}
+		section  Employees_Configuration1
+		{
+			displayname= "Employees Configuration"
+			icon = "users-single-04"
+			form  Add_Employee
+			{
+				layout = auto
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			custom All_Employees
+			{
+				icon = "users-2-multiple"
+			}
+			list All_Teams
+			{
+				icon = "users-network"
+			}
+			list All_Designations
+			{
+				icon = "users-single-position"
+			}
+		}
+		section  Site_Inspections1
+		{
+			displayname= "Site Inspections"
+			form  Raise_Asset_Request
+			{
+				layout = auto
+				icon = "ui-1-bold-add"
+			}
+			form  Update_The_Stats
+			{
+				layout = auto
+				icon = "tech-2-p-system-update"
+			}
+			list Asset_States
+			{
+				icon = "social-1-logo-envato"
+			}
+			list Gateway_States
+			{
+				icon = "business-hierarchy-53"
+			}
+		}
+		section  Teams
+		{
+			icon = "social-1-logo-slack"
+			form  Add_Team
+			{
+				layout = auto
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Designations
+		{
+			icon = "design-window-paragraph"
+			form  Employee_Designation
+			{
+				layout = auto
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		section  Add_Asset_To_inventory
+		{
+			displayname= "Add Asset To inventory"
+			form  Assets_In_inventory
+			{
+				layout = auto
+				icon = "shopping-cart-add"
+				hide = true
+			}
+		}
+		section  Maintenance_Work
+		{
+			displayname= "Maintenance Work"
+			form  Add_Maintenance_Work
+			{
+				layout = auto
+				icon = "tech-laptop"
+				hide = true
+			}
+		}
+		section  Incident_Tracker
+		{
+			displayname= "Incident Tracker"
+			pivotchart Priority_Incidents
+			{
+				icon = "shopping-credit-card-in"
+				hide = true
+			}
+			pivotchart Weekly_Incidents
+			{
+				icon = "transportation-light-traffic"
+				hide = true
+			}
+			calendar Scheduled_Incidents
+			{
+				icon = "ui-1-calendar-grid-61"
+				hide = true
+			}
+			form  Add_An_Incident
+			{
+				layout = auto
+				icon = "ui-1-bold-add"
+			}
+			list Open_Incidents
+			{
+				icon = "furniture-door"
+			}
+			list Working_Incidents
+			{
+				icon = "location-appointment"
+			}
+			list Closed_Incidents
+			{
+				icon = "location-route-close"
+			}
+			list My_Open_Issue
+			{
+				icon = "furniture-door"
+			}
+			list My_Working_Incidents
+			{
+				icon = "social-1-logo-buffer"
+			}
+			list My_Closed_Incidents
+			{
+				icon = "location-route-close"
+			}
+		}
+		section  Order_To_Vendor
+		{
+			displayname= "Order To Vendor"
+			form  Order_To_Vendor
+			{
+				layout = left
+				hide = true
+			}
+		}
+		section  Expenses
+		{
+			icon = "shopping-credit-card-in"
+			form  Add_Expense
+			{
+				layout = auto
+				icon = "business-currency-dollar"
+			}
+			list All_Expenses
+			{
+				icon = "shopping-credit-card-in"
+			}
+		}
+		section  Update_the_Current_Quantity_Of_Assets
+		{
+			displayname= "Update the Current Quantity Of Assets"
+			icon = "social-1-logo-envato"
+			form  Add_Asset_To_Gateway
+			{
+				layout = auto
+				icon = "social-1-logo-envato"
+				hide = true
+			}
+			list Current_Asset_Quantity_Of_The_Gateway
+			{
+				icon = "business-laptop-71"
+				hide = true
+			}
+		}
+		section  Assign_Employee
+		{
+			displayname= "Assign Employee"
+			form  Assign_Employee
+			{
+				layout = left
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = green
+        	layout = slidingpane
+		 	icons style = outline
+		}
+	}
+	
+	reports configuration
+	{
+	
+		Version = 1251000165802497
+		Key     = "eU68C8NxXuH2G3N4Uu7p6K7ZQVO48mspKtxb3uAD579NrDH33OBW9JDXbyOXGKpPRTGmMCZHu9VHTfaDzqjwdz0yWJ067quHQvO8"
+	}
+}

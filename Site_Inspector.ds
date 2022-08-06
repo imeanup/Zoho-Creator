@@ -1,0 +1,3288 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 23:53:32
+ * Version      : 1.0
+ */
+ application "Site Inspector"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+	section Report_an_Issue
+	{
+		displayname= "Inspections"
+		icon = "ui-1-eye-19"
+		form Add_New_Inspection
+		{
+			displayname = "Add New Inspection"
+			success message = "Inspection Added successfully"
+			field alignment = left
+			feature property = 40
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Date_field
+			(
+    			type = date
+				displayname = "Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Inspector_Name
+			(
+				type = picklist
+				displayname = "Inspector Name"
+				values  = Add_Site_Inspector.ID
+    			displayformat = [" " + Name.first_name + " " + Name.last_name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Site_Name
+			(
+				type = picklist
+				displayname = "Site Name"
+				values  = Add_Your_Site[Work_Status == "Active" && Select_Site_Inspector.Email_Id == zoho.loginuserid].ID
+    			displayformat = [Site_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Inspection_Type
+			(
+				type = picklist
+				displayname = "Inspection Type"
+				values  = Inspection_Types.ID
+    			displayformat = [Type]
+				allow new entries = true
+				[
+					displayname = "Add New Type"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Title
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Photo
+			(
+    			type = image
+				source  = file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Video
+			(
+    			type = video
+    			duration=150
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Send_Email_Immediately
+			(
+    			type = checkbox
+				displayname = "Send Email Immediately"
+				initial value = false
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Severity
+			(
+				type = picklist
+				values = {"High", "Medium", "Low"}
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Corrective_Measure
+			(
+    			type = textarea
+				displayname = "Corrective Measure"
+				height = 100px
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Whom_To_Contact
+			(
+    			type = textarea
+				displayname = "Whom To Contact"
+				height = 100px
+    			description
+    			[
+    				type = help_text
+    			 	message = "Ex : Engineer , Contractor\nAnd their details"
+    			]
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "business-cheque"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		print template
+			{
+				Send_Mail
+				{
+						displayname = "Send Mail"
+						content = {"layout":"1","pageNumberOption":null,"orientation":"null","isFooterEnabled":false,"mainLayout":[{"elements":[{"type":"text","element":{"Fields":[{"Label_Name":"Date_field"},{"Label_Name":"Description"},{"Label_Name":"Inspection_Type"},{"Label_Name":"Inspector_Name"},{"Label_Name":"Severity"},{"Label_Name":"Site_Name"},{"Label_Name":"Title"},{"Label_Name":"Whom_To_Contact"},{"Label_Name":"Added_Location"}],"content":"<div style=\"border-style: solid; border-color: rgb(255, 255, 255)\"><table cellpadding=\"2\" cellspacing=\"2\" style=\"text-align: center; margin: 0px auto; width: 100%; border: 1px dotted rgb(51, 51, 51)\">   <tbody>     <tr>       <td width=\"50%\" style=\"border: 1px dotted rgb(51, 51, 51)\">  Site<\/td>       <td width=\"50%\" style=\"border: 1px dotted rgb(51, 51, 51)\">         <span>           <span>${Site_Name}<\/span>         <\/span>       <\/td>     <\/tr>     <tr>       <td style=\"border: 1px dotted rgb(51, 51, 51)\">Inspection Type <\/td>       <td style=\"border: 1px dotted rgb(51, 51, 51)\">         <span>           <span>${Inspection_Type}<\/span>         <\/span> <\/td>     <\/tr>     <tr>       <td style=\"border: 1px dotted rgb(51, 51, 51)\"> Issue<\/td>       <td style=\"border: 1px dotted rgb(51, 51, 51)\">         <span>           <span>${Title}<\/span>         <\/span>       <\/td>     <\/tr>     <tr>       <td style=\"border: 1px dotted rgb(51, 51, 51)\"> Description<\/td>       <td style=\"border: 1px dotted rgb(51, 51, 51)\">         <span>           <span>${Description}<\/span>         <\/span>       <\/td>     <\/tr>     <tr>       <td style=\"border: 1px dotted rgb(51, 51, 51)\"> Severity<\/td>       <td style=\"border: 1px dotted rgb(51, 51, 51)\">         <span>           <span>${Severity}<\/span>         <\/span>       <\/td>     <\/tr>     <tr>       <td style=\"border: 1px dotted rgb(51, 51, 51)\"> Inspector<\/td>       <td style=\"border: 1px dotted rgb(51, 51, 51)\">         <span>           <span>${Inspector_Name}<\/span>         <\/span> <\/td>     <\/tr>     <tr>       <td style=\"border: 1px dotted rgb(51, 51, 51)\"> Date<\/td>       <td style=\"border: 1px dotted rgb(51, 51, 51)\">         <span>           <span>${Date_field}<\/span>         <\/span>       <\/td>     <\/tr>     <tr>       <td style=\"border: 1px dotted rgb(51, 51, 51)\">Whom To Contact <\/td>       <td style=\"border: 1px dotted rgb(51, 51, 51)\">         <span>           <span>${Whom_To_Contact}<\/span>         <\/span>       <\/td>     <\/tr>     <tr>       <td style=\"border: 1px dotted rgb(51, 51, 51)\"> Added Location<\/td>       <td style=\"text-align: center; border: 1px dotted rgb(51, 51, 51)\">         <span>           <span>${Added_Location}<\/span>         <\/span>       <\/td>     <\/tr>   <\/tbody> <\/table><\/div>"}}],"id":1}],"resize":"default","templateStyle":"text-align: left; width: 100%; margin: 0 auto;","isHeaderEnabled":false}
+				}
+			}
+		}
+		map Today_Inspection_Map
+		{
+			displayName = "Today Inspection Map"
+			show all rows from Add_New_Inspection  [Added_Time is today]  
+			(
+				Added_Location  as "Added Location"
+	 			(
+	      			displayformat = [district_city+""+state_province+""+postal_Code+""+country]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Description
+				Title
+				Inspector_Name as "Inspector Name"
+				Site_Name as "Site Name"
+				Photo
+				Date_field as "Date"
+			)
+			filters
+			(
+				Site_Name
+			)
+			group by
+			(
+				Site_Name ascending
+			)
+			options
+			(
+	 			display field = Added_Location
+	 	 		radius = 100 Miles
+		 		icon = "location-position-pin"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 6
+					datablock1
+					(
+			 			layout type = 23
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Title
+							Description
+							Site_Name as "Site Name"
+							Inspector_Name as "Inspector Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Print   	   
+								Delete   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Inspection"
+						fields
+						(
+							Site_Name as "Site Name"
+							Photo
+							Description
+							Added_Location as "Added Location"
+							Date_field as "Date"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Inspector Details"
+		     			related field =  Inspector_Name[Added_Time is today]
+						fields
+						(
+							Name
+							Phone_Number as "Phone Number"
+							Email_Id as "Email Id"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Site Details"
+		     			related field =  Site_Name[Added_Time is today]
+						fields
+						(
+							Site_Name as "Site Name"
+							Location
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		custom All_Inspections
+		{
+			displayName = "All Inspections"
+			show all rows from Add_New_Inspection    
+			(
+				Site_Name.Site_Name as "Site Name"
+				Title
+				Video
+				Severity
+				Whom_To_Contact as "Whom To Contact"
+				Added_Location  as "Added Location"
+	 			(
+	      			displayformat = [district_city+""+state_province+""+postal_Code+""+country]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Added_Time as "Added Time"
+				Date_field as "Date"
+				Inspection_Type as "Inspection Type"
+				Photo
+				Description
+				Inspector_Name as "Inspector Name"
+			)
+			filters
+			(
+				Date_field
+				Site_Name
+				Inspector_Name
+			)
+			group by
+			(
+				Site_Name.Site_Name descending
+			)
+			sort by
+			(
+				Site_Name.Site_Name descending
+				Added_Time descending
+			)
+			options
+			(
+				icon = "education-grammar-check"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 6
+					datablock1
+					(
+			 			layout type = 23
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Inspection_Type as "Inspection Type"
+							Description
+							Date_field as "Date"
+							Inspector_Name as "Inspector Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Inspection"
+						fields
+						(
+							Inspection_Type as "Inspection Type"
+							Title
+							Description
+							Photo
+							Video
+							Severity
+							Date_field as "Date"
+							Added_Location as "Added Location"
+							Whom_To_Contact as "Whom To Contact"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Inspector Details"
+		     			related field =  Inspector_Name
+						fields
+						(
+							Name
+							Phone_Number as "Phone Number"
+							Email_Id as "Email Id"
+							Status
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Site Details"
+		     			related field =  Site_Name
+						fields
+						(
+							Site_Name as "Site Name"
+							Location
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		custom My_Inspections
+		{
+			displayName = "My Inspections"
+			show all rows from Add_New_Inspection  [Added_User == zoho.loginuser]  
+			(
+				Site_Name as "Site Name"
+				Inspector_Name as "Inspector Name"
+				Video
+				Title
+				Date_field as "Date"
+				Severity
+				Description
+				Photo
+				Inspection_Type as "Inspection Type"
+				Added_Time as "Added Time"
+			)
+			group by
+			(
+				Site_Name ascending
+			)
+			sort by
+			(
+				Added_Time descending
+			)
+			options
+			(
+				icon = "design-bullet-list-67"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 6
+					datablock1
+					(
+			 			layout type = 23
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Inspection_Type as "Inspection Type"
+							Description
+							Severity
+							Date_field as "Date"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Inspection"
+						fields
+						(
+							Site_Name as "Site Name"
+							Title
+							Photo
+							Inspector_Name as "Inspector Name"
+							Site_Name as "Site Name"
+							Description
+							Severity
+							Video
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Site Details"
+		     			related field =  Site_Name[Added_User == zoho.loginuser]
+						fields
+						(
+							Site_Name as "Site Name"
+							Location
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Inspection_Types
+		{
+			displayName = "All Inspection Types"
+			show all rows from Inspection_Types    
+			(
+				Type
+			)
+			options
+			(
+				icon = "business-laptop-71"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Type
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Inspection Type"
+						fields
+						(
+							Type
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Inspections"
+		     			related field =  Add_New_Inspection.Inspection_Type
+						fields
+						(
+							Photo
+							Date_field as "Date"
+							Description
+							Site_Name as "Site Name"
+							Title
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Site_Inspectors
+	{
+		displayname= "Inspectors"
+		icon = "business-business-contact-88"
+		form Add_Site_Inspector
+		{
+			displayname = "Add Site Inspector"
+			success message = "New Site Inspector has been added successfully"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email_Id
+			(
+    			type = email
+				displayname = "Email Id"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Status
+			(
+				type = picklist
+				values = {"Active", "Archive"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "business-sign"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Site_Inspectors
+		{
+			displayName = "Site Inspectors"
+			show all rows from Add_Site_Inspector    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Phone_Number as "Phone Number"
+				Email_Id as "Email Id"
+				Status
+			)
+			group by
+			(
+				Status ascending
+			)
+			sort by
+			(
+				Status ascending
+			)
+			options
+			(
+				icon = "users-multiple-19"
+	 		)
+			custom actions
+			(
+				"Active"
+				(
+	  			workflow = Run_Scripts_On_Click_of_P1
+				show action in view header = true
+				show action in edit record menu = true
+				condition = (Status == "Archive" && Email_Id != zoho.adminuserid)
+				)
+				"Archive"
+				(
+	  			workflow = Run_Scripts_On_Click_of_P2
+				show action in view header = true
+				show action in edit record menu = true
+				condition = (Status == "Active" && Email_Id != zoho.adminuserid)
+				)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email_Id as "Email Id"
+							Status
+							Phone_Number as "Phone Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Delete   	   
+								"Active"
+								"Archive"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								View Record   	   
+								"Active"
+								"Archive"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email_Id as "Email Id"
+							Status
+							Phone_Number as "Phone Number"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Assigned Sites"
+		     			related field =  Add_Your_Site.Select_Site_Inspector
+						fields
+						(
+							Site_Name as "Site Name"
+							Location
+							Work_Status as "Work Status"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+			 			"Active"
+			 			"Archive"
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Your_Sites
+	{
+		displayname= "Sites"
+		icon = "location-pin-copy"
+		form Add_Your_Site
+		{
+			displayname = "Add Your Site"
+			success message = "Your New Site has been added successfully"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Site_Name
+			(
+    			type = text
+				displayname = "Site Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Location
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Select_Site_Inspector
+			(
+				type = picklist
+				displayname = "Select Site Inspector"
+				values  = Add_Site_Inspector[Status == "Active"].ID
+    			displayformat = [" " + Name.first_name + " " + Name.last_name]
+				allow new entries = true
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+    			description
+    			[
+    				type = tooltip
+    			 	message = "If you left this field empty then this site will be Inactive"
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Work_Status
+			(
+				type = picklist
+				displayname = "Work Status"
+				values = {"Active", "Inactive"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "location-pin-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list All_Sites
+		{
+			displayName = "All Sites"
+			show all rows from Add_Your_Site    
+			(
+				Location 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				custom action "Change Inspector"
+				(
+	  			workflow = Run_Scripts_On_Click_of_P3
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Change Inspector"
+				)
+				custom action "Change Status"
+				(
+	  			workflow = Run_Scripts_On_Click_of_P4
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Change Status"
+				)
+				Select_Site_Inspector as "Select Site Inspector"
+				Work_Status as "Work Status"
+				Site_Name as "Site Name"
+			)
+			options
+			(
+				icon = "location-position-marker"
+	 		)
+			conditional formatting
+			(
+				"Active"
+				{
+				condition = (Work_Status == "Active")
+				fields = [Work_Status]
+				format = "color:#4ea64c;background-color:#ffffff;"
+				}
+				"Inactive"
+				{
+				condition = (Work_Status == "Inactive")
+				fields = [Work_Status]
+				format = "color:#ef1616;background-color:#ffffff;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Site_Name as "Site Name"
+							Location
+							Select_Site_Inspector as "Select Site Inspector"
+							Work_Status as "Work Status"
+				"Change Inspector"
+				"Change Status"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Change Inspector"
+								"Change Status"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Site_Name as "Site Name"
+							Location
+							Select_Site_Inspector as "Select Site Inspector"
+							Work_Status as "Work Status"
+						)
+					)
+					datablock2
+					(
+			 			layout type = 7
+		     			title = "Inspections"
+		     			related field =  Add_New_Inspection.Site_Name
+						fields
+						(
+							Photo
+							Inspection_Type as "Inspection Type"
+							Description
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		map Map_View
+		{
+			displayName = "Map View"
+			show all rows from Add_Your_Site    
+			(
+				Site_Name as "Site Name"
+				Location 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	 			)
+				Select_Site_Inspector as "Site Inspector"
+				Work_Status as "Work Status"
+			)
+			filters
+			(
+				Work_Status
+			)
+			options
+			(
+	 			display field = Location
+         		location
+         		(
+	 		 		latitude  = 38.886613
+	 		 		longitude = -101.015649
+         		)
+	 	 		radius = 100 Miles
+		 		icon = "location-pin"
+	 		)
+			conditional formatting
+			(
+				"Active Sites"
+				{
+				condition = (Work_Status == "Active")
+				fields = [Work_Status]
+				format = "color:#19bc9f;"
+				}
+				"Inactive Sites"
+				{
+				condition = (Work_Status == "Inactive")
+				fields = [Work_Status]
+				format = "color:#e64d3b;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = 1
+		     			title = "Overview"
+						fields
+						(
+							Site_Name as "Site Name"
+							Location
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Site_Name as "Site Name"
+							Location
+							Select_Site_Inspector as "Site Inspector"
+							Work_Status as "Work Status"
+						)
+					)
+					datablock2
+					(
+			 			layout type = 19
+		     			title = "Inspections"
+		     			related field =  Add_New_Inspection.Site_Name
+						fields
+						(
+							Photo
+							Inspection_Type as "Inspection Type"
+							Description
+							Date_field as "Date"
+							Inspector_Name as "Inspector Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		map Assigned_Sites
+		{
+			displayName = "Assigned Sites"
+			show all rows from Add_Your_Site  [Select_Site_Inspector.Email_Id == zoho.loginuserid]  
+			(
+				Site_Name as "Site Name"
+				Location 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Link_to_Map,Show_As_Text
+	 			)
+				Select_Site_Inspector as "Select Site Inspector"
+				Work_Status as "Work Status"
+			)
+			options
+			(
+	 			display field = Location
+	 	 		radius = 100 Miles
+		 		icon = "location-pin"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = 1
+		     			title = "Overview"
+						fields
+						(
+							Site_Name as "Site Name"
+							Location
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Site_Name as "Site Name"
+							Location
+							Select_Site_Inspector as "Select Site Inspector"
+							Work_Status as "Work Status"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section page
+	{
+		displayname= "Assign inspector"
+		form Assign_Inspector
+		{
+			displayname = "Assign Inspector"
+			store data in zc = false
+			success message = ""
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Site_Name
+			(
+				type = picklist
+				displayname = "Site Name"
+				values  = Add_Your_Site.ID
+    			displayformat = [Site_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Select_Inspector
+			(
+				type = picklist
+				displayname = "Select Inspector"
+				values  = Add_Site_Inspector[Status == "Active"].ID
+    			displayformat = [" " + Name.prefix + " " + Name.first_name + " " + Name.last_name + " " + Name.suffix]
+				allow new entries = true
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				Assign
+				(
+   					type = button
+   					displayname = "Assign"
+				)
+			}
+		}
+	}
+	section Construction_Details
+	{
+		displayname= "Settings"
+		icon = "ui-1-settings-gear-63"
+		form Add_Company_Detail
+		{
+			displayname = "Add Company Detail"
+			success message = "Company Details has been Registered Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Company_Name
+			(
+    			type = text
+				displayname = "Company Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Contact_Number
+			(
+    			type = phonenumber
+				displayname = "Contact Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			unique Email_Id
+			(
+    			type = email
+				displayname = "Email Id"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = "<b>Please provide the time you want to receive&nbsp;the daily inspection report of all your sites as an email.</b>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have schedule_time
+			(
+				type = picklist
+				displayname = "schedule time"
+				values = {"00:00", "01:00", "02:00", "03:00", "04:00", "05:00", "06:00", "07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00", "22:00", "23:00"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Schedule_Time
+			(
+    			type = datetime
+				displayname = "Schedule Time"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "files-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		properties
+		{
+			total entries
+			{
+				allowed count = 1
+			}
+		}
+		}
+		summary Company_Details
+		{
+			displayName = "Company Details"
+			show all rows from Add_Company_Detail    
+			(
+				Schedule_Time as "Schedule Time"
+				Company_Name as "Company Name"
+				Contact_Number as "Contact Number"
+				Email_Id as "Email Id"
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	 			)
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 2
+				icon = "ui-1-home-simple"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Company_Name as "Company Name"
+							Address
+							Contact_Number as "Contact Number"
+							Email_Id as "Email Id"
+							Schedule_Time as "Schedule Time"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Company_Name as "Company Name"
+							Contact_Number as "Contact Number"
+							Email_Id as "Email Id"
+							Address
+							Schedule_Time as "Schedule Time"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Inspection_Types
+	{
+		displayname= "Inspection Types"
+		icon = "tech-2-pci-card"
+		form Inspection_Types
+		{
+			displayname = "Inspection Types"
+			success message = "Data Added Successfully!"
+			field alignment = left
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Type
+			(
+    			type = text
+    			description
+    			[
+    				type = help_text
+    			 	message = "Ex : Form Inspections , Reinforcement Inspections"
+    			]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "tech-2-pci-card"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	functions
+	{
+ 			void Site_Inspector.Changing_Inspector_Status(int record_id)
+			{
+				this_record = Add_Site_Inspector[ID == input.record_id];
+				if(this_record.Status == "Active")
+				{
+					admin = Add_Site_Inspector[Email_Id == zoho.adminuserid].ID;
+					site_count = Add_Your_Site[Select_Site_Inspector == input.record_id].count(ID);
+					//Assigning admin as inspector for all the sites assigned to this inspector
+					if(site_count != 0)
+					{
+						for each  rec in Add_Your_Site[Select_Site_Inspector == input.record_id]
+						{
+							rec.Select_Site_Inspector=admin;
+						}
+					}
+					this_record.Status="Archive";
+				}
+				//Changing status to active
+				else if(this_record.Status == "Archive")
+				{
+					this_record.Status="Active";
+				}
+			}
+ 			void Site.Changing_Site_Inspector(int record_id)
+			{
+				//Redirects to the inspector assigning form
+				this_record = Add_Your_Site[ID == input.record_id];
+				url = "#Form:Assign_Inspector?Site_Name=" + this_record.ID;
+				openUrl(url,"popup window");
+			}
+ 			void Site.Changing_Site_Status(int record_id)
+			{
+				this_record = Add_Your_Site[ID == input.record_id];
+				//Changing status from active to inactive
+				if(this_record.Work_Status == "Active")
+				{
+					this_record.Work_Status="Inactive";
+				}
+				else
+				{
+					url = "#Form:Assign_Inspector?Site_Name=" + this_record.ID;
+					if(this_record.Select_Site_Inspector != null)
+					{
+						status = Add_Site_Inspector[ID == this_record.Select_Site_Inspector].Status;
+						//Assigning the same inspector to the site
+						if(status == "Active")
+						{
+							this_record.Work_Status="Active";
+						}
+						//Redirects to the assigning form
+						else
+						{
+							openUrl(url,"popup window");
+						}
+					}
+					else
+					{
+						openUrl(url,"popup window");
+					}
+				}
+			}
+ 			void Notification.Send_Notification(string userEmail)
+			{
+				appname = zoho.appname;
+				sendmail
+				[
+					from :zoho.adminuserid
+					to :userEmail
+					subject :"Invitation to access '" + zoho.appname + "' "
+					message :"<div style='width:100%;display:inline-block;box-sizing:border-box;border:1px solid #ddd;'><div style='padding:2%;text-align:center;'>You've been invited to use an application built on Zoho Creator by \"" + zoho.adminuserid + "\".</div><div style='background: #efefef; padding: 20.0px;margin: 20.0px 0 10.0px;text-align:center;'><h2>" + appname.toUpperCase() + "</h2><div style='margin: 20.0px 0 10.0px;'><a style='padding:10px;background-color: rgb(62,149,205);text-decoration: none;color: rgb(255,255,255);font-size: 14.0px;' href='https://creator.zoho.com" + zoho.appuri + "' target='_blank'> Go to application </a></div></div></div>"
+				]
+			}
+ 			string Notification.Send_Mail()
+			{
+				//Constructing the table for inspection report and mail it to admin
+				Mail_content = "Summary<br>";
+				Mail_content = Mail_content + "<table style='border:1px solid black;border-collapse:collapse;width:100%;text-align:center;'><thead><tr style='border:1px solid black;border-collapse:collapse;background-color:#eaeaea;height:30px;'><th style='border:1px solid black;border-collapse:collapse;' rowspan='2'>Site Name</th><th style='border:1px solid black;border-collapse:collapse;' colspan='3'>Severity</th><th style='border:1px solid black;border-collapse:collapse;' rowspan='2'>Inspector Name</th><th rowspan='2'>Report</th></tr><tr style='border:1px solid black;border-collapse:collapse;background-color:#eaeaea;height:30px;'><th style='border:1px solid black;border-collapse:collapse;'>High</th><th style='border:1px solid black;border-collapse:collapse;'>Medium</th><th style='border:1px solid black;border-collapse:collapse;'>Low</th></tr></thead><tbody>";
+				default_mailcontent = Mail_content;
+				today_date = Add_Company_Detail[ID != 0].Schedule_Time;
+				yesterday_date = today_date.subDay(1);
+				for each  rec in Add_Your_Site[Work_Status == "Active"]
+				{
+					site_name = encodeurl(rec.Site_Name);
+					query_url = "Site_Name=" + site_name + "&Date_field>" + yesterday_date;
+					url = "https://app.zohocreator.com" + zoho.appuri + "#Report:All_Inspections?" + encodeUrl(query_url);
+					info url;
+					inspector_name = Add_Site_Inspector[ID == rec.Select_Site_Inspector].Name;
+					high_count = Add_New_Inspection[Site_Name == rec.ID && Added_Time > yesterday_date && Added_Time < today_date && Severity == "High"].count(ID);
+					mid_count = Add_New_Inspection[Site_Name == rec.ID && Added_Time > yesterday_date && Added_Time < today_date && Severity == "Medium"].count(ID);
+					low_count = Add_New_Inspection[Site_Name == rec.ID && Added_Time > yesterday_date && Added_Time < today_date && Severity == "Low"].count(ID);
+					if(low_count != 0 || mid_count != 0 || high_count != 0)
+					{
+						Mail_content = Mail_content + ("<tr style='border:1px solid black;height:40px;'><td style='border:1px solid black;border-collapse:collapse;'>" + rec.Site_Name + "</td><td style='border:1px solid black;border-collapse:collapse;'>" + high_count + "</td><td style='border:1px solid black;border-collapse:collapse;'>" + mid_count + "</td><td style='border:1px solid black;border-collapse:collapse;'>" + low_count + "</td><td style='border:1px solid black;border-collapse:collapse;'>" + inspector_name) + "</td><td style='border:1px solid black;border-collapse:collapse;'><a href=" + url + ">View Details</a></td></tr>";
+					}
+				}
+				Mail_content = Mail_content + "</tbody></table>";
+				default_mailcontent = default_mailcontent + "</tbody></table>";
+				schedule_time = Add_Company_Detail[ID != 0];
+				schedule_time.Schedule_Time=schedule_time.Schedule_Time.addDay(1);
+				if(default_mailcontent != Mail_content)
+				{
+					return Mail_content;
+				}
+				else
+				{
+					return "No Mail";
+				}
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Run_Scripts_On_Click_of_P as "Run Scripts - On Click of 'Proceed' Button"
+			{
+				type =  form
+				form = Assign_Inspector
+				button = Assign
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						//Changing status to active and assign inspector to the site
+										rec_id = Add_Your_Site[ID == input.Site_Name];
+										rec_id.Select_Site_Inspector=input.Select_Inspector;
+										if(rec_id.Work_Status != "Active")
+										{
+											rec_id.Work_Status="Active";
+										}
+										siteInspectorEmail = Add_Site_Inspector[ID == input.Select_Inspector].Email_Id;
+										Inspectorname = Add_Site_Inspector[ID == input.Select_Inspector].Name;
+										site_name = Add_Your_Site[ID == input.Site_Name].Site_Name;
+										location = Add_Your_Site[ID == input.Site_Name].Location;
+										url = "https://app.zohocreator.com" + zoho.appuri + "#Form:Start_New_Inspection";
+										//Sending mail to the assigned inspector
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :siteInspectorEmail
+											subject :"Site Inspection"
+											message :(("Hi " + Inspectorname) + ",  <br><br>You are now assigned to inspect the site " + site_name + ".<br><br>Which is located in " + location) + " <br>Here you can take photos and describe about the issue and report all your daily inspections to your admin.<br><br><a href=" + url + " target='blank'>Click here to start your Inspection</a><br><br>Regards <br></br>Admin"
+										]
+										openUrl("#Script:page.refresh","same window");
+					)
+					}
+				}
+			}
+			Send_Email_Form_Propertie as "Send Email - Form Properties"
+			{
+				type =  presuccess
+				form = Add_Company_Detail
+					status = inactive
+				on start
+				{
+					actions 
+					{
+						sendmail
+						(
+							from : "zoho.adminuserid"
+							to : "zoho.adminuserid"
+							subject : "Site Inspector: New entry added"
+							message : "<br />Hello,<br /><br />A new entry added in &#39;Add_Company_Details&#39; form of Site Inspector application.<br /><br /><br />"
+						)
+					}
+				}
+			}
+			Send_Email_Form_Propertie1 as "Send Email - Form Properties"
+			{
+				type =  presuccess
+				form = Add_Site_Inspector
+					status = inactive
+				on start
+				{
+					actions 
+					{
+						sendmail
+						(
+							from : "zoho.adminuserid"
+							to : "zoho.adminuserid"
+							subject : "Site Inspector: New entry added"
+							message : "<br />Hello,<br /><br />A new entry added in &#39;Add_Site_Inspectors&#39; form of Site Inspector application.<br /><br /><br /><br /><br /><br /><br />"
+						)
+					}
+				}
+			}
+			Send_Email_Form_Propertie2 as "Send Email - Form Properties"
+			{
+				type =  presuccess
+				form = Add_Your_Site
+					status = inactive
+				on start
+				{
+					actions 
+					{
+						sendmail
+						(
+							from : "zoho.adminuserid"
+							to : "zoho.adminuserid"
+							subject : "Site Inspector: New entry added"
+							message : "<br />Hello,<br /><br />A new entry added in &#39;Add_Your_Sites&#39; form of Site Inspector application.<br /><br /><br /><br /><br />"
+						)
+					}
+				}
+			}
+			Send_Email_Form_Propertie3 as "Send Email - Form Properties"
+			{
+				type =  presuccess
+				form = Add_New_Inspection
+					status = inactive
+				on start
+				{
+					actions 
+					{
+						sendmail
+						(
+							from : "zoho.loginuserid"
+							to : "zoho.adminuserid"
+							subject : "Inspection App: New entry added"
+							message : "<br /><br /><br /><br /><br /><br /><br />${zoho.adminuserid}<br />${Added_Time}<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />"
+							attachments : template : _default as inline
+						)
+					}
+				}
+			}
+			Run_Scripts_While_Adding_5 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_New_Inspection
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						disable Date_field,Inspector_Name;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_6 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_New_Inspection
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Date_field = zoho.currentdate;
+										if(zoho.loginuserid == zoho.adminuserid)
+										{
+											//Redirects admin to add the company detail
+											detail_count = Add_Company_Detail[ID != 0].count(ID);
+											if(detail_count == 0)
+											{
+												openUrl("#Form:Add_Company_Detail","popup window");
+											}
+											//Adding admin as an Inspector by default
+											admin_count = Add_Site_Inspector[Email_Id == zoho.adminuserid].count(ID);
+											if(admin_count == 0)
+											{
+												insert into Add_Site_Inspector
+												[
+													Added_User=zoho.loginuser
+													Name.first_name="Admin"
+													Email_Id=zoho.adminuserid
+													Status="Active"
+												]
+											}
+											//Alerts admin to add sites	
+											total_sites = Add_Your_Site[ID != 0].count(ID);
+											if(total_sites == 0 && detail_count != 0)
+											{
+												alert "Add Sites to start Inspections";
+											}
+											active_sites = Add_Your_Site[Work_Status == "Active"].ID.getAll();
+											if(active_sites.size() == 0 && total_sites != 0)
+											{
+												alert "There are no active sites to start Inspection";
+											}
+											input.Site_Name:ui.add(active_sites);
+											hide Send_Email_Immediately;
+											input.Inspector_Name = Add_Site_Inspector[Email_Id == zoho.loginuserid].ID;
+										}
+										else
+										{
+											input.Inspector_Name = Add_Site_Inspector[Email_Id == zoho.loginuserid].ID;
+											//Alerts about the site details to the Inspector 
+											status = Add_Site_Inspector[Email_Id == zoho.loginuserid].Status;
+											if(status != "Archive")
+											{
+												available_sites = Add_Your_Site[Select_Site_Inspector == input.Inspector_Name && Work_Status == "Active"].count(ID);
+												if(available_sites == 0)
+												{
+													alert available_sites;
+													alert "There is no sites assigned to you please contact admin";
+												}
+											}
+											//Alerts the Inspector if he is in archive mode	
+											else
+											{
+												alert "You are now in archive mode, so you can't do any Inspections. Please contact the admin for further details!";
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_7 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_New_Inspection
+				record event = on add
+
+	on success
+	{
+					actions  (Added_User != zoho.adminuser)
+					{
+						openURL("#Report:My_Inspections","new window");
+					pushnotification
+					(
+						sender type : "fields"
+						to : "${zoho.adminuserid}"
+						title : "New Inspection"
+						message : "${Inspector_Name} has added a New Inspection for ${Site_Name}"
+						view : "All_Inspections"
+					)
+					}
+					actions  (Added_User == zoho.adminuser)
+					{
+						openURL("#Report:All_Inspections","new window");
+					}
+					actions  (Send_Email_Immediately == true)
+					{
+						sendmail
+						(
+							from : "zoho.loginuserid"
+							to : "zoho.adminuserid"
+							subject : "Today's Inspection immediate to fix"
+							message : "It is an immediate issue to fix&nbsp;<div><br /></div><div>reported by&nbsp;${Inspector_Name}</div>"
+							attachments : template : Send_Mail as inline
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_8 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Your_Site
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Work_Status = "Active";
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_9 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Your_Site
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Select_Site_Inspector != null)
+										{
+											//Sending mail to the assigned inspector
+											siteInspectorEmail = Add_Site_Inspector[ID == input.Select_Site_Inspector].Email_Id;
+											Inspectorname = Add_Site_Inspector[ID == input.Select_Site_Inspector].Name;
+											url = "https://app.zohocreator.com" + zoho.appuri + "#Form:Start_New_Inspection";
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :siteInspectorEmail
+												subject :"Site Inspection"
+												message :(("Hi " + Inspectorname) + ",  <br><br>You are now assigned to inspect the site " + input.Site_Name + ".<br><br>Which is located in " + input.Location) + " <br>Here you can take photos and describe about the issue and report all your daily inspections to your admin.<br><br><a href=" + url + " target='blank'>Click here to start your Inspection</a><br><br>Regards <br></br>Admin"
+											]
+										}
+										//Changing the status to inactive because of no employee selected
+										else
+										{
+											input.Work_Status = "Inactive";
+										}
+										//Redirects to the Inspection form
+										site_count = Add_Your_Site[ID != 0].count(ID);
+										if(site_count == 1)
+										{
+											openUrl("#Form:Start_New_Inspection","same window");
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_10 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Company_Detail
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Sets email as admin mail id
+										input.Email_Id = zoho.adminuserid;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_11 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Company_Detail
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						openURL("#Form:Add_Your_Site","new window");
+						custom deluge script
+						(
+											openUrl("Script:dialog.close","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_12 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Site_Inspector
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide Status;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_13 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Site_Inspector
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Redirects admin to add the company detail
+										detail_count = Add_Company_Detail[ID != 0].count(ID);
+										if(detail_count == 0)
+										{
+											openUrl("#Form:Add_Company_Detail","popup window");
+										}
+										//Sets status to active
+										if(Email_Id != zoho.adminuserid)
+										{
+											input.Status = "Active";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_14 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Site_Inspector
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Email_Id != zoho.adminuserid)
+										{
+											//Alerts the user to enter a name
+											if(input.Name.isEmpty())
+											{
+												alert "Enter a valid Name";
+												cancel submit;
+											}
+										}
+										if(input.Email_Id == zoho.adminuserid)
+										{
+											admin = Add_Site_Inspector[Email_Id == zoho.adminuserid];
+											if(admin.count() == 1)
+											{
+												alert "This account was already added in site Inspectors as " + admin.Name;
+												cancel submit;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_15 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Site_Inspector
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Email_Id != zoho.adminuserid)
+										{
+											//Sharing user permissions for the inspector
+											thisapp.permissions.assignUserInProfile(input.Email_Id,"Site Inspector");
+											thisapp.Notification.Send_Notification(input.Email_Id);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing1 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Your_Site
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Sets the status to active when changing the inspector
+										if(Select_Site_Inspector != null)
+										{
+											if(old.Select_Site_Inspector != input.Select_Site_Inspector)
+											{
+												input.Work_Status = "Active";
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_16 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Assign_Inspector
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						disable Site_Name;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_17 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Assign_Inspector
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											inspector_name = Add_Your_Site[ID == input.Site_Name].Select_Site_Inspector;
+										if(inspector_name != null)
+										{
+											// Shows the already selected inspector
+											input.Select_Inspector = inspector_name;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing4 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Site_Inspector
+				record event = on edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Status;
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing5 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Site_Inspector
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Email_Id != zoho.adminuserid)
+										{
+											if(old.Email_Id != input.Email_Id)
+											{
+												//Sharing permissions for new mail id 
+												thisapp.permissions.assignUserInProfile(input.Email_Id,"Site Inspector");
+												//Removing permissions from old mail id
+												thisapp.permissions.deleteuser(old.Email_Id);
+												thisapp.Notification.Send_Notification(input.Email_Id);
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin1 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_Site_Inspector
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(Email_Id != zoho.adminuserid)
+										{
+											//Removing permissions from the user
+											thisapp.permissions.deleteuser(input.Email_Id);
+											rec_count = Add_Your_Site[Select_Site_Inspector == input.ID].count(ID);
+											//Replacing admin as inspector instead of deleted user
+											if(rec_count > 0)
+											{
+												admin_count = Add_Site_Inspector[Email_Id == zoho.adminuserid].count(ID);
+												if(admin_count != 0)
+												{
+													for each  rec in Add_Your_Site[Select_Site_Inspector == input.ID]
+													{
+														rec.Select_Site_Inspector=Add_Site_Inspector[Email_Id == zoho.adminuserid].ID;
+													}
+												}
+												else
+												{
+													for each  rec in Add_Your_Site[Select_Site_Inspector == input.ID]
+													{
+														rec.Work_Status="Inactive";
+													}
+												}
+											}
+										}
+										if(Email_Id == zoho.adminuserid)
+										{
+											rec_count = Add_Your_Site[Select_Site_Inspector == input.ID].count(ID);
+											if(rec_count != 1)
+											{
+												for each  rec in Add_Your_Site[Select_Site_Inspector == input.ID]
+												{
+													rec.Work_Status="Inactive";
+												}
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing6 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_New_Inspection
+				record event = on edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Send_Email_Immediately;
+						disable Date_field,Inspector_Name;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always2 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Add_Your_Site
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Work_Status;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always3 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Add_Company_Detail
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Schedule_Time;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always4 as "Run Scripts On Always"
+			{
+				type =  form
+				form = Add_Company_Detail
+				record event = on add or edit
+
+	on user input of schedule_time
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Sets the schedule time
+										time = (zoho.currentdate.toString() + " " + input.schedule_time + "00").toTime();
+										if(time <= zoho.currenttime)
+										{
+											input.Schedule_Time = time.addDay(1);
+										}
+										else
+										{
+											input.Schedule_Time = time;
+										}
+						)
+					}
+	}
+
+			}
+		}
+		schedule
+		{
+			Send_Mail as "Send Mail"
+			{
+				type =  schedule
+				form = Add_Company_Detail
+				start = Schedule_Time
+				frequency = daily
+				time zone = "Asia/Kolkata"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						Mail_content = thisapp.Notification.Send_Mail();
+										if(Mail_content != "No Mail")
+										{
+											content = Mail_content;
+										}
+										else
+										{
+											content = "There was no Inspection today";
+										}
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :zoho.adminuserid
+											subject :"Today's Inspection Report"
+											message :content
+										]
+					)
+					}
+				}
+			}
+		}
+		functions
+		{
+			Run_Scripts_On_Click_of_P3 as "Run Scripts - On Click of 'Proceed' Button"
+			{
+				type =  functions
+				form = Add_Your_Site
+				on start
+				{
+					actions 
+					{
+					Site.Changing_Site_Inspector(ID);
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_P4 as "Run Scripts - On Click of 'Proceed' Button"
+			{
+				type =  functions
+				form = Add_Your_Site
+				on start
+				{
+					actions 
+					{
+					Site.Changing_Site_Status(ID);
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_P1 as "Run Scripts - On Click of 'Proceed' Button"
+			{
+				type =  functions
+				form = Add_Site_Inspector
+				on start
+				{
+					actions 
+					{
+					Site_Inspector.Changing_Inspector_Status(ID);
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_P2 as "Run Scripts - On Click of 'Proceed' Button"
+			{
+				type =  functions
+				form = Add_Site_Inspector
+				on start
+				{
+					actions 
+					{
+					Site_Inspector.Changing_Inspector_Status(ID);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Site Inspector"
+			{
+				name = "Site Inspector"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "Site Inspector Profile\n"
+				ModulePermissions
+				{
+					Add_New_Inspection
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							My_Inspections={"View","Edit"}
+							Today_Inspection_Map={"View"}
+						}
+						FieldPermissions
+						{
+							Description{visibility:true,readonly:false}
+							Send_Email_Immediately{visibility:true,readonly:false}
+							Inspector_Name{visibility:true,readonly:false}
+							Title{visibility:true,readonly:false}
+							Photo{visibility:true,readonly:false}
+							Severity{visibility:true,readonly:false}
+							Corrective_Measure{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Whom_To_Contact{visibility:true,readonly:false}
+							Date_field{visibility:true,readonly:false}
+							Site_Name{visibility:true,readonly:false}
+							Video{visibility:true,readonly:false}
+							Inspection_Type{visibility:true,readonly:false}
+						}
+					}
+					Assign_Inspector
+					{
+						FieldPermissions
+						{
+							Site_Name{visibility:true,readonly:false}
+							Select_Inspector{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_Company_Detail
+					{
+						FieldPermissions
+						{
+							Address{visibility:true,readonly:false}
+							schedule_time{visibility:true,readonly:false}
+							Email_Id{visibility:true,readonly:false}
+							plain{visibility:true,readonly:false}
+							Schedule_Time{visibility:true,readonly:false}
+							Company_Name{visibility:true,readonly:false}
+							Contact_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+						}
+					}
+					Add_Your_Site
+					{
+						ReportPermissions
+						{
+							Assigned_Sites={"View"}
+						}
+						FieldPermissions
+						{
+							Work_Status{visibility:true,readonly:false}
+							Site_Name{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Select_Site_Inspector{visibility:true,readonly:false}
+							Location{visibility:true,readonly:false}
+						}
+					}
+					Add_Site_Inspector
+					{
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Email_Id{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Inspection_Types
+					{
+						FieldPermissions
+						{
+							Section{visibility:true,readonly:false}
+							Type{visibility:true,readonly:false}
+						}
+					}
+				}
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			roles
+			{
+				"Default"
+				{
+					description = "User belonging to this role can access data of all other users.\n"
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 3
+		new theme color = 2
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-finance12"
+    	icon theme = "blue"
+		icons style = solid
+	}
+
+	phone
+	{
+		section  Report_an_Issue
+		{
+			displayname= "Inspections"
+			form  Add_New_Inspection
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+			}
+			map Today_Inspection_Map
+			{
+			}
+			custom All_Inspections
+			{
+				icon = "design-bullet-list-67"
+				quickview
+				(
+					layout
+					(
+		 				type = 6
+						datablock1
+						(
+			 				layout type = 23
+		     				title = "Overview"
+							fields
+							(
+								Photo
+								Inspection_Type as "Inspection Type"
+								Description
+								Date_field as "Date"
+								Inspector_Name as "Inspector Name"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Inspection"
+							fields
+							(
+								Inspection_Type as "Inspection Type"
+								Title
+								Video
+								Photo
+								Description
+								Severity
+								Date_field as "Date"
+								Whom_To_Contact as "Whom To Contact"
+								Added_Location as "Added Location"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			custom My_Inspections
+			{
+				icon = "design-bullet-list-67"
+			}
+			list All_Inspection_Types
+			{
+				icon = "business-laptop-71"
+			}
+		}
+		section  Add_Site_Inspectors
+		{
+			displayname= "Inspectors"
+			form  Add_Site_Inspector
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+			}
+			list Site_Inspectors
+			{
+				icon = "design-bullet-list-67"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Email_Id as "Email Id"
+								Phone_Number as "Phone Number"
+								Status
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Active"
+										"Archive"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Email_Id as "Email Id"
+								Status
+								Phone_Number as "Phone Number"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+			 				"Active"
+			 				"Archive"
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Add_Your_Sites
+		{
+			displayname= "Sites"
+			form  Add_Your_Site
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+			}
+			list All_Sites
+			{
+				icon = "design-bullet-list-67"
+				quickview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 4
+		     				title = "Overview"
+							fields
+							(
+								Site_Name as "Site Name"
+								Location
+								Select_Site_Inspector as "Select Site Inspector"
+								Work_Status as "Work Status"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+										"Change Inspector"
+										"Change Status"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Change Inspector"
+										"Change Status"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Site_Name as "Site Name"
+								Location
+								Select_Site_Inspector as "Select Site Inspector"
+								Work_Status as "Work Status"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+			 				"Change Inspector"
+			 				"Change Status"
+    	 				)
+    				)
+				)
+			}
+			map Map_View
+			{
+				icon = "location-pin"
+			}
+			map Assigned_Sites
+			{
+				icon = "location-pin"
+			}
+		}
+		section  page
+		{
+			displayname= "Assign inspector"
+			form  Assign_Inspector
+			{
+				layout = left
+				hide = true
+			}
+		}
+		section  Construction_Details
+		{
+			displayname= "Settings"
+			form  Add_Company_Detail
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			summary Company_Details
+			{
+				icon = "design-bullet-list-67"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Company_Name as "Company Name"
+								Address
+								Email_Id as "Email Id"
+								Contact_Number as "Contact Number"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Company_Name as "Company Name"
+								Address
+								Contact_Number as "Contact Number"
+								Email_Id as "Email Id"
+								Schedule_Time as "Schedule Time"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Inspection_Types
+		{
+			displayname= "Inspection Types"
+			form  Inspection_Types
+			{
+				layout = auto
+				icon = "tech-2-pci-card"
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = darkgrey
+        	layout = onecolumn
+		 	icons style = outline
+		}
+	}
+	translation
+{
+"{\"de\":{\"FormField.Add_Site_Inspector.ID\":\" ICH WÜRDE \",\"Form.Inspection_Types\":\"Inspektionsarten\",\"ReportField.Map_View.Site_Name\":\" Websitename \",\"FormButton.Add_Site_Inspector.update\":\" Aktualisieren \",\"ReportField.My_Inspections.Video\":\"Video\",\"FormField.Add_New_Inspection.Site_Name\":\" Websitename \",\"FormField.Add_Company_Detail.latitude2\":\" Breite \",\"FormField.Add_New_Inspection.Whom_To_Contact\":\"Wen kontaktieren\",\"ReportField.My_Inspections.Photo\":\"Foto\",\"FormField.Add_New_Inspection.Section\":\" Sektion \",\"FormField.Add_Company_Detail.Modified_Time\":\" Geänderte Zeit \",\"FormField.Add_New_Inspection.state_province1\":\" Staat / Provinz \",\"FormField.Add_Company_Detail.Address\":\"Adresse\",\"Report.Site_Inspectors\":\" Site-Inspektoren \",\"Languages List.zh-TW\":\" Chinesische Tradition \",\"FormField.Add_Your_Site.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"Report.Today_Inspection_Map\":\" Heute Inspektionskarte \",\"Languages List.ja\":\" japanisch \",\"Section.Add_Site_Inspectors\":\" Inspektoren \",\"FormButton.Add_New_Inspection.reset\":\" Zurücksetzen \",\"FormField.Add_Site_Inspector.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Add_Your_Site.Added_Time\":\" Zeit hinzugefügt \",\"FormButton.Add_Site_Inspector.reset\":\" Zurücksetzen \",\"FormField.Add_Company_Detail.Record_Status\":\" Aufnahmestatus \",\"FormField.Assign_Inspector.Modified_User\":\" Geänderter Benutzer \",\"FormField.Add_Your_Site.Location\":\" Ort \",\"Form.Add_Company_Detail\":\" Unternehmensdetails hinzufügen \",\"FormButton.Inspection_Types.update\":\"Aktualisieren\",\"Languages List.ku\":\" kurdisch \",\"Report.All_Inspection_Types\":\"Alle Inspektionstypen\",\"FormField.Assign_Inspector.Site_Name\":\" Websitename \",\"ReportField.All_Inspections.Video\":\"Video\",\"Languages List.km\":\" Khmer \",\"ReportField.Site_Inspectors.first_name\":\" Name \",\"FormField.Add_Your_Site.longitude2\":\" Längengrad \",\"Languages List.ko\":\" Koreanisch \",\"FormField.Add_Company_Detail.ID\":\" ICH WÜRDE \",\"ReportField.My_Inspections.Title\":\"Titel\",\"Languages List.kn\":\" Kannada \",\"Languages List.ka\":\" georgisch \",\"PicklistOption.Add_New_Inspection.Severity.1\":\" Hoch \",\"PicklistOption.Add_New_Inspection.Severity.2\":\" Mittel \",\"FormField.Add_New_Inspection.Modified_Time\":\" Geänderte Zeit \",\"PicklistOption.Add_New_Inspection.Severity.3\":\" Niedrig \",\"CompositeSubFields.Add_Site_Inspector.Name.suffix\":\" Suffix \",\"Languages List.hu\":\" ungarisch \",\"Languages List.yi\":\" Jiddisch \",\"CompositeSubFields.Add_Company_Detail.Address.address_line_12\":\" Anschrift Zeile 1 \",\"FormField.Add_Company_Detail.Company_Name\":\" Name der Firma \",\"Languages List.hy\":\" Armenisch \",\"FormField.Add_Site_Inspector.last_name\":\" Familienname, Nachname \",\"CompositeSubFields.Add_Site_Inspector.Name.last_name\":\" Familienname, Nachname \",\"Languages List.hr\":\" kroatisch \",\"FormField.Add_Site_Inspector.Record_Status\":\" Aufnahmestatus \",\"Languages List.hi\":\" Hindi \",\"FormField.Add_New_Inspection.district_city\":\" Stadtteil \",\"FormField.Add_Your_Site.Record_Status\":\" Aufnahmestatus \",\"FormField.Add_Company_Detail.district_city2\":\" Stadtteil \",\"CompositeSubFields.Add_Company_Detail.Address.address_line_22\":\" Adresszeile 2 \",\"FormField.Add_New_Inspection.Added_Location\":\" Standort hinzugefügt \",\"Languages List.zh\":\" Chinesisch \",\"Languages List.iw\":\" hebräisch \",\"FormField.Add_Site_Inspector.Modified_Time\":\" Geänderte Zeit \",\"FormField.Add_Company_Detail.longitude2\":\" Längengrad \",\"ReportField.My_Inspections.Inspection_Type\":\"Inspektionsart\",\"FormField.Add_New_Inspection.Corrective_Measure\":\"Korrekturmaßnahme\",\"ReportField.All_Sites.Site_Name\":\"Websitename\",\"FormField.Add_Site_Inspector.suffix\":\" Suffix \",\"Languages List.is\":\" isländisch \",\"Languages List.it\":\" Italienisch \",\"FormButton.Add_Site_Inspector.submit\":\" einreichen \",\"FormField.Inspection_Types.Type\":\"Art\",\"ReportField.All_Inspections.Title\":\"Titel\",\"FormButton.Inspection_Types.submit\":\"einreichen\",\"PicklistOption.Add_Your_Site.Work_Status.1\":\" Aktiv \",\"PicklistOption.Add_Your_Site.Work_Status.2\":\" Inaktiv \",\"FormField.Add_Site_Inspector.Status\":\"Status\",\"FormButton.Assign_Inspector.Assign\":\" Zuordnen \",\"PicklistOption.Add_Company_Detail.schedule_time.23\":\" 22:00 Uhr \",\"FormField.Add_New_Inspection.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"PicklistOption.Add_Company_Detail.schedule_time.22\":\" 21:00 Uhr \",\"FormField.Add_Company_Detail.Added_User\":\" Benutzer hinzugefügt \",\"PicklistOption.Add_Company_Detail.schedule_time.24\":\" 23:00 Uhr \",\"PicklistOption.Add_Company_Detail.schedule_time.21\":\" 20:00 Uhr \",\"PicklistOption.Add_Company_Detail.schedule_time.20\":\" 19:00 Uhr \",\"FormField.Add_Your_Site.district_city2\":\" Stadtteil \",\"Languages List.nl\":\" Niederländisch \",\"FormButton.Add_Your_Site.submit\":\" einreichen \",\"Languages List.no\":\" norwegisch \",\"FormField.Add_Site_Inspector.Phone_Number\":\" Telefonnummer \",\"PicklistOption.Add_Company_Detail.schedule_time.19\":\" 18:00 Uhr \",\"Section.Add_Your_Sites\":\" Websites \",\"PicklistOption.Add_Company_Detail.schedule_time.16\":\" 15:00 Uhr \",\"PicklistOption.Add_Company_Detail.schedule_time.15\":\" 14:00 Uhr \",\"PicklistOption.Add_Company_Detail.schedule_time.18\":\" 17:00 Uhr \",\"PicklistOption.Add_Company_Detail.schedule_time.17\":\" 16:00 Uhr \",\"CompositeSubFields.Add_Your_Site.Location.postal_Code2\":\" Postleitzahl \",\"FormField.Add_New_Inspection.district_city1\":\" Stadtteil \",\"ReportField.Today_Inspection_Map.Description\":\" Beschreibung \",\"PicklistOption.Add_Site_Inspector.prefix.3\":\" Frau. \",\"PicklistOption.Add_Site_Inspector.prefix.2\":\" Frau. \",\"PicklistOption.Add_Site_Inspector.prefix.1\":\" Herr. \",\"ReportField.Company_Details.Contact_Number\":\"Kontakt Nummer\",\"PicklistOption.Add_Your_Site.country2.1\":\" Wahl 1 \",\"PicklistOption.Add_Your_Site.country2.2\":\" Wahl 2 \",\"ReportField.Today_Inspection_Map.Date_field\":\" Datum \",\"FormButton.Inspection_Types.reset\":\"Zurücksetzen\",\"FormField.Add_New_Inspection.Severity\":\" Schwere \",\"FormField.Assign_Inspector.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Company_Detail.postal_Code2\":\" Postleitzahl \",\"FormField.Add_Your_Site.Modified_Time\":\" Geänderte Zeit \",\"FormButton.Add_Your_Site.reset\":\" Zurücksetzen \",\"FormField.Add_New_Inspection.longitude\":\" Längengrad \",\"CustomAction.Site_Inspectors.Run_Scripts_On_Click_of_P2\":\" Archiv \",\"FormField.Add_New_Inspection.latitude\":\" Breite \",\"CustomAction.Site_Inspectors.Run_Scripts_On_Click_of_P1\":\" Aktiv \",\"FormField.Inspection_Types.Section\":\"Sektion\",\"App.site-inspector\":\"Site-Inspektor \",\"Languages List.lt\":\" litauisch \",\"FormField.Add_New_Inspection.Modified_Location\":\" Geänderter Standort \",\"FormField.Add_Site_Inspector.Section\":\"Sektion\",\"Languages List.lv\":\" lettisch \",\"FormField.Assign_Inspector.Record_Status\":\" Aufnahmestatus \",\"FormField.Add_Your_Site.latitude2\":\" Breite \",\"FormField.Add_New_Inspection.Added_User\":\" Benutzer hinzugefügt \",\"PicklistOption.Add_Company_Detail.schedule_time.5\":\" 04:00 Uhr \",\"FormField.Add_New_Inspection.ID\":\" ICH WÜRDE \",\"FormButton.Add_Your_Site.cancel\":\" Stornieren \",\"PicklistOption.Add_Company_Detail.schedule_time.4\":\" 03:00 Uhr \",\"PicklistOption.Add_Company_Detail.schedule_time.7\":\" 06:00 Uhr \",\"PicklistOption.Add_Company_Detail.schedule_time.6\":\" 05:00 Uhr \",\"PicklistOption.Add_Company_Detail.schedule_time.9\":\" 08:00 Uhr \",\"PicklistOption.Add_Company_Detail.schedule_time.8\":\" 07:00 Uhr \",\"FormField.Add_Site_Inspector.Added_User\":\" Benutzer hinzugefügt \",\"Languages List.lo\":\" Laothian \",\"Languages List.la\":\" Latein \",\"FormField.Add_New_Inspection.longitude1\":\" Längengrad \",\"Report.All_Inspections\":\" Alle Inspektionen \",\"PicklistOption.Add_Company_Detail.schedule_time.1\":\" 00:00 Uhr \",\"PicklistOption.Add_Company_Detail.schedule_time.3\":\" 02:00 Uhr \",\"PicklistOption.Add_Company_Detail.schedule_time.2\":\" 01:00 Uhr \",\"PicklistOption.Add_Company_Detail.schedule_time.12\":\" 11:00 Uhr \",\"ReportField.All_Inspections.Photo\":\"Foto\",\"PicklistOption.Add_Company_Detail.schedule_time.11\":\" 10:00 Uhr \",\"PicklistOption.Add_Company_Detail.schedule_time.14\":\" 13:00 Uhr \",\"CustomAction.All_Sites.Run_Scripts_On_Click_of_P3\":\" Inspektor ändern \",\"PicklistOption.Add_Company_Detail.schedule_time.13\":\" 12:00 Uhr \",\"CustomAction.All_Sites.Run_Scripts_On_Click_of_P4\":\" Status ändern \",\"FormField.Add_Company_Detail.state_province2\":\" Staat / Provinz \",\"ReportField.Map_View.address_line_12\":\" Ort \",\"PicklistOption.Add_Company_Detail.schedule_time.10\":\" 09:00 Uhr \",\"Languages List.ms\":\" malaiisch \",\"Languages List.mr\":\" Marathi \",\"FormField.Add_Your_Site.state_province2\":\" Staat / Provinz \",\"Languages List.mt\":\" maltesisch \",\"CompositeSubFields.Add_Company_Detail.Address.state_province2\":\" Staat / Provinz \",\"Form.Add_Site_Inspector\":\" Website-Inspektor hinzufügen \",\"Report.Company_Details\":\" Firmendetails \",\"Languages List.mk\":\" mazedonisch \",\"ReportField.My_Inspections.Date_field\":\"Datum\",\"FormField.Add_Your_Site.Section\":\"Sektion\",\"ReportField.All_Inspections.Severity\":\"Schwere\",\"Report.My_Inspections\":\" Meine Inspektionen \",\"FormButton.Add_Your_Site.update\":\" Aktualisieren \",\"ReportField.Map_View.Select_Site_Inspector\":\"Site-Inspektor\",\"FormField.Add_New_Inspection.Photo\":\"Foto\",\"FormField.Add_Company_Detail.address_line_12\":\" Anschrift Zeile 1 \",\"FormField.Add_Your_Site.postal_Code2\":\" Postleitzahl \",\"FormField.Add_Site_Inspector.Name\":\" Name \",\"Languages List.bg\":\" bulgarisch \",\"ReportField.All_Inspections.Date_field\":\"Datum\",\"FormField.Add_Company_Detail.Modified_User\":\" Geänderter Benutzer \",\"FormButton.Add_New_Inspection.update\":\" Aktualisieren \",\"Languages List.bn\":\" Bengali \",\"ReportField.All_Inspections.Inspection_Type\":\"Inspektionsart\",\"Languages List.ro\":\" rumänisch \",\"FormField.Add_Site_Inspector.prefix\":\" Präfix \",\"Languages List.be\":\" Belarussisch \",\"Languages List.ru\":\" Russisch \",\"Languages List.az\":\" Aserbaidschanisch \",\"FormField.Add_Your_Site.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Company_Detail.address_line_22\":\" Adresszeile 2 \",\"ReportField.Today_Inspection_Map.Inspector_Name\":\" Inspektor Name \",\"Languages List.ta\":\" Tamilisch \",\"Languages List.cs\":\" Tschechisch \",\"ReportField.All_Sites.address_line_12\":\" Ort \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" Thai \",\"FormField.Assign_Inspector.Modified_Time\":\" Geänderte Zeit \",\"FormField.Add_New_Inspection.Date_field\":\" Datum \",\"FormField.Add_New_Inspection.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Add_Your_Site.ID\":\" ICH WÜRDE \",\"Languages List.sq\":\" albanisch \",\"Languages List.ca\":\" katalanisch \",\"FormField.Add_Company_Detail.Section\":\" Sektion \",\"ReportField.Company_Details.Company_Name\":\"Name der Firma\",\"ReportField.All_Inspections.Whom_To_Contact\":\"Wen kontaktieren\",\"FormField.Add_New_Inspection.Video\":\"Video\",\"CompositeSubFields.Add_Site_Inspector.Name.prefix\":\" Präfix \",\"Languages List.sw\":\" Swahili \",\"Languages List.sv\":\" Schwedisch \",\"FormField.Add_New_Inspection.Modified_User\":\" Geänderter Benutzer \",\"CompositeSubFields.Add_Company_Detail.Address.postal_Code2\":\" Postleitzahl \",\"FormField.Add_Your_Site.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Languages List.sk\":\" slowakisch \",\"FormField.Add_Your_Site.Site_Name\":\" Websitename \",\"Languages List.sl\":\" Slowenisch \",\"FormField.Assign_Inspector.Select_Inspector\":\" Wählen Sie Inspektor \",\"Report.Map_View\":\" Kartenansicht \",\"FormField.Add_New_Inspection.Send_Email_Immediately\":\" E-Mail sofort senden \",\"ReportField.Company_Details.Email_Id\":\"E-Mail-ID\",\"FormField.Add_Site_Inspector.Email_Id\":\"E-Mail-ID\",\"FormField.Add_Company_Detail.country2\":\" Land \",\"CompositeSubFields.Add_Your_Site.Location.country2\":\" Land \",\"FormField.Add_Your_Site.country2\":\" Land \",\"FormField.Add_New_Inspection.country1\":\" Land \",\"Languages List.pt\":\" Portugiesisch \",\"ReportField.My_Inspections.Description\":\"Beschreibung\",\"FormField.Add_Your_Site.Work_Status\":\" Arbeitsstatus \",\"FormField.Add_Company_Detail.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"PicklistOption.Add_New_Inspection.country.2\":\" Beispielland2 \",\"PicklistOption.Add_New_Inspection.country.1\":\" Beispielland1 \",\"Section.Construction_Details\":\" die Einstellungen \",\"Languages List.pl\":\" Polieren \",\"CompositeSubFields.Add_Your_Site.Location.address_line_22\":\" Adresszeile 2 \",\"CompositeSubFields.Add_Site_Inspector.Name.first_name\":\" Vorname \",\"FormField.Add_Site_Inspector.Modified_User\":\" Geänderter Benutzer \",\"Languages List.ar\":\" Arabisch \",\"Languages List.af\":\" Afrikaans \",\"FormField.Add_New_Inspection.latitude1\":\" Breite \",\"FormField.Add_Site_Inspector.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Section.Report_an_Issue\":\" Inspektionen \",\"FormField.Add_New_Inspection.Inspector_Name\":\" Inspektor Name \",\"ReportField.All_Sites.Select_Site_Inspector\":\"Wählen Sie Website-Inspektor\",\"FormButton.Inspection_Types.cancel\":\"Stornieren\",\"FormField.Add_New_Inspection.state_province\":\" Staat / Provinz \",\"FormButton.Add_Site_Inspector.cancel\":\" Stornieren \",\"FormField.Add_New_Inspection.Title\":\" Titel \",\"FormField.Add_Company_Detail.Contact_Number\":\"Kontakt Nummer\",\"FormField.Add_Company_Detail.Email_Id\":\"E-Mail-ID\",\"Form.Assign_Inspector\":\" Weisen Sie den Inspektor zu \",\"ReportField.Today_Inspection_Map.Site_Name\":\" Websitename \",\"CompositeSubFields.Add_Your_Site.Location.address_line_12\":\" Anschrift Zeile 1 \",\"FormButton.Add_New_Inspection.submit\":\" einreichen \",\"ReportField.My_Inspections.Inspector_Name\":\" Inspektor Name \",\"ReportField.Today_Inspection_Map.Title\":\" Titel \",\"ReportField.My_Inspections.Site_Name\":\" Websitename \",\"FormField.Add_Company_Detail.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Languages List.fr\":\" Französisch \",\"ReportField.Company_Details.address_line_12\":\"Adresse\",\"ReportField.Company_Details.Schedule_Time\":\"Planmäßige Zeit\",\"Form.Add_New_Inspection\":\"Fügen Sie eine neue Inspektion hinzu\",\"ReportField.Today_Inspection_Map.Photo\":\" Foto \",\"ReportField.Site_Inspectors.Email_Id\":\"E-Mail-ID\",\"Languages List.fi\":\" Finnese \",\"CompositeSubFields.Add_Company_Detail.Address.district_city2\":\" Stadtteil \",\"ReportField.Site_Inspectors.Phone_Number\":\"Telefonnummer\",\"FormField.Add_Company_Detail.Added_Time\":\" Zeit hinzugefügt \",\"Form.Add_Your_Site\":\" Fügen Sie Ihre Website hinzu \",\"ReportField.All_Inspection_Types.Type\":\"Art\",\"Languages List.fa\":\" persisch \",\"Languages List.gu\":\" Gujarati \",\"FormField.Add_Company_Detail.schedule_time\":\" Wählen Sie Zeit \",\"CompositeSubFields.Add_Your_Site.Location.state_province2\":\" Staat / Provinz \",\"ReportField.All_Inspections.Description\":\"Beschreibung\",\"PicklistOption.Add_Company_Detail.country2.1\":\" Wahl 1 \",\"PicklistOption.Add_Company_Detail.country2.2\":\" Wahl 2 \",\"Languages List.gl\":\" galizisch \",\"FormField.Add_New_Inspection.country\":\" Land \",\"FormField.Add_Your_Site.Select_Site_Inspector\":\" Wählen Sie Website-Inspektor \",\"ReportField.My_Inspections.Severity\":\"Schwere\",\"FormField.Assign_Inspector.ID\":\" ICH WÜRDE \",\"ReportField.All_Sites.Work_Status\":\"Arbeitsstatus\",\"FormField.Add_New_Inspection.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Add_Your_Site.address_line_22\":\" Adresszeile 2 \",\"FormField.Assign_Inspector.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Add_Your_Site.Modified_User\":\" Geänderter Benutzer \",\"Languages List.ga\":\" irisch \",\"CompositeSubFields.Add_Your_Site.Location.district_city2\":\" Stadtteil \",\"ReportField.Map_View.Work_Status\":\" Arbeitsstatus \",\"Section.page\":\" Inspektor zuweisen \",\"FormButton.Add_New_Inspection.cancel\":\" Stornieren \",\"FormField.Add_Your_Site.address_line_12\":\" Anschrift Zeile 1 \",\"FormField.Add_New_Inspection.postal_Code1\":\" Postleitzahl \",\"Languages List.tr\":\" Türkisch \",\"FormField.Add_Site_Inspector.Added_Time\":\" Zeit hinzugefügt \",\"Languages List.da\":\" dänisch \",\"FormField.Add_Company_Detail.Schedule_Time\":\" Planmäßige Zeit \",\"ReportField.Site_Inspectors.Status\":\"Status\",\"ReportField.All_Inspections.Inspector_Name\":\"Inspektor Name\",\"Languages List.de\":\" Deutsche \",\"FormField.Add_New_Inspection.Record_Status\":\" Aufnahmestatus \",\"FormButton.Add_Company_Detail.update\":\" Aktualisieren \",\"Languages List.cy\":\" Walisisch \",\"Languages List.tl\":\" Filipino \",\"FormField.Add_Site_Inspector.first_name\":\" Vorname \",\"FormButton.Add_Company_Detail.reset\":\" Zurücksetzen \",\"PicklistOption.Add_New_Inspection.country1.1\":\" Beispielland1 \",\"FormField.Assign_Inspector.Section\":\" Sektion \",\"PicklistOption.Add_New_Inspection.country1.2\":\" Beispielland2 \",\"Languages List.es\":\" Spanisch \",\"Languages List.eu\":\" baskisch \",\"Languages List.et\":\" estnisch \",\"Report.All_Sites\":\" Alle Standorte \",\"Languages List.vi\":\" Vietnamesisch \",\"CompositeSubFields.Add_Company_Detail.Address.country2\":\" Land \",\"FormField.Add_New_Inspection.postal_Code\":\" Postleitzahl \",\"PicklistOption.Add_Site_Inspector.Status.2\":\"Archiv\",\"PicklistOption.Add_Site_Inspector.Status.1\":\"Aktiv\",\"Languages List.el\":\" griechisch \",\"Languages List.eo\":\" Esperanto \",\"Languages List.en\":\" Englisch \",\"FormButton.Add_Company_Detail.submit\":\" einreichen \",\"FormButton.Add_Company_Detail.cancel\":\" Stornieren \",\"Languages List.ur\":\" Urdu \",\"FormField.Add_New_Inspection.Description\":\" Beschreibung \"},\"fr\":{\"FormField.Add_Site_Inspector.ID\":\" ID \",\"Form.Inspection_Types\":\"Types d'inspection\",\"ReportField.Map_View.Site_Name\":\" Nom du site \",\"FormButton.Add_Site_Inspector.update\":\" Mettre à jour \",\"ReportField.My_Inspections.Video\":\"Vidéo\",\"FormField.Add_New_Inspection.Site_Name\":\" Nom du site \",\"FormField.Add_Company_Detail.latitude2\":\" latitude \",\"FormField.Add_New_Inspection.Whom_To_Contact\":\"Qui contacter\",\"ReportField.My_Inspections.Photo\":\"Photo\",\"FormField.Add_New_Inspection.Section\":\" Section \",\"FormField.Add_Company_Detail.Modified_Time\":\" Heure modifiée \",\"FormField.Add_New_Inspection.state_province1\":\" Etat / Province \",\"FormField.Add_Company_Detail.Address\":\"Adresse\",\"Report.Site_Inspectors\":\" Inspecteurs de site \",\"Languages List.zh-TW\":\" Chinois traditionnel \",\"FormField.Add_Your_Site.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"Report.Today_Inspection_Map\":\" Carte d'inspection aujourd'hui \",\"Languages List.ja\":\" Japonais \",\"Section.Add_Site_Inspectors\":\" Inspecteurs \",\"FormButton.Add_New_Inspection.reset\":\" Réinitialiser \",\"FormField.Add_Site_Inspector.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Add_Your_Site.Added_Time\":\" Temps ajouté \",\"FormButton.Add_Site_Inspector.reset\":\" Réinitialiser \",\"FormField.Add_Company_Detail.Record_Status\":\" Statut d'enregistrement \",\"FormField.Assign_Inspector.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Your_Site.Location\":\" Emplacement \",\"Form.Add_Company_Detail\":\" Ajouter un détail de la société \",\"FormButton.Inspection_Types.update\":\"Mettre à jour\",\"Languages List.ku\":\" kurde \",\"Report.All_Inspection_Types\":\"Tous les types d'inspection\",\"FormField.Assign_Inspector.Site_Name\":\" Nom du site \",\"ReportField.All_Inspections.Video\":\"Vidéo\",\"Languages List.km\":\" Khmer \",\"ReportField.Site_Inspectors.first_name\":\" prénom \",\"FormField.Add_Your_Site.longitude2\":\" longitude \",\"Languages List.ko\":\" coréen \",\"FormField.Add_Company_Detail.ID\":\" ID \",\"ReportField.My_Inspections.Title\":\"Titre\",\"Languages List.kn\":\" Kannada \",\"Languages List.ka\":\" géorgien \",\"PicklistOption.Add_New_Inspection.Severity.1\":\" Haute \",\"PicklistOption.Add_New_Inspection.Severity.2\":\" Moyen \",\"FormField.Add_New_Inspection.Modified_Time\":\" Heure modifiée \",\"PicklistOption.Add_New_Inspection.Severity.3\":\" Faible \",\"CompositeSubFields.Add_Site_Inspector.Name.suffix\":\" Suffixe \",\"Languages List.hu\":\" hongrois \",\"Languages List.yi\":\" yiddish \",\"CompositeSubFields.Add_Company_Detail.Address.address_line_12\":\" Adresse 1 \",\"FormField.Add_Company_Detail.Company_Name\":\" Nom de la compagnie \",\"Languages List.hy\":\" arménien \",\"FormField.Add_Site_Inspector.last_name\":\" Nom de famille \",\"CompositeSubFields.Add_Site_Inspector.Name.last_name\":\" Nom de famille \",\"Languages List.hr\":\" croate \",\"FormField.Add_Site_Inspector.Record_Status\":\" Statut d'enregistrement \",\"Languages List.hi\":\" hindi \",\"FormField.Add_New_Inspection.district_city\":\" District de la ville \",\"FormField.Add_Your_Site.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_Company_Detail.district_city2\":\" District de la ville \",\"CompositeSubFields.Add_Company_Detail.Address.address_line_22\":\" Adresse Ligne 2 \",\"FormField.Add_New_Inspection.Added_Location\":\" Emplacement ajouté \",\"Languages List.zh\":\" chinois \",\"Languages List.iw\":\" hébreu \",\"FormField.Add_Site_Inspector.Modified_Time\":\" Heure modifiée \",\"FormField.Add_Company_Detail.longitude2\":\" longitude \",\"ReportField.My_Inspections.Inspection_Type\":\"Type d'inspection\",\"FormField.Add_New_Inspection.Corrective_Measure\":\"Mesure corrective\",\"ReportField.All_Sites.Site_Name\":\"Nom du site\",\"FormField.Add_Site_Inspector.suffix\":\" Suffixe \",\"Languages List.is\":\" islandais \",\"Languages List.it\":\" italien \",\"FormButton.Add_Site_Inspector.submit\":\" Soumettre \",\"FormField.Inspection_Types.Type\":\"Type\",\"ReportField.All_Inspections.Title\":\"Titre\",\"FormButton.Inspection_Types.submit\":\"Soumettre\",\"PicklistOption.Add_Your_Site.Work_Status.1\":\" actif \",\"PicklistOption.Add_Your_Site.Work_Status.2\":\" Inactif \",\"FormField.Add_Site_Inspector.Status\":\"Statut\",\"FormButton.Assign_Inspector.Assign\":\" Attribuer \",\"PicklistOption.Add_Company_Detail.schedule_time.23\":\" 22:00 \",\"FormField.Add_New_Inspection.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"PicklistOption.Add_Company_Detail.schedule_time.22\":\" 21h00 \",\"FormField.Add_Company_Detail.Added_User\":\" Utilisateur ajouté \",\"PicklistOption.Add_Company_Detail.schedule_time.24\":\" 23:00 \",\"PicklistOption.Add_Company_Detail.schedule_time.21\":\" 20h00 \",\"PicklistOption.Add_Company_Detail.schedule_time.20\":\" 19h00 \",\"FormField.Add_Your_Site.district_city2\":\" District de la ville \",\"Languages List.nl\":\" néerlandais \",\"FormButton.Add_Your_Site.submit\":\" Soumettre \",\"Languages List.no\":\" norvégien \",\"FormField.Add_Site_Inspector.Phone_Number\":\" Numéro de téléphone \",\"PicklistOption.Add_Company_Detail.schedule_time.19\":\" 18:00 \",\"Section.Add_Your_Sites\":\" Des sites \",\"PicklistOption.Add_Company_Detail.schedule_time.16\":\" 15h00 \",\"PicklistOption.Add_Company_Detail.schedule_time.15\":\" 14h00 \",\"PicklistOption.Add_Company_Detail.schedule_time.18\":\" 17:00 \",\"PicklistOption.Add_Company_Detail.schedule_time.17\":\" 16h00 \",\"CompositeSubFields.Add_Your_Site.Location.postal_Code2\":\" code postal \",\"FormField.Add_New_Inspection.district_city1\":\" District de la ville \",\"ReportField.Today_Inspection_Map.Description\":\" La description \",\"PicklistOption.Add_Site_Inspector.prefix.3\":\" Mme. \",\"PicklistOption.Add_Site_Inspector.prefix.2\":\" Madame. \",\"PicklistOption.Add_Site_Inspector.prefix.1\":\" M. \",\"ReportField.Company_Details.Contact_Number\":\" Numéro de contact \",\"PicklistOption.Add_Your_Site.country2.1\":\" Choix 1 \",\"PicklistOption.Add_Your_Site.country2.2\":\" Choix 2 \",\"ReportField.Today_Inspection_Map.Date_field\":\" Rendez-vous amoureux \",\"FormButton.Inspection_Types.reset\":\"Réinitialiser\",\"FormField.Add_New_Inspection.Severity\":\" Gravité \",\"FormField.Assign_Inspector.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Company_Detail.postal_Code2\":\" code postal \",\"FormField.Add_Your_Site.Modified_Time\":\" Heure modifiée \",\"FormButton.Add_Your_Site.reset\":\" Réinitialiser \",\"FormField.Add_New_Inspection.longitude\":\" longitude \",\"CustomAction.Site_Inspectors.Run_Scripts_On_Click_of_P2\":\" Archiver \",\"FormField.Add_New_Inspection.latitude\":\" latitude \",\"CustomAction.Site_Inspectors.Run_Scripts_On_Click_of_P1\":\" actif \",\"App.site-inspector\":\"Inspecteur de site \",\"Languages List.lt\":\" lituanien \",\"FormField.Add_New_Inspection.Modified_Location\":\" Emplacement modifié \",\"FormField.Add_Site_Inspector.Section\":\"Section\",\"Languages List.lv\":\" letton \",\"FormField.Assign_Inspector.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_Your_Site.latitude2\":\" latitude \",\"FormField.Add_New_Inspection.Added_User\":\" Utilisateur ajouté \",\"PicklistOption.Add_Company_Detail.schedule_time.5\":\" 04:00 \",\"FormField.Add_New_Inspection.ID\":\" ID \",\"FormButton.Add_Your_Site.cancel\":\" Annuler \",\"PicklistOption.Add_Company_Detail.schedule_time.4\":\" 03:00 \",\"PicklistOption.Add_Company_Detail.schedule_time.7\":\" 06:00 \",\"PicklistOption.Add_Company_Detail.schedule_time.6\":\" 05:00 \",\"PicklistOption.Add_Company_Detail.schedule_time.9\":\" 08:00 \",\"PicklistOption.Add_Company_Detail.schedule_time.8\":\" 07:00 \",\"FormField.Add_Site_Inspector.Added_User\":\" Utilisateur ajouté \",\"Languages List.lo\":\" Laothian \",\"Languages List.la\":\" Latin \",\"FormField.Add_New_Inspection.longitude1\":\" longitude \",\"Report.All_Inspections\":\" Toutes les inspections \",\"PicklistOption.Add_Company_Detail.schedule_time.1\":\" 00:00 \",\"PicklistOption.Add_Company_Detail.schedule_time.3\":\" 02:00 \",\"PicklistOption.Add_Company_Detail.schedule_time.2\":\" 01:00 \",\"PicklistOption.Add_Company_Detail.schedule_time.12\":\" 11h00 \",\"ReportField.All_Inspections.Photo\":\"Photo\",\"PicklistOption.Add_Company_Detail.schedule_time.11\":\" 10h00 \",\"PicklistOption.Add_Company_Detail.schedule_time.14\":\" 13h00 \",\"CustomAction.All_Sites.Run_Scripts_On_Click_of_P3\":\" Change Inspecteur \",\"PicklistOption.Add_Company_Detail.schedule_time.13\":\" 12:00 \",\"CustomAction.All_Sites.Run_Scripts_On_Click_of_P4\":\" Changer le statut \",\"FormField.Add_Company_Detail.state_province2\":\" Etat / Province \",\"ReportField.Map_View.address_line_12\":\" Emplacement \",\"PicklistOption.Add_Company_Detail.schedule_time.10\":\" 09:00 \",\"Languages List.ms\":\" malais \",\"Languages List.mr\":\" Marathi \",\"FormField.Add_Your_Site.state_province2\":\" Etat / Province \",\"Languages List.mt\":\" maltais \",\"CompositeSubFields.Add_Company_Detail.Address.state_province2\":\" Etat / Province \",\"Form.Add_Site_Inspector\":\" Ajouter un inspecteur de site \",\"Report.Company_Details\":\" Détails de la société \",\"Languages List.mk\":\" Macédonien \",\"ReportField.My_Inspections.Date_field\":\"Rendez-vous amoureux\",\"FormField.Add_Your_Site.Section\":\"Section\",\"ReportField.All_Inspections.Severity\":\"Gravité\",\"Report.My_Inspections\":\" Mes inspections \",\"FormButton.Add_Your_Site.update\":\" Mettre à jour \",\"ReportField.Map_View.Select_Site_Inspector\":\"Inspecteur de site\",\"FormField.Add_New_Inspection.Photo\":\"Photo\",\"FormField.Add_Company_Detail.address_line_12\":\" Adresse 1 \",\"FormField.Add_Your_Site.postal_Code2\":\" code postal \",\"FormField.Add_Site_Inspector.Name\":\" prénom \",\"Languages List.bg\":\" bulgare \",\"ReportField.All_Inspections.Date_field\":\"Rendez-vous amoureux\",\"FormField.Add_Company_Detail.Modified_User\":\" Utilisateur modifié \",\"FormButton.Add_New_Inspection.update\":\" Mettre à jour \",\"Languages List.bn\":\" bengali \",\"ReportField.All_Inspections.Inspection_Type\":\"Type d'inspection\",\"Languages List.ro\":\" roumain \",\"FormField.Add_Site_Inspector.prefix\":\" Préfixe \",\"Languages List.be\":\" Biélorusse \",\"Languages List.ru\":\" russe \",\"Languages List.az\":\" azerbaïdjanais \",\"FormField.Add_Your_Site.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Company_Detail.address_line_22\":\" Adresse Ligne 2 \",\"ReportField.Today_Inspection_Map.Inspector_Name\":\" Nom de l'inspecteur \",\"Languages List.ta\":\" Tamil \",\"Languages List.cs\":\" tchèque \",\"ReportField.All_Sites.address_line_12\":\" Emplacement \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" thaïlandais \",\"FormField.Assign_Inspector.Modified_Time\":\" Heure modifiée \",\"FormField.Add_New_Inspection.Date_field\":\" Rendez-vous amoureux \",\"FormField.Add_New_Inspection.Added_Time\":\" Temps ajouté \",\"FormField.Add_Your_Site.ID\":\" ID \",\"Languages List.sq\":\" albanais \",\"Languages List.ca\":\" catalan \",\"FormField.Add_Company_Detail.Section\":\" Section \",\"ReportField.Company_Details.Company_Name\":\"Nom de la compagnie\",\"ReportField.All_Inspections.Whom_To_Contact\":\"Qui contacter\",\"FormField.Add_New_Inspection.Video\":\"Vidéo\",\"CompositeSubFields.Add_Site_Inspector.Name.prefix\":\" Préfixe \",\"Languages List.sw\":\" Swahili \",\"Languages List.sv\":\" suédois \",\"FormField.Add_New_Inspection.Modified_User\":\" Utilisateur modifié \",\"CompositeSubFields.Add_Company_Detail.Address.postal_Code2\":\" code postal \",\"FormField.Add_Your_Site.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Languages List.sk\":\" slovaque \",\"FormField.Add_Your_Site.Site_Name\":\" Nom du site \",\"Languages List.sl\":\" slovène \",\"FormField.Assign_Inspector.Select_Inspector\":\" Sélectionnez Inspecteur \",\"Report.Map_View\":\" Vue de la carte \",\"FormField.Add_New_Inspection.Send_Email_Immediately\":\" Envoyer un e-mail immédiatement \",\"ReportField.Company_Details.Email_Id\":\"Identifiant Email\",\"FormField.Add_Site_Inspector.Email_Id\":\"Identifiant Email\",\"FormField.Add_Company_Detail.country2\":\" Pays \",\"CompositeSubFields.Add_Your_Site.Location.country2\":\" Pays \",\"FormField.Add_Your_Site.country2\":\" Pays \",\"FormField.Add_New_Inspection.country1\":\" Pays \",\"Languages List.pt\":\" Portugais \",\"ReportField.My_Inspections.Description\":\"La description\",\"FormField.Add_Your_Site.Work_Status\":\" Statut de travail \",\"FormField.Add_Company_Detail.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"PicklistOption.Add_New_Inspection.country.2\":\" SampleCountry2 \",\"PicklistOption.Add_New_Inspection.country.1\":\" SampleCountry1 \",\"Section.Construction_Details\":\" Paramètres \",\"Languages List.pl\":\" polonais \",\"CompositeSubFields.Add_Your_Site.Location.address_line_22\":\" Adresse Ligne 2 \",\"CompositeSubFields.Add_Site_Inspector.Name.first_name\":\" Prénom \",\"FormField.Add_Site_Inspector.Modified_User\":\" Utilisateur modifié \",\"Languages List.ar\":\" arabe \",\"Languages List.af\":\" afrikaans \",\"FormField.Add_New_Inspection.latitude1\":\" latitude \",\"FormField.Add_Site_Inspector.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Section.Report_an_Issue\":\" Inspections \",\"FormField.Add_New_Inspection.Inspector_Name\":\" Nom de l'inspecteur \",\"ReportField.All_Sites.Select_Site_Inspector\":\"Sélectionnez l'inspecteur de site\",\"FormButton.Inspection_Types.cancel\":\"Annuler\",\"FormField.Add_New_Inspection.state_province\":\" Etat / Province \",\"FormButton.Add_Site_Inspector.cancel\":\" Annuler \",\"FormField.Add_New_Inspection.Title\":\" Titre \",\"FormField.Add_Company_Detail.Contact_Number\":\"Numéro de contact\",\"FormField.Add_Company_Detail.Email_Id\":\"Identifiant Email\",\"Form.Assign_Inspector\":\" Assigner un inspecteur \",\"ReportField.Today_Inspection_Map.Site_Name\":\" Nom du site \",\"CompositeSubFields.Add_Your_Site.Location.address_line_12\":\" Adresse 1 \",\"FormButton.Add_New_Inspection.submit\":\" Soumettre \",\"ReportField.My_Inspections.Inspector_Name\":\" Nom de l'inspecteur \",\"ReportField.Today_Inspection_Map.Title\":\" Titre \",\"ReportField.My_Inspections.Site_Name\":\" Nom du site \",\"FormField.Add_Company_Detail.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Languages List.fr\":\" français \",\"ReportField.Company_Details.address_line_12\":\"Adresse\",\"ReportField.Company_Details.Schedule_Time\":\"Horaire\",\"Form.Add_New_Inspection\":\"Ajouter une nouvelle inspection\",\"ReportField.Today_Inspection_Map.Photo\":\" Photo \",\"ReportField.Site_Inspectors.Email_Id\":\"Identifiant Email\",\"Languages List.fi\":\" Finnois \",\"CompositeSubFields.Add_Company_Detail.Address.district_city2\":\" District de la ville \",\"ReportField.Site_Inspectors.Phone_Number\":\"Numéro de téléphone\",\"FormField.Add_Company_Detail.Added_Time\":\" Temps ajouté \",\"Form.Add_Your_Site\":\" Ajouter votre site \",\"ReportField.All_Inspection_Types.Type\":\"Type\",\"Languages List.fa\":\" persan \",\"Languages List.gu\":\" Gujarati \",\"FormField.Add_Company_Detail.schedule_time\":\" Sélectionnez l'heure \",\"CompositeSubFields.Add_Your_Site.Location.state_province2\":\" Etat / Province \",\"ReportField.All_Inspections.Description\":\"La description\",\"PicklistOption.Add_Company_Detail.country2.1\":\" Choix 1 \",\"PicklistOption.Add_Company_Detail.country2.2\":\" Choix 2 \",\"Languages List.gl\":\" Galicien \",\"FormField.Add_New_Inspection.country\":\" Pays \",\"FormField.Add_Your_Site.Select_Site_Inspector\":\" Sélectionnez l'inspecteur de site \",\"ReportField.My_Inspections.Severity\":\"Gravité\",\"FormField.Assign_Inspector.ID\":\" ID \",\"ReportField.All_Sites.Work_Status\":\"Statut de travail\",\"FormField.Add_New_Inspection.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Add_Your_Site.address_line_22\":\" Adresse Ligne 2 \",\"FormField.Assign_Inspector.Added_Time\":\" Temps ajouté \",\"FormField.Add_Your_Site.Modified_User\":\" Utilisateur modifié \",\"Languages List.ga\":\" irlandais \",\"CompositeSubFields.Add_Your_Site.Location.district_city2\":\" District de la ville \",\"ReportField.Map_View.Work_Status\":\" Statut de travail \",\"Section.page\":\" Assigner un inspecteur \",\"FormButton.Add_New_Inspection.cancel\":\" Annuler \",\"FormField.Add_Your_Site.address_line_12\":\" Adresse 1 \",\"FormField.Add_New_Inspection.postal_Code1\":\" code postal \",\"Languages List.tr\":\" turc \",\"FormField.Add_Site_Inspector.Added_Time\":\" Temps ajouté \",\"Languages List.da\":\" danois \",\"FormField.Add_Company_Detail.Schedule_Time\":\" Horaire \",\"ReportField.Site_Inspectors.Status\":\"Statut\",\"ReportField.All_Inspections.Inspector_Name\":\"Nom de l'inspecteur\",\"Languages List.de\":\" allemand \",\"FormField.Add_New_Inspection.Record_Status\":\" Statut d'enregistrement \",\"FormButton.Add_Company_Detail.update\":\" Mettre à jour \",\"Languages List.cy\":\" gallois \",\"Languages List.tl\":\" Philippin \",\"FormField.Add_Site_Inspector.first_name\":\" Prénom \",\"FormButton.Add_Company_Detail.reset\":\" Réinitialiser \",\"PicklistOption.Add_New_Inspection.country1.1\":\" SampleCountry1 \",\"FormField.Assign_Inspector.Section\":\" Section \",\"PicklistOption.Add_New_Inspection.country1.2\":\" SampleCountry2 \",\"Languages List.es\":\" Espanol \",\"Languages List.eu\":\" basque \",\"Languages List.et\":\" estonien \",\"Report.All_Sites\":\" Tous les sites \",\"Languages List.vi\":\" vietnamien \",\"CompositeSubFields.Add_Company_Detail.Address.country2\":\" Pays \",\"FormField.Add_New_Inspection.postal_Code\":\" code postal \",\"PicklistOption.Add_Site_Inspector.Status.2\":\"Archiver\",\"PicklistOption.Add_Site_Inspector.Status.1\":\"actif\",\"Languages List.el\":\" grec \",\"Languages List.eo\":\" espéranto \",\"Languages List.en\":\" Anglais \",\"FormButton.Add_Company_Detail.submit\":\" Soumettre \",\"FormButton.Add_Company_Detail.cancel\":\" Annuler \",\"Languages List.ur\":\" Urdu \",\"FormField.Add_New_Inspection.Description\":\" La description \"}}"
+}
+}

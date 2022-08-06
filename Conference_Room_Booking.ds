@@ -1,0 +1,3576 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 23:51:26
+ * Version      : 1.0
+ */
+ application "Conference Room Booking"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "IST"
+ 	time format = "24-hr"
+	section New_Section1
+	{
+		displayname= "Admin View"
+		icon = "users-2-a-security"
+				 page Dashboard 
+	 	 { 
+ 	 	 displayname = "Dashboard" 
+
+ 	 	 icon = "" 
+	 	 Content="<zml \t\t\n\t\t\n\t\t\n\t\t\twebDeviceConfig='{\"layout\":{\"displayType\":\"card\",\"design\":\"fluid\",\"style\":\"padding-right:0px;padding-top:0px;padding-bottom:0px;padding-left:0px;\"}}'\n\t\t\n\t\t\tmobileDeviceConfig='{\"layout\":{\"displayType\":\"card\",\"design\":\"onebyone\",\"forcedOrientation\":false}}'\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"25%\"\n   \t>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n   \t\t action = 'OpenURL'\n   \t\t url = '#Report:Conference_Rooms?Available=Active'\n   \t\t target = 'new-window'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<image    \t\t color = '#FFFFFF'\n   \t\t bgColor = '#FF7163'\n   \t\t width = '40px'\n   \t\t height = '40px'\n   \t\t type = 'icon'\n   \t\t value = 'zc-li-outline ui-1-check-bold'\n   \t\t size = '2'\n   \t\t cornerRadius = '20px'\n\n\/>\n<\/pc><pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Room.ID.count'\n   \t\t criteria = '(((Available == &quot;Active&quot;)))'\n   \t\t size = '8'\n   \t\t color = '#FF7163'\n   \t\t bold = 'true'\n   \t\t marginLeft = '5px'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Active Rooms'\n   \t\t size = '2'\n   \t\t color = '#333333'\n   \t\t marginTop = '5px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n   \t\t action = 'OpenURL'\n   \t\t url = '#Report:Conference_Rooms?Available=Under Maintenance'\n   \t\t target = 'new-window'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<image    \t\t color = '#FFFFFF'\n   \t\t bgColor = '#FF7163'\n   \t\t width = '40px'\n   \t\t height = '40px'\n   \t\t type = 'icon'\n   \t\t value = 'zc-li-outline arrows-4-download'\n   \t\t size = '2'\n   \t\t cornerRadius = '20px'\n\n\/>\n<\/pc><pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Room.ID.count'\n   \t\t criteria = '(((Available == &quot;Under Maintenance&quot;)))'\n   \t\t size = '8'\n   \t\t color = '#FF614E'\n   \t\t bold = 'true'\n   \t\t marginLeft = '5px'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Rooms Under Maintenance'\n   \t\t size = '2'\n   \t\t color = '#333333'\n   \t\t marginTop = '5px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row>\n<\/column><column\n   \t\t width=\"25%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Conference_Rooms'\n   \t\t target = 'new-window'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<image    \t\t color = '#FFFFFF'\n   \t\t bgColor = '#909090'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'zc-li-outline users-2-meeting'\n   \t\t size = '4'\n   \t\t cornerRadius = '26px'\n\n\/>\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Room.ID.count'\n   \t\t size = '8'\n   \t\t color = '#909090'\n   \t\t bold = 'true'\n   \t\t marginTop = '3px'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Total Conf Rooms'\n   \t\t size = '2'\n   \t\t color = '#000000'\n   \t\t marginTop = '3px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"25%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'All_Users'\n   \t\t target = 'new-window'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<image    \t\t color = '#FFFFFF'\n   \t\t bgColor = '#909090'\n   \t\t width = '52px'\n   \t\t height = '52px'\n   \t\t type = 'icon'\n   \t\t value = 'zc-li-outline users-multiple-19'\n   \t\t size = '4'\n   \t\t cornerRadius = '26px'\n\n\/>\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_User.ID.count'\n   \t\t size = '8'\n   \t\t color = '#909090'\n   \t\t bold = 'true'\n   \t\t marginTop = '3px'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Number Of Users'\n   \t\t size = '2'\n   \t\t color = '#000000'\n   \t\t marginTop = '3px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"25%\"\n   \t>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Upcoming_Bookings'\n   \t\t target = 'new-window'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Booking_Form.ID.count'\n   \t\t criteria = '(((Status == &quot;Reserved&quot;)))'\n   \t\t size = '8'\n   \t\t color = '#FF7163'\n   \t\t bold = 'true'\n   \t\t marginRight = '5px'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc><pc \n>\n\t<image    \t\t color = '#FFFFFF'\n   \t\t bgColor = '#FF7163'\n   \t\t width = '40px'\n   \t\t height = '40px'\n   \t\t type = 'icon'\n   \t\t value = 'zc-li-outline location-bookmark-add'\n   \t\t size = '2'\n   \t\t cornerRadius = '20px'\n\n\/>\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'New Bookings'\n   \t\t size = '2'\n   \t\t color = '#333333'\n   \t\t marginTop = '5px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Ongoing_Bookings'\n   \t\t target = 'new-window'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Booking_Form.ID.count'\n   \t\t criteria = '(((Status == &quot;Checked In&quot;)))'\n   \t\t size = '8'\n   \t\t color = '#FF7163'\n   \t\t bold = 'true'\n   \t\t marginRight = '5px'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc><pc \n>\n\t<image    \t\t color = '#FFFFFF'\n   \t\t bgColor = '#FF7163'\n   \t\t width = '40px'\n   \t\t height = '40px'\n   \t\t type = 'icon'\n   \t\t value = 'zc-li-outline users-2-a-time'\n   \t\t size = '2'\n   \t\t cornerRadius = '20px'\n\n\/>\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Ongoing Bookings'\n   \t\t size = '2'\n   \t\t color = '#333333'\n   \t\t marginTop = '5px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"25%\"\n   \t>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n   \t\t action = 'OpenURL'\n   \t\t url = '#Report:History?Status=Checked Out'\n   \t\t target = 'new-window'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Booking_Form.ID.count'\n   \t\t criteria = '(((Status == &quot;Checked Out&quot;)))'\n   \t\t size = '8'\n   \t\t color = '#FF4C2F'\n   \t\t bold = 'true'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Finished Bookings'\n   \t\t size = '2'\n   \t\t color = '#333333'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<chart    \t\t type = 'Semi Donut'\n   \t\t appLinkName = 'thisapp'\n   \t\t formLinkName = 'Booking_Form'\n   \t\t xtitle = 'Conf Room'\n   \t\t xfield = 'Choose_Room.Room_Name'\n   \t\t ytitle = 'Countd'\n   \t\t yfields = 'count:Choose_Room.Room_Name'\n   \t\t bgColor = '#FFFFFF'\n   \t\t theme = 'theme1'\n   \t\t legendPos = 'center.top'\n   \t\t boldTitle = '600'\n   \t\t title = 'Conf Room Usage'\n   \t\t titleColor = '#272727'\n\n\/>\n<\/column>\n<\/row>\n<\/column><column\n   \t\t width=\"50%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Booking_Schedule_In_Timeline'\n   \t\t heightType = 'custom'\n   \t\t heightValue = '400'\n   \t\t zc_Footer = 'false'\n   \t\t zc_SecHeader = 'false'\n   \t\t zc_AddRec = 'false'\n   \t\t zc_EditRec = 'false'\n   \t\t zc_DelRec = 'false'\n   \t\t zc_DuplRec = 'false'\n   \t\t zc_EditBulkRec = 'false'\n   \t\t zc_SaveRec = 'false'\n   \t\t zc_Filter = 'false'\n   \t\t zc_Search = 'false'\n   \t\t zc_SumRow = 'false'\n   \t\t zc_ColMenu = 'false'\n   \t\t zc_RecSelect = 'false'\n\n\/>\n<\/column><column\n   \t\t width=\"25%\"\n   \t>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Upcoming_Bookings'\n   \t\t target = 'new-window'\n   \t\t parameters = 'From is ${zoho.currentdate}'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Booking_Form.ID.count'\n   \t\t criteria = '((((Status == &quot;Reserved&quot;)&amp;&amp;(From_Time_With_Date is today))))'\n   \t\t size = '8'\n   \t\t color = '#FF4C2F'\n   \t\t bold = 'true'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Today&apos;s Bookings'\n   \t\t size = '2'\n   \t\t color = '#333333'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<chart    \t\t type = 'Semi Donut'\n   \t\t appLinkName = 'thisapp'\n   \t\t formLinkName = 'Booking_Form'\n   \t\t xtitle = 'Conf Room'\n   \t\t xfield = 'Choose_Room.Size'\n   \t\t ytitle = 'Count By size'\n   \t\t yfields = 'count:Choose_Room.Size'\n   \t\t bgColor = '#FFFFFF'\n   \t\t theme = 'theme1'\n   \t\t legendPos = 'center.top'\n   \t\t boldTitle = '600'\n   \t\t title = 'Conf Room Usage By Size'\n   \t\t titleColor = '#444444'\n\n\/>\n<\/column>\n<\/row>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+		timeline Booking_Schedule_In_Timeline
+		{
+			displayName = "Booking Schedule In Timeline"
+   			hide = true
+			show all rows from Booking_Form    
+			(
+				User.Photo
+				User
+				From_Time_With_Date as "From ( Time With Date )"
+				To_Time_With_Date as "To ( Time With Date )"
+				Choose_Room as "Choose Room"
+				Brief_Description_of_Conference as "Brief Description of Conference"
+				Status
+				Choose_Room.Conf_Room_Photo as "Conf Room Photo"
+			)
+			options
+			(
+				display type = week
+				week start day = monday
+				display field = User
+				start date = From_Time_With_Date
+				end date = To_Time_With_Date
+				default date 
+				(
+	    			day   = Today
+	    			month = Currentmonth
+	    			year  = Currentyear
+				)
+				icon = "media-1-flash-auto-25"
+			)
+			conditional formatting
+			(
+				"Registered"
+				{
+				condition = (Status == "Reserved")
+				format = "font-weight:bold;color:#000000;background-color:#f2ff00;"
+				}
+				"Now using"
+				{
+				condition = (From_Time_With_Date < zoho.currenttime && Status == "Reserved")
+				format = "color:#000000;background-color:#1bbc9b;"
+				}
+				"Denied"
+				{
+				condition = (Status == "Denied")
+				format = "text-decoration:line-through;color:#ffffff;background-color:#e84c3d;"
+				}
+				"Cancelled"
+				{
+				condition = (Status == "Cancelled")
+				format = "text-decoration:line-through;color:#ffffff;background-color:#107c91;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 6
+					datablock1
+					(
+			 			layout type = 19
+		     			title = "Overview"
+						fields
+						(
+							User.Photo as "Photo"
+							User
+							Brief_Description_of_Conference as "Brief Description of Conference"
+							From_Time_With_Date as "From ( Time With Date )"
+							To_Time_With_Date as "To ( Time With Date )"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock2
+					(
+			 			layout type = 19
+		     			title = "User"
+		     			related field =  User
+						fields
+						(
+							Photo
+							Name
+							Address
+							Email
+							Phone_Number as "Phone Number"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Title"
+						fields
+						(
+							Choose_Room.Conf_Room_Photo as "Conf Room Photo"
+							Choose_Room as "Choose Room"
+							From_Time_With_Date as "From ( Time With Date )"
+							To_Time_With_Date as "To ( Time With Date )"
+							Brief_Description_of_Conference as "Brief Description of Conference"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		summary Upcoming_Bookings
+		{
+			displayName = "Upcoming Bookings"
+			show all rows from Booking_Form  [Status == "Reserved"]  
+			(
+				Status
+				Brief_Description_of_Conference as "Brief Description of Conference"
+				User.Photo
+				To_Time_With_Date as "To ( Time With Date )"
+				From_Time_With_Date as "From ( Time With Date )"
+				User
+				(
+					view = Users
+				)
+				custom action "Cancel"
+				(
+	  			workflow = Deny_the_booking
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Cancel"
+				)
+				User.Name  as "User"
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Choose_Room.Available
+				Choose_Room.Building_Floor as "Building/Floor"
+				Choose_Room.Conf_Room_Photo as "Conf Room Photo"
+				Choose_Room.Room_Name as "Room Name"
+				Choose_Room.Size
+			)
+			group by
+			(
+				Status ascending
+			)
+			sort by
+			(
+				From_Time_With_Date ascending
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 3
+				icon = "arrows-4-logout"
+			)
+			conditional formatting
+			(
+				"Bold"
+				{
+				fields = [To_Time_With_Date, From_Time_With_Date, Choose_Room.Room_Name]
+				format = "font-weight:bold;color:#3b363b;background-color:#f3f3f3;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Choose_Room.Room_Name as "Room Name"
+							User.Name as "User"
+							User.Photo as "Photo"
+							From_Time_With_Date as "From ( Time With Date )"
+							To_Time_With_Date as "To ( Time With Date )"
+				"Cancel"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+			 			"Cancel" as "Deny"
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+								"Cancel" as "Deny"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+								"Cancel" as "Deny"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 20
+		     			title = "Room Details"
+						fields
+						(
+							Choose_Room.Conf_Room_Photo as "Conf Room Photo"
+							Choose_Room.Room_Name as "Room Name"
+							Choose_Room.Building_Floor as "Building/Floor"
+							Choose_Room.Size as "Size"
+							Choose_Room.Available as "Available"
+						)
+					)
+					datablock2
+					(
+			 			layout type = 19
+		     			title = "Booked by"
+		     			related field =  User[Status == "Reserved"]
+						fields
+						(
+							Photo
+							Name
+							Address
+							Email
+							Phone_Number as "Phone Number"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Booking Details"
+						fields
+						(
+							Brief_Description_of_Conference as "Brief Description of Conference"
+							From_Time_With_Date as "From ( Time With Date )"
+							To_Time_With_Date as "To ( Time With Date )"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Cancel"
+    	 			)
+    			)
+			)
+		}
+		summary Ongoing_Bookings
+		{
+			displayName = "Ongoing Bookings"
+			show all rows from Booking_Form  [Status == "Checked In"]  
+			(
+				User.Photo
+				User
+				From_Time_With_Date as "From ( Time With Date )"
+				To_Time_With_Date as "To ( Time With Date )"
+				Brief_Description_of_Conference as "Brief Description of Conference"
+				Status
+				Choose_Room.Conf_Room_Photo as "Conf Room Photo"
+				Choose_Room as "Choose Room"
+			)
+			group by
+			(
+				properties
+    			(
+  	    			display record count = true
+   				)
+				Status ascending
+			)
+			sort by
+			(
+				From_Time_With_Date descending
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 2
+				icon = "arrows-2-time"
+			)
+			conditional formatting
+			(
+				"New Formatting"
+				{
+				fields = [Choose_Room]
+				format = "font-weight:bold;color:#19bc9f;"
+				}
+				"user"
+				{
+				fields = [User]
+				format = "color:#19bc9f;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Choose_Room as "Choose Room"
+							User
+							User.Photo as "Photo"
+							From_Time_With_Date as "From ( Time With Date )"
+							To_Time_With_Date as "To ( Time With Date )"
+							Brief_Description_of_Conference as "Brief Description of Conference"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock4
+					(
+			 			layout type = -2
+		     			title = "Booking Details"
+						fields
+						(
+							Choose_Room.Conf_Room_Photo as "Conf Room Photo"
+							Choose_Room as "Choose Room"
+							From_Time_With_Date as "From ( Time With Date )"
+							To_Time_With_Date as "To ( Time With Date )"
+							Brief_Description_of_Conference as "Brief Description of Conference"
+							Status
+						)
+					)
+					datablock5
+					(
+			 			layout type = 19
+		     			title = "Booked by"
+		     			related field =  User[Status == "Checked In"]
+						fields
+						(
+							Photo
+							Name
+							Address
+							Email
+							Phone_Number as "Phone Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list History
+		{
+			displayName = "History"
+			show all rows from Booking_Form  [Status == "Checked Out" || Status == "Cancelled by User" || Status == "Cancelled by Admin"]  
+			(
+				Status
+				User
+				From_Time_With_Date as "From ( Time With Date )"
+				To_Time_With_Date as "To ( Time With Date )"
+				Choose_Room as "Conference  Room"
+				(
+					view = Available_Rooms
+				)
+				Brief_Description_of_Conference as "Brief Description of Conference"
+				User.Photo
+				Choose_Room.Conf_Room_Photo as "Conf Room Photo"
+			)
+			group by
+			(
+				properties
+    			(
+  	    			display record count = true
+   				)
+				Status ascending
+			)
+			sort by
+			(
+				Status ascending
+			)
+			options
+			(
+				icon = "arrows-1-refresh-69"
+	 		)
+			conditional formatting
+			(
+				"New Formatting"
+				{
+				fields = [Choose_Room]
+				format = "font-weight:bold;color:#19bc9f;"
+				}
+				"New Formatting"
+				{
+				fields = [User]
+				format = "color:#19bc9f;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Choose_Room as "Conference  Room"
+							Choose_Room.Conf_Room_Photo as "Conf Room Photo"
+							User
+							User.Photo as "Photo"
+							From_Time_With_Date as "From ( Time With Date )"
+							To_Time_With_Date as "To ( Time With Date )"
+							Brief_Description_of_Conference as "Brief Description of Conference"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Booked Details"
+						fields
+						(
+							Choose_Room.Conf_Room_Photo as "Conf Room Photo"
+							User
+							Brief_Description_of_Conference as "Brief Description of Conference"
+							To_Time_With_Date as "To ( Time With Date )"
+							From_Time_With_Date as "From ( Time With Date )"
+						)
+					)
+					datablock4
+					(
+			 			layout type = 19
+		     			title = "Booked by"
+		     			related field =  User[Status == "Checked Out" || Status == "Cancelled by User" || Status == "Cancelled by Admin"]
+						fields
+						(
+							Photo
+							Name
+							Address
+							Email
+							Phone_Number as "Phone Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Booking
+	{
+		icon = "users-2-b-meeting"
+		form Booking_Form
+		{
+			displayname = "Book a Room"
+			success message = "Booked Successfully! Confirmation mail has been sent to you!!"
+			field alignment = right
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have User
+			(
+				type = picklist
+				values  = Add_User[Status == "Active"].ID
+    			displayformat = [Email]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Official_Email
+			(
+    			type = email
+				displayname = "Official Email"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have To_Time_With_Date
+			(
+    			type = datetime
+				displayname = "To ( Time With Date )"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have From_Time_With_Date
+			(
+    			type = datetime
+				displayname = "From ( Time With Date )"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Choose_Room
+			(
+				type = picklist
+				displayname = "Choose Room"
+				values  = Add_Room[Available == "Active"].ID
+    			displayformat = [Room_Name + " - " + Building_Floor + " - " + Location.district_city2]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Brief_Description_of_Conference
+			(
+    			type = textarea
+				displayname = "Brief Description of Conference"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Room_Details
+			(
+    			type = plaintext
+				value = "Add your Note here ..."
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Status
+			(
+				type = radiobuttons
+				values = {"Reserved", "Checked In", "Checked Out", "Cancelled by User", "Cancelled by Admin"}
+				initial value = "Reserved"
+				layout = 3
+				sortorder = ascending
+				private = true
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Section1
+			(
+				type = section
+				displayname = "Section"
+	 			row = 2
+	 			column = 0   
+				width = medium
+			)
+			Reason_to_Cancelled
+			(
+    			type = textarea
+				displayname = "Reason to Cancelled "
+				height = 100px
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bookmark-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		summary Available_Rooms
+		{
+			displayName = "Available Rooms"
+			show all rows from Add_Room  [Available == "Active"]  
+			(
+				Room_Name as "Room Name"
+				Building_Floor as "Building/Floor"
+				Additional_Facilities as "Additional Facilities "
+				Available
+				Conf_Room_Photo as "Conf Room Photo"
+				Size
+				Number_Of_Seats as "Number Of Seats"
+				custom action "Reserve"
+				(
+	  			workflow = Reserve_conference_room_S
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Reserve"
+				)
+				Location 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+			)
+			group by
+			(
+				Location ascending
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 3
+				icon = "furniture-door"
+			)
+			conditional formatting
+			(
+				"location"
+				{
+				fields = [Building_Floor]
+				format = "color:#11b1cc;"
+				}
+				"Room Name"
+				{
+				fields = [Room_Name]
+				format = "font-weight:bold;color:#398ef3;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Conf_Room_Photo as "Conf Room Photo"
+							Room_Name as "Room Name"
+							Building_Floor as "Building/Floor"
+							Location
+							Size
+							Number_Of_Seats as "Number Of Seats"
+							Additional_Facilities as "Additional Facilities "
+				"Reserve"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    	 			)
+							record
+							(
+								"Reserve"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								"Reserve"
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Room Details"
+						fields
+						(
+							Conf_Room_Photo as "Conf Room Photo"
+							Room_Name as "Room Name"
+							Building_Floor as "Building/Floor"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Facilities"
+						fields
+						(
+							Size
+							Number_Of_Seats as "Number Of Seats"
+							Additional_Facilities as "Additional Facilities "
+							Available
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Reserve"
+    	 			)
+    			)
+			)
+		}
+	}
+	section Meeting_Room
+	{
+		displayname= "Meeting Room"
+		icon = "files-add"
+		form Add_Room
+		{
+			displayname = "Add Conference Room"
+			success message = "Conference Room Added Successfully"
+			field alignment = right
+			feature property = 32
+			Conference_Room_Details
+			(
+				type = section
+				displayname = "Conference Room Details"
+				visibility = true
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Room_Name
+			(
+    			type = text
+				displayname = "Room Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Building_Floor
+			(
+    			type = text
+				displayname = "Building/Floor"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Location
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Facilities
+			(
+				type = section
+				visibility = true
+	 			row = 2
+	 			column = 0   
+				width = medium
+			)
+			must have Size
+			(
+				type = picklist
+				values = {"Small", "Medium", "Large"}
+				others option = true
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Number_Of_Seats
+			(
+				type = number
+				displayname = "Number Of Seats"
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			must have Available
+			(
+				type = radiobuttons
+				values = {"Active", "Under Maintenance"}
+				initial value = "Active"
+				layout = 3
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Additional_Facilities
+			(
+				type = list
+				displayname = "Additional Facilities "
+				values = {"Fan", "AC", "Projector", "White Board", "Wifi", "Charging plug point"}
+				height = 60px
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			Conf_Room_Photo
+			(
+    			type = image
+				displayname = "Conf Room Photo"
+				source  = file
+				aspect ratio = original
+				camera = primary
+				show gallery = true
+				switch camera = true
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "location-bookmark-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Add"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		kanban Conference_Rooms
+		{
+			displayName = "All Conference Rooms"
+			show all rows from Add_Room    
+			(
+				Available
+				Number_Of_Seats as "Number Of Seats"
+				Room_Name as "Room Name"
+				Building_Floor as "Building/Floor"
+				Size
+				Additional_Facilities as "Additional Facilities "
+				Conf_Room_Photo as "Conf Room Photo"
+			)
+			options
+			(
+	 			display field = Available
+				record count  = enable
+				icon = "users-2-b-meeting"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 6
+					datablock1
+					(
+			 			layout type = 19
+		     			title = "Overview"
+						fields
+						(
+							Conf_Room_Photo as "Conf Room Photo"
+							Room_Name as "Room Name"
+							Additional_Facilities as "Additional Facilities "
+							Building_Floor as "Building/Floor"
+							Size
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Conf_Room_Photo as "Conf Room Photo"
+							Room_Name as "Room Name"
+							Building_Floor as "Building/Floor"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Title"
+						fields
+						(
+							Size
+							Number_Of_Seats as "Number Of Seats"
+							Additional_Facilities as "Additional Facilities "
+							Available
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Users1
+	{
+		displayname= "Users"
+		icon = "users-multiple-11"
+		form Add_User
+		{
+			displayname = "Add User"
+			success message = "User Added Successfully"
+			field alignment = left
+			feature property = 32
+			User_Details
+			(
+				type = section
+				displayname = "User Details"
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Address
+			(
+    			type = address
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Photo
+			(
+    			type = image
+				source  = file
+				aspect ratio = original
+				camera = primary
+				preview duration = 0
+				show gallery = true
+				switch camera = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Status
+			(
+				type = radiobuttons
+				values = {"Active", "Archive"}
+				initial value = "Active"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-2-b-add"
+			)
+			actions
+			{
+				on add
+				{
+					Add_User
+					(
+   						type = submit
+   						displayname = "Add User"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		kanban Users
+		{
+			displayName = "All Users"
+			show all rows from Add_User    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Status
+				Email
+				Photo
+				Phone_Number as "Phone Number"
+			)
+			options
+			(
+	 			display field = Status
+				record count  = enable
+				icon = "users-2-meeting"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 6
+					datablock1
+					(
+			 			layout type = 23
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Name
+							Address
+							Email
+							Phone_Number as "Phone Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Name
+							Email
+							Phone_Number as "Phone Number"
+							Address
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section My_View
+	{
+		displayname= "My View"
+		icon = "users-single-01"
+		summary My_Upcoming_Booking
+		{
+			displayName = "My Upcoming Booking"
+			show all rows from Booking_Form  [Status == "Reserved" && Official_Email == zoho.loginuserid]  
+			(
+				From_Time_With_Date as "From ( Time With Date )"
+				To_Time_With_Date as "To ( Time With Date )"
+				Choose_Room as "Choose Room"
+				Brief_Description_of_Conference as "Brief Description of Conference"
+				Status
+				Choose_Room.Conf_Room_Photo as "Conf Room Photo"
+				custom action "Cancel"
+				(
+	  			workflow = Cancel_the_booking1
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Cancel"
+				)
+				custom action "Check in"
+				(
+	  			workflow = Check_in_Custom_Action_Ru
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Check in"
+				)
+			)
+			group by
+			(
+				properties
+    			(
+  	    			display record count = true
+   				)
+				Status ascending
+			)
+			sort by
+			(
+				From_Time_With_Date ascending
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 1
+				label width = 20%
+				icon = "arrows-4-logout"
+			)
+			conditional formatting
+			(
+				"Bold"
+				{
+				fields = [From_Time_With_Date, To_Time_With_Date, Choose_Room, Choose_Room.Conf_Room_Photo]
+				format = "font-weight:bold;"
+				}
+				"Bold"
+				{
+				fields = [Choose_Room]
+				format = "font-weight:bold;color:#19bc9f;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Choose_Room as "Choose Room"
+							Choose_Room.Conf_Room_Photo as "Conf Room Photo"
+							From_Time_With_Date as "From ( Time With Date )"
+							To_Time_With_Date as "To ( Time With Date )"
+							Brief_Description_of_Conference as "Brief Description of Conference"
+				"Check in"
+				"Cancel"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Cancel"
+    	 			)
+							record
+							(
+								"Check in"
+								"Cancel"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								"Check in"
+								"Cancel"
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Booking Details"
+						fields
+						(
+							From_Time_With_Date as "From ( Time With Date )"
+							To_Time_With_Date as "To ( Time With Date )"
+							Brief_Description_of_Conference as "Brief Description of Conference"
+							Status
+						)
+					)
+					datablock3
+					(
+			 			layout type = 19
+		     			title = "Conf Room"
+		     			related field =  Choose_Room[Status == "Reserved" && Official_Email == zoho.loginuserid]
+						fields
+						(
+							Conf_Room_Photo as "Conf Room Photo"
+							Room_Name as "Room Name"
+							Additional_Facilities as "Additional Facilities "
+							Building_Floor as "Building/Floor"
+							Size
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Check in"
+			 			"Cancel"
+    	 			)
+    			)
+			)
+		}
+		summary My_Ongoing_Bookings
+		{
+			displayName = "My Ongoing Bookings"
+			show all rows from Booking_Form  [Status == "Checked In" && Official_Email == zoho.loginuserid]  
+			(
+				Choose_Room as "Room"
+				Status
+				Brief_Description_of_Conference as "Brief Description of Conference"
+				Choose_Room.Conf_Room_Photo as "Conf Room Photo"
+				From_Time_With_Date as "From ( Time With Date )"
+				To_Time_With_Date as "To ( Time With Date )"
+				custom action "Check Out"
+				(
+	  			workflow = Check_Out_Custom_Action_R
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Check Out"
+				)
+			)
+			group by
+			(
+				properties
+    			(
+  	    			display record count = true
+   				)
+				From_Time_With_Date ascending
+			)
+			sort by
+			(
+				From_Time_With_Date ascending
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 2
+				icon = "business-progress"
+			)
+			conditional formatting
+			(
+				"bold"
+				{
+				fields = [Choose_Room, From_Time_With_Date, To_Time_With_Date]
+				format = "font-weight:bold;color:#4ea64c;"
+				}
+				"New Formatting"
+				{
+				fields = [From_Time_With_Date, To_Time_With_Date]
+				format = "font-weight:bold;color:#rgba(94, 75, 107, 0.89);"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Choose_Room as "Room"
+							Choose_Room.Conf_Room_Photo as "Conf Room Photo"
+							From_Time_With_Date as "From ( Time With Date )"
+							To_Time_With_Date as "To ( Time With Date )"
+							Brief_Description_of_Conference as "Brief Description of Conference"
+				"Check Out"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    	 			)
+							record
+							(
+								"Check Out"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								"Check Out"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							From_Time_With_Date as "From ( Time With Date )"
+							To_Time_With_Date as "To ( Time With Date )"
+							Brief_Description_of_Conference as "Brief Description of Conference"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Choose Room"
+		     			related field =  Choose_Room[Status == "Checked In" && Official_Email == zoho.loginuserid]
+						fields
+						(
+							Conf_Room_Photo as "Conf Room Photo"
+							Room_Name as "Room Name"
+							Building_Floor as "Building/Floor"
+							Additional_Facilities as "Additional Facilities "
+							Size
+							Number_Of_Seats as "Number Of Seats"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Check Out"
+    	 			)
+    			)
+			)
+		}
+		list My_History
+		{
+			displayName = "My History"
+			show all rows from Booking_Form  [Official_Email == zoho.loginuserid && Status == "Checked Out" || Status == "Cancelled by User" || Status == "Cancelled by Admin"]  
+			(
+				Brief_Description_of_Conference as "Brief Description of Conference"
+				Status
+				From_Time_With_Date as "From ( Time With Date )"
+				To_Time_With_Date as "To ( Time With Date )"
+				Choose_Room as "Conference Room"
+				Choose_Room.Conf_Room_Photo as "Conf Room Photo"
+				Choose_Room.Location 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+			)
+			group by
+			(
+				properties
+    			(
+  	    			display record count = true
+   				)
+				Status ascending
+			)
+			sort by
+			(
+				From_Time_With_Date descending
+				Status ascending
+			)
+			options
+			(
+				icon = "arrows-1-refresh-69"
+	 		)
+			conditional formatting
+			(
+				"New Formatting"
+				{
+				fields = [Choose_Room]
+				format = "font-weight:bold;color:#19bc9f;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Choose_Room as "Conference Room"
+							Choose_Room.Conf_Room_Photo as "Conf Room Photo"
+							Choose_Room.Location as "Location"
+							From_Time_With_Date as "From ( Time With Date )"
+							To_Time_With_Date as "To ( Time With Date )"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Booking Details"
+						fields
+						(
+							From_Time_With_Date as "From ( Time With Date )"
+							To_Time_With_Date as "To ( Time With Date )"
+							Brief_Description_of_Conference as "Brief Description of Conference"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Conf Room Details"
+		     			related field =  Choose_Room[Official_Email == zoho.loginuserid && Status == "Checked Out" || Status == "Cancelled by User" || Status == "Cancelled by Admin"]
+						fields
+						(
+							Conf_Room_Photo as "Conf Room Photo"
+							Room_Name as "Room Name"
+							Building_Floor as "Building/Floor"
+							Size
+							Number_Of_Seats as "Number Of Seats"
+							Additional_Facilities as "Additional Facilities "
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Users
+	{
+		displayname= "Settings"
+		icon = "ui-1-settings-gear-65"
+		custom All_Users
+		{
+			displayName = "All Users"
+   			hide = true
+			show all rows from Add_User    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Address 
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Phone_Number as "Phone Number"
+				Email
+				Photo
+				Status
+			)
+			options
+			(
+				icon = "users-2-woman"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 6
+					datablock1
+					(
+			 			layout type = 19
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Name
+							Address
+							Email
+							Phone_Number as "Phone Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Photo
+							Name
+							Email
+							Address
+							Phone_Number as "Phone Number"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Copy_of_Reason_To_Cancel
+	{
+		displayname= "Copy of Reason To Cancel"
+		form Reason_To_Cancel
+		{
+			displayname = "Reason To Cancel"
+			store data in zc = false
+			success message = ""
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have User
+			(
+				type = picklist
+				values  = Booking_Form.ID
+    			displayformat = [Official_Email]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Reason
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "travel-axe"
+			)
+			actions
+			{
+				Send_Mail
+				(
+   					type = button
+   					displayname = "Send Mail"
+				)
+				Reset
+				(
+   					type = reset
+   					displayname = "Reset"
+				)
+			}
+		}
+	}
+	functions
+	{
+ 			void custom_action.Cancel(int this_id)
+			{
+				openUrl("#Form:Reason_To_Cancel?User=" + this_id,"popup window");
+			}
+ 			void custom_action.start_conf(int this_id)
+			{
+				req = Booking_Form[ID == this_id];
+				if(req.From_Time_With_Date >= zoho.currenttime)
+				{
+					req.Status="Checked In";
+				}
+				else
+				{
+					info "Your Schedule Will be start from " + req.From_Time_With_Date;
+				}
+				if(req.To_Time_With_Date <= zoho.currenttime)
+				{
+					info "Your Schedule was finished at " + req.To_Time_With_Date;
+					req.Status="Forgotten";
+				}
+			}
+ 			void custom_action.finish(int this_id)
+			{
+				req = Booking_Form[ID == this_id];
+				req.Status="Checked Out";
+			}
+ 			void custom_action.open_reserve_form(int this_id)
+			{
+				openUrl(zoho.appuri + "#Form:Booking_Form?Choose_Room=" + this_id,"same window");
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Send_Email_Form_Propertie as "Send Email - Form Properties"
+			{
+				type =  presuccess
+				form = Add_User
+				on start
+				{
+					actions 
+					{
+						sendmail
+						(
+							from : "zoho.adminuserid"
+							to : Email
+							subject : "Conference Room Booking : New entry added"
+							message : "Hello,<br /><br />&nbsp; &nbsp; &nbsp; You have added as a User of the <b>Conference room booking</b>&nbsp;Application. You can reserve the conference room.<br /><br /><span style=\"background-color: rgb(245, 245, 245)\">&nbsp; &nbsp; &nbsp; Click </span><a target=\"_blank\" rel=\"noopener noreferrer\" href=\"https://app.zohocreator.com${zoho.appuri}\"><b>here</b></a><span style=\"background-color: rgb(245, 245, 245)\"> to access&nbsp;the application</span><span style=\"background-color: rgb(255, 255, 255)\"></span><br /><br />"
+						)
+					}
+				}
+			}
+			Send_Email_Form_Propertie1 as "Send Email - Form Properties"
+			{
+				type =  presuccess
+				form = Booking_Form
+				on start
+				{
+					actions 
+					{
+						sendmail
+						(
+							from : "zoho.adminuserid"
+							to : Official_Email
+							subject : "Conference Room Booking - Confirmation mail"
+							message : "Hi,<div>&nbsp; &nbsp;</div><div>&nbsp;Your booking has been successfully completed.&nbsp;</div><div><br /></div><div><b>&nbsp;Your Booking Details:</b></div><div>&nbsp;</div><div>&nbsp;Booked Room: input.Choose_room</div><div><br /></div><div>&nbsp;From:&nbsp;${From_Time_With_Date}</div><div><br /></div><div>&nbsp;To:&nbsp;${To_Time_With_Date}</div><div><br /></div><div><br /></div><div><br /></div><div>Thanks and Regards,</div><div><br /></div><div>${zoho.adminuserid}<br /></div><br /><br /><br /><br /><br /><br />"
+						)
+					}
+				}
+			}
+			Field_Scripts2 as "Field Scripts"
+			{
+				type =  form
+				form = Reason_To_Cancel
+				button = Send_Mail
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						to_User = Booking_Form[ID == input.User];
+										to_User.Reason_to_Cancelled=input.Reason;
+										if(zoho.adminuserid == zoho.loginuserid)
+										{
+											to_User.Status="Cancelled by Admin";
+										}
+										else
+										{
+											to_User.Status="Cancelled by User";
+										}
+										if(to_User.Official_Email != null)
+										{
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :to_User.Official_Email
+												subject :"Conference Room Booking : Booking cancelled"
+												message :"Hii,<br><br> You have booked a confroom for the time period <b>" + to_User.From_Time_With_Date + " to " + to_User.To_Time_With_Date + "</b>.<br><br>Sorry for the trouble your booking has been cacncelled due to above the reason<br><br><b>Reason: </b><br>" + input.Reason + ".<br><br>Regards,<br>" + zoho.adminuser
+											]
+										}
+										openUrl("#Script:dialog.close","same window");
+					)
+					}
+				}
+			}
+			Create_record_scripts1 as "Create record scripts"
+			{
+				type =  form
+				form = Booking_Form
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(zoho.loginuserid != zoho.adminuserid)
+										{
+											input.User = Add_User[Email == zoho.loginuserid].ID;
+											input.Official_Email = zoho.loginuserid;
+											disable User;
+										}
+						)
+					}
+					actions  (Choose_Room is not null)
+					{
+						custom deluge script
+						(
+											conf_room = Add_Room[ID == input.Choose_Room];
+										room_address = conf_room.Location;
+										if(conf_room.Location.isEmpty())
+										{
+											room_address = "------";
+										}
+										img = conf_room.Conf_Room_Photo.replaceAll("/sharedBy/appLinkName/viewLinkName/fieldName",zoho.appuri + "Available_Rooms/Conf_Room_Photo");
+										room_det = "<style>.room_det img{width: 90%;margin: 5%;}</style><div class='room_det' style = 'border: 1px solid rgb(255, 185, 180);box-shadow: 0px 1px 9px rgba(255, 185, 180, 0.81);'>";
+										room_det = (room_det + "<div style='width: 92%;margin:auto;text-align: center;background-color: rgb(255, 192, 187);color:  #555;font-size: 11px;padding: 10px;'><b style='font-size: 17px;color: #d43d32;'>" + conf_room.Room_Name + "</b><br>" + conf_room.Building_Floor + "</div>" + img + "<div style='display:inline;float:left;padding-left:5%;color: #6d6d6d'><b style='color:  #555'>No Of Seats: </b>" + conf_room.Number_Of_Seats + "</div><div style='display:inline;float:right;padding-right:5%;color: #6d6d6d'><b style='color:  #555'>Size:</b>" + conf_room.Size + "</div><br><br><div style='width:100%;padding:5%;color: #6d6d6d'><b style='color:  #555'>Address:</b><br>" + room_address) + "</div><div style = 'width:100%;padding:5%;color:  #555'><b style='color:#555'>Facilities: </b><br>" + conf_room.Additional_Facilities + "</div></div>";
+										input.Room_Details = room_det;
+										disable Choose_Room;
+						)
+					}
+	}
+
+			}
+			Field_scripts1 as "Field scripts"
+			{
+				type =  form
+				form = Booking_Form
+				record event = on add or edit
+
+	field rules
+	{
+					actions  (Choose_Room is null)
+					{
+						hide Room_Details;
+					}
+					actions 
+					{
+						hide Official_Email,Status,Reason_to_Cancelled;
+					}
+	}
+
+			}
+			Field_scripts2 as "Field scripts"
+			{
+				type =  form
+				form = Booking_Form
+				record event = on add or edit
+
+	on user input of Choose_Room
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.To_Time_With_Date == null && input.Choose_Room != null)
+										{
+											input.Choose_Room = null;
+											alert "Give Time period first";
+											hide Room_Details;
+										}
+										if(input.Choose_Room != null)
+										{
+											conf_room = Add_Room[ID == input.Choose_Room];
+											room_address = conf_room.Location;
+											if(conf_room.Location.isEmpty())
+											{
+												room_address = "------";
+											}
+											img = conf_room.Conf_Room_Photo.replaceAll("/sharedBy/appLinkName/viewLinkName/fieldName",zoho.appuri + "Available_Rooms/Conf_Room_Photo");
+											room_det = "<style>.room_det img{width: 90%;margin: 5%;}</style><div class='room_det' style = 'border: 1px solid rgb(255, 185, 180);box-shadow: 0px 1px 9px rgba(255, 185, 180, 0.81);'>";
+											room_det = (room_det + "<div style='width: 92%;margin:auto;text-align: center;color:  #555;font-size: 11px;padding: 10px;'><b style='font-size: 17px;color: #d43d32;'>" + conf_room.Room_Name + "</b><br>" + conf_room.Building_Floor + "</div>" + img + "<div style='display:inline;float:left;padding-left:5%;color: #6d6d6d'><b style='color:  #555'>No Of Seats: </b>" + conf_room.Number_Of_Seats + "</div><div style='display:inline;float:right;padding-right:5%;color: #6d6d6d'><b style='color:  #555'>Size:</b>" + conf_room.Size + "</div><br><br><div style='width:100%;padding:5%;color: #6d6d6d'><b style='color:  #555'>Address:</b><br>" + room_address) + "</div><div style = 'width:100%;padding:5%;color:  #555'><b style='color:#555'>Facilities: </b><br>" + conf_room.Additional_Facilities + "</div></div>";
+											input.Room_Details = room_det;
+										}
+						)
+					}
+	}
+
+			}
+			Field_scripts3 as "Field scripts"
+			{
+				type =  form
+				form = Booking_Form
+				record event = on add or edit
+
+	on user input of From_Time_With_Date
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.From_Time_With_Date <= zoho.currenttime && input.From_Time_With_Date != null)
+										{
+											alert "Please enter a valid future date!";
+											input.From_Time_With_Date = null;
+										}
+										if(input.To_Time_With_Date <= input.From_Time_With_Date)
+										{
+											input.To_Time_With_Date = null;
+										}
+										if(input.Choose_Room != null && input.From_Time_With_Date != null)
+										{
+											booked_rooms = Booking_Form[Choose_Room == input.Choose_Room && From_Time_With_Date <= input.From_Time_With_Date && To_Time_With_Date >= input.From_Time_With_Date && Status == "Reserved" || Status == "Checked In"];
+											if(booked_rooms.count() != 0)
+											{
+												alert "This room is unavailable for this time period";
+												input.From_Time_With_Date = null;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Field_scripts4 as "Field scripts"
+			{
+				type =  form
+				form = Booking_Form
+				record event = on add or edit
+
+	on user input of To_Time_With_Date
+	{
+					actions  (To_Time_With_Date != null && From_Time_With_Date != null && Choose_Room is null)
+					{
+						custom deluge script
+						(
+											unavailable_rooms = Booking_Form[(From_Time_With_Date <= input.From_Time_With_Date && To_Time_With_Date >= input.From_Time_With_Date) || (From_Time_With_Date <= input.To_Time_With_Date && To_Time_With_Date >= input.To_Time_With_Date) || (From_Time_With_Date >= input.From_Time_With_Date && To_Time_With_Date <= input.To_Time_With_Date) && Status == "Reserved"].Choose_Room.getAll();
+										available_rooms = Add_Room[ID not in unavailable_rooms && Available == "Active"].ID.getAll();
+										input.Choose_Room:ui.add(available_rooms);
+						)
+					}
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.To_Time_With_Date != null)
+										{
+											if(input.From_Time_With_Date == null)
+											{
+												alert "Please enter a from time first!";
+												input.To_Time_With_Date = null;
+											}
+											if(input.To_Time_With_Date <= input.From_Time_With_Date)
+											{
+												alert "Please enter a valid future time bigger than From time!";
+												input.To_Time_With_Date = null;
+											}
+											if(input.Choose_Room != null && input.From_Time_With_Date != null)
+											{
+												booked_rooms = Booking_Form[Choose_Room == input.Choose_Room && Status == "Reserved" || Status == "Checked In" && (From_Time_With_Date <= input.From_Time_With_Date && To_Time_With_Date >= input.From_Time_With_Date) || (From_Time_With_Date <= input.To_Time_With_Date && To_Time_With_Date >= input.To_Time_With_Date) || (From_Time_With_Date >= input.From_Time_With_Date && To_Time_With_Date <= input.To_Time_With_Date)];
+												if(booked_rooms.count() != 0)
+												{
+													alert "This room is unavailable for this time period";
+													input.To_Time_With_Date = null;
+												}
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Field_scripts5 as "Field scripts"
+			{
+				type =  form
+				form = Booking_Form
+				record event = on add or edit
+
+	on user input of User
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.User != null)
+										{
+											user = Add_User[ID == input.User];
+											input.Official_Email = user.Email;
+										}
+										else
+										{
+											input.Official_Email = null;
+										}
+						)
+					}
+	}
+
+			}
+			Field_Scripts3 as "Field Scripts"
+			{
+				type =  form
+				form = Add_User
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Status;
+					}
+	}
+
+			}
+			Field_Scripts4 as "Field Scripts"
+			{
+				type =  form
+				form = Add_Room
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Available;
+					}
+	}
+
+			}
+			Edit_record_on_load_scrip1 as "Edit record on load scripts"
+			{
+				type =  form
+				form = Booking_Form
+				record event = on edit
+
+	field rules
+	{
+					actions  (Added_User == zoho.adminuser)
+					{
+						enable From_Time_With_Date,To_Time_With_Date,Brief_Description_of_Conference,Choose_Room,User;
+					}
+	}
+
+			}
+			Edit_record_on_load_scrip2 as "Edit record on load scripts"
+			{
+				type =  form
+				form = Booking_Form
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Choose_Room != null)
+										{
+											conf_room = Add_Room[ID == input.Choose_Room];
+											img = conf_room.Conf_Room_Photo.replaceAll("/sharedBy/appLinkName/viewLinkName/fieldName",zoho.appuri + "Available_Conference_Rooms/Conf_Room_Photo");
+											room_det = "<style>.room_det img{width: 90%;margin: 5%;}</style><div class='room_det' style = 'border: 1px solid rgb(255, 185, 180);box-shadow: 0px 1px 9px rgba(255, 185, 180, 0.81);'>";
+											room_det = room_det + "<div style='width: 92%;margin:auto;text-align: center;background-color: rgb(255, 192, 187);color:  #555;font-size: 11px;padding: 10px;'><b style='font-size: 17px;color: #d43d32;'>" + conf_room.Room_Name + "</b><br>" + conf_room.Building_Floor + "</div>" + img + "<div style='display:inline;float:left;padding-left:5%;color: #6d6d6d'><b style='color:  #555'>No Of Seats: </b>" + conf_room.Number_Of_Seats + "</div><div style='display:inline;float:right;padding-right:5%;color: #6d6d6d'><b style='color:  #555'>Size:</b>" + conf_room.Size + "</div><br><br><div style = 'width:100%;padding:5%;color:  #555'><b style='color:  #555'>Facilities: </b><br>";
+											room_det = room_det + conf_room.Additional_Facilities + "</div></div>";
+											input.Room_Details = room_det;
+										}
+						)
+					}
+	}
+
+			}
+			Validation_Scripts1 as "Validation Scripts"
+			{
+				type =  form
+				form = Booking_Form
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											bookings = Booking_Form[Official_Email == input.Official_Email && (From_Time_With_Date <= input.From_Time_With_Date && To_Time_With_Date >= input.From_Time_With_Date) || (From_Time_With_Date <= input.To_Time_With_Date && To_Time_With_Date >= input.To_Time_With_Date) || (From_Time_With_Date >= input.From_Time_With_Date && To_Time_With_Date <= input.To_Time_With_Date) && Status == "Registered"];
+										if(bookings.count() != 0)
+										{
+											alert "Alraedy booked this room for the time period You have given";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Onsucces_Scripts1 as "Onsucces Scripts"
+			{
+				type =  form
+				form = Add_User
+				record event = on add
+
+	on success
+	{
+					actions  (Status == "Active")
+					{
+						custom deluge script
+						(
+											thisapp.permissions.assignUserInProfile(input.Email,"Conference Room User");
+						)
+					}
+	}
+
+			}
+			On_Edit_Scripts1 as "On Edit Scripts"
+			{
+				type =  form
+				form = Add_User
+				record event = on edit
+
+	on update of Status
+	{
+					actions  (Status == "Archive")
+					{
+						custom deluge script
+						(
+											if(input.Status == "Active")
+										{
+											thisapp.permissions.assignUserInProfile(input.Email,"Conference Room User");
+										}
+										else
+										{
+											thisapp.permissions.deleteuser(input.Email);
+										}
+						)
+					}
+	}
+
+			}
+			On_edit_scripts1 as "On edit scripts"
+			{
+				type =  form
+				form = Add_User
+				record event = on delete
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.permissions.deleteuser(input.Email);
+						)
+					}
+	}
+
+			}
+			On_Success_Run_Scripts1 as "On Success --> Run Scripts"
+			{
+				type =  form
+				form = Booking_Form
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Official_Email == zoho.loginuserid)
+										{
+											openUrl("https://app.zohocreator.com" + zoho.appuri + "#Report:My_Upcoming_Bookings?ID=" + input.ID,"same window");
+										}
+						)
+					}
+	}
+
+			}
+			On_Load_Scripts1 as "On Load Scripts"
+			{
+				type =  form
+				form = Reason_To_Cancel
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						disable User;
+					}
+	}
+
+			}
+		}
+		schedule
+		{
+			Remain_to_the_user as "Remain_to_the_user"
+			{
+				type =  schedule
+				form = Booking_Form
+				start = before 10 minutes from From_Time_With_Date
+				time zone = "IST"
+				on start
+				{
+					actions  (Status == "Reserved")
+					{
+						sendmail
+						(
+							from : "zoho.adminuserid"
+							to : Official_Email
+							subject : "Conference Room Booking - Remainder"
+							message : "Hii,<div><div>&nbsp; &nbsp; &nbsp;</div><div>&nbsp; &nbsp; &nbsp; we remind you,</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You have reserved a&nbsp;<b>conference room</b>&nbsp;for the time period of&nbsp;<b>${From_Time_With_Date}&nbsp;</b>to&nbsp;<b>${To_Time_With_Date}</b>.</div></div><div>&nbsp; &nbsp; &nbsp;&nbsp;</div><div>Regards,</div><div>${zoho.adminuserid}<br /></div>"
+						)
+					}
+				}
+			}
+			Forgotten_Booking as "Forgotten_Booking"
+			{
+				type =  schedule
+				form = Booking_Form
+				start = To_Time_With_Date
+				time zone = "IST"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						if(input.Status == "Reserved")
+										{
+											input.Status = "Forgotten";
+										}
+					)
+					}
+				}
+			}
+		}
+		functions
+		{
+			Deny_the_booking as "Deny the booking"
+			{
+				type =  functions
+				form = Booking_Form
+				on start
+				{
+					actions 
+					{
+					custom_action.Cancel(ID);
+					}
+				}
+			}
+			Cancel_the_booking1 as "Cancel the booking"
+			{
+				type =  functions
+				form = Booking_Form
+				on start
+				{
+					actions 
+					{
+					custom_action.Cancel(ID);
+					}
+				}
+			}
+			Reserve_conference_room_S as "Reserve conference room Scripts"
+			{
+				type =  functions
+				form = Add_Room
+				on start
+				{
+					actions 
+					{
+					custom_action.open_reserve_form(ID);
+					}
+				}
+			}
+			Check_in_Custom_Action_Ru as "Check in Custom Action --> Run Scripts"
+			{
+				type =  functions
+				form = Booking_Form
+				on start
+				{
+					actions 
+					{
+					custom_action.start_conf(ID);
+					}
+				}
+			}
+			Check_Out_Custom_Action_R as "Check Out Custom Action --> Run Scripts"
+			{
+				type =  functions
+				form = Booking_Form
+				on start
+				{
+					actions 
+					{
+					custom_action.finish(ID);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Read"
+			{
+				name = "Read"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have read permission for all components\n"
+			}
+			"Write"
+			{
+				name = "Write"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have write permission for all components\n"
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Customer"
+			{
+				name = "Customer"
+				type = Customer_Portal
+				permissions = {Chat:false, Predefined:true}
+				description = "This is the default profile having only add and view permission.\n"
+			}
+			"Conference Room User"
+			{
+				name = "Conference Room User"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "Conference Room User Profile\n"
+				ModulePermissions
+				{
+					Add_Room
+					{
+						ReportPermissions
+						{
+							Available_Rooms={"View"}
+						}
+						FieldPermissions
+						{
+							Number_Of_Seats{visibility:true,readonly:false}
+							Conf_Room_Photo{visibility:true,readonly:false}
+							Conference_Room_Details{visibility:true,readonly:false}
+							Size{visibility:true,readonly:false}
+							Building_Floor{visibility:true,readonly:false}
+							Available{visibility:true,readonly:false}
+							Additional_Facilities{visibility:true,readonly:false}
+							Room_Name{visibility:true,readonly:false}
+							Location{visibility:true,readonly:false}
+							Facilities{visibility:true,readonly:false}
+						}
+					}
+					Reason_To_Cancel
+					{
+						FieldPermissions
+						{
+							Modified_User{visibility:false}
+							Added_User_IP_Address{visibility:false}
+							Modified_Time{visibility:false}
+							User{visibility:false,readonly:false}
+							Added_User{visibility:false}
+							ID{visibility:false}
+							Section{visibility:false,readonly:false}
+							Reason{visibility:false,readonly:false}
+							Added_Time{visibility:false}
+							Modified_User_IP_Address{visibility:false}
+						}
+					}
+					Booking_Form
+					{
+						enabled= Create,Tab 
+						ReportPermissions
+						{
+							My_Upcoming_Booking={"View"}
+							My_History={"View"}
+							My_Ongoing_Bookings={"View"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Reason_to_Cancelled{visibility:true,readonly:false}
+							Room_Details{visibility:true,readonly:false}
+							User{visibility:true,readonly:false}
+							Choose_Room{visibility:true,readonly:false}
+							Section1{visibility:true,readonly:false}
+							To_Time_With_Date{visibility:true,readonly:false}
+							From_Time_With_Date{visibility:true,readonly:false}
+							Official_Email{visibility:true,readonly:false}
+							Section{visibility:true,readonly:false}
+							Brief_Description_of_Conference{visibility:true,readonly:false}
+						}
+					}
+					Add_User
+					{
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							User_Details{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Address{visibility:true,readonly:false}
+							Phone_Number{visibility:true,readonly:false}
+							Photo{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users.\n\n"
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 5
+		new theme color = 8
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-approval1"
+    	icon theme = "lightred"
+		icons style = outline
+	}
+
+	phone
+	{
+		section  New_Section1
+		{
+			displayname= "Admin View"
+			icon = "users-2-a-security"
+			timeline Booking_Schedule_In_Timeline
+			{
+				icon = "arrows-4-restore"
+				hide = true
+			}
+			page Dashboard
+			{
+			}
+			summary Upcoming_Bookings
+			{
+				icon = "ui-1-check-bold"
+				quickview
+				(
+					layout
+					(
+		 				type = 6
+						datablock1
+						(
+			 				layout type = 19
+		     				title = "Overview"
+							fields
+							(
+								User.Photo as "Photo"
+								User
+								Choose_Room.Room_Name as "Room Name"
+								From_Time_With_Date as "From ( Time With Date )"
+								To_Time_With_Date as "To ( Time With Date )"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+			 				"Cancel" as "Deny"
+    	 				)
+									record
+									(
+										"Cancel" as "Deny"
+										Duplicate   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+										"Cancel" as "Deny"
+    								)
+									on left swipe
+									(
+										"Cancel" as "Deny"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 19
+		     				title = "Room Details"
+							fields
+							(
+								Choose_Room.Conf_Room_Photo as "Conf Room Photo"
+								Choose_Room.Room_Name as "Room Name"
+								Choose_Room.Building_Floor as "Building/Floor"
+								Choose_Room.Size as "Size"
+								Choose_Room.Available as "Available"
+							)
+						)
+						datablock3
+						(
+			 				layout type = -2
+		     				title = "Booking Details"
+							fields
+							(
+								Brief_Description_of_Conference as "Brief Description of Conference"
+								From_Time_With_Date as "From ( Time With Date )"
+								To_Time_With_Date as "To ( Time With Date )"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Cancel" as "Deny"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			summary Ongoing_Bookings
+			{
+				icon = "users-2-a-time"
+				quickview
+				(
+					layout
+					(
+		 				type = 6
+						datablock1
+						(
+			 				layout type = 19
+		     				title = "Overview"
+							fields
+							(
+								User.Photo as "Photo"
+								Choose_Room as "Choose Room"
+								Brief_Description_of_Conference as "Brief Description of Conference"
+								User
+								From_Time_With_Date as "From ( Time With Date )"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock4
+						(
+			 				layout type = -2
+		     				title = "Booking Details"
+							fields
+							(
+								Choose_Room.Conf_Room_Photo as "Conf Room Photo"
+								Choose_Room as "Choose Room"
+								From_Time_With_Date as "From ( Time With Date )"
+								To_Time_With_Date as "To ( Time With Date )"
+								Brief_Description_of_Conference as "Brief Description of Conference"
+								Status
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list History
+			{
+				icon = "arrows-1-bold-direction"
+			}
+		}
+		section  Booking
+		{
+			icon = "ui-1-bookmark-add"
+			form  Booking_Form
+			{
+				layout = left
+				icon = "design-2-cursor-add"
+			}
+			summary Available_Rooms
+			{
+				icon = "gestures-hold"
+				quickview
+				(
+					layout
+					(
+		 				type = 6
+						datablock1
+						(
+			 				layout type = 19
+		     				title = "Overview"
+							fields
+							(
+								Conf_Room_Photo as "Conf Room Photo"
+								Room_Name as "Room Name"
+								Additional_Facilities as "Additional Facilities "
+								Building_Floor as "Building/Floor"
+								Size
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    	 				)
+									record
+									(
+										"Reserve"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Reserve"
+										View Record   	   
+    								)
+									on left swipe
+									(
+										Edit   	   
+    								)
+									on right swipe
+									(
+										"Reserve"
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Room Details"
+							fields
+							(
+								Conf_Room_Photo as "Conf Room Photo"
+								Room_Name as "Room Name"
+								Building_Floor as "Building/Floor"
+							)
+						)
+						datablock2
+						(
+			 				layout type = -2
+		     				title = "Facilities"
+							fields
+							(
+								Size
+								Number_Of_Seats as "Number Of Seats"
+								Additional_Facilities as "Additional Facilities "
+								Available
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Reserve"
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Meeting_Room
+		{
+			displayname= "Meeting Room"
+			icon = "files-add"
+			form  Add_Room
+			{
+				layout = auto
+				icon = "ui-1-bold-add"
+			}
+			kanban Conference_Rooms
+			{
+				icon = "users-2-b-meeting"
+			}
+		}
+		section  Users1
+		{
+			displayname= "Users"
+			icon = "users-2-woman"
+			form  Add_User
+			{
+				layout = auto
+				icon = "users-add-27"
+			}
+			kanban Users
+			{
+				icon = "users-multiple-19"
+				quickview
+				(
+					layout
+					(
+		 				type = 6
+						datablock1
+						(
+			 				layout type = 23
+		     				title = "Overview"
+							fields
+							(
+								Photo
+								Name
+								Address
+								Email
+								Phone_Number as "Phone Number"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Photo
+								Name
+								Email
+								Phone_Number as "Phone Number"
+								Address
+								Status
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  My_View
+		{
+			displayname= "My View"
+			icon = "users-single-01"
+			summary My_Upcoming_Booking
+			{
+				icon = "ui-1-check-bold"
+				quickview
+				(
+					layout
+					(
+		 				type = 6
+						datablock1
+						(
+			 				layout type = 19
+		     				title = "Overview"
+							fields
+							(
+								Choose_Room.Conf_Room_Photo as "Conf Room Photo"
+								Choose_Room as "Choose Room"
+								Brief_Description_of_Conference as "Brief Description of Conference"
+								From_Time_With_Date as "From ( Time With Date )"
+								To_Time_With_Date as "To ( Time With Date )"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Cancel"
+    	 				)
+									record
+									(
+										"Check in"
+										"Cancel"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										View Record   	   
+    								)
+									on left swipe
+									(
+										Edit   	   
+    								)
+									on right swipe
+									(
+										"Check in"
+										"Cancel"
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 19
+		     				title = "Booking Details"
+							fields
+							(
+								From_Time_With_Date as "From ( Time With Date )"
+								To_Time_With_Date as "To ( Time With Date )"
+								Brief_Description_of_Conference as "Brief Description of Conference"
+								Status
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Check in"
+			 				"Cancel"
+    	 				)
+    				)
+				)
+			}
+			summary My_Ongoing_Bookings
+			{
+				icon = "users-2-a-time"
+				quickview
+				(
+					layout
+					(
+		 				type = 6
+						datablock1
+						(
+			 				layout type = 19
+		     				title = "Overview"
+							fields
+							(
+								Choose_Room.Conf_Room_Photo as "Conf Room Photo"
+								Choose_Room as "Room"
+								Brief_Description_of_Conference as "Brief Description of Conference"
+								To_Time_With_Date as "To ( Time With Date )"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    	 				)
+									record
+									(
+										"Check Out"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Check Out"
+    								)
+									on right swipe
+									(
+										"Check Out"
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								From_Time_With_Date as "From ( Time With Date )"
+								To_Time_With_Date as "To ( Time With Date )"
+								Brief_Description_of_Conference as "Brief Description of Conference"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Check Out"
+    	 				)
+    				)
+				)
+			}
+			list My_History
+			{
+				icon = "arrows-1-bold-direction"
+				quickview
+				(
+					layout
+					(
+		 				type = 6
+						datablock1
+						(
+			 				layout type = 19
+		     				title = "Overview"
+							fields
+							(
+								Choose_Room.Conf_Room_Photo as "Conf Room Photo"
+								Choose_Room as "Conference Room"
+								Choose_Room.Location as "Location"
+								From_Time_With_Date as "From ( Time With Date )"
+								To_Time_With_Date as "To ( Time With Date )"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    	 				)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Booking Details"
+							fields
+							(
+								From_Time_With_Date as "From ( Time With Date )"
+								To_Time_With_Date as "To ( Time With Date )"
+								Brief_Description_of_Conference as "Brief Description of Conference"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Users
+		{
+			displayname= "Settings"
+			icon = "ui-1-settings-gear-65"
+			custom All_Users
+			{
+				icon = "users-multiple-19"
+				hide = true
+				quickview
+				(
+					layout
+					(
+		 				type = 6
+						datablock1
+						(
+			 				layout type = 23
+		     				title = "Overview"
+							fields
+							(
+								Photo
+								Name
+								Address
+								Email
+								Phone_Number as "Phone Number"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+									record
+									(
+										Duplicate   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Email
+								Phone_Number as "Phone Number"
+								Address
+								Photo
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Copy_of_Reason_To_Cancel
+		{
+			displayname= "Copy of Reason To Cancel"
+			icon = "travel-axe"
+			form  Reason_To_Cancel
+			{
+				layout = left
+				icon = "travel-axe"
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = turquoise
+        	layout = slidingpane
+		 	icons style = outline
+		}
+	}
+	
+}

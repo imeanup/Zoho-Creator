@@ -1,0 +1,4423 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 07-May-2020 01:45:11
+ * Version      : 1.0
+ */
+ application "University Event Organizer"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+	section New_Event
+	{
+		displayname= "New Event"
+		icon = "ui-2-square-add-11"
+		form Add_Event
+		{
+			displayname = "Add Event"
+			success message = "Event Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Event_ID
+			(
+    			type = autonumber
+				displayname = "Event ID"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Event_Type
+			(
+				type = picklist
+				displayname = "Event Type"
+				values  = Add_Event_Type.ID
+    			displayformat = [Type]
+				allow new entries = true
+				[
+					displayname = "Add New Event Type"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Event_Name
+			(
+    			type = text
+				displayname = "Event Name"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Venue
+			(
+				type = picklist
+				values  = Add_Venue.ID
+    			displayformat = [Venue]
+				allow new entries = true
+				[
+					displayname = "Add Venue"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Start_Date
+			(
+    			type = date
+				displayname = "Start Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have End_Date
+			(
+    			type = date
+				displayname = "End Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			must have Organizers
+			(
+				type = list
+				values  = Add_User[User_Role == "Organizer"].ID
+    			displayformat = [Name.first_name + Name.last_name + " - " + Contact_Email]
+				allow new entries = true
+				[
+					displayname = "Add User"
+				]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Users
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Status
+			(
+				type = picklist
+				values = {"Active", "Cancelled", "Completed"}
+				initial value = "Active"
+	 			row = 1
+	 			column = 1   
+				width = 200px
+			)
+			Sub_Events
+			(
+				type = list
+				displayname = "Sub Events"
+				values  = Add_Sub_Event.ID
+    			bidirectional = Event
+    			displayformat = [Name]
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Sub_Event
+		{
+			displayname = "Add Sub Event"
+			success message = "Sub Event Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Description
+			(
+    			type = textarea
+				height = 130px
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			must have Event
+			(
+				type = picklist
+				values  = Add_Event[Status == "Active"].ID
+    			bidirectional = Sub_Events
+    			displayformat = [Event_ID + " - " + Event_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Name
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Venue
+			(
+				type = picklist
+				values  = Add_Venue.ID
+    			displayformat = [Venue]
+				allow new entries = true
+				[
+					displayname = "Add Venue"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			must have Start_Time
+			(
+    			type = datetime
+				displayname = "Start Time"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Coordinators
+			(
+				type = list
+				values  = Add_User[User_Role != "Invitee"].ID
+    			displayformat = [Name.first_name + Name.last_name + " - " + Contact_Email]
+				allow new entries = true
+				[
+					displayname = "Add User"
+				]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Users
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			must have End_Time
+			(
+    			type = datetime
+				displayname = "End Time"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Number_of_Entries
+			(
+				type = number
+				displayname = "Number of Entries"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Available_Entries
+			(
+				type = number
+				displayname = "Available Entries"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status
+			(
+				type = picklist
+				values = {"Active", "Cancelled", "Completed"}
+				initial value = "Active"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section Add_Event
+	{
+		displayname= "Events"
+		icon = "ui-1-calendar-grid-58"
+		list Events
+		{
+			displayName = "Events"
+			show all rows from Add_Event  [Status == "Active" && Users.contains(zoho.loginuserid) || Sub_Events.Users.contains(zoho.loginuserid)]  
+			(
+				Event_Type as "Event Type"
+				Description
+				Organizers
+				custom action "Send Invitation"
+				(
+	  			workflow = Send_Invitation
+				show action in view header = true
+				column header = "Send Invitation"
+				success message = ""
+				condition = (Users.contains(zoho.loginuserid))
+				)
+				Venue
+				Event_ID as "Event ID"
+				Event_Name as "Event Name"
+				Start_Date as "Start Date"
+				End_Date as "End Date"
+			)
+			filters
+			(
+				Venue
+				Event_Type
+			)
+			group by
+			(
+				Event_Type ascending
+			)
+			options
+			(
+				icon = "ui-1-calendar-grid-61"
+	 		)
+			custom actions
+			(
+				"Cancel Event"
+				(
+	  			workflow = Cancel_Event
+				show action in view header = true
+				show action in edit record menu = true
+				success message = ""
+				condition = (Users.contains(zoho.loginuserid))
+				)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Event_ID as "Event ID"
+							Event_Name as "Event Name"
+							Venue
+							Start_Date as "Start Date"
+							End_Date as "End Date"
+				"Send Invitation"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								"Cancel Event"
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								"Cancel Event"
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Event_ID as "Event ID"
+							Event_Type as "Event Type"
+							Event_Name as "Event Name"
+							Description
+							Venue
+							Start_Date as "Start Date"
+							End_Date as "End Date"
+							Organizers
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Send Invitation"
+    		 			Edit 
+			 			"Cancel Event"
+    		 			Delete 
+    		 			Duplicate 
+    		 			Print 
+    	 			)
+    			)
+			)
+		}
+		list Sub_Events
+		{
+			displayName = "Sub Events"
+			show all rows from Add_Sub_Event  [Status == "Active" && Users.contains(zoho.loginuserid) || Event.Users.contains(zoho.loginuserid)]  
+			(
+				custom action "Register"
+				(
+	  			workflow = Register
+				show action in view header = true
+				column header = "Register"
+				success message = ""
+				condition = (Status == "Active" && Available_Entries > 0)
+				)
+				Start_Time as "Start Time"
+				Venue
+				Name as "Sub Event Name"
+				Event
+				Coordinators
+				Description
+				End_Time as "End Time"
+				Number_of_Entries as "Number of Entries"
+				Available_Entries as "Available Entries"
+			)
+			filters
+			(
+				Event
+			)
+			group by
+			(
+				Event ascending
+			)
+			options
+			(
+				icon = "business-hierarchy-53"
+	 		)
+			custom actions
+			(
+				"Cancel Event"
+				(
+	  			workflow = Cancel_Event1
+				show action in view header = true
+				show action in edit record menu = true
+				success message = ""
+				condition = (Event.Users.contains(zoho.loginuserid))
+				)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+				"Register"
+							Event
+							Name as "Sub Event Name"
+							Venue
+							Start_Time as "Start Time"
+							End_Time as "End Time"
+							Number_of_Entries as "Number of Entries"
+							Available_Entries as "Available Entries"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								"Cancel Event"
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								"Cancel Event"
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Event Details"
+		     			related field =  Event[Status == "Active" && Users.contains(zoho.loginuserid) || Event.Users.contains(zoho.loginuserid)]
+						fields
+						(
+							Event_ID as "Event ID"
+							Event_Type as "Event Type"
+							Event_Name as "Event Name"
+							Description
+							Venue
+							Start_Date as "Start Date"
+							End_Date as "End Date"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Sub Event Details"
+						fields
+						(
+							Name as "Sub Event Name"
+							Description
+							Venue
+							Start_Time as "Start Time"
+							End_Time as "End Time"
+							Number_of_Entries as "Number of Entries"
+							Available_Entries as "Available Entries"
+							Coordinators
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Register"
+    		 			Edit 
+			 			"Cancel Event"
+    		 			Delete 
+    		 			Duplicate 
+    		 			Print 
+    	 			)
+    			)
+			)
+		}
+		list Invitations
+		{
+			displayName = "Invitations"
+			show all rows from Send_Invitation  [Event.Users.contains(zoho.loginuserid)]  
+			(
+				Event
+				To_Mail as "To"
+				From_Mail as "From"
+				Subject_field as "Subject"
+				Message
+				Date_Time as "Date-Time"
+			)
+			filters
+			(
+				Event
+			)
+			group by
+			(
+				Event ascending
+			)
+			options
+			(
+				icon = "ui-1-email-85"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							From_Mail as "From"
+							To_Mail as "To"
+							Subject_field as "Subject"
+							Message
+							Date_Time as "Date-Time"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Event
+							From_Mail as "From"
+							To_Mail as "To"
+							Subject_field as "Subject"
+							Message
+							Date_Time as "Date-Time"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Registrations
+	{
+		icon = "ui-1-pencil"
+		form Event_Registration
+		{
+			displayname = "Event Registration"
+			success message = "Registered Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Registration_Date
+			(
+    			type = date
+				displayname = "Registration Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Event
+			(
+				type = picklist
+				values  = Add_Event[Status == "Active"].ID
+    			displayformat = [Event_ID + " - " + Event_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Sub_Event
+			(
+				type = picklist
+				displayname = "Sub Event"
+				values  = Add_Sub_Event[Event == input.Event && Status == "Active" && Available_Entries > 0].ID
+    			displayformat = [Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Gender
+			(
+				type = radiobuttons
+				values = {"Male", "Female"}
+				layout = 2
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Contact_Email
+			(
+    			type = email
+				displayname = "Contact Email"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Contact_Number
+			(
+    			type = phonenumber
+				displayname = "Contact Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Registration_Done_By
+			(
+				type = picklist
+				displayname = "Registration Done By"
+				values  = Add_User.ID
+    			displayformat = [Name.first_name + Name.last_name + " - " + Contact_Email]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status
+			(
+				type = picklist
+				values = {"Registered", "Cancelled"}
+				initial value = "Registered"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Participants
+		{
+			displayName = "Participants"
+			show all rows from Event_Registration  [Status == "Registered"]  
+			(
+				Event
+				(
+					view = Events
+				)
+				Sub_Event as "Sub Event"
+				(
+					view = Sub_Events
+				)
+				Registration_Done_By as "Registered By"
+				Registration_Date as "Registration Date"
+				Contact_Email as "Contact Email"
+				Gender
+				Contact_Number as "Contact Number"
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+			)
+			filters
+			(
+				Event
+				Sub_Event
+				Registration_Done_By
+			)
+			group by
+			(
+				Event ascending
+				Sub_Event ascending
+			)
+			options
+			(
+				icon = "users-2-wc"
+	 		)
+			custom actions
+			(
+				"Cancel Registration"
+				(
+	  			workflow = Cancel_Registration
+				show action in view header = true
+				show action in edit record menu = true
+				success message = ""
+				condition = (Sub_Event.Status == "Active")
+				)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Gender
+							Contact_Email as "Contact Email"
+							Contact_Number as "Contact Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+			 			"Cancel Registration"
+    		 			Delete 
+    		 			Duplicate 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								"Cancel Registration"
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								"Cancel Registration"
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Event
+							Sub_Event as "Sub Event"
+							Name
+							Gender
+							Contact_Email as "Contact Email"
+							Contact_Number as "Contact Number"
+							Registration_Done_By as "Registered By"
+							Registration_Date as "Registration Date"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Print 
+			 			"Cancel Registration"
+    		 			Delete 
+    		 			Duplicate 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Reports
+	{
+		icon = "ui-1-database"
+		calendar All_Events
+		{
+			displayName = "All Events"
+			show all rows from Add_Event  [Users.contains(zoho.loginuserid)]  
+			(
+				Description
+				End_Date as "End Date"
+				Organizers
+				Start_Date as "Start Date"
+				Event_ID as "Event ID"
+				Event_Type as "Event Type"
+				Event_Name as "Event Name"
+				Venue
+				Status
+			)
+			filters
+			(
+				Venue
+				Event_Type
+			)
+			options
+			(
+				display type = month
+				week start day = sunday
+				display field = Event_Name
+				start date = Start_Date
+				end date = End_Date
+				default date 
+				(
+	    			day   = Today
+	    			month = Currentmonth
+	    			year  = Currentyear
+				)
+				icon = "ui-1-calendar-grid-58"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Event_ID as "Event ID"
+							Event_Name as "Event Name"
+							Event_Type as "Event Type"
+							Venue
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Event_ID as "Event ID"
+							Event_Type as "Event Type"
+							Event_Name as "Event Name"
+							Description
+							Venue
+							Start_Date as "Start Date"
+							End_Date as "End Date"
+							Organizers
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Sub_Events
+		{
+			displayName = "All Sub Events"
+			show all rows from Add_Sub_Event  [Event.Users.contains(zoho.loginuserid)]  
+			(
+				Coordinators
+				Event
+				Start_Time as "Start Time"
+				Venue
+				Description
+				Name as "Sub Event Name"
+				End_Time as "End Time"
+				Number_of_Entries as "Number of Entries"
+				Available_Entries as "Available Entries"
+				Status
+			)
+			filters
+			(
+				Event
+			)
+			group by
+			(
+				Event ascending
+			)
+			options
+			(
+				icon = "ui-2-menu-bold"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name as "Sub Event Name"
+							Venue
+							Start_Time as "Start Time"
+							End_Time as "End Time"
+							Number_of_Entries as "Number of Entries"
+							Available_Entries as "Available Entries"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Event Details"
+		     			related field =  Event[Event.Users.contains(zoho.loginuserid)]
+						fields
+						(
+							Event_ID as "Event ID"
+							Event_Type as "Event Type"
+							Event_Name as "Event Name"
+							Description
+							Venue
+							Start_Date as "Start Date"
+							End_Date as "End Date"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Sub Event Details"
+						fields
+						(
+							Name as "Sub Event Name"
+							Description
+							Venue
+							Start_Time as "Start Time"
+							End_Time as "End Time"
+							Number_of_Entries as "Number of Entries"
+							Available_Entries as "Available Entries"
+							Coordinators
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Registrations
+		{
+			displayName = "All Registrations"
+			show all rows from Event_Registration  [Event.Users.contains(zoho.loginuserid)]  
+			(
+				Registration_Date as "Registration Date"
+				Event
+				Sub_Event as "Sub Event"
+				Gender
+				Status
+				Contact_Email as "Contact Email"
+				Registration_Done_By as "Registered By"
+				Contact_Number as "Contact Number"
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+			)
+			filters
+			(
+				Event
+				Sub_Event
+				Registration_Done_By
+			)
+			group by
+			(
+				Status ascending
+			)
+			options
+			(
+				icon = "files-archive-paper-check"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Event
+							Sub_Event as "Sub Event"
+							Name
+							Gender
+							Contact_Email as "Contact Email"
+							Contact_Number as "Contact Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Event
+							Sub_Event as "Sub Event"
+							Name
+							Gender
+							Contact_Email as "Contact Email"
+							Contact_Number as "Contact Number"
+							Registration_Done_By as "Registered By"
+							Registration_Date as "Registration Date"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Users
+	{
+		icon = "users-multiple-11"
+		list Users
+		{
+			displayName = "Users"
+			show all rows from Add_User    
+			(
+				User_Role as "User Role"
+				Gender
+				Contact_Email as "Contact Email"
+				Contact_Number as "Contact Number"
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+			)
+			group by
+			(
+				User_Role ascending
+			)
+			options
+			(
+				icon = "users-multiple-11"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Gender
+							Contact_Email as "Contact Email"
+							Contact_Number as "Contact Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Gender
+							Contact_Email as "Contact Email"
+							Contact_Number as "Contact Number"
+							User_Role as "User Role"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Settings
+	{
+		icon = "ui-1-settings-gear-63"
+		list Event_Types
+		{
+			displayName = "Event Types"
+			show all rows from Add_Event_Type    
+			(
+				Type
+			)
+			options
+			(
+				icon = "design-bullet-list-70"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Type
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Type
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Venue
+		{
+			displayName = "Venue"
+			show all rows from Add_Venue    
+			(
+				Venue
+			)
+			options
+			(
+				icon = "location-position-pin"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Venue
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Venue
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Hidden
+	{
+		hide = true
+		icon = "ui-2-menu-bold"
+		form Add_User
+		{
+			displayname = "Add User"
+			success message = "User Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have User_Role
+			(
+				type = picklist
+				displayname = "User Role"
+				values = {"Organizer", "Coordinator", "Invitee"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Gender
+			(
+				type = radiobuttons
+				values = {"Male", "Female"}
+				layout = 2
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have unique Contact_Email
+			(
+    			type = email
+				displayname = "Contact Email"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Contact_Number
+			(
+    			type = phonenumber
+				displayname = "Contact Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Event_Type
+		{
+			displayname = "Add Event Type"
+			success message = "Event Type Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Type
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Venue
+		{
+			displayname = "Add Venue"
+			success message = "Venue Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have unique Venue
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Send_Invitation
+		{
+			displayname = "Send Invitation"
+			success message = "Invitation Sent Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Event
+			(
+				type = picklist
+				values  = Add_Event[Status == "Active"].ID
+    			displayformat = [Event_ID + " - " + Event_Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have From_Mail
+			(
+    			type = email
+				displayname = "From"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have To_Mail
+			(
+				type = list
+				displayname = "To"
+				values  = Add_User.ID
+    			displayformat = [Contact_Email]
+				allow new entries = true
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Subject_field
+			(
+    			type = text
+				displayname = "Subject"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Message
+			(
+    			type = richtext
+				height = 200px
+				toolbar = enable
+				[
+					style, font-color, background-color, alignment, link, table, bullets-and-numbering, 
+					font-size : {1, 2, 3, 4, 5, 6, 7},
+					font-family : {"Serif", "Arial", "Courier New", "Georgia", "Tahoma", "Times New Roman", "Trebuchet", "Verdana", "Comic Sans Ms"}
+				]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Date_Time
+			(
+    			type = datetime
+				displayname = "Date-Time"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Send"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Resend"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Warning_Message
+		{
+			displayname = "Warning Message"
+			store data in zc = false
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Cancellation_From
+			(
+				type = radiobuttons
+				displayname = "Cancellation From"
+				values = {"Events", "SubEvents", "Registration"}
+				layout = 3
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			recID
+			(
+				type = number
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = ""
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				Yes
+				(
+   					type = button
+   					displayname = "Yes"
+				)
+				No
+				(
+   					type = button
+   					displayname = "No"
+				)
+			}
+		}
+	}
+	functions
+	{
+ 			void CustomAction.Registration(Add_Sub_Event eventDetails)
+			{
+				openUrl("#Form:Event_Registration?Event=" + eventDetails.Event + "&Sub_Event=" + eventDetails.ID,"popup window");
+			}
+ 			void CustomAction.CancelEvents(int recId)
+			{
+				openUrl("#Form:Warning_Message?Cancellation_From=Events&&recID=" + recId,"popup window");
+			}
+ 			void CustomAction.CancelSubEvents(int recId)
+			{
+				openUrl("#Form:Warning_Message?Cancellation_From=SubEvents&&recID=" + recId,"popup window");
+			}
+ 			void CustomAction.SendInvitation(int recId)
+			{
+				openUrl("#Form:Send_Invitation?Event=" + recId,"popup window");
+			}
+ 			void CustomAction.CancelRegistration(int recId)
+			{
+				openUrl("#Form:Warning_Message?Cancellation_From=Registration&&recID=" + recId,"popup window");
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Run_Scripts_On_Click_of_Y as "Run Scripts - On Click of 'Yes' Button"
+			{
+				type =  form
+				form = Warning_Message
+				button = Yes
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						userRec = Add_User[Contact_Email == zoho.loginuserid];
+										if(input.Cancellation_From == "Events")
+										{
+											eventDetails = Add_Event[ID == input.recID];
+											eventDetails.Status="Cancelled";
+											organizersRec = Add_User[ID in eventDetails.Organizers && Contact_Email != zoho.loginuserid].Contact_Email.getAll();
+											if(organizersRec.size() > 0)
+											{
+												sendmail
+												[
+													from :zoho.loginuserid
+													to :organizersRec.toString()
+													subject :"Event  Cancellation Notification - " + eventDetails.Event_Name + " [" + eventDetails.Event_ID + "]"
+													message :("Hi,<div><br></div><div>We regret to inform you that \"" + eventDetails.Event_Name + "\"" + " event scheduled on " + eventDetails.Start_Date + "&nbsp;has been cancelled due to official reasons.</div><div><br></div><div>We sincerely apologize for the inconvenience caused.</div><div><br></div><div>Regards,</div><div>" + userRec.Name) + "</div>"
+												]
+											}
+											for each  eachSubEvent in Add_Sub_Event[Event == eventDetails.ID]
+											{
+												eachSubEvent.Status="Cancelled";
+												coordinatorsRec = Add_User[ID in eachSubEvent.Coordinators && Contact_Email != zoho.loginuserid].Contact_Email.getAll();
+												if(coordinatorsRec.size() > 0)
+												{
+													sendmail
+													[
+														from :zoho.loginuserid
+														to :coordinatorsRec.toString()
+														subject :"Event  Cancellation Notification - " + eventDetails.Event_Name + " [" + eventDetails.Event_ID + "]"
+														message :("Hi,<div><br></div><div>We regret to inform you that \"" + eventDetails.Event_Name + "\"" + " event scheduled on " + eventDetails.Start_Date + "&nbsp;has been cancelled due to official reasons.</div><div><br></div><div>We sincerely apologize for the inconvenience caused.</div><div><br></div><div>Regards,</div><div>" + userRec.Name) + "</div>"
+													]
+												}
+												for each  eachregistration in Event_Registration[Sub_Event == eachSubEvent.ID]
+												{
+													eachregistration.Status="Cancelled";
+													if(eachregistration.Contact_Email != zoho.loginuserid)
+													{
+														sendmail
+														[
+															from :zoho.loginuserid
+															to :eachregistration.Contact_Email
+															subject :"Event  Cancellation Notification - " + eventDetails.Event_Name + " [" + eventDetails.Event_ID + "]"
+															message :(("Hi " + eachregistration.Name) + ",<div><br></div><div>We regret to inform you that \"" + eventDetails.Event_Name + "\"" + " event scheduled on " + eventDetails.Start_Date + "&nbsp;has been cancelled due to official reasons.</div><div><br></div><div>We sincerely apologize for the inconvenience caused.</div><div><br></div><div>Regards,</div><div>" + userRec.Name) + "</div>"
+														]
+													}
+												}
+											}
+										}
+										else if(input.Cancellation_From == "SubEvents")
+										{
+											subEventDetails = Add_Sub_Event[ID == input.recID];
+											subEventDetails.Status="Cancelled";
+											coordinatorsRec = Add_User[ID in subEventDetails.Coordinators && Contact_Email != zoho.loginuserid].Contact_Email.getAll();
+											if(coordinatorsRec.size() > 0)
+											{
+												sendmail
+												[
+													from :zoho.loginuserid
+													to :coordinatorsRec.toString()
+													subject :"Sub Event  Cancellation Notification - " + subEventDetails.Name
+													message :("Hi,<div><br></div><div>We regret to inform you that \"" + subEventDetails.Name + "\"" + " sub event scheduled on " + subEventDetails.Start_Time + "&nbsp;has been cancelled due to official reasons.</div><div><br></div><div>We sincerely apologize for the inconvenience caused.</div><div><br></div><div>Regards,</div><div>" + userRec.Name) + "</div>"
+												]
+											}
+											for each  eachregistration in Event_Registration[Sub_Event == subEventDetails.ID]
+											{
+												eachregistration.Status="Cancelled";
+												if(eachregistration.Contact_Email != zoho.loginuserid)
+												{
+													sendmail
+													[
+														from :zoho.loginuserid
+														to :eachregistration.Contact_Email
+														subject :"Sub Event  Cancellation Notification - " + subEventDetails.Name
+														message :(("Hi " + eachregistration.Name) + ",<div><br></div><div>We regret to inform you that \"" + subEventDetails.Name + "\"" + " sub event scheduled on " + subEventDetails.Start_Time + "&nbsp;has been cancelled due to official reasons.</div><div><br></div><div>We sincerely apologize for the inconvenience caused.</div><div><br></div><div>Regards,</div><div>" + userRec.Name) + "</div>"
+													]
+												}
+											}
+										}
+										else if(input.Cancellation_From == "Registration")
+										{
+											registrationRec = Event_Registration[ID == input.recID];
+											subEventRec = Add_Sub_Event[ID == registrationRec.Sub_Event];
+											subEventRec.Available_Entries=subEventRec.Available_Entries + 1;
+											registrationRec.Status="Cancelled";
+											if(registrationRec.Contact_Email != zoho.loginuserid)
+											{
+												sendmail
+												[
+													from :zoho.loginuserid
+													to :registrationRec.Contact_Email
+													subject :"Registration Cancelled - " + registrationRec.Sub_Event.Name
+													message :(("Hi " + registrationRec.Name) + ",<div><br></div><div>Your registration has been cancelled for&nbsp;" + registrationRec.Sub_Event.Name + " on&nbsp;" + registrationRec.Sub_Event.Start_Time + ".</div><div><br></div><div>Regards,</div><div>" + userRec.Name) + "</div>"
+												]
+											}
+										}
+										openUrl("#Script:page.refresh","same window");
+					)
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_N as "Run Scripts - On Click of 'No' Button"
+			{
+				type =  form
+				form = Warning_Message
+				button = No
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						openUrl("#Script:page.refresh","same window");
+					)
+					}
+				}
+			}
+			Run_Scripts_While_Editing2 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_User
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Share the application with respective user and unshare the old privileges if the user role or user email id change
+										if(old.User_Role != input.User_Role || old.Contact_Email != input.Contact_Email)
+										{
+											thisapp.permissions.deleteuser(old.Contact_Email);
+											thisapp.permissions.assignUserInProfile(input.Contact_Email,input.User_Role);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin4 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_User
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Unshare the application if the we delete the user record
+										thisapp.permissions.deleteuser(input.Contact_Email);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin5 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Event_Registration
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Updating the available entry
+										eventRec = Add_Sub_Event[ID == input.Sub_Event];
+										if(eventRec.count() > 0)
+										{
+											eventRec.Available_Entries=eventRec.Available_Entries + 1;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_6 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Sub_Event
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide Status,Users,Available_Entries;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_7 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Sub_Event
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Start_Time >= input.End_Time || input.Start_Time < zoho.currenttime || input.End_Time < zoho.currentdate)
+										{
+											alert "Please check the time range";
+											cancel submit;
+										}
+										eventRec = Add_Event[ID == input.Event];
+										//Adding 23:59:59 to end date of event for validating the end time of sub event.
+										//Eg., Converting End date as 15-Aug-1947 00:00:00 to 15-Aug-1947 23:59:59 to get the end time of the specified date.
+										endDate = eventRec.End_Date.toTime().addHour(23).addMinutes(59).addSeconds(59);
+										//Here we are validating the time range with event date.
+										if(input.Start_Time < eventRec.Start_Date || input.End_Time > endDate)
+										{
+											alert "Please check the time range with event date";
+											cancel submit;
+										}
+										//For validation purpose, here we are adding each coordinator mail id and admin mail id to Users field.
+										userList = List:String();
+										userList.add(zoho.adminuserid);
+										for each  eachCoordinator in input.Coordinators
+										{
+											userList.add(Add_User[ID == eachCoordinator].Contact_Email);
+										}
+										input.Users = userList.toString();
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_8 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Sub_Event
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Updating the number of entries with available entries
+										input.Available_Entries = input.Number_of_Entries;
+										//Send mails to each coordinators about the event details 
+										userDetails = Add_User[Contact_Email == zoho.loginuserid];
+										for each  eachCoordinator in input.Coordinators
+										{
+											coordinator = Add_User[ID == eachCoordinator];
+											if(coordinator.Contact_Email != zoho.loginuserid)
+											{
+												sendmail
+												[
+													from :zoho.adminuserid
+													to :coordinator.Contact_Email
+													subject :"New Sub Event-" + input.Name
+													message :((("Hi " + coordinator.Name) + ",<div><br></div><div>New sub event has been created by&nbsp;" + userDetails.Name) + ". And you have been added as a coordinator.</div><div><br></div><div>Please find the details below,</div><div><br></div><div><table cellpadding=\"2\" cellspacing=\"2\" border=\"1\" style=\"border-collapse: collapse;width: 100%; font-size: 10pt;\"><tbody><tr><td>Event Name</td><td>" + input.Event.Event_Name + "<br></td></tr><tr><td>Sub Event Name</td><td>" + input.Name + "<br></td></tr><tr><td>Venue</td><td>" + input.Venue.Venue + "<br></td></tr><tr><td>Start Time</td><td>" + input.Start_Time + "<br></td></tr><tr><td>End Time</td><td>" + input.End_Time + "<br></td></tr></tbody></table><br>Click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "#Report:Sub_Events\"" + " target=\"_blank\">here</a> to access the application.</div><div><br></div><div>Regards,</div><div>" + userDetails.Name) + "<br></div>"
+												]
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin6 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_Sub_Event
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											alert "All data related to this event has been deleted";
+										delete from Event_Registration[Event == input.ID];
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_9 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Event_Registration
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide Registration_Done_By;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_10 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Event_Registration
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Registration_Done_By = Add_User[Contact_Email == zoho.loginuserid].ID;
+										input.Registration_Date = zoho.currentdate;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_11 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Event_Registration
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Here we are restricting the registration if the person has already registered with other event on same time 
+										subEventsRec = Add_Sub_Event[ID == input.Sub_Event];
+										registerationRec = Event_Registration[Contact_Email == input.Contact_Email && Status == "Registered" && (Sub_Event.Start_Time >= subEventsRec.Start_Time && Sub_Event.End_Time <= subEventsRec.End_Time) || (Sub_Event.Start_Time <= subEventsRec.Start_Time && Sub_Event.End_Time > subEventsRec.Start_Time) || (Sub_Event.Start_Time > subEventsRec.End_Time && Sub_Event.End_Time < subEventsRec.End_Time)];
+										if(registerationRec.count() > 0)
+										{
+											alert "You have already registered in this time range.";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_12 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Event_Registration
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Updating the available entry
+										eventRec = Add_Sub_Event[ID == input.Sub_Event];
+										eventRec.Available_Entries=eventRec.Available_Entries - 1;
+										//send mail to participants about the event timings
+										sendmail
+										[
+											from :zoho.loginuserid
+											to :input.Contact_Email
+											subject :"Thanks For Your Registeration"
+											message :("Hi&nbsp;" + input.Name) + ",<div><br></div><div><div>Your registration has been successfully completed. We are glad to have you in this event.</div><div><br></div><div>Please find the details below,</div><div><br></div><div><table cellpadding=\"2\" cellspacing=\"2\" border=\"1\" style=\"border-collapse: collapse;width: 100%; font-size: 10pt;\"><tbody><tr><td>Event Name</td><td>" + input.Event.Event_Name + "<br></td></tr><tr><td>Sub Event Name</td><td>" + input.Sub_Event.Name + "<br></td></tr><tr><td>Start Time</td><td>" + input.Sub_Event.Start_Time + "<br></td></tr><tr><td>End Time</td><td>" + input.Sub_Event.End_Time + "<br></td></tr></tbody></table><div><br></div><div>If you have any queries, please feel free to contact us anytime.</div><div>Email: " + zoho.loginuserid + "</div><div><br></div><div>We look forward to seeing you!</div></div><div><br></div><div>Regards,</div><div>" + zoho.loginuser + "<br></div></div>"
+										]
+										openUrl("#Script:page.refresh","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing3 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Event_Registration
+				record event = on edit
+
+	field rules
+	{
+					actions 
+					{
+						disable Registration_Done_By;
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing4 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Event_Registration
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(old.Sub_Event != input.Sub_Event)
+										{
+											subEventsRec = Add_Sub_Event[ID == input.Sub_Event];
+											registerationRec = Event_Registration[Contact_Email == input.Contact_Email && (Sub_Event.Start_Time >= subEventsRec.Start_Time && Sub_Event.End_Time <= subEventsRec.End_Time) || (Sub_Event.Start_Time <= subEventsRec.Start_Time && Sub_Event.End_Time > subEventsRec.Start_Time) || (Sub_Event.Start_Time > subEventsRec.End_Time && Sub_Event.End_Time < subEventsRec.End_Time)];
+											if(registerationRec.count() > 0)
+											{
+												alert "You have already registered in this time range.";
+												cancel submit;
+											}
+											//Updating the available entry in both the sub event record
+											eventRec = Add_Sub_Event[ID == input.Sub_Event];
+											eventRec.Available_Entries=eventRec.Available_Entries - 1;
+											eventRec = Add_Sub_Event[ID == old.Sub_Event];
+											eventRec.Available_Entries=eventRec.Available_Entries + 1;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always2 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Send_Invitation
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Date_Time,From_Mail;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always3 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Send_Invitation
+				record event = on add or edit
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Send mails to invitee about the event 
+										for each  eachInvitee in input.To_Mail
+										{
+											inviteeDetails = Add_User[ID == eachInvitee];
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :inviteeDetails.Contact_Email
+												subject :input.Subject_field
+												message :input.Message + "<br>"
+											]
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always4 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Send_Invitation
+				record event = on add or edit
+
+	on user input of Event
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Prefilling the content of subject and message field with event details
+										if(input.Event != null)
+										{
+											eventDetails = Add_Event[ID == input.Event];
+											userDetails = Add_User[Contact_Email == zoho.loginuserid];
+											input.Subject_field = "Invitation for " + eventDetails.Event_Name;
+											input.Message = ("Hi,<div><br></div><div>We would like to invite you to attend the " + eventDetails.Event_Name + "&nbsp;located&nbsp;<event name=\"\">at " + eventDetails.Venue.Venue + " from " + eventDetails.Start_Date + " to&nbsp;" + eventDetails.End_Date + "<venue>.</venue></event></div><div><event name=\"\"><venue><br></venue></event></div><div><event name=\"\"><venue>Hoping for your presence on that day. We look forward to meeting you soon.</venue></event></div><div><br></div><div><br></div><div>Regards,</div><div>" + userDetails.Name) + "<br></div>";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_13 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_User
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.User_Role != "Invitee")
+										{
+											//Share the application with respective user
+											thisapp.permissions.assignUserInProfile(input.Contact_Email,input.User_Role);
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :input.Contact_Email
+												subject :"Invitation to access University Event Organizer"
+												message :("Hi&nbsp;" + input.Name) + ",<div><br></div><div>You have been added as " + input.User_Role + ".</div><div><br></div><div>Click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "\"" + " target=\"_blank\">here</a> to manage your events.</div><div><br></div><div>Regards,</div><div>" + zoho.adminuser + "</div>"
+											]
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_14 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Send_Invitation
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.From_Mail = zoho.loginuserid;
+										//Prefilling the initial content of subject and message field with event details
+										if(input.Event != null)
+										{
+											eventDetails = Add_Event[ID == input.Event];
+											userDetails = Add_User[Contact_Email == zoho.loginuserid];
+											input.Subject_field = "Invitation for " + eventDetails.Event_Name;
+											input.Message = ("Hi,<div><br></div><div>We would like to invite you to attend the " + eventDetails.Event_Name + "&nbsp;located&nbsp;<event name=\"\">at " + eventDetails.Venue.Venue + " from " + eventDetails.Start_Date + " to&nbsp;" + eventDetails.End_Date + "<venue>.</venue></event></div><div><event name=\"\"><venue><br></venue></event></div><div><event name=\"\"><venue>Hoping for your presence on that day. We look forward to meeting you soon.</venue></event></div><div><br></div><div><br></div><div>Regards,</div><div>" + userDetails.Name) + "<br></div>";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_15 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Send_Invitation
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Date_Time = zoho.currenttime;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_16 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Send_Invitation
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											openUrl("#Script:page.refresh","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_17 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Warning_Message
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide Cancellation_From,recID;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_18 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Warning_Message
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Cancellation_From == "Events")
+										{
+											input.plain = "Do you really want to cancel this event?<p style='color:red;font-size: 12px;'>Note: All sub events and registrations related to this event will be cancelled.</p>";
+										}
+										else if(input.Cancellation_From == "SubEvents")
+										{
+											input.plain = "Do you really want to cancel this event?<p style='color:red;font-size: 12px;'>Note: All registrations related to this event will be cancelled.</p>";
+										}
+										else if(input.Cancellation_From == "Registration")
+										{
+											input.plain = "Do you really want to cancel the registration?";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_19 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Event
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide Status,Users,Sub_Events;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_20 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Event
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Adding admin as an organizer if admin is not in user record
+										userRec = Add_User[Contact_Email == zoho.adminuserid];
+										if(userRec.count() <= 0)
+										{
+											reecID = insert into Add_User
+										[
+											Name.first_name=zoho.loginuser
+											Name.last_name=zoho.loginuser
+											Contact_Email=zoho.loginuserid
+											User_Role="Organizer"
+											Added_User=zoho.loginuser
+										];
+											input.Organizers:ui.add(reecID);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_21 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Event
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Start_Date > input.End_Date || input.End_Date < zoho.currentdate || input.Start_Date < zoho.currentdate)
+										{
+											alert "Please check the date range";
+											cancel submit;
+										}
+										//For validation purpose, here we are adding each coordinator mail id and admin mail id to Users field.
+										userList = List:String();
+										userList.add(zoho.adminuserid);
+										for each  eachOrganizer in input.Organizers
+										{
+											userList.add(Add_User[ID == eachOrganizer].Contact_Email);
+										}
+										input.Users = userList.toString();
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_22 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Event
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Send mails to each coordinators about the event details
+										userDetails = Add_User[Contact_Email == zoho.loginuserid];
+										for each  eachOrganizer in input.Organizers
+										{
+											organizerRec = Add_User[ID == eachOrganizer];
+											if(organizerRec.Contact_Email != zoho.loginuserid)
+											{
+												sendmail
+												[
+													from :zoho.adminuserid
+													to :organizerRec.Contact_Email
+													subject :"New Event-" + input.Event_Name + " [" + input.Event_ID + "]"
+													message :(("Hi,<div><br></div><div>New event has been created by&nbsp;" + userDetails.Name) + ". And you have been added as an organizer.</div><div><br></div><div>Please find the details below,</div><div><br></div><div><table cellpadding=\"2\" cellspacing=\"2\" border=\"1\" style=\"border-collapse: collapse;width: 100%; font-size: 10pt;\"><tbody><tr><td>Event ID</td><td>" + input.Event_ID + "<br></td></tr><tr><td>Event Name</td><td>" + input.Event_Name + "<br></td></tr><tr><td>Event Type</td><td>" + input.Event_Type.Type + "<br></td></tr><tr><td>Venue</td><td>" + input.Venue.Venue + "<br></td></tr><tr><td>Start Date</td><td>" + input.Start_Date + "<br></td></tr><tr><td>End Date</td><td>" + input.End_Date + "<br></td></tr></tbody></table><br>Click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "#Report:Events\"" + " target=\"_blank\">here</a> to access the application.</div><div><br></div><div>Regards,</div><div>" + userDetails.Name) + "<br></div>"
+												]
+											}
+										}
+										openUrl("#Form:Add_Sub_Event?Event=" + input.ID,"same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin7 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_Event
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											alert "All data related to this event has been deleted";
+										delete from Add_Sub_Event[Event == input.ID];
+										delete from Event_Registration[Event == input.ID];
+										delete from Send_Invitation[Event == input.ID];
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always5 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Event_Registration
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Status;
+						disable Registration_Date;
+					}
+	}
+
+			}
+		}
+		schedule
+		{
+			CompleteSubEvents as "CompleteSubEvents"
+			{
+				type =  schedule
+				form = Add_Sub_Event
+				start = End_Time
+				time zone = "Asia/Kolkata"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						input.Status = "Completed";
+					)
+					}
+				}
+			}
+			CompleteEvent as "CompleteEvent"
+			{
+				type =  schedule
+				form = Add_Event
+				start = after 1 days from End_Date at "00:00:00"
+				time zone = "Asia/Kolkata"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						input.Status = "Completed";
+					)
+					}
+				}
+			}
+		}
+		functions
+		{
+			Cancel_Registration as "Cancel Registration"
+			{
+				type =  functions
+				form = Event_Registration
+				on start
+				{
+					actions 
+					{
+					CustomAction.CancelRegistration(ID);
+					}
+				}
+			}
+			Send_Invitation as "Send Invitation"
+			{
+				type =  functions
+				form = Add_Event
+				on start
+				{
+					actions 
+					{
+					CustomAction.SendInvitation(ID);
+					}
+				}
+			}
+			Register as "Register"
+			{
+				type =  functions
+				form = Add_Sub_Event
+				on start
+				{
+					actions 
+					{
+					CustomAction.Registration(Add_Sub_Event);
+					}
+				}
+			}
+			Cancel_Event as "Cancel Event"
+			{
+				type =  functions
+				form = Add_Event
+				on start
+				{
+					actions 
+					{
+					CustomAction.CancelEvents(ID);
+					}
+				}
+			}
+			Cancel_Event1 as "Cancel Event"
+			{
+				type =  functions
+				form = Add_Sub_Event
+				on start
+				{
+					actions 
+					{
+					CustomAction.CancelSubEvents(ID);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Organizer"
+			{
+				name = "Organizer"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "This profile will have organizer permissions.\n"
+				ModulePermissions
+				{
+					Add_Sub_Event
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Sub_Events={"View"}
+							All_Sub_Events={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Venue{visibility:true,readonly:false}
+							Users{visibility:true,readonly:false}
+							Number_of_Entries{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:true,readonly:false}
+							End_Time{visibility:true,readonly:false}
+							Start_Time{visibility:true,readonly:false}
+							Event{visibility:true,readonly:false}
+							Available_Entries{visibility:true,readonly:false}
+							Coordinators{visibility:true,readonly:false}
+						}
+					}
+					Warning_Message
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Cancellation_From{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							plain{visibility:true,readonly:false}
+							recID{visibility:true,readonly:false}
+						}
+					}
+					Send_Invitation
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Invitations={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Date_Time{visibility:true,readonly:false}
+							From_Mail{visibility:true,readonly:false}
+							Message{visibility:true,readonly:false}
+							Subject_field{visibility:true,readonly:false}
+							Event{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							To_Mail{visibility:true,readonly:false}
+						}
+					}
+					Add_Event
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Events={"View"}
+							All_Events={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Venue{visibility:true,readonly:false}
+							Organizers{visibility:true,readonly:false}
+							Users{visibility:true,readonly:false}
+							End_Date{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Event_ID{visibility:true,readonly:false}
+							Event_Type{visibility:true,readonly:false}
+							Event_Name{visibility:true,readonly:false}
+							Start_Date{visibility:true,readonly:false}
+							Sub_Events{visibility:true,readonly:false}
+						}
+					}
+					Add_User
+					{
+						FieldPermissions
+						{
+							Contact_Email{visibility:true,readonly:false}
+							User_Role{visibility:true,readonly:false}
+							Contact_Number{visibility:false,readonly:false}
+							Gender{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:false,readonly:false}
+						}
+					}
+					Add_Event_Type
+					{
+						FieldPermissions
+						{
+							Section{visibility:false,readonly:false}
+							Type{visibility:true,readonly:false}
+						}
+					}
+					Add_Venue
+					{
+						FieldPermissions
+						{
+							Venue{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Event_Registration
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							All_Registrations={"View","Edit","Delete"}
+							Participants={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Contact_Email{visibility:true,readonly:false}
+							Sub_Event{visibility:true,readonly:false}
+							Registration_Date{visibility:true,readonly:false}
+							Event{visibility:true,readonly:false}
+							Contact_Number{visibility:false,readonly:false}
+							Registration_Done_By{visibility:true,readonly:false}
+							Gender{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:false,readonly:false}
+						}
+					}
+				}
+			}
+			"Coordinator"
+			{
+				name = "Coordinator"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "This profile will have coordinator permissions.\n"
+				ModulePermissions
+				{
+					Add_Sub_Event
+					{
+						enabled= Viewall,Export 
+						ReportPermissions
+						{
+							Sub_Events={"View"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Venue{visibility:true,readonly:false}
+							Users{visibility:true,readonly:false}
+							Number_of_Entries{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:true,readonly:false}
+							End_Time{visibility:true,readonly:false}
+							Start_Time{visibility:true,readonly:false}
+							Event{visibility:true,readonly:false}
+							Available_Entries{visibility:true,readonly:false}
+							Coordinators{visibility:true,readonly:false}
+						}
+					}
+					Warning_Message
+					{
+						FieldPermissions
+						{
+							Cancellation_From{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							plain{visibility:true,readonly:false}
+							recID{visibility:true,readonly:false}
+						}
+					}
+					Send_Invitation
+					{
+						enabled= Viewall,Import,Export 
+						FieldPermissions
+						{
+							Date_Time{visibility:true,readonly:false}
+							From_Mail{visibility:true,readonly:false}
+							Message{visibility:true,readonly:false}
+							Subject_field{visibility:true,readonly:false}
+							Event{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							To_Mail{visibility:true,readonly:false}
+						}
+					}
+					Add_Event
+					{
+						enabled= Viewall,Export 
+						ReportPermissions
+						{
+							Events={"View"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Venue{visibility:true,readonly:false}
+							Organizers{visibility:true,readonly:false}
+							Users{visibility:true,readonly:false}
+							End_Date{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Event_ID{visibility:true,readonly:false}
+							Event_Type{visibility:true,readonly:false}
+							Event_Name{visibility:true,readonly:false}
+							Start_Date{visibility:true,readonly:false}
+							Sub_Events{visibility:true,readonly:false}
+						}
+					}
+					Add_User
+					{
+						FieldPermissions
+						{
+							Contact_Email{visibility:true,readonly:false}
+							User_Role{visibility:true,readonly:false}
+							Contact_Number{visibility:false,readonly:false}
+							Gender{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:false,readonly:false}
+						}
+					}
+					Add_Event_Type
+					{
+						FieldPermissions
+						{
+							Section{visibility:false,readonly:false}
+							Type{visibility:true,readonly:false}
+						}
+					}
+					Add_Venue
+					{
+						FieldPermissions
+						{
+							Venue{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Event_Registration
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Participants={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Contact_Email{visibility:true,readonly:false}
+							Sub_Event{visibility:true,readonly:false}
+							Registration_Date{visibility:true,readonly:false}
+							Event{visibility:true,readonly:false}
+							Contact_Number{visibility:false,readonly:false}
+							Registration_Done_By{visibility:true,readonly:false}
+							Gender{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:false,readonly:false}
+						}
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users."
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 2
+		new theme color = 1
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-project-mgmt6"
+    	icon theme = "lightred"
+		icons style = outline
+	}
+
+	phone
+	{
+		section  New_Event
+		{
+			displayname= "New Event"
+			icon = "ui-2-square-add-11"
+			form  Add_Event
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+			}
+			form  Add_Sub_Event
+			{
+				layout = auto
+				icon = "ui-1-bold-add"
+			}
+		}
+		section  Add_Event
+		{
+			displayname= "Events"
+			icon = "ui-1-calendar-grid-58"
+			list Events
+			{
+				icon = "ui-1-calendar-grid-61"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Event_ID as "Event ID"
+								Event_Name as "Event Name"
+								Start_Date as "Start Date"
+								End_Date as "End Date"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										"Cancel Event"
+										Delete   	   
+										Duplicate   	   
+										Print   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Send Invitation"
+										"Cancel Event"
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Send Invitation"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Event_ID as "Event ID"
+								Event_Type as "Event Type"
+								Event_Name as "Event Name"
+								Description
+								Venue
+								Start_Date as "Start Date"
+								End_Date as "End Date"
+								Organizers
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Send Invitation"
+    		 				Edit 
+			 				"Cancel Event"
+    		 				Delete 
+    		 				Duplicate 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			list Sub_Events
+			{
+				icon = "business-hierarchy-53"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Name as "Sub Event Name"
+								Venue
+								Start_Time as "Start Time"
+								End_Time as "End Time"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										"Cancel Event"
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Cancel Event"
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Register"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock3
+						(
+			 				layout type = -2
+		     				title = "Sub Event Details"
+							fields
+							(
+								Name as "Sub Event Name"
+								Description
+								Venue
+								Start_Time as "Start Time"
+								End_Time as "End Time"
+								Number_of_Entries as "Number of Entries"
+								Available_Entries as "Available Entries"
+								Coordinators
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Register"
+    		 				Edit 
+			 				"Cancel Event"
+    		 				Delete 
+    		 				Duplicate 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			list Invitations
+			{
+				icon = "ui-1-email-85"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Subject_field as "Subject"
+								Message
+								From_Mail as "From"
+								Date_Time as "Date-Time"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Event
+								From_Mail as "From"
+								To_Mail as "To"
+								Subject_field as "Subject"
+								Message
+								Date_Time as "Date-Time"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Registrations
+		{
+			icon = "ui-1-pencil"
+			form  Event_Registration
+			{
+				layout = auto
+				icon = "ui-2-square-add-11"
+			}
+			list Participants
+			{
+				icon = "users-2-wc"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Gender
+								Contact_Email as "Contact Email"
+								Contact_Number as "Contact Number"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+			 				"Cancel Registration"
+    		 				Delete 
+    		 				Duplicate 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										"Cancel Registration"
+										Delete   	   
+										Duplicate   	   
+										Print   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Cancel Registration"
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Cancel Registration"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Event
+								Sub_Event as "Sub Event"
+								Name
+								Gender
+								Contact_Email as "Contact Email"
+								Contact_Number as "Contact Number"
+								Registration_Done_By as "Registered By"
+								Registration_Date as "Registration Date"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Print 
+			 				"Cancel Registration"
+    		 				Delete 
+    		 				Duplicate 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Reports
+		{
+			icon = "ui-1-database"
+			calendar All_Events
+			{
+				icon = "ui-1-calendar-grid-58"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Event_Name as "Event Name"
+								Event_Type as "Event Type"
+								Venue
+								Status
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Event_ID as "Event ID"
+								Event_Type as "Event Type"
+								Event_Name as "Event Name"
+								Description
+								Venue
+								Start_Date as "Start Date"
+								End_Date as "End Date"
+								Organizers
+								Status
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list All_Sub_Events
+			{
+				icon = "ui-2-menu-bold"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Name as "Sub Event Name"
+								Venue
+								Start_Time as "Start Time"
+								End_Time as "End Time"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock3
+						(
+			 				layout type = -2
+		     				title = "Sub Event Details"
+							fields
+							(
+								Name as "Sub Event Name"
+								Description
+								Venue
+								Start_Time as "Start Time"
+								End_Time as "End Time"
+								Number_of_Entries as "Number of Entries"
+								Available_Entries as "Available Entries"
+								Coordinators
+								Status
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list All_Registrations
+			{
+				icon = "files-archive-paper-check"
+			}
+		}
+		section  Users
+		{
+			icon = "users-multiple-11"
+			list Users
+			{
+				icon = "users-multiple-11"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Gender
+								Contact_Email as "Contact Email"
+								Contact_Number as "Contact Number"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Gender
+								Contact_Email as "Contact Email"
+								Contact_Number as "Contact Number"
+								User_Role as "User Role"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Settings
+		{
+			icon = "ui-1-settings-gear-63"
+			list Event_Types
+			{
+				icon = "design-bullet-list-70"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Type
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Type
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Venue
+			{
+				icon = "location-position-pin"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Venue
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Venue
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Hidden
+		{
+			hide = true
+			icon = "ui-2-menu-bold"
+			form  Add_User
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_Event_Type
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			form  Add_Venue
+			{
+				layout = auto
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Send_Invitation
+			{
+				layout = auto
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Warning_Message
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = lightred
+        	layout = onecolumn
+		 	icons style = outline
+		}
+	}
+	tablet
+	{
+		section  New_Event
+		{
+			displayname= "New Event"
+			form  Add_Event
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+			}
+			form  Add_Sub_Event
+			{
+				layout = auto
+				icon = "ui-1-bold-add"
+			}
+		}
+		section  Add_Event
+		{
+			displayname= "Events"
+			list Events
+			{
+				icon = "ui-1-calendar-grid-61"
+			}
+			list Sub_Events
+			{
+				icon = "business-hierarchy-53"
+			}
+			list Invitations
+			{
+				icon = "ui-1-email-85"
+			}
+		}
+		section  Registrations
+		{
+			form  Event_Registration
+			{
+				layout = auto
+				icon = "ui-2-square-add-11"
+			}
+			list Participants
+			{
+				icon = "users-2-wc"
+			}
+		}
+		section  Reports
+		{
+			calendar All_Events
+			{
+				icon = "ui-1-calendar-grid-58"
+			}
+			list All_Sub_Events
+			{
+				icon = "ui-2-menu-bold"
+			}
+			list All_Registrations
+			{
+				icon = "files-archive-paper-check"
+			}
+		}
+		section  Users
+		{
+			list Users
+			{
+			}
+		}
+		section  Settings
+		{
+			list Event_Types
+			{
+				icon = "design-bullet-list-70"
+			}
+			list Venue
+			{
+				icon = "location-position-pin"
+			}
+		}
+		section  Hidden
+		{
+			hide = true
+			form  Add_User
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_Event_Type
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			form  Add_Venue
+			{
+				layout = auto
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Send_Invitation
+			{
+				layout = auto
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Warning_Message
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = lightred
+        	layout = onecolumn
+		 	icons style = outline
+		}
+	}
+	translation
+{
+"{\"de\":{\"FormButton.Warning_Message.Yes\":\" Ja \",\"FormField.Add_Sub_Event.ID\":\" ICH WÜRDE \",\"FormButton.Warning_Message.No\":\" Nein \",\"FormField.Add_Sub_Event.Number_of_Entries\":\" Anzahl der Einträge \",\"FormField.Event_Registration.Contact_Email\":\" Kontakt E-mail \",\"FormButton.Add_Venue.cancel\":\" Stornieren \",\"FormButton.Event_Registration.cancel\":\" Stornieren \",\"ReportField.All_Sub_Events.Status\":\" Status \",\"Languages List.zh-TW\":\" Chinesische Tradition \",\"Section.New_Event\":\" Neues Event \",\"FormField.Add_Sub_Event.Event\":\" Veranstaltung \",\"Languages List.ja\":\" japanisch \",\"App.university-event-organizer\":\"Hochschulveranstalter \",\"FormField.Event_Registration.Modified_Time\":\" Geänderte Zeit \",\"FormField.Add_Venue.ID\":\" ICH WÜRDE \",\"Report.Users\":\" Benutzer \",\"FormButton.Add_User.update\":\" Aktualisieren \",\"Report.Sub_Events\":\" Unter Ereignisse \",\"ReportField.Invitations.To_Mail\":\" Zu \",\"Report.Participants\":\" Teilnehmer \",\"Languages List.ku\":\" kurdisch \",\"FormField.Warning_Message.Cancellation_From\":\" Stornierung von \",\"FormButton.Add_Event_Type.reset\":\" Zurücksetzen \",\"FormField.Warning_Message.recID\":\" Anrufbeantworter \",\"Languages List.km\":\" Khmer \",\"Form.Add_Event\":\" Ereignis hinzufügen \",\"FormField.Add_Event.Event_ID\":\" Ereignis-ID \",\"FormField.Event_Registration.Record_Status\":\" Aufnahmestatus \",\"FormField.Add_User.ID\":\" ICH WÜRDE \",\"Languages List.ko\":\" Koreanisch \",\"Languages List.kn\":\" Kannada \",\"PicklistOption.Warning_Message.Cancellation_From.2\":\" Unterereignisse \",\"Languages List.ka\":\" georgisch \",\"PicklistOption.Warning_Message.Cancellation_From.3\":\" Anmeldung \",\"FormButton.Add_Event.update\":\" Aktualisieren \",\"PicklistOption.Warning_Message.Cancellation_From.1\":\" Veranstaltungen \",\"ReportField.All_Sub_Events.Event\":\" Veranstaltung \",\"FormButton.Send_Invitation.reset\":\" Zurücksetzen \",\"FormField.Add_Sub_Event.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Form.Send_Invitation\":\" Einladung senden \",\"ReportField.Participants.Gender\":\" Geschlecht \",\"FormField.Send_Invitation.Modified_User\":\" Geänderter Benutzer \",\"Languages List.hu\":\" ungarisch \",\"Languages List.yi\":\" Jiddisch \",\"ReportField.Sub_Events.Event\":\" Veranstaltung \",\"Languages List.hy\":\" Armenisch \",\"FormField.Add_User.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Event_Registration.ID\":\" ICH WÜRDE \",\"FormField.Add_Event_Type.Added_User\":\" Benutzer hinzugefügt \",\"Languages List.hr\":\" kroatisch \",\"FormField.Event_Registration.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormButton.Add_User.reset\":\" Zurücksetzen \",\"Report.Events\":\" Veranstaltungen \",\"FormButton.Add_Sub_Event.cancel\":\" Stornieren \",\"ReportField.Events.Event_ID\":\" Ereignis-ID \",\"Languages List.hi\":\" Hindi \",\"FormField.Add_Event.Event_Name\":\" Veranstaltungsname \",\"PicklistOption.Event_Registration.Status.1\":\" Eingetragen \",\"FormField.Add_Event.Record_Status\":\" Aufnahmestatus \",\"PicklistOption.Event_Registration.Status.2\":\" Abgebrochen \",\"FormField.Warning_Message.Added_User\":\" Benutzer hinzugefügt \",\"ReportField.All_Registrations.Status\":\" Status \",\"Languages List.zh\":\" Chinesisch \",\"Languages List.iw\":\" hebräisch \",\"ReportField.Events.Event_Name\":\" Veranstaltungsname \",\"Languages List.is\":\" isländisch \",\"FormField.Add_Venue.Record_Status\":\" Aufnahmestatus \",\"ReportField.Users.User_Role\":\" Benutzer-Rolle \",\"FormField.Add_User.Gender\":\" Geschlecht \",\"Languages List.it\":\" Italienisch \",\"ReportField.All_Sub_Events.End_Time\":\" Endzeit \",\"FormField.Add_Venue.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"ReportField.Sub_Events.Name\":\" Name \",\"ReportField.Sub_Events.End_Time\":\" Endzeit \",\"FormField.Add_Event.Modified_Time\":\" Geänderte Zeit \",\"FormField.Add_Event.Status\":\" Status \",\"FormField.Event_Registration.Event\":\" Veranstaltung \",\"FormField.Add_User.Added_User\":\" Benutzer hinzugefügt \",\"ReportField.Participants.Registration_Done_By\":\" Registriert durch \",\"FormField.Add_Sub_Event.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Add_Sub_Event.Record_Status\":\" Aufnahmestatus \",\"FormField.Add_User.User_Role\":\" Benutzer-Rolle \",\"FormField.Warning_Message.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormButton.Add_Event_Type.update\":\" Aktualisieren \",\"FormButton.Add_Venue.reset\":\" Zurücksetzen \",\"Languages List.nl\":\" Niederländisch \",\"FormField.Add_Venue.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Event_Registration.Sub_Event\":\" Unterveranstaltung \",\"FormField.Add_Sub_Event.Users\":\" Benutzer \",\"Languages List.no\":\" norwegisch \",\"FormButton.Add_Sub_Event.reset\":\" Zurücksetzen \",\"Form.Warning_Message\":\" Warnmeldung \",\"FormField.Warning_Message.Modified_User\":\" Geänderter Benutzer \",\"ReportField.Event_Types.Type\":\" Art \",\"FormField.Add_Venue.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Send_Invitation.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Send_Invitation.Message\":\" Botschaft \",\"ReportField.Events.Organizers\":\" Veranstalter \",\"FormField.Add_User.Record_Status\":\" Aufnahmestatus \",\"FormField.Add_Sub_Event.Name\":\" Name \",\"ReportField.Events.Event_Type\":\" Ereignistyp \",\"FormField.Add_Venue.Modified_User\":\" Geänderter Benutzer \",\"ReportField.All_Events.Event_ID\":\" Ereignis-ID \",\"Section.Reports\":\" Berichte \",\"FormField.Add_User.Modified_Time\":\" Geänderte Zeit \",\"FormField.Event_Registration.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Event_Registration.Added_User\":\" Benutzer hinzugefügt \",\"FormField.Warning_Message.ID\":\" ICH WÜRDE \",\"Form.Event_Registration\":\" Veranstaltungsanmeldung \",\"CustomAction.Sub_Events.Register\":\" Registrieren \",\"FormField.Add_Event.ID\":\" ICH WÜRDE \",\"Languages List.lt\":\" litauisch \",\"Languages List.lv\":\" lettisch \",\"ReportField.All_Registrations.Sub_Event\":\" Unterveranstaltung \",\"ReportField.Events.Venue\":\" Tagungsort \",\"ReportField.All_Registrations.Gender\":\" Geschlecht \",\"FormField.Add_User.Contact_Email\":\" Kontakt E-mail \",\"Languages List.lo\":\" Laothian \",\"FormButton.Add_Venue.update\":\" Aktualisieren \",\"Languages List.la\":\" Latein \",\"FormField.Add_Event_Type.Type\":\" Art \",\"CustomAction.Events.Send_Invitation\":\" Einladung senden \",\"FormField.Add_Event_Type.Modified_User\":\" Geänderter Benutzer \",\"ReportField.Participants.Contact_Email\":\" Email \",\"FormButton.Add_Event.submit\":\" einreichen \",\"FormButton.Add_Event.cancel\":\" Stornieren \",\"Languages List.ms\":\" malaiisch \",\"FormField.Add_Sub_Event.Modified_Time\":\" Geänderte Zeit \",\"ReportField.All_Events.Event_Type\":\" Ereignistyp \",\"Languages List.mr\":\" Marathi \",\"ReportField.All_Registrations.Event\":\" Veranstaltung \",\"Languages List.mt\":\" maltesisch \",\"FormButton.Add_Event.reset\":\" Zurücksetzen \",\"Languages List.mk\":\" mazedonisch \",\"Form.Add_Event_Type\":\" Ereignistyp hinzufügen \",\"Report.Event_Types\":\" Ereignistypen \",\"FormField.Event_Registration.Gender\":\" Geschlecht \",\"FormField.Add_Sub_Event.End_Time\":\" Endzeit \",\"FormField.Add_Venue.Venue\":\" Tagungsort \",\"ReportField.Sub_Events.Start_Time\":\" Startzeit \",\"FormField.Event_Registration.Registration_Done_By\":\" Registrierung abgeschlossen von \",\"FormButton.Add_Event_Type.submit\":\" einreichen \",\"FormButton.Add_Event_Type.cancel\":\" Stornieren \",\"FormField.Add_Event.Added_User\":\" Benutzer hinzugefügt \",\"Report.All_Events\":\" Alle Veranstaltungen \",\"ReportField.All_Sub_Events.Venue\":\" Tagungsort \",\"FormButton.Add_Sub_Event.update\":\" Aktualisieren \",\"ReportField.Sub_Events.Coordinators\":\" Koordinatoren \",\"Languages List.bg\":\" bulgarisch \",\"PicklistOption.Add_User.Gender.2\":\" Weiblich \",\"Languages List.bn\":\" Bengali \",\"PicklistOption.Add_User.Gender.1\":\" Männlich \",\"Languages List.ro\":\" rumänisch \",\"FormField.Add_Sub_Event.Venue\":\" Tagungsort \",\"Languages List.be\":\" Belarussisch \",\"Languages List.ru\":\" Russisch \",\"FormField.Event_Registration.Modified_User\":\" Geänderter Benutzer \",\"Languages List.az\":\" Aserbaidschanisch \",\"Languages List.ta\":\" Tamilisch \",\"Languages List.cs\":\" Tschechisch \",\"ReportField.Participants.Sub_Event\":\" Unterveranstaltung \",\"ReportField.Participants.Registration_Date\":\" Registrierungsdatum \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" Thai \",\"FormButton.Send_Invitation.update\":\" Erneut senden \",\"ReportField.All_Registrations.Registration_Date\":\" Registrierungsdatum \",\"ReportField.Users.Gender\":\" Geschlecht \",\"Languages List.sq\":\" albanisch \",\"Languages List.ca\":\" katalanisch \",\"Section.Users\":\" Benutzer \",\"Languages List.sw\":\" Swahili \",\"Languages List.sv\":\" Schwedisch \",\"PicklistOption.Add_Event.Status.1\":\" Aktiv \",\"PicklistOption.Add_Event.Status.2\":\" Abgebrochen \",\"Languages List.sk\":\" slowakisch \",\"PicklistOption.Add_Event.Status.3\":\" Abgeschlossen \",\"PicklistOption.Add_Sub_Event.Status.2\":\" Abgebrochen \",\"PicklistOption.Add_Sub_Event.Status.1\":\" Aktiv \",\"Languages List.sl\":\" Slowenisch \",\"FormField.Add_Event.Sub_Events\":\" Unter Ereignisse \",\"PicklistOption.Add_Sub_Event.Status.3\":\" Abgeschlossen \",\"FormField.Add_Event_Type.Added_Time\":\" Zeit hinzugefügt \",\"FormButton.Event_Registration.update\":\" Aktualisieren \",\"ReportField.All_Events.Venue\":\" Tagungsort \",\"ReportField.Invitations.Message\":\" Botschaft \",\"FormField.Add_Event.Venue\":\" Tagungsort \",\"Section.Registrations\":\" Anmeldungen \",\"ReportField.All_Registrations.Contact_Email\":\" Email \",\"FormField.Send_Invitation.Modified_Time\":\" Geänderte Zeit \",\"ReportField.All_Events.Status\":\" Status \",\"ReportField.All_Events.End_Date\":\" Endtermin \",\"FormField.Send_Invitation.Subject_field\":\" Gegenstand \",\"FormButton.Add_Venue.submit\":\" einreichen \",\"FormButton.Event_Registration.submit\":\" einreichen \",\"ReportField.Sub_Events.Available_Entries\":\" Verfügbare Einträge \",\"ReportField.Sub_Events.Venue\":\" Tagungsort \",\"FormField.Add_Event_Type.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Add_Sub_Event.Coordinators\":\" Koordinatoren \",\"ReportField.Events.End_Date\":\" Endtermin \",\"Languages List.pt\":\" Portugiesisch \",\"FormField.Warning_Message.Added_Time\":\" Zeit hinzugefügt \",\"Languages List.pl\":\" Polieren \",\"ReportField.Users.Contact_Email\":\" Kontakt E-mail \",\"FormField.Send_Invitation.Date_Time\":\" Terminzeit \",\"Languages List.ar\":\" Arabisch \",\"Languages List.af\":\" Afrikaans \",\"FormButton.Add_User.submit\":\" einreichen \",\"FormButton.Add_User.cancel\":\" Stornieren \",\"CustomAction.Participants.Cancel_Registration\":\" Registrierung stornieren \",\"FormField.Add_Sub_Event.Description\":\" Beschreibung \",\"Section.Settings\":\" die Einstellungen \",\"FormField.Add_Event.Modified_User\":\" Geänderter Benutzer \",\"ReportField.All_Events.Organizers\":\" Veranstalter \",\"FormField.Send_Invitation.From_Mail\":\" Von \",\"FormField.Send_Invitation.Record_Status\":\" Aufnahmestatus \",\"FormField.Add_Sub_Event.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"ReportField.All_Sub_Events.Number_of_Entries\":\" Anzahl der Einträge \",\"FormField.Add_Event.Start_Date\":\" Anfangsdatum \",\"PicklistOption.Add_User.User_Role.3\":\" Eingeladener \",\"FormField.Send_Invitation.ID\":\" ICH WÜRDE \",\"PicklistOption.Add_User.User_Role.2\":\" Koordinator \",\"ReportField.Events.Start_Date\":\" Anfangsdatum \",\"PicklistOption.Add_User.User_Role.1\":\" Veranstalter \",\"FormField.Event_Registration.Status\":\" Status \",\"FormField.Add_Sub_Event.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Send_Invitation.To_Mail\":\" Zu \",\"FormField.Add_Event.Organizers\":\" Veranstalter \",\"FormField.Add_User.Added_Time\":\" Zeit hinzugefügt \",\"FormButton.Event_Registration.reset\":\" Zurücksetzen \",\"Languages List.fr\":\" Französisch \",\"FormField.Add_Event.Event_Type\":\" Ereignistyp \",\"ReportField.Venue.Venue\":\" Tagungsort \",\"FormField.Add_Sub_Event.Start_Time\":\" Startzeit \",\"FormButton.Add_Sub_Event.submit\":\" einreichen \",\"ReportField.All_Events.Start_Date\":\" Anfangsdatum \",\"PicklistOption.Event_Registration.Gender.1\":\" Männlich \",\"PicklistOption.Event_Registration.Gender.2\":\" Weiblich \",\"Languages List.fi\":\" Finnese \",\"ReportField.Invitations.Date_Time\":\" Terminzeit \",\"FormField.Send_Invitation.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"Report.Invitations\":\" Einladungen \",\"FormField.Add_Venue.Added_User\":\" Benutzer hinzugefügt \",\"Languages List.fa\":\" persisch \",\"Languages List.gu\":\" Gujarati \",\"FormField.Add_Event.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"FormField.Add_Event.Description\":\" Beschreibung \",\"FormField.Add_Event.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"FormField.Send_Invitation.Added_User\":\" Benutzer hinzugefügt \",\"ReportField.Participants.Event\":\" Veranstaltung \",\"Languages List.gl\":\" galizisch \",\"ReportField.Invitations.Subject_field\":\" Gegenstand \",\"FormField.Add_Venue.Modified_Time\":\" Geänderte Zeit \",\"ReportField.All_Sub_Events.Start_Time\":\" Startzeit \",\"Form.Add_Sub_Event\":\" Unterveranstaltung hinzufügen \",\"FormField.Add_Event.End_Date\":\" Endtermin \",\"ReportField.All_Sub_Events.Coordinators\":\" Koordinatoren \",\"ReportField.Invitations.Event\":\" Veranstaltung \",\"CustomAction.Events.Cancel_Event\":\" Ereignis abbrechen \",\"ReportField.All_Events.Event_Name\":\" Veranstaltungsname \",\"Languages List.ga\":\" irisch \",\"FormField.Send_Invitation.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Section.Hidden\":\" Versteckt \",\"ReportField.All_Registrations.Registration_Done_By\":\" Registriert durch \",\"ReportField.All_Events.Description\":\" Beschreibung \",\"FormField.Add_User.Modified_User\":\" Geänderter Benutzer \",\"FormField.Add_Sub_Event.Status\":\" Status \",\"CustomAction.Sub_Events.Cancel_Event1\":\" Ereignis abbrechen \",\"Report.Venue\":\" Tagungsort \",\"ReportField.All_Sub_Events.Available_Entries\":\" Verfügbare Einträge \",\"Section.Add_Event\":\" Veranstaltungen \",\"ReportField.Invitations.From_Mail\":\" Von \",\"Report.All_Sub_Events\":\" Alle Unterereignisse \",\"FormField.Add_Event_Type.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Languages List.tr\":\" Türkisch \",\"FormField.Add_User.Modified_User_IP_Address\":\" Geänderte Benutzer-IP-Adresse \",\"Languages List.da\":\" dänisch \",\"FormField.Add_Event_Type.Record_Status\":\" Aufnahmestatus \",\"Form.Add_User\":\" Benutzer hinzufügen \",\"Languages List.de\":\" Deutsche \",\"ReportField.All_Sub_Events.Name\":\" Name \",\"FormField.Send_Invitation.Event\":\" Veranstaltung \",\"Languages List.cy\":\" Walisisch \",\"Languages List.tl\":\" Filipino \",\"ReportField.Events.Description\":\" Beschreibung \",\"ReportField.All_Sub_Events.Description\":\" Beschreibung \",\"FormField.Add_Event_Type.ID\":\" ICH WÜRDE \",\"Languages List.es\":\" Spanisch \",\"FormField.Add_Event_Type.Modified_Time\":\" Geänderte Zeit \",\"FormButton.Send_Invitation.cancel\":\" Stornieren \",\"Report.All_Registrations\":\" Alle Anmeldungen \",\"Languages List.eu\":\" baskisch \",\"FormField.Warning_Message.Modified_Time\":\" Geänderte Zeit \",\"ReportField.Sub_Events.Number_of_Entries\":\" Anzahl der Einträge \",\"Languages List.et\":\" estnisch \",\"FormField.Add_Event.Users\":\" Benutzer \",\"Languages List.vi\":\" Vietnamesisch \",\"Form.Add_Venue\":\" Veranstaltungsort hinzufügen \",\"Languages List.el\":\" griechisch \",\"FormField.Add_Sub_Event.Modified_User\":\" Geänderter Benutzer \",\"Languages List.eo\":\" Esperanto \",\"FormField.Event_Registration.Registration_Date\":\" Registrierungsdatum \",\"Languages List.en\":\" Englisch \",\"FormField.Warning_Message.Added_User_IP_Address\":\" Benutzer-IP-Adresse hinzugefügt \",\"Languages List.ur\":\" Urdu \",\"FormField.Add_Sub_Event.Available_Entries\":\" Verfügbare Einträge \",\"FormField.Warning_Message.Record_Status\":\" Aufnahmestatus \",\"FormField.Event_Registration.Added_Time\":\" Zeit hinzugefügt \",\"FormField.Add_Event.Added_Time\":\" Zeit hinzugefügt \",\"FormButton.Send_Invitation.submit\":\" Senden \"},\"fr\":{\"FormButton.Warning_Message.Yes\":\" Oui \",\"FormField.Add_Sub_Event.ID\":\" ID \",\"FormButton.Warning_Message.No\":\" Non \",\"FormField.Add_Sub_Event.Number_of_Entries\":\" Nombre d'entrées \",\"FormField.Event_Registration.Contact_Email\":\" Email du contact \",\"FormButton.Add_Venue.cancel\":\" Annuler \",\"FormButton.Event_Registration.cancel\":\" Annuler \",\"ReportField.All_Sub_Events.Status\":\" Statut \",\"Languages List.zh-TW\":\" Chinois traditionnel \",\"Section.New_Event\":\" Nouvel évènement \",\"FormField.Add_Sub_Event.Event\":\" un événement \",\"Languages List.ja\":\" Japonais \",\"App.university-event-organizer\":\"University Organisateur d'événement \",\"FormField.Event_Registration.Modified_Time\":\" Heure modifiée \",\"FormField.Add_Venue.ID\":\" ID \",\"Report.Users\":\" Utilisateurs \",\"FormButton.Add_User.update\":\" Mettre à jour \",\"Report.Sub_Events\":\" Sous-événements \",\"ReportField.Invitations.To_Mail\":\" À \",\"Report.Participants\":\" Participants \",\"Languages List.ku\":\" kurde \",\"FormField.Warning_Message.Cancellation_From\":\" Annulation de \",\"FormButton.Add_Event_Type.reset\":\" Réinitialiser \",\"FormField.Warning_Message.recID\":\" recID \",\"Languages List.km\":\" Khmer \",\"Form.Add_Event\":\" Ajouter un évènement \",\"FormField.Add_Event.Event_ID\":\" ID de l'événement \",\"FormField.Event_Registration.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_User.ID\":\" ID \",\"Languages List.ko\":\" coréen \",\"Languages List.kn\":\" Kannada \",\"PicklistOption.Warning_Message.Cancellation_From.2\":\" SubEvents \",\"Languages List.ka\":\" géorgien \",\"PicklistOption.Warning_Message.Cancellation_From.3\":\" enregistrement \",\"FormButton.Add_Event.update\":\" Mettre à jour \",\"PicklistOption.Warning_Message.Cancellation_From.1\":\" Événements \",\"ReportField.All_Sub_Events.Event\":\" un événement \",\"FormButton.Send_Invitation.reset\":\" Réinitialiser \",\"FormField.Add_Sub_Event.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Form.Send_Invitation\":\" Envoyer une invitation \",\"ReportField.Participants.Gender\":\" Le genre \",\"FormField.Send_Invitation.Modified_User\":\" Utilisateur modifié \",\"Languages List.hu\":\" hongrois \",\"Languages List.yi\":\" yiddish \",\"ReportField.Sub_Events.Event\":\" un événement \",\"Languages List.hy\":\" arménien \",\"FormField.Add_User.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Event_Registration.ID\":\" ID \",\"FormField.Add_Event_Type.Added_User\":\" Utilisateur ajouté \",\"Languages List.hr\":\" croate \",\"FormField.Event_Registration.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormButton.Add_User.reset\":\" Réinitialiser \",\"Report.Events\":\" Événements \",\"FormButton.Add_Sub_Event.cancel\":\" Annuler \",\"ReportField.Events.Event_ID\":\" ID de l'événement \",\"Languages List.hi\":\" hindi \",\"FormField.Add_Event.Event_Name\":\" Nom de l'événement \",\"PicklistOption.Event_Registration.Status.1\":\" Inscrit \",\"FormField.Add_Event.Record_Status\":\" Statut d'enregistrement \",\"PicklistOption.Event_Registration.Status.2\":\" Annulé \",\"FormField.Warning_Message.Added_User\":\" Utilisateur ajouté \",\"ReportField.All_Registrations.Status\":\" Statut \",\"Languages List.zh\":\" chinois \",\"Languages List.iw\":\" hébreu \",\"ReportField.Events.Event_Name\":\" Nom de l'événement \",\"Languages List.is\":\" islandais \",\"FormField.Add_Venue.Record_Status\":\" Statut d'enregistrement \",\"ReportField.Users.User_Role\":\" Rôle d'utilisateur \",\"FormField.Add_User.Gender\":\" Le genre \",\"Languages List.it\":\" italien \",\"ReportField.All_Sub_Events.End_Time\":\" Heure de fin \",\"FormField.Add_Venue.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"ReportField.Sub_Events.Name\":\" prénom \",\"ReportField.Sub_Events.End_Time\":\" Heure de fin \",\"FormField.Add_Event.Modified_Time\":\" Heure modifiée \",\"FormField.Add_Event.Status\":\" Statut \",\"FormField.Event_Registration.Event\":\" un événement \",\"FormField.Add_User.Added_User\":\" Utilisateur ajouté \",\"ReportField.Participants.Registration_Done_By\":\" Enregistré par \",\"FormField.Add_Sub_Event.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Sub_Event.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_User.User_Role\":\" Rôle d'utilisateur \",\"FormField.Warning_Message.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormButton.Add_Event_Type.update\":\" Mettre à jour \",\"FormButton.Add_Venue.reset\":\" Réinitialiser \",\"Languages List.nl\":\" néerlandais \",\"FormField.Add_Venue.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Event_Registration.Sub_Event\":\" Sous-événement \",\"FormField.Add_Sub_Event.Users\":\" Utilisateurs \",\"Languages List.no\":\" norvégien \",\"FormButton.Add_Sub_Event.reset\":\" Réinitialiser \",\"Form.Warning_Message\":\" Message d'alerte \",\"FormField.Warning_Message.Modified_User\":\" Utilisateur modifié \",\"ReportField.Event_Types.Type\":\" Type \",\"FormField.Add_Venue.Added_Time\":\" Temps ajouté \",\"FormField.Send_Invitation.Added_Time\":\" Temps ajouté \",\"FormField.Send_Invitation.Message\":\" Message \",\"ReportField.Events.Organizers\":\" Les organisateurs \",\"FormField.Add_User.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_Sub_Event.Name\":\" prénom \",\"ReportField.Events.Event_Type\":\" Type d'événement \",\"FormField.Add_Venue.Modified_User\":\" Utilisateur modifié \",\"ReportField.All_Events.Event_ID\":\" ID de l'événement \",\"Section.Reports\":\" Rapports \",\"FormField.Add_User.Modified_Time\":\" Heure modifiée \",\"FormField.Event_Registration.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Event_Registration.Added_User\":\" Utilisateur ajouté \",\"FormField.Warning_Message.ID\":\" ID \",\"Form.Event_Registration\":\" Enregistrement d'événement \",\"CustomAction.Sub_Events.Register\":\" registre \",\"FormField.Add_Event.ID\":\" ID \",\"Languages List.lt\":\" lituanien \",\"Languages List.lv\":\" letton \",\"ReportField.All_Registrations.Sub_Event\":\" Sous-événement \",\"ReportField.Events.Venue\":\" Lieu \",\"ReportField.All_Registrations.Gender\":\" Le genre \",\"FormField.Add_User.Contact_Email\":\" Email du contact \",\"Languages List.lo\":\" Laothian \",\"FormButton.Add_Venue.update\":\" Mettre à jour \",\"Languages List.la\":\" Latin \",\"FormField.Add_Event_Type.Type\":\" Type \",\"CustomAction.Events.Send_Invitation\":\" Envoyer une invitation \",\"FormField.Add_Event_Type.Modified_User\":\" Utilisateur modifié \",\"ReportField.Participants.Contact_Email\":\" Email \",\"FormButton.Add_Event.submit\":\" Soumettre \",\"FormButton.Add_Event.cancel\":\" Annuler \",\"Languages List.ms\":\" malais \",\"FormField.Add_Sub_Event.Modified_Time\":\" Heure modifiée \",\"ReportField.All_Events.Event_Type\":\" Type d'événement \",\"Languages List.mr\":\" Marathi \",\"ReportField.All_Registrations.Event\":\" un événement \",\"Languages List.mt\":\" maltais \",\"FormButton.Add_Event.reset\":\" Réinitialiser \",\"Languages List.mk\":\" Macédonien \",\"Form.Add_Event_Type\":\" Ajouter un type d'événement \",\"Report.Event_Types\":\" Types d'événements \",\"FormField.Event_Registration.Gender\":\" Le genre \",\"FormField.Add_Sub_Event.End_Time\":\" Heure de fin \",\"FormField.Add_Venue.Venue\":\" Lieu \",\"ReportField.Sub_Events.Start_Time\":\" Heure de début \",\"FormField.Event_Registration.Registration_Done_By\":\" Inscription effectuée par \",\"FormButton.Add_Event_Type.submit\":\" Soumettre \",\"FormButton.Add_Event_Type.cancel\":\" Annuler \",\"FormField.Add_Event.Added_User\":\" Utilisateur ajouté \",\"Report.All_Events\":\" Tous les évènements \",\"ReportField.All_Sub_Events.Venue\":\" Lieu \",\"FormButton.Add_Sub_Event.update\":\" Mettre à jour \",\"ReportField.Sub_Events.Coordinators\":\" Coordinateurs \",\"Languages List.bg\":\" bulgare \",\"PicklistOption.Add_User.Gender.2\":\" Femelle \",\"Languages List.bn\":\" bengali \",\"PicklistOption.Add_User.Gender.1\":\" Mâle \",\"Languages List.ro\":\" roumain \",\"FormField.Add_Sub_Event.Venue\":\" Lieu \",\"Languages List.be\":\" Biélorusse \",\"Languages List.ru\":\" russe \",\"FormField.Event_Registration.Modified_User\":\" Utilisateur modifié \",\"Languages List.az\":\" azerbaïdjanais \",\"Languages List.ta\":\" Tamil \",\"Languages List.cs\":\" tchèque \",\"ReportField.Participants.Sub_Event\":\" Sous-événement \",\"ReportField.Participants.Registration_Date\":\" Date d'inscription \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" thaïlandais \",\"FormButton.Send_Invitation.update\":\" Renvoyer \",\"ReportField.All_Registrations.Registration_Date\":\" Date d'inscription \",\"ReportField.Users.Gender\":\" Le genre \",\"Languages List.sq\":\" albanais \",\"Languages List.ca\":\" catalan \",\"Section.Users\":\" Utilisateurs \",\"Languages List.sw\":\" Swahili \",\"Languages List.sv\":\" suédois \",\"PicklistOption.Add_Event.Status.1\":\" actif \",\"PicklistOption.Add_Event.Status.2\":\" Annulé \",\"Languages List.sk\":\" slovaque \",\"PicklistOption.Add_Event.Status.3\":\" Terminé \",\"PicklistOption.Add_Sub_Event.Status.2\":\" Annulé \",\"PicklistOption.Add_Sub_Event.Status.1\":\" actif \",\"Languages List.sl\":\" slovène \",\"FormField.Add_Event.Sub_Events\":\" Sous-événements \",\"PicklistOption.Add_Sub_Event.Status.3\":\" Terminé \",\"FormField.Add_Event_Type.Added_Time\":\" Temps ajouté \",\"FormButton.Event_Registration.update\":\" Mettre à jour \",\"ReportField.All_Events.Venue\":\" Lieu \",\"ReportField.Invitations.Message\":\" Message \",\"FormField.Add_Event.Venue\":\" Lieu \",\"Section.Registrations\":\" Inscriptions \",\"ReportField.All_Registrations.Contact_Email\":\" Email \",\"FormField.Send_Invitation.Modified_Time\":\" Heure modifiée \",\"ReportField.All_Events.Status\":\" Statut \",\"ReportField.All_Events.End_Date\":\" Date de fin \",\"FormField.Send_Invitation.Subject_field\":\" Assujettir \",\"FormButton.Add_Venue.submit\":\" Soumettre \",\"FormButton.Event_Registration.submit\":\" Soumettre \",\"ReportField.Sub_Events.Available_Entries\":\" Entrées disponibles \",\"ReportField.Sub_Events.Venue\":\" Lieu \",\"FormField.Add_Event_Type.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Add_Sub_Event.Coordinators\":\" Coordinateurs \",\"ReportField.Events.End_Date\":\" Date de fin \",\"Languages List.pt\":\" Portugais \",\"FormField.Warning_Message.Added_Time\":\" Temps ajouté \",\"Languages List.pl\":\" polonais \",\"ReportField.Users.Contact_Email\":\" Email du contact \",\"FormField.Send_Invitation.Date_Time\":\" Date-heure \",\"Languages List.ar\":\" arabe \",\"Languages List.af\":\" afrikaans \",\"FormButton.Add_User.submit\":\" Soumettre \",\"FormButton.Add_User.cancel\":\" Annuler \",\"CustomAction.Participants.Cancel_Registration\":\" Annuler l'inscription \",\"FormField.Add_Sub_Event.Description\":\" La description \",\"Section.Settings\":\" Paramètres \",\"FormField.Add_Event.Modified_User\":\" Utilisateur modifié \",\"ReportField.All_Events.Organizers\":\" Les organisateurs \",\"FormField.Send_Invitation.From_Mail\":\" De \",\"FormField.Send_Invitation.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_Sub_Event.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"ReportField.All_Sub_Events.Number_of_Entries\":\" Nombre d'entrées \",\"FormField.Add_Event.Start_Date\":\" Date de début \",\"PicklistOption.Add_User.User_Role.3\":\" Invité \",\"FormField.Send_Invitation.ID\":\" ID \",\"PicklistOption.Add_User.User_Role.2\":\" Coordinateur \",\"ReportField.Events.Start_Date\":\" Date de début \",\"PicklistOption.Add_User.User_Role.1\":\" Organisateur \",\"FormField.Event_Registration.Status\":\" Statut \",\"FormField.Add_Sub_Event.Added_Time\":\" Temps ajouté \",\"FormField.Send_Invitation.To_Mail\":\" À \",\"FormField.Add_Event.Organizers\":\" Les organisateurs \",\"FormField.Add_User.Added_Time\":\" Temps ajouté \",\"FormButton.Event_Registration.reset\":\" Réinitialiser \",\"Languages List.fr\":\" français \",\"FormField.Add_Event.Event_Type\":\" Type d'événement \",\"ReportField.Venue.Venue\":\" Lieu \",\"FormField.Add_Sub_Event.Start_Time\":\" Heure de début \",\"FormButton.Add_Sub_Event.submit\":\" Soumettre \",\"ReportField.All_Events.Start_Date\":\" Date de début \",\"PicklistOption.Event_Registration.Gender.1\":\" Mâle \",\"PicklistOption.Event_Registration.Gender.2\":\" Femelle \",\"Languages List.fi\":\" Finnois \",\"ReportField.Invitations.Date_Time\":\" Date-heure \",\"FormField.Send_Invitation.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"Report.Invitations\":\" Invitations \",\"FormField.Add_Venue.Added_User\":\" Utilisateur ajouté \",\"Languages List.fa\":\" persan \",\"Languages List.gu\":\" Gujarati \",\"FormField.Add_Event.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Add_Event.Description\":\" La description \",\"FormField.Add_Event.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Send_Invitation.Added_User\":\" Utilisateur ajouté \",\"ReportField.Participants.Event\":\" un événement \",\"Languages List.gl\":\" Galicien \",\"ReportField.Invitations.Subject_field\":\" Assujettir \",\"FormField.Add_Venue.Modified_Time\":\" Heure modifiée \",\"ReportField.All_Sub_Events.Start_Time\":\" Heure de début \",\"Form.Add_Sub_Event\":\" Ajouter un événement secondaire \",\"FormField.Add_Event.End_Date\":\" Date de fin \",\"ReportField.All_Sub_Events.Coordinators\":\" Coordinateurs \",\"ReportField.Invitations.Event\":\" un événement \",\"CustomAction.Events.Cancel_Event\":\" Annuler l'événement \",\"ReportField.All_Events.Event_Name\":\" Nom de l'événement \",\"Languages List.ga\":\" irlandais \",\"FormField.Send_Invitation.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Section.Hidden\":\" Caché \",\"ReportField.All_Registrations.Registration_Done_By\":\" Enregistré par \",\"ReportField.All_Events.Description\":\" La description \",\"FormField.Add_User.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Sub_Event.Status\":\" Statut \",\"CustomAction.Sub_Events.Cancel_Event1\":\" Annuler l'événement \",\"Report.Venue\":\" Lieu \",\"ReportField.All_Sub_Events.Available_Entries\":\" Entrées disponibles \",\"Section.Add_Event\":\" Événements \",\"ReportField.Invitations.From_Mail\":\" De \",\"Report.All_Sub_Events\":\" Tous les sous-événements \",\"FormField.Add_Event_Type.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Languages List.tr\":\" turc \",\"FormField.Add_User.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"Languages List.da\":\" danois \",\"FormField.Add_Event_Type.Record_Status\":\" Statut d'enregistrement \",\"Form.Add_User\":\" Ajouter un utilisateur \",\"Languages List.de\":\" allemand \",\"ReportField.All_Sub_Events.Name\":\" prénom \",\"FormField.Send_Invitation.Event\":\" un événement \",\"Languages List.cy\":\" gallois \",\"Languages List.tl\":\" Philippin \",\"ReportField.Events.Description\":\" La description \",\"ReportField.All_Sub_Events.Description\":\" La description \",\"FormField.Add_Event_Type.ID\":\" ID \",\"Languages List.es\":\" Espanol \",\"FormField.Add_Event_Type.Modified_Time\":\" Heure modifiée \",\"FormButton.Send_Invitation.cancel\":\" Annuler \",\"Report.All_Registrations\":\" Toutes les inscriptions \",\"Languages List.eu\":\" basque \",\"FormField.Warning_Message.Modified_Time\":\" Heure modifiée \",\"ReportField.Sub_Events.Number_of_Entries\":\" Nombre d'entrées \",\"Languages List.et\":\" estonien \",\"FormField.Add_Event.Users\":\" Utilisateurs \",\"Languages List.vi\":\" vietnamien \",\"Form.Add_Venue\":\" Ajouter un lieu \",\"Languages List.el\":\" grec \",\"FormField.Add_Sub_Event.Modified_User\":\" Utilisateur modifié \",\"Languages List.eo\":\" espéranto \",\"FormField.Event_Registration.Registration_Date\":\" Date d'inscription \",\"Languages List.en\":\" Anglais \",\"FormField.Warning_Message.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Languages List.ur\":\" Urdu \",\"FormField.Add_Sub_Event.Available_Entries\":\" Entrées disponibles \",\"FormField.Warning_Message.Record_Status\":\" Statut d'enregistrement \",\"FormField.Event_Registration.Added_Time\":\" Temps ajouté \",\"FormField.Add_Event.Added_Time\":\" Temps ajouté \",\"FormButton.Send_Invitation.submit\":\" Envoyer \"}}"
+}
+}

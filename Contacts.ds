@@ -1,0 +1,618 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 23:10:43
+ * Version      : 1.0
+ */
+ application "Contacts"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+	section Contacts
+	{
+		icon = "users-multiple-11"
+		form New_Contact
+		{
+			displayname = "New Contact"
+			success message = "Contact Added Successfully!"
+			field alignment = left
+			topSection1
+			(
+				type = section
+				displayname = "topSection"
+	 			row = 2
+	 			column = 0   
+				width = medium
+			)
+			Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Birthday
+			(
+    			type = date
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			must have Picture
+			(
+    			type = image
+				source  = public_url,file
+				aspect ratio = original
+				camera = primary
+				preview duration = 0
+				show gallery = true
+				switch camera = true
+	 			row = 2
+	 			column = 1   
+				width = medium
+			)
+			Company_Name
+			(
+    			type = text
+				displayname = "Company Name"
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			Department
+			(
+    			type = text
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			Job_Title
+			(
+    			type = text
+				displayname = "Job Title"
+	 			row = 2
+	 			column = 2   
+				width = medium
+			)
+			middleSection
+			(
+				type = section
+	 			row = 3
+	 			column = 0   
+				width = medium
+			)
+			Personal_Contact_Info_Heading
+			(
+    			type = plaintext
+				value = "<div style=\"text-align: center; border-bottom: 1px solid rgb(189, 197, 245); margin: 0 10px\"><font color=\"#5e70d7\" size=\"4\">Contact&#39;s Personal Info.</font></div>"
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			must have Personal_Email_ID
+			(
+    			type = email
+				displayname = "Personal Email-ID"
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			must have Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			must have Mobile_Number
+			(
+    			type = phonenumber
+				displayname = "Mobile Number"
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			Website
+			(
+    			type = url
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			Home_Address
+			(
+    			type = address
+				displayname = "Address"
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_12
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_22
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city2
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province2
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code2
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country2
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude2
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude2
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 3
+	 			column = 1   
+				width = medium
+			)
+			Work_Contact_Info_Heading
+			(
+    			type = plaintext
+				value = "<div style=\"text-align: center; border-bottom: 1px solid rgb(189, 197, 245); margin: 0 10px\"><font color=\"#5e70d7\" size=\"4\">Contact&#39;s Work Info.</font></div>"
+	 			row = 3
+	 			column = 2   
+				width = medium
+			)
+			Work_Email_ID
+			(
+    			type = email
+				displayname = "Work Email-ID"
+	 			row = 3
+	 			column = 2   
+				width = medium
+			)
+			Work_Phone
+			(
+    			type = phonenumber
+				displayname = "Work Phone"
+	 			row = 3
+	 			column = 2   
+				width = medium
+			)
+			Work_Extension
+			(
+				type = number
+				displayname = "Work Extension"
+	 			row = 3
+	 			column = 2   
+				width = medium
+			)
+			Fax
+			(
+				type = number
+	 			row = 3
+	 			column = 2   
+				width = medium
+			)
+			Work_Address1
+			(
+    			type = address
+				displayname = "Work Address"
+     			capture_coordinates = true
+     			adjust_using_map = false
+     			address_line_13
+     			(
+	     			  type = address_line_1
+	     			  displayname = "Address Line 1"
+     			) 
+     			address_line_23
+     			(
+	     			  type = address_line_2
+	     			  displayname = "Address Line 2"
+     			) 
+     			district_city3
+     			(
+	     			  type = district_city
+	     			  displayname = "City / District"
+     			) 
+     			state_province3
+     			(
+	     			  type = state_province
+	     			  displayname = "State / Province"
+     			) 
+     			postal_Code3
+     			(
+	     			  type = postal_Code
+	     			  displayname = "Postal Code"
+     			) 
+     			country3
+     			(
+	     			  type = country
+	     			  displayname = "Country"
+     			) 
+     			latitude3
+     			(
+	     			  type = latitude
+	     			  displayname = "latitude"
+	     			 visibility = false
+     			) 
+     			longitude3
+     			(
+	     			  type = longitude
+	     			  displayname = "longitude"
+	     			 visibility = false
+     			) 
+	 			row = 3
+	 			column = 2   
+				width = medium
+			)
+			IM_Contact_Info
+			(
+				type = grid
+				displayname = "IM Contacts Info"
+	    
+				IM
+				(
+					type = picklist
+					displayname = "IM Service"
+					values = {"Google Talk", "AIM", "Yahoo", "QQ", "Skype", "MSN", "ICQ", "Jabber", "Facebook"}
+					initial value = "Skype"
+					width = 206px
+				)
+				Screen_Name
+				(
+    				type = text
+					displayname = "Screen Name"
+					width = 200px
+				)
+	 			row = 4
+	 			column = 1   
+				width = medium
+			)
+			notesSection
+			(
+				type = section
+	 			row = 5
+	 			column = 0   
+				width = medium
+			)
+			Notes
+			(
+    			type = textarea
+				height = 100px
+	 			row = 5
+	 			column = 1   
+				width = medium
+			)
+			Section1
+			(
+				type = section
+				displayname = "Section"
+	 			row = 6
+	 			column = 0   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-2-a-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		print template
+			{
+				Contact_Info
+				{
+						displayname = "Contact Info"
+						content = {"layout":"1","pageNumberOption":"null","orientation":"null","isFooterEnabled":false,"mainLayout":[{"elements":[{"type":"columns","element":{"split":"50,50","id":"elem_157938f7d861","elemStyle":"border-bottom: 1px solid #ddd;","collayouts":[{"colElements":[{"type":"image","element":{"size":"NONE","src":"/appbuilder/edit/templates/images/urlprofilebg.png","captionMargin":"0px auto","alt":"","caption":"","id":"elem_157938f89f4","align":"center","formCompID":"3093149000000155041","elemStyle":"border-radius: 50%; box-shadow: silver 0px 0px 5px; height: 150px; width: 150px; margin: 50px 0px 0px; border-color: rgb(128, 128, 128); background: rgb(128, 128, 128);"}},{"type":"text","element":{}}]},{"colElements":[{"type":"text","element":{}}]}]}},{"type":"columns","element":{"split":"50,50","id":"elem_1579396727f1","elemStyle":"","collayouts":[{"colElements":[{"type":"text","element":{"id":"elem_1579396727f","fields":[],"content":"<div><p style=\"padding-left: 20.0%;\"> <i class=\"fa fa-user\"><\/i>    <font size=\"4\">Personal Info<\/font> <\/p><\/div>"}}]},{"colElements":[{"type":"text","element":{"id":"elem_1579396727f","fields":[],"content":"<div><p style=\"padding-left: 15.0%;\"> <i class=\"fa fa-industry\"><\/i>    <font size=\"4\">Work Info<\/font> <\/p><\/div>"}}]}]}},{"type":"columns","element":{"split":"50,50","id":"elem_15793981a4a1","elemStyle":"","collayouts":[{"colElements":[{"type":"text","element":{"Fields":[{"Label_Name":"Website"}],"content":"<div><p style=\"padding-left: 20.0%;\">   <span>     <span>       <span>         <span><i class=\"fa fa-external-link\"><\/i> ${Website}<\/span>       <\/span>     <\/span>   <\/span> <\/p><\/div>"}}]},{"colElements":[{"type":"text","element":{"Fields":[{"Label_Name":"Work_Email_ID"}],"content":"<div><p style=\"padding-left: 15.0%;\">   <span>     <span><i class=\"fa fa-envelope\"><\/i> ${Work_Email_ID}<\/span>   <\/span>   <span><\/span> <\/p><\/div>"}}]}]}},{"type":"columns","element":{"split":"50,50","id":"elem_15793986fac1","elemStyle":"","collayouts":[{"colElements":[{"type":"text","element":{}}]},{"colElements":[{"type":"text","element":{}}]}]}},{"type":"columns","element":{"split":"50,50","id":"elem_157939923341","elemStyle":"","collayouts":[{"colElements":[{"type":"text","element":{}}]},{"colElements":[{"type":"text","element":{}}]}]}},{"type":"columns","element":{"split":"100","id":"elem_15793999ba11","elemStyle":"","collayouts":[{"colElements":[{"type":"text","element":{"id":"elem_15793999ba2","fields":[],"content":"<div><p style=\"text-align: center;\">   <font size=\"4\">     <br />   <\/font> <\/p> <p style=\"text-align: center;\">   <font size=\"4\">IM Info<\/font> <i style=\"color: rgb(0,132,180);\" class=\"fa fa-twitter\"><\/i>    <i style=\"color: rgb(18,165,244);\" class=\"fa fa-skype\"><\/i> <i style=\"color: rgb(221,75,57);\" class=\"fa fa-google\"><\/i>      <i class=\"fa fa-qq\"><\/i> <i style=\"color: rgb(59,89,152);\" class=\"fa fa-facebook-official\"><\/i>        <i style=\"color: rgb(123,0,153);\" class=\"fa fa-yahoo\"><\/i> <\/p><\/div>"}}]}]}},{"id":"elem_157939a0326","type":"lookupfields","element":{"valueStyle":"width: 50%;","valueTextStyle":"","fieldLayoutType":"1","related_Form":"ZC_SUBFORM_218","labelText":"IM Contacts Info","wrapperStyle":"","labelStyle":"width: 50%; display: none;","Label_Name":"IM_Contact_Info","refFields":[{"valueStyle":"text-align:center;","fieldLayoutType":"2","labelText":"IM Service","labelStyle":"display:none;","Label_Name":"IM"},{"valueStyle":"text-align:center;","fieldLayoutType":"2","labelText":"Screen Name","labelStyle":"display:none;","Label_Name":"Screen_Name"}],"labelTextStyle":""}},{"type":"columns","element":{"split":"100","id":"elem_157939ae63f1","elemStyle":"","collayouts":[{"colElements":[{"type":"text","element":{"id":"elem_157939ae63f","fields":[],"content":"<div><p style=\"text-align: center;\">   <font size=\"4\">Notes<\/font> <\/p><\/div>"}},{"id":"elem_157939c11bb","type":"fields","element":{"valueStyle":"width: 50%;","valueTextStyle":"text-align:center;","fieldLayoutType":"1","labelText":"Notes","wrapperStyle":"","labelStyle":"width: 50%; display: none;","Label_Name":"Notes","labelTextStyle":""}}]}]}}],"id":1}],"resize":"default","templateStyle":"text-align: left; width: 100%; margin: 0 auto;","isHeaderEnabled":false}
+				}
+			}
+		}
+		list All_Contacts
+		{
+			displayName = "All Contacts"
+			print template = Contact_Info
+			show all rows from New_Contact    
+			(
+				Home_Address  as "Address"
+	 			(
+	      			displayformat = [address_line_12+""+address_line_22+""+district_city2+""+state_province2+""+postal_Code2+""+country2]
+	      			enable = Show_As_Text
+	 			)
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Mobile_Number as "Mobile Number"
+				Website
+				Birthday
+				Company_Name as "Company Name"
+				Department
+				Job_Title as "Job Title"
+				Work_Email_ID as "Work Email-ID"
+				Work_Phone as "Work Phone"
+				Work_Address1  as "Work Address"
+	 			(
+	      			displayformat = [address_line_13+""+address_line_23+""+district_city3+""+state_province3+""+postal_Code3+""+country3]
+	      			enable = Show_As_Text
+	 			)
+				Work_Extension as "Work Extension"
+				Fax
+				Notes
+				Phone_Number as "Phone Number"
+				Personal_Email_ID as "Personal Email-ID"
+				Picture
+			)
+			options
+			(
+				icon = "users-multiple-11"
+	 		)
+			conditional formatting
+			(
+				"New Formatting"
+				{
+				fields = [Name.first_name]
+				format = "font-weight:bold;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 6
+					datablock1
+					(
+			 			layout type = 27
+		     			title = "Overview"
+						fields
+						(
+							Picture
+							Name
+							Home_Address as "Address"
+							Personal_Email_ID as "Personal Email-ID"
+							Phone_Number as "Phone Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 11
+		     			title = "Overview"
+						fields
+						(
+							Picture
+							Name
+							Personal_Email_ID as "Personal Email-ID"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Birthday
+							Company_Name as "Company Name"
+							Department
+							Job_Title as "Job Title"
+							Notes
+						)
+					)
+					datablock3
+					(
+			 			layout type = -2
+		     			title = "Contact's Personal Information"
+						fields
+						(
+							Phone_Number as "Phone Number"
+							Mobile_Number as "Mobile Number"
+							Website
+							Home_Address as "Address"
+						)
+					)
+					datablock4
+					(
+			 			layout type = -2
+		     			title = "Contact's Work Information"
+						fields
+						(
+							Personal_Email_ID as "Personal Email-ID"
+							Work_Email_ID as "Work Email-ID"
+							Work_Phone as "Work Phone"
+							Work_Extension as "Work Extension"
+							Fax
+							Work_Address1 as "Work Address"
+						)
+					)
+					datablock5
+					(
+			 			layout type = -2
+		     			title = "Overview"
+		     			related field =  IM_Contact_Info
+						fields
+						(
+							IM as "IM Service"
+							Screen_Name as "Screen Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+
+
+
+	share_settings
+	{
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"User"
+			{
+				name = "User"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:true}
+				description = "This profile only have add and view permission.\n"
+			}
+			"Member"
+			{
+				name = "Member"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:true}
+				description = "This profile will not have administrative permissions.\n"
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users."
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 7
+		new theme color = 1
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-sales-and-supp10"
+    	icon theme = "blue"
+		icons style = outline
+	}
+
+	translation
+{
+"{\"Language_Settings\" : {\"LANGAGUE_WITH_LOGIN\":\"user\"},\"de\":{\"FormField.New_Contact.middleSection\":\" MittlereSektion \",\"FormField.New_Contact.prefix\":\" Präfix \",\"FormField.New_Contact.longitude3\":\" Längengrad \",\"FormField.New_Contact.longitude2\":\" Längengrad \",\"ReportField.All_Contacts.Personal_Email_ID\":\" Persönliche Email-ID \",\"Languages List.bg\":\" bulgarisch \",\"CompositeSubFields.New_Contact.Home_Address.address_line_12\":\" Anschrift Zeile 1 \",\"Languages List.bn\":\" Bengali \",\"ReportField.All_Contacts.Picture\":\" Bild \",\"Languages List.ro\":\" rumänisch \",\"FormField.New_Contact.Work_Address1\":\" Arbeitsadresse \",\"FormField.New_Contact.Name\":\" Name \",\"FormField.New_Contact.Notes\":\" Anmerkungen \",\"Languages List.be\":\" Belarussisch \",\"Languages List.ru\":\" Russisch \",\"Languages List.zh-TW\":\" Chinesische Tradition \",\"Languages List.ja\":\" japanisch \",\"Languages List.az\":\" Aserbaidschanisch \",\"FormField.New_Contact.Birthday\":\" Geburtstag \",\"FormField.New_Contact.Added_User\":\" Benutzer hinzugefügt \",\"FormField.New_Contact.latitude2\":\" Breite \",\"Languages List.ta\":\" Tamilisch \",\"FormField.New_Contact.latitude3\":\" Breite \",\"Languages List.cs\":\" Tschechisch \",\"ReportField.All_Contacts.Website\":\" Webseite \",\"CompositeSubFields.New_Contact.Work_Address1.postal_Code3\":\" Postleitzahl \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" Thai \",\"FormField.New_Contact.Website\":\" Webseite \",\"CompositeSubFields.New_Contact.Home_Address.country2\":\" Land \",\"Languages List.ku\":\" kurdisch \",\"PicklistOption.New_Contact.prefix.3\":\" Frau. \",\"CompositeSubFields.New_Contact.Home_Address.state_province2\":\" Staat / Provinz \",\"PicklistOption.New_Contact.prefix.2\":\" Frau. \",\"PicklistOption.New_Contact.prefix.1\":\" Herr. \",\"FormField.New_Contact.Fax\":\" Fax \",\"FormField.New_Contact.postal_Code3\":\" Postleitzahl \",\"Languages List.sq\":\" albanisch \",\"Languages List.ca\":\" katalanisch \",\"FormField.New_Contact.postal_Code2\":\" Postleitzahl \",\"Languages List.km\":\" Khmer \",\"Languages List.ko\":\" Koreanisch \",\"Languages List.sw\":\" Swahili \",\"Languages List.kn\":\" Kannada \",\"Languages List.sv\":\" Schwedisch \",\"Languages List.ka\":\" georgisch \",\"Languages List.sk\":\" slowakisch \",\"Languages List.sl\":\" Slowenisch \",\"FormField.New_Contact.Mobile_Number\":\" Handynummer \",\"FormField.New_Contact.Added_Time\":\" Zeit hinzugefügt \",\"FormField.New_Contact.Job_Title\":\" Berufsbezeichnung \",\"Form.New_Contact\":\" Neuer Kontakt \",\"Languages List.hu\":\" ungarisch \",\"Languages List.yi\":\" Jiddisch \",\"Languages List.hy\":\" Armenisch \",\"Languages List.hr\":\" kroatisch \",\"FormField.New_Contact.IM_Contact_Info.IM\":\" IM-Dienst \",\"FormField.New_Contact.Home_Address\":\" Adresse \",\"FormField.New_Contact.notesSection\":\" Notizen \",\"FormButton.New_Contact.reset\":\" Zurücksetzen \",\"FormField.New_Contact.district_city3\":\" Stadtteil \",\"FormField.New_Contact.Work_Extension\":\" Arbeitserweiterung \",\"FormField.New_Contact.district_city2\":\" Stadtteil \",\"Languages List.hi\":\" Hindi \",\"FormField.New_Contact.IM_Contact_Info.Screen_Name\":\" Künstlername \",\"Languages List.pt\":\" Portugiesisch \",\"CompositeSubFields.New_Contact.Name.first_name\":\" Vorname \",\"FormField.New_Contact.Company_Name\":\" Name der Firma \",\"FormField.New_Contact.last_name\":\" Familienname, Nachname \",\"FormField.New_Contact.ID\":\" ICH WÜRDE \",\"Languages List.pl\":\" Polieren \",\"Languages List.zh\":\" Chinesisch \",\"Languages List.iw\":\" hebräisch \",\"App.contacts\":\"Kontakte \",\"Languages List.ar\":\" Arabisch \",\"Languages List.af\":\" Afrikaans \",\"Languages List.is\":\" isländisch \",\"FormField.New_Contact.Section1\":\" Sektion \",\"ReportField.All_Contacts.Work_Phone\":\" Arbeitshandy \",\"Languages List.it\":\" Italienisch \",\"FormField.New_Contact.Work_Email_ID\":\" Arbeit E-Mail-ID \",\"CompositeSubFields.New_Contact.Home_Address.address_line_22\":\" Adresszeile 2 \",\"CompositeSubFields.New_Contact.Work_Address1.district_city3\":\" Stadtteil \",\"CompositeSubFields.New_Contact.Work_Address1.country3\":\" Land \",\"FormField.New_Contact.address_line_12\":\" Anschrift Zeile 1 \",\"FormField.New_Contact.address_line_13\":\" Anschrift Zeile 1 \",\"ReportField.All_Contacts.Department\":\" Abteilung \",\"FormField.New_Contact.Department\":\" Abteilung \",\"FormField.New_Contact.suffix\":\" Suffix \",\"ReportField.All_Contacts.Fax\":\" Fax \",\"Languages List.fr\":\" Französisch \",\"PicklistOption.New_Contact.country3.2\":\" Wahl 2 \",\"Languages List.nl\":\" Niederländisch \",\"ReportField.All_Contacts.address_line_12\":\" Adresse \",\"ReportField.All_Contacts.address_line_13\":\" Arbeitsadresse \",\"Section.Contacts\":\"Kontakte \",\"ReportField.All_Contacts.Birthday\":\" Geburtstag \",\"Languages List.no\":\" norwegisch \",\"Languages List.fi\":\" Finnese \",\"FormField.New_Contact.country2\":\" Land \",\"FormField.New_Contact.country3\":\" Land \",\"CompositeSubFields.New_Contact.Name.last_name\":\" Familienname, Nachname \",\"FormField.New_Contact.Modified_User\":\" Geänderter Benutzer \",\"PicklistOption.New_Contact.country3.1\":\" Wahl 1 \",\"FormField.New_Contact.Modified_Time\":\" Geänderte Zeit \",\"Languages List.fa\":\" persisch \",\"FormField.New_Contact.address_line_23\":\" Adresszeile 2 \",\"Languages List.gu\":\" Gujarati \",\"CompositeSubFields.New_Contact.Home_Address.postal_Code2\":\" Postleitzahl \",\"ReportField.All_Contacts.Mobile_Number\":\" Handynummer \",\"FormField.New_Contact.address_line_22\":\" Adresszeile 2 \",\"Languages List.gl\":\" galizisch \",\"CompositeSubFields.New_Contact.Work_Address1.state_province3\":\" Staat / Provinz \",\"FormField.New_Contact.Picture\":\" Bild \",\"ReportField.All_Contacts.Company_Name\":\" Name der Firma \",\"FormField.New_Contact.Record_Status\":\" Aufnahmestatus \",\"CompositeSubFields.New_Contact.Name.prefix\":\" Präfix \",\"FormField.New_Contact.Work_Phone\":\" Arbeitshandy \",\"Report.All_Contacts\":\" Alle Kontakte \",\"FormField.New_Contact.first_name\":\" Vorname \",\"Languages List.ga\":\" irisch \",\"FormField.New_Contact.Phone_Number\":\" Telefonnummer \",\"ReportField.All_Contacts.Job_Title\":\" Berufsbezeichnung \",\"ReportField.All_Contacts.Phone_Number\":\" Telefonnummer \",\"CompositeSubFields.New_Contact.Work_Address1.address_line_13\":\" Anschrift Zeile 1 \",\"ReportField.All_Contacts.first_name\":\" Name \",\"FormButton.New_Contact.update\":\" Aktualisieren \",\"FormField.New_Contact.IM_Contact_Info\":\" IM Kontakte Info \",\"CompositeSubFields.New_Contact.Name.suffix\":\" Suffix \",\"Languages List.lt\":\" litauisch \",\"Languages List.lv\":\" lettisch \",\"Languages List.tr\":\" Türkisch \",\"Languages List.da\":\" dänisch \",\"Languages List.de\":\" Deutsche \",\"FormField.New_Contact.topSection1\":\" topSection \",\"Languages List.lo\":\" Laothian \",\"Languages List.cy\":\" Walisisch \",\"Languages List.la\":\" Latein \",\"Languages List.tl\":\" Filipino \",\"PicklistOption.New_Contact.country2.1\":\" Wahl 1 \",\"PicklistOption.New_Contact.country2.2\":\" Wahl 2 \",\"ReportField.All_Contacts.Work_Extension\":\" Arbeitserweiterung \",\"Languages List.es\":\" Spanisch \",\"Languages List.eu\":\" baskisch \",\"FormField.New_Contact.state_province2\":\" Staat / Provinz \",\"Languages List.et\":\" estnisch \",\"CompositeSubFields.New_Contact.Work_Address1.address_line_23\":\" Adresszeile 2 \",\"Languages List.vi\":\" Vietnamesisch \",\"Languages List.ms\":\" malaiisch \",\"Languages List.mr\":\" Marathi \",\"Languages List.el\":\" griechisch \",\"Languages List.mt\":\" maltesisch \",\"Languages List.eo\":\" Esperanto \",\"Languages List.en\":\" Englisch \",\"FormField.New_Contact.Personal_Email_ID\":\" Persönliche Email-ID \",\"Languages List.mk\":\" mazedonisch \",\"CompositeSubFields.New_Contact.Home_Address.district_city2\":\" Stadtteil \",\"Languages List.ur\":\" Urdu \",\"FormButton.New_Contact.submit\":\" einreichen \",\"ReportField.All_Contacts.Work_Email_ID\":\" Arbeit E-Mail-ID \",\"ReportField.All_Contacts.Notes\":\" Anmerkungen \",\"FormField.New_Contact.state_province3\":\" Staat / Provinz \",\"FormButton.New_Contact.cancel\":\" Stornieren \"},\"fr\":{\"FormField.New_Contact.middleSection\":\" middleSection \",\"FormField.New_Contact.prefix\":\" Préfixe \",\"FormField.New_Contact.longitude3\":\" longitude \",\"FormField.New_Contact.longitude2\":\" longitude \",\"ReportField.All_Contacts.Personal_Email_ID\":\" ID de courrier électronique personnel \",\"Languages List.bg\":\" bulgare \",\"CompositeSubFields.New_Contact.Home_Address.address_line_12\":\" Adresse 1 \",\"Languages List.bn\":\" bengali \",\"ReportField.All_Contacts.Picture\":\" Image \",\"Languages List.ro\":\" roumain \",\"FormField.New_Contact.Work_Address1\":\" Adresse de travail \",\"FormField.New_Contact.Name\":\" prénom \",\"FormField.New_Contact.Notes\":\" Remarques \",\"Languages List.be\":\" Biélorusse \",\"Languages List.ru\":\" russe \",\"Languages List.zh-TW\":\" Chinois traditionnel \",\"Languages List.ja\":\" Japonais \",\"Languages List.az\":\" azerbaïdjanais \",\"FormField.New_Contact.Birthday\":\" Anniversaire \",\"FormField.New_Contact.Added_User\":\" Utilisateur ajouté \",\"FormField.New_Contact.latitude2\":\" latitude \",\"Languages List.ta\":\" Tamil \",\"FormField.New_Contact.latitude3\":\" latitude \",\"Languages List.cs\":\" tchèque \",\"ReportField.All_Contacts.Website\":\" Site Internet \",\"CompositeSubFields.New_Contact.Work_Address1.postal_Code3\":\" code postal \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" thaïlandais \",\"FormField.New_Contact.Website\":\" Site Internet \",\"CompositeSubFields.New_Contact.Home_Address.country2\":\" Pays \",\"Languages List.ku\":\" kurde \",\"PicklistOption.New_Contact.prefix.3\":\" Mme. \",\"CompositeSubFields.New_Contact.Home_Address.state_province2\":\" Etat / Province \",\"PicklistOption.New_Contact.prefix.2\":\" Madame. \",\"PicklistOption.New_Contact.prefix.1\":\" M. \",\"FormField.New_Contact.Fax\":\" Fax \",\"FormField.New_Contact.postal_Code3\":\" code postal \",\"Languages List.sq\":\" albanais \",\"Languages List.ca\":\" catalan \",\"FormField.New_Contact.postal_Code2\":\" code postal \",\"Languages List.km\":\" Khmer \",\"Languages List.ko\":\" coréen \",\"Languages List.sw\":\" Swahili \",\"Languages List.kn\":\" Kannada \",\"Languages List.sv\":\" suédois \",\"Languages List.ka\":\" géorgien \",\"Languages List.sk\":\" slovaque \",\"Languages List.sl\":\" slovène \",\"FormField.New_Contact.Mobile_Number\":\" Numéro de portable \",\"FormField.New_Contact.Added_Time\":\" Temps ajouté \",\"FormField.New_Contact.Job_Title\":\" Profession \",\"Form.New_Contact\":\" Nouveau contact \",\"Languages List.hu\":\" hongrois \",\"Languages List.yi\":\" yiddish \",\"Languages List.hy\":\" arménien \",\"Languages List.hr\":\" croate \",\"FormField.New_Contact.IM_Contact_Info.IM\":\" Service de messagerie instantanée \",\"FormField.New_Contact.Home_Address\":\" Adresse \",\"FormField.New_Contact.notesSection\":\" notesSection \",\"FormButton.New_Contact.reset\":\" Réinitialiser \",\"FormField.New_Contact.district_city3\":\" District de la ville \",\"FormField.New_Contact.Work_Extension\":\" Extension de travail \",\"FormField.New_Contact.district_city2\":\" District de la ville \",\"Languages List.hi\":\" hindi \",\"FormField.New_Contact.IM_Contact_Info.Screen_Name\":\" Nom de l'écran \",\"Languages List.pt\":\" Portugais \",\"CompositeSubFields.New_Contact.Name.first_name\":\" Prénom \",\"FormField.New_Contact.Company_Name\":\" Nom de la compagnie \",\"FormField.New_Contact.last_name\":\" Nom de famille \",\"FormField.New_Contact.ID\":\" ID \",\"Languages List.pl\":\" polonais \",\"Languages List.zh\":\" chinois \",\"Languages List.iw\":\" hébreu \",\"App.contacts\":\"Contacts \",\"Languages List.ar\":\" arabe \",\"Languages List.af\":\" afrikaans \",\"Languages List.is\":\" islandais \",\"FormField.New_Contact.Section1\":\" Section \",\"ReportField.All_Contacts.Work_Phone\":\" Téléphone de travail \",\"Languages List.it\":\" italien \",\"FormField.New_Contact.Work_Email_ID\":\" Travail Email-ID \",\"CompositeSubFields.New_Contact.Home_Address.address_line_22\":\" Adresse Ligne 2 \",\"CompositeSubFields.New_Contact.Work_Address1.district_city3\":\" District de la ville \",\"CompositeSubFields.New_Contact.Work_Address1.country3\":\" Pays \",\"FormField.New_Contact.address_line_12\":\" Adresse 1 \",\"FormField.New_Contact.address_line_13\":\" Adresse 1 \",\"ReportField.All_Contacts.Department\":\" département \",\"FormField.New_Contact.Department\":\" département \",\"FormField.New_Contact.suffix\":\" Suffixe \",\"ReportField.All_Contacts.Fax\":\" Fax \",\"Languages List.fr\":\" français \",\"PicklistOption.New_Contact.country3.2\":\" Choix 2 \",\"Languages List.nl\":\" néerlandais \",\"ReportField.All_Contacts.address_line_12\":\" Adresse \",\"ReportField.All_Contacts.address_line_13\":\" Adresse de travail \",\"Section.Contacts\":\"Contacts \",\"ReportField.All_Contacts.Birthday\":\" Anniversaire \",\"Languages List.no\":\" norvégien \",\"Languages List.fi\":\" Finnois \",\"FormField.New_Contact.country2\":\" Pays \",\"FormField.New_Contact.country3\":\" Pays \",\"CompositeSubFields.New_Contact.Name.last_name\":\" Nom de famille \",\"FormField.New_Contact.Modified_User\":\" Utilisateur modifié \",\"PicklistOption.New_Contact.country3.1\":\" Choix 1 \",\"FormField.New_Contact.Modified_Time\":\" Heure modifiée \",\"Languages List.fa\":\" persan \",\"FormField.New_Contact.address_line_23\":\" Adresse Ligne 2 \",\"Languages List.gu\":\" Gujarati \",\"CompositeSubFields.New_Contact.Home_Address.postal_Code2\":\" code postal \",\"ReportField.All_Contacts.Mobile_Number\":\" Numéro de portable \",\"FormField.New_Contact.address_line_22\":\" Adresse Ligne 2 \",\"Languages List.gl\":\" Galicien \",\"CompositeSubFields.New_Contact.Work_Address1.state_province3\":\" Etat / Province \",\"FormField.New_Contact.Picture\":\" Image \",\"ReportField.All_Contacts.Company_Name\":\" Nom de la compagnie \",\"FormField.New_Contact.Record_Status\":\" Statut d'enregistrement \",\"CompositeSubFields.New_Contact.Name.prefix\":\" Préfixe \",\"FormField.New_Contact.Work_Phone\":\" Téléphone de travail \",\"Report.All_Contacts\":\" Tous les contacts \",\"FormField.New_Contact.first_name\":\" Prénom \",\"Languages List.ga\":\" irlandais \",\"FormField.New_Contact.Phone_Number\":\" Numéro de téléphone \",\"ReportField.All_Contacts.Job_Title\":\" Profession \",\"ReportField.All_Contacts.Phone_Number\":\" Numéro de téléphone \",\"CompositeSubFields.New_Contact.Work_Address1.address_line_13\":\" Adresse 1 \",\"ReportField.All_Contacts.first_name\":\" prénom \",\"FormButton.New_Contact.update\":\" Mettre à jour \",\"FormField.New_Contact.IM_Contact_Info\":\" IM Contacts Info \",\"CompositeSubFields.New_Contact.Name.suffix\":\" Suffixe \",\"Languages List.lt\":\" lituanien \",\"Languages List.lv\":\" letton \",\"Languages List.tr\":\" turc \",\"Languages List.da\":\" danois \",\"Languages List.de\":\" allemand \",\"FormField.New_Contact.topSection1\":\" topSection \",\"Languages List.lo\":\" Laothian \",\"Languages List.cy\":\" gallois \",\"Languages List.la\":\" Latin \",\"Languages List.tl\":\" Philippin \",\"PicklistOption.New_Contact.country2.1\":\" Choix 1 \",\"PicklistOption.New_Contact.country2.2\":\" Choix 2 \",\"ReportField.All_Contacts.Work_Extension\":\" Extension de travail \",\"Languages List.es\":\" Espanol \",\"Languages List.eu\":\" basque \",\"FormField.New_Contact.state_province2\":\" Etat / Province \",\"Languages List.et\":\" estonien \",\"CompositeSubFields.New_Contact.Work_Address1.address_line_23\":\" Adresse Ligne 2 \",\"Languages List.vi\":\" vietnamien \",\"Languages List.ms\":\" malais \",\"Languages List.mr\":\" Marathi \",\"Languages List.el\":\" grec \",\"Languages List.mt\":\" maltais \",\"Languages List.eo\":\" espéranto \",\"Languages List.en\":\" Anglais \",\"FormField.New_Contact.Personal_Email_ID\":\" ID de courrier électronique personnel \",\"Languages List.mk\":\" Macédonien \",\"CompositeSubFields.New_Contact.Home_Address.district_city2\":\" District de la ville \",\"Languages List.ur\":\" Urdu \",\"FormButton.New_Contact.submit\":\" Soumettre \",\"ReportField.All_Contacts.Work_Email_ID\":\" Travail Email-ID \",\"ReportField.All_Contacts.Notes\":\" Remarques \",\"FormField.New_Contact.state_province3\":\" Etat / Province \",\"FormButton.New_Contact.cancel\":\" Annuler \"}}"
+}
+}

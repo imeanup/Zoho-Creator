@@ -1,0 +1,8078 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 07-May-2020 01:40:01
+ * Version      : 1.0
+ */
+ application "Corporate Travel Management"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+	section Dashboard
+	{
+		icon = "ui-1-dashboard-half"
+				 page Dashboard 
+	 	 { 
+ 	 	 displayname = "Dashboard" 
+
+ 	 	 icon = "ui-1-dashboard-half" 
+	 	 Content="<zml \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"70%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'MonthWise_Visits'\n   \t\t heightType = 'custom'\n   \t\t heightValue = '400'\n   \t\t iszreport = 'true'\n   \t\t title = 'Monthwise Visits'\n\n\/>\n<\/column><column\n   \t\t width=\"30%\"\n   \t>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n\n>\n\t<pr    \t\t height = '50px'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t hAlign = 'left'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Travel Request'\n   \t\t size = '3'\n   \t\t color = '#2D2D2D'\n   \t\t marginLeft = '20px'\n   \t\t marginRight = '20px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr><pr    \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FAFAFA'\n   \t\t padding = '1px'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr><pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '50%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.New_Travel_Request.ID.count'\n   \t\t criteria = '(((Status == &quot;Approved By Manager&quot;)))'\n   \t\t size = '8'\n   \t\t color = '#248BD3'\n   \t\t bold = 'true'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Assign_Request_Travel'\n   \t\t target = 'same-window'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Unassigned'\n   \t\t size = '3'\n   \t\t color = '#2D2D2D'\n   \t\t marginTop = '3px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc><pc    \t\t width = '50%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.New_Travel_Request.ID.count'\n   \t\t criteria = '(((Status == &quot;InProgress&quot;)))'\n   \t\t size = '8'\n   \t\t color = '#248BD3'\n   \t\t bold = 'true'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Employee_Travels'\n   \t\t parameters = 'Status=InProgress'\n   \t\t target = 'same-window'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Inprogress'\n   \t\t size = '3'\n   \t\t color = '#2D2D2D'\n   \t\t marginTop = '3px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n\n>\n\t<pr    \t\t height = '50px'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t hAlign = 'left'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Visa Request'\n   \t\t size = '3'\n   \t\t color = '#2D2D2D'\n   \t\t marginLeft = '20px'\n   \t\t marginRight = '20px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr><pr    \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FAFAFA'\n   \t\t padding = '1px'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr><pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '50%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Visa_Details.ID.count'\n   \t\t criteria = '(((Status == &quot;Approved By Manager&quot;)))'\n   \t\t size = '8'\n   \t\t color = '#248BD3'\n   \t\t bold = 'true'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Assign_Request_Visa'\n   \t\t target = 'same-window'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Unassigned'\n   \t\t size = '3'\n   \t\t color = '#2D2D2D'\n   \t\t marginTop = '3px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc><pc    \t\t width = '50%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Visa_Details.ID.count'\n   \t\t criteria = '(((Status == &quot;InProgress&quot;)))'\n   \t\t size = '8'\n   \t\t color = '#248BD3'\n   \t\t bold = 'true'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'Employee_Visa'\n   \t\t parameters = 'Status=InProgress'\n   \t\t target = 'same-window'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Inprogress'\n   \t\t size = '3'\n   \t\t color = '#2D2D2D'\n   \t\t marginTop = '3px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"70%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'MonthWise_Expenses'\n   \t\t heightType = 'custom'\n   \t\t heightValue = '400'\n   \t\t iszreport = 'true'\n   \t\t title = 'Monthwise Expenses'\n\n\/>\n<\/column><column\n   \t\t width=\"30%\"\n   \t>\n\t<dspZml id='zml_snippet'>\n\t<![CDATA[htmlpage zml_snippet()\ncontent\n&lt;%{\n\t\/\/Adding admin as a &quot;Travel Desk Manager&quot; if admin is not in employee record\n\tadminRec = Add_Employee[Email == zoho.adminuserid];\n\tif(adminRec.count() &lt;= 0)\n\t{\n\t\tinsert into Add_Employee\n\t\t[\n\t\t\tEmail=zoho.loginuserid\n\t\t\tProfile=&quot;Travel Desk Manager&quot;\n\t\t\tName.first_name=zoho.loginuser\n\t\t\tReporting_To=zoho.loginuserid\n\t\t\tAdded_User=zoho.loginuser\n\t\t]\n\t}\n\tif(New_Travel_Request.count() == 0)\n\t{\n\t\topenUrl(&quot;#Form:New_Travel_Request?zc_NextUrl=#View:Dashboard&quot;,&quot;popup window&quot;);\n\t}\n\t%&gt;\n&lt;panel&gt;\n      &lt;pr height=&apos;50px&apos; width=&apos;fill&apos;&gt;\n        &lt;pc width=&apos;100%&apos; bgColor=&apos;#ffffff&apos; hAlign=&apos;left&apos; vAlign=&apos;middle&apos;&gt;\n          &lt;pr height=&apos;auto&apos; width=&apos;auto&apos;&gt;\n            &lt;pc&gt;\n              &lt;text type=&apos;Text&apos; value=&apos;Quick Links&apos; size=&apos;3&apos; color=&apos;#2D2D2D&apos; marginLeft=&apos;20px&apos; marginRight=&apos;20px&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n            &lt;\/pc&gt;\n          &lt;\/pr&gt;\n        &lt;\/pc&gt;\n\t\t&lt;\/pr&gt;\n\t\t&lt;pr width=&apos;fill&apos;&gt;\n        &lt;pc width=&apos;100%&apos; bgColor=&apos;#FAFAFA&apos; padding=&apos;1px&apos;&gt;\n          &lt;pr height=&apos;auto&apos; width=&apos;auto&apos;&gt;\n            &lt;pc&gt; &lt;\/pc&gt;\n          &lt;\/pr&gt;\n        &lt;\/pc&gt;\n      &lt;\/pr&gt;\n\t\t&lt;pr width=&apos;fill&apos;&gt;\n       \t &lt;pc width=&apos;100%&apos; bgColor=&apos;#FFFFFF&apos; paddingLeft=&apos;5px&apos; marginTop=&apos;7px&apos; hAlign=&apos;left&apos; vAlign=&apos;middle&apos;&gt;\n        \t  &lt;pr height=&apos;auto&apos; width=&apos;100%&apos;&gt;\n\t\t\t    &lt;pc&gt;\n              \t\t&lt;image color=&apos;#248BD3&apos; bgColor=&apos;#FFFFFF&apos; width=&apos;40px&apos; height=&apos;40px&apos; imageType=&apos;icon&apos; value=&apos;zc-li-solid arrows-1-small-triangle-right&apos; iconsize=&apos;2&apos; unicodeValue=&apos;eb17&apos; \/&gt; \n\t\t\t    &lt;\/pc&gt;\n            \t&lt;pc&gt;\n\t              &lt;text type=&apos;Text&apos; value=&apos;Assign Travel Request&apos; size=&apos;2&apos; color=&apos;#248BD3&apos; textAlign=&apos;left&apos; displayType=&apos;actual&apos; action=&apos;Report&apos; componentLinkName=&apos;Assign_Request_Travel&apos; target=&apos;same-window&apos;&gt; &lt;\/text&gt;\n    \t        &lt;\/pc&gt;\n          \t&lt;\/pr&gt;\n\t\t&lt;\/pc&gt;\n\t\t&lt;\/pr&gt;\n\t\t&lt;pr width=&apos;fill&apos;&gt;\n       \t &lt;pc width=&apos;100%&apos; bgColor=&apos;#FFFFFF&apos; paddingLeft=&apos;5px&apos; marginTop=&apos;7px&apos; hAlign=&apos;left&apos; vAlign=&apos;middle&apos;&gt;\n        \t  &lt;pr height=&apos;auto&apos; width=&apos;100%&apos;&gt;\n            \t&lt;pc&gt;\n              \t\t&lt;image color=&apos;#248BD3&apos; bgColor=&apos;#FFFFFF&apos; width=&apos;40px&apos; height=&apos;40px&apos; imageType=&apos;icon&apos; value=&apos;zc-li-solid arrows-1-small-triangle-right&apos; iconsize=&apos;2&apos; unicodeValue=&apos;eb17&apos; \/&gt; \n\t\t\t    &lt;\/pc&gt;\n            \t&lt;pc&gt;\n\t              &lt;text type=&apos;Text&apos; value=&apos;Assign Visa Request&apos; size=&apos;2&apos; color=&apos;#248BD3&apos; textAlign=&apos;left&apos; displayType=&apos;actual&apos; action=&apos;Report&apos; componentLinkName=&apos;Assign_Request_Visa&apos; target=&apos;same-window&apos;&gt; &lt;\/text&gt;\n    \t        &lt;\/pc&gt;\n          \t&lt;\/pr&gt;\n\t\t&lt;\/pc&gt;\n\t\t&lt;\/pr&gt;\n\t\t&lt;pr width=&apos;fill&apos;&gt;\n       \t &lt;pc width=&apos;100%&apos; bgColor=&apos;#FFFFFF&apos; paddingLeft=&apos;5px&apos; marginTop=&apos;7px&apos; hAlign=&apos;left&apos; vAlign=&apos;middle&apos;&gt;\n        \t  &lt;pr height=&apos;auto&apos; width=&apos;100%&apos;&gt;\n            \t&lt;pc&gt;\n              \t\t&lt;image color=&apos;#248BD3&apos; bgColor=&apos;#FFFFFF&apos; width=&apos;40px&apos; height=&apos;40px&apos; imageType=&apos;icon&apos; value=&apos;zc-li-solid arrows-1-small-triangle-right&apos; iconsize=&apos;2&apos; unicodeValue=&apos;eb17&apos; \/&gt; \n\t\t\t    &lt;\/pc&gt;\n            \t&lt;pc&gt;\n\t              &lt;text type=&apos;Text&apos; value=&apos;All Travels&apos; size=&apos;2&apos; color=&apos;#248BD3&apos; textAlign=&apos;left&apos; displayType=&apos;actual&apos; action=&apos;Report&apos; componentLinkName=&apos;All_Travels&apos; target=&apos;same-window&apos;&gt; &lt;\/text&gt;\n    \t        &lt;\/pc&gt;\n          \t&lt;\/pr&gt;\n\t\t&lt;\/pc&gt;\n\t\t&lt;\/pr&gt;\n\t\t&lt;pr width=&apos;fill&apos;&gt;\n       \t &lt;pc width=&apos;100%&apos; bgColor=&apos;#FFFFFF&apos; paddingLeft=&apos;5px&apos; marginTop=&apos;7px&apos; hAlign=&apos;left&apos; vAlign=&apos;middle&apos;&gt;\n        \t  &lt;pr height=&apos;auto&apos; width=&apos;100%&apos;&gt;\n            \t&lt;pc&gt;\n              \t\t&lt;image color=&apos;#248BD3&apos; bgColor=&apos;#FFFFFF&apos; width=&apos;40px&apos; height=&apos;40px&apos; imageType=&apos;icon&apos; value=&apos;zc-li-solid arrows-1-small-triangle-right&apos; iconsize=&apos;2&apos; unicodeValue=&apos;eb17&apos; \/&gt; \n\t\t\t    &lt;\/pc&gt;\n            \t&lt;pc&gt;\n\t              &lt;text type=&apos;Text&apos; value=&apos;All Visa Details&apos; size=&apos;2&apos; color=&apos;#248BD3&apos; textAlign=&apos;left&apos; displayType=&apos;actual&apos; action=&apos;Report&apos; componentLinkName=&apos;All_Visa_Details&apos; target=&apos;same-window&apos;&gt; &lt;\/text&gt;\n    \t        &lt;\/pc&gt;\n          \t&lt;\/pr&gt;\n\t\t&lt;\/pc&gt;\n\t\t&lt;\/pr&gt;\n\t\t&lt;pr width=&apos;fill&apos;&gt;\n       \t &lt;pc width=&apos;100%&apos; bgColor=&apos;#FFFFFF&apos; paddingLeft=&apos;5px&apos; marginTop=&apos;7px&apos; hAlign=&apos;left&apos; vAlign=&apos;middle&apos;&gt;\n        \t  &lt;pr height=&apos;auto&apos; width=&apos;100%&apos;&gt;\n            \t&lt;pc&gt;\n              \t\t&lt;image color=&apos;#248BD3&apos; bgColor=&apos;#FFFFFF&apos; width=&apos;40px&apos; height=&apos;40px&apos; imageType=&apos;icon&apos; value=&apos;zc-li-solid arrows-1-small-triangle-right&apos; iconsize=&apos;2&apos; unicodeValue=&apos;eb17&apos; \/&gt; \n\t\t\t    &lt;\/pc&gt;\n            \t&lt;pc&gt;\n\t              &lt;text type=&apos;Text&apos; value=&apos;All Passports&apos; size=&apos;2&apos; color=&apos;#248BD3&apos; textAlign=&apos;left&apos; displayType=&apos;actual&apos; action=&apos;Report&apos; componentLinkName=&apos;All_Passports&apos; target=&apos;same-window&apos;&gt; &lt;\/text&gt;\n    \t        &lt;\/pc&gt;\n          \t&lt;\/pr&gt;\n\t\t&lt;\/pc&gt;\n\t\t&lt;\/pr&gt;\n\t\t&lt;pr  width=&apos;fill&apos;&gt;\n       \t &lt;pc width=&apos;100%&apos; bgColor=&apos;#FFFFFF&apos; paddingLeft=&apos;5px&apos; marginTop=&apos;7px&apos; hAlign=&apos;left&apos; vAlign=&apos;middle&apos;&gt;\n        \t  &lt;pr height=&apos;auto&apos; width=&apos;100%&apos;&gt;\n            \t&lt;pc&gt;\n              \t\t&lt;image color=&apos;#248BD3&apos; bgColor=&apos;#FFFFFF&apos; width=&apos;40px&apos; height=&apos;40px&apos; imageType=&apos;icon&apos; value=&apos;zc-li-solid arrows-1-small-triangle-right&apos; iconsize=&apos;2&apos; unicodeValue=&apos;eb17&apos; \/&gt; \n\t\t\t    &lt;\/pc&gt;\n            \t&lt;pc&gt;\n\t              &lt;text type=&apos;Text&apos; value=&apos;All Expenses&apos; size=&apos;2&apos; color=&apos;#248BD3&apos; textAlign=&apos;left&apos; displayType=&apos;actual&apos; action=&apos;Report&apos; componentLinkName=&apos;All_Expenses&apos; target=&apos;same-window&apos;&gt; &lt;\/text&gt;\n    \t        &lt;\/pc&gt;\n          \t&lt;\/pr&gt;\n\t\t&lt;\/pc&gt;\n\t\t&lt;\/pr&gt;\n\t\t&lt;pr width=&apos;fill&apos;&gt;\n       \t &lt;pc width=&apos;100%&apos; bgColor=&apos;#FFFFFF&apos;  paddingLeft=&apos;5px&apos; marginTop=&apos;7px&apos; hAlign=&apos;left&apos; vAlign=&apos;middle&apos;&gt;\n        \t  &lt;pr height=&apos;auto&apos; width=&apos;100%&apos;&gt;\n            \t&lt;pc&gt;\n              \t\t&lt;image color=&apos;#248BD3&apos; bgColor=&apos;#FFFFFF&apos; width=&apos;40px&apos; height=&apos;40px&apos; imageType=&apos;icon&apos; value=&apos;zc-li-solid arrows-1-small-triangle-right&apos; iconsize=&apos;2&apos; unicodeValue=&apos;eb17&apos; \/&gt; \n\t\t\t    &lt;\/pc&gt;\n            \t&lt;pc&gt;\n\t              &lt;text type=&apos;Text&apos; value=&apos;Add Employee&apos; size=&apos;2&apos; color=&apos;#248BD3&apos; textAlign=&apos;left&apos; displayType=&apos;actual&apos; action=&apos;Form&apos; componentLinkName=&apos;Add_Employee&apos; target=&apos;popup&apos;&gt; &lt;\/text&gt;\n    \t        &lt;\/pc&gt;\n          \t&lt;\/pr&gt;\n\t\t&lt;\/pc&gt;\n\t\t&lt;\/pr&gt;\n&lt;\/panel&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dspZml>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+	}
+	section Travel_Request
+	{
+		displayname= "Travel Request"
+		icon = "transportation-plane-17"
+		form New_Travel_Request
+		{
+			displayname = "New  Travel Request"
+			success message = "New travel request has been raised"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Travel_ID
+			(
+    			type = autonumber
+				displayname = "Travel ID"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Employee
+			(
+				type = picklist
+				values  = Add_Employee[Email == zoho.loginuserid || Reporting_To == zoho.loginuserid].ID
+    			displayformat = [Employee_ID + " - " + Email]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			newEmployeeLink
+			(
+    			type = plaintext
+				value = "<a style=\"padding-left: 165px\" href=\"#Form:Add_Employee?zc_LoadIn=dialog\"><i style=\"font-style: inherit\" class=\"fa fa-plus\"></i> Add New Employee</a>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Travel_Type
+			(
+				type = radiobuttons
+				displayname = "Travel Type"
+				values = {"Domestic", "International"}
+				layout = 2
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Leaving_From
+			(
+    			type = text
+				displayname = "Leaving From"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Going_To
+			(
+    			type = text
+				displayname = "Going To"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Depart_Date
+			(
+    			type = date
+				displayname = "Depart Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Return_Date
+			(
+    			type = date
+				displayname = "Return Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Passport_Number
+			(
+				type = picklist
+				displayname = "Passport Number"
+				values  = Add_Passport_Details[Employee == input.Employee].ID
+    			displayformat = [Passport_Number]
+				allow new entries = true
+				[
+					displayname = "Add Passport"
+				]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Visa
+			(
+				type = picklist
+				values  = Add_Visa_Details[Employee == input.Employee].ID
+    			displayformat = [Visa_ID]
+				allow new entries = true
+				[
+					displayname = "Add New Visa"
+				]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Purpose_Of_Travel
+			(
+				type = picklist
+				displayname = "Purpose Of Travel"
+				values  = Add_Travel_Purpose.ID
+    			displayformat = [Purpose_Of_Travel]
+				allow new entries = true
+				[
+					displayname = "Add New Purpose"
+				]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Meal_Preference
+			(
+				type = picklist
+				displayname = "Meal Preference"
+				values = {"Asian Veg", "Non-Veg", "Diabetic meal"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Seat_Preference
+			(
+				type = picklist
+				displayname = "Seat Preference"
+				values = {"Window", "Aisle", "Middle"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Accommodation
+			(
+				type = grid
+	    
+				must have Checkin
+				(
+    				type = datetime
+					timedisplayoptions = "hh:mm:ss"
+					alloweddays = 0,1,2,3,4,5,6
+					width = medium
+				)
+				must have Checkout
+				(
+    				type = datetime
+					timedisplayoptions = "hh:mm:ss"
+					alloweddays = 0,1,2,3,4,5,6
+					width = medium
+				)
+				Land_Mark
+				(
+    				type = text
+					displayname = "Land Mark"
+					width = medium
+				)
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status
+			(
+				type = picklist
+				values = {"Requested", "Approved By Manager", "Rejected By Manager", "InProgress", "Approved", "Rejected"}
+				initial value = "Requested"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status_Updated_On
+			(
+    			type = date
+				displayname = "Status Updated On"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Ticket_Handler
+			(
+				type = picklist
+				displayname = "Ticket Handler"
+				values  = Add_Employee[Profile == "Travel Desk Member"].ID
+    			displayformat = [Employee_ID + " - " + Email]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Remarks
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-fat-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list My_Travels
+		{
+			displayName = "My Travels"
+			show all rows from New_Travel_Request  [Employee.Email == zoho.loginuserid]  
+			(
+				Accommodation.Checkin as "Accommodation"
+				Status
+				Status_Updated_On as "Status Updated On"
+				Ticket_Handler as "Ticket Handler"
+				Remarks
+				Travel_Type as "Travel Type"
+				Travel_ID as "Travel ID"
+				Leaving_From as "Leaving From"
+				Return_Date as "Return Date"
+				Depart_Date as "Depart Date"
+				Going_To as "Going To"
+				Passport_Number as "Passport Number"
+				Visa
+				Purpose_Of_Travel as "Purpose Of Travel"
+				Meal_Preference as "Meal Preference"
+				Seat_Preference as "Seat Preference"
+			)
+			filters
+			(
+				Travel_Type
+				Purpose_Of_Travel
+			)
+			group by
+			(
+				Status ascending
+			)
+			options
+			(
+				icon = "ui-1-send"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Travel_ID as "Travel ID"
+							Travel_Type as "Travel Type"
+							Leaving_From as "Leaving From"
+							Going_To as "Going To"
+							Depart_Date as "Depart Date"
+							Return_Date as "Return Date"
+							Ticket_Handler as "Ticket Handler"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Travel_ID as "Travel ID"
+							Status
+							Status_Updated_On as "Status Updated On"
+							Ticket_Handler as "Ticket Handler"
+							Remarks
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Travel Details"
+						fields
+						(
+							Travel_Type as "Travel Type"
+							Leaving_From as "Leaving From"
+							Going_To as "Going To"
+							Depart_Date as "Depart Date"
+							Return_Date as "Return Date"
+							Passport_Number as "Passport Number"
+							Visa
+							Purpose_Of_Travel as "Purpose Of Travel"
+							Meal_Preference as "Meal Preference"
+							Seat_Preference as "Seat Preference"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Accommodation"
+		     			related field =  Accommodation[Employee.Email == zoho.loginuserid]
+						fields
+						(
+							Checkin
+							Checkout
+							Land_Mark as "Land Mark"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Member_Travels
+		{
+			displayName = "Member Travels"
+			show all rows from New_Travel_Request  [Employee.Reporting_To == zoho.loginuserid]  
+			(
+				custom action "Approve"
+				(
+	  			workflow = Approve
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Approve"
+				success message = ""
+				condition = (Status == "Requested")
+				)
+				custom action "Reject"
+				(
+	  			workflow = Reject
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Reject"
+				success message = ""
+				condition = (Status == "Requested")
+				)
+				Status
+				Status_Updated_On as "Status Updated On"
+				Ticket_Handler as "Ticket Handler"
+				Remarks
+				Passport_Number as "Passport Number"
+				Visa
+				Purpose_Of_Travel as "Purpose Of Travel"
+				Meal_Preference as "Meal Preference"
+				Seat_Preference as "Seat Preference"
+				Return_Date as "Return Date"
+				Depart_Date as "Depart Date"
+				Going_To as "Going To"
+				Leaving_From as "Leaving From"
+				Travel_Type as "Travel Type"
+				Employee
+				Travel_ID as "Travel ID"
+			)
+			filters
+			(
+				Status
+				Travel_Type
+				Ticket_Handler
+			)
+			group by
+			(
+				Employee ascending
+			)
+			options
+			(
+				icon = "users-2-wc"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Travel_ID as "Travel ID"
+							Travel_Type as "Travel Type"
+							Leaving_From as "Leaving From"
+							Going_To as "Going To"
+							Depart_Date as "Depart Date"
+							Return_Date as "Return Date"
+							Purpose_Of_Travel as "Purpose Of Travel"
+				"Approve"
+				"Reject"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								"Approve"
+								"Reject"
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								"Approve"
+								"Reject"
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Travel_ID as "Travel ID"
+							Employee
+							Status
+							Status_Updated_On as "Status Updated On"
+							Ticket_Handler as "Ticket Handler"
+							Remarks
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Travel Details"
+						fields
+						(
+							Travel_Type as "Travel Type"
+							Leaving_From as "Leaving From"
+							Going_To as "Going To"
+							Depart_Date as "Depart Date"
+							Return_Date as "Return Date"
+							Passport_Number as "Passport Number"
+							Visa
+							Purpose_Of_Travel as "Purpose Of Travel"
+							Meal_Preference as "Meal Preference"
+							Seat_Preference as "Seat Preference"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Accommodation"
+		     			related field =  Accommodation[Employee.Reporting_To == zoho.loginuserid]
+						fields
+						(
+							Checkin
+							Checkout
+							Land_Mark as "Land Mark"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Approve"
+			 			"Reject"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Assign_Request_Travel
+		{
+			displayName = "Assign Request"
+			show all rows from New_Travel_Request  [Status == "Approved By Manager"]  
+			(
+				custom action "Assign"
+				(
+	  			workflow = Assign
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Assign"
+				success message = ""
+				)
+				Status
+				Status_Updated_On as "Status Updated On"
+				Remarks
+				Return_Date as "Return Date"
+				Leaving_From as "Leaving From"
+				Travel_ID as "Travel ID"
+				Employee
+				Going_To as "Going To"
+				Depart_Date as "Depart Date"
+				Travel_Type as "Travel Type"
+				Passport_Number as "Passport Number"
+				Visa
+				Purpose_Of_Travel as "Purpose Of Travel"
+				Meal_Preference as "Meal Preference"
+				Seat_Preference as "Seat Preference"
+			)
+			filters
+			(
+				Purpose_Of_Travel
+				Meal_Preference
+				Seat_Preference
+			)
+			group by
+			(
+				Travel_Type ascending
+			)
+			options
+			(
+				icon = "ui-1-check-square-11"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+				"Assign"
+							Travel_ID as "Travel ID"
+							Employee
+							Leaving_From as "Leaving From"
+							Going_To as "Going To"
+							Depart_Date as "Depart Date"
+							Return_Date as "Return Date"
+							Purpose_Of_Travel as "Purpose Of Travel"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								"Assign"
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Travel_ID as "Travel ID"
+							Employee
+							Status
+							Status_Updated_On as "Status Updated On"
+							Remarks
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Travel Details"
+						fields
+						(
+							Travel_Type as "Travel Type"
+							Leaving_From as "Leaving From"
+							Going_To as "Going To"
+							Depart_Date as "Depart Date"
+							Return_Date as "Return Date"
+							Passport_Number as "Passport Number"
+							Visa
+							Purpose_Of_Travel as "Purpose Of Travel"
+							Meal_Preference as "Meal Preference"
+							Seat_Preference as "Seat Preference"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Accommodation"
+		     			related field =  Accommodation[Status == "Approved By Manager"]
+						fields
+						(
+							Checkin
+							Checkout
+							Land_Mark as "Land Mark"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Assign"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Employee_Travels
+		{
+			displayName = "Employee Travels"
+			show all rows from New_Travel_Request  [Ticket_Handler.Email == zoho.loginuserid]  
+			(
+				custom action "Send Mail"
+				(
+	  			workflow = Send_Mail
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Send Mail"
+				success message = ""
+				condition = (Status == "InProgress")
+				)
+				custom action "Approve"
+				(
+	  			workflow = Approve1
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Approve"
+				success message = ""
+				condition = (Status == "InProgress")
+				)
+				custom action "Reject"
+				(
+	  			workflow = Reject1
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Reject"
+				success message = ""
+				condition = (Status == "InProgress")
+				)
+				Status
+				Status_Updated_On as "Status Updated On"
+				Remarks
+				Employee
+				Travel_Type as "Travel Type"
+				Return_Date as "Return Date"
+				Depart_Date as "Depart Date"
+				Going_To as "Going To"
+				Leaving_From as "Leaving From"
+				Travel_ID as "Travel ID"
+				Passport_Number as "Passport Number"
+				Visa
+				Purpose_Of_Travel as "Purpose Of Travel"
+				Meal_Preference as "Meal Preference"
+				Seat_Preference as "Seat Preference"
+			)
+			filters
+			(
+				Status
+				Travel_Type
+			)
+			group by
+			(
+				Status ascending
+			)
+			options
+			(
+				icon = "users-2-multiple"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Travel_ID as "Travel ID"
+							Employee
+							Travel_Type as "Travel Type"
+							Leaving_From as "Leaving From"
+							Going_To as "Going To"
+							Depart_Date as "Depart Date"
+							Return_Date as "Return Date"
+							Status_Updated_On as "Status Updated On"
+				"Send Mail"
+				"Approve"
+				"Reject"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+								"Send Mail"
+								"Approve"
+								"Reject"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+								"Send Mail"
+								"Approve"
+								"Reject"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Travel_ID as "Travel ID"
+							Employee
+							Status
+							Status_Updated_On as "Status Updated On"
+							Remarks
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Travel Details"
+						fields
+						(
+							Travel_Type as "Travel Type"
+							Leaving_From as "Leaving From"
+							Going_To as "Going To"
+							Depart_Date as "Depart Date"
+							Return_Date as "Return Date"
+							Passport_Number as "Passport Number"
+							Visa
+							Purpose_Of_Travel as "Purpose Of Travel"
+							Meal_Preference as "Meal Preference"
+							Seat_Preference as "Seat Preference"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Accommodation"
+		     			related field =  Accommodation[Ticket_Handler.Email == zoho.loginuserid]
+						fields
+						(
+							Checkin
+							Checkout
+							Land_Mark as "Land Mark"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Approve"
+			 			"Reject"
+			 			"Send Mail"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Travels
+		{
+			displayName = "All Travels"
+			show all rows from New_Travel_Request    
+			(
+				Accommodation.Checkin as "Accommodation"
+				(
+					isLinkEnabled = true
+				)
+				Status
+				Status_Updated_On as "Status Updated On"
+				Ticket_Handler as "Ticket Handler"
+				Remarks
+				Employee
+				Leaving_From as "Leaving From"
+				Going_To as "Going To"
+				Travel_Type as "Travel Type"
+				Depart_Date as "Depart Date"
+				Return_Date as "Return Date"
+				Travel_ID as "Travel ID"
+				Passport_Number as "Passport Number"
+				Visa
+				Purpose_Of_Travel as "Purpose Of Travel"
+				Meal_Preference as "Meal Preference"
+				Seat_Preference as "Seat Preference"
+			)
+			filters
+			(
+				Purpose_Of_Travel
+				Seat_Preference
+				Meal_Preference
+				Travel_Type
+			)
+			group by
+			(
+				Status ascending
+			)
+			options
+			(
+				icon = "transportation-plane-18"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Travel_ID as "Travel ID"
+							Employee
+							Travel_Type as "Travel Type"
+							Leaving_From as "Leaving From"
+							Going_To as "Going To"
+							Depart_Date as "Depart Date"
+							Return_Date as "Return Date"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Travel_ID as "Travel ID"
+							Employee
+							Status
+							Status_Updated_On as "Status Updated On"
+							Ticket_Handler as "Ticket Handler"
+							Remarks
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Travel Details"
+						fields
+						(
+							Travel_Type as "Travel Type"
+							Leaving_From as "Leaving From"
+							Going_To as "Going To"
+							Depart_Date as "Depart Date"
+							Return_Date as "Return Date"
+							Passport_Number as "Passport Number"
+							Visa
+							Purpose_Of_Travel as "Purpose Of Travel"
+							Meal_Preference as "Meal Preference"
+							Seat_Preference as "Seat Preference"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Accommodation"
+		     			related field =  Accommodation
+						fields
+						(
+							Checkin
+							Checkout
+							Land_Mark as "Land Mark"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Passport_Details
+	{
+		displayname= "Passport Details"
+		icon = "users-contacts"
+		form Add_Passport_Details
+		{
+			displayname = "Add Passport Details"
+			success message = "Passport Added Successfully!"
+			field alignment = left
+			feature property = 32
+			must have Employee
+			(
+				type = picklist
+				values  = Add_Employee.ID
+    			displayformat = [Employee_ID + " - " + Email]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Passport_Number
+			(
+    			type = text
+				displayname = "Passport Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Given_Name
+			(
+    			type = text
+				displayname = "Given Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Surname
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Gender
+			(
+				type = radiobuttons
+				values = {"Male", "Female"}
+				layout = 2
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Date_Of_Birth
+			(
+    			type = date
+				displayname = "Date Of Birth"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Place_Of_Birth
+			(
+    			type = text
+				displayname = "Place Of Birth"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Issued_On
+			(
+    			type = date
+				displayname = "Issued On"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Expires_On
+			(
+    			type = date
+				displayname = "Expires On"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Passport_Copy
+			(
+    			type = upload file
+				displayname = "Passport Copy"
+				browse = local_drive
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-add-27"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		properties
+		{
+			entries per user
+			{
+				allowed count = 1
+			}
+		}
+		}
+		summary My_Passports
+		{
+			displayName = "My Passports"
+			show all rows from Add_Passport_Details  [Employee.Email == zoho.loginuserid]  
+			(
+				Expires_On as "Expires On"
+				Place_Of_Birth as "Place Of Birth"
+				Passport_Copy as "Passport Copy"
+				Employee
+				Issued_On as "Issued On"
+				Date_Of_Birth as "Date Of Birth"
+				Passport_Number as "Passport Number"
+				Surname
+				Gender
+				Given_Name as "Given Name"
+			)
+			options
+			(
+				display rows = 1
+				display records per row = 2
+				icon = "users-2-contacts-44"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Employee
+							Passport_Number as "Passport Number"
+							Given_Name as "Given Name"
+							Surname
+							Gender
+							Date_Of_Birth as "Date Of Birth"
+							Place_Of_Birth as "Place Of Birth"
+							Issued_On as "Issued On"
+							Expires_On as "Expires On"
+							Passport_Copy as "Passport Copy"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Employee
+							Passport_Number as "Passport Number"
+							Given_Name as "Given Name"
+							Surname
+							Gender
+							Date_Of_Birth as "Date Of Birth"
+							Place_Of_Birth as "Place Of Birth"
+							Issued_On as "Issued On"
+							Expires_On as "Expires On"
+							Passport_Copy as "Passport Copy"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Passports
+		{
+			displayName = "All Passports"
+			show all rows from Add_Passport_Details    
+			(
+				Gender
+				Date_Of_Birth as "Date Of Birth"
+				Place_Of_Birth as "Place Of Birth"
+				Passport_Copy as "Passport Copy"
+				Expires_On as "Expires On"
+				Issued_On as "Issued On"
+				Given_Name as "Given Name"
+				Passport_Number as "Passport Number"
+				Surname
+				Employee
+			)
+			options
+			(
+				icon = "users-badge-13"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Employee
+							Passport_Number as "Passport Number"
+							Given_Name as "Given Name"
+							Surname
+							Date_Of_Birth as "Date Of Birth"
+							Expires_On as "Expires On"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Employee
+							Passport_Number as "Passport Number"
+							Given_Name as "Given Name"
+							Surname
+							Gender
+							Date_Of_Birth as "Date Of Birth"
+							Place_Of_Birth as "Place Of Birth"
+							Issued_On as "Issued On"
+							Expires_On as "Expires On"
+							Passport_Copy as "Passport Copy"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Visa
+	{
+		icon = "location-map-big"
+		form Add_Visa_Details
+		{
+			displayname = "Add Visa Details"
+			success message = "Visa  Details Added Successfully!"
+			field alignment = left
+			feature property = 32
+			must have Visa
+			(
+				type = radiobuttons
+				values = {"New Visa", "Existing Visa"}
+				layout = 2
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Visa_ID
+			(
+    			type = autonumber
+				displayname = "Visa ID"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Employee
+			(
+				type = picklist
+				values  = Add_Employee[Email == zoho.loginuserid || Reporting_To == zoho.loginuserid].ID
+    			displayformat = [Employee_ID + " - " + Email]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			newEmployeeLink
+			(
+    			type = plaintext
+				value = "<a style=\"padding-left: 165px\" href=\"#Form:Add_Employee?zc_LoadIn=dialog\"><i style=\"font-style: inherit\" class=\"fa fa-plus\"></i> Add New Employee</a>"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Passport_Number
+			(
+				type = picklist
+				displayname = "Passport Number"
+				values  = Add_Passport_Details[Employee == input.Employee].ID
+    			displayformat = [Passport_Number]
+				allow new entries = true
+				[
+					displayname = "Add Passport"
+				]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Passport_Error
+			(
+    			type = plaintext
+				value = ""
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Country
+			(
+				type = picklist
+				values  = Add_Country.ID
+    			displayformat = [Country_Name]
+				allow new entries = true
+				[
+					displayname = "Add New"
+				]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Start_Date
+			(
+    			type = date
+				displayname = "Start Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have End_Date
+			(
+    			type = date
+				displayname = "End Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Visa_Handler
+			(
+				type = picklist
+				displayname = "Visa Handler"
+				values  = Add_Employee[Profile == "Travel Desk Member"].ID
+    			displayformat = [Employee_ID + " - " + Email]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status
+			(
+				type = picklist
+				values = {"Requested", "Approved By Manager", "Rejected By Manager", "InProgress", "Valid Visa", "Rejected"}
+				initial value = "Requested"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Visa_Cost
+			(
+				displayname = "Visa Cost"
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status_Updated_On
+			(
+    			type = date
+				displayname = "Status Updated On"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Remarks
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		summary My_Visa
+		{
+			displayName = "My Visa"
+			show all rows from Add_Visa_Details  [Employee.Email == zoho.loginuserid]  
+			(
+				Visa
+				Visa_Handler as "Visa Handler"
+				Status
+				Status_Updated_On as "Status Updated On"
+				Passport_Number as "Passport Number"
+				End_Date as "End Date"
+				Start_Date as "Start Date"
+				Country
+				Visa_ID as "Visa ID"
+				Remarks
+			)
+			filters
+			(
+				Status
+			)
+			group by
+			(
+				Status ascending
+			)
+			options
+			(
+				display rows = 10
+				display records per row = 2
+				icon = "users-2-contacts-45"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Visa_ID as "Visa ID"
+							Country
+							Start_Date as "Start Date"
+							End_Date as "End Date"
+							Passport_Number as "Passport Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Visa_ID as "Visa ID"
+							Country
+							Start_Date as "Start Date"
+							End_Date as "End Date"
+							Passport_Number as "Passport Number"
+							Visa
+							Visa_Handler as "Visa Handler"
+							Status
+							Status_Updated_On as "Status Updated On"
+							Remarks
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Member_Visa
+		{
+			displayName = "Member Visa"
+			show all rows from Add_Visa_Details  [Employee.Reporting_To == zoho.loginuserid]  
+			(
+				Status
+				custom action "Approve"
+				(
+	  			workflow = Approve2
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Approve"
+				success message = "Request has been approved and forwarded to travel desk"
+				condition = (Status == "Requested")
+				)
+				custom action "Reject"
+				(
+	  			workflow = Reject2
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Reject"
+				success message = ""
+				condition = (Status == "Requested")
+				)
+				Passport_Number as "Passport Number"
+				Visa_ID as "Visa ID"
+				Start_Date as "Start Date"
+				Country
+				Employee
+				End_Date as "End Date"
+				Status_Updated_On as "Status Updated On"
+				Remarks
+			)
+			filters
+			(
+				Status
+				Country
+			)
+			options
+			(
+				icon = "users-parent"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Visa_ID as "Visa ID"
+							Employee
+							Country
+							Start_Date as "Start Date"
+							End_Date as "End Date"
+				"Approve"
+				"Reject"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+								"Approve"
+								"Reject"
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+								"Approve"
+								"Reject"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Visa_ID as "Visa ID"
+							Employee
+							Country
+							Start_Date as "Start Date"
+							End_Date as "End Date"
+							Passport_Number as "Passport Number"
+							Status
+							Status_Updated_On as "Status Updated On"
+							Remarks
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Approve"
+			 			"Reject"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Assign_Request_Visa
+		{
+			displayName = "Assign Request"
+			show all rows from Add_Visa_Details  [Status == "Approved By Manager"]  
+			(
+				custom action "Assign"
+				(
+	  			workflow = Assign1
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Assign"
+				success message = ""
+				)
+				Status
+				Status_Updated_On as "Status Updated On"
+				Remarks
+				Visa
+				Passport_Number as "Passport Number"
+				Employee
+				Start_Date as "Start Date"
+				Country
+				Visa_ID as "Visa ID"
+				End_Date as "End Date"
+			)
+			filters
+			(
+				Country
+			)
+			options
+			(
+				icon = "ui-1-check-square-11"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+				"Assign"
+							Visa_ID as "Visa ID"
+							Employee
+							Country
+							Start_Date as "Start Date"
+							End_Date as "End Date"
+							Passport_Number as "Passport Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								"Assign"
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								"Assign"
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Visa_ID as "Visa ID"
+							Employee
+							Country
+							Start_Date as "Start Date"
+							End_Date as "End Date"
+							Visa
+							Passport_Number as "Passport Number"
+							Status
+							Status_Updated_On as "Status Updated On"
+							Remarks
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Assign"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Employee_Visa
+		{
+			displayName = "Employee Visa"
+			show all rows from Add_Visa_Details  [Visa_Handler.Email == zoho.loginuserid]  
+			(
+				Passport_Number as "Passport Number"
+				custom action "Send Mail"
+				(
+	  			workflow = Send_Mail1
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Send Mail"
+				success message = ""
+				condition = (Status == "InProgress")
+				)
+				custom action "Approve"
+				(
+	  			workflow = Approve3
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Approve"
+				success message = ""
+				condition = (Status == "InProgress")
+				)
+				custom action "Reject"
+				(
+	  			workflow = Reject3
+				show action in view header = true
+				show action in edit record menu = true
+				column header = "Reject"
+				success message = ""
+				condition = (Status == "InProgress")
+				)
+				Status
+				Status_Updated_On as "Status Updated On"
+				Employee
+				End_Date as "End Date"
+				Start_Date as "Start Date"
+				Country
+				Visa_ID as "Visa ID"
+				Visa_Cost as "Visa Cost"
+				Remarks
+			)
+			filters
+			(
+				Status
+				Visa
+				Country
+				Employee
+			)
+			options
+			(
+				icon = "users-multiple-11"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Visa_ID as "Visa ID"
+							Employee
+							Country
+							Start_Date as "Start Date"
+							End_Date as "End Date"
+							Passport_Number as "Passport Number"
+				"Send Mail"
+				"Approve"
+				"Reject"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Print   	   
+								"Approve"
+								"Reject"
+								"Send Mail"
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								"Send Mail"
+								"Approve"
+								"Reject"
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Visa_ID as "Visa ID"
+							Employee
+							Country
+							Start_Date as "Start Date"
+							End_Date as "End Date"
+							Passport_Number as "Passport Number"
+							Visa_Cost as "Visa Cost"
+							Status
+							Status_Updated_On as "Status Updated On"
+							Remarks
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Approve"
+			 			"Reject"
+			 			"Send Mail"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Visa_Details
+		{
+			displayName = "All Visa Details"
+			show all rows from Add_Visa_Details    
+			(
+				Passport_Number as "Passport Number"
+				Visa_Cost as "Visa Cost"
+				Status
+				Visa
+				Status_Updated_On as "Status Updated On"
+				Remarks
+				Employee
+				Visa_Handler as "Visa Handler"
+				End_Date as "End Date"
+				Start_Date as "Start Date"
+				Country
+				Visa_ID as "Visa ID"
+			)
+			filters
+			(
+				Status
+				Country
+			)
+			group by
+			(
+				Status ascending
+			)
+			options
+			(
+				icon = "users-badge-14"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Visa_ID as "Visa ID"
+							Employee
+							Country
+							Start_Date as "Start Date"
+							End_Date as "End Date"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Visa_ID as "Visa ID"
+							Employee
+							Country
+							Start_Date as "Start Date"
+							End_Date as "End Date"
+							Visa
+							Passport_Number as "Passport Number"
+							Visa_Handler as "Visa Handler"
+							Visa_Cost as "Visa Cost"
+							Status
+							Status_Updated_On as "Status Updated On"
+							Remarks
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Expenses
+	{
+		icon = "business-money-coins"
+		form Add_Expense
+		{
+			displayname = "Add Expense"
+			success message = "Expense Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Submission_Date
+			(
+    			type = date
+				displayname = "Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Employee
+			(
+				type = picklist
+				values  = Add_Employee[Email == zoho.loginuserid].ID
+    			displayformat = [Employee_ID + " - " + Email]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Travel_ID
+			(
+				type = picklist
+				displayname = "Travel ID"
+				values  = New_Travel_Request[Status == "Approved" && Employee == input.Employee].ID
+    			displayformat = [Travel_ID]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Expense_Details
+			(
+				type = grid
+				displayname = "Expense Details"
+	    
+				must have Expense_Type
+				(
+					type = picklist
+					displayname = "Expense Type"
+					values = {"Food", "Transport", "Stay"}
+					others option = true
+					width = medium
+				)
+				must have Currency
+				(
+					type = USD
+					width = medium
+				)
+				must have Receipt
+				(
+    				type = image
+					source  = file
+					aspect ratio = original
+					camera = primary
+					show gallery = true
+					switch camera = true
+					width = medium
+				)
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Total_Expenses
+			(
+				displayname = "Total Expenses"
+				type = USD
+				initial value = 0.0
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status
+			(
+				type = picklist
+				values = {"Submitted", "Approved", "Rejected"}
+				initial value = "Submitted"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Status_Updated_On
+			(
+    			type = date
+				displayname = "Status Updated On"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-circle-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list My_Expenses
+		{
+			displayName = "My Expenses"
+			show all rows from Add_Expense  [Employee.Email == zoho.loginuserid]  
+			(
+				Status
+				Status_Updated_On as "Status Updated On"
+				Expense_Details.Expense_Type as "Expense Details"
+				Employee
+				Submission_Date as "Date"
+				Travel_ID as "Travel ID"
+				Total_Expenses as "Total Expenses"
+			)
+			group by
+			(
+				Status ascending
+			)
+			options
+			(
+				icon = "business-money-bag"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Submission_Date as "Date"
+							Employee
+							Travel_ID as "Travel ID"
+							Total_Expenses as "Total Expenses"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Submission_Date as "Date"
+							Travel_ID as "Travel ID"
+							Total_Expenses as "Total Expenses"
+							Status
+							Status_Updated_On as "Status Updated On"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Expense Details"
+		     			related field =  Expense_Details[Employee.Email == zoho.loginuserid]
+						fields
+						(
+							Expense_Type as "Expense Type"
+							Currency
+							Receipt
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Member_Expenses
+		{
+			displayName = "Member Expenses"
+			show all rows from Add_Expense  [Employee.Reporting_To == zoho.loginuserid]  
+			(
+				Expense_Details.Currency as "Expense Details.Currency"
+				custom action "Approve"
+				(
+	  			workflow = Approve4
+				show action in view header = true
+				column header = "Approve"
+				success message = ""
+				condition = (Status == "Submitted")
+				)
+				custom action "Reject"
+				(
+	  			workflow = Reject4
+				show action in view header = true
+				column header = "Reject"
+				success message = ""
+				condition = (Status == "Submitted")
+				)
+				Status_Updated_On as "Status Updated On"
+				Employee
+				Travel_ID as "Travel ID"
+				Total_Expenses as "Total Expenses"
+				Status
+				Submission_Date as "Date"
+			)
+			filters
+			(
+				Status
+			)
+			group by
+			(
+				Employee ascending
+			)
+			options
+			(
+				icon = "business-money-13"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Submission_Date as "Date"
+							Travel_ID as "Travel ID"
+							Total_Expenses as "Total Expenses"
+							Status
+							Status_Updated_On as "Status Updated On"
+				"Approve"
+				"Reject"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+								"Approve"
+								"Reject"
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Submission_Date as "Date"
+							Employee
+							Travel_ID as "Travel ID"
+							Total_Expenses as "Total Expenses"
+							Status
+							Status_Updated_On as "Status Updated On"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Expense Details"
+		     			related field =  Expense_Details[Employee.Reporting_To == zoho.loginuserid]
+						fields
+						(
+							Expense_Type as "Expense Type"
+							Currency
+							Receipt
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Approve"
+			 			"Reject"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list All_Expenses
+		{
+			displayName = "All Expenses"
+			show all rows from Add_Expense    
+			(
+				Status_Updated_On as "Status Updated On"
+				Submission_Date as "Date"
+				Travel_ID as "Travel ID"
+				Status
+				Total_Expenses as "Total Expenses"
+				Employee
+				Expense_Details.Expense_Type as "Expense Details"
+			)
+			group by
+			(
+				Status ascending
+			)
+			options
+			(
+				icon = "files-money"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Submission_Date as "Date"
+							Employee
+							Travel_ID as "Travel ID"
+							Total_Expenses as "Total Expenses"
+							Status_Updated_On as "Status Updated On"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Submission_Date as "Date"
+							Employee
+							Travel_ID as "Travel ID"
+							Total_Expenses as "Total Expenses"
+							Status
+							Status_Updated_On as "Status Updated On"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Expense Details"
+		     			related field =  Expense_Details
+						fields
+						(
+							Expense_Type as "Expense Type"
+							Currency
+							Receipt
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Admin
+	{
+		icon = "ui-1-lock-circle"
+		custom Employees
+		{
+			displayName = "Employees"
+			show all rows from Add_Employee    
+			(
+				Reporting_To as "Reporting To"
+				Employee_ID as "Employee ID"
+				Email
+				Profile
+				Name  as "Employee Name"
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+			)
+			options
+			(
+				icon = "users-multiple-11"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name as "Employee Name"
+							Employee_ID as "Employee ID"
+							Email
+							Reporting_To as "Reporting To"
+							Profile
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Employee_ID as "Employee ID"
+							Name as "Employee Name"
+							Email
+							Profile
+							Reporting_To as "Reporting To"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Countries
+		{
+			displayName = "Countries"
+			show all rows from Add_Country    
+			(
+				Country_Name as "Country Name"
+			)
+			options
+			(
+				icon = "business-globe"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Country_Name as "Country Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Country_Name as "Country Name"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Travel_Purpose
+		{
+			displayName = "Travel Purposes"
+			show all rows from Add_Travel_Purpose    
+			(
+				Purpose_Of_Travel as "Purpose Of Travel"
+			)
+			options
+			(
+				icon = "design-bullet-list-69"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Purpose_Of_Travel as "Purpose Of Travel"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Purpose_Of_Travel as "Purpose Of Travel"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		custom Mails
+		{
+			displayName = "Mails"
+			show all rows from Send_Mail    
+			(
+				ToMail as "To"
+				(
+					view = Employees
+				)
+				Date_Time as "Date-Time"
+				FromMail as "From"
+				Subject_field as "Subject"
+				Message_Content as "Message"
+			)
+			filters
+			(
+				ToMail
+			)
+			options
+			(
+				icon = "ui-1-email-83"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Subject_field as "Subject"
+							Message_Content as "Message"
+							FromMail as "From"
+							Date_Time as "Date-Time"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							FromMail as "From"
+							ToMail as "To"
+							Date_Time as "Date-Time"
+							Subject_field as "Subject"
+							Message_Content as "Message"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Hidden
+	{
+		hide = true
+		icon = "ui-2-menu-bold"
+		form Assign_To_Travel_Desk
+		{
+			displayname = "Assign To Travel Desk"
+			store data in zc = false
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			recID
+			(
+				type = number
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Origin_From
+			(
+				type = radiobuttons
+				displayname = "Origin From"
+				values = {"Visa", "Travel"}
+				layout = 2
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Assignee
+			(
+				type = picklist
+				values  = Add_Employee[Profile == "Travel Desk Member" || Email == zoho.adminuserid].ID
+    			displayformat = [Employee_ID + " - " + Email]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "furniture-desk-drawer"
+			)
+			actions
+			{
+				Assign
+				(
+   					type = button
+   					displayname = "Assign"
+				)
+			}
+		}
+		form Add_Employee
+		{
+			displayname = "Add Employee"
+			success message = "Employee Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Employee_ID
+			(
+    			type = autonumber
+				displayname = "Employee ID"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+				displayname = "Employee Name"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Profile
+			(
+				type = picklist
+				values = {"Member", "Manager", "Travel Desk Member"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Reporting_To
+			(
+				type = picklist
+				displayname = "Reporting To"
+				values = {"Choice 1"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "shopping-cart-simple-in"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Country
+		{
+			displayname = "Add Country"
+			success message = "Country Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			must have unique Country_Name
+			(
+    			type = text
+				displayname = "Country Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "design-2-3d-29"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Remarks
+		{
+			displayname = "Add Remarks"
+			store data in zc = false
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			OrginFrom
+			(
+				type = radiobuttons
+				values = {"Visa", "Travel"}
+				layout = 2
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Status
+			(
+				type = picklist
+				values = {"Valid Visa", "Approved", "Rejected By Manager", "Rejected"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			recID
+			(
+				type = number
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Visa_Cost
+			(
+				displayname = "Visa Cost"
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Remarks
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "design-2-3d-29"
+			)
+			actions
+			{
+				Submit
+				(
+   					type = button
+   					displayname = "Submit"
+				)
+			}
+		}
+		form Add_Travel_Purpose
+		{
+			displayname = "Add Travel Purpose"
+			success message = "New Purpose Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			must have unique Purpose_Of_Travel
+			(
+    			type = text
+				displayname = "Purpose Of Travel"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "location-pin-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Send_Mail
+		{
+			displayname = "Send Mail"
+			success message = "Mail Sent Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Date_Time
+			(
+    			type = datetime
+				displayname = "Date-Time"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have FromMail
+			(
+    			type = email
+				displayname = "From"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Subject_field
+			(
+    			type = text
+				displayname = "Subject"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have ToMail
+			(
+				type = list
+				displayname = "To"
+				values  = Add_Employee.ID
+    			displayformat = [Email]
+				searchable = true
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Message_Content
+			(
+    			type = richtext
+				displayname = "Message"
+				height = 200px
+				toolbar = enable
+				[
+					style, font-color, background-color, alignment, link, table, bullets-and-numbering, 
+					font-size : {1, 2, 3, 4, 5, 6, 7},
+					font-family : {"Serif", "Arial", "Courier New", "Georgia", "Tahoma", "Times New Roman", "Trebuchet", "Verdana", "Comic Sans Ms"}
+				]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "shopping-delivery"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		pivotchart MonthWise_Expenses
+		{ 
+			displayname = "Monthwise Expenses"
+			based on Autoview_1501734413603_Add_Expense
+					hide = true
+							icon = "shopping-credit-card-in"				show all rows from Add_Expense
+				(
+ 					Travel_ID  as "Travel ID"
+ 					Status_Updated_On  as "Status Updated On"
+ 					Submission_Date  as "Date"
+ 					Total_Expenses  as "Total Expenses"
+ 					Status 
+ 					Employee 
+				)
+		}
+		pivotchart MonthWise_Visits
+		{ 
+			displayname = "MonthWise Visits"
+			based on Autoview_1501674558257_New_Travel_Request
+					hide = true
+							icon = "transportation-plane-17"				show all rows from New_Travel_Request
+				(
+ 					Meal_Preference  as "Meal Preference"
+ 					Purpose_Of_Travel  as "Purpose Of Travel"
+ 					Travel_ID  as "Travel ID"
+ 					Passport_Number  as "Passport Number"
+ 					Ticket_Handler  as "Ticket Handler"
+ 					Status_Updated_On  as "Status Updated On"
+ 					Going_To  as "Going To"
+ 					Seat_Preference  as "Seat Preference"
+ 					Travel_Type  as "Travel Type"
+ 					Employee 
+ 					Visa 
+ 					Added_Time  as "Added Time"
+ 					Return_Date  as "Return Date"
+ 					Depart_Date  as "Depart Date"
+ 					Status 
+ 					Leaving_From  as "Leaving From"
+				)
+		}
+	}
+	functions
+	{
+ 			void CustomAction.assignTravelDeskVisa(int recID)
+			{
+				openUrl("#Form:Assign_To_Travel_Desk?recID=" + recID + "&&Origin_From=Visa","popup window");
+			}
+ 			void CustomAction.assignTravelDeskTravel(int recID)
+			{
+				openUrl("#Form:Assign_To_Travel_Desk?recID=" + recID + "&&Origin_From=Travel","popup window");
+			}
+ 			void CustomAction.rejectVisa(Add_Visa_Details visaDetails)
+			{
+				if(visaDetails.Status == "Requested")
+				{
+					openUrl("#Form:Add_Remarks?recID=" + visaDetails.ID + "&&OrginFrom=Visa&&Status=Rejected By Manager","popup window");
+				}
+				else if(visaDetails.Status == "InProgress")
+				{
+					openUrl("#Form:Add_Remarks?recID=" + visaDetails.ID + "&&OrginFrom=Visa&&Status=Rejected","popup window");
+				}
+			}
+ 			void CustomAction.rejectTravel(New_Travel_Request travelDetails)
+			{
+				if(travelDetails.Status == "Requested")
+				{
+					openUrl("#Form:Add_Remarks?recID=" + travelDetails.ID + "&&OrginFrom=Travel&&Status=Rejected By Manager","popup window");
+				}
+				else if(travelDetails.Status == "InProgress")
+				{
+					openUrl("#Form:Add_Remarks?recID=" + travelDetails.ID + "&&OrginFrom=Travel&&Status=Rejected","popup window");
+				}
+			}
+ 			void CustomAction.rejectExpense(Add_Expense expenseDetails)
+			{
+				expenseDetails.Status="Rejected";
+				expenseDetails.Status_Updated_On=zoho.currentdate;
+			}
+ 			void CustomAction.sendMailToEmp(int employeeRecID)
+			{
+				openUrl("#Form:Send_Mail?ToMail=" + employeeRecID,"popup window");
+			}
+ 			void CustomAction.approveVisa(Add_Visa_Details visaDetails)
+			{
+				if(visaDetails.Status == "Requested")
+				{
+					visaDetails.Status="Approved By Manager";
+					visaDetails.Status_Updated_On=zoho.currentdate;
+					//to start the visa process,send mail to admin
+					sendmail
+					[
+						from :zoho.loginuserid
+						to :zoho.adminuserid
+						subject :"New Visa Request [Visa ID - " + visaDetails.Visa_ID + "]"
+						message :("<div>Hi,<br><br>New visa request has been raised by my team member [" + visaDetails.Employee.Employee_ID + " - " + visaDetails.Employee.Name) + "]. Kindly process this request as soon as possible.</div><div><br></div><div>Please&nbsp;click&nbsp;<a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "#Report:Assign_Request_Visa\"" + " target=\"_blank\">here</a>&nbsp;to approve/reject.</div><div><br>Regards,</div><div>" + zoho.loginuser + "</div>"
+					]
+				}
+				else if(visaDetails.Status == "InProgress")
+				{
+					openUrl("#Form:Add_Remarks?recID=" + visaDetails.ID + "&&OrginFrom=Visa&&Status=Valid Visa","popup window");
+				}
+			}
+ 			void CustomAction.approveTravel(New_Travel_Request travelDetails)
+			{
+				if(travelDetails.Status == "Requested")
+				{
+					travelDetails.Status="Approved By Manager";
+					travelDetails.Status_Updated_On=zoho.currentdate;
+					//To start the travel process,send mail to admin
+					sendmail
+					[
+						from :zoho.loginuserid
+						to :zoho.adminuserid
+						subject :"New Travel Request [Travel ID - " + travelDetails.Travel_ID + "]"
+						message :("<div>Hi,<br><br>New travel request has been raised by my team member [" + travelDetails.Employee.Employee_ID + " -&nbsp;" + travelDetails.Employee.Name) + "]. Kindly process this request as soon as possible.<br><br>Please&nbsp;click&nbsp;<a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "#Report:Assign_Request\"" + " target=\"_blank\">here</a>&nbsp;to approve/reject.<br><br>Regards,</div><div>" + zoho.loginuser + "</div>"
+					]
+				}
+				else if(travelDetails.Status == "InProgress")
+				{
+					openUrl("#Form:Add_Remarks?recID=" + travelDetails.ID + "&&OrginFrom=Travel&&Status=Approved","popup window");
+				}
+			}
+ 			void CustomAction.approveExpense(Add_Expense expenseDetails)
+			{
+				expenseDetails.Status="Approved";
+				expenseDetails.Status_Updated_On=zoho.currentdate;
+				sendmail
+				[
+					from :zoho.adminuserid
+					to :expenseDetails.Employee.Email
+					subject :"Expense approved for Travel ID - " + expenseDetails.Travel_ID
+					message :"Hi,<div><br></div><div>Your expense for Travel ID - " + expenseDetails.Travel_ID + " has been approved.</div><div><br></div><div>Click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "#Report:My_Expenses\"" + " target=\"_blank\">here</a> to view your expenses.</div><div><br></div><div>Regards,</div><div><br></div>"
+				]
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Run_Scripts_On_Click_of_A as "Run Scripts - On Click of 'Assign' Button"
+			{
+				type =  form
+				form = Assign_To_Travel_Desk
+				button = Assign
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						if(input.Origin_From == "Visa")
+										{
+											//Assigning the travel desk member to handle the visa request. 
+											visaDetails = Add_Visa_Details[ID == input.recID];
+											visaDetails.Visa_Handler=input.Assignee;
+											visaDetails.Status="InProgress";
+											visaDetails.Status_Updated_On=zoho.currentdate;
+											//Notify assignee about new visa request.
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :visaDetails.Visa_Handler.Email
+												subject :"[Visa ID : " + visaDetails.Visa_ID + "]New Visa Request"
+												message :("Hi,<div><br></div><div>New visa request [Visa ID : " + visaDetails.Visa_ID + "] has been assigned to you. Kindly process this request as soon as possible.</div><div><br></div><div>Please find the details below,</div><div><br></div><div><table cellpadding=\"2\" cellspacing=\"2\" border=\"1\" style=\"width: 100%; font-size: 10pt;\"><tbody><tr><td>Visa ID</td><td>" + visaDetails.Visa_ID + "<br></td></tr><tr><td>Employee</td><td>" + visaDetails.Employee.Name) + "<br></td></tr><tr><td>Country</td><td>" + visaDetails.Country.Country_Name + "<br></td></tr><tr><td>Start Date</td><td>" + visaDetails.Start_Date + "<br></td></tr><tr><td>End Date</td><td>" + visaDetails.End_Date + "<br></td></tr></tbody></table><br><div>Click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "#Report:Employee_Visa\"" + " target=\"_blank\">here</a> to view your assigned requests.</div><div><br></div><div>Regards,</div></div><div>" + zoho.adminuser + "<br></div><div><br></div><div><br></div>"
+											]
+										}
+										else if(input.Origin_From == "Travel")
+										{
+											//Assigning the travel desk member to handle the travel request. 
+											travelDetails = New_Travel_Request[ID == input.recID];
+											travelDetails.Ticket_Handler=input.Assignee;
+											travelDetails.Status="InProgress";
+											travelDetails.Status_Updated_On=zoho.currentdate;
+											//Notify assignee about new visa request.
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :travelDetails.Ticket_Handler.Email
+												subject :"[Travel ID : " + travelDetails.Travel_ID + "]New Travel Request"
+												message :("Hi,<div><br></div><div>New Travel&nbsp;request [Travel&nbsp;ID : " + travelDetails.Travel_ID + "] has been assigned to you. Kindly process this request as soon as possible.</div><div><br></div><div>Please find the details below,</div><div><br></div><div><table cellpadding=\"2\" cellspacing=\"2\" border=\"1\" style=\"font-size: 10pt; width: 499.333px;\"><tbody><tr><td>Travel ID</td><td>" + travelDetails.Travel_ID + "<br></td></tr><tr><td>Employee</td><td>" + travelDetails.Employee.Name) + "<br></td></tr><tr><td>Travel Type</td><td>" + travelDetails.Travel_Type + "<br></td></tr><tr><td>Leaving From</td><td>" + travelDetails.Leaving_From + "<br></td></tr><tr><td>Going To</td><td>" + travelDetails.Going_To + "<br></td></tr><tr><td>Depart Date</td><td>" + travelDetails.Depart_Date + "<br></td></tr><tr><td>Return Date</td><td>" + travelDetails.Return_Date + "<br></td></tr></tbody></table><br><div>Click&nbsp;<a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "#Report:Employee_Travels\"" + " target=\"_blank\">here</a>&nbsp;to view your assigned requests.</div><div><br></div><div>Regards,</div></div><div>" + zoho.adminuser + "<br></div><div><br></div>"
+											]
+										}
+										openUrl("#Script:page.refresh","same window");
+					)
+					}
+				}
+			}
+			Run_Scripts_On_Click_of_S as "Run Scripts - On Click of 'Submit' Button"
+			{
+				type =  form
+				form = Add_Remarks
+				button = Submit
+				on click
+				{
+					actions 
+					{
+					on click
+					(
+						if(input.OrginFrom == "Visa")
+										{
+											if(input.Status == "Valid Visa" && input.Visa_Cost == null)
+											{
+												alert "Please specify the Cost of visa in 'Visa Cost' field";
+											}
+											else
+											{
+												//Updating the status in visa details[Add_Visa_Details form] and notify employee about this status change. 
+												visaDetails = Add_Visa_Details[ID = input.recID];
+												visaDetails.Status=input.Status;
+												visaDetails.Visa_Cost=input.Visa_Cost;
+												visaDetails.Remarks=input.Remarks;
+												visaDetails.Status_Updated_On=zoho.currentdate;
+												sendmail
+												[
+													from :zoho.adminuserid
+													to :visaDetails.Employee.Email
+													subject :"Visa Status Updated [Visa ID - " + visaDetails.Visa_ID + "]"
+													message :"Hi,<div><br></div><div>Status of visa process has been updated by " + zoho.loginuser + ".</div><div><br></div><div>Click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "#Report:My_Visa\"" + " target=\"_blank\">here</a> to view the visa status.</div><div><br></div><div>								Regards,</div><div>" + zoho.adminuser + "<br></div>"
+												]
+												openUrl("#Script:page.refresh","same window");
+											}
+										}
+										else if(input.OrginFrom == "Travel")
+										{
+											//Updating the status in travel details[New_Travel_Request form] and notify employee about this status change. 
+											travelDetails = New_Travel_Request[ID == input.recID];
+											travelDetails.Status=input.Status;
+											travelDetails.Remarks=input.Remarks;
+											travelDetails.Status_Updated_On=zoho.currentdate;
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :travelDetails.Employee.Email
+												subject :"Status Updated [Travel ID - " + travelDetails.Travel_ID + "]"
+												message :"Hi,<div><br></div><div>Status of your travel approval process has been updated by " + zoho.loginuser + ".</div><div><br></div><div>Click&nbsp;<a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "#Report:My_Travels\"" + " target=\"_blank\">here</a>&nbsp;to view your travel status.</div><div><br></div><div>Regards,</div><div>" + zoho.adminuser + "</div>"
+											]
+											openUrl("#Script:page.refresh","same window");
+										}
+					)
+					}
+				}
+			}
+			Run_Scripts_While_Adding_8 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = New_Travel_Request
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Status_Updated_On = zoho.currentdate;
+										input.Employee = Add_Employee[Email == zoho.loginuserid].ID;
+										if(zoho.loginuserid == zoho.adminuserid)
+										{
+											show newEmployeeLink;
+										}
+										else
+										{
+											hide newEmployeeLink;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_9 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = New_Travel_Request
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Depart_Date <= zoho.currentdate || input.Return_Date <= zoho.currentdate)
+										{
+											alert "Please enter the valid date.";
+											cancel submit;
+										}
+										if(input.Passport_Number != null)
+										{
+											//Validating the passport expire date here
+											availablePassport = Add_Passport_Details[ID = input.Passport_Number];
+											if(availablePassport.Expires_On <= zoho.currentdate || availablePassport.Expires_On <= input.Depart_Date || availablePassport.Expires_On <= input.Return_Date)
+											{
+												alert "Sorry your passport is not valid for this travel, please renew your passport and update it.";
+												cancel submit;
+											}
+										}
+										if(input.Visa != null)
+										{
+											//Validating the visa validity here
+											visaDetails = Add_Visa_Details[ID = input.Visa];
+											if(input.Depart_Date < visaDetails.Start_Date || visaDetails.End_Date < input.Return_Date)
+											{
+												alert "Please check the visa validity with your travelling days.";
+												cancel submit;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_10 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = New_Travel_Request
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Employee.Reporting_To == zoho.loginuserid)
+										{
+											input.Status = "Approved By Manager";
+											//To start the travel process,send mail to admin
+											sendmail
+											[
+												from :zoho.loginuserid
+												to :zoho.adminuserid
+												subject :"New Travel Request [Travel ID - " + input.Travel_ID + "]"
+												message :("<div>Hi,<br><br>New travel request has been raised by my team member [" + input.Employee.Employee_ID + " -&nbsp;" + input.Employee.Name) + "]. Kindly process this request as soon as possible.<br><br>Please&nbsp;click&nbsp;<a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "#Report:Assign_Request\"" + " target=\"_blank\">here</a>&nbsp;to approve/reject.<br><br>Regards,</div><div>" + zoho.loginuser + "</div>"
+											]
+										}
+										else
+										{
+											//Notify manager to approve/reject the employee travel request.
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :input.Employee.Reporting_To
+												subject :"Travel Request approval [Travel ID - " + input.Travel_ID + "]"
+												message :("<div>Hi,<br><br>New travel request has been raised by your team member [" + input.Employee.Employee_ID + " -&nbsp;" + input.Employee.Name) + "].<br><br>Please&nbsp;click&nbsp;<a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "#Report:Member_Travels\"" + " target=\"_blank\">here</a>&nbsp;to approve/reject.<br><br>Regards,</div><div>" + zoho.adminuser + "</div>"
+											]
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing1 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = New_Travel_Request
+				record event = on edit
+
+	field rules
+	{
+					actions 
+					{
+						disable Employee;
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing2 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = New_Travel_Request
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(zoho.loginuserid == zoho.adminuserid)
+										{
+											show newEmployeeLink;
+										}
+										else
+										{
+											hide newEmployeeLink;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing5 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = New_Travel_Request
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(old.Passport_Number != input.Passport_Number && input.Passport_Number != null)
+										{
+											//Validating the passport expire date here
+											availablePassport = Add_Passport_Details[ID = input.Passport_Number];
+											if(availablePassport.Expires_On <= zoho.currentdate || availablePassport.Expires_On <= input.Depart_Date || availablePassport.Expires_On <= input.Return_Date)
+											{
+												alert "Sorry your passport is not valid for this travel, please renew your passport and update it.";
+												cancel submit;
+											}
+										}
+										if(old.Visa != input.Visa && input.Visa != null)
+										{
+											//Validating the visa validity here
+											visaDetails = Add_Visa_Details[ID = input.Visa];
+											if(input.Depart_Date < visaDetails.Start_Date || visaDetails.End_Date < input.Return_Date)
+											{
+												alert "Please check the visa validity with your travelling days.";
+												cancel submit;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always5 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = New_Travel_Request
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Status,Status_Updated_On,Ticket_Handler,Remarks;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always6 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = New_Travel_Request
+				record event = on add or edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Depart_Date > input.Return_Date)
+										{
+											alert "Please enter the valid date.";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always7 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = New_Travel_Request
+				record event = on add or edit
+
+	on user input of Accommodation.Checkout
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(row.Checkout <= zoho.currenttime)
+										{
+											alert "Only future time will be accepted here.";
+											row.Checkout=null;
+										}
+										if(row.Checkin != null && row.Checkout != null && row.Checkin > row.Checkout)
+										{
+											alert "Please enter proper time range.";
+											row.Checkout=null;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always8 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = New_Travel_Request
+				record event = on add or edit
+
+	on user input of Accommodation.Checkin
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(row.Checkin <= zoho.currenttime)
+										{
+											alert "Only future time will be accepted here.";
+											row.Checkin=null;
+										}
+										if(row.Checkin != null && row.Checkout != null && row.Checkin > row.Checkout)
+										{
+											alert "Please enter proper time range.";
+											row.Checkin=null;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_11 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Passport_Details
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Employee = Add_Employee[Email == zoho.loginuserid].ID;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin2 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_Passport_Details
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											visaCount = Add_Visa_Details[Passport_Number == input.ID].count();
+										if(visaCount > 0)
+										{
+											alert "Please delete all visas related to this passport before deleting";
+											cancel delete;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_12 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Visa_Details
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(zoho.loginuserid == zoho.adminuserid)
+										{
+											show newEmployeeLink;
+										}
+										else
+										{
+											hide newEmployeeLink;
+										}
+										input.Status_Updated_On = zoho.currentdate;
+										input.Employee = Add_Employee[Email == zoho.loginuserid].ID;
+										availablePassport = Add_Passport_Details[Employee == input.Employee];
+										//
+										if(availablePassport.count() > 0)
+										{
+											input.Passport_Number = availablePassport.ID;
+											disable Passport_Number;
+											//
+											if(availablePassport.Expires_On <= zoho.currentdate)
+											{
+												input.Passport_Error = "<font color='red'>Your passport was expired, please renew your passport and update it.</font>";
+												show Passport_Error;
+											}
+										}
+										else
+										{
+											input.Passport_Error = "<font color='red'>Couldn't find your passport details please update it.</font>";
+											show Passport_Error;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_13 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Visa_Details
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Start_Date > input.End_Date || input.Start_Date <= zoho.currentdate || input.End_Date <= zoho.currentdate)
+										{
+											alert "Please enter the valid date.";
+											cancel submit;
+										}
+										//Validating the passport expire date here
+										availablePassport = Add_Passport_Details[ID == input.Passport_Number];
+										if(availablePassport.Expires_On <= zoho.currentdate)
+										{
+											alert "Your passport was expired, please renew your passport and update it.";
+											cancel submit;
+										}
+										//Validating the visa existence
+										visaExistCount = Add_Visa_Details[Country == input.Country && Employee == input.Employee && (Start_Date > input.Start_Date && Start_Date <= input.End_Date) || (End_Date >= input.Start_Date && End_Date < input.End_Date)].count();
+										if(visaExistCount > 0)
+										{
+											alert "On your requested duration, Visa already exist for this country.";
+											cancel submit;
+										}
+										//Approval process is not necessary if you are updating your existing visa details so we are directly setting the status as 'valid visa'
+										if(input.Visa == "Existing Visa")
+										{
+											input.Status = "Valid Visa";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_14 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Visa_Details
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Visa == "New Visa")
+										{
+											if(input.Employee.Reporting_To == zoho.loginuserid)
+											{
+												input.Status = "Approved By Manager";
+												//To start the visa process,send mail to admin
+												sendmail
+												[
+													from :zoho.loginuserid
+													to :zoho.adminuserid
+													subject :"New Visa Request [Visa ID - " + input.Visa_ID + "]"
+													message :("<div>Hi,<br><br>New visa request has been raised by my team member [" + input.Employee.Employee_ID + " - " + input.Employee.Name) + "]. Kindly process this request as soon as possible.</div><div><br></div><div>Please&nbsp;click&nbsp;<a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "#Report:Assign_Request_Visa\"" + " target=\"_blank\">here</a>&nbsp;to approve/reject.</div><div><br>Regards,</div><div>" + zoho.loginuser + "</div>"
+												]
+											}
+											else
+											{
+												//Notify manager to approve/reject the employee visa request.
+												sendmail
+												[
+													from :zoho.adminuserid
+													to :input.Employee.Reporting_To
+													subject :"Visa Request approval for " + input.Country.Country_Name
+													message :("<div>Hi,<br><br>New visa request has been raised by your team member [" + input.Employee.Employee_ID + " - " + input.Employee.Name) + "].</div><div><br>Please&nbsp;click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "#Report:Member_Visa\"" + " target=\"_blank\">here</a>&nbsp;to approve/reject.<br><br>Regards,</div><div>" + zoho.adminuser + "<br></div>"
+												]
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing6 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Visa_Details
+				record event = on edit
+
+	field rules
+	{
+					actions 
+					{
+						disable Employee,Passport_Number,Visa;
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing7 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Visa_Details
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(zoho.loginuserid == zoho.adminuserid)
+										{
+											show newEmployeeLink;
+										}
+										else
+										{
+											hide newEmployeeLink;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing8 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Visa_Details
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Start_Date > input.End_Date)
+										{
+											alert "Please enter the valid date.";
+											cancel submit;
+										}
+										if(old.Country != input.Country || old.Start_Date != input.Start_Date || old.End_Date != input.End_Date)
+										{
+											//Validating the visa existences
+											visaExistCount = Add_Visa_Details[Country == input.Country && Employee == input.Employee && (Start_Date > input.Start_Date && Start_Date <= input.End_Date) || (End_Date >= input.Start_Date && End_Date < input.End_Date)].count();
+											if(visaExistCount > 0)
+											{
+												alert "On your requested duration, Visa already exist for this country.";
+												cancel submit;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always9 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Visa_Details
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Visa_Cost,Remarks,Status,Visa_Handler,Status_Updated_On,Passport_Error;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always10 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Visa_Details
+				record event = on add or edit
+
+	on user input of End_Date
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.End_Date != null && input.Passport_Number != null)
+										{
+											availablePassport = Add_Passport_Details[ID == input.Passport_Number];
+											if(availablePassport.Expires_On <= input.End_Date)
+											{
+												alert "Your passport will be expired on this date, please renew your passport and update it.";
+												input.End_Date = null;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always11 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Visa_Details
+				record event = on add or edit
+
+	on user input of Passport_Number
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Passport_Number != null)
+										{
+											hide Passport_Error;
+											availablePassport = Add_Passport_Details[ID == input.Passport_Number];
+											if(availablePassport.Expires_On <= zoho.currentdate)
+											{
+												input.Passport_Error = "<font color='red'>Your passport was expired, please renew your passport and update it.</font>";
+												show Passport_Error;
+											}
+											if(input.Start_Date != null && input.End_Date != null)
+											{
+												if(availablePassport.Expires_On <= input.Start_Date || availablePassport.Expires_On <= input.End_Date)
+												{
+													alert "Your passport will be expired on this date, please renew your passport and update it.";
+													input.Start_Date = null;
+													input.End_Date = null;
+												}
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always12 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Visa_Details
+				record event = on add or edit
+
+	on user input of Start_Date
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Start_Date != null && input.Passport_Number != null)
+										{
+											availablePassport = Add_Passport_Details[ID == input.Passport_Number];
+											if(availablePassport.Expires_On <= input.Start_Date)
+											{
+												alert "Your passport will be expired on this date, please renew your passport and update it.";
+												input.Start_Date = null;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_15 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Expense
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Employee = Add_Employee[Email == zoho.loginuserid].ID;
+										input.Submission_Date = zoho.currentdate;
+										input.Status_Updated_On = zoho.currentdate;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_16 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Expense
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Notify manager to approve/reject the employee expenses.
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Employee.Reporting_To
+											subject :"Expenses Updated [Travel ID: " + input.Travel_ID.Travel_ID + "]"
+											message :("Hi,<div><br><div><div>Expenses have been submitted for&nbsp;" + input.Travel_ID.Travel_ID + " by&nbsp;" + input.Employee.Employee_ID + " -&nbsp;" + input.Employee.Name) + ".</div><div><br></div><div>Kindly approve this expense amount '" + input.Total_Expenses + "'" + ".</div><div><br></div><div>Click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "#Report:Member_Expenses\"" + " target=\"_blank\">here</a> to view the expense details.</div><div><br></div><div>Regards,</div><div>" + zoho.adminuser + "<br></div></div></div>"
+										]
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always13 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Expense
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Status,Status_Updated_On;
+						disable Total_Expenses,Submission_Date,Employee;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always14 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Expense
+				record event = on add or edit
+
+	on user input of Expense_Details.Currency
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Calculation of total expense amount
+										addedAmount = 0.0;
+										for each  eachExpenseAmount in Expense_Details
+										{
+											if(eachExpenseAmount.Currency != null)
+											{
+												addedAmount = addedAmount + eachExpenseAmount.Currency;
+											}
+										}
+										input.Total_Expenses = addedAmount;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always15 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Expense
+				record event = on add or edit
+
+	on delete row of Expense_Details
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(row.Currency != null)
+										{
+											input.Total_Expenses = input.Total_Expenses - row.Currency;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_17 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Assign_To_Travel_Desk
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide recID,Origin_From;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_18 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Share the application with respective employee
+										thisapp.permissions.assignUserInProfile(input.Email,input.Profile);
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Email
+											subject :"Invitation to access 'Corporate Travel Desk'"
+											message :("Hi " + input.Name) + ",<div><br></div><div>You have been added as " + input.Profile + ".</div><div><br></div><div>Click&nbsp;<a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "\"" + " target=\"_blank\">here</a>&nbsp;to access \"Corporate Travel Desk\"</div><div><br></div><div>Regards,</div><div>" + zoho.adminuser + "</div>"
+										]
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing9 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Share the application with respective employee and unshare the old privileges if the employee profile or employee email id change
+										if(old.Email != input.Email || old.Profile != input.Profile)
+										{
+											thisapp.permissions.deleteuser(old.Email);
+											thisapp.permissions.assignUserInProfile(input.Email,input.Profile);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin3 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											//Unshare the application if we delete the employee record
+										thisapp.permissions.deleteuser(input.Email);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always16 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on add or edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											managerRec = Add_Employee[Profile == "Manager" || Profile == "Travel Desk Manager"].Email.getAll();
+										input.Reporting_To:ui.add(managerRec);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always17 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Employee
+				record event = on add or edit
+
+	on user input of Profile
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Profile == "Travel Desk Member")
+										{
+											Reporting_To.select(zoho.adminuserid);
+											disable Reporting_To;
+										}
+										else
+										{
+											input.Reporting_To = null;
+											enable Reporting_To;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_19 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Remarks
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide OrginFrom,recID;
+						disable Status;
+					}
+					actions  (Status == "Valid Visa")
+					{
+						show Visa_Cost;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_20 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Send_Mail
+				record event = on add
+
+	field rules
+	{
+					actions 
+					{
+						hide Date_Time;
+						disable FromMail;
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_21 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Send_Mail
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.FromMail = zoho.loginuserid;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_22 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Send_Mail
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Date_Time = zoho.currenttime;
+										for each  eachEmail in input.ToMail
+										{
+											sendmail
+											[
+												from :zoho.loginuserid
+												to :input.ToMail.Email
+												subject :input.Subject_field
+												message :input.Message_Content
+											]
+										}
+										openUrl("#Script:page.refresh","same window");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always18 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Passport_Details
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						disable Employee;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always19 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Passport_Details
+				record event = on add or edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Date_Of_Birth > zoho.currentdate || input.Issued_On > zoho.currentdate)
+										{
+											alert "Future dates are not allowed in 'Date Of Birth' and 'Issued On' field.";
+											cancel submit;
+										}
+										if(input.Issued_On >= input.Expires_On)
+										{
+											alert "Please Enter Valid Date in 'Expires_On' field";
+											cancel submit;
+										}
+										if(input.Issued_On <= input.Date_Of_Birth)
+										{
+											alert "Please check 'Issued On' date with your date of birth";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+		}
+		schedule
+		{
+			Passport_Expiry_Notificat as "Passport_Expiry_Notificat"
+			{
+				type =  schedule
+				form = Add_Passport_Details
+				start = before 2 days from Expires_On at "00:00:00"
+				time zone = "Asia/Kolkata"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Employee.Email
+											subject :"Passport Renewal Reminder"
+											message :("Hi&nbsp;" + input.Employee.Name) + ",<div><br></div><div>We are reaching out to remind you that your passport will be expire on&nbsp;" + input.Expires_On + ".</div><div><br></div><div>Kindly renew your passport and update the same <a href=\"https://app.zohocreator.com%3C%25%3Dzoho.appuri%25%3E/#Report:My_Passports\" target=\"_blank\">here</a>.</div><div><br></div><div>Regards,</div><div>" + zoho.adminuser + "<br></div>"
+										]
+					)
+					}
+				}
+			}
+		}
+		functions
+		{
+			Approve as "Approve"
+			{
+				type =  functions
+				form = New_Travel_Request
+				on start
+				{
+					actions 
+					{
+					CustomAction.approveTravel(New_Travel_Request);
+					}
+				}
+			}
+			Reject as "Reject"
+			{
+				type =  functions
+				form = New_Travel_Request
+				on start
+				{
+					actions 
+					{
+					CustomAction.rejectTravel(New_Travel_Request);
+					}
+				}
+			}
+			Assign as "Assign"
+			{
+				type =  functions
+				form = New_Travel_Request
+				on start
+				{
+					actions 
+					{
+					CustomAction.assignTravelDeskTravel(ID);
+					}
+				}
+			}
+			Send_Mail as "Send Mail"
+			{
+				type =  functions
+				form = New_Travel_Request
+				on start
+				{
+					actions 
+					{
+					CustomAction.sendMailToEmp(Employee);
+					}
+				}
+			}
+			Approve1 as "Approve"
+			{
+				type =  functions
+				form = New_Travel_Request
+				on start
+				{
+					actions 
+					{
+					CustomAction.approveTravel(New_Travel_Request);
+					}
+				}
+			}
+			Reject1 as "Reject"
+			{
+				type =  functions
+				form = New_Travel_Request
+				on start
+				{
+					actions 
+					{
+					CustomAction.rejectTravel(New_Travel_Request);
+					}
+				}
+			}
+			Approve2 as "Approve"
+			{
+				type =  functions
+				form = Add_Visa_Details
+				on start
+				{
+					actions 
+					{
+					CustomAction.approveVisa(Add_Visa_Details);
+					}
+				}
+			}
+			Reject2 as "Reject"
+			{
+				type =  functions
+				form = Add_Visa_Details
+				on start
+				{
+					actions 
+					{
+					CustomAction.rejectVisa(Add_Visa_Details);
+					}
+				}
+			}
+			Assign1 as "Assign"
+			{
+				type =  functions
+				form = Add_Visa_Details
+				on start
+				{
+					actions 
+					{
+					CustomAction.assignTravelDeskVisa(ID);
+					}
+				}
+			}
+			Send_Mail1 as "Send Mail"
+			{
+				type =  functions
+				form = Add_Visa_Details
+				on start
+				{
+					actions 
+					{
+					CustomAction.sendMailToEmp(Employee);
+					}
+				}
+			}
+			Approve3 as "Approve"
+			{
+				type =  functions
+				form = Add_Visa_Details
+				on start
+				{
+					actions 
+					{
+					CustomAction.approveVisa(Add_Visa_Details);
+					}
+				}
+			}
+			Reject3 as "Reject"
+			{
+				type =  functions
+				form = Add_Visa_Details
+				on start
+				{
+					actions 
+					{
+					CustomAction.rejectVisa(Add_Visa_Details);
+					}
+				}
+			}
+			Approve4 as "Approve"
+			{
+				type =  functions
+				form = Add_Expense
+				on start
+				{
+					actions 
+					{
+					CustomAction.approveExpense(Add_Expense);
+					}
+				}
+			}
+			Reject4 as "Reject"
+			{
+				type =  functions
+				form = Add_Expense
+				on start
+				{
+					actions 
+					{
+					CustomAction.rejectExpense(Add_Expense);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Travel Desk Member"
+			{
+				name = "Travel Desk Member"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "This profile will have travel desk member permissions.\n"
+				ModulePermissions
+				{
+					New_Travel_Request
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Employee_Travels={"View"}
+							My_Travels={"View"}
+						}
+						FieldPermissions
+						{
+							Return_Date{visibility:true,readonly:false}
+							Seat_Preference{visibility:true,readonly:false}
+							Status{visibility:true,readonly:false}
+							Status_Updated_On{visibility:true,readonly:false}
+							Travel_Type{visibility:true,readonly:false}
+							Purpose_Of_Travel{visibility:true,readonly:false}
+							Visa{visibility:true,readonly:false}
+							Ticket_Handler{visibility:true,readonly:false}
+							Leaving_From{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Passport_Number{visibility:true,readonly:false}
+							Going_To{visibility:true,readonly:false}
+							Employee{visibility:true,readonly:false}
+							Travel_ID{visibility:true,readonly:false}
+							Meal_Preference{visibility:true,readonly:false}
+							Remarks{visibility:true,readonly:false}
+							Depart_Date{visibility:true,readonly:false}
+							newEmployeeLink{visibility:true,readonly:false}
+							Accommodation{visibility:true,readonly:false}
+						}
+					}
+					Add_Expense
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							My_Expenses={"View"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Status_Updated_On{visibility:true,readonly:false}
+							Employee{visibility:true,readonly:false}
+							Travel_ID{visibility:true,readonly:false}
+							Submission_Date{visibility:true,readonly:false}
+							Total_Expenses{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Expense_Details{visibility:true,readonly:false}
+						}
+					}
+					Add_Country
+					{
+						FieldPermissions
+						{
+							Country_Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Travel_Purpose
+					{
+						FieldPermissions
+						{
+							Purpose_Of_Travel{visibility:true,readonly:false}
+						}
+					}
+					Add_Remarks
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							OrginFrom{visibility:true,readonly:false}
+							Remarks{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Visa_Cost{visibility:true,readonly:false}
+							recID{visibility:true,readonly:false}
+						}
+					}
+					Add_Passport_Details
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							My_Passports={"View","Edit"}
+						}
+						FieldPermissions
+						{
+							Passport_Copy{visibility:true,readonly:false}
+							Place_Of_Birth{visibility:true,readonly:false}
+							Employee{visibility:true,readonly:false}
+							Expires_On{visibility:true,readonly:false}
+							Given_Name{visibility:true,readonly:false}
+							Gender{visibility:true,readonly:false}
+							Surname{visibility:true,readonly:false}
+							Date_Of_Birth{visibility:true,readonly:false}
+							Passport_Number{visibility:true,readonly:false}
+							Issued_On{visibility:true,readonly:false}
+						}
+					}
+					Send_Mail
+					{
+						FieldPermissions
+						{
+							Date_Time{visibility:true,readonly:false}
+							Subject_field{visibility:true,readonly:false}
+							ToMail{visibility:true,readonly:false}
+							FromMail{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Message_Content{visibility:true,readonly:false}
+						}
+					}
+					Add_Visa_Details
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Employee_Visa={"View"}
+							My_Visa={"View"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Status_Updated_On{visibility:true,readonly:false}
+							Visa{visibility:true,readonly:false}
+							End_Date{visibility:true,readonly:false}
+							Visa_Cost{visibility:true,readonly:false}
+							Passport_Number{visibility:true,readonly:false}
+							Employee{visibility:true,readonly:false}
+							Remarks{visibility:true,readonly:false}
+							Visa_Handler{visibility:true,readonly:false}
+							Passport_Error{visibility:true,readonly:false}
+							Country{visibility:true,readonly:false}
+							newEmployeeLink{visibility:true,readonly:false}
+							Start_Date{visibility:true,readonly:false}
+							Visa_ID{visibility:true,readonly:false}
+						}
+					}
+					Assign_To_Travel_Desk
+					{
+						FieldPermissions
+						{
+							Assignee{visibility:true,readonly:false}
+							Origin_From{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							recID{visibility:true,readonly:false}
+						}
+					}
+					Add_Employee
+					{
+						FieldPermissions
+						{
+							Email{visibility:true,readonly:false}
+							Employee_ID{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Profile{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+							Reporting_To{visibility:true,readonly:false}
+						}
+					}
+				}
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Manager"
+			{
+				name = "Manager"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "This profile will have manager permissions.\n"
+				ModulePermissions
+				{
+					New_Travel_Request
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							My_Travels={"View"}
+							Member_Travels={"View"}
+						}
+						FieldPermissions
+						{
+							Return_Date{visibility:true,readonly:false}
+							Seat_Preference{visibility:true,readonly:false}
+							Status{visibility:true,readonly:false}
+							Status_Updated_On{visibility:true,readonly:false}
+							Travel_Type{visibility:true,readonly:false}
+							Purpose_Of_Travel{visibility:true,readonly:false}
+							Visa{visibility:true,readonly:false}
+							Ticket_Handler{visibility:true,readonly:false}
+							Leaving_From{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Passport_Number{visibility:true,readonly:false}
+							Going_To{visibility:true,readonly:false}
+							Employee{visibility:true,readonly:false}
+							Travel_ID{visibility:true,readonly:false}
+							Meal_Preference{visibility:true,readonly:false}
+							Remarks{visibility:true,readonly:false}
+							Depart_Date{visibility:true,readonly:false}
+							newEmployeeLink{visibility:true,readonly:false}
+							Accommodation{visibility:true,readonly:false}
+						}
+					}
+					Add_Expense
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Member_Expenses={"View"}
+							My_Expenses={"View"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Status_Updated_On{visibility:true,readonly:false}
+							Employee{visibility:true,readonly:false}
+							Travel_ID{visibility:true,readonly:false}
+							Submission_Date{visibility:true,readonly:false}
+							Total_Expenses{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Expense_Details{visibility:true,readonly:false}
+						}
+					}
+					Add_Country
+					{
+						FieldPermissions
+						{
+							Country_Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Travel_Purpose
+					{
+						FieldPermissions
+						{
+							Purpose_Of_Travel{visibility:true,readonly:false}
+						}
+					}
+					Add_Remarks
+					{
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							OrginFrom{visibility:true,readonly:false}
+							Remarks{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Visa_Cost{visibility:true,readonly:false}
+							recID{visibility:true,readonly:false}
+						}
+					}
+					Add_Passport_Details
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							My_Passports={"View","Edit"}
+						}
+						FieldPermissions
+						{
+							Passport_Copy{visibility:true,readonly:false}
+							Place_Of_Birth{visibility:true,readonly:false}
+							Employee{visibility:true,readonly:false}
+							Expires_On{visibility:true,readonly:false}
+							Given_Name{visibility:true,readonly:false}
+							Gender{visibility:true,readonly:false}
+							Surname{visibility:true,readonly:false}
+							Date_Of_Birth{visibility:true,readonly:false}
+							Passport_Number{visibility:true,readonly:false}
+							Issued_On{visibility:true,readonly:false}
+						}
+					}
+					Send_Mail
+					{
+						FieldPermissions
+						{
+							Date_Time{visibility:true,readonly:false}
+							Subject_field{visibility:true,readonly:false}
+							ToMail{visibility:true,readonly:false}
+							FromMail{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Message_Content{visibility:true,readonly:false}
+						}
+					}
+					Add_Visa_Details
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							My_Visa={"View"}
+							Member_Visa={"View"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Status_Updated_On{visibility:true,readonly:false}
+							Visa{visibility:true,readonly:false}
+							End_Date{visibility:true,readonly:false}
+							Visa_Cost{visibility:true,readonly:false}
+							Passport_Number{visibility:true,readonly:false}
+							Employee{visibility:true,readonly:false}
+							Remarks{visibility:true,readonly:false}
+							Visa_Handler{visibility:true,readonly:false}
+							Passport_Error{visibility:true,readonly:false}
+							Country{visibility:true,readonly:false}
+							newEmployeeLink{visibility:true,readonly:false}
+							Start_Date{visibility:true,readonly:false}
+							Visa_ID{visibility:true,readonly:false}
+						}
+					}
+					Assign_To_Travel_Desk
+					{
+						FieldPermissions
+						{
+							Assignee{visibility:true,readonly:false}
+							Origin_From{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							recID{visibility:true,readonly:false}
+						}
+					}
+					Add_Employee
+					{
+						FieldPermissions
+						{
+							Email{visibility:true,readonly:false}
+							Employee_ID{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Profile{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+							Reporting_To{visibility:true,readonly:false}
+						}
+					}
+				}
+			}
+			"Member"
+			{
+				name = "Member"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "This profile will have member permissions.\n"
+				ModulePermissions
+				{
+					New_Travel_Request
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							My_Travels={"View"}
+						}
+						FieldPermissions
+						{
+							Return_Date{visibility:true,readonly:false}
+							Seat_Preference{visibility:true,readonly:false}
+							Status{visibility:true,readonly:false}
+							Status_Updated_On{visibility:true,readonly:false}
+							Travel_Type{visibility:true,readonly:false}
+							Purpose_Of_Travel{visibility:true,readonly:false}
+							Visa{visibility:true,readonly:false}
+							Ticket_Handler{visibility:true,readonly:false}
+							Leaving_From{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Passport_Number{visibility:true,readonly:false}
+							Going_To{visibility:true,readonly:false}
+							Employee{visibility:true,readonly:false}
+							Travel_ID{visibility:true,readonly:false}
+							Meal_Preference{visibility:true,readonly:false}
+							Remarks{visibility:true,readonly:false}
+							Depart_Date{visibility:true,readonly:false}
+							newEmployeeLink{visibility:true,readonly:false}
+							Accommodation{visibility:true,readonly:false}
+						}
+					}
+					Add_Expense
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							My_Expenses={"View"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Status_Updated_On{visibility:true,readonly:false}
+							Employee{visibility:true,readonly:false}
+							Travel_ID{visibility:true,readonly:false}
+							Submission_Date{visibility:true,readonly:false}
+							Total_Expenses{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Expense_Details{visibility:true,readonly:false}
+						}
+					}
+					Add_Country
+					{
+						FieldPermissions
+						{
+							Country_Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Travel_Purpose
+					{
+						FieldPermissions
+						{
+							Purpose_Of_Travel{visibility:true,readonly:false}
+						}
+					}
+					Add_Remarks
+					{
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							OrginFrom{visibility:true,readonly:false}
+							Remarks{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Visa_Cost{visibility:true,readonly:false}
+							recID{visibility:true,readonly:false}
+						}
+					}
+					Add_Passport_Details
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							My_Passports={"View","Edit"}
+						}
+						FieldPermissions
+						{
+							Passport_Copy{visibility:true,readonly:false}
+							Place_Of_Birth{visibility:true,readonly:false}
+							Employee{visibility:true,readonly:false}
+							Expires_On{visibility:true,readonly:false}
+							Given_Name{visibility:true,readonly:false}
+							Gender{visibility:true,readonly:false}
+							Surname{visibility:true,readonly:false}
+							Date_Of_Birth{visibility:true,readonly:false}
+							Passport_Number{visibility:true,readonly:false}
+							Issued_On{visibility:true,readonly:false}
+						}
+					}
+					Send_Mail
+					{
+						FieldPermissions
+						{
+							Date_Time{visibility:true,readonly:false}
+							Subject_field{visibility:true,readonly:false}
+							ToMail{visibility:true,readonly:false}
+							FromMail{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Message_Content{visibility:true,readonly:false}
+						}
+					}
+					Add_Visa_Details
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							My_Visa={"View"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Status_Updated_On{visibility:true,readonly:false}
+							Visa{visibility:true,readonly:false}
+							End_Date{visibility:true,readonly:false}
+							Visa_Cost{visibility:true,readonly:false}
+							Passport_Number{visibility:true,readonly:false}
+							Employee{visibility:true,readonly:false}
+							Remarks{visibility:true,readonly:false}
+							Visa_Handler{visibility:true,readonly:false}
+							Passport_Error{visibility:true,readonly:false}
+							Country{visibility:true,readonly:false}
+							newEmployeeLink{visibility:true,readonly:false}
+							Start_Date{visibility:true,readonly:false}
+							Visa_ID{visibility:true,readonly:false}
+						}
+					}
+					Assign_To_Travel_Desk
+					{
+						FieldPermissions
+						{
+							Assignee{visibility:true,readonly:false}
+							Origin_From{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							recID{visibility:true,readonly:false}
+						}
+					}
+					Add_Employee
+					{
+						FieldPermissions
+						{
+							Email{visibility:true,readonly:false}
+							Employee_ID{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Profile{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+							Reporting_To{visibility:true,readonly:false}
+						}
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users."
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 5
+		new theme color = 1
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-hr-mgmt2"
+    	icon theme = "blue"
+		icons style = solid
+	}
+
+	phone
+	{
+		section  Dashboard
+		{
+			icon = "ui-1-dashboard-half"
+			page Dashboard
+			{
+				icon = "ui-1-dashboard-half"
+			}
+		}
+		section  Travel_Request
+		{
+			displayname= "Travel Request"
+			icon = "transportation-plane-17"
+			form  New_Travel_Request
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+			}
+			list My_Travels
+			{
+				icon = "transportation-plane-18"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Travel_ID as "Travel ID"
+								Depart_Date as "Depart Date"
+								Leaving_From as "Leaving From"
+								Going_To as "Going To"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Travel_ID as "Travel ID"
+								Status
+								Status_Updated_On as "Status Updated On"
+								Ticket_Handler as "Ticket Handler"
+								Remarks
+							)
+						)
+						datablock2
+						(
+			 				layout type = -2
+		     				title = "Travel Details"
+							fields
+							(
+								Travel_Type as "Travel Type"
+								Leaving_From as "Leaving From"
+								Going_To as "Going To"
+								Depart_Date as "Depart Date"
+								Return_Date as "Return Date"
+								Passport_Number as "Passport Number"
+								Visa
+								Purpose_Of_Travel as "Purpose Of Travel"
+								Meal_Preference as "Meal Preference"
+								Seat_Preference as "Seat Preference"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Member_Travels
+			{
+				icon = "users-2-wc"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Travel_ID as "Travel ID"
+								Depart_Date as "Depart Date"
+								Leaving_From as "Leaving From"
+								Going_To as "Going To"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+										"Approve"
+										"Reject"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Approve"
+										"Reject"
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Approve"
+										"Reject"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Travel_ID as "Travel ID"
+								Employee
+								Status
+								Status_Updated_On as "Status Updated On"
+								Ticket_Handler as "Ticket Handler"
+								Remarks
+							)
+						)
+						datablock2
+						(
+			 				layout type = -2
+		     				title = "Travel Details"
+							fields
+							(
+								Travel_Type as "Travel Type"
+								Leaving_From as "Leaving From"
+								Going_To as "Going To"
+								Depart_Date as "Depart Date"
+								Return_Date as "Return Date"
+								Passport_Number as "Passport Number"
+								Visa
+								Purpose_Of_Travel as "Purpose Of Travel"
+								Meal_Preference as "Meal Preference"
+								Seat_Preference as "Seat Preference"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Approve"
+			 				"Reject"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Assign_Request_Travel
+			{
+				icon = "files-archive-3d-check"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Travel_ID as "Travel ID"
+								Depart_Date as "Depart Date"
+								Leaving_From as "Leaving From"
+								Going_To as "Going To"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										"Assign"
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Assign"
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Assign"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Travel_ID as "Travel ID"
+								Employee
+								Status
+								Status_Updated_On as "Status Updated On"
+								Remarks
+							)
+						)
+						datablock2
+						(
+			 				layout type = -2
+		     				title = "Title"
+							fields
+							(
+								Travel_Type as "Travel Type"
+								Leaving_From as "Leaving From"
+								Going_To as "Going To"
+								Depart_Date as "Depart Date"
+								Return_Date as "Return Date"
+								Passport_Number as "Passport Number"
+								Visa
+								Purpose_Of_Travel as "Purpose Of Travel"
+								Meal_Preference as "Meal Preference"
+								Seat_Preference as "Seat Preference"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Assign"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Employee_Travels
+			{
+				icon = "users-multiple-11"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Travel_ID as "Travel ID"
+								Depart_Date as "Depart Date"
+								Leaving_From as "Leaving From"
+								Going_To as "Going To"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Print   	   
+										"Approve"
+										"Reject"
+										"Send Mail"
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Approve"
+										"Reject"
+										"Send Mail"
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Approve"
+										"Reject"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Travel_ID as "Travel ID"
+								Employee
+								Status
+								Status_Updated_On as "Status Updated On"
+								Remarks
+							)
+						)
+						datablock2
+						(
+			 				layout type = -2
+		     				title = "Travel Details"
+							fields
+							(
+								Travel_Type as "Travel Type"
+								Leaving_From as "Leaving From"
+								Going_To as "Going To"
+								Depart_Date as "Depart Date"
+								Return_Date as "Return Date"
+								Passport_Number as "Passport Number"
+								Visa
+								Purpose_Of_Travel as "Purpose Of Travel"
+								Meal_Preference as "Meal Preference"
+								Seat_Preference as "Seat Preference"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Approve"
+			 				"Reject"
+			 				"Send Mail"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list All_Travels
+			{
+				icon = "shopping-list"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Travel_ID as "Travel ID"
+								Depart_Date as "Depart Date"
+								Leaving_From as "Leaving From"
+								Going_To as "Going To"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Travel_ID as "Travel ID"
+								Employee
+								Status
+								Status_Updated_On as "Status Updated On"
+								Ticket_Handler as "Ticket Handler"
+								Remarks
+							)
+						)
+						datablock2
+						(
+			 				layout type = -2
+		     				title = "Travel Details"
+							fields
+							(
+								Travel_Type as "Travel Type"
+								Leaving_From as "Leaving From"
+								Going_To as "Going To"
+								Depart_Date as "Depart Date"
+								Return_Date as "Return Date"
+								Passport_Number as "Passport Number"
+								Visa
+								Purpose_Of_Travel as "Purpose Of Travel"
+								Meal_Preference as "Meal Preference"
+								Seat_Preference as "Seat Preference"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Passport_Details
+		{
+			displayname= "Passport Details"
+			icon = "users-contacts"
+			form  Add_Passport_Details
+			{
+				layout = left
+				icon = "users-2-a-add"
+			}
+			summary My_Passports
+			{
+				icon = "users-2-contacts-44"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Passport_Number as "Passport Number"
+								Given_Name as "Given Name"
+								Surname
+								Gender
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Employee
+								Passport_Number as "Passport Number"
+								Given_Name as "Given Name"
+								Surname
+								Gender
+								Date_Of_Birth as "Date Of Birth"
+								Place_Of_Birth as "Place Of Birth"
+								Issued_On as "Issued On"
+								Expires_On as "Expires On"
+								Passport_Copy as "Passport Copy"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list All_Passports
+			{
+				icon = "design-bullet-list-68"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Employee
+								Passport_Number as "Passport Number"
+								Given_Name as "Given Name"
+								Surname
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Employee
+								Passport_Number as "Passport Number"
+								Given_Name as "Given Name"
+								Surname
+								Gender
+								Date_Of_Birth as "Date Of Birth"
+								Place_Of_Birth as "Place Of Birth"
+								Issued_On as "Issued On"
+								Expires_On as "Expires On"
+								Passport_Copy as "Passport Copy"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Visa
+		{
+			icon = "location-map-big"
+			form  Add_Visa_Details
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+			}
+			summary My_Visa
+			{
+				icon = "education-paper"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Visa_ID as "Visa ID"
+								Country
+								Start_Date as "Start Date"
+								End_Date as "End Date"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Visa_ID as "Visa ID"
+								Country
+								Start_Date as "Start Date"
+								End_Date as "End Date"
+								Passport_Number as "Passport Number"
+								Visa
+								Visa_Handler as "Visa Handler"
+								Status
+								Status_Updated_On as "Status Updated On"
+								Remarks
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Member_Visa
+			{
+				icon = "users-badge-14"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Employee
+								Country
+								Start_Date as "Start Date"
+								End_Date as "End Date"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										"Approve"
+										"Reject"
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Approve"
+										"Reject"
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Approve"
+										"Reject"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Visa_ID as "Visa ID"
+								Employee
+								Country
+								Start_Date as "Start Date"
+								End_Date as "End Date"
+								Passport_Number as "Passport Number"
+								Status
+								Status_Updated_On as "Status Updated On"
+								Remarks
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Approve"
+			 				"Reject"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Assign_Request_Visa
+			{
+				icon = "ui-1-check-square-11"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Visa_ID as "Visa ID"
+								Country
+								Start_Date as "Start Date"
+								End_Date as "End Date"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										"Assign"
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Assign"
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Assign"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Visa_ID as "Visa ID"
+								Employee
+								Country
+								Start_Date as "Start Date"
+								End_Date as "End Date"
+								Visa
+								Passport_Number as "Passport Number"
+								Status
+								Status_Updated_On as "Status Updated On"
+								Remarks
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Assign"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Employee_Visa
+			{
+				icon = "users-badge-13"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Visa_ID as "Visa ID"
+								Country
+								Start_Date as "Start Date"
+								End_Date as "End Date"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										"Approve"
+										"Reject"
+										"Send Mail"
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Approve"
+										"Reject"
+										"Send Mail"
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Approve"
+										"Reject"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Visa_ID as "Visa ID"
+								Employee
+								Country
+								Start_Date as "Start Date"
+								End_Date as "End Date"
+								Passport_Number as "Passport Number"
+								Visa_Cost as "Visa Cost"
+								Status
+								Status_Updated_On as "Status Updated On"
+								Remarks
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Approve"
+			 				"Reject"
+			 				"Send Mail"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list All_Visa_Details
+			{
+				icon = "ui-3-playlist"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Visa_ID as "Visa ID"
+								Country
+								Start_Date as "Start Date"
+								End_Date as "End Date"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Visa_ID as "Visa ID"
+								Employee
+								Country
+								Start_Date as "Start Date"
+								End_Date as "End Date"
+								Passport_Number as "Passport Number"
+								Visa_Handler as "Visa Handler"
+								Visa
+								Visa_Cost as "Visa Cost"
+								Status
+								Status_Updated_On as "Status Updated On"
+								Remarks
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Expenses
+		{
+			icon = "business-money-coins"
+			form  Add_Expense
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+			}
+			list My_Expenses
+			{
+				icon = "business-money-bag"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Travel_ID as "Travel ID"
+								Total_Expenses as "Total Expenses"
+								Submission_Date as "Date"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Submission_Date as "Date"
+								Travel_ID as "Travel ID"
+								Total_Expenses as "Total Expenses"
+								Status
+								Status_Updated_On as "Status Updated On"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Member_Expenses
+			{
+				icon = "files-money"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Travel_ID as "Travel ID"
+								Total_Expenses as "Total Expenses"
+								Status
+								Submission_Date as "Date"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+										"Approve"
+										"Reject"
+    								)
+									on left swipe
+									(
+										"Approve"
+										"Reject"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Submission_Date as "Date"
+								Travel_ID as "Travel ID"
+								Employee
+								Total_Expenses as "Total Expenses"
+								Status
+								Status_Updated_On as "Status Updated On"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Approve"
+			 				"Reject"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list All_Expenses
+			{
+				icon = "business-money-13"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Travel_ID as "Travel ID"
+								Total_Expenses as "Total Expenses"
+								Employee
+								Status
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Submission_Date as "Date"
+								Employee
+								Travel_ID as "Travel ID"
+								Total_Expenses as "Total Expenses"
+								Status
+								Status_Updated_On as "Status Updated On"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Admin
+		{
+			icon = "ui-1-lock-circle"
+			custom Employees
+			{
+				icon = "users-multiple-11"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name as "Employee Name"
+								Employee_ID as "Employee ID"
+								Email
+								Profile
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Edit   	   
+										Delete   	   
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Employee_ID as "Employee ID"
+								Name as "Employee Name"
+								Email
+								Profile
+								Reporting_To as "Reporting To"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Countries
+			{
+				icon = "location-world-pin"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Country_Name as "Country Name"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Country_Name as "Country Name"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Travel_Purpose
+			{
+				icon = "design-bullet-list-67"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Purpose_Of_Travel as "Purpose Of Travel"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Purpose_Of_Travel as "Purpose Of Travel"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			custom Mails
+			{
+				icon = "ui-1-email-85"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Subject_field as "Subject"
+								Message_Content as "Message"
+								FromMail as "From"
+								Date_Time as "Date-Time"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Date_Time as "Date-Time"
+								FromMail as "From"
+								ToMail as "To"
+								Subject_field as "Subject"
+								Message_Content as "Message"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Hidden
+		{
+			hide = true
+			icon = "ui-2-menu-bold"
+			form  Assign_To_Travel_Desk
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_Employee
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_Country
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_Remarks
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			form  Add_Travel_Purpose
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			form  Send_Mail
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			pivotchart MonthWise_Expenses
+			{
+				icon = "shopping-credit-card-in"
+				hide = true
+			}
+			pivotchart MonthWise_Visits
+			{
+				icon = "transportation-plane-17"
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = blue
+        	layout = slidingpane
+		 	icons style = outline
+		}
+	}
+	tablet
+	{
+		section  Dashboard
+		{
+			icon = "ui-1-dashboard-half"
+			page Dashboard
+			{
+				icon = "ui-1-dashboard-half"
+			}
+		}
+		section  Travel_Request
+		{
+			displayname= "Travel Request"
+			icon = "travel-worldmap"
+			form  New_Travel_Request
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+			}
+			list My_Travels
+			{
+				icon = "transportation-plane-18"
+			}
+			list Member_Travels
+			{
+				icon = "users-2-wc"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Travel_ID as "Travel ID"
+								Depart_Date as "Depart Date"
+								Leaving_From as "Leaving From"
+								Going_To as "Going To"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+										"Approve"
+										"Reject"
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										"Approve"
+										"Reject"
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Approve"
+										"Reject"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Travel_ID as "Travel ID"
+								Employee
+								Status
+								Status_Updated_On as "Status Updated On"
+								Ticket_Handler as "Ticket Handler"
+								Remarks
+							)
+						)
+						datablock2
+						(
+			 				layout type = -2
+		     				title = "Travel Details"
+							fields
+							(
+								Travel_Type as "Travel Type"
+								Leaving_From as "Leaving From"
+								Going_To as "Going To"
+								Depart_Date as "Depart Date"
+								Return_Date as "Return Date"
+								Passport_Number as "Passport Number"
+								Visa
+								Purpose_Of_Travel as "Purpose Of Travel"
+								Meal_Preference as "Meal Preference"
+								Seat_Preference as "Seat Preference"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Approve"
+			 				"Reject"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Assign_Request_Travel
+			{
+				icon = "files-archive-3d-check"
+			}
+			list Employee_Travels
+			{
+				icon = "users-multiple-11"
+			}
+			list All_Travels
+			{
+				icon = "shopping-list"
+			}
+		}
+		section  Passport_Details
+		{
+			displayname= "Passport Details"
+			icon = "travel-passport"
+			form  Add_Passport_Details
+			{
+				layout = left
+				icon = "users-2-a-add"
+			}
+			summary My_Passports
+			{
+				icon = "users-2-contacts-44"
+			}
+			list All_Passports
+			{
+				icon = "design-bullet-list-68"
+			}
+		}
+		section  Visa
+		{
+			icon = "social-1-logo-paypal"
+			form  Add_Visa_Details
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+			}
+			summary My_Visa
+			{
+				icon = "education-paper"
+			}
+			list Member_Visa
+			{
+				icon = "users-badge-14"
+			}
+			list Assign_Request_Visa
+			{
+				icon = "ui-1-check-square-11"
+			}
+			list Employee_Visa
+			{
+				icon = "users-badge-13"
+			}
+			list All_Visa_Details
+			{
+				icon = "ui-3-playlist"
+			}
+		}
+		section  Expenses
+		{
+			icon = "shopping-credit-card-in"
+			form  Add_Expense
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+			}
+			list My_Expenses
+			{
+				icon = "business-money-bag"
+			}
+			list Member_Expenses
+			{
+				icon = "files-money"
+			}
+			list All_Expenses
+			{
+				icon = "business-money-13"
+			}
+		}
+		section  Admin
+		{
+			icon = "business-net"
+			custom Employees
+			{
+				icon = "users-multiple-11"
+			}
+			list Countries
+			{
+				icon = "location-world-pin"
+			}
+			list Travel_Purpose
+			{
+				icon = "design-bullet-list-67"
+			}
+			custom Mails
+			{
+				icon = "ui-1-email-85"
+			}
+		}
+		section  Hidden
+		{
+			hide = true
+			icon = "holidays-dead-hand"
+			form  Assign_To_Travel_Desk
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_Employee
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_Country
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_Remarks
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			form  Add_Travel_Purpose
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			form  Send_Mail
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			pivotchart MonthWise_Expenses
+			{
+				icon = "shopping-credit-card-in"
+				hide = true
+			}
+			pivotchart MonthWise_Visits
+			{
+				icon = "transportation-plane-17"
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = blue
+        	layout = slidingpane
+		 	icons style = outline
+		}
+	}
+	
+}

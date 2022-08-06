@@ -1,0 +1,2383 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 23:27:32
+ * Version      : 1.0
+ */
+ application "Call Logs"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "Asia/Kolkata"
+ 	time format = "24-hr"
+	section Dashboard_Section
+	{
+		displayname= "Dashboard"
+		icon = "ui-1-dashboard-half"
+				 page My_Logs 
+	 	 { 
+ 	 	 displayname = "My Logs" 
+
+ 	 	 icon = "envir-waste" 
+
+ 	 	 hide =  true
+	 	 Content="<zml \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"33%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n\n>\n\t<pr    \t\t height = '50px'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t hAlign = 'left'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Today&apos;s Calls'\n   \t\t size = '3'\n   \t\t color = '#2D2D2D'\n   \t\t marginLeft = '10px'\n   \t\t marginRight = '10px'\n   \t\t textAlign = 'center'\n   \t\t decimalPlaces = '2'\n   \t\t thousandsSeperator = ','\n   \t\t decimalSeperator = '.'\n   \t\t numberScale = 'none'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr><pr    \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#3394D8'\n   \t\t padding = '1px'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr><pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '50%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Call.ID.count'\n   \t\t criteria = '(((((Call_Direction == &quot;Inbound&quot;)&amp;&amp;(Call_Start_Time is today))&amp;&amp;(Call_Owner.Email == zoho.loginuserid))))'\n   \t\t size = '8'\n   \t\t color = '#57A9FB'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'My_Calls'\n   \t\t parameters = 'Call_Direction=Inbound&amp;&amp;Call_Start_Time_op=32'\n   \t\t target = 'new-window'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Inbound'\n   \t\t size = '3'\n   \t\t color = '#65666D'\n   \t\t bold = 'true'\n   \t\t marginTop = '3px'\n   \t\t textAlign = 'center'\n   \t\t decimalPlaces = '2'\n   \t\t thousandsSeperator = ','\n   \t\t decimalSeperator = '.'\n   \t\t numberScale = 'none'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc><pc    \t\t width = '50%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Call.ID.count'\n   \t\t criteria = '(((((Call_Direction == &quot;Outbound&quot;)&amp;&amp;(Call_Start_Time is today))&amp;&amp;(Call_Owner.Email == zoho.loginuserid))))'\n   \t\t size = '8'\n   \t\t color = '#BBE491'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'My_Calls'\n   \t\t parameters = 'Call_Direction=Outbound&amp;&amp;Call_Start_Time_op=32'\n   \t\t target = 'new-window'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Outbound'\n   \t\t size = '3'\n   \t\t color = '#65666D'\n   \t\t bold = 'true'\n   \t\t marginTop = '3px'\n   \t\t textAlign = 'center'\n   \t\t decimalPlaces = '2'\n   \t\t thousandsSeperator = ','\n   \t\t decimalSeperator = '.'\n   \t\t numberScale = 'none'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"34%\"\n   \t>\n\t<dspZml id='zml_snippet'>\n\t<![CDATA[htmlpage zml_snippet()\ncontent\n&lt;%{\n\tweekStartDate = toStartOfWeek(zoho.currentdate).toTime();\n\tweekEndDate = weekStartDate.addDay(6).addHour(23).addMinutes(59).addSeconds(59);\n\t%&gt;\n&lt;panel&gt;\n  &lt;pr height=&apos;fill&apos; width=&apos;fill&apos;&gt;\n    &lt;pc width=&apos;100%&apos;&gt;\n      &lt;pr height=&apos;50px&apos; width=&apos;fill&apos;&gt;\n        &lt;pc width=&apos;100%&apos; bgColor=&apos;#FFFFFF&apos; hAlign=&apos;left&apos; vAlign=&apos;middle&apos;&gt;\n          &lt;pr height=&apos;auto&apos; width=&apos;auto&apos;&gt;\n            &lt;pc&gt;\n              &lt;text type=&apos;Text&apos; value=&apos;Weekly Calls&apos; size=&apos;3&apos; color=&apos;#2D2D2D&apos; marginLeft=&apos;10px&apos; marginRight=&apos;10px&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n            &lt;\/pc&gt;\n          &lt;\/pr&gt;\n        &lt;\/pc&gt;\n      &lt;\/pr&gt;\n      &lt;pr width=&apos;fill&apos;&gt;\n        &lt;pc width=&apos;100%&apos; bgColor=&apos;#3394D8&apos; padding=&apos;1px&apos;&gt;\n          &lt;pr height=&apos;auto&apos; width=&apos;auto&apos;&gt;\n            &lt;pc&gt; &lt;\/pc&gt;\n          &lt;\/pr&gt;\n        &lt;\/pc&gt;\n      &lt;\/pr&gt;\n      &lt;pr height=&apos;fill&apos; width=&apos;fill&apos;&gt;\n        &lt;pc width=&apos;50%&apos; bgColor=&apos;#FFFFFF&apos; padding=&apos;20px&apos; hAlign=&apos;center&apos; vAlign=&apos;middle&apos;&gt;\n          &lt;pr height=&apos;auto&apos; width=&apos;auto&apos;&gt;\n            &lt;pc&gt;\n              &lt;pr&gt;\n                &lt;pc&gt;\n                  &lt;text type=&apos;Form Data&apos; value=&apos;thisapp.Add_Call.ID.count&apos; criteria=&apos;(((((Call_Direction == &amp;quot;Inbound&amp;quot;)&amp;amp;&amp;amp;(Call_Start_Time in this week))&amp;amp;&amp;amp;(Call_Owner.Email == zoho.loginuserid))))&apos; size=&apos;8&apos; color=&apos;#57A9FB&apos; textAlign=&apos;center&apos; displayType=&apos;actual&apos; action=&apos;Report&apos; componentLinkName=&apos;My_Calls&apos; parameters=&apos;Call_Direction=Inbound&amp;amp;&amp;amp;Call_Start_Time=&lt;%=weekStartDate%&gt;;&lt;%=weekEndDate%&gt;&amp;amp;&amp;amp;Call_Start_Time_op=58&apos; target=&apos;new-window&apos;&gt; &lt;\/text&gt;\n                &lt;\/pc&gt;\n              &lt;\/pr&gt;\n              &lt;pr&gt;\n                &lt;pc&gt;\n                  &lt;text type=&apos;Text&apos; value=&apos;Inbound&apos; size=&apos;3&apos; color=&apos;#65666D&apos; bold=&apos;true&apos; marginTop=&apos;3px&apos; textAlign=&apos;center&apos; decimalPlaces=&apos;2&apos; thousandsSeperator=&apos;,&apos; decimalSeperator=&apos;.&apos; numberScale=&apos;none&apos;&gt; &lt;\/text&gt;\n                &lt;\/pc&gt;\n              &lt;\/pr&gt;\n            &lt;\/pc&gt;\n          &lt;\/pr&gt;\n        &lt;\/pc&gt;\n        &lt;pc width=&apos;50%&apos; bgColor=&apos;#FFFFFF&apos; padding=&apos;20px&apos; hAlign=&apos;center&apos; vAlign=&apos;middle&apos;&gt;\n          &lt;pr height=&apos;auto&apos; width=&apos;auto&apos;&gt;\n            &lt;pc&gt;\n              &lt;pr&gt;\n                &lt;pc&gt;\n                  &lt;text type=&apos;Form Data&apos; value=&apos;thisapp.Add_Call.ID.count&apos; criteria=&apos;(((((Call_Direction == &amp;quot;Outbound&amp;quot;)&amp;amp;&amp;amp;(Call_Start_Time in this week))&amp;amp;&amp;amp;(Call_Owner.Email == zoho.loginuserid))))&apos; size=&apos;8&apos; color=&apos;#BBE491&apos; textAlign=&apos;center&apos; displayType=&apos;actual&apos; action=&apos;Report&apos; componentLinkName=&apos;My_Calls&apos; parameters=&apos;Call_Direction=Outbound&amp;amp;&amp;amp;Call_Start_Time=&lt;%=weekStartDate%&gt;;&lt;%=weekEndDate%&gt;&amp;amp;&amp;amp;Call_Start_Time_op=58&apos; target=&apos;new-window&apos;&gt; &lt;\/text&gt;\n                &lt;\/pc&gt;\n              &lt;\/pr&gt;\n              &lt;pr&gt;\n                &lt;pc&gt;\n                  &lt;text type=&apos;Text&apos; value=&apos;Outbound&apos; size=&apos;3&apos; color=&apos;#65666D&apos; bold=&apos;true&apos; marginTop=&apos;3px&apos; textAlign=&apos;center&apos; decimalPlaces=&apos;2&apos; thousandsSeperator=&apos;,&apos; decimalSeperator=&apos;.&apos; numberScale=&apos;none&apos;&gt; &lt;\/text&gt;\n                &lt;\/pc&gt;\n              &lt;\/pr&gt;\n            &lt;\/pc&gt;\n          &lt;\/pr&gt;\n        &lt;\/pc&gt;\n      &lt;\/pr&gt;\n    &lt;\/pc&gt;\n  &lt;\/pr&gt;\n&lt;\/panel&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dspZml>\n<\/column><column\n   \t\t width=\"33%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n\n>\n\t<pr    \t\t height = '50px'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t hAlign = 'left'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Monthly Calls'\n   \t\t size = '3'\n   \t\t color = '#2D2D2D'\n   \t\t marginLeft = '10px'\n   \t\t marginRight = '10px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr><pr    \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#3394D8'\n   \t\t padding = '1px'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr><pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '50%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Call.ID.count'\n   \t\t criteria = '(((((Call_Direction == &quot;Inbound&quot;)&amp;&amp;(Call_Start_Time in this month))&amp;&amp;(Call_Owner.Email == zoho.loginuserid))))'\n   \t\t size = '8'\n   \t\t color = '#57A9FB'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'My_Calls'\n   \t\t parameters = 'Call_Direction=Inbound&amp;&amp;Call_Start_Time_op=45'\n   \t\t target = 'new-window'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Inbound'\n   \t\t size = '3'\n   \t\t color = '#65666D'\n   \t\t bold = 'true'\n   \t\t marginTop = '3px'\n   \t\t textAlign = 'center'\n   \t\t decimalPlaces = '2'\n   \t\t thousandsSeperator = ','\n   \t\t decimalSeperator = '.'\n   \t\t numberScale = 'none'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc><pc    \t\t width = '50%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Call.ID.count'\n   \t\t criteria = '(((((Call_Direction == &quot;Outbound&quot;)&amp;&amp;(Call_Start_Time in this month))&amp;&amp;(Call_Owner.Email == zoho.loginuserid))))'\n   \t\t size = '8'\n   \t\t color = '#BBE491'\n   \t\t bold = 'true'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'My_Calls'\n   \t\t parameters = 'Call_Direction=Outbound&amp;&amp;Call_Start_Time_op=45'\n   \t\t target = 'new-window'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Outbound'\n   \t\t size = '3'\n   \t\t color = '#65666D'\n   \t\t bold = 'true'\n   \t\t marginTop = '3px'\n   \t\t textAlign = 'center'\n   \t\t decimalPlaces = '2'\n   \t\t thousandsSeperator = ','\n   \t\t decimalSeperator = '.'\n   \t\t numberScale = 'none'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'My_Weekly_Calls'\n   \t\t heightType = 'auto'\n   \t\t heightValue = '700'\n   \t\t iszreport = 'true'\n   \t\t title = 'Weekly Calls'\n\n\/>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'My_Monthly_Calls'\n   \t\t heightType = 'auto'\n   \t\t heightValue = '700'\n   \t\t iszreport = 'true'\n   \t\t title = 'Monthly Calls'\n\n\/>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+				 page All_Logs 
+	 	 { 
+ 	 	 displayname = "All Logs" 
+
+ 	 	 icon = "ui-1-dashboard-half" 
+
+ 	 	 hide =  true
+	 	 Content="<zml \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"33%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n\n>\n\t<pr    \t\t height = '50px'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t hAlign = 'left'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Today&apos;s Calls'\n   \t\t size = '3'\n   \t\t color = '#2D2D2D'\n   \t\t marginLeft = '10px'\n   \t\t marginRight = '10px'\n   \t\t textAlign = 'center'\n   \t\t decimalPlaces = '2'\n   \t\t thousandsSeperator = ','\n   \t\t decimalSeperator = '.'\n   \t\t numberScale = 'none'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr><pr    \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#3394D8'\n   \t\t padding = '1px'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr><pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '50%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Call.ID.count'\n   \t\t criteria = '((((Call_Direction == &quot;Inbound&quot;)&amp;&amp;(Call_Start_Time is today))))'\n   \t\t size = '8'\n   \t\t color = '#57A9FB'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'All_Calls'\n   \t\t parameters = 'Call_Direction=Inbound&amp;&amp;Call_Start_Time_op=32'\n   \t\t target = 'new-window'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Inbound'\n   \t\t size = '3'\n   \t\t color = '#65666D'\n   \t\t bold = 'true'\n   \t\t marginTop = '3px'\n   \t\t textAlign = 'center'\n   \t\t decimalPlaces = '2'\n   \t\t thousandsSeperator = ','\n   \t\t decimalSeperator = '.'\n   \t\t numberScale = 'none'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc><pc    \t\t width = '50%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Call.ID.count'\n   \t\t criteria = '((((Call_Direction == &quot;Outbound&quot;)&amp;&amp;(Call_Start_Time is today))))'\n   \t\t size = '8'\n   \t\t color = '#BBE491'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'All_Calls'\n   \t\t parameters = 'Call_Direction=Outbound&amp;&amp;Call_Start_Time_op=32'\n   \t\t target = 'new-window'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Outbound'\n   \t\t size = '3'\n   \t\t color = '#65666D'\n   \t\t bold = 'true'\n   \t\t marginTop = '3px'\n   \t\t textAlign = 'center'\n   \t\t decimalPlaces = '2'\n   \t\t thousandsSeperator = ','\n   \t\t decimalSeperator = '.'\n   \t\t numberScale = 'none'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column><column\n   \t\t width=\"34%\"\n   \t>\n\t<dspZml id='zml_snippet'>\n\t<![CDATA[htmlpage zml_snippet()\ndisplayname = &quot;script&quot;\ncontent\n&lt;%{\n\tweekStartDate = toStartOfWeek(zoho.currentdate).toTime();\n\tweekEndDate = weekStartDate.addDay(6).addHour(23).addMinutes(59).addSeconds(59);\n\t%&gt;\n&lt;panel&gt;\n  &lt;pr height=&apos;fill&apos; width=&apos;fill&apos;&gt;\n    &lt;pc width=&apos;100%&apos;&gt;\n      &lt;pr height=&apos;50px&apos; width=&apos;fill&apos;&gt;\n        &lt;pc width=&apos;100%&apos; bgColor=&apos;#FFFFFF&apos; hAlign=&apos;left&apos; vAlign=&apos;middle&apos;&gt;\n          &lt;pr height=&apos;auto&apos; width=&apos;auto&apos;&gt;\n            &lt;pc&gt;\n              &lt;text type=&apos;Text&apos; value=&apos;Weekly Calls&apos; size=&apos;3&apos; color=&apos;#2D2D2D&apos; marginLeft=&apos;10px&apos; marginRight=&apos;10px&apos; textAlign=&apos;center&apos;&gt; &lt;\/text&gt;\n            &lt;\/pc&gt;\n          &lt;\/pr&gt;\n        &lt;\/pc&gt;\n      &lt;\/pr&gt;\n      &lt;pr width=&apos;fill&apos;&gt;\n        &lt;pc width=&apos;100%&apos; bgColor=&apos;#3394D8&apos; padding=&apos;1px&apos;&gt;\n          &lt;pr height=&apos;auto&apos; width=&apos;auto&apos;&gt;\n            &lt;pc&gt; &lt;\/pc&gt;\n          &lt;\/pr&gt;\n        &lt;\/pc&gt;\n      &lt;\/pr&gt;\n      &lt;pr height=&apos;fill&apos; width=&apos;fill&apos;&gt;\n        &lt;pc width=&apos;50%&apos; bgColor=&apos;#FFFFFF&apos; padding=&apos;20px&apos; hAlign=&apos;center&apos; vAlign=&apos;middle&apos;&gt;\n          &lt;pr height=&apos;auto&apos; width=&apos;auto&apos;&gt;\n            &lt;pc&gt;\n              &lt;pr&gt;\n                &lt;pc&gt;\n                  &lt;text type=&apos;Form Data&apos; value=&apos;thisapp.Add_Call.ID.count&apos; criteria=&apos;((Call_Direction == &amp;quot;Inbound&amp;quot;)&amp;amp;&amp;amp;(Call_Start_Time in this week))&apos; size=&apos;8&apos; color=&apos;#57A9FB&apos; textAlign=&apos;center&apos; displayType=&apos;actual&apos; action=&apos;Report&apos; componentLinkName=&apos;All_Calls&apos; parameters=&apos;Call_Direction=Inbound&amp;amp;&amp;amp;Call_Start_Time=&lt;%=weekStartDate%&gt;;&lt;%=weekEndDate%&gt;&amp;amp;&amp;amp;Call_Start_Time_op=58&apos; target=&apos;new-window&apos;&gt; &lt;\/text&gt;\n                &lt;\/pc&gt;\n              &lt;\/pr&gt;\n              &lt;pr&gt;\n                &lt;pc&gt;\n                  &lt;text type=&apos;Text&apos; value=&apos;Inbound&apos; size=&apos;3&apos; color=&apos;#65666D&apos; bold=&apos;true&apos; marginTop=&apos;3px&apos; textAlign=&apos;center&apos; decimalPlaces=&apos;2&apos; thousandsSeperator=&apos;,&apos; decimalSeperator=&apos;.&apos; numberScale=&apos;none&apos;&gt; &lt;\/text&gt;\n                &lt;\/pc&gt;\n              &lt;\/pr&gt;\n            &lt;\/pc&gt;\n          &lt;\/pr&gt;\n        &lt;\/pc&gt;\n        &lt;pc width=&apos;50%&apos; bgColor=&apos;#FFFFFF&apos; padding=&apos;20px&apos; hAlign=&apos;center&apos; vAlign=&apos;middle&apos;&gt;\n          &lt;pr height=&apos;auto&apos; width=&apos;auto&apos;&gt;\n            &lt;pc&gt;\n              &lt;pr&gt;\n                &lt;pc&gt;\n                  &lt;text type=&apos;Form Data&apos; value=&apos;thisapp.Add_Call.ID.count&apos; criteria=&apos;((Call_Direction == &amp;quot;Outbound&amp;quot;)&amp;amp;&amp;amp;(Call_Start_Time in this week))&apos; size=&apos;8&apos; color=&apos;#BBE491&apos; textAlign=&apos;center&apos; displayType=&apos;actual&apos; action=&apos;Report&apos; componentLinkName=&apos;All_Calls&apos; parameters=&apos;Call_Direction=Outbound&amp;amp;&amp;amp;Call_Start_Time=&lt;%=weekStartDate%&gt;;&lt;%=weekEndDate%&gt;&amp;amp;&amp;amp;Call_Start_Time_op=58&apos; target=&apos;new-window&apos;&gt; &lt;\/text&gt;\n                &lt;\/pc&gt;\n              &lt;\/pr&gt;\n              &lt;pr&gt;\n                &lt;pc&gt;\n                  &lt;text type=&apos;Text&apos; value=&apos;Outbound&apos; size=&apos;3&apos; color=&apos;#65666D&apos; bold=&apos;true&apos; marginTop=&apos;3px&apos; textAlign=&apos;center&apos; decimalPlaces=&apos;2&apos; thousandsSeperator=&apos;,&apos; decimalSeperator=&apos;.&apos; numberScale=&apos;none&apos;&gt; &lt;\/text&gt;\n                &lt;\/pc&gt;\n              &lt;\/pr&gt;\n            &lt;\/pc&gt;\n          &lt;\/pr&gt;\n        &lt;\/pc&gt;\n      &lt;\/pr&gt;\n    &lt;\/pc&gt;\n  &lt;\/pr&gt;\n&lt;\/panel&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dspZml>\n<\/column><column\n   \t\t width=\"33%\"\n   \t>\n\t<panel \n>\n\t<pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n\n>\n\t<pr    \t\t height = '50px'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t hAlign = 'left'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Monthly Calls'\n   \t\t size = '3'\n   \t\t color = '#2D2D2D'\n   \t\t marginLeft = '10px'\n   \t\t marginRight = '10px'\n   \t\t textAlign = 'center'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr><pr    \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '100%'\n   \t\t bgColor = '#3394D8'\n   \t\t padding = '1px'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr><pr    \t\t height = 'fill'\n   \t\t width = 'fill'\n\n>\n\t<pc    \t\t width = '50%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Call.ID.count'\n   \t\t criteria = '((((Call_Direction == &quot;Inbound&quot;)&amp;&amp;(Call_Start_Time in this month))))'\n   \t\t size = '8'\n   \t\t color = '#57A9FB'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'All_Calls'\n   \t\t parameters = 'Call_Direction=Inbound&amp;&amp;Call_Start_Time_op=45'\n   \t\t target = 'new-window'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Inbound'\n   \t\t size = '3'\n   \t\t color = '#65666D'\n   \t\t bold = 'true'\n   \t\t marginTop = '3px'\n   \t\t textAlign = 'center'\n   \t\t decimalPlaces = '2'\n   \t\t thousandsSeperator = ','\n   \t\t decimalSeperator = '.'\n   \t\t numberScale = 'none'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc><pc    \t\t width = '50%'\n   \t\t bgColor = '#FFFFFF'\n   \t\t padding = '20px'\n   \t\t hAlign = 'center'\n   \t\t vAlign = 'middle'\n\n>\n\t<pr    \t\t height = 'auto'\n   \t\t width = 'auto'\n\n>\n\t<pc \n>\n\t<pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Form Data'\n   \t\t value = 'thisapp.Add_Call.ID.count'\n   \t\t criteria = '((((Call_Direction == &quot;Outbound&quot;)&amp;&amp;(Call_Start_Time in this month))))'\n   \t\t size = '8'\n   \t\t color = '#BBE491'\n   \t\t bold = 'true'\n   \t\t textAlign = 'center'\n   \t\t displayType = 'actual'\n   \t\t action = 'OpenReport'\n   \t\t componentLinkName = 'All_Calls'\n   \t\t parameters = 'Call_Direction=Outbound&amp;&amp;Call_Start_Time_op=45'\n   \t\t target = 'new-window'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr><pr \n>\n\t<pc \n>\n\t<text    \t\t type = 'Text'\n   \t\t value = 'Outbound'\n   \t\t size = '3'\n   \t\t color = '#65666D'\n   \t\t bold = 'true'\n   \t\t marginTop = '3px'\n   \t\t textAlign = 'center'\n   \t\t decimalPlaces = '2'\n   \t\t thousandsSeperator = ','\n   \t\t decimalSeperator = '.'\n   \t\t numberScale = 'none'\n\n>\n<\/text>\n\n\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/pc>\n<\/pr>\n<\/panel>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Weekly_Logs'\n   \t\t heightType = 'auto'\n   \t\t heightValue = '700'\n   \t\t iszreport = 'true'\n   \t\t title = 'Weekly Logs'\n\n\/>\n<\/column>\n<\/row><row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<report    \t\t appLinkName = 'thisapp'\n   \t\t linkName = 'Monthly_Logs'\n   \t\t heightType = 'auto'\n   \t\t heightValue = '700'\n   \t\t iszreport = 'true'\n   \t\t title = 'Monthly Logs'\n\n\/>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+				 page Dashboard 
+	 	 { 
+ 	 	 displayname = "Dashboard" 
+
+ 	 	 icon = "ui-1-dashboard-half" 
+	 	 Content="<zml \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dsp id='Dashboard1'>\n\t<![CDATA[htmlpage Dashboard1()\ncontent\n&lt;%{\n\trepRec = Add_Sales_Rep[ID != 0];\n\tif(repRec.count() == 0)\n\t{\n\t\tinsert into Add_Sales_Rep\n\t\t[\n\t\t\tEmail=zoho.loginuserid\n\t\t\tName.first_name=zoho.loginuser\n\t\t\tAdded_User=zoho.loginuser\n\t\t]\n\t}\n\t%&gt;\n&lt;style&gt;\n\t\t\t\t\t\t\t\t\t \n\t\t\t\t\t\t\t\t\t  .repTab{\n\t\t\t\t\t\t\t\t\t\t      cursor: default;\n\t\t\t\t\t\t\t\t\t  padding-top: 5px;\n\t\t\t\t\t\t\t\t\t  height: 25px;\n\t\t\t\t\t\t\t\t\t  background-color: #ddd;\n\t\t\t\t\t\t\t\t\t  float:left;\n\t\t\t\t\t\t\t\t\t  width:10%;\n\t\t\t\t\t\t\t\t\t  text-align: center;\n\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t  .adminTab{\n\t\t\t\t\t\t\t\t\t\t      cursor: pointer;\n\t\t\t\t\t\t\t\t\t  padding-top: 5px;\n\t\t\t\t\t\t\t\t\t  height: 25px;\n\t\t\t\t\t\t\t\t\t  background-color: #eaeaea;\n\t\t\t\t\t\t\t\t\t  float:left;\n\t\t\t\t\t\t\t\t\t  width:10%;\n\t\t\t\t\t\t\t\t\t  text-align: center;\n\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t  .repFrame{\n\t\t\t\t\t\t\t\t\t  display:block;\n\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t  .adminFrame{\n\t\t\t\t\t\t\t\t\t  visibility:hidden;\n\t\t\t\t\t\t\t\t\t  position:absolute;\n\t\t\t\t\t\t\t\t\t  top:45px;\n\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t  #adminCheck,#repCheck\n\t\t\t\t\t\t\t\t\t  {\n\t\t\t\t\t\t\t\t\t  opacity:0;\n\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t  input[type=radio]#repCheck:checked ~ label.repTab\n\t\t\t\t\t\t\t\t\t  {\n\t\t\t\t\t\t\t\t\t\t  cursor: default;\n\t\t\t\t\t\t\t\t\t  background-color:#ddd;\n\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t  input[type=radio]#repCheck:checked ~ label.adminTab\n\t\t\t\t\t\t\t\t\t  {\n\t\t\t\t\t\t\t\t\t\t  cursor: pointer;\n\t\t\t\t\t\t\t\t\t  background-color:#eaeaea;\n\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t  input[type=radio]#adminCheck:checked ~ label.repTab\n\t\t\t\t\t\t\t\t\t  {\n\t\t\t\t\t\t\t\t\t\t  cursor: pointer;\n\t\t\t\t\t\t\t\t\t  background-color:#eaeaea;\n\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t  input[type=radio]#adminCheck:checked ~ label.adminTab\n\t\t\t\t\t\t\t\t\t  {\n\t\t\t\t\t\t\t\t\t\t  cursor: default;\n\t\t\t\t\t\t\t\t\t  background-color:#ddd;\n\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t  input[type=radio]#repCheck:checked ~ iframe.repFrame\n\t\t\t\t\t\t\t\t\t  {\n\t\t\t\t\t\t\t\t\t  display:block;\n\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\tinput[type=radio]#repCheck:checked ~ iframe.adminFrame\n\t\t\t\t\t\t\t\t\t  {\n\t\t\t\t\t\t\t\t\t  display:none;\n\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t  input[type=radio]#adminCheck:checked ~ iframe.repFrame\n\t\t\t\t\t\t\t\t\t  {\n\t\t\t\t\t\t\t\t\t  display:none;\n\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\tinput[type=radio]#adminCheck:checked ~ iframe.adminFrame\n\t\t\t\t\t\t\t\t\t  {\n\t\t\t\t\t\t\t\t\t  visibility:visible;\n\t\t\t\t\t\t\t\t\t    position:relative;\n\t\t\t\t\t\t\t\t\t  top:0;\n\t\t\t\t\t\t\t\t\t  display:block;\n\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t  &lt;\/style&gt;\n\t\t\t\t\t\t\t\t\t  &lt;div style=&quot;background: #f2f4f5;&quot;&gt;\n\t\t\t\t\t\t\t\t\t  \n\t\t\t\t\t\t\t\t\t  &lt;input type=&quot;radio&quot; name=&quot;users&quot; id=&quot;repCheck&quot;&gt;\n\t\t\t\t\t\t\t\t\t  &lt;input type=&quot;radio&quot; name=&quot;users&quot; id=&quot;adminCheck&quot;&gt;&lt;label class=&quot;repTab&quot; for=&quot;repCheck&quot;&gt;My Logs&lt;\/label&gt;&lt;label class=&quot;adminTab&quot; for=&quot;adminCheck&quot;&gt;ALL Logs&lt;\/label&gt;\n\t\t\t\t\t\t\t\t\t  &lt;iframe name=&quot;framesss&quot; class=&quot;repFrame&quot; style=&quot;background-color: #f2f4f5;&quot; height=&apos;824px&apos; width=&apos;100%&apos; frameborder=&apos;0&apos; scrolling=&apos;no&apos; src=&apos;&lt;%=zoho.appuri%&gt;view-embed\/DashboardDetails?userType=rep&apos;&gt;&lt;\/iframe&gt;\n\t\t\t\t\t\t\t\t\t  &lt;iframe name=&quot;framesss&quot; class=&quot;adminFrame&quot; style=&quot;background-color: #f2f4f5;&quot; height=&apos;824px&apos; width=&apos;100%&apos; frameborder=&apos;0&apos; scrolling=&apos;no&apos; src=&apos;&lt;%=zoho.appuri%&gt;view-embed\/DashboardDetails?userType=admin&apos;&gt;&lt;\/iframe&gt;\n\t\t\t\t\t\t\t\t\t  &lt;\/div&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+	}
+	section Add_Call_Log
+	{
+		displayname= "Add Call Log"
+		icon = "ui-1-bold-add"
+		form Add_Call
+		{
+			displayname = "Add Call"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Type
+			(
+				type = radiobuttons
+				values = {"Current Call", "Completed Call"}
+				initial value = "Completed Call"
+				layout = 2
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Call_Direction
+			(
+				type = picklist
+				displayname = "Call Direction"
+				values = {"Inbound", "Outbound"}
+				initial value = "Inbound"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Customer
+			(
+				type = picklist
+				values  = Add_Customer.ID
+    			displayformat = [Phone]
+				allow new entries = true
+				[
+					displayname = "New Customer"
+				]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Purpose_Of_Call
+			(
+    			type = text
+				displayname = "Purpose Of Call"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Call_Summary
+			(
+    			type = richtext
+				displayname = "Call Summary"
+				height = 200px
+				toolbar = enable
+				[
+					style, font-color, background-color, alignment, link, table, bullets-and-numbering, 
+					font-size : {1, 2, 3, 4, 5, 6, 7},
+					font-family : {"Serif", "Arial", "Courier New", "Georgia", "Tahoma", "Times New Roman", "Trebuchet", "Verdana", "Comic Sans Ms"}
+				]
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Follow_up_Required
+			(
+				type = radiobuttons
+				displayname = "Follow-up Required?"
+				values = {"Yes", "No"}
+				initial value = "No"
+				layout = 2
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Follow_up_Time
+			(
+    			type = datetime
+				displayname = "Follow-up Time"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Follow_up_Notes
+			(
+    			type = textarea
+				displayname = "Follow-up Notes"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			End_Call
+			(
+    			type = checkbox
+				displayname = "End Call"
+				initial value = false
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			must have Call_Start_Time
+			(
+    			type = datetime
+				displayname = "Call Start Time"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			must have Call_End_Time
+			(
+    			type = datetime
+				displayname = "Call End Time"
+				timedisplayoptions = "hh:mm:ss"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Duration
+			(
+    			type = text
+				initial value = "00:00:00"
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Call_Owner
+			(
+				type = picklist
+				displayname = "Call Owner"
+				values  = Add_Sales_Rep.ID
+    			displayformat = [Email]
+				searchable = true
+				sortorder = ascending
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "design-2-3d-29"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	section My_Logs
+	{
+		displayname= "My Logs"
+		icon = "media-2-headphones-mic"
+		list My_Calls
+		{
+			displayName = "Calls"
+			show all rows from Add_Call  [Call_Owner.Email == zoho.loginuserid]  
+			(
+				Follow_up_Notes as "Follow-up Notes"
+				Call_Direction as "Call Direction"
+				Purpose_Of_Call as "Purpose Of Call"
+				Call_Summary as "Call Summary"
+				Call_Start_Time as "Call Start Time"
+				Call_End_Time as "Call End Time"
+				Duration
+				Follow_up_Time as "Follow-up Time"
+				Follow_up_Required as "Follow-up Required?"
+				Customer
+				(
+					view = Customers
+				)
+			)
+			filters
+			(
+				Type
+				Call_Direction
+				Follow_up_Required
+			)
+			group by
+			(
+				Call_Direction ascending
+			)
+			options
+			(
+				icon = "social-1-logo-whatsapp"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Purpose_Of_Call as "Purpose Of Call"
+							Call_Summary as "Call Summary"
+							Customer
+							Call_Start_Time as "Call Start Time"
+							Call_End_Time as "Call End Time"
+							Follow_up_Required as "Follow-up Required?"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Call_Direction as "Call Direction"
+							Purpose_Of_Call as "Purpose Of Call"
+							Call_Summary as "Call Summary"
+							Customer
+							Call_Start_Time as "Call Start Time"
+							Call_End_Time as "Call End Time"
+							Duration
+							Follow_up_Required as "Follow-up Required?"
+							Follow_up_Time as "Follow-up Time"
+							Follow_up_Notes as "Follow-up Notes"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section All_Logs
+	{
+		displayname= "All Logs"
+		icon = "travel-world"
+		list All_Calls
+		{
+			displayName = "Calls"
+			show all rows from Add_Call    
+			(
+				Duration
+				Follow_up_Notes as "Follow-up Notes"
+				Follow_up_Time as "Follow-up Time"
+				Call_End_Time as "Call End Time"
+				Call_Start_Time as "Call Start Time"
+				Call_Summary as "Call Summary"
+				Purpose_Of_Call as "Purpose Of Call"
+				Call_Direction as "Call Direction"
+				Call_Owner as "Call Owner"
+				Follow_up_Required as "Follow-up Required?"
+				Customer
+				(
+					view = Customers
+				)
+			)
+			filters
+			(
+				Type
+				Follow_up_Required
+				Call_Direction
+			)
+			group by
+			(
+				Call_Owner ascending
+			)
+			options
+			(
+				icon = "social-1-logo-whatsapp"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Call_Direction as "Call Direction"
+							Purpose_Of_Call as "Purpose Of Call"
+							Call_Summary as "Call Summary"
+							Customer
+							Call_Start_Time as "Call Start Time"
+							Call_End_Time as "Call End Time"
+							Follow_up_Required as "Follow-up Required?"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Call_Owner as "Call Owner"
+							Call_Direction as "Call Direction"
+							Purpose_Of_Call as "Purpose Of Call"
+							Call_Summary as "Call Summary"
+							Customer
+							Call_Start_Time as "Call Start Time"
+							Call_End_Time as "Call End Time"
+							Duration
+							Follow_up_Required as "Follow-up Required?"
+							Follow_up_Time as "Follow-up Time"
+							Follow_up_Notes as "Follow-up Notes"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		pivotchart Monthly_Logs
+		{ 
+			displayname = "Monthly Logs"
+			based on Autoview_1490229927825_Add_Call
+					hide = true
+							icon = "shopping-newsletter"				show all rows from Add_Call
+				(
+ 					Follow_up_Time  as "Follow-up Time"
+ 					Purpose_Of_Call  as "Purpose Of Call"
+ 					Duration 
+ 					End_Call  as "End Call"
+ 					Call_Direction  as "Call Direction"
+ 					Type 
+ 					Customer 
+ 					Follow_up_Required  as "Follow-up Required?"
+ 					Call_Start_Time  as "Call Start Time"
+ 					Call_End_Time  as "Call End Time"
+ 					Call_Owner  as "Call Owner Mail"
+				)
+		}
+		pivotchart Weekly_Logs
+		{ 
+			displayname = "Weekly Logs"
+			based on Autoview_1490229927825_Add_Call
+					hide = true
+							icon = "business-progress"				show all rows from Add_Call
+				(
+ 					Follow_up_Time  as "Follow-up Time"
+ 					Purpose_Of_Call  as "Purpose Of Call"
+ 					Duration 
+ 					End_Call  as "End Call"
+ 					Call_Direction  as "Call Direction"
+ 					Type 
+ 					Customer 
+ 					Follow_up_Required  as "Follow-up Required?"
+ 					Call_Start_Time  as "Call Start Time"
+ 					Call_End_Time  as "Call End Time"
+ 					Call_Owner  as "Call Owner Mail"
+				)
+		}
+	}
+	section Customers_Section
+	{
+		displayname= "Customers"
+		icon = "users-2-contacts-44"
+		custom Customers
+		{
+			displayName = "Customers"
+			show all rows from Add_Customer    
+			(
+				Country
+				Phone
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+			)
+			options
+			(
+				icon = "users-multiple-19"
+	 		)
+			custom actions
+			(
+				"Conversation History"
+				(
+	  			workflow = Conversation_History
+				show action in view header = true
+				show action in edit record menu = true
+				success message = ""
+				)
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Phone
+							Country
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								"Conversation History"
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								"Conversation History"
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Phone
+							Country
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Conversation History"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Sales_Rep_Section
+	{
+		displayname= "Sales Reps"
+		icon = "users-multiple-11"
+		custom Sales_Reps
+		{
+			displayName = "Sales Reps"
+			show all rows from Add_Sales_Rep    
+			(
+				Email
+				Phone_Number as "Phone Number"
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+			)
+			options
+			(
+				icon = "business-businessman-03"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Email
+							Phone_Number as "Phone Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Email
+							Phone_Number as "Phone Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Hidden
+	{
+		hide = true
+		icon = "ui-2-menu-bold"
+				 page DashboardDetails(userType) 
+	 	 { 
+ 	 	 displayname = "DashboardDetails" 
+
+ 	 	 icon = "ui-1-database" 
+
+ 	 	 hide =  true
+	 	 Content="<zml \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n\t\t>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width=\"100%\"\n   \t>\n\t<dsp id='DashboardDetails1'>\n\t<![CDATA[htmlpage DashboardDetails1(userType)\ncontent\n&lt;%{\n\tfromDateTime = zoho.currentdate.toTime();\n\ttoDateTime = zoho.currentdate.addHour(23).addMinutes(59).addSeconds(59);\n\tweekStartDate = toStartOfWeek(zoho.currentdate).toTime();\n\tweekEndDate = weekStartDate.addDay(6).addHour(23).addMinutes(59).addSeconds(59);\n\tmonthlyStartDate = toStartOfMonth(zoho.currentdate).toTime();\n\tmonthlyEndDate = eomonth(zoho.currentdate,0).addHour(23).addMinutes(59).addSeconds(59);\n\tif(input.userType == &quot;admin&quot;)\n\t{\n\t\tweeklyCallLink = &quot;Weekly_Logs&quot;;\n\t\tmonthlyCallLink = &quot;Monthly_Logs&quot;;\n\t\tcallInbound = Add_Call[Call_Direction == &quot;Inbound&quot; &amp;&amp; Call_Start_Time &gt;= fromDateTime &amp;&amp; Call_Start_Time &lt;= toDateTime].count();\n\t\tcallOutbound = Add_Call[Call_Direction == &quot;Outbound&quot; &amp;&amp; Call_Start_Time &gt;= fromDateTime &amp;&amp; Call_Start_Time &lt;= toDateTime].count();\n\t\tweeklyCallInbound = Add_Call[Call_Direction == &quot;Inbound&quot; &amp;&amp; Call_Start_Time &gt;= weekStartDate &amp;&amp; Call_Start_Time &lt;= weekEndDate].count();\n\t\tweeklyCallOutbound = Add_Call[Call_Direction == &quot;Outbound&quot; &amp;&amp; Call_Start_Time &gt;= weekStartDate &amp;&amp; Call_Start_Time &lt;= weekEndDate].count();\n\t\tmonthlyCallInbound = Add_Call[Call_Direction == &quot;Inbound&quot; &amp;&amp; Call_Start_Time &gt;= monthlyStartDate &amp;&amp; Call_Start_Time &lt;= monthlyEndDate].count();\n\t\tmonthlyCallOutbound = Add_Call[Call_Direction == &quot;Outbound&quot; &amp;&amp; Call_Start_Time &gt;= monthlyStartDate &amp;&amp; Call_Start_Time &lt;= monthlyEndDate].count();\n\t\tcallReportLink = &quot;All_Calls&quot;;\n\t}\n\telse\n\t{\n\t\tweeklyCallLink = &quot;My_Weekly_Calls&quot;;\n\t\tmonthlyCallLink = &quot;My_Monthly_Calls&quot;;\n\t\tcallInbound = Add_Call[Call_Direction == &quot;Inbound&quot; &amp;&amp; Call_Start_Time &gt;= fromDateTime &amp;&amp; Call_Start_Time &lt;= toDateTime &amp;&amp; Call_Owner.Email == zoho.loginuserid].count();\n\t\tcallOutbound = Add_Call[Call_Direction == &quot;Outbound&quot; &amp;&amp; Call_Start_Time &gt;= fromDateTime &amp;&amp; Call_Start_Time &lt;= toDateTime &amp;&amp; Call_Owner.Email == zoho.loginuserid].count();\n\t\tweeklyCallInbound = Add_Call[Call_Direction == &quot;Inbound&quot; &amp;&amp; Call_Start_Time &gt;= weekStartDate &amp;&amp; Call_Start_Time &lt;= weekEndDate &amp;&amp; Call_Owner.Email == zoho.loginuserid].count();\n\t\tweeklyCallOutbound = Add_Call[Call_Direction == &quot;Outbound&quot; &amp;&amp; Call_Start_Time &gt;= weekStartDate &amp;&amp; Call_Start_Time &lt;= weekEndDate &amp;&amp; Call_Owner.Email == zoho.loginuserid].count();\n\t\tmonthlyCallInbound = Add_Call[Call_Direction == &quot;Inbound&quot; &amp;&amp; Call_Start_Time &gt;= monthlyStartDate &amp;&amp; Call_Start_Time &lt;= monthlyEndDate &amp;&amp; Call_Owner.Email == zoho.loginuserid].count();\n\t\tmonthlyCallOutbound = Add_Call[Call_Direction == &quot;Outbound&quot; &amp;&amp; Call_Start_Time &gt;= monthlyStartDate &amp;&amp; Call_Start_Time &lt;= monthlyEndDate &amp;&amp; Call_Owner.Email == zoho.loginuserid].count();\n\t\tcallReportLink = &quot;My_Calls&quot;;\n\t}\n\t%&gt;\n&lt;style&gt;\n\t\t\t\t\t\t\t\t\t    .embdDiv .reportfullwidth iframe\n\t\t\t\t\t\t\t\t\t      {\n\t\t\t\t\t\t\t\t\t      height:310px !important;\n\t\t\t\t\t\t\t\t\t      }\n\t\t\t\t\t\t\t\t\t\t  .zc-perma-pane-right table .divEmbedContainer {\n\t\t\t\t\t\t\t\t\t    height: 100%;\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t\t  .embdDivRow2 .reportfullwidth iframe\n\t\t\t\t\t\t\t\t\t      {\n\t\t\t\t\t\t\t\t\t      height:320px !important;\n\t\t\t\t\t\t\t\t\t      }\n\t\t\t\t\t\t\t\t\t\t  .embdDivRow2 .legendarea{\n\t\t\t\t\t\t\t\t\t\t\t  left:90% !important;\n\t\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t\t  .todaysDiv {\n\t\t\t\t\t\t\t\t\t    background-color: #ffffff;\n\t\t\t\t\t\t\t\t\t    width: 100%;\n\t\t\t\t\t\t\t\t\t    height: 32%;\n\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t.mainDiv{\n\t\t\t\t\t\t\t\t\t  width:98%;\n\t\t\t\t\t\t\t\t\tbackground-color: #ddd;\n\t\t\t\t\t\t\t\t\t  padding:1%\n\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t  .firstRow{\n\t\t\t\t\t\t\t\t\t  width:100%;\n\t\t\t\t\t\t\t\t\t  height:390px;\n\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t  .secondRow{\n\t\t\t\t\t\t\t\t\t  width:100%;\n\t\t\t\t\t\t\t\t\t  height:400px;\n\t\t\t\t\t\t\t\t\t  margin-top:1%;\n\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t  .rowCol\n\t\t\t\t\t\t\t\t\t  {\n\t\t\t\t\t\t\t\t\t  height:100%;\n\t\t\t\t\t\t\t\t\t  background-color: #ffffff;\n\t\t\t\t\t\t\t\t\t  }\n\/* \tC5 changes starts here*\/\n\t\t\t\t\t\t\t\t\t  .zc-pb-page-content-wrapper .elemContainment{\n\t\t\t\t\t\t\t\t\t\t  padding:0px !important;\n\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t  .column-container:last-child .zc-pb-tile-container{\n\t\t\t\t\t\t\t\t\t\t  padding:0px !important;\n\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t  .zc-pb-tile-card{\n\t\t\t\t\t\t\t\t\t\t  border-radius:0px !important;\n\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t  #zohoreportel{\n\t\t\t\t\t\t\t\t\t\t  height:310px !important;\n\t\t\t\t\t\t\t\t\t  }\n\t\t\t\t\t\t\t\t\t  .divEmbedContainer{\n\t\t\t\t\t\t\t\t\t\t  height:100% !important;\n\t\t\t\t\t\t\t\t\t  }\n\/*\tC5 changes ends here*\/\n\t\t\t\t\t\t\t\t\t  &lt;\/style&gt;\n\t\t\t\t\t\t\t\t\t  &lt;div class=&quot;mainDiv&quot;&gt;\n\t\t\t\t\t\t\t\t\t  \t&lt;div class=&quot;firstRow&quot;&gt;\n\t\t\t\t\t\t\t\t\t  \t\t&lt;div style=&quot;float:left;width:34.5%;height:100%;&quot;&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t&lt;div class=&quot;todaysDiv&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div style=&quot;height: 15%;border-bottom: 1px solid #3394d8;padding: 8px;&quot;&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t&lt;span style=&quot;float: left;&quot;&gt;Today&apos;s Calls&lt;\/span&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;\/div&gt;  \n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div style=&quot;height: 70%;&quot;&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t&lt;div style=&quot;width: 50%;float: left;padding: 10px 0;color: #65666D;&quot;&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t\t&lt;div style=&quot;text-align: center;width: 100%;font-size: 250%;&quot;&gt;&lt;a style=&quot;color: #57a9fb;&quot; href=&quot;&lt;%=zoho.appuri%&gt;#Report:&lt;%=callReportLink%&gt;?Call_Direction=Inbound&amp;&amp;Call_Start_Time_op=32&quot; target=&quot;_blank&quot;&gt;&lt;%=callInbound%&gt;&lt;\/a&gt;&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t\t&lt;div style=&quot;text-align: center;width: 100%;font-size: 13px;font-weight: bold;color: #65666D;&quot;&gt;Inbound&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t&lt;div style=&quot;width: 50%;float: left;padding: 10px 0;color: #65666D;&quot;&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t\t&lt;div style=&quot;text-align: center;width: 100%;font-size: 250%;&quot;&gt;&lt;a style=&quot;color: #bbe491;&quot; href=&quot;&lt;%=zoho.appuri%&gt;#Report:&lt;%=callReportLink%&gt;?Call_Direction=Outbound&amp;&amp;Call_Start_Time_op=32&quot; target=&quot;_blank&quot;&gt;&lt;%=callOutbound%&gt;&lt;\/a&gt;&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t\t&lt;div style=&quot;text-align: center;width: 100%;font-size: 13px;font-weight: bold;color: #65666D;&quot;&gt;Outbound&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t&lt;div class=&quot;todaysDiv&quot; style=&quot;margin-top:2%;&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div style=&quot;height: 15%;border-bottom: 1px solid #3394d8;padding: 8px;&quot;&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t&lt;span style=&quot;float: left;&quot;&gt;Weekly Calls&lt;\/span&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;\/div&gt;  \n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div style=&quot;height: 70%;&quot;&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t&lt;div style=&quot;width: 50%;float: left;padding: 10px 0;color: #65666D;&quot;&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t\t&lt;div style=&quot;text-align: center;width: 100%;font-size: 250%;&quot;&gt;&lt;a style=&quot;color: #57a9fb;&quot; href=&quot;&lt;%=zoho.appuri%&gt;#Report:&lt;%=callReportLink%&gt;?Call_Direction=Inbound&amp;&amp;Call_Start_Time=&lt;%=weekStartDate%&gt;;&lt;%=weekEndDate%&gt;&amp;&amp;Call_Start_Time_op=58&quot; target=&quot;_blank&quot;&gt;&lt;%=weeklyCallInbound%&gt;&lt;\/a&gt;&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t\t&lt;div style=&quot;text-align: center;width: 100%;font-size: 13px;font-weight: bold;color: #65666D;&quot;&gt;Inbound&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t&lt;div style=&quot;width: 50%;float: left;padding: 10px 0;color: #65666D;&quot;&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t\t&lt;div style=&quot;text-align: center;width: 100%;font-size: 250%;&quot;&gt;&lt;a style=&quot;color: #bbe491;&quot; href=&quot;&lt;%=zoho.appuri%&gt;#Report:&lt;%=callReportLink%&gt;?Call_Direction=Outbound&amp;&amp;Call_Start_Time=&lt;%=weekStartDate%&gt;;&lt;%=weekEndDate%&gt;&amp;&amp;Call_Start_Time_op=58&quot; target=&quot;_blank&quot;&gt;&lt;%=weeklyCallOutbound%&gt;&lt;\/a&gt;&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t\t&lt;div style=&quot;text-align: center;width: 100%;font-size: 13px;font-weight: bold;color: #65666D;&quot;&gt;Outbound&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t&lt;div class=&quot;todaysDiv&quot; style=&quot;margin-top:2%;&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div style=&quot;height: 15%;border-bottom: 1px solid #3394d8;padding: 8px;&quot;&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t&lt;span style=&quot;float: left;&quot;&gt;Monthly Calls&lt;\/span&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;\/div&gt;  \n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div style=&quot;height: 70%;&quot;&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t&lt;div style=&quot;width: 50%;float: left;padding: 10px 0;color: #65666D;&quot;&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t\t&lt;div style=&quot;text-align: center;width: 100%;font-size: 250%;&quot;&gt;&lt;a style=&quot;color: #57a9fb;&quot; href=&quot;&lt;%=zoho.appuri%&gt;#Report:&lt;%=callReportLink%&gt;?Call_Direction=Inbound&amp;&amp;Call_Start_Time_op=45&quot; target=&quot;_blank&quot;&gt;&lt;%=monthlyCallInbound%&gt;&lt;\/a&gt;&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t\t&lt;div style=&quot;text-align: center;width: 100%;font-size: 13px;font-weight: bold;color: #65666D;&quot;&gt;Inbound&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t&lt;div style=&quot;width: 50%;float: left;padding: 10px 0;color: #65666D;&quot;&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t\t&lt;div style=&quot;text-align: center;width: 100%;font-size: 250%;&quot;&gt;&lt;a style=&quot;color: #bbe491;&quot; href=&quot;&lt;%=zoho.appuri%&gt;#Report:&lt;%=callReportLink%&gt;?Call_Direction=Outbound&amp;&amp;Call_Start_Time_op=45&quot; target=&quot;_blank&quot;&gt;&lt;%=monthlyCallOutbound%&gt;&lt;\/a&gt;&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t\t&lt;div style=&quot;text-align: center;width: 100%;font-size: 13px;font-weight: bold;color: #65666D;&quot;&gt;Outbound&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t\t&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t\t&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  \t\t&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t\t\t&lt;div class=&quot;rowCol&quot; style=&quot;float:right;width:64.5%;&quot;&gt;\n\t\t\t\t\t\t\t\t\t  \t\t\t\t&lt;div  class=&quot;embdDiv&quot; style=&quot;overflow:hidden;&quot; elName=&apos;zc-component&apos; viewLinkName=&apos;&lt;%=weeklyCallLink%&gt;&apos; params=&apos;zc_Header=true&apos;&gt;Loading View...&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  \t\t&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  \t&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  \t&lt;div class=&quot;secondRow&quot;&gt;\n\t\t\t\t\t\t\t\t\t\t\t&lt;div class=&quot;rowCol&quot; style=&quot;float:left;width:100%;&quot;&gt;\n\t\t\t\t\t\t\t\t\t    \t\t&lt;div  class=&quot;embdDivRow2&quot; style=&quot;overflow:hidden;&quot; elName=&apos;zc-component&apos; viewLinkName=&apos;&lt;%=monthlyCallLink%&gt;&apos; params=&apos;zc_Header=true&apos;&gt;Loading View...&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  \t\t&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  \t&lt;\/div&gt;\n\t\t\t\t\t\t\t\t\t  &lt;\/div&gt;\n&lt;%\n\n}%&gt;]]>\n<\/dsp>\n<\/column>\n<\/row>\n<\/layout>\n<\/zml>" 
+ 	 	}
+		form Add_Customer
+		{
+			displayname = "Add Customer"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Phone
+			(
+    			type = phonenumber
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Country
+			(
+				type = picklist
+				values = {"Choice 1", "Choice 2", "Choice 3"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-2-woman-up"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Sales_Rep
+		{
+			displayname = "Add Sales Rep"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Email
+			(
+    			type = email
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Phone_Number
+			(
+    			type = phonenumber
+				displayname = "Phone Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "business-businessman-03"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		summary Customer_Conversation
+		{
+			displayName = "Customer Conversation"
+   			hide = true
+			show all rows from Add_Call    
+			(
+				Customer
+				Call_Owner as "Call Owner"
+				Call_Direction as "Call Direction"
+				Purpose_Of_Call as "Purpose Of Call"
+				Call_Summary as "Call Summary"
+				Call_Start_Time as "Call Start Time"
+				Call_End_Time as "Call End Time"
+				Duration
+				Follow_up_Required as "Follow-up Required?"
+				Follow_up_Time as "Follow-up Time"
+				Follow_up_Notes as "Follow-up Notes"
+			)
+			filters
+			(
+				Follow_up_Required
+				Call_Direction
+			)
+			options
+			(
+				display rows = 1
+				display records per row = 2
+				icon = "users-multiple-19"
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Customer
+							Call_Owner as "Call Owner"
+							Call_Direction as "Call Direction"
+							Purpose_Of_Call as "Purpose Of Call"
+							Call_Summary as "Call Summary"
+							Call_Start_Time as "Call Start Time"
+							Call_End_Time as "Call End Time"
+							Duration
+							Follow_up_Required as "Follow-up Required?"
+							Follow_up_Time as "Follow-up Time"
+							Follow_up_Notes as "Follow-up Notes"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Customer
+							Call_Owner as "Call Owner"
+							Call_Direction as "Call Direction"
+							Purpose_Of_Call as "Purpose Of Call"
+							Call_Summary as "Call Summary"
+							Call_Start_Time as "Call Start Time"
+							Call_End_Time as "Call End Time"
+							Duration
+							Follow_up_Required as "Follow-up Required?"
+							Follow_up_Time as "Follow-up Time"
+							Follow_up_Notes as "Follow-up Notes"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		pivotchart My_Monthly_Calls
+		{ 
+			displayname = "Monthly Calls"
+			based on Autoview_1490229927825_Add_Call
+					hide = true
+							icon = "business-progress"				show all rows from Add_Call
+				(
+ 					Follow_up_Time  as "Follow-up Time"
+ 					Purpose_Of_Call  as "Purpose Of Call"
+ 					Duration 
+ 					End_Call  as "End Call"
+ 					Call_Direction  as "Call Direction"
+ 					Type 
+ 					Customer 
+ 					Follow_up_Required  as "Follow-up Required?"
+ 					Call_Start_Time  as "Call Start Time"
+ 					Call_End_Time  as "Call End Time"
+ 					Call_Owner  as "Call Owner Mail"
+				)
+		}
+		pivotchart My_Weekly_Calls
+		{ 
+			displayname = "Weekly Calls"
+			based on Autoview_1490229927825_Add_Call
+					hide = true
+							icon = "business-progress"				show all rows from Add_Call
+				(
+ 					Follow_up_Time  as "Follow-up Time"
+ 					Purpose_Of_Call  as "Purpose Of Call"
+ 					Duration 
+ 					End_Call  as "End Call"
+ 					Call_Direction  as "Call Direction"
+ 					Type 
+ 					Customer 
+ 					Follow_up_Required  as "Follow-up Required?"
+ 					Call_Start_Time  as "Call Start Time"
+ 					Call_End_Time  as "Call End Time"
+ 					Call_Owner  as "Call Owner Mail"
+				)
+		}
+	}
+	functions
+	{
+ 			void Open.CustomerCoversation(string customerPhone)
+			{
+				openUrl("#Report:Customer_Conversation?Customer=" + customerPhone + "&Customer_op=26","new window");
+			}
+ 			list countryList()
+			{
+				ContryList = {"China","India","United States","Indonesia","Brazil","Pakistan","Nigeria","Bangladesh","Russia","Japan","Mexico","Philippines","Vietnam","Ethiopia","Egypt","Germany","Iran","Turkey","Democratic Republic of the Congo","Thailand","France","United Kingdom","Italy","Burma","South Africa","South Korea","Colombia","Spain","Ukraine","Tanzania","Kenya","Argentina","Algeria","Poland","Sudan","Uganda","Canada","Iraq","Morocco","Peru","Uzbekistan","Saudi Arabia","Malaysia","Venezuela","Nepal","Afghanistan","Yemen","North Korea","Ghana","Mozambique","Taiwan","Australia","Ivory Coast","Syria","Madagascar","Angola","Cameroon","Sri Lanka","Romania","Burkina Faso","Niger","Kazakhstan","Netherlands","Chile","Malawi","Ecuador","Guatemala","Mali","Cambodia","Senegal","Zambia","Zimbabwe","Chad","South Sudan","Belgium","Cuba","Tunisia","Guinea","Greece","Portugal","Rwanda","Czech Republic","Somalia","Haiti","Benin","Burundi","Bolivia","Hungary","Sweden","Belarus","Dominican Republic","Azerbaijan","Honduras","Austria","United Arab Emirates","Israel","Switzerland","Tajikistan","Bulgaria","Hong Kong (China)","Serbia","Papua New Guinea","Paraguay","Laos","Jordan","El Salvador","Eritrea","Libya","Togo","Sierra Leone","Nicaragua","Kyrgyzstan","Denmark","Finland","Slovakia","Singapore","Turkmenistan","Norway","Lebanon","Costa Rica","Central African Republic","Ireland","Georgia","New Zealand","Republic of the Congo","Palestine","Liberia","Croatia","Oman","Bosnia and Herzegovina","Puerto Rico","Kuwait","Moldov","Mauritania","Panama","Uruguay","Armenia","Lithuania","Albania","Mongolia","Jamaica","Namibia","Lesotho","Qatar","Macedonia","Slovenia","Botswana","Latvia","Gambia","Kosovo","Guinea-Bissau","Gabon","Equatorial Guinea","Trinidad and Tobago","Estonia","Mauritius","Swaziland","Bahrain","Timor-Leste","Djibouti","Cyprus","Fiji","Reunion (France)","Guyana","Comoros","Bhutan","Montenegro","Macau (China)","Solomon Islands","Western Sahara","Luxembourg","Suriname","Cape Verde","Malta","Guadeloupe (France)","Martinique (France)","Brunei","Bahamas","Iceland","Maldives","Belize","Barbados","French Polynesia (France)","Vanuatu","New Caledonia (France)","French Guiana (France)","Mayotte (France)","Samoa","Sao Tom and Principe","Saint Lucia","Guam (USA)","Curacao (Netherlands)","Saint Vincent and the Grenadines","Kiribati","United States Virgin Islands (USA)","Grenada","Tonga","Aruba (Netherlands)","Federated States of Micronesia","Jersey (UK)","Seychelles","Antigua and Barbuda","Isle of Man (UK)","Andorra","Dominica","Bermuda (UK)","Guernsey (UK)","Greenland (Denmark)","Marshall Islands","American Samoa (USA)","Cayman Islands (UK)","Saint Kitts and Nevis","Northern Mariana Islands (USA)","Faroe Islands (Denmark)","Sint Maarten (Netherlands)","Saint Martin (France)","Liechtenstein","Monaco","San Marino","Turks and Caicos Islands (UK)","Gibraltar (UK)","British Virgin Islands (UK)","Aland Islands (Finland)","Caribbean Netherlands (Netherlands)","Palau","Cook Islands (NZ)","Anguilla (UK)","Wallis and Futuna (France)","Tuvalu","Nauru","Saint Barthelemy (France)","Saint Pierre and Miquelon (France)","Montserrat (UK)","Saint Helena"," Ascension and Tristan da Cunha (UK)","Svalbard and Jan Mayen (Norway)","Falkland Islands (UK)","Norfolk Island (Australia)","Christmas Island (Australia)","Niue (NZ)","Tokelau (NZ)","Vatican City","Cocos (Keeling) Islands (Australia)","Pitcairn Islands (UK)"};
+				return ContryList;
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Run_Scripts_While_Adding_3 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Call
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											hide End_Call;
+										disable Duration;
+										hide Follow_up_Time;
+										hide Follow_up_Notes;
+										input.Call_Owner = Add_Sales_Rep[Email == zoho.loginuserid].ID;
+										disable Call_Owner;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_4 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Call
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Call_Start_Time >= input.Call_End_Time || input.Call_Start_Time > zoho.currenttime || input.Call_End_Time > zoho.currenttime)
+										{
+											alert "Please check the call time";
+											cancel submit;
+										}
+										if(input.Follow_up_Required == "Yes")
+										{
+											if(input.Follow_up_Time == null || input.Follow_up_Time <= zoho.currenttime)
+											{
+												alert "Please specify/check the follow-up time";
+												cancel submit;
+											}
+										}
+										else
+										{
+											input.Follow_up_Time = null;
+											input.Follow_up_Notes = "";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing3 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Call
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											disable Duration;
+										disable Call_Owner;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing4 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Call
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											repRec = Add_Sales_Rep[ID == input.Call_Owner];
+										if(repRec.Email != zoho.loginuserid && zoho.loginuserid != zoho.adminuserid)
+										{
+											alert "Sorry you dont have permission to edit this record";
+											cancel submit;
+										}
+										if(input.Call_Start_Time >= input.Call_End_Time)
+										{
+											alert "Please check the call time";
+											cancel submit;
+										}
+										if(input.Follow_up_Required == "Yes")
+										{
+											if(input.Follow_up_Time == null || input.Follow_up_Time <= zoho.currenttime)
+											{
+												alert "Please specify/check the follow-up time";
+												cancel submit;
+											}
+										}
+										else
+										{
+											input.Follow_up_Time = null;
+											input.Follow_up_Notes = "";
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always1 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Call
+				record event = on add or edit
+
+	on user input of Customer
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											/* if (input.Customer  !=  null)
+																												{
+																													prevCalCount = Add_Call[Customer == input.Customer].count();
+																													if (prevCalCount  >  0)
+																														{
+																															customerPhone = Add_Customer[ID == input.Customer].Phone;
+																															show View_Conversation;
+																															input.View_Conversation = "Click <a href='#Report:Customer_Conversation?Customer=" + customerPhone + "&Customer_op=26'>here</a> to view call history of this customer.";
+																														}
+																													else	
+																														{
+																															hide View_Conversation;
+																														}
+																												}
+																											*/
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always2 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Call
+				record event = on add or edit
+
+	on user input of Type
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Type == "Current Call")
+										{
+											show End_Call;
+											//disable Call_Start_Time;
+											disable Call_End_Time;
+											input.Call_Start_Time = zoho.currenttime;
+											input.Call_End_Time = null;
+										}
+										else
+										{
+											hide End_Call;
+											//enable Call_Start_Time;
+											enable Call_End_Time;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always3 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Call
+				record event = on add or edit
+
+	on user input of Call_End_Time
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Call_Start_Time != null && input.Call_End_Time != null)
+										{
+											millis = (input.Call_End_Time - input.Call_Start_Time);
+											if(millis <= 0)
+											{
+												input.Duration = "00:00:00";
+											}
+											else
+											{
+												days = (millis / 86400000).toLong();
+												hours = ((millis % 86400000) / 3600000).toLong();
+												mins = ((millis % 86400000 % 3600000) / 60000).toLong();
+												secs = ((millis % 86400000 % 3600000 % 60000) / 1000).toLong();
+												hours = days * 24 + hours;
+												input.Duration = hours + ":" + mins + ":" + secs;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always4 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Call
+				record event = on add or edit
+
+	on user input of Follow_up_Required
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Follow_up_Required == "Yes")
+										{
+											show Follow_up_Time;
+											show Follow_up_Notes;
+										}
+										else
+										{
+											hide Follow_up_Time;
+											hide Follow_up_Notes;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always5 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Call
+				record event = on add or edit
+
+	on user input of Call_Start_Time
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Call_Start_Time != null && input.Call_End_Time != null)
+										{
+											millis = (input.Call_End_Time - input.Call_Start_Time);
+											if(millis <= 0)
+											{
+												input.Duration = "00:00:00";
+											}
+											else
+											{
+												days = (millis / 86400000).toLong();
+												hours = ((millis % 86400000) / 3600000).toLong();
+												mins = ((millis % 86400000 % 3600000) / 60000).toLong();
+												secs = ((millis % 86400000 % 3600000 % 60000) / 1000).toLong();
+												hours = days * 24 + hours;
+												input.Duration = hours + ":" + mins + ":" + secs;
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always6 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Call
+				record event = on add or edit
+
+	on user input of End_Call
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.End_Call)
+										{
+											input.Call_End_Time = zoho.currenttime;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_5 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Customer
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											countryList = thisapp.countryList();
+										input.Country:ui.add(countryList);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing5 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Customer
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											countryList = thisapp.countryList();
+										input.Country:ui.add(countryList);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_6 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Sales_Rep
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.permissions.assignUserInProfile(input.Email,"Sales Representative");
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Email
+											subject :"Invitation to access Support Activity Logs"
+											message :"Hi&nbsp;" + input.Name.first_name + ",<div><br></div><div>&nbsp; &nbsp; &nbsp; You have been added as a sales representative. And here you can log your day to day activities.</div><div><br></div><div>Click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "\"" + " target=\"_blank\">here</a> to view the Application.</div><div><br></div><div>Regards,</div><div>" + zoho.adminuser + "&nbsp;</div>"
+										]
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing6 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Sales_Rep
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(old.Email != input.Email)
+										{
+											thisapp.permissions.deleteuser(old.Email);
+											thisapp.permissions.assignUserInProfile(input.Email,"Sales Representative");
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :input.Email
+												subject :"Invitation to access Support Activity Logs"
+												message :"Hi&nbsp;" + input.Name.first_name + ",<div><br></div><div>&nbsp; &nbsp; &nbsp; You have been added as a sales representative. And here you can log your day to day activities.</div><div><br></div><div>Click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "\"" + " target=\"_blank\">here</a> to view the Application.</div><div><br></div><div>Regards,</div><div>" + zoho.adminuser + "&nbsp;</div>"
+											]
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin1 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_Sales_Rep
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.permissions.deleteuser(input.Email);
+						)
+					}
+	}
+
+			}
+		}
+		schedule
+		{
+			Call_Followup as "Call_Followup"
+			{
+				type =  schedule
+				form = Add_Call
+				start = before 1 hours from Follow_up_Time
+				time zone = "Asia/Kolkata"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						notes = input.Follow_up_Notes;
+										if(input.Follow_up_Notes == "" || input.Follow_up_Notes == null)
+										{
+											notes = "-";
+										}
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Call_Owner.Email
+											subject :"Followup Reminder at " + input.Follow_up_Time
+											message :"Hi " + input.Call_Owner.Name.first_name + ",<div><br></div><div>This is a reminder that you have a followup activity in an hour.</div><div><br></div><div><div>Followup Notes :&nbsp;" + notes + "</div></div><div><br></div><div>Click <a href=\"" + "https://app.zohocreator.com" + zoho.appuri + "#Report:Customer_Conversation?Customer=" + input.Customer.Phone + "&amp;Customer_op=26\"" + " target=\"_blank\">here</a>&nbsp;to view the coversation.</div><div><br></div><div>Regards,</div><div>" + zoho.adminuser + "</div>"
+										]
+					)
+					}
+				}
+			}
+		}
+		functions
+		{
+			Conversation_History as "Conversation History"
+			{
+				type =  functions
+				form = Add_Customer
+				on start
+				{
+					actions 
+					{
+					Open.CustomerCoversation(Phone);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Sales Representative"
+			{
+				name = "Sales Representative"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "This profile will have sales representative permissions.\n"
+				ModulePermissions
+				{
+					Add_Sales_Rep
+					{
+						enabled= Viewall,Export 
+						ReportPermissions
+						{
+							Sales_Reps={"View"}
+						}
+						FieldPermissions
+						{
+							Phone_Number{visibility:true,readonly:false}
+							Email{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Add_Call
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							My_Weekly_Calls={"View"}
+							My_Calls={"View","Edit","Delete"}
+							All_Calls={"View","Edit","Delete"}
+							My_Monthly_Calls={"View"}
+							Customer_Conversation={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Call_Owner{visibility:true,readonly:false}
+							Customer{visibility:true,readonly:false}
+							Call_Start_Time{visibility:true,readonly:false}
+							Follow_up_Required{visibility:true,readonly:false}
+							Call_Summary{visibility:true,readonly:false}
+							Duration{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Purpose_Of_Call{visibility:true,readonly:false}
+							Call_End_Time{visibility:true,readonly:false}
+							Call_Direction{visibility:true,readonly:false}
+							Follow_up_Time{visibility:true,readonly:false}
+							Type{visibility:true,readonly:false}
+							Follow_up_Notes{visibility:true,readonly:false}
+							End_Call{visibility:true,readonly:false}
+						}
+					}
+					Add_Customer
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Customers={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Country{visibility:true,readonly:false}
+							Phone{visibility:true,readonly:false}
+							Name{visibility:true,readonly:false}
+						}
+					}
+					Dashboard
+					{
+						enabled = tab
+					}
+					DashboardDetails
+					{
+						enabled = tab
+					}
+					My_Logs
+					{
+						enabled = tab
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users."
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 5
+		new theme color = 1
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-sales-and-supp2"
+    	icon theme = "green"
+		icons style = solid
+	}
+
+	phone
+	{
+		section  Dashboard_Section
+		{
+			displayname= "Dashboard"
+			icon = "ui-1-dashboard-half"
+			page Dashboard
+			{
+				icon = "ui-1-dashboard-half"
+				hide = true
+			}
+			page My_Logs
+			{
+				icon = "ui-1-dashboard-half"
+			}
+			page All_Logs
+			{
+				icon = "ui-1-dashboard-half"
+			}
+		}
+		section  Add_Call_Log
+		{
+			displayname= "Add Call Log"
+			icon = "ui-2-fat-add"
+			form  Add_Call
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+			}
+		}
+		section  My_Logs
+		{
+			displayname= "My Logs"
+			icon = "media-2-headphones-mic"
+			list My_Calls
+			{
+				icon = "media-2-headphones-mic"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Purpose_Of_Call as "Purpose Of Call"
+								Call_Summary as "Call Summary"
+								Call_Start_Time as "Call Start Time"
+								Call_End_Time as "Call End Time"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Call_Direction as "Call Direction"
+								Purpose_Of_Call as "Purpose Of Call"
+								Call_Summary as "Call Summary"
+								Customer
+								Call_Start_Time as "Call Start Time"
+								Call_End_Time as "Call End Time"
+								Duration
+								Follow_up_Required as "Follow-up Required?"
+								Follow_up_Time as "Follow-up Time"
+								Follow_up_Notes as "Follow-up Notes"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  All_Logs
+		{
+			displayname= "All Logs"
+			icon = "ui-3-phone-call"
+			pivotchart Monthly_Logs
+			{
+				icon = "shopping-newsletter"
+				hide = true
+			}
+			pivotchart Weekly_Logs
+			{
+				icon = "business-progress"
+				hide = true
+			}
+			list All_Calls
+			{
+				icon = "ui-3-phone-call"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Purpose_Of_Call as "Purpose Of Call"
+								Call_Summary as "Call Summary"
+								Call_Start_Time as "Call Start Time"
+								Call_End_Time as "Call End Time"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Call_Owner as "Call Owner"
+								Call_Direction as "Call Direction"
+								Purpose_Of_Call as "Purpose Of Call"
+								Call_Summary as "Call Summary"
+								Customer
+								Call_Start_Time as "Call Start Time"
+								Call_End_Time as "Call End Time"
+								Duration
+								Follow_up_Required as "Follow-up Required?"
+								Follow_up_Time as "Follow-up Time"
+								Follow_up_Notes as "Follow-up Notes"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Customers_Section
+		{
+			displayname= "Customers"
+			icon = "users-2-contacts-44"
+			custom Customers
+			{
+				icon = "users-2-contacts-44"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Phone
+								Country
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										"Conversation History"
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										"Conversation History"
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Conversation History"
+    								)
+									on right swipe
+									(
+										Edit   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Country
+								Phone
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Conversation History"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Sales_Rep_Section
+		{
+			displayname= "Sales Reps"
+			icon = "users-multiple-11"
+			custom Sales_Reps
+			{
+				icon = "users-multiple-11"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Email
+								Phone_Number as "Phone Number"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Phone_Number as "Phone Number"
+								Email
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Hidden
+		{
+			hide = true
+			icon = "ui-2-menu-bold"
+			page DashboardDetails
+			{
+				icon = "ui-1-database"
+				hide = true
+			}
+			form  Add_Customer
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_Sales_Rep
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			summary Customer_Conversation
+			{
+				icon = "ui-1-database"
+				hide = true
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Customer
+								Call_Summary as "Call Summary"
+								Call_Owner as "Call Owner"
+								Call_Direction as "Call Direction"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Customer
+								Call_Owner as "Call Owner"
+								Call_Direction as "Call Direction"
+								Purpose_Of_Call as "Purpose Of Call"
+								Call_Summary as "Call Summary"
+								Call_Start_Time as "Call Start Time"
+								Call_End_Time as "Call End Time"
+								Duration
+								Follow_up_Required as "Follow-up Required?"
+								Follow_up_Time as "Follow-up Time"
+								Follow_up_Notes as "Follow-up Notes"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			pivotchart My_Monthly_Calls
+			{
+				icon = "business-progress"
+				hide = true
+			}
+			pivotchart My_Weekly_Calls
+			{
+				icon = "ui-3-chart-bars"
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = green
+        	layout = slidingpane
+		 	icons style = outline
+		}
+	}
+	tablet
+	{
+		section  Dashboard_Section
+		{
+			displayname= "Dashboard"
+			page Dashboard
+			{
+				icon = "ui-1-dashboard-half"
+				hide = true
+			}
+			page My_Logs
+			{
+				icon = "ui-1-dashboard-half"
+			}
+			page All_Logs
+			{
+				icon = "ui-1-dashboard-half"
+			}
+		}
+		section  Add_Call_Log
+		{
+			displayname= "Add Call Log"
+			form  Add_Call
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+			}
+		}
+		section  My_Logs
+		{
+			displayname= "My Logs"
+			list My_Calls
+			{
+				icon = "users-2-a-time"
+			}
+		}
+		section  All_Logs
+		{
+			displayname= "All Logs"
+			pivotchart Monthly_Logs
+			{
+				icon = "shopping-newsletter"
+				hide = true
+			}
+			pivotchart Weekly_Logs
+			{
+				icon = "business-progress"
+				hide = true
+			}
+			list All_Calls
+			{
+				icon = "ui-2-phone"
+			}
+		}
+		section  Customers_Section
+		{
+			displayname= "Customers"
+			custom Customers
+			{
+				icon = "users-multiple-19"
+			}
+		}
+		section  Sales_Rep_Section
+		{
+			displayname= "Sales Reps"
+			custom Sales_Reps
+			{
+				icon = "users-2-contacts-44"
+			}
+		}
+		section  Hidden
+		{
+			hide = true
+			page DashboardDetails
+			{
+				icon = "ui-1-database"
+				hide = true
+			}
+			form  Add_Customer
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_Sales_Rep
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			summary Customer_Conversation
+			{
+				icon = "ui-1-database"
+				hide = true
+			}
+			pivotchart My_Monthly_Calls
+			{
+				icon = "business-progress"
+				hide = true
+			}
+			pivotchart My_Weekly_Calls
+			{
+				icon = "ui-3-chart-bars"
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = green
+        	layout = slidingpane
+		 	icons style = outline
+		}
+	}
+	
+}

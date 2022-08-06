@@ -1,0 +1,4957 @@
+/*
+ * Author       : app.zohocreator
+ * Generated on : 06-May-2020 23:16:19
+ * Version      : 1.0
+ */
+ application "Vendors"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "IST"
+ 	time format = "24-hr"
+	section Vendors
+	{
+		icon = "users-multiple-11"
+		form Add_Vendor
+		{
+			displayname = "Add Vendor"
+			success message = "New Vendor added successfully!!!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Name
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Type
+			(
+				type = picklist
+				values  = Add_Vendor_Type.ID
+    			displayformat = [Vendor_Type]
+				allow new entries = true
+				[
+					displayname = "Add New Type"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Status
+			(
+				type = picklist
+				values = {"Pipeline", "Live", "Archived"}
+				initial value = "Live"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Live_Contracts
+			(
+				type = number
+				displayname = "Live Contracts"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Total_spend
+			(
+				displayname = "Total spend"
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Country_of_Registration
+			(
+    			type = text
+				displayname = "Country of Registration"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Company_Registration
+			(
+    			type = text
+				displayname = "Company Registration Number"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Stock_Symbol
+			(
+    			type = text
+				displayname = "Stock Symbol"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Company_Website
+			(
+    			type = url
+				displayname = "Company Website"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Deals_with
+			(
+				type = list
+				displayname = "Deals with"
+				values  = Add_Product.ID
+    			bidirectional = Vendors
+    			displayformat = [Product_Service_Name]
+				allow new entries = true
+				[
+					displayname = "Add New Product"
+				]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Current_Contracts
+			(
+				type = list
+				displayname = "Current Contracts"
+				values  = Add_Contract.ID
+    			displayformat = [Contract_Title]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Internal_Manager
+			(
+				type = picklist
+				displayname = "Internal Representative"
+				values  = Add_User.ID
+    			displayformat = [Name.first_name + " - " + Official_Email]
+				allow new entries = true
+				[
+					displayname = "Add New User"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			must have Relationship_Since
+			(
+    			type = date
+				displayname = "Relationship Since"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = "<font size=\"3\"><b>Contact Information</b></font>"
+	 			row = 1
+	 			column = 2   
+				width = 300px
+			)
+			must have Main_Contact_Person
+			(
+    			type = name
+				displayname = "Main Contact Person"
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			must have Official_Email
+			(
+    			type = email
+				displayname = "Official Email"
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Personal_Email
+			(
+    			type = email
+				displayname = "Secondary Email"
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			must have Mobile_Number
+			(
+    			type = phonenumber
+				displayname = "Mobile Number"
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "users-2-a-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		custom Vendors_Report
+		{
+			displayName = "All Vendors"
+			show all rows from Add_Vendor    
+			(
+				Main_Contact_Person  as "Main Contact Person"
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				custom action "Archive"
+				(
+	  			workflow = Archive
+				show action in view header = true
+				column header = "Archive"
+				success message = ""
+				condition = (Status != "Archived" && Added_User == zoho.loginuser)
+				)
+				custom action "Live"
+				(
+	  			workflow = Live
+				show action in view header = true
+				column header = "Live"
+				success message = ""
+				condition = (Status == "Pipeline" || Status == "Archived" && Added_User == zoho.loginuser)
+				)
+				Company_Website as "Company Website"
+				Current_Contracts as "Current Contracts"
+				(
+					view = Add_Contract_Report
+				)
+				Stock_Symbol as "Stock Symbol"
+				Relationship_Since as "Relationship Since"
+				Internal_Manager as "Internal Representative"
+				Deals_with as "Deals with"
+				Company_Registration as "Company Registration Number"
+				Country_of_Registration as "Country of Registration"
+				Name
+				Total_spend as "Total spend"
+				Status
+				Type
+				Official_Email as "Official Email"
+				Personal_Email as "Secondary Email"
+				Mobile_Number as "Mobile Number"
+			)
+			group by
+			(
+				Status descending
+			)
+			options
+			(
+				icon = "users-2-multiple"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Current_Contracts as "Current Contracts"
+							Main_Contact_Person as "Main Contact Person"
+							Official_Email as "Official Email"
+							Total_spend as "Total spend"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Type
+							Total_spend as "Total spend"
+							Status
+							Country_of_Registration as "Country of Registration"
+							Company_Registration as "Company Registration Number"
+							Stock_Symbol as "Stock Symbol"
+							Company_Website as "Company Website"
+							Internal_Manager as "Internal Representative"
+							Relationship_Since as "Relationship Since"
+							Status
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Contact Information"
+						fields
+						(
+							Main_Contact_Person as "Main Contact Person"
+							Official_Email as "Official Email"
+							Personal_Email as "Secondary Email"
+							Mobile_Number as "Mobile Number"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Current Contracts"
+		     			related field =  Current_Contracts
+						fields
+						(
+							Contract_Number as "Contract Number Correct"
+							Contract_Title as "Contract Title"
+							Contract
+							Contract_Type as "Contract Type"
+							Start_Date as "Start Date"
+							End_Date as "End Date"
+							Contract_Files as "Contract Files"
+							Category
+							Total_Spend1 as "Contract Amount"
+							Product as "Product(s)"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Archive"
+			 			"Live"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		custom My_Vendors
+		{
+			displayName = "My Vendors"
+			show all rows from Add_Vendor  [Internal_Manager.Official_Email == zoho.loginuserid]  
+			(
+				Main_Contact_Person  as "Main Contact Person"
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				custom action "Live"
+				(
+	  			workflow = Live1
+				show action in view header = true
+				column header = "Live"
+				success message = ""
+				condition = (Status == "Pipeline" || Status == "Archived")
+				)
+				custom action "Archive"
+				(
+	  			workflow = Archive1
+				show action in view header = true
+				column header = "Archive"
+				success message = ""
+				condition = (Status != "Archived")
+				)
+				Company_Website as "Company Website"
+				Current_Contracts as "Current Contracts"
+				(
+					view = Add_Contract_Report
+				)
+				Name
+				Total_spend as "Total spend"
+				Status
+				Type
+				Country_of_Registration as "Country of Registration"
+				Company_Registration as "Company Registration Number"
+				Stock_Symbol as "Stock Symbol"
+				Internal_Manager as "Internal Representative"
+				Relationship_Since as "Relationship Since"
+				Deals_with as "Deals with"
+				Official_Email as "Official Email"
+				Personal_Email as "Secondary Email"
+				Mobile_Number as "Mobile Number"
+			)
+			options
+			(
+				icon = "files-user"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = 4
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Current_Contracts as "Current Contracts"
+							Main_Contact_Person as "Main Contact Person"
+							Official_Email as "Official Email"
+							Total_spend as "Total spend"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Type
+							Total_spend as "Total spend"
+							Status
+							Country_of_Registration as "Country of Registration"
+							Company_Registration as "Company Registration Number"
+							Stock_Symbol as "Stock Symbol"
+							Company_Website as "Company Website"
+							Internal_Manager as "Internal Representative"
+							Relationship_Since as "Relationship Since"
+							Status
+						)
+					)
+					datablock2
+					(
+			 			layout type = -2
+		     			title = "Contact Information"
+						fields
+						(
+							Main_Contact_Person as "Main Contact Person"
+							Official_Email as "Official Email"
+							Personal_Email as "Secondary Email"
+							Mobile_Number as "Mobile Number"
+						)
+					)
+					datablock3
+					(
+			 			layout type = -1
+		     			title = "Current Contracts"
+		     			related field =  Current_Contracts[Internal_Manager.Official_Email == zoho.loginuserid]
+						fields
+						(
+							Contract_Number as "Contract Number Correct"
+							Contract_Title as "Contract Title"
+							Contract
+							Contract_Type as "Contract Type"
+							Start_Date as "Start Date"
+							End_Date as "End Date"
+							Contract_Files as "Contract Files"
+							Category
+							Total_Spend1 as "Contract Amount"
+							Product as "Product(s)"
+							Status
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Archive"
+			 			"Live"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		pivotchart Vendor_Spend_Report
+		{ 
+			displayname = "Vendor Spend Report"
+			based on Autoview_1517570001599_Add_Contract
+							icon = "business-chart-pie-36"				show all rows from Add_Contract
+				(
+ 					Notify_Contract_Expiry  as "Notify Contract Expiry"
+ 					Contract 
+ 					Notify_to_vendor_also  as "Notify Vendor"
+ 					Renewed 
+ 					Notify_Before_Days  as "Notify Before(Days)"
+ 					Vendor 
+ 					Contract_Number  as "Contract Number Correct"
+ 					Contract_Type  as "Contract Type"
+ 					if_from_popup  as "if  from popup"
+ 					Contract_Number_Dropdown  as "Contract Number"
+ 					Total_Spend1  as "Contract Amount"
+ 					Status 
+				)
+		}
+	}
+	section Add_Contract1
+	{
+		displayname= "Contracts"
+		icon = "education-paper"
+		form Add_Contract
+		{
+			displayname = "Add Contract"
+			success message = "New Contract Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = "<b><font size=\"3\">Tenure of Contract</font></b>"
+	 			row = 1
+	 			column = 2   
+				width = 300px
+			)
+			Contract
+			(
+				type = radiobuttons
+				values = {"New", "Renewal"}
+				initial value = "New"
+				layout = 2
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Start_Date
+			(
+    			type = date
+				displayname = "Start Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			must have Vendor
+			(
+				type = picklist
+				values  = Add_Vendor[Status == "Live"].ID
+    			displayformat = [Name]
+				allow new entries = true
+				[
+					displayname = "Add New Vendor"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have End_Date
+			(
+    			type = date
+				displayname = "End Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Contract_Number
+			(
+    			type = text
+				displayname = "Contract Number Correct"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Contract_Files
+			(
+    			type = upload file
+				displayname = "Contract Files"
+				browse = local_drive
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			Contract_Number_Dropdown
+			(
+				type = picklist
+				displayname = "Contract Number"
+				values = {"-"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Contract_Title
+			(
+    			type = text
+				displayname = "Contract Title"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Notify_Contract_Expiry
+			(
+    			type = checkbox
+				displayname = "Notify Contract Expiry"
+				initial value = false
+	 			row = 1
+	 			column = 2   
+				width = 300px
+			)
+			must have Contract_Type
+			(
+				type = picklist
+				displayname = "Contract Type"
+				values  = Add_Contract_Category.ID
+    			displayformat = [Contract_Type]
+				allow new entries = true
+				[
+					displayname = "Add New Type"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Notify_From_Date
+			(
+    			type = date
+				displayname = "Notify From(Date)"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			must have Category
+			(
+				type = picklist
+				values  = Add_Contract_Category1.ID
+    			displayformat = [Contract_Category]
+				allow new entries = true
+				[
+					displayname = "Add New Category"
+				]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Notify_Before_Days
+			(
+				type = number
+				displayname = "Notify Before(Days)"
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			must have Product
+			(
+				type = list
+				displayname = "Product(s)"
+				values  = Add_Product.ID
+    			displayformat = [Product_Service_Name]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Notify_to_vendor_also
+			(
+    			type = checkbox
+				displayname = "Notify Vendor"
+				initial value = false
+	 			row = 1
+	 			column = 2   
+				width = 300px
+			)
+			Hidden_Email
+			(
+    			type = email
+				displayname = "Hidden Email"
+	 			row = 1
+	 			column = 2   
+				width = medium
+			)
+			must have Total_Spend1
+			(
+				displayname = "Contract Amount"
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Add_to_History
+			(
+    			type = checkbox
+				displayname = "Add to Edit History"
+				initial value = false
+	 			row = 1
+	 			column = 2   
+				width = 300px
+			)
+			must have Status
+			(
+				type = picklist
+				values = {"Current", "Expired", "Cancelled"}
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Description
+			(
+    			type = textarea
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			plain1
+			(
+    			type = plaintext
+				value = "<span style=\"color: rgb(153, 153, 153); font-family: &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 12px; line-height: 18px; background-color: rgb(255, 255, 255)\">On enabling above checkbox, your unedited data will be added to Edit History.</span>"
+	 			row = 1
+	 			column = 2   
+				width = 300px
+			)
+			Renewed
+			(
+    			type = checkbox
+				initial value = false
+	 			row = 1
+	 			column = 2   
+				width = 300px
+			)
+			if_from_popup
+			(
+    			type = checkbox
+				displayname = "if  from popup"
+				initial value = false
+	 			row = 1
+	 			column = 2   
+				width = 300px
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Add_Contract_Report
+		{
+			displayName = "All Contracts"
+			show all rows from Add_Contract  [Add_to_History == false]  
+			(
+				Contract_Number as "Contract Number Correct"
+				Vendor
+				(
+					view = Vendors_Report
+				)
+				Contract
+				Contract_Title as "Title"
+				Contract_Type as "Type"
+				Category
+				Status
+				Total_Spend1 as "Amount"
+				Start_Date as "Start Date"
+				End_Date as "End Date"
+				Contract_Files as "Contract Files"
+				custom action "Cancel "
+				(
+	  			workflow = Cancel_
+				show action in view header = true
+				column header = "Cancel "
+				success message = ""
+				condition = (Status == "Current" && Added_User == zoho.loginuser)
+				)
+				Product as "Product(s)"
+				custom action "Renew"
+				(
+	  			workflow = Renew
+				show action in view header = true
+				column header = "Renew"
+				success message = ""
+				condition = (Status == "Expired" && Renewed == false && Added_User == zoho.loginuser)
+				)
+				Vendor.Internal_Manager as "Internal Representative"
+			)
+			group by
+			(
+				Status ascending
+			)
+			options
+			(
+				icon = "files-single-copy-04"
+	 		)
+			conditional formatting
+			(
+				"New Formatting1"
+				{
+				condition = (Contract == "New")
+				fields = [Contract_Number]
+				format = "color:#0e34f0;"
+				}
+				"New Formatting2"
+				{
+				condition = (Contract == "Renewal")
+				fields = [Contract_Number]
+				format = "color:#f20cbc;"
+				}
+			)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Contract_Number as "Contract Number Correct"
+							Contract_Title as "Title"
+							Contract
+							Vendor
+							Contract_Type as "Type"
+							Total_Spend1 as "Amount"
+							Status
+				"Cancel "
+				"Renew"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Contract_Number as "Contract Number Correct"
+							Contract_Title as "Title"
+							Contract
+							Vendor
+							Contract_Type as "Type"
+							Category
+							Status
+							Total_Spend1 as "Amount"
+							Start_Date as "Start Date"
+							End_Date as "End Date"
+							Product as "Product(s)"
+							Contract_Files as "Contract Files"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Renew"
+			 			"Cancel "
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list My_Contracts
+		{
+			displayName = "My Vendor's Contract"
+			show all rows from Add_Contract  [Hidden_Email == zoho.loginuserid && Add_to_History == false]  
+			(
+				Vendor
+				Contract
+				Contract_Number as "Contract Number Correct"
+				Contract_Title as "Title"
+				Contract_Type as "Type"
+				Category
+				Start_Date as "Start Date"
+				End_Date as "End Date"
+				Contract_Files as "Contract Files"
+				custom action "Cancel"
+				(
+	  			workflow = Cancel
+				show action in view header = true
+				column header = "Cancel"
+				success message = ""
+				condition = (Status == "Current")
+				)
+				custom action "Renew"
+				(
+	  			workflow = Renew1
+				show action in view header = true
+				column header = "Renew"
+				success message = ""
+				condition = (Status == "Expired" && Renewed == false)
+				)
+				Status
+				Total_Spend1 as "Amount"
+				Product as "Product(s)"
+			)
+			options
+			(
+				icon = "files-single-folded-content"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Contract_Number as "Contract Number Correct"
+							Contract_Title as "Title"
+							Contract
+							Vendor
+							Contract_Type as "Type"
+							Total_Spend1 as "Amount"
+							Status
+				"Cancel"
+				"Renew"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Contract_Number as "Contract Number Correct"
+							Contract_Title as "Title"
+							Contract
+							Vendor
+							Contract_Type as "Type"
+							Category
+							Status
+							Total_Spend1 as "Amount"
+							Start_Date as "Start Date"
+							End_Date as "End Date"
+							Product as "Product(s)"
+							Contract_Files as "Contract Files"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+			 			"Renew"
+			 			"Cancel"
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list History
+		{
+			displayName = "Edit History"
+			show all rows from Add_Contract  [Add_to_History]  
+			(
+				Contract_Type as "Type"
+				Category
+				Total_Spend1 as "Amount"
+				Start_Date as "Start Date"
+				End_Date as "End Date"
+				Contract_Files as "Contract Files"
+				Contract
+				Status
+				Contract_Title as "Contract Title"
+				Contract_Number as "Contract Number Correct"
+				Vendor
+				Product as "Product(s)"
+			)
+			options
+			(
+				icon = "users-2-a-edit"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Contract_Number as "Contract Number Correct"
+							Contract_Title as "Contract Title"
+							Contract
+							Vendor
+							Contract_Type as "Type"
+							Category
+							Status
+							Total_Spend1 as "Amount"
+							Start_Date as "Start Date"
+							End_Date as "End Date"
+							Contract_Files as "Contract Files"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Contract_Number as "Contract Number Correct"
+							Contract_Title as "Contract Title"
+							Contract
+							Vendor
+							Contract_Type as "Type"
+							Category
+							Status
+							Total_Spend1 as "Amount"
+							Start_Date as "Start Date"
+							End_Date as "End Date"
+							Product as "Product(s)"
+							Contract_Files as "Contract Files"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Vendor_Rating
+	{
+		displayname= "Vendor Rating"
+		icon = "ui-2-favourite-31"
+		form Rate_Your_Vendors
+		{
+			displayname = "Rate Your Vendors"
+			success message = "Vendor Rating Added Successfully!"
+			field alignment = left
+			feature property = 32
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Vendor
+			(
+				type = picklist
+				values  = Add_Vendor.ID
+    			displayformat = [Name]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Contract
+			(
+				type = picklist
+				values  = Add_Contract[Vendor == input.Vendor && Add_to_History == false].ID
+    			displayformat = [Contract_Title]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Product_Service
+			(
+				type = list
+				displayname = "Product/Service"
+				values  = Add_Product.ID
+    			displayformat = [Product_Service_Name]
+				sortorder = ascending
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Quality1
+			(
+				type = radiobuttons
+				displayname = "Quality"
+				values = {"Poor", "Average", "Excellent"}
+				layout = 3
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Delivery1
+			(
+				type = radiobuttons
+				displayname = "Delivery"
+				values = {"Poor", "Average", "Excellent"}
+				layout = 3
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Price1
+			(
+				type = radiobuttons
+				displayname = "Price"
+				values = {"Poor", "Average", "Excellent"}
+				layout = 3
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Service1
+			(
+				type = radiobuttons
+				displayname = "Service"
+				values = {"Poor", "Average", "Excellent"}
+				layout = 3
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			must have Risk1
+			(
+				type = radiobuttons
+				displayname = "Risk"
+				values = {"Poor", "Average", "Excellent"}
+				layout = 3
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+			Average_Rating
+			(
+				type = decimal
+				displayname = "Average Rating"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Rated_By
+			(
+				type = picklist
+				displayname = "Rated By"
+				values  = Add_User.ID
+    			displayformat = [Official_Email]
+				sortorder = ascending
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "files-star"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		list Rate_Your_Vendors_Report
+		{
+			displayName = "Vendors Review"
+			show all rows from Rate_Your_Vendors    
+			(
+				Vendor
+				Contract
+				Average_Rating as "Average Rating"
+				Rated_By as "Rated By"
+				Quality1 as "Quality"
+				Delivery1 as "Delivery"
+				Price1 as "Price"
+				Service1 as "Service"
+				Risk1 as "Risk"
+				Product_Service as "Product/Service"
+			)
+			options
+			(
+				icon = "users-2-a-star"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Vendor
+							Contract
+							Product_Service as "Product/Service"
+							Average_Rating as "Average Rating"
+							Rated_By as "Rated By"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Vendor
+							Contract
+							Product_Service as "Product/Service"
+							Average_Rating as "Average Rating"
+							Rated_By as "Rated By"
+							Quality1 as "Quality"
+							Delivery1 as "Delivery"
+							Price1 as "Price"
+							Service1 as "Service"
+							Risk1 as "Risk"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Add_Vendor_Type1
+	{
+		displayname= "Admin"
+		icon = "ui-1-lock-circle-open"
+		list Add_Vendor_Type_Report
+		{
+			displayName = "Vendor Types"
+			show all rows from Add_Vendor_Type    
+			(
+				Vendor_Type as "Vendor Type"
+			)
+			options
+			(
+				icon = "business-hierarchy-53"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Vendor_Type as "Vendor Type"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Vendor_Type as "Vendor Type"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Add_Contract_Category_Report
+		{
+			displayName = "Contract Types"
+			show all rows from Add_Contract_Category    
+			(
+				Contract_Type as "Contract Type"
+			)
+			options
+			(
+				icon = "business-hierarchy-55"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Contract_Type as "Contract Type"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Contract_Type as "Contract Type"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Add_Contract_Category1_Report
+		{
+			displayName = "Contract Categories"
+			show all rows from Add_Contract_Category1    
+			(
+				Contract_Category as "Contract Category"
+			)
+			options
+			(
+				icon = "design-2-filter-organization"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Contract_Category as "Contract Category"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Contract_Category as "Contract Category"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Add_Users_Report
+		{
+			displayName = "Users"
+			show all rows from Add_User    
+			(
+				Name 
+	 			(
+	      			displayformat = [first_name+""+prefix+""+last_name+""+suffix]
+	 			)
+				Profile
+				Official_Email as "Official Email"
+			)
+			options
+			(
+				icon = "users-2-contacts-44"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Profile
+							Official_Email as "Official Email"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 1
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Name
+							Profile
+							Official_Email as "Official Email"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+		list Add_Product_Report
+		{
+			displayName = "Products"
+			show all rows from Add_Product    
+			(
+				Product_Service_Name as "Product/Service Name"
+				Vendors
+				(
+					view = Vendors_Report
+				)
+			)
+			options
+			(
+				icon = "shopping-box-3d-67"
+	 		)
+			quickview
+			(
+				layout
+				(
+		 			type = -1
+					datablock1
+					(
+			 			layout type = -1
+		     			title = "Overview"
+						fields
+						(
+							Product_Service_Name as "Product/Service Name"
+							Vendors
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Delete 
+    		 			Add 
+    		 			Print 
+    		 			Import 
+    		 			Export 
+    	 			)
+							record
+							(
+								Edit   	   
+								Duplicate   	   
+								Print   	   
+								Delete   	   
+    						)
+    			)
+    			action
+    			(
+							on click
+							(
+								View Record   	   
+    						)
+							on right click
+							(
+								Edit   	   
+								Delete   	   
+								Duplicate   	   
+								Print   	   
+								View Record   	   
+    						)
+     			)
+			)
+			detailview
+			(
+				layout
+				(
+		 			type = 2
+					datablock1
+					(
+			 			layout type = -2
+		     			title = "Overview"
+						fields
+						(
+							Product_Service_Name as "Product/Service Name"
+						)
+					)
+					datablock2
+					(
+			 			layout type = -1
+		     			title = "Vendors"
+		     			related field =  Vendors
+						fields
+						(
+							Name
+							Type
+							Status
+							Total_spend as "Total spend"
+							Internal_Manager as "Internal Representative"
+							Relationship_Since as "Relationship Since"
+							Main_Contact_Person as "Main Contact Person"
+							Official_Email as "Official Email"
+							Mobile_Number as "Mobile Number"
+						)
+					)
+				)
+
+				menu
+    			(
+    	 			header
+    	 			(
+    		 			Edit 
+    		 			Duplicate 
+    		 			Print 
+    		 			Delete 
+    	 			)
+    			)
+			)
+		}
+	}
+	section Hidden_items
+	{
+		displayname= "Hidden items"
+		hide = true
+		icon = "ui-2-menu-bold"
+		form Add_User
+		{
+			displayname = "Add User"
+			success message = "New User Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			must have Name
+			(
+    			type = name
+     			prefix
+     			(
+	     			 type = prefix
+	     			 displayname ="Prefix"
+	     			 visibility = false
+	     			 value = {"Mr.","Mrs.","Ms."}
+     			) 
+     			first_name
+     			(
+	     			 type = first_name
+	     			 displayname ="First Name"
+     			) 
+     			last_name
+     			(
+	     			 type = last_name
+	     			 displayname ="Last Name"
+     			) 
+     			suffix
+     			(
+	     			 type = suffix
+	     			 displayname ="Suffix"
+	     			 visibility = false
+     			) 
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have Profile
+			(
+    			type = text
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			must have unique Official_Email
+			(
+    			type = email
+				displayname = "Official Email"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Vendor_Type
+		{
+			displayname = "Add Vendor Type"
+			success message = "New Vendor Type Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Vendor_Type
+			(
+    			type = text
+				displayname = "Vendor Type"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = "<span style=\"color: rgb(153, 153, 153); font-family: &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 12px; line-height: 18px; background-color: rgb(255, 255, 255)\">E.g.Strategic,Recurring Vendors</span>"
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Contract_Category
+		{
+			displayname = "Add Contract Types"
+			success message = "New Contract Type Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Contract_Type
+			(
+    			type = text
+				displayname = "Contract Type"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = "<span style=\"color: rgb(153, 153, 153); font-family: &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 12px; line-height: 18px; background-color: rgb(255, 255, 255)\">E.g.Lease,License agreement</span>"
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+	
+			customize
+			(
+				icon = "ui-2-square-add-11"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Contract_Category1
+		{
+			displayname = "Add Contract Category"
+			success message = "New Contract Category Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Contract_Category
+			(
+    			type = text
+				displayname = "Contract Category"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			plain
+			(
+    			type = plaintext
+				value = "<span style=\"color: rgb(153, 153, 153); font-family: &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 12px; line-height: 18px; background-color: rgb(255, 255, 255)\">E.g.Courier,Hardware</span>"
+	 			row = 1
+	 			column = 1   
+				width = 300px
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form Add_Product
+		{
+			displayname = "Add Product/Services"
+			success message = "Data Added Successfully!"
+			field alignment = left
+			feature property = 32
+					hide = true
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			Product_Service_Name
+			(
+    			type = text
+				displayname = "Product/Service Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			Vendors
+			(
+				type = list
+				values  = Add_Vendor.ID
+    			bidirectional = Deals_with
+    			displayformat = [Name]
+				height = 60px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			customize
+			(
+				icon = "ui-1-bold-add"
+			)
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+	}
+	functions
+	{
+ 			void archive_vendors(int ID)
+			{
+				vendor_record = Add_Vendor[ID == input.ID];
+				vendor_record.Status="Archived";
+			}
+ 			void Live_vendors(int ID)
+			{
+				vendor_record = Add_Vendor[ID == input.ID];
+				vendor_record.Status="Live";
+			}
+ 			void cancel_contract(int ID)
+			{
+				record = Add_Contract[ID == input.ID];
+				record.Status="Cancelled";
+				contract_records1 = Add_Contract[Vendor == record.Vendor && Status == "Current" && Add_to_History == false];
+				vendor_record = Add_Vendor[ID == record.Vendor];
+				vendor_record.Current_Contracts=contract_records1.ID.getall();
+			}
+ 			void renew_contract(int ID, string Contract_num)
+			{
+				contract_record = Add_Contract[ID == input.ID];
+				contract_record.Renewed=true;
+				openUrl("#Form:Add_Contract?Contract=Renewal&if_from_popup=true&Contract_Number=" + Contract_num,"popup window","height=500,width=950");
+			}
+	}
+
+
+
+	workflow
+	{
+		form
+		{
+			Run_Scripts_While_Editing2 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_User
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Official_Email != old.Official_Email)
+										{
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :input.Official_Email
+												subject :"Invitation from admin to access Vendor Management Application"
+												message :"Hi,<div>&nbsp;</div><div><div>Here is an application for managing your vendors -- ' Vendor Management ' Click the link and check it out.&nbsp;</div><div><br></div><div>https://creator.zoho.com" + zoho.appuri + "login/zc_email=" + input.Official_Email + "&nbsp;</div><div><br></div><div>Have a nice day!</div><div>" + zoho.adminuser + "<br></div></div><div><br></div>"
+											]
+											thisapp.permissions.assignUserInProfile(input.Official_Email,"User");
+											thisapp.permissions.deleteuser(old.Official_Email);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_3 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Contract
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											disable Contract_Number;
+										hide Notify_From_Date;
+										hide Notify_Before_Days;
+										hide Notify_to_vendor_also;
+										hide Hidden_Email;
+										hide Add_to_History;
+										hide if_from_popup;
+										hide Contract_Number_Dropdown;
+										hide plain1;
+										hide Renewed;
+										contract_num_list = Add_Contract[ID != 0].distinct(Contract_Number);
+										input.Contract_Number_Dropdown:ui.append(contract_num_list);
+										if(input.Contract != "Renewal")
+										{
+											if(Add_Contract[ID != 0].count() > 0)
+											{
+												record = Add_Contract[ID != 0] sort by Added_Time desc range from 1 to 1;
+												contract_num = record.Contract_Number.subString(5,6);
+												contract_num_int = contract_num.toLong();
+												contract_num_int = contract_num_int + 1;
+												input.Contract_Number = "CNTR_" + contract_num_int;
+											}
+											else
+											{
+												input.Contract_Number = "CNTR_1";
+											}
+										}
+										else if(input.Contract == "Renewal")
+										{
+											contract_record = Add_Contract[Contract_Number == input.Contract_Number];
+											hide Contract_Number;
+											show Contract_Number_Dropdown;
+											input.Vendor = contract_record.Vendor;
+											input.Contract_Title = contract_record.Contract_Title;
+											input.Contract_Type = contract_record.Contract_Type;
+											input.Category = contract_record.Category;
+											input.Total_Spend1 = contract_record.Total_Spend1;
+											input.Status = contract_record.Status;
+											input.Description = contract_record.Description;
+											input.Contract_Files = contract_record.Contract_Files;
+											input.Notify_to_vendor_also = contract_record.Notify_to_vendor_also;
+											input.Notify_Before_Days = contract_record.Notify_Before_Days;
+											input.Notify_From_Date = contract_record.Notify_From_Date;
+											input.Notify_Contract_Expiry = contract_record.Notify_Contract_Expiry;
+											input.End_Date = contract_record.End_Date;
+											input.Start_Date = contract_record.Start_Date;
+											input.Product = contract_record.Product;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_4 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Contract
+				record event = on add
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											contract_count = Add_Contract[Vendor == input.Vendor && Status == "Current"].count();
+										contract_records = Add_Contract[Vendor == input.Vendor && Status == "Current"];
+										total_spend = 0.0;
+										for each  record in contract_records
+										{
+											total_spend = total_spend + record.Total_Spend1;
+										}
+										vendor_record = Add_Vendor[ID == input.Vendor];
+										vendor_record.Live_Contracts=contract_count + 1;
+										vendor_record.Total_spend=total_spend + input.Total_Spend1;
+										if(input.Notify_Contract_Expiry && input.Notify_Before_Days != null)
+										{
+											input.Notify_From_Date = input.End_Date.subDay(input.Notify_Before_Days);
+										}
+										if(input.End_Date < input.Start_Date)
+										{
+											alert "End date must be greater than the start date!!!";
+											cancel submit;
+										}
+										if(input.Status == "Expired")
+										{
+											if(input.Start_Date > zoho.currentdate || input.End_Date > zoho.currentdate)
+											{
+												alert "Please enter a valid date according to the contract status!";
+												cancel submit;
+											}
+										}
+										if(input.Contract_Number == null && input.Contract_Number_Dropdown == null)
+										{
+											alert "Please specify the contract number";
+											cancel submit;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_5 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Contract
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											user_id = Add_Vendor[ID == input.Vendor].Internal_Manager;
+										input.Hidden_Email = Add_User[ID == user_id].Official_Email;
+										if(input.if_from_popup)
+										{
+											openUrl("#Script:page.refresh","Same window");
+										}
+										contract_records1 = Add_Contract[Vendor == input.Vendor && Status == "Current" && Add_to_History == false];
+										vendor_record = Add_Vendor[ID == input.Vendor];
+										vendor_record.Current_Contracts=contract_records1.ID.getall();
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing3 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Contract
+				record event = on edit
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											disable Contract_Number;
+										hide Hidden_Email;
+										//hide Add_to_History;
+										hide Contract_Number_Dropdown;
+										hide Renewed;
+										hide if_from_popup;
+										hide Notify_From_Date;
+										disable Status;
+										hide Notify_to_vendor_also;
+										hide Notify_Before_Days;
+										if(input.Status == "Expired")
+										{
+											hide Notify_Contract_Expiry;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing4 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Contract
+				record event = on edit
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Add_to_History)
+										{
+											if(old.Contract != input.Contract || old.Contract_Title != input.Contract_Title || old.Description != input.Description || old.Status != input.Status || old.Category != input.Category || old.Contract_Type != input.Contract_Type || old.Total_Spend1 != input.Total_Spend1 || old.Vendor != input.Vendor || old.End_Date != input.End_Date || old.Notify_Before_Days != input.Notify_Before_Days || old.Start_Date != input.Start_Date || old.Notify_Contract_Expiry != input.Notify_Contract_Expiry || old.Notify_to_vendor_also != input.Notify_to_vendor_also || old.Product != input.Product)
+											{
+												insert into Add_Contract
+												[
+													Contract_Type=old.Contract_Type
+													End_Date=old.End_Date
+													Notify_Contract_Expiry=old.Notify_Contract_Expiry
+													Status=old.Status
+													Category=old.Category
+													Contract_Title=old.Contract_Title
+													Start_Date=old.Start_Date
+													Vendor=old.Vendor
+													Add_to_History=true
+													Contract=old.Contract
+													Contract_Number=old.Contract_Number
+													Notify_Before_Days=old.Notify_Before_Days
+													Total_Spend1=old.Total_Spend1
+													Description=old.Description
+													Notify_to_vendor_also=old.Notify_to_vendor_also
+													Hidden_Email=old.Hidden_Email
+													Contract_Files=old.Contract_Files
+													Product=old.Product
+													Added_User=zoho.loginuser
+												]
+											}
+											input.Add_to_History = false;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Editing5 as "Run Scripts - While Editing a Record"
+			{
+				type =  form
+				form = Add_Contract
+				record event = on edit
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											user_id = Add_Vendor[ID == input.Vendor].Internal_Manager;
+										input.Hidden_Email = Add_User[ID == user_id].Official_Email;
+										if(input.if_from_popup)
+										{
+											openUrl("#Report:Add_Contract_Report","same window");
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin2 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_User
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											thisapp.permissions.deleteuser(input.Official_Email);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always4 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Contract
+				record event = on add or edit
+
+	on user input of Notify_Contract_Expiry
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Notify_Contract_Expiry)
+										{
+											show Notify_Before_Days;
+											show Notify_to_vendor_also;
+										}
+										else
+										{
+											hide Notify_Before_Days;
+											hide Notify_to_vendor_also;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always5 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Contract
+				record event = on add or edit
+
+	on user input of End_Date
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.End_Date < input.Start_Date)
+										{
+											alert "End date must be greater than the start date!!!";
+										}
+										if(input.Status == "Expired")
+										{
+											if(input.End_Date > zoho.currentdate)
+											{
+												alert "Please enter a valid End date according to the contract status!";
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always6 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Contract
+				record event = on add or edit
+
+	on user input of Contract
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Contract == "New")
+										{
+											show Contract_Number;
+											hide Contract_Number_Dropdown;
+										}
+										else if(input.Contract == "Renewal")
+										{
+											hide Contract_Number;
+											show Contract_Number_Dropdown;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always7 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Contract
+				record event = on add or edit
+
+	on user input of Contract_Number_Dropdown
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											contract_record = Add_Contract[Contract_Number == input.Contract_Number_Dropdown];
+										if(input.Contract == "Renewal")
+										{
+											input.Vendor = contract_record.Vendor;
+											input.Contract_Title = contract_record.Contract_Title;
+											input.Contract_Type = contract_record.Contract_Type;
+											input.Category = contract_record.Category;
+											input.Total_Spend1 = contract_record.Total_Spend1;
+											input.Status = contract_record.Status;
+											input.Description = contract_record.Description;
+											input.Contract_Files = contract_record.Contract_Files;
+											input.Notify_to_vendor_also = contract_record.Notify_to_vendor_also;
+											input.Notify_Before_Days = contract_record.Notify_Before_Days;
+											input.Notify_Contract_Expiry = contract_record.Notify_Contract_Expiry;
+											input.End_Date = contract_record.End_Date;
+											input.Start_Date = contract_record.Start_Date;
+											input.Product = contract_record.Product;
+										}
+										input.Contract_Number = input.Contract_Number_Dropdown;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always8 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Contract
+				record event = on add or edit
+
+	on user input of Start_Date
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Status == "Expired")
+										{
+											if(input.Start_Date > zoho.currentdate)
+											{
+												alert "Please enter a valid start date according to the contract status!";
+											}
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always9 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Contract
+				record event = on add or edit
+
+	on user input of Notify_Before_Days
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Notify_Before_Days != null)
+										{
+											input.Notify_From_Date = input.End_Date.subDay(input.Notify_Before_Days);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always10 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Contract
+				record event = on add or edit
+
+	on user input of Status
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Status == "Expired")
+										{
+											hide Notify_Contract_Expiry;
+										}
+										else
+										{
+											show Notify_Contract_Expiry;
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always11 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Contract
+				record event = on add or edit
+
+	on user input of Vendor
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											if(input.Vendor != null)
+										{
+											vendor_record = Add_Vendor[ID == input.Vendor];
+											input.Product:ui.add(vendor_record.Deals_with);
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_6 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Rate_Your_Vendors
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											record = Add_User[Official_Email == zoho.loginuserid];
+										Rated_By.select(record.ID);
+						)
+					}
+	}
+
+			}
+			Share_and_Send_Notificati1 as "Share and Send Notification Mail"
+			{
+				type =  form
+				form = Add_User
+				record event = on add
+
+	on success
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											sendmail
+										[
+											from :zoho.adminuserid
+											to :input.Official_Email
+											subject :"Invitation from admin to access Vendor Management Application"
+											message :"Hi,<div>&nbsp;</div><div><div>Here is an application for managing your vendors -- ' Vendor Management ' Click the link and check it out.&nbsp;</div><div><br></div><div><a href=\"https://creator.zoho.com" + zoho.appuri + "login/zc_email=" + input.Official_Email + "\" target=\"_blank\">Click here</a></div><div><br></div><div><br></div><div>Have a nice day!</div><div>" + zoho.adminuser + "<br></div></div><div><br></div>"
+										]
+										thisapp.permissions.assignUserInProfile(input.Official_Email,"User");
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Adding_7 as "Run Scripts - While Adding a Record"
+			{
+				type =  form
+				form = Add_Vendor
+				record event = on add
+
+	on load
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											input.Live_Contracts = 0;
+										input.Total_spend = 0.0;
+										//for adding user
+										if(Add_User[Official_Email == zoho.adminuserid].count() = 0)
+										{
+											insert into Add_User
+											[
+												Name.first_name=zoho.loginuser
+												Official_Email=zoho.adminuserid
+												Profile="Admin"
+												Added_User=zoho.loginuser
+											]
+										}
+						)
+					}
+	}
+
+			}
+			Run_Scripts_While_Deletin3 as "Run Scripts - While Deleting a Record"
+			{
+				type =  form
+				form = Add_Contract
+				record event = on delete
+
+	on validate
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											delete from Add_Contract[Contract_Number == input.Contract_Number];
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always12 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Rate_Your_Vendors
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Rated_By;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always13 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Rate_Your_Vendors
+				record event = on add or edit
+
+	on user input of Delivery1
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											ratingMap = {"Poor":3,"Average":7,"Excellent":10};
+										Q = ratingMap.get(input.Quality1);
+										D = ratingMap.get(input.Delivery1);
+										P = ratingMap.get(input.Price1);
+										S = ratingMap.get(input.Service1);
+										R = ratingMap.get(input.Risk1);
+										input.Average_Rating = (ifnull(Q,0) + ifnull(R,0) + ifnull(S,0) + ifnull(P,0) + ifnull(D,0)) / 5;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always14 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Rate_Your_Vendors
+				record event = on add or edit
+
+	on user input of Price1
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											ratingMap = {"Poor":3,"Average":7,"Excellent":10};
+										Q = ratingMap.get(input.Quality1);
+										D = ratingMap.get(input.Delivery1);
+										P = ratingMap.get(input.Price1);
+										S = ratingMap.get(input.Service1);
+										R = ratingMap.get(input.Risk1);
+										input.Average_Rating = (ifnull(Q,0) + ifnull(R,0) + ifnull(S,0) + ifnull(P,0) + ifnull(D,0)) / 5;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always15 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Rate_Your_Vendors
+				record event = on add or edit
+
+	on user input of Service1
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											ratingMap = {"Poor":3,"Average":7,"Excellent":10};
+										Q = ratingMap.get(input.Quality1);
+										D = ratingMap.get(input.Delivery1);
+										P = ratingMap.get(input.Price1);
+										S = ratingMap.get(input.Service1);
+										R = ratingMap.get(input.Risk1);
+										input.Average_Rating = (ifnull(Q,0) + ifnull(R,0) + ifnull(S,0) + ifnull(P,0) + ifnull(D,0)) / 5;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always16 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Rate_Your_Vendors
+				record event = on add or edit
+
+	on user input of Contract
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											product_list = Add_Contract[ID == input.Contract].Product;
+										input.Product_Service:ui.add(product_list);
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always17 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Rate_Your_Vendors
+				record event = on add or edit
+
+	on user input of Risk1
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											ratingMap = {"Poor":3,"Average":7,"Excellent":10};
+										Q = ratingMap.get(input.Quality1);
+										D = ratingMap.get(input.Delivery1);
+										P = ratingMap.get(input.Price1);
+										S = ratingMap.get(input.Service1);
+										R = ratingMap.get(input.Risk1);
+										input.Average_Rating = (ifnull(Q,0) + ifnull(R,0) + ifnull(S,0) + ifnull(P,0) + ifnull(D,0)) / 5;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always18 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Rate_Your_Vendors
+				record event = on add or edit
+
+	on user input of Quality1
+	{
+					actions 
+					{
+						custom deluge script
+						(
+											ratingMap = {"Poor":3,"Average":7,"Excellent":10};
+										Q = ratingMap.get(input.Quality1);
+										D = ratingMap.get(input.Delivery1);
+										P = ratingMap.get(input.Price1);
+										S = ratingMap.get(input.Service1);
+										R = ratingMap.get(input.Risk1);
+										input.Average_Rating = (ifnull(Q,0) + ifnull(R,0) + ifnull(S,0) + ifnull(P,0) + ifnull(D,0)) / 5;
+						)
+					}
+	}
+
+			}
+			Run_Scripts_On_Always19 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Product
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Vendors;
+					}
+	}
+
+			}
+			Run_Scripts_On_Always20 as "Run Scripts - On Always"
+			{
+				type =  form
+				form = Add_Vendor
+				record event = on add or edit
+
+	field rules
+	{
+					actions 
+					{
+						hide Live_Contracts,Current_Contracts,Total_spend;
+					}
+	}
+
+			}
+		}
+		schedule
+		{
+			Change_status as "Change_status"
+			{
+				type =  schedule
+				form = Add_Contract
+				start = after 1 days from End_Date at "00:00:00"
+				time zone = "IST"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						input.Status = "Expired";
+										contract_records1 = Add_Contract[Vendor == input.Vendor && Status == "Current" && Add_to_History == false];
+										vendor_record = Add_Vendor[ID == input.Vendor];
+										vendor_record.Current_Contracts=contract_records1.ID.getall();
+					)
+					}
+				}
+			}
+			Expiry_Notification as "Expiry_Notification"
+			{
+				type =  schedule
+				form = Add_Contract
+				start = Notify_From_Date at "00:00:00"
+				end   = Notify_From_Date
+				frequency = daily
+				time zone = "IST"
+				on start
+				{
+					actions 
+					{
+					on load
+					(
+						vendor_record = Add_Vendor[ID == input.Vendor];
+										user_mailid = Add_User[ID == vendor_record.Internal_Manager].Official_Email;
+										sendmail
+										[
+											from :zoho.adminuserid
+											to :user_mailid
+											subject :"Contract Renewal Remainder "
+											message :"Hi,<div><br></div><div>Your contract named \"" + input.Contract_Title + "\"-" + input.Contract_Number + "&nbsp;is going to end on&nbsp;" + input.End_Date + ".&nbsp;</div><div><br></div><div>So, please renew the contract if needed.</div><div><br></div><div>Thanks and Regards,</div><div>" + zoho.adminuser + "<br></div>"
+										]
+										if(input.Notify_to_vendor_also)
+										{
+											sendmail
+											[
+												from :zoho.adminuserid
+												to :vendor_record.Official_Email
+												subject :"Contract Renewal Remainder "
+												message :"Hi,<div><br></div><div>Your contract named \"" + input.Contract_Title + "\"-" + input.Contract_Number + "&nbsp;is going to end on&nbsp;" + input.End_Date + ".&nbsp;</div><div><br></div><div>So, please renew the contract if needed.</div><div><br></div><div>Thanks and Regards,</div><div>" + zoho.adminuser + "<br></div>"
+											]
+										}
+					)
+					}
+				}
+			}
+		}
+		functions
+		{
+			Cancel_ as "Cancel "
+			{
+				type =  functions
+				form = Add_Contract
+				on start
+				{
+					actions 
+					{
+					cancel_contract(ID);
+					}
+				}
+			}
+			Archive1 as "Archive"
+			{
+				type =  functions
+				form = Add_Vendor
+				on start
+				{
+					actions 
+					{
+					archive_vendors(ID);
+					}
+				}
+			}
+			Archive as "Archive"
+			{
+				type =  functions
+				form = Add_Vendor
+				on start
+				{
+					actions 
+					{
+					archive_vendors(ID);
+					}
+				}
+			}
+			Live1 as "Live"
+			{
+				type =  functions
+				form = Add_Vendor
+				on start
+				{
+					actions 
+					{
+					Live_vendors(ID);
+					}
+				}
+			}
+			Cancel as "Cancel"
+			{
+				type =  functions
+				form = Add_Contract
+				on start
+				{
+					actions 
+					{
+					cancel_contract(ID);
+					}
+				}
+			}
+			Live as "Live"
+			{
+				type =  functions
+				form = Add_Vendor
+				on start
+				{
+					actions 
+					{
+					Live_vendors(ID);
+					}
+				}
+			}
+			Renew1 as "Renew"
+			{
+				type =  functions
+				form = Add_Contract
+				on start
+				{
+					actions 
+					{
+					renew_contract(ID,Contract_Number);
+					}
+				}
+			}
+			Renew as "Renew"
+			{
+				type =  functions
+				form = Add_Contract
+				on start
+				{
+					actions 
+					{
+					renew_contract(ID,Contract_Number);
+					}
+				}
+			}
+		}
+	}
+	share_settings
+	{
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"User"
+			{
+				name = "User"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false}
+				description = "This profile will have user permissions.\n"
+				ModulePermissions
+				{
+					Rate_Your_Vendors
+					{
+						enabled= Create,Tab 
+						FieldPermissions
+						{
+							Product_Service{visibility:true,readonly:false}
+							Quality1{visibility:true,readonly:false}
+							Price1{visibility:true,readonly:false}
+							Service1{visibility:true,readonly:false}
+							Risk1{visibility:true,readonly:false}
+							Vendor{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Contract{visibility:true,readonly:false}
+							Delivery1{visibility:true,readonly:false}
+							Average_Rating{visibility:true,readonly:false}
+							Rated_By{visibility:true,readonly:false}
+						}
+					}
+					Add_Contract_Category
+					{
+						FieldPermissions
+						{
+							Contract_Type{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							plain{visibility:true,readonly:false}
+						}
+					}
+					Add_Product
+					{
+						FieldPermissions
+						{
+							Product_Service_Name{visibility:true,readonly:false}
+							Vendors{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+						}
+					}
+					Add_Contract
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Add_Contract_Report={"View"}
+							My_Contracts={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Contract_Type{visibility:true,readonly:false}
+							Category{visibility:true,readonly:false}
+							Description{visibility:true,readonly:false}
+							Hidden_Email{visibility:true,readonly:false}
+							Contract_Files{visibility:true,readonly:false}
+							Product{visibility:true,readonly:false}
+							End_Date{visibility:true,readonly:false}
+							Notify_From_Date{visibility:true,readonly:false}
+							Add_to_History{visibility:true,readonly:false}
+							plain{visibility:true,readonly:false}
+							plain1{visibility:true,readonly:false}
+							Renewed{visibility:true,readonly:false}
+							Start_Date{visibility:true,readonly:false}
+							Status{visibility:true,readonly:false}
+							Contract_Title{visibility:true,readonly:false}
+							Vendor{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Contract_Number{visibility:true,readonly:false}
+							Notify_to_vendor_also{visibility:true,readonly:false}
+							Notify_Contract_Expiry{visibility:true,readonly:false}
+							Notify_Before_Days{visibility:true,readonly:false}
+							Total_Spend1{visibility:true,readonly:false}
+							Contract{visibility:true,readonly:false}
+							if_from_popup{visibility:true,readonly:false}
+							Contract_Number_Dropdown{visibility:true,readonly:false}
+						}
+					}
+					Add_User
+					{
+						FieldPermissions
+						{
+							Official_Email{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Profile{visibility:true,readonly:false}
+							Name{visibility:false,readonly:false}
+						}
+					}
+					Add_Vendor
+					{
+						enabled= Create,Viewall,Import,Export,Tab 
+						ReportPermissions
+						{
+							Vendors_Report={"View"}
+							My_Vendors={"View","Edit","Delete"}
+						}
+						FieldPermissions
+						{
+							Status{visibility:true,readonly:false}
+							Company_Registration{visibility:true,readonly:false}
+							Relationship_Since{visibility:true,readonly:false}
+							Official_Email{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							Name{visibility:true,readonly:false}
+							Type{visibility:true,readonly:false}
+							Company_Website{visibility:true,readonly:false}
+							Main_Contact_Person{visibility:false,readonly:false}
+							Stock_Symbol{visibility:true,readonly:false}
+							plain{visibility:true,readonly:false}
+							Country_of_Registration{visibility:true,readonly:false}
+							Mobile_Number{visibility:false,readonly:false}
+							Deals_with{visibility:true,readonly:false}
+							Personal_Email{visibility:true,readonly:false}
+							Current_Contracts{visibility:true,readonly:false}
+							Live_Contracts{visibility:true,readonly:false}
+							Total_spend{visibility:true,readonly:false}
+							Internal_Manager{visibility:true,readonly:false}
+						}
+					}
+					Add_Vendor_Type
+					{
+						FieldPermissions
+						{
+							Vendor_Type{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							plain{visibility:true,readonly:false}
+						}
+					}
+					Add_Contract_Category1
+					{
+						FieldPermissions
+						{
+							Contract_Category{visibility:true,readonly:false}
+							Section{visibility:false,readonly:false}
+							plain{visibility:true,readonly:false}
+						}
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users.\n"
+				}
+			}
+	}
+
+	customize
+	{
+		
+		layout = "tab"
+		color = "black"
+		base theme = "professional"
+		new theme = 3
+		new theme color = 2
+		icons = true
+    	icon type = 1
+    	icon name = "zc-ab-project-mgmt2"
+    	icon theme = "turquoise"
+		icons style = solid
+	}
+
+	phone
+	{
+		section  Vendors
+		{
+			icon = "users-multiple-11"
+			form  Add_Vendor
+			{
+				layout = left
+				icon = "users-2-a-add"
+			}
+			custom Vendors_Report
+			{
+				icon = "users-2-multiple"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Current_Contracts as "Current Contracts"
+								Official_Email as "Official Email"
+								Main_Contact_Person as "Main Contact Person"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Archive"
+										"Live"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Type
+								Total_spend as "Total spend"
+								Status
+								Country_of_Registration as "Country of Registration"
+								Company_Registration as "Company Registration Number"
+								Stock_Symbol as "Stock Symbol"
+								Company_Website as "Company Website"
+								Internal_Manager as "Internal Representative"
+								Relationship_Since as "Relationship Since"
+								Deals_with as "Deals with"
+							)
+						)
+						datablock2
+						(
+			 				layout type = -2
+		     				title = "Contact Information"
+							fields
+							(
+								Main_Contact_Person as "Main Contact Person"
+								Official_Email as "Official Email"
+								Personal_Email as "Secondary Email"
+								Mobile_Number as "Mobile Number"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Archive"
+			 				"Live"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			custom My_Vendors
+			{
+				icon = "files-user"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Current_Contracts as "Current Contracts"
+								Official_Email as "Official Email"
+								Main_Contact_Person as "Main Contact Person"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Archive"
+										"Live"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Type
+								Total_spend as "Total spend"
+								Status
+								Country_of_Registration as "Country of Registration"
+								Company_Registration as "Company Registration Number"
+								Stock_Symbol as "Stock Symbol"
+								Company_Website as "Company Website"
+								Internal_Manager as "Internal Representative"
+								Relationship_Since as "Relationship Since"
+								Deals_with as "Deals with"
+							)
+						)
+						datablock2
+						(
+			 				layout type = -2
+		     				title = "Contact Information"
+							fields
+							(
+								Main_Contact_Person as "Main Contact Person"
+								Official_Email as "Official Email"
+								Personal_Email as "Secondary Email"
+								Mobile_Number as "Mobile Number"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Archive"
+			 				"Live"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			pivotchart Vendor_Spend_Report
+			{
+				icon = "business-chart-pie-36"
+			}
+		}
+		section  Add_Contract1
+		{
+			displayname= "Contracts"
+			icon = "education-paper"
+			form  Add_Contract
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+			}
+			list Add_Contract_Report
+			{
+				icon = "files-single-copy-04"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Contract_Number as "Contract Number Correct"
+								Contract_Title as "Title"
+								Contract
+								Vendor
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Renew"
+										"Cancel "
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Contract_Number as "Contract Number Correct"
+								Contract_Title as "Title"
+								Contract
+								Vendor
+								Contract_Type as "Type"
+								Category
+								Status
+								Total_Spend1 as "Amount"
+								Start_Date as "Start Date"
+								End_Date as "End Date"
+								Product as "Product(s)"
+								Contract_Files as "Contract Files"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Renew"
+			 				"Cancel "
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list My_Contracts
+			{
+				icon = "files-single-folded-content"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Contract_Number as "Contract Number Correct"
+								Contract_Title as "Title"
+								Contract
+								Vendor
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on left swipe
+									(
+										"Renew"
+										"Cancel"
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Contract_Number as "Contract Number Correct"
+								Contract_Title as "Title"
+								Contract
+								Vendor
+								Contract_Type as "Type"
+								Category
+								Status
+								Total_Spend1 as "Amount"
+								Start_Date as "Start Date"
+								End_Date as "End Date"
+								Product as "Product(s)"
+								Contract_Files as "Contract Files"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+			 				"Renew"
+			 				"Cancel"
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list History
+			{
+				icon = "users-2-a-edit"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Vendor
+								Contract_Number as "Contract Number Correct"
+								Contract_Title as "Contract Title"
+								Status
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Contract_Number as "Contract Number Correct"
+								Contract_Title as "Contract Title"
+								Contract
+								Vendor
+								Contract_Type as "Type"
+								Category
+								Status
+								Total_Spend1 as "Amount"
+								Start_Date as "Start Date"
+								End_Date as "End Date"
+								Product as "Product(s)"
+								Contract_Files as "Contract Files"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Vendor_Rating
+		{
+			displayname= "Vendor Rating"
+			icon = "ui-2-favourite-31"
+			form  Rate_Your_Vendors
+			{
+				layout = left
+				icon = "files-star"
+			}
+			list Rate_Your_Vendors_Report
+			{
+				icon = "users-2-a-star"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Vendor
+								Product_Service as "Product/Service"
+								Contract
+								Average_Rating as "Average Rating"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Vendor
+								Contract
+								Product_Service as "Product/Service"
+								Average_Rating as "Average Rating"
+								Rated_By as "Rated By"
+								Quality1 as "Quality"
+								Delivery1 as "Delivery"
+								Price1 as "Price"
+								Service1 as "Service"
+								Risk1 as "Risk"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Add_Vendor_Type1
+		{
+			displayname= "Admin"
+			icon = "ui-1-lock-circle-open"
+			list Add_Vendor_Type_Report
+			{
+				icon = "business-hierarchy-53"
+				quickview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = 1
+		     				title = "Overview"
+							fields
+							(
+								Vendor_Type as "Vendor Type"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Vendor_Type as "Vendor Type"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Add_Contract_Category_Report
+			{
+				icon = "business-hierarchy-55"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Contract_Type as "Contract Type"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Contract_Type as "Contract Type"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Add_Contract_Category1_Report
+			{
+				icon = "design-2-filter-organization"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Contract_Category as "Contract Category"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Contract_Category as "Contract Category"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Add_Users_Report
+			{
+				icon = "users-2-contacts-44"
+				quickview
+				(
+					layout
+					(
+		 				type = 12
+						datablock1
+						(
+			 				layout type = 35
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Official_Email as "Official Email"
+								Profile
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Name
+								Profile
+								Official_Email as "Official Email"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Add_Product_Report
+			{
+				icon = "shopping-box-3d-67"
+				quickview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = 1
+		     				title = "Overview"
+							fields
+							(
+								Product_Service_Name as "Product/Service Name"
+								Vendors
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on tap
+									(
+										View Record   	   
+    								)
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 2
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Product_Service_Name as "Product/Service Name"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+		}
+		section  Hidden_items
+		{
+			displayname= "Hidden items"
+			hide = true
+			icon = "ui-2-menu-bold"
+			form  Add_User
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			form  Add_Vendor_Type
+			{
+				layout = auto
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_Contract_Category
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_Contract_Category1
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			form  Add_Product
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = turquoise
+        	layout = onecolumn
+		 	icons style = outline
+		}
+	}
+	tablet
+	{
+		section  Vendors
+		{
+			icon = "users-multiple-11"
+			form  Add_Vendor
+			{
+				layout = left
+				icon = "users-2-a-add"
+			}
+			custom Vendors_Report
+			{
+				icon = "users-2-multiple"
+			}
+			custom My_Vendors
+			{
+				icon = "files-user"
+			}
+			pivotchart Vendor_Spend_Report
+			{
+				icon = "business-chart-pie-36"
+			}
+		}
+		section  Add_Contract1
+		{
+			displayname= "Contracts"
+			icon = "education-paper"
+			form  Add_Contract
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+			}
+			list Add_Contract_Report
+			{
+				icon = "files-single-copy-04"
+			}
+			list My_Contracts
+			{
+				icon = "files-single-folded-content"
+			}
+			list History
+			{
+				icon = "users-2-a-edit"
+			}
+		}
+		section  Vendor_Rating
+		{
+			displayname= "Vendor Rating"
+			icon = "ui-2-favourite-31"
+			form  Rate_Your_Vendors
+			{
+				layout = left
+				icon = "files-star"
+			}
+			list Rate_Your_Vendors_Report
+			{
+				icon = "users-2-a-star"
+			}
+		}
+		section  Add_Vendor_Type1
+		{
+			displayname= "Admin"
+			icon = "ui-1-lock-circle-open"
+			list Add_Vendor_Type_Report
+			{
+				icon = "business-hierarchy-53"
+			}
+			list Add_Contract_Category_Report
+			{
+				icon = "business-hierarchy-55"
+			}
+			list Add_Contract_Category1_Report
+			{
+				icon = "design-2-filter-organization"
+				quickview
+				(
+					layout
+					(
+		 				type = 9
+						datablock1
+						(
+			 				layout type = 31
+		     				title = "Overview"
+							fields
+							(
+								Contract_Category as "Contract Category"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Add 
+    		 				Print 
+    		 				Import 
+    		 				Export 
+    	 				)
+									record
+									(
+										Edit   	   
+										Duplicate   	   
+										Print   	   
+										Delete   	   
+    								)
+    				)
+    				action
+    				(
+									on long press
+									(
+										Duplicate   	   
+										Print   	   
+										View Record   	   
+    								)
+									on right swipe
+									(
+										Edit   	   
+										Delete   	   
+    								)
+     				)
+				)
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+			 				layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								Contract_Category as "Contract Category"
+							)
+						)
+					)
+
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Print 
+    		 				Delete 
+    	 				)
+    				)
+				)
+			}
+			list Add_Users_Report
+			{
+				icon = "users-2-contacts-44"
+			}
+			list Add_Product_Report
+			{
+				icon = "shopping-box-3d-67"
+			}
+		}
+		section  Hidden_items
+		{
+			displayname= "Hidden items"
+			hide = true
+			form  Add_User
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			form  Add_Vendor_Type
+			{
+				layout = auto
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_Contract_Category
+			{
+				layout = left
+				icon = "ui-2-square-add-11"
+				hide = true
+			}
+			form  Add_Contract_Category1
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+			form  Add_Product
+			{
+				layout = left
+				icon = "ui-1-bold-add"
+				hide = true
+			}
+		}
+		customize
+		{
+			colour = turquoise
+        	layout = onecolumn
+		 	icons style = outline
+		}
+	}
+	translation
+{
+"{\"Language_Settings\" : {\"LANGAGUE_WITH_LOGIN\":\"user\"},\"de\":{\"ReportField.Vendors_Report.Name\":\"Name\",\"ReportField.Add_Product_Report.Product_Service_Name\":\"Name Produkt/Dienstleistung\",\"FormButton.Add_Contract_Category1.cancel\":\"Abbrechen\",\"FormField.Add_Vendor.Country_of_Registration\":\"Land der Registrierung\",\"FormField.Add_Vendor_Type.Record_Status\":\"Status des Datensatzes\",\"FormField.Add_Vendor.Current_Contracts\":\"Aktuelle Verträge\",\"FormField.Add_Vendor_Type.Modified_Time\":\"Geändert um\",\"Form.Rate_Your_Vendors\":\"Ihre Lieferanten bewerten\",\"ReportField.Add_Contract_Report.Contract\":\"Vertrag\",\"FormField.Rate_Your_Vendors.Modified_User_IP_Address\":\"Geändert von IP-Adresse\",\"FormField.Add_Contract.Modified_User_IP_Address\":\"Geändert von IP-Adresse\",\"FormButton.Add_Contract_Category.submit\":\"Absenden\",\"CustomAction.My_Contracts.Cancel\":\"Abbrechen\",\"FormField.Rate_Your_Vendors.Price1\":\"Preis\",\"FormButton.Add_Contract_Category.reset\":\"Zurücksetzen\",\"ReportField.Vendors_Report.Official_Email\":\"Offizielle E-Mail\",\"ReportField.Vendors_Report.Current_Contracts\":\"Aktuelle Verträge\",\"ReportField.Add_Vendor_Type_Report.Vendor_Type\":\"Anbietertyp\",\"ReportField.My_Contracts.Total_Spend1\":\"Vertragsbetrag\",\"FormField.Add_Contract_Category.Record_Status\":\"Status des Datensatzes\",\"FormField.Add_Vendor_Type.Vendor_Type\":\"Anbietertyp\",\"FormField.Add_Contract.Contract_Number_Dropdown\":\"Vertragsnummer\",\"FormField.Add_Product.Modified_User_IP_Address\":\"Geändert von IP-Adresse\",\"FormButton.Add_User.update\":\"Update\",\"FormField.Add_Contract_Category1.Added_User\":\"Hinzugefügt durch\",\"ReportField.My_Vendors.Name\":\"Name\",\"ReportField.Add_Users_Report.Profile\":\"Profil\",\"ReportField.Rate_Your_Vendors_Report.Delivery1\":\"Lieferung\",\"ReportField.History.Category\":\"Kategorie\",\"FormField.Add_Vendor.Company_Registration\":\"Registrierungsnummer des Unternehmens\",\"FormField.Add_User.ID\":\"ID\",\"FormField.Add_Product.Modified_Time\":\"Geändert um\",\"FormField.Add_Vendor_Type.Modified_User_IP_Address\":\"Geändert von IP-Adresse\",\"ReportField.My_Vendors.Relationship_Since\":\"Beziehung seit\",\"FormField.Add_Contract.Modified_User\":\"Geändert durch\",\"FormField.Add_Vendor_Type.ID\":\"ID\",\"FormField.Add_Contract_Category.Added_User_IP_Address\":\"Hinzugefügt von IP-Adresse\",\"ReportField.Vendors_Report.Company_Website\":\"Website des Unternehmens\",\"ReportField.Rate_Your_Vendors_Report.Price1\":\"Preis\",\"FormField.Add_User.Added_User_IP_Address\":\"Hinzugefügt von IP-Adresse\",\"ReportField.History.Total_Spend1\":\"Vertragsbetrag\",\"ReportField.My_Contracts.Category\":\"Kategorie\",\"ReportField.History.Contract_Title\":\"Vertragstitel\",\"FormField.Add_Contract.Notify_Contract_Expiry\":\"Vertragsablauf melden\",\"ReportField.My_Contracts.Vendor\":\"Anbieter\",\"FormButton.Add_User.reset\":\"Zurücksetzen\",\"FormField.Add_Vendor.Modified_Time\":\"Geändert um\",\"FormField.Add_Contract.End_Date\":\"Enddatum\",\"FormField.Add_Contract.Notify_From_Date\":\"Benachrichtigen ab (Datum)\",\"Report.Add_Users_Report\":\"Benutzer\",\"FormButton.Rate_Your_Vendors.reset\":\"Zurücksetzen\",\"Form.Add_Product\":\"Produkt/Dienstleistungen hinzufügen\",\"FormField.Add_Contract_Category1.Record_Status\":\"Status des Datensatzes\",\"FormField.Add_Product.Added_User\":\"Hinzugefügt durch\",\"FormField.Add_Vendor.Modified_User_IP_Address\":\"Geändert von IP-Adresse\",\"ReportField.My_Vendors.Status\":\"Status\",\"FormButton.Add_Vendor_Type.update\":\"Update\",\"Report.Vendor_Spend_Report\":\"Lieferant,en\",\"FormField.Rate_Your_Vendors.Added_Time\":\"Hinzugefügt um\",\"ReportField.My_Vendors.Total_spend\":\"Gesamtausgaben\",\"App.vendors\":\"Anbieter\",\"FormField.Add_Contract_Category.Modified_Time\":\"Geändert um\",\"FormField.Add_Vendor_Type.Added_User_IP_Address\":\"Hinzugefügt von IP-Adresse\",\"PicklistOption.Rate_Your_Vendors.Delivery1.3\":\"Ausgezeichnet\",\"PicklistOption.Rate_Your_Vendors.Delivery1.2\":\"Durchschnitt\",\"PicklistOption.Rate_Your_Vendors.Delivery1.1\":\"Schlecht\",\"ReportField.My_Contracts.Contract_Title\":\"Vertragstitel\",\"FormButton.Add_Vendor.reset\":\"Zurücksetzen\",\"FormField.Add_Vendor.Added_Time\":\"Hinzugefügt um\",\"FormField.Add_Contract_Category1.Modified_Time\":\"Geändert um\",\"FormField.Add_User.Added_User\":\"Hinzugefügt durch\",\"CustomAction.My_Vendors.Live1\":\"Live\",\"FormField.Add_Contract_Category.Modified_User_IP_Address\":\"Geändert von IP-Adresse\",\"ReportField.Add_Contract_Report.Status\":\"Status\",\"ReportField.My_Contracts.Start_Date\":\"Startdatum\",\"FormField.Rate_Your_Vendors.Modified_Time\":\"Geändert um\",\"FormButton.Add_Product.reset\":\"Zurücksetzen\",\"Report.Add_Contract_Report\":\"Alle Verträge\",\"ReportField.Rate_Your_Vendors_Report.Quality1\":\"Qualität\",\"FormButton.Add_Contract.update\":\"Update\",\"FormButton.Add_Vendor.update\":\"Update\",\"CustomAction.Add_Contract_Report.Renew\":\"Erneuern\",\"FormField.Add_Contract.Contract_Type\":\"Vertragstyp\",\"ReportField.History.Contract_Type\":\"Vertragstyp\",\"FormField.Rate_Your_Vendors.ID\":\"ID\",\"ReportField.Add_Contract_Report.Contract_Files\":\"Vertragsdateien\",\"FormField.Add_User.Record_Status\":\"Status des Datensatzes\",\"ReportField.History.Contract_Files\":\"Vertragsdateien\",\"FormField.Rate_Your_Vendors.Record_Status\":\"Status des Datensatzes\",\"FormField.Add_Contract.Added_User\":\"Hinzugefügt durch\",\"FormField.Add_Vendor.Status\":\"Status\",\"FormField.Add_Contract.Status\":\"Status\",\"Form.Add_Vendor\":\"Lieferant hinzufügen\",\"ReportField.Rate_Your_Vendors_Report.Average_Rating\":\"Durchschnittliche Bewertung\",\"CustomAction.My_Vendors.Archive1\":\"Archiv\",\"FormField.Add_User.Modified_Time\":\"Geändert um\",\"FormButton.Add_Contract_Category1.submit\":\"Absenden\",\"ReportField.Rate_Your_Vendors_Report.Risk1\":\"Risiko\",\"PicklistOption.Add_Vendor.Status.2\":\"Live\",\"PicklistOption.Add_Vendor.Status.3\":\"Archiviert\",\"CustomAction.Vendors_Report.Archive\":\"Archiv\",\"FormField.Add_Product.Product_Service_Name\":\"Name Produkt/Dienstleistung\",\"PicklistOption.Add_Vendor.Status.1\":\"Pipeline\",\"FormField.Add_Vendor.Relationship_Since\":\"Beziehung seit\",\"ReportField.Rate_Your_Vendors_Report.Rated_By\":\"Bewertet von\",\"Form.Add_Contract_Category\":\"Vertragstypen hinzufügen\",\"ReportField.Vendors_Report.Relationship_Since\":\"Beziehung seit\",\"FormField.Rate_Your_Vendors.Contract\":\"Vertrag\",\"FormButton.Add_Contract.submit\":\"Absenden\",\"FormButton.Add_Contract_Category.cancel\":\"Abbrechen\",\"FormButton.Add_Vendor_Type.reset\":\"Zurücksetzen\",\"ReportField.Rate_Your_Vendors_Report.Service1\":\"Service\",\"ReportField.My_Vendors.Internal_Manager\":\"Interne Mitarbeiter\",\"FormField.Add_Contract.Added_User_IP_Address\":\"Hinzugefügt von IP-Adresse\",\"FormField.Rate_Your_Vendors.Product_Service\":\"Produkt/Dienstleistung\",\"FormField.Add_Vendor.Total_spend\":\"Gesamtausgaben\",\"FormField.Add_Contract_Category.Added_Time\":\"Hinzugefügt um\",\"FormField.Add_Vendor_Type.Added_Time\":\"Hinzugefügt um\",\"FormButton.Add_Contract.cancel\":\"Abbrechen\",\"FormField.Add_Contract.Category\":\"Kategorie\",\"FormField.Add_Contract_Category.Contract_Type\":\"Vertragstyp\",\"CustomAction.Vendors_Report.Live\":\"Live\",\"FormButton.Add_Contract_Category.update\":\"Update\",\"ReportField.My_Vendors.Company_Website\":\"Website des Unternehmens\",\"Form.Add_Vendor_Type\":\"Anbietertyp hinzufügen\",\"FormButton.Add_Vendor.cancel\":\"Abbrechen\",\"FormButton.Add_Vendor.submit\":\"Absenden\",\"FormField.Add_Vendor.Official_Email\":\"Offizielle E-Mail\",\"ReportField.Add_Contract_Report.Product\":\"Produkt(e)\",\"FormField.Add_Product.ID\":\"ID\",\"ReportField.Add_Contract_Report.End_Date\":\"Enddatum\",\"CustomAction.My_Contracts.Renew1\":\"Erneuern\",\"FormField.Add_Contract_Category1.Modified_User_IP_Address\":\"Geändert von IP-Adresse\",\"Form.Add_Contract\":\"Vertrags hinzuführen\",\"PicklistOption.Rate_Your_Vendors.Quality1.1\":\"Schlecht\",\"FormField.Add_Vendor_Type.Modified_User\":\"Geändert durch\",\"ReportField.My_Contracts.Contract_Type\":\"Vertragstyp\",\"FormField.Add_Contract.Renewed\":\"Erneuert\",\"ReportField.Add_Contract_Report.Category\":\"Kategorie\",\"FormField.Add_Contract.if_from_popup\":\"Wenn von Popup\",\"ReportField.My_Vendors.Current_Contracts\":\"Aktuelle Verträge\",\"FormField.Add_Vendor.Name\":\"Name\",\"FormButton.Add_Product.cancel\":\"Abbrechen\",\"FormField.Add_Contract_Category1.Added_Time\":\"Hinzugefügt um\",\"FormField.Add_Vendor.Live_Contracts\":\"Live.Verträge\",\"Report.My_Contracts\":\"Mein Anbietervertrag\",\"PicklistOption.Rate_Your_Vendors.Quality1.3\":\"Ausgezeichnet\",\"PicklistOption.Rate_Your_Vendors.Quality1.2\":\"Durchschnitt\",\"ReportField.My_Vendors.Official_Email\":\"Offizielle E-Mail\",\"FormField.Add_Product.Modified_User\":\"Geändert durch\",\"FormField.Add_Product.Added_User_IP_Address\":\"Hinzugefügt von IP-Adresse\",\"FormButton.Add_Vendor_Type.cancel\":\"Abbrechen\",\"ReportField.My_Contracts.Contract\":\"Vertrag\",\"FormField.Add_Contract_Category.ID\":\"ID\",\"FormField.Add_Contract.Modified_Time\":\"Geändert um\",\"FormField.Add_Vendor.Added_User_IP_Address\":\"Hinzugefügt von IP-Adresse\",\"ReportField.Rate_Your_Vendors_Report.Product_Service\":\"Produkt/Dienstleistung\",\"FormField.Add_Contract_Category1.Contract_Category\":\"Vertrag Kategorie\",\"FormButton.Rate_Your_Vendors.update\":\"Update\",\"FormButton.Add_Contract_Category1.reset\":\"Zurücksetzen\",\"ReportField.Vendors_Report.Total_spend\":\"Gesamtausgaben\",\"ReportField.Add_Contract_Report.Contract_Number\":\"Vertragsnummer\",\"FormField.Add_Vendor.Internal_Manager\":\"Interne Mitarbeiter\",\"ReportField.Vendors_Report.Status\":\"Status\",\"Report.Add_Vendor_Type_Report\":\"Anbietertypen\",\"FormField.Add_Contract.Record_Status\":\"Status des Datensatzes\",\"FormField.Add_Vendor.Modified_User\":\"Geändert durch\",\"FormButton.Add_Contract_Category1.update\":\"Update\",\"FormField.Add_Vendor.Stock_Symbol\":\"Bestandssymbol\",\"Report.Add_Contract_Category_Report\":\"Vertragstypen\",\"FormField.Add_Contract.Contract_Title\":\"Vertragstitel\",\"FormField.Add_Product.Added_Time\":\"Hinzugefügt um\",\"FormField.Add_Vendor.Deals_with\":\"Beschäftigt sich mit\",\"FormField.Add_Contract_Category1.Modified_User\":\"Geändert durch\",\"ReportField.History.Start_Date\":\"Startdatum\",\"ReportField.Add_Contract_Report.Total_Spend1\":\"Vertragsbetrag\",\"FormField.Add_Contract.Total_Spend1\":\"Vertragsbetrag\",\"FormButton.Add_User.submit\":\"Absenden\",\"FormButton.Add_User.cancel\":\"Abbrechen\",\"FormField.Rate_Your_Vendors.Added_User\":\"Hinzugefügt durch\",\"PicklistOption.Rate_Your_Vendors.Service1.1\":\"Schlecht\",\"ReportField.Add_Users_Report.Official_Email\":\"Offizielle E-Mail\",\"PicklistOption.Rate_Your_Vendors.Service1.3\":\"Ausgezeichnet\",\"PicklistOption.Rate_Your_Vendors.Service1.2\":\"Durchschnitt\",\"ReportField.Vendors_Report.Type\":\"Typ\",\"PicklistOption.Add_Contract.Contract.1\":\"Neu\",\"FormField.Add_Contract_Category.Modified_User\":\"Geändert durch\",\"PicklistOption.Add_Contract.Contract.2\":\"Erneuerung\",\"FormField.Add_Vendor.Added_User\":\"Hinzugefügt durch\",\"PicklistOption.Rate_Your_Vendors.Risk1.2\":\"Durchschnitt\",\"PicklistOption.Rate_Your_Vendors.Risk1.3\":\"Ausgezeichnet\",\"ReportField.Add_Product_Report.Vendors\":\"Anbieter\",\"ReportField.My_Vendors.Type\":\"Typ\",\"PicklistOption.Rate_Your_Vendors.Risk1.1\":\"Schlecht\",\"FormField.Add_Contract.Hidden_Email\":\"Versteckte E-Mail\",\"ReportField.Add_Contract_Report.Vendor\":\"Interne Mitarbeiter\",\"FormField.Rate_Your_Vendors.Modified_User\":\"Geändert durch\",\"ReportField.Add_Contract_Report.Contract_Type\":\"Vertragstyp\",\"FormField.Add_Contract.Product\":\"Produkt(e)\",\"ReportField.Add_Contract_Report.Start_Date\":\"Startdatum\",\"FormField.Add_User.Added_Time\":\"Hinzugefügt um\",\"Report.My_Vendors\":\"Meine Anbieter\",\"ReportField.Add_Contract_Category_Report.Contract_Type\":\"Vertragstyp\",\"FormButton.Rate_Your_Vendors.cancel\":\"Abbrechen\",\"FormField.Add_Contract.Add_to_History\":\"Zu Bearbeitungsverlauf hinzufügen\",\"FormField.Add_User.Official_Email\":\"Offizielle E-Mail\",\"ReportField.Vendors_Report.Internal_Manager\":\"Interne Mitarbeiter\",\"Report.History\":\"Verlauf bearbeiten\",\"Form.Add_Contract_Category1\":\"Vertragskategorie hinzufügen\",\"FormField.Add_Contract.ID\":\"ID\",\"FormField.Add_Contract.Vendor\":\"Anbieter\",\"ReportField.History.Vendor\":\"Anbieter\",\"FormButton.Add_Product.submit\":\"Absenden\",\"Report.Vendors_Report\":\"Alle Hersteller\",\"FormButton.Add_Contract.reset\":\"Zurücksetzen\",\"FormField.Rate_Your_Vendors.Risk1\":\"Risiko\",\"ReportField.Add_Contract_Category1_Report.Contract_Category\":\"Vertrag Kategorie\",\"FormField.Add_Contract.Added_Time\":\"Hinzugefügt um\",\"FormField.Add_Contract.Start_Date\":\"Startdatum\",\"FormField.Add_Contract_Category1.ID\":\"ID\",\"FormField.Add_Vendor.ID\":\"ID\",\"FormField.Add_Vendor.Record_Status\":\"Status des Datensatzes\",\"FormButton.Add_Vendor_Type.submit\":\"Absenden\",\"ReportField.Rate_Your_Vendors_Report.Vendor\":\"Anbieter\",\"FormField.Rate_Your_Vendors.Quality1\":\"Qualität\",\"FormField.Rate_Your_Vendors.Vendor\":\"Anbieter\",\"FormField.Add_Contract.Notify_to_vendor_also\":\"Anbieter benachrichtigen\",\"FormField.Add_Contract.Contract\":\"Vertrag\",\"FormField.Add_User.Modified_User\":\"Geändert durch\",\"FormField.Rate_Your_Vendors.Average_Rating\":\"Durchschnittliche Bewertung\",\"ReportField.History.End_Date\":\"Enddatum\",\"ReportField.Add_Contract_Report.Contract_Title\":\"Vertragstitel\",\"CustomAction.Add_Contract_Report.Cancel_\":\"Abbrechen\",\"Report.Rate_Your_Vendors_Report\":\"Anbieterbewertung\",\"FormField.Rate_Your_Vendors.Added_User_IP_Address\":\"Hinzugefügt von IP-Adresse\",\"Report.Add_Product_Report\":\"Produkte\",\"PicklistOption.Add_Contract.Status.3\":\"Storniert\",\"PicklistOption.Add_Contract.Status.2\":\"Abgelaufen\",\"FormField.Rate_Your_Vendors.Delivery1\":\"Lieferung\",\"PicklistOption.Add_Contract.Status.1\":\"Aktuell\",\"ReportField.History.Contract_Number\":\"Vertragsnummer\",\"FormField.Add_User.Modified_User_IP_Address\":\"Geändert von IP-Adresse\",\"ReportField.My_Contracts.Contract_Files\":\"Vertragsdateien\",\"ReportField.Rate_Your_Vendors_Report.Contract\":\"Vertrag\",\"FormButton.Rate_Your_Vendors.submit\":\"Absenden\",\"ReportField.My_Contracts.End_Date\":\"Enddatum\",\"Form.Add_User\":\"Benutzer hinzufügen\",\"ReportField.My_Contracts.Status\":\"Status\",\"Report.Add_Contract_Category1_Report\":\"Vertragskategorien\",\"FormField.Rate_Your_Vendors.Rated_By\":\"Bewertet von\",\"FormField.Add_User.Profile\":\"Profil\",\"FormField.Add_Contract_Category.Added_User\":\"Hinzugefügt durch\",\"ReportField.History.Status\":\"Status\",\"FormField.Add_Contract.Notify_Before_Days\":\"Benachrichtigen vor (Tage)\",\"FormField.Add_Vendor_Type.Added_User\":\"Hinzugefügt durch\",\"FormField.Add_Contract.Contract_Number\":\"Vertragsnummer\",\"FormField.Add_Vendor.Personal_Email\":\"Sekundäre E-Mail\",\"FormField.Add_Contract.Description\":\"Beschreibung\",\"FormField.Add_Product.Record_Status\":\"Status des Datensatzes\",\"ReportField.My_Contracts.Contract_Number\":\"Vertragsnummer\",\"FormField.Add_Product.Vendors\":\"Anbieter\",\"FormButton.Add_Product.update\":\"Update\",\"FormField.Rate_Your_Vendors.Service1\":\"Service\",\"ReportField.History.Contract\":\"Vertrag\",\"FormField.Add_Contract.Contract_Files\":\"Vertragsdateien\",\"FormField.Add_Vendor.Type\":\"Typ\",\"PicklistOption.Rate_Your_Vendors.Price1.1\":\"Schlecht\",\"FormField.Add_Vendor.Company_Website\":\"Website des Unternehmens\",\"PicklistOption.Rate_Your_Vendors.Price1.3\":\"Ausgezeichnet\",\"FormField.Add_Contract_Category1.Added_User_IP_Address\":\"Hinzugefügt von IP-Adresse\",\"PicklistOption.Rate_Your_Vendors.Price1.2\":\"Durchschnitt\"},\"fr\":{\"ReportField.Vendors_Report.Name\":\" prénom \",\"ReportField.Add_Product_Report.Product_Service_Name\":\" Nom du produit \",\"FormButton.Add_Contract_Category1.cancel\":\" Annuler \",\"FormField.Add_Vendor.Country_of_Registration\":\" Pays d'enregistrement \",\"FormField.Add_Vendor_Type.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_Vendor.Current_Contracts\":\" Contrats actuels \",\"FormField.Add_Vendor_Type.Modified_Time\":\" Heure modifiée \",\"Form.Rate_Your_Vendors\":\" Évaluez vos fournisseurs \",\"ReportField.Add_Contract_Report.Contract\":\" Contrat \",\"FormField.Rate_Your_Vendors.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormField.Add_Contract.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"Languages List.zh-TW\":\" Chinois traditionnel \",\"FormButton.Add_Contract_Category.submit\":\" Soumettre \",\"CustomAction.My_Contracts.Cancel\":\" Annuler \",\"FormField.Rate_Your_Vendors.Price1\":\" Prix \",\"FormButton.Add_Contract_Category.reset\":\" Réinitialiser \",\"Languages List.ja\":\" Japonais \",\"ReportField.Vendors_Report.Official_Email\":\" Courriel officiel \",\"ReportField.Vendors_Report.Current_Contracts\":\" Contrats actuels \",\"ReportField.Add_Vendor_Type_Report.Vendor_Type\":\" Type de fournisseur \",\"ReportField.My_Contracts.Total_Spend1\":\" Dépense totale \",\"FormField.Add_Contract_Category.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_Vendor_Type.Vendor_Type\":\" Type de fournisseur \",\"FormField.Add_Contract.Contract_Number_Dropdown\":\" Numéro de contrat \",\"FormField.Add_Product.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"FormButton.Add_User.update\":\" Mettre à jour \",\"FormField.Add_Contract_Category1.Added_User\":\" Utilisateur ajouté \",\"ReportField.My_Vendors.Name\":\" prénom \",\"ReportField.Add_Users_Report.Profile\":\" Profil \",\"Languages List.ku\":\" kurde \",\"ReportField.Rate_Your_Vendors_Report.Delivery1\":\" Livraison \",\"ReportField.History.Category\":\" Catégorie \",\"Languages List.km\":\" Khmer \",\"FormField.Add_Vendor.Company_Registration\":\" Numéro d'entreprise \",\"FormField.Add_User.ID\":\" ID \",\"Languages List.ko\":\" coréen \",\"FormField.Add_Product.Modified_Time\":\" Heure modifiée \",\"Languages List.kn\":\" Kannada \",\"FormField.Add_Vendor_Type.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"ReportField.My_Vendors.Relationship_Since\":\" Relation depuis \",\"Languages List.ka\":\" géorgien \",\"FormField.Add_Contract.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Vendor_Type.ID\":\" ID \",\"FormField.Add_Contract_Category.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"ReportField.Vendors_Report.Company_Website\":\" Site Internet \",\"Languages List.hu\":\" hongrois \",\"Languages List.yi\":\" yiddish \",\"Languages List.hy\":\" arménien \",\"ReportField.Rate_Your_Vendors_Report.Price1\":\" Prix \",\"FormField.Add_User.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"ReportField.History.Total_Spend1\":\" Montant \",\"ReportField.My_Contracts.Category\":\" Catégorie \",\"ReportField.History.Contract_Title\":\" Titre \",\"Languages List.hr\":\" croate \",\"FormField.Add_Contract.Notify_Contract_Expiry\":\" Notifier l'expiration du contrat \",\"ReportField.My_Contracts.Vendor\":\" Vendeur \",\"FormButton.Add_User.reset\":\" Réinitialiser \",\"FormField.Add_Vendor.Modified_Time\":\" Heure modifiée \",\"FormField.Add_Contract.End_Date\":\" Date de fin \",\"FormField.Add_Contract.Notify_From_Date\":\" Notifier De (Date) \",\"Report.Add_Users_Report\":\" Utilisateurs \",\"FormButton.Rate_Your_Vendors.reset\":\" Réinitialiser \",\"Languages List.hi\":\" hindi \",\"Form.Add_Product\":\" Ajouter un produit / services \",\"FormField.Add_Contract_Category1.Record_Status\":\" Statut d'enregistrement \",\"Languages List.zh\":\" chinois \",\"Languages List.iw\":\" hébreu \",\"FormField.Add_Product.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Vendor.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"ReportField.My_Vendors.Status\":\" Statut \",\"FormButton.Add_Vendor_Type.update\":\" Mettre à jour \",\"Report.Vendor_Spend_Report\":\" Rapport de dépenses du fournisseur \",\"Section.Add_Vendor_Type1\":\" Admin \",\"FormField.Rate_Your_Vendors.Added_Time\":\" Temps ajouté \",\"Languages List.is\":\" islandais \",\"ReportField.My_Vendors.Total_spend\":\" Total des dépenses \",\"Languages List.it\":\" italien \",\"App.vendors\":\"Vendeurs \",\"FormField.Add_Contract_Category.Modified_Time\":\" Heure modifiée \",\"FormField.Add_Vendor_Type.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"PicklistOption.Rate_Your_Vendors.Delivery1.3\":\" Excellent \",\"PicklistOption.Rate_Your_Vendors.Delivery1.2\":\" Moyenne \",\"PicklistOption.Rate_Your_Vendors.Delivery1.1\":\" Pauvre \",\"ReportField.My_Contracts.Contract_Title\":\" Titre \",\"FormButton.Add_Vendor.reset\":\" Réinitialiser \",\"FormField.Add_Vendor.Added_Time\":\" Temps ajouté \",\"FormField.Add_Contract_Category1.Modified_Time\":\" Heure modifiée \",\"FormField.Add_User.Added_User\":\" Utilisateur ajouté \",\"CustomAction.My_Vendors.Live1\":\" Vivre \",\"FormField.Add_Contract_Category.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"ReportField.Add_Contract_Report.Status\":\" Statut \",\"ReportField.My_Contracts.Start_Date\":\" Date de début \",\"Languages List.nl\":\" néerlandais \",\"FormField.Rate_Your_Vendors.Modified_Time\":\" Heure modifiée \",\"Languages List.no\":\" norvégien \",\"FormButton.Add_Product.reset\":\" Réinitialiser \",\"Report.Add_Contract_Report\":\" Tous les contrats \",\"ReportField.Rate_Your_Vendors_Report.Quality1\":\" Qualité \",\"FormButton.Add_Contract.update\":\" Mettre à jour \",\"FormButton.Add_Vendor.update\":\" Mettre à jour \",\"Section.Vendors\":\"Vendeurs \",\"CustomAction.Add_Contract_Report.Renew\":\" Renouveler \",\"FormField.Add_Contract.Contract_Type\":\" Type de contrat \",\"ReportField.History.Contract_Type\":\" Type \",\"FormField.Rate_Your_Vendors.ID\":\" ID \",\"ReportField.Add_Contract_Report.Contract_Files\":\" Fichiers de contrat \",\"FormField.Add_User.Record_Status\":\" Statut d'enregistrement \",\"ReportField.History.Contract_Files\":\" Fichiers de contrat \",\"FormField.Rate_Your_Vendors.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_Contract.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Vendor.Status\":\" Statut \",\"FormField.Add_Contract.Status\":\" Statut \",\"Form.Add_Vendor\":\" Ajouter un fournisseur \",\"ReportField.Rate_Your_Vendors_Report.Average_Rating\":\" Note moyenne \",\"CustomAction.My_Vendors.Archive1\":\" Archiver \",\"FormField.Add_User.Modified_Time\":\" Heure modifiée \",\"FormButton.Add_Contract_Category1.submit\":\" Soumettre \",\"ReportField.Rate_Your_Vendors_Report.Risk1\":\" Risque \",\"PicklistOption.Add_Vendor.Status.2\":\" Vivre \",\"PicklistOption.Add_Vendor.Status.3\":\" Archivé \",\"CustomAction.Vendors_Report.Archive\":\" Archiver \",\"FormField.Add_Product.Product_Service_Name\":\" Nom du produit / service \",\"PicklistOption.Add_Vendor.Status.1\":\" Pipeline \",\"Languages List.lt\":\" lituanien \",\"FormField.Add_Vendor.Relationship_Since\":\" Relation depuis \",\"ReportField.Rate_Your_Vendors_Report.Rated_By\":\" Évalué par \",\"Languages List.lv\":\" letton \",\"Form.Add_Contract_Category\":\" Ajouter des types de contrat \",\"ReportField.Vendors_Report.Relationship_Since\":\" Relation depuis \",\"FormField.Rate_Your_Vendors.Contract\":\" Contrat \",\"FormButton.Add_Contract.submit\":\" Soumettre \",\"FormButton.Add_Contract_Category.cancel\":\" Annuler \",\"FormButton.Add_Vendor_Type.reset\":\" Réinitialiser \",\"Languages List.lo\":\" Laothian \",\"Languages List.la\":\" Latin \",\"ReportField.Rate_Your_Vendors_Report.Service1\":\" Un service \",\"ReportField.My_Vendors.Internal_Manager\":\" Gestionnaire interne \",\"FormField.Add_Contract.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"FormField.Rate_Your_Vendors.Product_Service\":\" Produit / Service \",\"FormField.Add_Vendor.Total_spend\":\" Total des dépenses \",\"FormField.Add_Contract_Category.Added_Time\":\" Temps ajouté \",\"FormField.Add_Vendor_Type.Added_Time\":\" Temps ajouté \",\"FormButton.Add_Contract.cancel\":\" Annuler \",\"Languages List.ms\":\" malais \",\"Languages List.mr\":\" Marathi \",\"Languages List.mt\":\" maltais \",\"FormField.Add_Contract.Category\":\" Catégorie \",\"FormField.Add_Contract_Category.Contract_Type\":\" Type de contrat \",\"CustomAction.Vendors_Report.Live\":\" Vivre \",\"FormButton.Add_Contract_Category.update\":\" Mettre à jour \",\"Languages List.mk\":\" Macédonien \",\"ReportField.My_Vendors.Company_Website\":\" Site Internet \",\"Form.Add_Vendor_Type\":\" Ajouter un type de fournisseur \",\"FormButton.Add_Vendor.cancel\":\" Annuler \",\"FormButton.Add_Vendor.submit\":\" Soumettre \",\"FormField.Add_Vendor.Official_Email\":\" Courriel officiel \",\"ReportField.Add_Contract_Report.Product\":\" Produit \",\"FormField.Add_Product.ID\":\" ID \",\"ReportField.Add_Contract_Report.End_Date\":\" Date de fin \",\"CustomAction.My_Contracts.Renew1\":\" Renouveler \",\"Section.Add_Contract1\":\" Contrats \",\"FormField.Add_Contract_Category1.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"Languages List.bg\":\" bulgare \",\"Form.Add_Contract\":\" Ajouter un contrat \",\"PicklistOption.Rate_Your_Vendors.Quality1.1\":\" Pauvre \",\"Languages List.bn\":\" bengali \",\"FormField.Add_Vendor_Type.Modified_User\":\" Utilisateur modifié \",\"Languages List.ro\":\" roumain \",\"ReportField.My_Contracts.Contract_Type\":\" Type \",\"FormField.Add_Contract.Renewed\":\" Renouvelé \",\"ReportField.Add_Contract_Report.Category\":\" Catégorie \",\"FormField.Add_Contract.if_from_popup\":\" si de popup \",\"Languages List.be\":\" Biélorusse \",\"Languages List.ru\":\" russe \",\"ReportField.My_Vendors.Current_Contracts\":\" Contrats actuels \",\"Languages List.az\":\" azerbaïdjanais \",\"Languages List.ta\":\" Tamil \",\"FormField.Add_Vendor.Name\":\" prénom \",\"Languages List.cs\":\" tchèque \",\"FormButton.Add_Product.cancel\":\" Annuler \",\"FormField.Add_Contract_Category1.Added_Time\":\" Temps ajouté \",\"Languages List.te\":\" Telugu \",\"Languages List.th\":\" thaïlandais \",\"FormField.Add_Vendor.Live_Contracts\":\" Contrats en direct \",\"Languages List.sq\":\" albanais \",\"Languages List.ca\":\" catalan \",\"Report.My_Contracts\":\" Le contrat de mon fournisseur \",\"PicklistOption.Rate_Your_Vendors.Quality1.3\":\" Excellent \",\"PicklistOption.Rate_Your_Vendors.Quality1.2\":\" Moyenne \",\"ReportField.My_Vendors.Official_Email\":\" Courriel officiel \",\"FormField.Add_Product.Modified_User\":\" Utilisateur modifié \",\"FormField.Add_Product.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Languages List.sw\":\" Swahili \",\"Languages List.sv\":\" suédois \",\"FormButton.Add_Vendor_Type.cancel\":\" Annuler \",\"ReportField.My_Contracts.Contract\":\" Contrat \",\"Languages List.sk\":\" slovaque \",\"FormField.Add_Contract_Category.ID\":\" ID \",\"FormField.Add_Contract.Modified_Time\":\" Heure modifiée \",\"Languages List.sl\":\" slovène \",\"FormField.Add_Vendor.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"ReportField.Rate_Your_Vendors_Report.Product_Service\":\" Produit / Service \",\"FormField.Add_Contract_Category1.Contract_Category\":\" Catégorie de contrat \",\"FormButton.Rate_Your_Vendors.update\":\" Mettre à jour \",\"FormButton.Add_Contract_Category1.reset\":\" Réinitialiser \",\"ReportField.Vendors_Report.Total_spend\":\" Dépense totale \",\"ReportField.Add_Contract_Report.Contract_Number\":\" Contrat No \",\"FormField.Add_Vendor.Internal_Manager\":\" Représentant interne \",\"ReportField.Vendors_Report.Status\":\" Statut \",\"Report.Add_Vendor_Type_Report\":\" Types de fournisseurs \",\"FormField.Add_Contract.Record_Status\":\" Statut d'enregistrement \",\"FormField.Add_Vendor.Modified_User\":\" Utilisateur modifié \",\"FormButton.Add_Contract_Category1.update\":\" Mettre à jour \",\"Languages List.pt\":\" Portugais \",\"FormField.Add_Vendor.Stock_Symbol\":\" Symbole de stock \",\"Report.Add_Contract_Category_Report\":\" Types de contrat \",\"FormField.Add_Contract.Contract_Title\":\" Titre du contrat \",\"FormField.Add_Product.Added_Time\":\" Temps ajouté \",\"FormField.Add_Vendor.Deals_with\":\" Offres avec \",\"Languages List.pl\":\" polonais \",\"FormField.Add_Contract_Category1.Modified_User\":\" Utilisateur modifié \",\"ReportField.History.Start_Date\":\" Date de début \",\"ReportField.Add_Contract_Report.Total_Spend1\":\" Montant \",\"Section.Vendor_Rating\":\" Note fournisseur \",\"Section.Hidden_items\":\" Objets cachés \",\"Languages List.ar\":\" arabe \",\"FormField.Add_Contract.Total_Spend1\":\" Montant du contrat \",\"Languages List.af\":\" afrikaans \",\"FormButton.Add_User.submit\":\" Soumettre \",\"FormButton.Add_User.cancel\":\" Annuler \",\"FormField.Rate_Your_Vendors.Added_User\":\" Utilisateur ajouté \",\"PicklistOption.Rate_Your_Vendors.Service1.1\":\" Pauvre \",\"ReportField.Add_Users_Report.Official_Email\":\" Courriel officiel \",\"PicklistOption.Rate_Your_Vendors.Service1.3\":\" Excellent \",\"PicklistOption.Rate_Your_Vendors.Service1.2\":\" Moyenne \",\"ReportField.Vendors_Report.Type\":\" Type \",\"PicklistOption.Add_Contract.Contract.1\":\" Nouveau \",\"FormField.Add_Contract_Category.Modified_User\":\" Utilisateur modifié \",\"PicklistOption.Add_Contract.Contract.2\":\" Renouvellement \",\"FormField.Add_Vendor.Added_User\":\" Utilisateur ajouté \",\"PicklistOption.Rate_Your_Vendors.Risk1.2\":\" Moyenne \",\"PicklistOption.Rate_Your_Vendors.Risk1.3\":\" Excellent \",\"ReportField.Add_Product_Report.Vendors\":\"Vendeurs \",\"ReportField.My_Vendors.Type\":\" Type \",\"PicklistOption.Rate_Your_Vendors.Risk1.1\":\" Pauvre \",\"FormField.Add_Contract.Hidden_Email\":\" Email caché \",\"ReportField.Add_Contract_Report.Vendor\":\" Représentant interne \",\"FormField.Rate_Your_Vendors.Modified_User\":\" Utilisateur modifié \",\"ReportField.Add_Contract_Report.Contract_Type\":\" Type \",\"FormField.Add_Contract.Product\":\"Des produits) \",\"ReportField.Add_Contract_Report.Start_Date\":\" Date de début \",\"FormField.Add_User.Added_Time\":\" Temps ajouté \",\"Report.My_Vendors\":\" Mes vendeurs \",\"Languages List.fr\":\" français \",\"ReportField.Add_Contract_Category_Report.Contract_Type\":\" Type de contrat \",\"FormButton.Rate_Your_Vendors.cancel\":\" Annuler \",\"FormField.Add_Contract.Add_to_History\":\" Ajouter à Modifier l'historique \",\"FormField.Add_User.Official_Email\":\" Courriel officiel \",\"Languages List.fi\":\" Finnois \",\"ReportField.Vendors_Report.Internal_Manager\":\" Gestionnaire interne \",\"Report.History\":\" Modifier l'historique \",\"Form.Add_Contract_Category1\":\" Ajouter une catégorie de contrat \",\"FormField.Add_Contract.ID\":\" ID \",\"FormField.Add_Contract.Vendor\":\" Vendeur \",\"Languages List.fa\":\" persan \",\"Languages List.gu\":\" Gujarati \",\"ReportField.History.Vendor\":\" Vendeur \",\"FormButton.Add_Product.submit\":\" Soumettre \",\"Report.Vendors_Report\":\" Tous les vendeurs \",\"FormButton.Add_Contract.reset\":\" Réinitialiser \",\"FormField.Rate_Your_Vendors.Risk1\":\" Risque \",\"ReportField.Add_Contract_Category1_Report.Contract_Category\":\" Catégorie de contrat \",\"Languages List.gl\":\" Galicien \",\"FormField.Add_Contract.Added_Time\":\" Temps ajouté \",\"FormField.Add_Contract.Start_Date\":\" Date de début \",\"FormField.Add_Contract_Category1.ID\":\" ID \",\"FormField.Add_Vendor.ID\":\" ID \",\"FormField.Add_Vendor.Record_Status\":\" Statut d'enregistrement \",\"Languages List.ga\":\" irlandais \",\"FormButton.Add_Vendor_Type.submit\":\" Soumettre \",\"ReportField.Rate_Your_Vendors_Report.Vendor\":\" Vendeur \",\"FormField.Rate_Your_Vendors.Quality1\":\" Qualité \",\"FormField.Rate_Your_Vendors.Vendor\":\" Vendeur \",\"FormField.Add_Contract.Notify_to_vendor_also\":\" Avertir le fournisseur \",\"FormField.Add_Contract.Contract\":\" Contrat \",\"FormField.Add_User.Modified_User\":\" Utilisateur modifié \",\"FormField.Rate_Your_Vendors.Average_Rating\":\" Note moyenne \",\"ReportField.History.End_Date\":\" Date de fin \",\"ReportField.Add_Contract_Report.Contract_Title\":\" Titre \",\"CustomAction.Add_Contract_Report.Cancel_\":\" Annuler \",\"Report.Rate_Your_Vendors_Report\":\" Revue des fournisseurs \",\"FormField.Rate_Your_Vendors.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"Report.Add_Product_Report\":\" Des produits \",\"PicklistOption.Add_Contract.Status.3\":\" Annulé \",\"PicklistOption.Add_Contract.Status.2\":\" Expiré \",\"FormField.Rate_Your_Vendors.Delivery1\":\" Livraison \",\"PicklistOption.Add_Contract.Status.1\":\" Actuel \",\"ReportField.History.Contract_Number\":\" Contrat No \",\"Languages List.tr\":\" turc \",\"FormField.Add_User.Modified_User_IP_Address\":\" Adresse IP de l'utilisateur modifié \",\"ReportField.My_Contracts.Contract_Files\":\" Fichiers de contrat \",\"Languages List.da\":\" danois \",\"ReportField.Rate_Your_Vendors_Report.Contract\":\" Contrat \",\"FormButton.Rate_Your_Vendors.submit\":\" Soumettre \",\"ReportField.My_Contracts.End_Date\":\" Date de fin \",\"Form.Add_User\":\" Ajouter un utilisateur \",\"ReportField.My_Contracts.Status\":\" Statut \",\"Languages List.de\":\" allemand \",\"Languages List.cy\":\" gallois \",\"Report.Add_Contract_Category1_Report\":\" Catégories de contrat \",\"Languages List.tl\":\" Philippin \",\"FormField.Rate_Your_Vendors.Rated_By\":\" Évalué par \",\"FormField.Add_User.Profile\":\" Profil \",\"Languages List.es\":\" Espanol \",\"FormField.Add_Contract_Category.Added_User\":\" Utilisateur ajouté \",\"Languages List.eu\":\" basque \",\"ReportField.History.Status\":\" Statut \",\"Languages List.et\":\" estonien \",\"FormField.Add_Contract.Notify_Before_Days\":\" Notifier avant (Jours) \",\"FormField.Add_Vendor_Type.Added_User\":\" Utilisateur ajouté \",\"FormField.Add_Contract.Contract_Number\":\" Numéro de contrat \",\"FormField.Add_Vendor.Personal_Email\":\" Email secondaire \",\"Languages List.vi\":\" vietnamien \",\"FormField.Add_Contract.Description\":\" La description \",\"FormField.Add_Product.Record_Status\":\" Statut d'enregistrement \",\"ReportField.My_Contracts.Contract_Number\":\" Contrat No \",\"FormField.Add_Product.Vendors\":\"Vendeurs \",\"Languages List.el\":\" grec \",\"FormButton.Add_Product.update\":\" Mettre à jour \",\"Languages List.eo\":\" espéranto \",\"FormField.Rate_Your_Vendors.Service1\":\" Un service \",\"Languages List.en\":\" Anglais \",\"Languages List.ur\":\" Urdu \",\"ReportField.History.Contract\":\" Contrat \",\"FormField.Add_Contract.Contract_Files\":\" Fichiers de contrat \",\"FormField.Add_Vendor.Type\":\" Type \",\"PicklistOption.Rate_Your_Vendors.Price1.1\":\" Pauvre \",\"FormField.Add_Vendor.Company_Website\":\" site Web d'entreprise \",\"PicklistOption.Rate_Your_Vendors.Price1.3\":\" Excellent \",\"FormField.Add_Contract_Category1.Added_User_IP_Address\":\" Adresse IP de l'utilisateur ajouté \",\"PicklistOption.Rate_Your_Vendors.Price1.2\":\" Moyenne \"}}"
+}
+	reports configuration
+	{
+	
+		Version = 1251000165802255
+		Key     = "DqHd1kKT8jESbyU7zk4zjHXGNmZQs8SKGgdN4quCyYTP0CPCVhb6h949QF8gpMpX7quKX8nq5bjZT5OJ2JKzZyHKvmXYmzHuCTax"
+	}
+}
